@@ -24,20 +24,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'Zend_Service_AllTests::main');
 }
 
-require_once 'Zend/Service/AkismetTest.php';
-require_once 'Zend/Service/Amazon/AllTests.php';
-require_once 'Zend/Service/Audioscrobbler/AllTests.php';
-require_once 'Zend/Service/Delicious/AllTests.php';
-require_once 'Zend/Service/Ebay/AllTests.php';
-require_once 'Zend/Service/Flickr/AllTests.php';
-require_once 'Zend/Service/LiveDocx/AllTests.php';
 require_once 'Zend/Service/ReCaptcha/AllTests.php';
-require_once 'Zend/Service/ShortUrl/AllTests.php';
-require_once 'Zend/Service/SlideShareTest.php';
-require_once 'Zend/Service/StrikeIron/AllTests.php';
-require_once 'Zend/Service/Twitter/AllTests.php';
-require_once 'Zend/Service/WindowsAzure/AllTests.php';
-require_once 'Zend/Service/Yahoo/AllTests.php';
 
 /**
  * @category   Zend
@@ -69,19 +56,7 @@ class Zend_Service_AllTests
         $suite = new PHPUnit_Framework_TestSuite('Zend Framework - Zend_Service');
 
         $suite->addTestSuite('Zend_Service_AkismetTest');
-        $suite->addTest(Zend_Service_Amazon_AllTests::suite());
-        $suite->addTest(Zend_Service_Audioscrobbler_AllTests::suite());
-        $suite->addTest(Zend_Service_Delicious_AllTests::suite());
-        $suite->addTest(Zend_Service_Ebay_AllTests::suite());
-        $suite->addTest(Zend_Service_Flickr_AllTests::suite());
-        $suite->addTest(Zend_Service_LiveDocx_AllTests::suite());
         $suite->addTest(Zend_Service_ReCaptcha_AllTests::suite());
-        $suite->addTest(Zend_Service_ShortUrl_AllTests::suite());
-        $suite->addTestSuite('Zend_Service_SlideShareTest');
-        $suite->addTest(Zend_Service_StrikeIron_AllTests::suite());
-        $suite->addTest(Zend_Service_Twitter_AllTests::suite());
-        $suite->addTest(Zend_Service_WindowsAzure_AllTests::suite());
-        $suite->addTest(Zend_Service_Yahoo_AllTests::suite());
 
         return $suite;
     }

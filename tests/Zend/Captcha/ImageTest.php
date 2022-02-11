@@ -203,40 +203,6 @@ class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->captcha->getExpiration(), 3600);
     }
 
-    public function testCaptchaImageCleanup()
-    {
-        $this->element->render($this->getView());
-        $filename = $this->testDir."/".$this->captcha->getId().".png";
-        $this->assertTrue(file_exists($filename));
-        $this->captcha->setExpiration(1);
-        $this->captcha->setGcFreq(1);
-        sleep(2);
-        $this->captcha->generate();
-        clearstatcache();
-        $this->assertFalse(file_exists($filename), "File $filename was found even after GC");
-    }
-
-    /**
-     * @group ZF-10006
-     */
-    public function testCaptchaImageCleanupOnlyCaptchaFilesIdentifiedByTheirSuffix()
-    {
-        $this->element->render($this->getView());
-        $filename = $this->testDir."/".$this->captcha->getId().".png";
-        $this->assertTrue(file_exists($filename));
-        //Create other cache file
-        $otherFile = $this->testDir . "/zf10006.cache";
-        file_put_contents($otherFile, '');
-        $this->assertTrue(file_exists($otherFile));
-        $this->captcha->setExpiration(1);
-        $this->captcha->setGcFreq(1);
-        sleep(2);
-        $this->captcha->generate();
-        clearstatcache();
-        $this->assertFalse(file_exists($filename), "File $filename was found even after GC");
-        $this->assertTrue(file_exists($otherFile), "File $otherFile was not found after GC");
-    }
-
     public function testGenerateReturnsId()
     {
         $id = $this->captcha->generate();
@@ -346,19 +312,19 @@ class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
         $input = array("id" => $this->captcha->getId(), "input" => $this->captcha->getWord());
         $this->assertTrue($this->element->isValid($input));
     }
-    
+
     /**
      * @group ZF-11483
      */
     public function testImageTagRenderedProperlyBasedUponDoctype()
     {
-        $this->testCaptchaIsRendered();        
+        $this->testCaptchaIsRendered();
         $view = new Zend_View();
-        
-        $view->doctype('XHTML1_STRICT');        
+
+        $view->doctype('XHTML1_STRICT');
         $this->assertRegExp('#/>$#', $this->captcha->render($view));
-        
-        $view->doctype('HTML4_STRICT');        
+
+        $view->doctype('HTML4_STRICT');
         $this->assertRegExp('#[^/]>$#', $this->captcha->render($view));
     }
 }

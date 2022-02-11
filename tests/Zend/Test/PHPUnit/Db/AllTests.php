@@ -27,7 +27,6 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
 require_once "DataSet/AllTests.php";
 require_once "Operation/AllTests.php";
 require_once "Metadata/GenericTest.php";
-require_once "TestCaseTest.php";
 require_once "ConnectionTest.php";
 require_once "SimpleTesterTest.php";
 require_once "Integration/SqLiteIntegrationTest.php";
