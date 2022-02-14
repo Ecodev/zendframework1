@@ -213,7 +213,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->onLoadCaptureStart();
         $this->jquery->onLoadCaptureStart();
 
-        $this->setExpectedException('Zend_Exception');
+        $this->expectException('Zend_Exception');
     }
 
     public function testAddJavascriptFiles()

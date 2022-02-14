@@ -77,13 +77,13 @@ class Zend_Loader_ClassMapAutoloaderTest extends \PHPUnit\Framework\TestCase
     public function testRegisteringNonExistentAutoloadMapRaisesInvalidArgumentException()
     {
         $dir = __DIR__ . '__foobar__';
-        $this->setExpectedException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
         $this->loader->registerAutoloadMap($dir);
     }
 
     public function testValidMapFileNotReturningMapRaisesInvalidArgumentException()
     {
-        $this->setExpectedException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
         $this->loader->registerAutoloadMap(__DIR__ . '/_files/badmap.php');
     }
 

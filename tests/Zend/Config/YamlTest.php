@@ -242,19 +242,19 @@ class Zend_Config_YamlTest extends \PHPUnit\Framework\TestCase
 
     public function testConstructorRaisesExceptionWhenUnableToLoadFile()
     {
-        $this->setExpectedException(\Zend_Config_Exception::class, 'file_get_contents');
+        $this->expectException(\Zend_Config_Exception::class, 'file_get_contents');
         $config = new Zend_Config_Yaml('__foo__');
     }
 
     public function testBadIndentationRaisesException()
     {
-        $this->setExpectedException(\Zend_Config_Exception::class, 'unsupported syntax');
+        $this->expectException(\Zend_Config_Exception::class, 'unsupported syntax');
         $config = new Zend_Config_Yaml($this->_badIndentationConfig, 'all');
     }
 
     public function testPassingBadYamlDecoderRaisesException()
     {
-        $this->setExpectedException(\Zend_Config_Exception::class, 'must be callable');
+        $this->expectException(\Zend_Config_Exception::class, 'must be callable');
         $config = new Zend_Config_Yaml($this->_iniFileAllSectionsConfig, 'debug', array(
             'yaml_decoder' => '__foo__',
         ));

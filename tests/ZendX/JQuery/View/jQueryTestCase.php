@@ -27,7 +27,7 @@ require_once "Zend/View.php";
 require_once "ZendX/JQuery.php";
 require_once "ZendX/JQuery/View/Helper/JQuery.php";
 
-abstract class ZendX_JQuery_View_jQueryTestCase extends PHPUnit_Framework_TestCase
+abstract class ZendX_JQuery_View_jQueryTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View

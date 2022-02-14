@@ -34,7 +34,7 @@ require_once "ZendX/JQuery/Form.php";
 require_once "Zend/Form/Element.php";
 require_once "ZendX/JQuery/Form/Element/Spinner.php";
 
-class ZendX_JQuery_JQueryTest extends PHPUnit_Framework_TestCase
+class ZendX_JQuery_JQueryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -43,7 +43,7 @@ class ZendX_JQuery_JQueryTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("ZendX_JQuery_JQueryTest");
+        $suite  = new \PHPUnit\Framework\TestSuite("ZendX_JQuery_JQueryTest");
         $result = PHPUnit_TextUI_TestRunner::run($suite);
     }
 

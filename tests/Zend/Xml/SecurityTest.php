@@ -55,7 +55,7 @@ class Zend_Xml_SecurityTest extends \PHPUnit\Framework\TestCase
 </results>
 XML;
 
-        $this->setExpectedException(\Zend_Xml_Exception::class);
+        $this->expectException(\Zend_Xml_Exception::class);
         $result = Zend_Xml_Security::scan($xml);
     }
 

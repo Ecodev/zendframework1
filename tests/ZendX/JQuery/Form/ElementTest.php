@@ -38,7 +38,6 @@ require_once "ZendX/JQuery/View/Helper/JQuery.php";
 
 require_once "ZendX/JQuery/Form/Element/Spinner.php";
 require_once "ZendX/JQuery/Form/Element/Slider.php";
-require_once "ZendX/JQuery/Form/Element/ColorPicker.php";
 require_once "ZendX/JQuery/Form/Element/DatePicker.php";
 require_once "ZendX/JQuery/Form/Element/AutoComplete.php";
 
@@ -46,7 +45,7 @@ require_once "Zend/Form/Decorator/ViewHelper.php";
 require_once "ZendX/JQuery/Form/Decorator/UiWidgetElement.php";
 
 
-class ZendX_JQuery_Form_ElementTest extends PHPUnit_Framework_TestCase
+class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
@@ -83,9 +82,6 @@ class ZendX_JQuery_Form_ElementTest extends PHPUnit_Framework_TestCase
 
         $slider = new ZendX_JQuery_Form_Element_Slider('sliderElem');
         $this->assertTrue($slider->getDecorator('UiWidgetElement') !== false);
-
-        $cp = new ZendX_JQuery_Form_Element_ColorPicker('cpElem');
-        $this->assertTrue($cp->getDecorator('UiWidgetElement') !== false);
 
         $dp = new ZendX_JQuery_Form_Element_DatePicker('dpElem');
         $this->assertTrue($dp->getDecorator('UiWidgetElement') !== false);
@@ -203,7 +199,7 @@ class ZendX_JQuery_Form_ElementTest extends PHPUnit_Framework_TestCase
         $this->assertContains('sf1[dp1]', $form);
         $this->assertNotContains('$("#sf1[dp1]")', $jquery);
     }
-    
+
     /**
      * @group ZF-6979
      */

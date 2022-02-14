@@ -183,19 +183,19 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
 
     public function testGetInvalidAutoloaderThrowsException()
     {
-        $this->setExpectedException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
         $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader('InvalidAutoloader');
     }
 
     public function testFactoryWithInvalidArgumentThrowsException()
     {
-        $this->setExpectedException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
         Zend_Loader_AutoloaderFactory::factory('InvalidArgument');
     }
 
     public function testFactoryWithInvalidAutoloaderClassThrowsException()
     {
-        $this->setExpectedException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
         Zend_Loader_AutoloaderFactory::factory(array('InvalidAutoloader' => array()));
     }
 

@@ -105,7 +105,7 @@ class Zend_Config_JsonTest extends \PHPUnit\Framework\TestCase
 
     public function testRaisesExceptionWhenSectionNotFound()
     {
-        $this->setExpectedException(\Zend_Config_Exception::class, 'cannot be found');
+        $this->expectException(\Zend_Config_Exception::class, 'cannot be found');
         $config = new Zend_Config_Json($this->_iniFileConfig, 'extendserror');
     }
 
@@ -142,19 +142,19 @@ class Zend_Config_JsonTest extends \PHPUnit\Framework\TestCase
 
     public function testDetectsCircularInheritance()
     {
-        $this->setExpectedException(\Zend_Config_Exception::class, 'circular inheritance');
+        $this->expectException(\Zend_Config_Exception::class, 'circular inheritance');
         $config = new Zend_Config_Json($this->_iniFileCircularConfig, null);
     }
 
     public function testRaisesErrorWhenNoFileProvided()
     {
-        $this->setExpectedException(\Zend_Config_Exception::class, 'not set');
+        $this->expectException(\Zend_Config_Exception::class, 'not set');
         $config = new Zend_Config_Json('','');
     }
 
     public function testRaisesErrorOnAttemptsToExtendMultipleSectionsAtOnce()
     {
-        $this->setExpectedException(\Zend_Config_Exception::class, 'Invalid');
+        $this->expectException(\Zend_Config_Exception::class, 'Invalid');
         $config = new Zend_Config_Json($this->_iniFileMultipleInheritanceConfig, 'multiinherit');
     }
 
@@ -188,7 +188,7 @@ class Zend_Config_JsonTest extends \PHPUnit\Framework\TestCase
 
     public function testRaisesExceptionOnInvalidJsonMarkup()
     {
-        $this->setExpectedException(\Zend_Config_Exception::class, 'Error parsing JSON data');
+        $this->expectException(\Zend_Config_Exception::class, 'Error parsing JSON data');
         $config = new Zend_Config_Json($this->_iniFileInvalid);
     }
 
@@ -275,7 +275,7 @@ EOJ;
         }
         $json = '{"env":"ZEND_CONFIG_JSON_ENV","path":"ZEND_CONFIG_JSON_ENV_PATH/tests","int":ZEND_CONFIG_JSON_ENV_INT}';
 
-        $this->setExpectedException(\Zend_Config_Exception::class, 'Error parsing JSON data');
+        $this->expectException(\Zend_Config_Exception::class, 'Error parsing JSON data');
         $config = new Zend_Config_Json($json, null, array('ignore_constants' => true));
     }
 }

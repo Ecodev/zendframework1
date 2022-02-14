@@ -20,7 +20,7 @@
  * @version     $Id: AllTests.php 11232 2008-09-05 08:16:33Z beberlei $
  */
 
-require_once dirname(__FILE__)."/../../../TestHelper.php";
+require_once dirname(__FILE__) . "/../../../TestHelper.php";
 
 if (!defined('PHPUnit_MAIN_METHOD')) {
     define('PHPUnit_MAIN_METHOD', 'ZendX_JQuery_View_DecoratorTest::main');
@@ -38,7 +38,7 @@ require_once "ZendX/JQuery/Form/Decorator/UiWidgetElement.php";
 require_once "ZendX/JQuery/Form/Decorator/TabContainer.php";
 require_once "ZendX/JQuery/Form/Decorator/TabPane.php";
 
-class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
+class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
@@ -48,7 +48,8 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
     /**
      * Returns the contens of the exepcted $file
      *
-     * @param  string $file
+     * @param string $file
+     *
      * @return string
      */
     protected function _getExpected($file)
@@ -67,9 +68,9 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         try {
             $ac->render();
             $this->fail();
-        } catch(Zend_Form_Decorator_Exception $e) {
+        } catch (Zend_Form_Decorator_Exception $e) {
 
-        } catch(Zend_Exception $e) {
+        } catch (Zend_Exception $e) {
             $this->fail();
         }
 
@@ -88,10 +89,10 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         $uiWidget = $spinner->getDecorator('UiWidgetElement');
 
         $uiWidget->setJQueryParam("foo", "bar");
-        $this->assertEquals(array("foo" => "bar"), $uiWidget->getJQueryParams());
+        $this->assertEquals(["foo" => "bar"], $uiWidget->getJQueryParams());
 
-        $uiWidget->setJQueryParams(array("bar" => "baz"));
-        $this->assertEquals(array("foo" => "bar", "bar" => "baz"), $uiWidget->getJQueryParams());
+        $uiWidget->setJQueryParams(["bar" => "baz"]);
+        $this->assertEquals(["foo" => "bar", "bar" => "baz"], $uiWidget->getJQueryParams());
 
         $this->assertEquals("bar", $uiWidget->getJQueryParam("foo"));
         $this->assertEquals("baz", $uiWidget->getJQueryParam("bar"));
@@ -107,7 +108,7 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         $spinner->setJQueryParam('min', 100);
         $spinner->setView($view);
         $output = $spinner->render();
-        $this->assertEquals(array('$("#ac1").spinner({"min":100});'), $view->jQuery()->getOnLoadActions());
+        $this->assertEquals(['$("#ac1").spinner({"min":100});'], $view->jQuery()->getOnLoadActions());
     }
 
     public function testUiWidgetContainerGetHelper()
@@ -122,17 +123,17 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         $ac = new ZendX_JQuery_Form_Element_Spinner("ac1");
         $container->setElement($ac);
 
-        $this->assertEquals(array("options" => array()), $container->getAttribs());
+        $this->assertEquals(["options" => []], $container->getAttribs());
     }
 
     public function testUiWidgetContainerGetJQueryParams()
     {
         $container = new ZendX_JQuery_Form_Decorator_TabContainer();
         $ac = new ZendX_JQuery_Form_Element_Spinner("spinner");
-        $ac->setJQueryParams(array("foo" => "bar", "baz" => "baz"));
+        $ac->setJQueryParams(["foo" => "bar", "baz" => "baz"]);
         $container->setElement($ac);
 
-        $this->assertEquals(array("foo" => "bar", "baz" => "baz"), $container->getJQueryParams());
+        $this->assertEquals(["foo" => "bar", "baz" => "baz"], $container->getJQueryParams());
     }
 
     public function testUiWidgetPaneRenderingThrowsExceptionWithoutContainerIdOption()
@@ -147,7 +148,7 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         try {
             $pane->render("");
             $this->fail();
-        } catch(Zend_Form_Decorator_Exception $e) {
+        } catch (Zend_Form_Decorator_Exception $e) {
 
         }
     }
@@ -164,8 +165,8 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         try {
             $pane->render("");
             $this->fail();
-        } catch(Zend_Form_Decorator_Exception $e) {
-
+        } catch (Zend_Form_Decorator_Exception $e) {
+            self::assertTrue(true);
         }
     }
 
@@ -191,32 +192,32 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         $form->setAttrib('id', 'mainForm');
 
         // Use a TabContainer for your form:
-        $form->setDecorators(array(
+        $form->setDecorators([
             'FormElements',
-            array('TabContainer', array(
-                'id'          => 'tabContainer',
-                'style'       => 'width: 600px;',
-                'jQueryParams' => array(
-                    'tabPosition' => 'top'
-                ),
-            )),
+            ['TabContainer', [
+                'id' => 'tabContainer',
+                'style' => 'width: 600px;',
+                'jQueryParams' => [
+                    'tabPosition' => 'top',
+                ],
+            ]],
             'Form',
-        ));
+        ]);
 
         $subForm1 = new ZendX_JQuery_Form('subform1');
         $subForm1->setView($view);
 
         // Add Element Spinner
-        $elem = new ZendX_JQuery_Form_Element_Spinner("spinner1", array('label' => 'Spinner:', 'attribs' => array('class' => 'flora')));
-        $elem->setJQueryParams(array('min' => 0, 'max' => 1000, 'start' => 100));
+        $elem = new ZendX_JQuery_Form_Element_Spinner("spinner1", ['label' => 'Spinner:', 'attribs' => ['class' => 'flora']]);
+        $elem->setJQueryParams(['min' => 0, 'max' => 1000, 'start' => 100]);
 
         $subForm1->addElement($elem);
 
-        $subForm1->setDecorators(array(
+        $subForm1->setDecorators([
             'FormElements',
-            array('HtmlTag', array('tag' => 'dl')),
-            array('TabPane', array('jQueryParams' => array('containerId' => 'mainForm', 'title' => 'Slider'))),
-        ));
+            ['HtmlTag', ['tag' => 'dl']],
+            ['TabPane', ['jQueryParams' => ['containerId' => 'mainForm', 'title' => 'Slider']]],
+        ]);
 
         $form->addSubForm($subForm1, "form1");
 
@@ -237,54 +238,54 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
 
         // Create jQuery Form
         $form = new ZendX_JQuery_Form(
-            array(
-                 'method'     => Zend_Form::METHOD_GET,
-                 'attribs'    => array(
-                     'id' => 'mainForm',
-                 ),
-                 'decorators' => array(
-                     'FormElements',
-                     array(
-                         'HtmlTag',
-                         array(
-                             'tag' => 'dl',
-                         ),
-                     ),
-                     array(
-                         'TabContainer',
-                         array(
-                             'id'        => 'tabContainer',
-                             'placement' => 'prepend',
-                             'separator' => '',
-                         ),
-                     ),
-                     'Form',
-                 )
-            )
+            [
+                'method' => Zend_Form::METHOD_GET,
+                'attribs' => [
+                    'id' => 'mainForm',
+                ],
+                'decorators' => [
+                    'FormElements',
+                    [
+                        'HtmlTag',
+                        [
+                            'tag' => 'dl',
+                        ],
+                    ],
+                    [
+                        'TabContainer',
+                        [
+                            'id' => 'tabContainer',
+                            'placement' => 'prepend',
+                            'separator' => '',
+                        ],
+                    ],
+                    'Form',
+                ],
+            ]
         );
 
         // Add sub form
         $subForm = new ZendX_JQuery_Form(
-            array(
-                 'decorators' => array(
-                     'FormElements',
-                     array(
-                         'HtmlTag',
-                         array(
-                             'tag' => 'dl',
-                         ),
-                     ),
-                     array(
-                         'TabPane',
-                         array(
-                             'jQueryParams' => array(
-                                 'containerId' => 'mainForm',
-                                 'title'       => 'Slider',
-                             ),
-                         ),
-                     ),
-                 )
-            )
+            [
+                'decorators' => [
+                    'FormElements',
+                    [
+                        'HtmlTag',
+                        [
+                            'tag' => 'dl',
+                        ],
+                    ],
+                    [
+                        'TabPane',
+                        [
+                            'jQueryParams' => [
+                                'containerId' => 'mainForm',
+                                'title' => 'Slider',
+                            ],
+                        ],
+                    ],
+                ],
+            ]
         );
         $form->addSubForm($subForm, 'subform');
 
@@ -292,26 +293,26 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         $subForm->addElement(
             'spinner',
             'spinner',
-            array(
-                 'label'   => 'Spinner:',
-                 'attribs' => array(
-                     'class' => 'flora',
-                 ),
-                 'jQueryParams' => array(
-                     'min'   => 0,
-                      'max'   => 1000,
-                      'start' => 100,
-                 ),
-            )
+            [
+                'label' => 'Spinner:',
+                'attribs' => [
+                    'class' => 'flora',
+                ],
+                'jQueryParams' => [
+                    'min' => 0,
+                    'max' => 1000,
+                    'start' => 100,
+                ],
+            ]
         );
 
         // Add submit button to main form
         $form->addElement(
             'submit',
             'submit',
-            array(
-                 'label' => 'Send',
-            )
+            [
+                'label' => 'Send',
+            ]
         );
 
         $this->assertSame(
@@ -335,31 +336,31 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
         $form->setAttrib('id', 'mainForm');
 
         // Use a TabContainer for your form:
-        $form->setDecorators(array(
+        $form->setDecorators([
             'FormElements',
             'Form',
-            array('DialogContainer', array(
-                'id'          => 'tabContainer',
-                'style'       => 'width: 600px;',
-                'jQueryParams' => array(
-                    'tabPosition' => 'top'
-                ),
-            )),
-        ));
+            ['DialogContainer', [
+                'id' => 'tabContainer',
+                'style' => 'width: 600px;',
+                'jQueryParams' => [
+                    'tabPosition' => 'top',
+                ],
+            ]],
+        ]);
 
         $subForm1 = new ZendX_JQuery_Form('subform1');
         $subForm1->setView($view);
 
         // Add Element Spinner
-        $elem = new ZendX_JQuery_Form_Element_Spinner("spinner1", array('label' => 'Spinner:', 'attribs' => array('class' => 'flora')));
-        $elem->setJQueryParams(array('min' => 0, 'max' => 1000, 'start' => 100));
+        $elem = new ZendX_JQuery_Form_Element_Spinner("spinner1", ['label' => 'Spinner:', 'attribs' => ['class' => 'flora']]);
+        $elem->setJQueryParams(['min' => 0, 'max' => 1000, 'start' => 100]);
 
         $subForm1->addElement($elem);
 
-        $subForm1->setDecorators(array(
+        $subForm1->setDecorators([
             'FormElements',
-            array('HtmlTag', array('tag' => 'dl')),
-        ));
+            ['HtmlTag', ['tag' => 'dl']],
+        ]);
 
         $form->addSubForm($subForm1, "form1");
 
@@ -372,7 +373,7 @@ class ZendX_JQuery_Form_DecoratorTest extends PHPUnit_Framework_TestCase
     {
         $view = new Zend_View();
 
-        $widget = new ZendX_JQuery_Form_Element_Spinner("spinner1", array("label" => "Spinner"));
+        $widget = new ZendX_JQuery_Form_Element_Spinner("spinner1", ["label" => "Spinner"]);
         $widget->setView($view);
 
         $view->jQuery()->disable();

@@ -192,13 +192,13 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 
     public function testFactoryWithUnExistingClassThrowException()
     {
-        $this->setExpectedException(\Zend_Uri_Exception::class, '"This_Is_An_Unknown_Class" not found');
+        $this->expectException(\Zend_Uri_Exception::class, '"This_Is_An_Unknown_Class" not found');
         Zend_Uri::factory('http://example.net', 'This_Is_An_Unknown_Class');
     }
 
     public function testFactoryWithExistingClassButNotImplementingZendUriThrowException()
     {
-        $this->setExpectedException(\Zend_Uri_Exception::class, '"Fake_Zend_Uri" is not an instance of Zend_Uri');
+        $this->expectException(\Zend_Uri_Exception::class, '"Fake_Zend_Uri" is not an instance of Zend_Uri');
         Zend_Uri::factory('http://example.net', 'Fake_Zend_Uri');
     }
 
