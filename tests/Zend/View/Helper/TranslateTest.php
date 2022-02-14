@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_TranslateTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_TranslateTest::main");
-}
+
 
 /** Zend_View_Helper_Translate */
 require_once 'Zend/View/Helper/Translate.php';
@@ -46,7 +43,7 @@ require_once 'Zend/Translate/Adapter/Array.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_TranslateTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Translate
@@ -66,13 +63,13 @@ class Zend_View_Helper_TranslateTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_TranslateTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_TranslateTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function clearRegistry()
     {
-        $regKey = 'Zend_Translate';
+        $regKey = \Zend_Translate::class;
         if (Zend_Registry::isRegistered($regKey)) {
             $registry = Zend_Registry::getInstance();
             unset($registry[$regKey]);
@@ -124,7 +121,7 @@ class Zend_View_Helper_TranslateTest extends PHPUnit_Framework_TestCase
     public function testTranslationObjectInRegistryUsedForTranslationsInAbsenceOfLocalTranslationObject()
     {
         $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1\$s' => 'zwei %1\$s'), 'de');
-        Zend_Registry::set('Zend_Translate', $trans);
+        Zend_Registry::set(\Zend_Translate::class, $trans);
         $this->assertEquals('eins', $this->helper->translate('one'));
     }
 
@@ -218,7 +215,7 @@ class Zend_View_Helper_TranslateTest extends PHPUnit_Framework_TestCase
     public function testLocalTranslationObjectIsPreferredOverRegistry()
     {
         $transReg = new Zend_Translate('array', array('one' => 'eins'));
-        Zend_Registry::set('Zend_Translate', $transReg);
+        Zend_Registry::set(\Zend_Translate::class, $transReg);
 
         $this->assertSame($transReg->getAdapter(), $this->helper->getTranslator());
 
@@ -263,7 +260,3 @@ class Zend_View_Helper_TranslateTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_TranslateTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_TranslateTest::main") {
-    Zend_View_Helper_TranslateTest::main();
-}

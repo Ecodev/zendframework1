@@ -43,7 +43,7 @@ class Zend_Config_Xml extends Zend_Config
     /**
      * XML namespace for ZF-related tags and attributes
      */
-    const XML_NAMESPACE = 'http://framework.zend.com/xml/zend-config-xml/1.0/';
+    public const XML_NAMESPACE = 'http://framework.zend.com/xml/zend-config-xml/1.0/';
 
     /**
      * Whether to skip extends or not
@@ -184,7 +184,7 @@ class Zend_Config_Xml extends Zend_Config
         $nsAttributes = $thisSection->attributes(self::XML_NAMESPACE);
 
         if (isset($thisSection['extends']) || isset($nsAttributes['extends'])) {
-            $extendedSection = (string) (isset($nsAttributes['extends']) ? $nsAttributes['extends'] : $thisSection['extends']);
+            $extendedSection = (string) ($nsAttributes['extends'] ?? $thisSection['extends']);
             $this->_assertValidExtend($section, $extendedSection);
 
             if (!$this->_skipExtends) {
@@ -210,7 +210,7 @@ class Zend_Config_Xml extends Zend_Config
         $nsAttributes = $xmlObject->attributes(self::XML_NAMESPACE);
 
         // Search for parent node values
-        if (count($xmlObject->attributes()) > 0) {
+        if (($xmlObject->attributes() === null ? 0 : count($xmlObject->attributes())) > 0) {
             foreach ($xmlObject->attributes() as $key => $value) {
                 if ($key === 'extends') {
                     continue;
@@ -282,7 +282,7 @@ class Zend_Config_Xml extends Zend_Config
             foreach ($xmlObject->children() as $key => $value) {
                 if (count($value->children()) > 0 || count($value->children(self::XML_NAMESPACE)) > 0) {
                     $value = $this->_toArray($value);
-                } else if (count($value->attributes()) > 0) {
+                } else if (($value->attributes() === null ? 0 : count($value->attributes())) > 0) {
                     $attributes = $value->attributes();
                     if (isset($attributes['value'])) {
                         $value = (string) $attributes['value'];

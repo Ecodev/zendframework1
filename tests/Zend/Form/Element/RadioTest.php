@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Form_Element_RadioTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Form_Element_RadioTest::main");
-}
+
 
 require_once 'Zend/Form/Element/Radio.php';
 
@@ -37,7 +34,7 @@ require_once 'Zend/Form/Element/Radio.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_RadioTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -46,8 +43,8 @@ class Zend_Form_Element_RadioTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_RadioTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_RadioTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -75,7 +72,7 @@ class Zend_Form_Element_RadioTest extends PHPUnit_Framework_TestCase
     {
         require_once 'Zend/View.php';
         $view = new Zend_View();
-        $view->addHelperPath(dirname(__FILE__) . '/../../../../library/Zend/View/Helper');
+        $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
         return $view;
     }
 
@@ -175,7 +172,7 @@ class Zend_Form_Element_RadioTest extends PHPUnit_Framework_TestCase
     public function testCustomLabelDecorator()
     {
         $form = new Zend_Form();
-        $form->addElementPrefixPath('My_Decorator', dirname(__FILE__) . '/../_files/decorators/', 'decorator');
+        $form->addElementPrefixPath('My_Decorator', __DIR__ . '/../_files/decorators/', 'decorator');
 
         $form->addElement($this->element);
 
@@ -264,7 +261,3 @@ class Zend_Form_Element_RadioTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Form_Element_RadioTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_RadioTest::main") {
-    Zend_Form_Element_RadioTest::main();
-}

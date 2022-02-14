@@ -42,13 +42,13 @@ class Zend_Paginator implements Countable, IteratorAggregate
      *
      * @var string
      */
-    const INTERNAL_ADAPTER = 'Zend_Paginator_Adapter_Internal';
+    public const INTERNAL_ADAPTER = 'Zend_Paginator_Adapter_Internal';
 
     /**
      * The cache tag prefix used to namespace Paginator results in the cache
      *
      */
-    const CACHE_TAG_PREFIX = 'Zend_Paginator_';
+    public const CACHE_TAG_PREFIX = 'Zend_Paginator_';
 
     /**
      * Adapter plugin loader
@@ -281,7 +281,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
                 } else if ($data instanceof Zend_Db_Select) {
                     $adapter = 'DbSelect';
                 } else if ($data instanceof Iterator) {
-                    $adapter = 'Iterator';
+                    $adapter = \Iterator::class;
                 } else if (is_integer($data)) {
                     $adapter = 'Null';
                 } else {
@@ -767,7 +767,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
     {
         $itemCount = 0;
 
-        if (is_array($items) || $items instanceof Countable) {
+        if (is_countable($items)) {
             $itemCount = count($items);
         } else { // $items is something like LimitIterator
             $itemCount = iterator_count($items);
@@ -1147,7 +1147,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
                     require_once 'Zend/View/Exception.php';
 
                     throw new Zend_View_Exception('Scrolling style must implement ' .
-                        'Zend_Paginator_ScrollingStyle_Interface');
+                        \Zend_Paginator_ScrollingStyle_Interface::class);
                 }
 
                 return $scrollingStyle;

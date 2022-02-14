@@ -43,15 +43,15 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
     /**
      * Default Server Values
      */
-    const DEFAULT_HOST = '127.0.0.1';
-    const DEFAULT_PORT =  11211;
-    const DEFAULT_WEIGHT  = 1;
+    public const DEFAULT_HOST = '127.0.0.1';
+    public const DEFAULT_PORT =  11211;
+    public const DEFAULT_WEIGHT  = 1;
 
     /**
      * Log message
      */
-    const TAGS_UNSUPPORTED_BY_CLEAN_OF_LIBMEMCACHED_BACKEND = 'Zend_Cache_Backend_Libmemcached::clean() : tags are unsupported by the Libmemcached backend';
-    const TAGS_UNSUPPORTED_BY_SAVE_OF_LIBMEMCACHED_BACKEND =  'Zend_Cache_Backend_Libmemcached::save() : tags are unsupported by the Libmemcached backend';
+    public const TAGS_UNSUPPORTED_BY_CLEAN_OF_LIBMEMCACHED_BACKEND = 'Zend_Cache_Backend_Libmemcached::clean() : tags are unsupported by the Libmemcached backend';
+    public const TAGS_UNSUPPORTED_BY_SAVE_OF_LIBMEMCACHED_BACKEND =  'Zend_Cache_Backend_Libmemcached::save() : tags are unsupported by the Libmemcached backend';
 
     /**
      * Available options
@@ -283,7 +283,7 @@ class Zend_Cache_Backend_Libmemcached extends Zend_Cache_Backend implements Zend
     {
         parent::setDirectives($directives);
         $lifetime = $this->getLifetime(false);
-        if ($lifetime > 2592000) {
+        if ($lifetime > 2_592_000) {
             // #ZF-3490 : For the memcached backend, there is a lifetime limit of 30 days (2592000 seconds)
             $this->_log('memcached backend has a limit of 30 days (2592000 seconds) for the lifetime');
         }

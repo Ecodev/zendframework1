@@ -108,7 +108,7 @@ class Zend_Filter_Inflector implements Zend_Filter_Interface
     public function getPluginLoader()
     {
         if (!$this->_pluginLoader instanceof Zend_Loader_PluginLoader_Interface) {
-            $this->_pluginLoader = new Zend_Loader_PluginLoader(array('Zend_Filter_' => 'Zend/Filter/'), __CLASS__);
+            $this->_pluginLoader = new Zend_Loader_PluginLoader(array('Zend_Filter_' => 'Zend/Filter/'), self::class);
         }
 
         return $this->_pluginLoader;

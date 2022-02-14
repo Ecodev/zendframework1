@@ -37,14 +37,14 @@ require_once 'Zend/Registry.php';
 /**
  * Functional testing scaffold for MVC applications
  *
- * @uses       PHPUnit_Framework_TestCase
+ * @uses       \PHPUnit\Framework\TestCase
  * @category   Zend
  * @package    Zend_Test
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_TestCase
+abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var mixed Bootstrap file path or callback
@@ -55,11 +55,6 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
      * @var Zend_Controller_Front
      */
     protected $_frontController;
-
-    /**
-     * @var Zend_Dom_Query
-     */
-    protected $_query;
 
     /**
      * @var Zend_Controller_Request_Abstract
@@ -266,183 +261,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
         return $this;
     }
 
-    /**
-     * Assert against DOM selection
-     *
-     * @param string $path CSS selector path
-     * @param string $message
-     */
-    public function assertQuery($path, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__)) {
-            $constraint->fail($path, $message);
-        }
-    }
 
-    /**
-     * Assert against DOM selection
-     *
-     * @param string $path CSS selector path
-     * @param string $message
-     */
-    public function assertNotQuery($path, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against DOM selection; node should contain content
-     *
-     * @param string $path CSS selector path
-     * @param string $match content that should be contained in matched nodes
-     * @param string $message
-     */
-    public function assertQueryContentContains($path, $match, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $match)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against DOM selection; node should NOT contain content
-     *
-     * @param string $path CSS selector path
-     * @param string $match content that should NOT be contained in matched nodes
-     * @param string $message
-     */
-    public function assertNotQueryContentContains($path, $match, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $match)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against DOM selection; node should match content
-     *
-     * @param string $path CSS selector path
-     * @param string $pattern Pattern that should be contained in matched nodes
-     * @param string $message
-     */
-    public function assertQueryContentRegex($path, $pattern, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $pattern)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against DOM selection; node should NOT match content
-     *
-     * @param string $path CSS selector path
-     * @param string $pattern pattern that should NOT be contained in matched nodes
-     * @param string $message
-     */
-    public function assertNotQueryContentRegex($path, $pattern, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $pattern)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against DOM selection; should contain exact number of nodes
-     *
-     * @param string $path CSS selector path
-     * @param string $count Number of nodes that should match
-     * @param string $message
-     */
-    public function assertQueryCount($path, $count, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $count)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against DOM selection; should NOT contain exact number of nodes
-     *
-     * @param string $path CSS selector path
-     * @param string $count Number of nodes that should NOT match
-     * @param string $message
-     */
-    public function assertNotQueryCount($path, $count, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $count)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against DOM selection; should contain at least this number of nodes
-     *
-     * @param string $path CSS selector path
-     * @param string $count Minimum number of nodes that should match
-     * @param string $message
-     */
-    public function assertQueryCountMin($path, $count, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $count)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against DOM selection; should contain no more than this number of nodes
-     *
-     * @param string $path CSS selector path
-     * @param string $count Maximum number of nodes that should match
-     * @param string $message
-     */
-    public function assertQueryCountMax($path, $count, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $count)) {
-            $constraint->fail($path, $message);
-        }
-    }
 
     /**
      * Register XPath namespaces
@@ -452,438 +271,6 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
     public function registerXpathNamespaces($xpathNamespaces)
     {
         $this->_xpathNamespaces = $xpathNamespaces;
-    }
-
-    /**
-     * Assert against XPath selection
-     *
-     * @param string $path XPath path
-     * @param string $message
-     */
-    public function assertXpath($path, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection
-     *
-     * @param string $path XPath path
-     * @param string $message
-     */
-    public function assertNotXpath($path, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection; node should contain content
-     *
-     * @param string $path XPath path
-     * @param string $match content that should be contained in matched nodes
-     * @param string $message
-     */
-    public function assertXpathContentContains($path, $match, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $match)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection; node should NOT contain content
-     *
-     * @param string $path XPath path
-     * @param string $match content that should NOT be contained in matched nodes
-     * @param string $message
-     */
-    public function assertNotXpathContentContains($path, $match, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $match)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection; node should match content
-     *
-     * @param string $path XPath path
-     * @param string $pattern Pattern that should be contained in matched nodes
-     * @param string $message
-     */
-    public function assertXpathContentRegex($path, $pattern, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $pattern)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection; node should NOT match content
-     *
-     * @param string $path XPath path
-     * @param string $pattern pattern that should NOT be contained in matched nodes
-     * @param string $message
-     */
-    public function assertNotXpathContentRegex($path, $pattern, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $pattern)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection; should contain exact number of nodes
-     *
-     * @param string $path XPath path
-     * @param string $count Number of nodes that should match
-     * @param string $message
-     */
-    public function assertXpathCount($path, $count, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $count)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection; should NOT contain exact number of nodes
-     *
-     * @param string $path XPath path
-     * @param string $count Number of nodes that should NOT match
-     * @param string $message
-     */
-    public function assertNotXpathCount($path, $count, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $count)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection; should contain at least this number of nodes
-     *
-     * @param string $path XPath path
-     * @param string $count Minimum number of nodes that should match
-     * @param string $message
-     */
-    public function assertXpathCountMin($path, $count, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $count)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert against XPath selection; should contain no more than this number of nodes
-     *
-     * @param string $path XPath path
-     * @param string $count Maximum number of nodes that should match
-     * @param string $message
-     */
-    public function assertXpathCountMax($path, $count, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/DomQuery.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_DomQuery($path);
-        $constraint->registerXpathNamespaces($this->_xpathNamespaces);
-        $content    = $this->response->outputBody();
-        if (!$constraint->evaluate($content, __FUNCTION__, $count)) {
-            $constraint->fail($path, $message);
-        }
-    }
-
-    /**
-     * Assert that response is a redirect
-     *
-     * @param string $message
-     */
-    public function assertRedirect($message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/Redirect.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_Redirect();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert that response is NOT a redirect
-     *
-     * @param string $message
-     */
-    public function assertNotRedirect($message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/Redirect.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_Redirect();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert that response redirects to given URL
-     *
-     * @param string $url
-     * @param string $message
-     */
-    public function assertRedirectTo($url, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/Redirect.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_Redirect();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $url)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert that response does not redirect to given URL
-     *
-     * @param string $url
-     * @param string $message
-     */
-    public function assertNotRedirectTo($url, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/Redirect.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_Redirect();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $url)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert that redirect location matches pattern
-     *
-     * @param string $pattern
-     * @param string $message
-     */
-    public function assertRedirectRegex($pattern, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/Redirect.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_Redirect();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $pattern)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert that redirect location does not match pattern
-     *
-     * @param string $pattern
-     * @param string $message
-     */
-    public function assertNotRedirectRegex($pattern, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/Redirect.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_Redirect();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $pattern)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert response code
-     *
-     * @param int $code
-     * @param string $message
-     */
-    public function assertResponseCode($code, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/ResponseHeader.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_ResponseHeader();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $code)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert response code
-     *
-     * @param int $code
-     * @param string $message
-     */
-    public function assertNotResponseCode($code, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/ResponseHeader.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_ResponseHeader();
-        $constraint->setNegate(true);
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $code)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert response header exists
-     *
-     * @param string $header
-     * @param string $message
-     */
-    public function assertHeader($header, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/ResponseHeader.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_ResponseHeader();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $header)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert response header does not exist
-     *
-     * @param string $header
-     * @param string $message
-     */
-    public function assertNotHeader($header, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/ResponseHeader.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_ResponseHeader();
-        $constraint->setNegate(true);
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $header)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert response header exists and contains the given string
-     *
-     * @param string $header
-     * @param string $match
-     * @param string $message
-     */
-    public function assertHeaderContains($header, $match, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/ResponseHeader.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_ResponseHeader();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $header, $match)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert response header does not exist and/or does not contain the given string
-     *
-     * @param string $header
-     * @param string $match
-     * @param string $message
-     */
-    public function assertNotHeaderContains($header, $match, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/ResponseHeader.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_ResponseHeader();
-        $constraint->setNegate(true);
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $header, $match)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert response header exists and matches the given pattern
-     *
-     * @param string $header
-     * @param string $pattern
-     * @param string $message
-     */
-    public function assertHeaderRegex($header, $pattern, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/ResponseHeader.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_ResponseHeader();
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $header, $pattern)) {
-            $constraint->fail($response, $message);
-        }
-    }
-
-    /**
-     * Assert response header does not exist and/or does not match the given regex
-     *
-     * @param string $header
-     * @param string $pattern
-     * @param string $message
-     */
-    public function assertNotHeaderRegex($header, $pattern, $message = '')
-    {
-        $this->_incrementAssertionCount();
-        require_once 'Zend/Test/PHPUnit/Constraint/ResponseHeader.php';
-        $constraint = new Zend_Test_PHPUnit_Constraint_ResponseHeader();
-        $constraint->setNegate(true);
-        $response   = $this->response;
-        if (!$constraint->evaluate($response, __FUNCTION__, $header, $pattern)) {
-            $constraint->fail($response, $message);
-        }
     }
 
     /**
@@ -903,7 +290,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
-            $this->fail($msg);
+            static::fail($msg);
         }
     }
 
@@ -921,7 +308,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
-            $this->fail($msg);
+            static::fail($msg);
         }
     }
 
@@ -942,7 +329,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
-            $this->fail($msg);
+            static::fail($msg);
         }
     }
 
@@ -963,7 +350,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
-            $this->fail($msg);
+            static::fail($msg);
         }
     }
 
@@ -981,7 +368,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
-            $this->fail($msg);
+            static::fail($msg);
         }
     }
 
@@ -999,7 +386,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
-            $this->fail($msg);
+            static::fail($msg);
         }
     }
 
@@ -1021,7 +408,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
-            $this->fail($msg);
+            static::fail($msg);
         }
     }
 
@@ -1040,7 +427,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             if (!empty($message)) {
                 $msg = $message . "\n" . $msg;
             }
-            $this->fail($msg);
+            static::fail($msg);
         }
     }
 
@@ -1083,20 +470,6 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
             $this->_response = new Zend_Controller_Response_HttpTestCase;
         }
         return $this->_response;
-    }
-
-    /**
-     * Retrieve DOM query object
-     *
-     * @return Zend_Dom_Query
-     */
-    public function getQuery()
-    {
-        if (null === $this->_query) {
-            require_once 'Zend/Dom/Query.php';
-            $this->_query = new Zend_Dom_Query;
-        }
-        return $this->_query;
     }
 
     /**
@@ -1149,15 +522,9 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit_Framework_Te
         $stack = debug_backtrace();
         foreach ($stack as $step) {
             if (isset($step['object'])
-                && $step['object'] instanceof PHPUnit_Framework_TestCase
+                && $step['object'] instanceof \PHPUnit\Framework\TestCase
             ) {
-                if (version_compare(PHPUnit_Runner_Version::id(), '3.3.0', 'lt')) {
-                    break;
-                } elseif (version_compare(PHPUnit_Runner_Version::id(), '3.3.3', 'lt')) {
-                    $step['object']->incrementAssertionCounter();
-                } else {
                     $step['object']->addToAssertionCount(1);
-                }
                 break;
             }
         }

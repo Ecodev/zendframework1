@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Action_Helper_AjaxContextTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Action_Helper_AjaxContextTest::main");
-}
+
 
 
 require_once 'Zend/Controller/Action/Helper/AjaxContext.php';
@@ -50,7 +47,7 @@ require_once 'Zend/View.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -61,8 +58,8 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_AjaxContextTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_AjaxContextTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -82,7 +79,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
 
         $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
-        $this->front->addModuleDirectory(dirname(__FILE__) . '/../../_files/modules');
+        $this->front->addModuleDirectory(__DIR__ . '/../../_files/modules');
 
         $this->layout = Zend_Layout::startMvc();
 
@@ -93,7 +90,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
 
         $this->front->setRequest($this->request)->setResponse($this->response);
         $this->view = new Zend_VIew();
-        $this->view->addHelperPath(dirname(__FILE__) . '/../../../../../library/Zend/View/Helper/');
+        $this->view->addHelperPath(__DIR__ . '/../../../../../library/Zend/View/Helper/');
         $this->viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
         $this->viewRenderer->setView($this->view);
 
@@ -157,6 +154,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit_Framework_Te
 
     public function testInitContextSwitchesContextWithXhrRequests()
     {
+        $value = null;
         $_SERVER['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
         $this->assertTrue($this->request->isXmlHttpRequest());
 
@@ -259,7 +257,3 @@ class Zend_Controller_Action_Helper_AjaxContextTest_LayoutOverride extends Zend_
     }
 }
 
-// Call Zend_Controller_Action_Helper_AjaxContextTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_AjaxContextTest::main") {
-    Zend_Controller_Action_Helper_AjaxContextTest::main();
-}

@@ -46,7 +46,7 @@ class Zend_View_Helper_Navigation
      *
      * @var string
      */
-    const NS = 'Zend_View_Helper_Navigation';
+    public const NS = 'Zend_View_Helper_Navigation';
 
     /**
      * Default proxy to use in {@link render()}
@@ -189,7 +189,7 @@ class Zend_View_Helper_Navigation
                 require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception(sprintf(
                         'Proxy helper "%s" is not an instance of ' .
-                        'Zend_View_Helper_Navigation_Helper',
+                        \Zend_View_Helper_Navigation_Helper::class,
                         get_class($helper)));
                 $e->setView($this->view);
                 throw $e;

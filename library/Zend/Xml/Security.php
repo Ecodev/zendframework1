@@ -28,7 +28,7 @@
  */
 class Zend_Xml_Security
 {
-    const ENTITY_DETECT = 'Detected use of ENTITY in XML, disabled to prevent XXE/XEE attacks';
+    public const ENTITY_DETECT = 'Detected use of ENTITY in XML, disabled to prevent XXE/XEE attacks';
 
     /**
      * Heuristic scan to detect entity in XML
@@ -70,6 +70,8 @@ class Zend_Xml_Security
      */
     public static function scan($xml, DOMDocument $dom = null)
     {
+        $loadEntities = null;
+        $useInternalXmlErrors = null;
         // If running with PHP-FPM we perform an heuristic scan
         // We cannot use libxml_disable_entity_loader because of this bug
         // @see https://bugs.php.net/bug.php?id=64938
@@ -89,7 +91,7 @@ class Zend_Xml_Security
 
         // Load XML with network access disabled (LIBXML_NONET)
         // error disabled with @ for PHP-FPM scenario
-        set_error_handler(array('Zend_Xml_Security', 'loadXmlErrorHandler'), E_WARNING);
+        set_error_handler(array(\Zend_Xml_Security::class, 'loadXmlErrorHandler'), E_WARNING);
 
         $result = $dom->loadXml($xml, LIBXML_NONET);
         restore_error_handler();
@@ -190,7 +192,7 @@ class Zend_Xml_Security
     {
         $encodingMap = self::getAsciiEncodingMap();
         return array_map(
-            array(__CLASS__, 'generateEntityComparison'),
+            array(self::class, 'generateEntityComparison'),
             self::detectXmlEncoding($xml, self::detectStringEncoding($xml))
         );
     }
@@ -207,7 +209,7 @@ class Zend_Xml_Security
     protected static function detectStringEncoding($xml)
     {
         $encoding = self::detectBom($xml);
-        return ($encoding) ? $encoding : self::detectXmlStringEncoding($xml);
+        return $encoding ?: self::detectXmlStringEncoding($xml);
     }
 
     /**
@@ -271,12 +273,12 @@ class Zend_Xml_Security
         $quote       = call_user_func($generator, '"');
         $close       = call_user_func($generator, '>');
 
-        $closePos    = strpos($xml, $close);
+        $closePos    = strpos($xml, (string) $close);
         if (false === $closePos) {
             return array($fileEncoding);
         }
 
-        $encPos = strpos($xml, $encAttr);
+        $encPos = strpos($xml, (string) $encAttr);
         if (false === $encPos
             || $encPos > $closePos
         ) {
@@ -284,7 +286,7 @@ class Zend_Xml_Security
         }
 
         $encPos   += strlen($encAttr);
-        $quotePos = strpos($xml, $quote, $encPos);
+        $quotePos = strpos($xml, (string) $quote, $encPos);
         if (false === $quotePos) {
             return array($fileEncoding);
         }
@@ -354,14 +356,14 @@ class Zend_Xml_Security
     protected static function getAsciiEncodingMap()
     {
         return array(
-            'UTF-32BE'   => array(__CLASS__, 'encodeToUTF32BE'),
-            'UTF-32LE'   => array(__CLASS__, 'encodeToUTF32LE'),
-            'UTF-32odd1' => array(__CLASS__, 'encodeToUTF32odd1'),
-            'UTF-32odd2' => array(__CLASS__, 'encodeToUTF32odd2'),
-            'UTF-16BE'   => array(__CLASS__, 'encodeToUTF16BE'),
-            'UTF-16LE'   => array(__CLASS__, 'encodeToUTF16LE'),
-            'UTF-8'      => array(__CLASS__, 'encodeToUTF8'),
-            'GB-18030'   => array(__CLASS__, 'encodeToUTF8'),
+            'UTF-32BE'   => array(self::class, 'encodeToUTF32BE'),
+            'UTF-32LE'   => array(self::class, 'encodeToUTF32LE'),
+            'UTF-32odd1' => array(self::class, 'encodeToUTF32odd1'),
+            'UTF-32odd2' => array(self::class, 'encodeToUTF32odd2'),
+            'UTF-16BE'   => array(self::class, 'encodeToUTF16BE'),
+            'UTF-16LE'   => array(self::class, 'encodeToUTF16LE'),
+            'UTF-8'      => array(self::class, 'encodeToUTF8'),
+            'GB-18030'   => array(self::class, 'encodeToUTF8'),
         );
     }
 
@@ -398,7 +400,7 @@ class Zend_Xml_Security
     public static function generateEntityComparison($encoding)
     {
         $encodingMap = self::getAsciiEncodingMap();
-        $generator   = isset($encodingMap[$encoding]) ? $encodingMap[$encoding] : $encodingMap['UTF-8'];
+        $generator   = $encodingMap[$encoding] ?? $encodingMap['UTF-8'];
         return call_user_func($generator, '<!ENTITY');
     }
 

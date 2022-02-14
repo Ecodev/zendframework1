@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_LayoutTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Layout_HelperTest::main");
-}
+
 
 require_once 'Zend/Layout/Controller/Action/Helper/Layout.php';
 require_once 'Zend/Layout.php';
@@ -40,7 +37,7 @@ require_once 'Zend/Controller/Action/HelperBroker.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Layout
  */
-class Zend_Layout_HelperTest extends PHPUnit_Framework_TestCase
+class Zend_Layout_HelperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -50,8 +47,8 @@ class Zend_Layout_HelperTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Layout_HelperTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Layout_HelperTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -132,11 +129,11 @@ class Zend_Layout_HelperTest extends PHPUnit_Framework_TestCase
 
         $helper->setOptions(array(
             'layout'     => 'foo.phtml',
-            'layoutPath' => dirname(__FILE__) . '/_files/layouts',
+            'layoutPath' => __DIR__ . '/_files/layouts',
             'contentKey' => 'foo'
         ));
         $this->assertEquals('foo.phtml', $helper->getLayout());
-        $this->assertEquals(dirname(__FILE__) . '/_files/layouts', $helper->getLayoutPath());
+        $this->assertEquals(__DIR__ . '/_files/layouts', $helper->getLayoutPath());
         $this->assertEquals('foo', $helper->getContentKey());
     }
 }
@@ -152,7 +149,3 @@ class Zend_Layout_HelperTest_Layout extends Zend_Layout
     }
 }
 
-// Call Zend_Layout_HelperTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Layout_HelperTest::main") {
-    Zend_Layout_HelperTest::main();
-}

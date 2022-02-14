@@ -404,7 +404,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
      */
     protected function _randomFreq()
     {
-        return mt_rand(700000, 1000000) / 15000000;
+        return random_int(700000, 1_000_000) / 15_000_000;
     }
 
     /**
@@ -415,7 +415,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
     protected function _randomPhase()
     {
         // random phase from 0 to pi
-        return mt_rand(0, 3141592) / 1000000;
+        return random_int(0, 3_141_592) / 1_000_000;
     }
 
     /**
@@ -425,7 +425,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
      */
     protected function _randomSize()
     {
-        return mt_rand(300, 700) / 100;
+        return random_int(300, 700) / 100;
     }
 
     /**
@@ -444,7 +444,7 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
         }
         $this->_generateImage($id, $this->getWord());
 
-        if (mt_rand(1, $this->getGcFreq()) == 1) {
+        if (random_int(1, $this->getGcFreq()) == 1) {
             $this->_gc();
         }
         return $id;
@@ -510,10 +510,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
 
        // generate noise
         for ($i=0; $i<$this->_dotNoiseLevel; $i++) {
-           imagefilledellipse($img, mt_rand(0,$w), mt_rand(0,$h), 2, 2, $text_color);
+           imagefilledellipse($img, random_int(0,$w), random_int(0,$h), 2, 2, $text_color);
         }
         for($i=0; $i<$this->_lineNoiseLevel; $i++) {
-           imageline($img, mt_rand(0,$w), mt_rand(0,$h), mt_rand(0,$w), mt_rand(0,$h), $text_color);
+           imageline($img, random_int(0,$w), random_int(0,$h), random_int(0,$w), random_int(0,$h), $text_color);
         }
 
         // transformed image
@@ -571,10 +571,10 @@ class Zend_Captcha_Image extends Zend_Captcha_Word
 
         // generate noise
         for ($i=0; $i<$this->_dotNoiseLevel; $i++) {
-            imagefilledellipse($img2, mt_rand(0,$w), mt_rand(0,$h), 2, 2, $text_color);
+            imagefilledellipse($img2, random_int(0,$w), random_int(0,$h), 2, 2, $text_color);
         }
         for ($i=0; $i<$this->_lineNoiseLevel; $i++) {
-           imageline($img2, mt_rand(0,$w), mt_rand(0,$h), mt_rand(0,$w), mt_rand(0,$h), $text_color);
+           imageline($img2, random_int(0,$w), random_int(0,$h), random_int(0,$w), random_int(0,$h), $text_color);
         }
 
         imagepng($img2, $img_file);

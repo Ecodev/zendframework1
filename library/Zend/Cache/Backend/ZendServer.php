@@ -121,7 +121,7 @@ abstract class Zend_Cache_Backend_ZendServer extends Zend_Cache_Backend implemen
     private function _expireTime($lifetime)
     {
         if ($lifetime === null) {
-            return 9999999999;
+            return 9_999_999_999;
         }
         return time() + $lifetime;
     }

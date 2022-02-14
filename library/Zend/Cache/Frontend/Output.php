@@ -36,7 +36,7 @@ require_once 'Zend/Cache/Core.php';
 class Zend_Cache_Frontend_Output extends Zend_Cache_Core
 {
 
-    private $_idStack = array();
+    private array $_idStack = array();
 
     /**
      * Constructor

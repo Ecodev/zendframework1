@@ -34,7 +34,7 @@ require_once 'Zend/Filter.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_FilterTest extends PHPUnit_Framework_TestCase
+class Zend_FilterTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Filter object

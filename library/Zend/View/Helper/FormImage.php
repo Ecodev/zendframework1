@@ -55,6 +55,8 @@ class Zend_View_Helper_FormImage extends Zend_View_Helper_FormElement
      */
     public function formImage($name, $value = null, $attribs = null)
     {
+        $disable = null;
+        $id = null;
         $info = $this->_getInfo($name, $value, $attribs);
         extract($info); // name, value, attribs, options, listsep, disable
 

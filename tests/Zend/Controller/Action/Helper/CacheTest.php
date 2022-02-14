@@ -1,8 +1,5 @@
 <?php
 
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Action_Helper_CacheTest::main");
-}
 
 require_once 'Zend/Controller/Action/Helper/Cache.php';
 require_once 'Zend/Controller/Action/HelperBroker.php';
@@ -16,7 +13,7 @@ require_once 'Zend/Cache/Backend.php';
 /**
  * Test class for Zend_Controller_Action_Helper_Cache
  */
-class Zend_Controller_Action_Helper_CacheTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_CacheTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_requestUriOld;
@@ -28,14 +25,14 @@ class Zend_Controller_Action_Helper_CacheTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_CacheTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_CacheTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
     {
         $this->_requestUriOld =
-            isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : null;
+            $_SERVER['REQUEST_URI'] ?? null;
         $_SERVER['REQUEST_URI'] = '/foo';
         $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
@@ -292,6 +289,3 @@ class Mock_Zend_Cache_Page_TestingEncodedCacheId extends Zend_Cache_Core
     public function end() {$this->res = 'verified';}
 }**/
 
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_CacheTest::main") {
-    Zend_Controller_Action_Helper_CacheTest::main();
-}

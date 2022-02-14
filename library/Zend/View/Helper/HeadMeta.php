@@ -59,7 +59,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
     /**
      * @var string registry key
      */
-    protected $_regKey = 'Zend_View_Helper_HeadMeta';
+    protected $_regKey = \Zend_View_Helper_HeadMeta::class;
 
     /**
      * Constructor

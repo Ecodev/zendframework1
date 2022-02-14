@@ -37,14 +37,14 @@ class Zend_Locale_Math
     // support unit testing without using bcmath functions
     public static $_bcmathDisabled = false;
 
-    public static $add   = array('Zend_Locale_Math', 'Add');
-    public static $sub   = array('Zend_Locale_Math', 'Sub');
-    public static $pow   = array('Zend_Locale_Math', 'Pow');
-    public static $mul   = array('Zend_Locale_Math', 'Mul');
-    public static $div   = array('Zend_Locale_Math', 'Div');
-    public static $comp  = array('Zend_Locale_Math', 'Comp');
-    public static $sqrt  = array('Zend_Locale_Math', 'Sqrt');
-    public static $mod   = array('Zend_Locale_Math', 'Mod');
+    public static $add   = array(\Zend_Locale_Math::class, 'Add');
+    public static $sub   = array(\Zend_Locale_Math::class, 'Sub');
+    public static $pow   = array(\Zend_Locale_Math::class, 'Pow');
+    public static $mul   = array(\Zend_Locale_Math::class, 'Mul');
+    public static $div   = array(\Zend_Locale_Math::class, 'Div');
+    public static $comp  = array(\Zend_Locale_Math::class, 'Comp');
+    public static $sqrt  = array(\Zend_Locale_Math::class, 'Sqrt');
+    public static $mod   = array(\Zend_Locale_Math::class, 'Mod');
     public static $scale = 'bcscale';
 
     public static function isBcmathDisabled()
@@ -177,7 +177,7 @@ class Zend_Locale_Math
         $value = str_replace($convert['thousands_sep'], "",(string) $value);
         $value = str_replace($convert['positive_sign'], "", $value);
         $value = str_replace($convert['decimal_point'], ".",$value);
-        if (!empty($convert['negative_sign']) and (strpos($value, $convert['negative_sign']))) {
+        if (!empty($convert['negative_sign']) and (strpos($value, (string) $convert['negative_sign']))) {
             $value = str_replace($convert['negative_sign'], "", $value);
             $value = "-" . $value;
         }

@@ -115,7 +115,7 @@ class Zend_Config implements Countable, Iterator
                 $this->_data[$key] = $value;
             }
         }
-        $this->_count = count($this->_data);
+        $this->_count = count((array) $this->_data);
     }
 
     /**
@@ -162,7 +162,7 @@ class Zend_Config implements Countable, Iterator
             } else {
                 $this->_data[$name] = $value;
             }
-            $this->_count = count($this->_data);
+            $this->_count = count((array) $this->_data);
         } else {
             /** @see Zend_Config_Exception */
             require_once 'Zend/Config/Exception.php';
@@ -230,7 +230,7 @@ class Zend_Config implements Countable, Iterator
     {
         if ($this->_allowModifications) {
             unset($this->_data[$name]);
-            $this->_count = count($this->_data);
+            $this->_count = count((array) $this->_data);
             $this->_skipNextIteration = true;
         } else {
             /** @see Zend_Config_Exception */

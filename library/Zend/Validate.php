@@ -101,7 +101,7 @@ class Zend_Validate implements Zend_Validate_Interface
             $result = false;
             $messages = $validator->getMessages();
             $this->_messages = array_merge($this->_messages, $messages);
-            $this->_errors   = array_merge($this->_errors,   array_keys($messages));
+            $this->_errors   = [...$this->_errors, ...array_keys($messages)];
             if ($element['breakChainOnFailure']) {
                 break;
             }
@@ -194,7 +194,7 @@ class Zend_Validate implements Zend_Validate_Interface
      */
     public static function is($value, $classBaseName, array $args = array(), $namespaces = array())
     {
-        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, array('Zend_Validate'));
+        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, array(\Zend_Validate::class));
         $className  = ucfirst($classBaseName);
         try {
             if (!class_exists($className, false)) {
@@ -211,7 +211,7 @@ class Zend_Validate implements Zend_Validate_Interface
             }
 
             $class = new ReflectionClass($className);
-            if ($class->implementsInterface('Zend_Validate_Interface')) {
+            if ($class->implementsInterface(\Zend_Validate_Interface::class)) {
                 if ($class->hasMethod('__construct')) {
                     $keys    = array_keys($args);
                     $numeric = false;

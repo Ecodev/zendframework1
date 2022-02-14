@@ -36,7 +36,7 @@ require_once 'Zend/Json.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Json
  */
-class Zend_Json_JsonXMLTest extends PHPUnit_Framework_TestCase
+class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * xml2json Test 1
@@ -596,7 +596,7 @@ EOT;
         Zend_Json::$maxRecursionDepthAllowed = 1;
         Zend_Json::fromXml($xmlStringContents, true);
     }
-    
+
     /**
      * @group ZF-11385
      * @dataProvider providerNestingDepthIsHandledProperly
@@ -613,7 +613,7 @@ EOT;
             $this->fail('Zend_Json::fromXml does not implement recursion check properly');
         }
     }
-    
+
     /**
      * XML document provider for ZF-11385 tests
      * @return array
@@ -660,7 +660,7 @@ EOT;
 EOT;
         return array(array($xmlStringContents));
     }
-    
+
 } // End of class Zend_Json_JsonXMLTest
 
 

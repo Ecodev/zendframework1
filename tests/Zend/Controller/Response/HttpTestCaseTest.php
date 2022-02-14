@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Response_HttpTestCaseTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Response_HttpTestCaseTest::main");
-}
+
 
 /** Zend_Controller_Response_HttpTestCase */
 require_once 'Zend/Controller/Response/HttpTestCase.php';
@@ -39,7 +36,7 @@ require_once 'Zend/Controller/Response/HttpTestCase.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Response
  */
-class Zend_Controller_Response_HttpTestCaseTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +45,8 @@ class Zend_Controller_Response_HttpTestCaseTest extends PHPUnit_Framework_TestCa
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Response_HttpTestCaseTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Response_HttpTestCaseTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -112,7 +109,7 @@ class Zend_Controller_Response_HttpTestCaseTest extends PHPUnit_Framework_TestCa
                        ->setHeader('X-Foo-Bar', 'baz');
         $test = $this->response->sendHeaders();
         $this->assertTrue(is_array($test));
-        $this->assertEquals(3, count($test));
+        $this->assertEquals(3, is_countable($test) ? count($test) : 0);
         $this->assertNotContains('Content-Type: text/xml', $test);
         $this->assertContains('Content-Type: text/html', $test);
         $this->assertContains('X-Foo-Bar: baz', $test);
@@ -125,7 +122,3 @@ class Zend_Controller_Response_HttpTestCaseTest extends PHPUnit_Framework_TestCa
     }
 }
 
-// Call Zend_Controller_Response_HttpTestCaseTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Response_HttpTestCaseTest::main") {
-    Zend_Controller_Response_HttpTestCaseTest::main();
-}

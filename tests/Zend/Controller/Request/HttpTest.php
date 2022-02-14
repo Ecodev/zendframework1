@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Request_HttpTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Request_HttpTest::main");
-}
+
 
 require_once 'Zend/Controller/Request/Http.php';
 
@@ -36,7 +33,7 @@ require_once 'Zend/Controller/Request/Http.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
-class Zend_Controller_Request_HttpTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Request_Http
@@ -57,8 +54,8 @@ class Zend_Controller_Request_HttpTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Request_HttpTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Request_HttpTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -117,7 +114,8 @@ class Zend_Controller_Request_HttpTest extends PHPUnit_Framework_TestCase
 
     public function test__Get()
     {
-        $_POST['baz']   = 'boo';
+        $expected = null;
+								$_POST['baz']   = 'boo';
         $_COOKIE['bal'] = 'peen';
         $this->_request->setParam('foo', 'bar');
 
@@ -979,7 +977,7 @@ class Zend_Controller_Request_HttpTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals( '/module/controller/action', $pathInfo, $pathInfo);
     }
-    
+
     /**
      * @group ZF-3527
      * @group ZF-10964
@@ -990,7 +988,7 @@ class Zend_Controller_Request_HttpTest extends PHPUnit_Framework_TestCase
         $request = new Zend_Controller_Request_Http();
         $_SERVER['REQUEST_URI'] = '/module/controller/action/param/escaped%2Fstring';
         $pathInfo = $request->getPathInfo();
-    
+
         $this->assertEquals( '/module/controller/action/param/escaped%2Fstring', $pathInfo, $pathInfo);
     }
 
@@ -1005,7 +1003,3 @@ class Zend_Controller_Request_HttpTest extends PHPUnit_Framework_TestCase
 
 }
 
-// Call Zend_Controller_Request_HttpTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Request_HttpTest::main") {
-    Zend_Controller_Request_HttpTest::main();
-}

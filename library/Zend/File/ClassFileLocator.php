@@ -57,7 +57,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
         }
 
         parent::__construct($iterator);
-        $this->setInfoClass('Zend_File_PhpClassFile');
+        $this->setInfoClass(\Zend_File_PhpClassFile::class);
 
         // Forward-compat with PHP 5.3
         if (version_compare(PHP_VERSION, '5.3.0', '<')) {
@@ -77,6 +77,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
      */
     public function accept()
     {
+        $saveNamespace = null;
         $file = $this->getInnerIterator()->current();
         // If we somehow have something other than an SplFileInfo object, just
         // return false
@@ -122,7 +123,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
                             }
                             continue;
                         }
-                        list($type, $content, $line) = $token;
+                        [$type, $content, $line] = $token;
                         switch ($type) {
                             case T_STRING:
                             case T_NS_SEPARATOR:
@@ -145,7 +146,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
                         if (is_string($token)) {
                             continue;
                         }
-                        list($type, $content, $line) = $token;
+                        [$type, $content, $line] = $token;
                         if (T_STRING == $type) {
                     // If a classname was found, set it in the object, and
                     // return boolean true (found)

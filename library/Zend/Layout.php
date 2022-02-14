@@ -51,7 +51,7 @@ class Zend_Layout
      * Helper class
      * @var string
      */
-    protected $_helperClass = 'Zend_Layout_Controller_Action_Helper_Layout';
+    protected $_helperClass = \Zend_Layout_Controller_Action_Helper_Layout::class;
 
     /**
      * Inflector used to resolve layout script
@@ -108,7 +108,7 @@ class Zend_Layout
      * Plugin class
      * @var string
      */
-    protected $_pluginClass = 'Zend_Layout_Controller_Plugin_Layout';
+    protected $_pluginClass = \Zend_Layout_Controller_Plugin_Layout::class;
 
     /**
      * @var Zend_View_Interface
@@ -317,7 +317,7 @@ class Zend_Layout
     {
         if (null === $this->_container) {
             require_once 'Zend/View/Helper/Placeholder/Registry.php';
-            $this->_container = Zend_View_Helper_Placeholder_Registry::getRegistry()->getContainer(__CLASS__);
+            $this->_container = Zend_View_Helper_Placeholder_Registry::getRegistry()->getContainer(self::class);
         }
 
         return $this->_container;

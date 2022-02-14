@@ -346,7 +346,7 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
      */
     protected function _generateDefaultPrefix()
     {
-        $default = 'Zend_View';
+        $default = \Zend_View::class;
         if (null === $this->_actionController) {
             return $default;
         }
@@ -456,8 +456,8 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         }
 
         // Reset some flags every time
-        $options['noController'] = (isset($options['noController'])) ? $options['noController'] : false;
-        $options['noRender']     = (isset($options['noRender'])) ? $options['noRender'] : false;
+        $options['noController'] ??= false;
+        $options['noRender'] ??= false;
         $this->_scriptAction     = null;
         $this->_responseSegment  = null;
 
@@ -838,6 +838,8 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
      */
     protected function _translateSpec(array $vars = array())
     {
+        $origSuffix = null;
+        $origModuleDir = null;
         $inflector  = $this->getInflector();
         $request    = $this->getRequest();
         $dispatcher = $this->getFrontController()->getDispatcher();

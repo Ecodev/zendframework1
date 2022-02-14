@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Validate_File_Crc32Test::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Validate_File_Crc32Test::main");
-}
+
 
 /**
  * @see Zend_Validate_File_Crc32
@@ -40,7 +37,7 @@ require_once 'Zend/Validate/File/Crc32.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_Crc32Test extends PHPUnit_Framework_TestCase
+class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +46,8 @@ class Zend_Validate_File_Crc32Test extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Validate_File_Crc32Test");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_Crc32Test");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -71,13 +68,13 @@ class Zend_Validate_File_Crc32Test extends PHPUnit_Framework_TestCase
             $validator = new Zend_Validate_File_Crc32($element[0]);
             $this->assertEquals(
                 $element[1],
-                $validator->isValid(dirname(__FILE__) . '/_files/picture.jpg'),
+                $validator->isValid(__DIR__ . '/_files/picture.jpg'),
                 "Tested with " . var_export($element, 1)
             );
         }
 
         $validator = new Zend_Validate_File_Crc32('3f8d07e2');
-        $this->assertFalse($validator->isValid(dirname(__FILE__) . '/_files/nofile.mo'));
+        $this->assertFalse($validator->isValid(__DIR__ . '/_files/nofile.mo'));
         $this->assertTrue(array_key_exists('fileCrc32NotFound', $validator->getMessages()));
 
         $files = array(
@@ -88,28 +85,28 @@ class Zend_Validate_File_Crc32Test extends PHPUnit_Framework_TestCase
             'error'    => 0
         );
         $validator = new Zend_Validate_File_Crc32('3f8d07e2');
-        $this->assertFalse($validator->isValid(dirname(__FILE__) . '/_files/nofile.mo', $files));
+        $this->assertFalse($validator->isValid(__DIR__ . '/_files/nofile.mo', $files));
         $this->assertTrue(array_key_exists('fileCrc32NotFound', $validator->getMessages()));
 
         $files = array(
             'name'     => 'testsize.mo',
             'type'     => 'text',
             'size'     => 200,
-            'tmp_name' => dirname(__FILE__) . '/_files/testsize.mo',
+            'tmp_name' => __DIR__ . '/_files/testsize.mo',
             'error'    => 0
         );
         $validator = new Zend_Validate_File_Crc32('3f8d07e2');
-        $this->assertTrue($validator->isValid(dirname(__FILE__) . '/_files/picture.jpg', $files));
+        $this->assertTrue($validator->isValid(__DIR__ . '/_files/picture.jpg', $files));
 
         $files = array(
             'name'     => 'testsize.mo',
             'type'     => 'text',
             'size'     => 200,
-            'tmp_name' => dirname(__FILE__) . '/_files/testsize.mo',
+            'tmp_name' => __DIR__ . '/_files/testsize.mo',
             'error'    => 0
         );
         $validator = new Zend_Validate_File_Crc32('9f8d07e2');
-        $this->assertFalse($validator->isValid(dirname(__FILE__) . '/_files/picture.jpg', $files));
+        $this->assertFalse($validator->isValid(__DIR__ . '/_files/picture.jpg', $files));
         $this->assertTrue(array_key_exists('fileCrc32DoesNotMatch', $validator->getMessages()));
     }
 
@@ -202,7 +199,3 @@ class Zend_Validate_File_Crc32Test extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Validate_File_Crc32Test::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_Crc32Test::main") {
-    Zend_Validate_File_Crc32Test::main();
-}

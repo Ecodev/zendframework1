@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_Placeholder_RegistryTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_Placeholder_RegistryTest::main");
-}
+
 
 /** Zend_View_Helper_Placeholder_Registry */
 require_once 'Zend/View/Helper/Placeholder/Registry.php';
@@ -39,7 +36,7 @@ require_once 'Zend/View/Helper/Placeholder/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_Placeholder_RegistryTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Placeholder_Registry
@@ -54,8 +51,8 @@ class Zend_View_Helper_Placeholder_RegistryTest extends PHPUnit_Framework_TestCa
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_Placeholder_RegistryTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_RegistryTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -143,7 +140,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends PHPUnit_Framework_TestCa
      */
     public function testContainerClassAccessorsSetState()
     {
-        $this->assertEquals('Zend_View_Helper_Placeholder_Container', $this->registry->getContainerClass());
+        $this->assertEquals(\Zend_View_Helper_Placeholder_Container::class, $this->registry->getContainerClass());
         $this->registry->setContainerClass('Zend_View_Helper_Placeholder_RegistryTest_Container');
         $this->assertEquals('Zend_View_Helper_Placeholder_RegistryTest_Container', $this->registry->getContainerClass());
     }
@@ -236,7 +233,3 @@ class Zend_View_Helper_Placeholder_RegistryTest_BogusContainer
 {
 }
 
-// Call Zend_View_Helper_Placeholder_RegistryTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_Placeholder_RegistryTest::main") {
-    Zend_View_Helper_Placeholder_RegistryTest::main();
-}

@@ -43,13 +43,13 @@ class Zend_View_Helper_Placeholder_Registry
      * Zend_Registry key under which placeholder registry exists
      * @const string
      */
-    const REGISTRY_KEY = 'Zend_View_Helper_Placeholder_Registry';
+    public const REGISTRY_KEY = 'Zend_View_Helper_Placeholder_Registry';
 
     /**
      * Default container class
      * @var string
      */
-    protected $_containerClass = 'Zend_View_Helper_Placeholder_Container';
+    protected $_containerClass = \Zend_View_Helper_Placeholder_Container::class;
 
     /**
      * Placeholder containers
@@ -165,7 +165,7 @@ class Zend_View_Helper_Placeholder_Registry
         }
 
         $reflection = new ReflectionClass($name);
-        if (!$reflection->isSubclassOf(new ReflectionClass('Zend_View_Helper_Placeholder_Container_Abstract'))) {
+        if (!$reflection->isSubclassOf(new ReflectionClass(\Zend_View_Helper_Placeholder_Container_Abstract::class))) {
             require_once 'Zend/View/Helper/Placeholder/Registry/Exception.php';
             $e = new Zend_View_Helper_Placeholder_Registry_Exception('Invalid Container class specified');
             $e->setView($this->view);

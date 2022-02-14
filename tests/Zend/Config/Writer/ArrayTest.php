@@ -38,13 +38,13 @@ require_once 'Zend/Config/Writer/Array.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
-class Zend_Config_Writer_ArrayTest extends PHPUnit_Framework_TestCase
+class Zend_Config_Writer_ArrayTest extends \PHPUnit\Framework\TestCase
 {
     protected $_tempName;
 
     public function setUp()
     {
-        $this->_tempName = tempnam(dirname(__FILE__) . '/temp', 'tmp');
+        $this->_tempName = tempnam(__DIR__ . '/temp', 'tmp');
     }
 
     public function tearDown()

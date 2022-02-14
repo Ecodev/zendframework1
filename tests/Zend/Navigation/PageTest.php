@@ -34,7 +34,7 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Navigation
  */
-class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
+class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Prepares the environment before running a test.
@@ -171,12 +171,12 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
             'uri'                => '#',
             'fragment'           => 'foo',
         ));
-        
+
         $this->assertEquals('foo', $page->getFragment());
-        
+
         $page->setFragment('bar');
         $this->assertEquals('bar', $page->getFragment());
-        
+
         $invalids = array(42, (object) null);
         foreach ($invalids as $invalid) {
             try {
@@ -189,7 +189,7 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
                 );
             }
         }
-    } 
+    }
 
     public function testSetAndGetId()
     {
@@ -304,11 +304,11 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
             'label' => 'foo',
             'uri'   => '#',
         ));
-        
+
         $this->assertEquals(null, $page->getAccesskey());
         $page->setAccesskey('b');
         $this->assertEquals('b', $page->getAccesskey());
-        
+
         $invalids = array('bar', 42, true, (object) null);
         foreach ($invalids as $invalid) {
             try {
@@ -745,7 +745,7 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
 
         /**
          * ZF-10146
-         * 
+         *
          * @link http://framework.zend.com/issues/browse/ZF-10146
          */
         $page->setVisible('False');
@@ -783,7 +783,7 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
             unset($page->uri);
             $this->fail('Should not be possible to unset native properties');
         } catch (Zend_Navigation_Exception $e) {
-            $this->assertContains('Unsetting native property', $e->getMessage());
+            static::assertContains('Unsetting native property', $e->getMessage());
         }
     }
 
@@ -1291,7 +1291,7 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
                     'privilege' => null,
                     'active' => false,
                     'visible' => true,
-                    'type' => 'Zend_Navigation_Page_Uri',
+                    'type' => \Zend_Navigation_Page_Uri::class,
                     'pages' => array (),
                 ),
                 array(
@@ -1311,7 +1311,7 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
                     'privilege' => null,
                     'active' => false,
                     'visible' => true,
-                    'type' => 'Zend_Navigation_Page_Uri',
+                    'type' => \Zend_Navigation_Page_Uri::class,
                     'pages' => array (),
                 )
             ),
@@ -1326,13 +1326,13 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
         $toArray = $page->toArray();
 
         // tweak options to what we expect toArray() to contain
-        $options['type'] = 'Zend_Navigation_Page_Uri';
+        $options['type'] = \Zend_Navigation_Page_Uri::class;
 
         // should be same
         $this->assertEquals($options, $toArray);
 
         // $toArray should have 2 sub pages
-        $this->assertEquals(2, count($toArray['pages']));
+        $this->assertEquals(2, is_countable($toArray['pages']) ? count($toArray['pages']) : 0);
 
         // tweak options to what we expect sub page 1 to be
         $options['label'] = 'foo.bar';
@@ -1360,7 +1360,7 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
         // assert that there is no diff from what we expect
         $this->assertEquals($options, $toArray['pages'][1]);
     }
-    
+
     /**
      * @group ZF-11805
      */
@@ -1373,11 +1373,11 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
                         'Zend_Navigation_Exception was not thrown');
         } catch (Zend_Navigation_Exception $e) {
             $this->assertSame(
-                'Invalid argument: Unable to determine class to instantiate', 
+                'Invalid argument: Unable to determine class to instantiate',
                 $e->getMessage()
             );
 }
-        
+
         // With label
         try {
             $page = Zend_Navigation_Page::factory(array(
@@ -1388,7 +1388,7 @@ class Zend_Navigation_PageTest extends PHPUnit_Framework_TestCase
         } catch (Zend_Navigation_Exception $e) {
             $this->assertSame(
                 'Invalid argument: Unable to determine class to instantiate'
-                . ' (Page label: Foo)', 
+                . ' (Page label: Foo)',
                 $e->getMessage()
             );
         }

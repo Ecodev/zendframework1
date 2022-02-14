@@ -43,13 +43,13 @@ require_once 'Zend/Config/Writer/Xml.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
-class Zend_Config_Writer_XmlTest extends PHPUnit_Framework_TestCase
+class Zend_Config_Writer_XmlTest extends \PHPUnit\Framework\TestCase
 {
     protected $_tempName;
 
     public function setUp()
     {
-        $this->_tempName = tempnam(dirname(__FILE__) . '/temp', 'tmp');
+        $this->_tempName = tempnam(__DIR__ . '/temp', 'tmp');
     }
 
     public function tearDown()
@@ -120,7 +120,7 @@ class Zend_Config_Writer_XmlTest extends PHPUnit_Framework_TestCase
 
     public function testWriteAndReadOriginalFile()
     {
-        $config = new Zend_Config_Xml(dirname(__FILE__) . '/files/allsections.xml', null, array('skipExtends' => true));
+        $config = new Zend_Config_Xml(__DIR__ . '/files/allsections.xml', null, array('skipExtends' => true));
 
         $writer = new Zend_Config_Writer_Xml(array('config' => $config, 'filename' => $this->_tempName));
         $writer->write();
@@ -134,7 +134,7 @@ class Zend_Config_Writer_XmlTest extends PHPUnit_Framework_TestCase
 
     public function testWriteAndReadSingleSection()
     {
-        $config = new Zend_Config_Xml(dirname(__FILE__) . '/files/allsections.xml', 'staging', array('skipExtends' => true));
+        $config = new Zend_Config_Xml(__DIR__ . '/files/allsections.xml', 'staging', array('skipExtends' => true));
 
         $writer = new Zend_Config_Writer_Xml(array('config' => $config, 'filename' => $this->_tempName));
         $writer->write();

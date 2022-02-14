@@ -33,7 +33,7 @@ require_once 'Zend/Filter/NormalizedToLocalized.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_NormalizedToLocalizedTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_NormalizedToLocalizedTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Ensures that the filter follows expected behavior
@@ -83,6 +83,8 @@ class Zend_Filter_NormalizedToLocalizedTest extends PHPUnit_Framework_TestCase
      */
     public function testDateLocalizationWithoutParameters()
     {
+        $valuesExpected = [];
+        $valuesReceived = [];
         $filter = new Zend_Filter_NormalizedToLocalized(array('locale' => 'de', 'date_format' => 'HH:mm:ss'));
         $valuesExpected[1] = array(
             'hour'         => '11',
@@ -136,6 +138,8 @@ class Zend_Filter_NormalizedToLocalizedTest extends PHPUnit_Framework_TestCase
      */
     public function testDateLocalizationWithParameters()
     {
+        $valuesExpected = [];
+        $valuesReceived = [];
         $filter = new Zend_Filter_NormalizedToLocalized(array('locale' => 'de', 'date_format' => 'yyyy.dd.MM'));
 
         // Note that any non date array key like date_format or locale does not

@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_FormFileTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_FormFileTest::main");
-}
+
 
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/FormFile.php';
@@ -42,7 +39,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_FormFileTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View
@@ -62,8 +59,8 @@ class Zend_View_Helper_FormFileTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_FormFileTest");
-        PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormFileTest");
+        \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -74,9 +71,9 @@ class Zend_View_Helper_FormFileTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        if (Zend_Registry::isRegistered('Zend_View_Helper_Doctype')) {
+        if (Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class)) {
             $registry = Zend_Registry::getInstance();
-            unset($registry['Zend_View_Helper_Doctype']);
+            unset($registry[\Zend_View_Helper_Doctype::class]);
         }
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormFile();
@@ -146,7 +143,3 @@ class Zend_View_Helper_FormFileTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_FormFileTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormFileTest::main") {
-    Zend_View_Helper_FormFileTest::main();
-}

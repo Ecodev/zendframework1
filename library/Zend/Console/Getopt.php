@@ -132,18 +132,18 @@ class Zend_Console_Getopt
      * modeGnu is for traditional 'ab:c:' style getopt format.
      * modeZend is for a more structured format.
      */
-    const MODE_ZEND                         = 'zend';
-    const MODE_GNU                          = 'gnu';
+    public const MODE_ZEND                         = 'zend';
+    public const MODE_GNU                          = 'gnu';
 
     /**
      * Constant tokens for various symbols used in the mode_zend
      * rule format.
      */
-    const PARAM_REQUIRED                    = '=';
-    const PARAM_OPTIONAL                    = '-';
-    const TYPE_STRING                       = 's';
-    const TYPE_WORD                         = 'w';
-    const TYPE_INTEGER                      = 'i';
+    public const PARAM_REQUIRED                    = '=';
+    public const PARAM_OPTIONAL                    = '-';
+    public const TYPE_STRING                       = 's';
+    public const TYPE_WORD                         = 'w';
+    public const TYPE_INTEGER                      = 'i';
 
     /**
      * These are constants for optional behavior of this class.
@@ -153,10 +153,10 @@ class Zend_Console_Getopt
      * parseAll is true if all options on the command line should be parsed, regardless of
      * whether an argument appears before them.
      */
-    const CONFIG_RULEMODE                   = 'ruleMode';
-    const CONFIG_DASHDASH                   = 'dashDash';
-    const CONFIG_IGNORECASE                 = 'ignoreCase';
-    const CONFIG_PARSEALL                   = 'parseAll';
+    public const CONFIG_RULEMODE                   = 'ruleMode';
+    public const CONFIG_DASHDASH                   = 'dashDash';
+    public const CONFIG_IGNORECASE                 = 'ignoreCase';
+    public const CONFIG_PARSEALL                   = 'parseAll';
 
     /**
      * Defaults for getopt configuration are:
@@ -704,7 +704,7 @@ class Zend_Console_Getopt
         $argv = $this->_argv;
         $this->_options = array();
         $this->_remainingArgs = array();
-        while (count($argv) > 0) {
+        while ((is_countable($argv) ? count($argv) : 0) > 0) {
             if ($argv[0] == '--') {
                 array_shift($argv);
                 if ($this->_getoptConfig[self::CONFIG_DASHDASH]) {
@@ -714,7 +714,7 @@ class Zend_Console_Getopt
             }
             if (substr($argv[0], 0, 2) == '--') {
                 $this->_parseLongOption($argv);
-            } else if (substr($argv[0], 0, 1) == '-' && ('-' != $argv[0] || count($argv) >1))  {
+            } else if (substr($argv[0], 0, 1) == '-' && ('-' != $argv[0] || (is_countable($argv) ? count($argv) : 0) >1))  {
                 $this->_parseShortOptionCluster($argv);
             } else if($this->_getoptConfig[self::CONFIG_PARSEALL]) {
                 $this->_remainingArgs[] = array_shift($argv);
@@ -811,7 +811,7 @@ class Zend_Console_Getopt
         $realFlag = $this->_ruleMap[$flag];
         switch ($this->_rules[$realFlag]['param']) {
             case 'required':
-                if (count($argv) > 0 && substr($argv[0], 0, 1) != '-') {
+                if ((is_countable($argv) ? count($argv) : 0) > 0 && substr($argv[0], 0, 1) != '-') {
                     $param = array_shift($argv);
                     $this->_checkParameterType($realFlag, $param);
                 } else {
@@ -822,7 +822,7 @@ class Zend_Console_Getopt
                 }
                 break;
             case 'optional':
-                if (count($argv) > 0 && substr($argv[0], 0, 1) != '-') {
+                if ((is_countable($argv) ? count($argv) : 0) > 0 && substr($argv[0], 0, 1) != '-') {
                     $param = array_shift($argv);
                     $this->_checkParameterType($realFlag, $param);
                 } else {

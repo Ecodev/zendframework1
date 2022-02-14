@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Form_DisplayGroupTest::main');
-}
+
 
 require_once 'Zend/Form/DisplayGroup.php';
 
@@ -46,12 +44,12 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_DisplayGroupTest extends PHPUnit_Framework_TestCase
+class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Form_DisplayGroupTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_DisplayGroupTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -80,7 +78,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit_Framework_TestCase
     public function getView()
     {
         $view = new Zend_View();
-        $libPath = dirname(__FILE__) . '/../../../library';
+        $libPath = __DIR__ . '/../../../library';
         $view->addHelperPath($libPath . '/Zend/View/Helper');
         return $view;
     }
@@ -256,7 +254,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit_Framework_TestCase
 
     public function testCanNotRetrieveSingleDecoratorRegisteredAsStringUsingClassName()
     {
-        $this->assertFalse($this->group->getDecorator('Zend_Form_Decorator_FormElements'));
+        $this->assertFalse($this->group->getDecorator(\Zend_Form_Decorator_FormElements::class));
     }
 
     public function testCanAddSingleDecoratorAsDecoratorObject()
@@ -266,7 +264,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit_Framework_TestCase
 
         $decorator = new Zend_Form_Decorator_ViewHelper;
         $this->group->addDecorator($decorator);
-        $test = $this->group->getDecorator('Zend_Form_Decorator_ViewHelper');
+        $test = $this->group->getDecorator(\Zend_Form_Decorator_ViewHelper::class);
         $this->assertSame($decorator, $test);
     }
 
@@ -545,7 +543,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit_Framework_TestCase
             foreach ($this->group as $item) {
             }
         } catch (Exception $e) {
-            $this->fail('Exceptions should not be raised by iterator when elements are removed; error message: ' . $e->getMessage());
+            static::fail('Exceptions should not be raised by iterator when elements are removed; error message: ' . $e->getMessage());
         }
     }
 
@@ -554,7 +552,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit_Framework_TestCase
     public function testCanCountDisplayGroup()
     {
         $this->setupIteratorElements();
-        $this->assertEquals(3, count($this->group));
+        $this->assertEquals(3, is_countable($this->group) ? count($this->group) : 0);
     }
 
     // Configuration
@@ -839,6 +837,3 @@ class Zend_Form_DisplayGroupTest_DisplayGroup extends Zend_Form_DisplayGroup
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Form_DisplayGroupTest::main') {
-    Zend_Form_DisplayGroupTest::main();
-}

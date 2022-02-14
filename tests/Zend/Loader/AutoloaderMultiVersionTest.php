@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Loader_AutoloaderMultiVersionTest::main');
-}
+
 
 /**
  * @see Zend_Loader_Autoloader
@@ -37,12 +35,12 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_Loader_AutoloaderMultiVersionTest extends PHPUnit_Framework_TestCase
+class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -116,7 +114,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends PHPUnit_Framework_TestCase
      */
     public function testSettingZfVersionFailsWhenNoValidInstallsDiscovered()
     {
-        $this->autoloader->setZfPath(dirname(__FILE__), 'latest');
+        $this->autoloader->setZfPath(__DIR__, 'latest');
     }
 
     public function testAutoloadLatestUsesLatestVersion()
@@ -205,6 +203,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends PHPUnit_Framework_TestCase
 
     protected function _getVersion($version, $type)
     {
+        $value = null;
         $parts = explode('.', $version);
         switch ($type) {
             case 'major':
@@ -219,6 +218,3 @@ class Zend_Loader_AutoloaderMultiVersionTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Loader_AutoloaderMultiVersionTest::main') {
-    Zend_Loader_AutoloaderMultiVersionTest::main();
-}

@@ -30,17 +30,13 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
 
     /**
      * Offset to first element
-     *
-     * @var int
      */
-    private $_offset;
+    private int $_offset;
 
     /**
      * Maximum number of elements to show or -1 for all
-     *
-     * @var int
      */
-    private $_count;
+    private int $_count;
 
     /**
      * Construct a Zend_Paginator_SerializableLimitIterator
@@ -113,6 +109,7 @@ class Zend_Paginator_SerializableLimitIterator extends LimitIterator implements 
      */
     public function offsetExists($offset)
     {
+        $currentOffset = null;
         if ($offset > 0 && $offset < $this->_count) {
             try {
                 $currentOffset = $this->key();

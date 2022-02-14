@@ -38,8 +38,8 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     /**
      * Error constants
      */
-    const ERROR_NO_RECORD_FOUND = 'noRecordFound';
-    const ERROR_RECORD_FOUND    = 'recordFound';
+    public const ERROR_NO_RECORD_FOUND = 'noRecordFound';
+    public const ERROR_RECORD_FOUND    = 'recordFound';
 
     /**
      * @var array Message templates
@@ -101,6 +101,7 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
      */
     public function __construct($options)
     {
+        $temp = [];
         if ($options instanceof Zend_Db_Select) {
             $this->setSelect($options);
             return;

@@ -42,7 +42,7 @@ class Zend_Config_Writer_Yaml extends Zend_Config_Writer_FileAbstract
      *
      * @var callable
      */
-    protected $_yamlEncoder = array('Zend_Config_Writer_Yaml', 'encode');
+    protected $_yamlEncoder = array(\Zend_Config_Writer_Yaml::class, 'encode');
 
     /**
      * Get callback for decoding YAML

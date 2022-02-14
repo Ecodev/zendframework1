@@ -191,7 +191,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
                         $this->_isTranslated   = true;
                     }
 
-                    $this->_parts[$pos]     = (isset($reqs[$name]) ? $reqs[$name] : $this->_defaultRegex);
+                    $this->_parts[$pos]     = ($reqs[$name] ?? $this->_defaultRegex);
                     $this->_variables[$pos] = $name;
                 } else {
                     if (substr($part, 0, 1) == $this->_urlVariable) {
@@ -266,7 +266,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
                     break;
                 }
 
-                $name     = isset($this->_variables[$pos]) ? $this->_variables[$pos] : null;
+                $name     = $this->_variables[$pos] ?? null;
                 $pathPart = urldecode($pathPart);
 
                 // Translate value if required
@@ -363,7 +363,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
         $flag = false;
 
         foreach ($this->_parts as $key => $part) {
-            $name = isset($this->_variables[$key]) ? $this->_variables[$key] : null;
+            $name = $this->_variables[$key] ?? null;
 
             $useDefault = false;
             if (isset($name) && array_key_exists($name, $data) && $data[$name] === null) {
@@ -528,7 +528,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
                 return $translator;
             } else {
                 try {
-                    $translator = Zend_Registry::get('Zend_Translate');
+                    $translator = Zend_Registry::get(\Zend_Translate::class);
                 } catch (Zend_Exception $e) {
                     $translator = null;
                 }
@@ -589,7 +589,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
                 return $locale;
             } else {
                 try {
-                    $locale = Zend_Registry::get('Zend_Locale');
+                    $locale = Zend_Registry::get(\Zend_Locale::class);
                 } catch (Zend_Exception $e) {
                     $locale = null;
                 }

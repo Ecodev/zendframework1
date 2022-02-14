@@ -37,8 +37,8 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
     /**#@+
      * @const string Error constants
      */
-    const TOO_MANY = 'fileCountTooMany';
-    const TOO_FEW  = 'fileCountTooFew';
+    public const TOO_MANY = 'fileCountTooMany';
+    public const TOO_FEW  = 'fileCountTooFew';
     /**#@-*/
 
     /**
@@ -254,7 +254,7 @@ class Zend_Validate_File_Count extends Zend_Validate_Abstract
             $this->addFile($value);
         }
 
-        $this->_count = count($this->_files);
+        $this->_count = count((array) $this->_files);
         if (($this->_max !== null) && ($this->_count > $this->_max)) {
             return $this->_throw($file, self::TOO_MANY);
         }

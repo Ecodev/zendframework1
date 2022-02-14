@@ -32,7 +32,7 @@ require_once 'Zend/Config/Json.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Config_JsonTest extends PHPUnit_Framework_TestCase
+class Zend_Config_JsonTest extends \PHPUnit\Framework\TestCase
 {
     protected $_iniFileConfig;
     protected $_iniFileAllSectionsConfig;
@@ -40,13 +40,13 @@ class Zend_Config_JsonTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->_iniFileConfig = dirname(__FILE__) . '/_files/config.json';
-        $this->_iniFileAllSectionsConfig = dirname(__FILE__) . '/_files/allsections.json';
-        $this->_iniFileCircularConfig = dirname(__FILE__) . '/_files/circular.json';
-        $this->_iniFileMultipleInheritanceConfig = dirname(__FILE__) . '/_files/multipleinheritance.json';
-        $this->_nonReadableConfig = dirname(__FILE__) . '/_files/nonreadable.json';
-        $this->_iniFileNoSectionsConfig = dirname(__FILE__) . '/_files/nosections.json';
-        $this->_iniFileInvalid = dirname(__FILE__) . '/_files/invalid.json';
+        $this->_iniFileConfig = __DIR__ . '/_files/config.json';
+        $this->_iniFileAllSectionsConfig = __DIR__ . '/_files/allsections.json';
+        $this->_iniFileCircularConfig = __DIR__ . '/_files/circular.json';
+        $this->_iniFileMultipleInheritanceConfig = __DIR__ . '/_files/multipleinheritance.json';
+        $this->_nonReadableConfig = __DIR__ . '/_files/nonreadable.json';
+        $this->_iniFileNoSectionsConfig = __DIR__ . '/_files/nosections.json';
+        $this->_iniFileInvalid = __DIR__ . '/_files/invalid.json';
     }
 
     public function testLoadSingleSection()
@@ -105,7 +105,7 @@ class Zend_Config_JsonTest extends PHPUnit_Framework_TestCase
 
     public function testRaisesExceptionWhenSectionNotFound()
     {
-        $this->setExpectedException('Zend_Config_Exception', 'cannot be found');
+        $this->setExpectedException(\Zend_Config_Exception::class, 'cannot be found');
         $config = new Zend_Config_Json($this->_iniFileConfig, 'extendserror');
     }
 
@@ -142,19 +142,19 @@ class Zend_Config_JsonTest extends PHPUnit_Framework_TestCase
 
     public function testDetectsCircularInheritance()
     {
-        $this->setExpectedException('Zend_Config_Exception', 'circular inheritance');
+        $this->setExpectedException(\Zend_Config_Exception::class, 'circular inheritance');
         $config = new Zend_Config_Json($this->_iniFileCircularConfig, null);
     }
 
     public function testRaisesErrorWhenNoFileProvided()
     {
-        $this->setExpectedException('Zend_Config_Exception', 'not set');
+        $this->setExpectedException(\Zend_Config_Exception::class, 'not set');
         $config = new Zend_Config_Json('','');
     }
 
     public function testRaisesErrorOnAttemptsToExtendMultipleSectionsAtOnce()
     {
-        $this->setExpectedException('Zend_Config_Exception', 'Invalid');
+        $this->setExpectedException(\Zend_Config_Exception::class, 'Invalid');
         $config = new Zend_Config_Json($this->_iniFileMultipleInheritanceConfig, 'multiinherit');
     }
 
@@ -188,7 +188,7 @@ class Zend_Config_JsonTest extends PHPUnit_Framework_TestCase
 
     public function testRaisesExceptionOnInvalidJsonMarkup()
     {
-        $this->setExpectedException('Zend_Config_Exception', 'Error parsing JSON data');
+        $this->setExpectedException(\Zend_Config_Exception::class, 'Error parsing JSON data');
         $config = new Zend_Config_Json($this->_iniFileInvalid);
     }
 
@@ -240,7 +240,7 @@ EOJ;
             define('ZEND_CONFIG_JSON_ENV', 'testing');
         }
         if (!defined('ZEND_CONFIG_JSON_ENV_PATH')) {
-            define('ZEND_CONFIG_JSON_ENV_PATH', dirname(__FILE__));
+            define('ZEND_CONFIG_JSON_ENV_PATH', __DIR__);
         }
         if (!defined('ZEND_CONFIG_JSON_ENV_INT')) {
             define('ZEND_CONFIG_JSON_ENV_INT', 42);
@@ -268,14 +268,14 @@ EOJ;
             define('ZEND_CONFIG_JSON_ENV', 'testing');
         }
         if (!defined('ZEND_CONFIG_JSON_ENV_PATH')) {
-            define('ZEND_CONFIG_JSON_ENV_PATH', dirname(__FILE__));
+            define('ZEND_CONFIG_JSON_ENV_PATH', __DIR__);
         }
         if (!defined('ZEND_CONFIG_JSON_ENV_INT')) {
             define('ZEND_CONFIG_JSON_ENV_INT', 42);
         }
         $json = '{"env":"ZEND_CONFIG_JSON_ENV","path":"ZEND_CONFIG_JSON_ENV_PATH/tests","int":ZEND_CONFIG_JSON_ENV_INT}';
 
-        $this->setExpectedException('Zend_Config_Exception', 'Error parsing JSON data');
+        $this->setExpectedException(\Zend_Config_Exception::class, 'Error parsing JSON data');
         $config = new Zend_Config_Json($json, null, array('ignore_constants' => true));
     }
 }

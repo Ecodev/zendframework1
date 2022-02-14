@@ -45,9 +45,9 @@ class Zend_Form_Element implements Zend_Validate_Interface
     /**
      * Element Constants
      */
-    const DECORATOR = 'DECORATOR';
-    const FILTER    = 'FILTER';
-    const VALIDATE  = 'VALIDATE';
+    public const DECORATOR = 'DECORATOR';
+    public const FILTER    = 'FILTER';
+    public const VALIDATE  = 'VALIDATE';
 
     /**
      * Default view helper to use
@@ -1048,6 +1048,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function getPluginLoader($type)
     {
+        $pathSegment = null;
         $type = strtoupper($type);
         switch ($type) {
             case self::FILTER:
@@ -1872,6 +1873,8 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function addDecorator($decorator, $options = null)
     {
+        $name = null;
+        $spec = null;
         if ($decorator instanceof Zend_Form_Decorator_Interface) {
             $name = get_class($decorator);
         } elseif (is_string($decorator)) {

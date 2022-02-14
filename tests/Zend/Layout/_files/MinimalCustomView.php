@@ -36,9 +36,9 @@ class Zend_Layout_Test_MinimalCustomView implements Zend_View_Interface
 
     public function getScriptPaths() {}
 
-    public function setBasePath($path, $classPrefix = 'Zend_View') {}
+    public function setBasePath($path, $classPrefix = \Zend_View::class) {}
 
-    public function addBasePath($path, $classPrefix = 'Zend_View') {}
+    public function addBasePath($path, $classPrefix = \Zend_View::class) {}
 
     public function __set($key, $val) {}
 

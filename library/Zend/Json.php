@@ -45,8 +45,8 @@ class Zend_Json
      * so that it is a boolean true value, allowing it to be used with
      * ext/json's functions.
      */
-    const TYPE_ARRAY  = 1;
-    const TYPE_OBJECT = 0;
+    public const TYPE_ARRAY  = 1;
+    public const TYPE_OBJECT = 0;
 
      /**
       * To check the allowed nesting depth of the XML tree during xml2json conversion.
@@ -151,15 +151,15 @@ class Zend_Json
 
         // Encoding
         if (function_exists('json_encode') && self::$useBuiltinEncoderDecoder !== true) {
-            $encodedResult = json_encode($valueToEncode);
+            $encodedResult = json_encode($valueToEncode, JSON_THROW_ON_ERROR);
         } else {
             require_once 'Zend/Json/Encoder.php';
             $encodedResult = Zend_Json_Encoder::encode($valueToEncode, $cycleCheck, $options);
         }
 
         //only do post-proccessing to revert back the Zend_Json_Expr if any.
-        if (count($javascriptExpressions) > 0) {
-            $count = count($javascriptExpressions);
+        if ((is_countable($javascriptExpressions) ? count($javascriptExpressions) : 0) > 0) {
+            $count = is_countable($javascriptExpressions) ? count($javascriptExpressions) : 0;
             for($i = 0; $i < $count; $i++) {
                 $magicKey = $javascriptExpressions[$i]['magicKey'];
                 $value    = $javascriptExpressions[$i]['value'];

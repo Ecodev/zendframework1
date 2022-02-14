@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Validate_EmailAddressTest::main');
-}
+
 
 /**
  * @see Zend_Validate_EmailAddress
@@ -37,7 +35,7 @@ require_once 'Zend/Validate/EmailAddress.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_EmailAddressTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Default instance created for all test methods
@@ -53,8 +51,8 @@ class Zend_Validate_EmailAddressTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -646,6 +644,3 @@ class Zend_Validate_EmailAddressTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Validate_EmailAddressTest::main') {
-    Zend_Validate_EmailAddressTest::main();
-}

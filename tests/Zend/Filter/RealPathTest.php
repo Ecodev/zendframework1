@@ -33,7 +33,7 @@ require_once 'Zend/Filter/RealPath.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_RealPathTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_RealPathTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Path to test files
@@ -49,7 +49,7 @@ class Zend_Filter_RealPathTest extends PHPUnit_Framework_TestCase
      */
     public function __construct()
     {
-        $this->_filesPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files';
+        $this->_filesPath = __DIR__ . DIRECTORY_SEPARATOR . '_files';
     }
 
     /**
@@ -119,14 +119,14 @@ class Zend_Filter_RealPathTest extends PHPUnit_Framework_TestCase
     {
         $this->_filter->setExists(false);
 
-        $path = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files';
+        $path = __DIR__ . DIRECTORY_SEPARATOR . '_files';
         $this->assertEquals($path, $this->_filter->filter($path));
 
-        $path2 = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files'
+        $path2 = __DIR__ . DIRECTORY_SEPARATOR . '_files'
                . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files';
         $this->assertEquals($path, $this->_filter->filter($path2));
 
-        $path3 = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files'
+        $path3 = __DIR__ . DIRECTORY_SEPARATOR . '_files'
                . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '.'
                . DIRECTORY_SEPARATOR . '_files';
         $this->assertEquals($path, $this->_filter->filter($path3));

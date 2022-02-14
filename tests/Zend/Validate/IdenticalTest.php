@@ -21,9 +21,7 @@
  */
 
 // Call Zend_Validate_IdenticalTest::main() if this source file is executed directly.
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Validate_IdenticalTest::main');
-}
+
 
 /** Zend_Validate_Identical */
 require_once 'Zend/Validate/Identical.php';
@@ -39,17 +37,14 @@ require_once 'Zend/Validate/Identical.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_IdenticalTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var Zend_Validate_Identical
-     */
-    private $validator;
+    private \Zend_Validate_Identical $validator;
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Validate_IdenticalTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_IdenticalTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -147,6 +142,3 @@ class Zend_Validate_IdenticalTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Validate_IdenticalTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == 'Zend_Validate_IdenticalTest::main') {
-    Zend_Validate_IdenticalTest::main();
-}

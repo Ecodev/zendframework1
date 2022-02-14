@@ -33,7 +33,7 @@ require_once 'Zend/Filter/HtmlEntities.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_HtmlEntitiesTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Filter_HtmlEntities object
@@ -218,7 +218,7 @@ class Zend_Filter_HtmlEntitiesTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete('Tested feature ZF-11344 is not available because of PHP bug #63450');
         }
 
-        $string = file_get_contents(dirname(__FILE__) . '/_files/latin-1-text.txt');
+        $string = file_get_contents(__DIR__ . '/_files/latin-1-text.txt');
 
         // restore_error_handler can emit an E_WARNING; let's ignore that, as
         // we want to test the returned value
@@ -238,7 +238,7 @@ class Zend_Filter_HtmlEntitiesTest extends PHPUnit_Framework_TestCase
             $this->markTestIncomplete('Tested feature ZF-11344 is not available because of PHP bug #63450');
         }
 
-        $string = file_get_contents(dirname(__FILE__) . '/_files/latin-1-text.txt');
+        $string = file_get_contents(__DIR__ . '/_files/latin-1-text.txt');
 
         // restore_error_handler can emit an E_WARNING; let's ignore that, as
         // we want to test the returned value
@@ -254,7 +254,7 @@ class Zend_Filter_HtmlEntitiesTest extends PHPUnit_Framework_TestCase
      */
     public function testRaisesExceptionIfEncodingMismatchDetectedAndFinalStringIsEmpty()
     {
-        $string = file_get_contents(dirname(__FILE__) . '/_files/latin-1-dash-only.txt');
+        $string = file_get_contents(__DIR__ . '/_files/latin-1-dash-only.txt');
 
         // restore_error_handler can emit an E_WARNING; let's ignore that, as
         // we want to test the returned value

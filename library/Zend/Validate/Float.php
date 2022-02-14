@@ -37,8 +37,8 @@ require_once 'Zend/Locale/Format.php';
  */
 class Zend_Validate_Float extends Zend_Validate_Abstract
 {
-    const INVALID   = 'floatInvalid';
-    const NOT_FLOAT = 'notFloat';
+    public const INVALID   = 'floatInvalid';
+    public const NOT_FLOAT = 'notFloat';
 
     /**
      * @var array
@@ -71,8 +71,8 @@ class Zend_Validate_Float extends Zend_Validate_Abstract
 
         if (empty($locale)) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Locale')) {
-                $locale = Zend_Registry::get('Zend_Locale');
+            if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
+                $locale = Zend_Registry::get(\Zend_Locale::class);
             }
         }
 

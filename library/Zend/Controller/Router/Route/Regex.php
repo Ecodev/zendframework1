@@ -79,7 +79,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
     {
         $defs    = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : array();
         $map     = ($config->map instanceof Zend_Config) ? $config->map->toArray() : array();
-        $reverse = (isset($config->reverse)) ? $config->reverse : null;
+        $reverse = $config->reverse ?? null;
 
         return new self($config->route, $defs, $map, $reverse);
     }

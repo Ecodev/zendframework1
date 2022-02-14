@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_VersionTest::main');
-}
+
 
 /**
  * @see Zend_Version
@@ -37,12 +35,12 @@ require_once 'Zend/Version.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Version
  */
-class Zend_VersionTest extends PHPUnit_Framework_TestCase
+class Zend_VersionTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -105,6 +103,3 @@ class Zend_VersionTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == "Zend_VersionTest::main") {
-    Zend_VersionTest::main();
-}

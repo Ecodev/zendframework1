@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_HtmlFlashTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_HtmlFlashTest::main");
-}
+
 
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/HtmlFlash.php';
@@ -37,7 +34,7 @@ require_once 'Zend/View/Helper/HtmlFlash.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HtmlFlashTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_HtmlFlashTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HtmlFlash
@@ -53,8 +50,8 @@ class Zend_View_Helper_HtmlFlashTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_HtmlFlashTest");
-        PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HtmlFlashTest");
+        \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -86,7 +83,3 @@ class Zend_View_Helper_HtmlFlashTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_HtmlFlashTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HtmlFlashTest::main") {
-    Zend_View_Helper_HtmlFlashTest::main();
-}

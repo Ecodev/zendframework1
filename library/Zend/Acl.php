@@ -61,22 +61,22 @@ class Zend_Acl
     /**
      * Rule type: allow
      */
-    const TYPE_ALLOW = 'TYPE_ALLOW';
+    public const TYPE_ALLOW = 'TYPE_ALLOW';
 
     /**
      * Rule type: deny
      */
-    const TYPE_DENY  = 'TYPE_DENY';
+    public const TYPE_DENY  = 'TYPE_DENY';
 
     /**
      * Rule operation: add
      */
-    const OP_ADD = 'OP_ADD';
+    public const OP_ADD = 'OP_ADD';
 
     /**
      * Rule operation: remove
      */
-    const OP_REMOVE = 'OP_REMOVE';
+    public const OP_REMOVE = 'OP_REMOVE';
 
     /**
      * Role registry
@@ -751,7 +751,7 @@ class Zend_Acl
                          * clean up all the rules for the global allResources, as well as the indivually
                          * set resources (per privilege as well)
                          */
-                        foreach (array_merge(array(null), $allResources) as $resource) {
+                        foreach ([...array(null), ...$allResources] as $resource) {
                             $rules =& $this->_getRules($resource, $role, true);
                             if (null === $rules) {
                                 continue;
@@ -853,7 +853,7 @@ class Zend_Acl
             // query on all privileges
             do {
                 // depth-first search on $role if it is not 'allRoles' pseudo-parent
-                if (null !== $role && null !== ($result = $this->_roleDFSAllPrivileges($role, $resource, $privilege))) {
+                if (null !== $role && null !== ($result = $this->_roleDFSAllPrivileges($role, $resource))) {
                     return $result;
                 }
 
@@ -1105,6 +1105,7 @@ class Zend_Acl
     protected function _getRuleType(Zend_Acl_Resource_Interface $resource = null, Zend_Acl_Role_Interface $role = null,
                                     $privilege = null)
     {
+        $assertionValue = null;
         // get the rules for the $resource and $role
         if (null === ($rules = $this->_getRules($resource, $role))) {
             return null;

@@ -33,8 +33,8 @@ require_once 'Zend/Filter/Interface.php';
 class Zend_Filter implements Zend_Filter_Interface
 {
 
-    const CHAIN_APPEND  = 'append';
-    const CHAIN_PREPEND = 'prepend';
+    public const CHAIN_APPEND  = 'append';
+    public const CHAIN_PREPEND = 'prepend';
 
     /**
      * Filter chain
@@ -207,7 +207,7 @@ class Zend_Filter implements Zend_Filter_Interface
     public static function filterStatic($value, $classBaseName, array $args = array(), $namespaces = array())
     {
         require_once 'Zend/Loader.php';
-        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, array('Zend_Filter'));
+        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, array(\Zend_Filter::class));
         foreach ($namespaces as $namespace) {
             $className = $namespace . '_' . ucfirst($classBaseName);
             if (!class_exists($className, false)) {
@@ -224,7 +224,7 @@ class Zend_Filter implements Zend_Filter_Interface
             }
 
             $class = new ReflectionClass($className);
-            if ($class->implementsInterface('Zend_Filter_Interface')) {
+            if ($class->implementsInterface(\Zend_Filter_Interface::class)) {
                 if ($class->hasMethod('__construct')) {
                     $object = $class->newInstanceArgs($args);
                 } else {

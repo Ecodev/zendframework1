@@ -32,8 +32,8 @@ abstract class Zend_File_Transfer_Adapter_Abstract
     /**@+
      * Plugin loader Constants
      */
-    const FILTER    = 'FILTER';
-    const VALIDATE  = 'VALIDATE';
+    public const FILTER    = 'FILTER';
+    public const VALIDATE  = 'VALIDATE';
     /**@-*/
 
     /**
@@ -596,6 +596,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      * @return array Options for given files
      */
     public function getOptions($files = null) {
+        $options = [];
         $file = $this->_getFiles($files, false, true);
 
         foreach ($file as $key => $content) {
@@ -617,6 +618,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
      */
     public function isValid($files = null)
     {
+        $validator = null;
         $check = $this->_getFiles($files, false, true);
         if (empty($check)) {
             return false;
@@ -627,8 +629,8 @@ abstract class Zend_File_Transfer_Adapter_Abstract
         $break           = false;
         foreach($check as $key => $content) {
             if (array_key_exists('validators', $content) &&
-                in_array('Zend_Validate_File_Count', $content['validators'])) {
-                $validator = $this->_validators['Zend_Validate_File_Count'];
+                in_array(\Zend_Validate_File_Count::class, $content['validators'])) {
+                $validator = $this->_validators[\Zend_Validate_File_Count::class];
                 $count     = $content;
                 if (empty($content['tmp_name'])) {
                     continue;
@@ -664,7 +666,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
                         $validator->setTranslator($translator);
                     }
 
-                    if (($class === 'Zend_Validate_File_Upload') and (empty($content['tmp_name']))) {
+                    if (($class === \Zend_Validate_File_Upload::class) and (empty($content['tmp_name']))) {
                         $tocheck = $key;
                     } else {
                         $tocheck = $content['tmp_name'];
@@ -679,18 +681,18 @@ abstract class Zend_File_Transfer_Adapter_Abstract
                         break;
                     }
 
-                    if (($class === 'Zend_Validate_File_Upload') and (count($fileerrors) > 0)) {
+                    if (($class === \Zend_Validate_File_Upload::class) and ((is_countable($fileerrors) ? count($fileerrors) : 0) > 0)) {
                         break;
                     }
 
-                    if (($this->_break[$class]) and (count($fileerrors) > 0)) {
+                    if (($this->_break[$class]) and ((is_countable($fileerrors) ? count($fileerrors) : 0) > 0)) {
                         $break = true;
                         break;
                     }
                 }
             }
 
-            if (count($fileerrors) > 0) {
+            if ((is_countable($fileerrors) ? count($fileerrors) : 0) > 0) {
                 $this->_files[$key]['validated'] = false;
             } else {
                 $this->_files[$key]['validated'] = true;
@@ -1295,7 +1297,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
             return null;
         }
 
-        if (class_exists('finfo', false)) {
+        if (class_exists(\finfo::class, false)) {
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
             if (!empty($value['options']['magicFile'])) {
                 $mime = @finfo_open($const, $value['options']['magicFile']);
@@ -1411,7 +1413,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
 
             if (empty($this->_tmpDir)) {
                 // Attemp to detect by creating a temporary file
-                $tempFile = tempnam(md5(uniqid(rand(), TRUE)), '');
+                $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), TRUE)), '');
                 if ($tempFile) {
                     $this->_tmpDir = realpath(dirname($tempFile));
                     unlink($tempFile);

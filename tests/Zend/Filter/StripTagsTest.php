@@ -21,9 +21,7 @@
  */
 
 // Call Zend_Filter_StripTagsTest::main() if this source file is executed directly.
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Filter_StripTagsTest::main');
-}
+
 
 /**
  * @see Zend_Filter_StripTags
@@ -39,7 +37,7 @@ require_once 'Zend/Filter/StripTags.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_StripTagsTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_StripTagsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Filter_StripTags object
@@ -56,8 +54,8 @@ class Zend_Filter_StripTagsTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -606,7 +604,7 @@ class Zend_Filter_StripTagsTest extends PHPUnit_Framework_TestCase
         $expected = 'text';
         $this->assertEquals($expected, $this->_filter->filter($input));
     }
-    
+
     /**
      * @group ZF-11617
      */
@@ -614,15 +612,10 @@ class Zend_Filter_StripTagsTest extends PHPUnit_Framework_TestCase
     {
         $input     = '<li data-disallowed="no!" data-name="Test User" data-id="11223"></li>';
         $expected  = '<li data-name="Test User" data-id="11223"></li>';
-        
+
         $this->_filter->setTagsAllowed('li');
         $this->_filter->setAttributesAllowed(array('data-id','data-name'));
-        
+
         $this->assertEquals($expected, $this->_filter->filter($input));
     }
-}
-
-// Call Zend_Filter_StripTagsTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD === 'Zend_Filter_StripTagsTest::main') {
-    Zend_Filter_StripTagsTest::main();
 }

@@ -130,8 +130,8 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
     {
         if ($this->_translator === null) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Translate')) {
-                $this->setTranslator(Zend_Registry::get('Zend_Translate'));
+            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
+                $this->setTranslator(Zend_Registry::get(\Zend_Translate::class));
             }
         }
 

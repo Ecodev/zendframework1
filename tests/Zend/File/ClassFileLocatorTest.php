@@ -19,9 +19,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_File_ClassFileLocatorTest::main');
-}
+
 
 require_once 'Zend/File/ClassFileLocator.php';
 
@@ -35,19 +33,19 @@ require_once 'Zend/File/ClassFileLocator.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_File
  */
-class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
+class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testConstructorThrowsInvalidArgumentExceptionForInvalidStringDirectory()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->setExpectedException(\InvalidArgumentException::class);
         $locator = new Zend_File_ClassFileLocator('__foo__');
     }
 
     public function testConstructorThrowsInvalidArgumentExceptionForNonDirectoryIteratorArgument()
     {
         $iterator = new ArrayIterator(array());
-        $this->setExpectedException('InvalidArgumentException');
+        $this->setExpectedException(\InvalidArgumentException::class);
         $locator = new Zend_File_ClassFileLocator($iterator);
     }
 
@@ -57,7 +55,7 @@ class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Test can only be run under 5.3 or later');
         }
 
-        $locator = new Zend_File_ClassFileLocator(dirname(__FILE__));
+        $locator = new Zend_File_ClassFileLocator(__DIR__);
         foreach ($locator as $file) {
             $this->assertRegexp('/\.php$/', $file->getFilename());
         }
@@ -69,7 +67,7 @@ class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Test can only be run under 5.3 or later');
         }
 
-        $locator = new Zend_File_ClassFileLocator(dirname(__FILE__));
+        $locator = new Zend_File_ClassFileLocator(__DIR__);
         $found = false;
         foreach ($locator as $file) {
             if (preg_match('/locator-should-skip-this\.php$/', $file->getFilename())) {
@@ -85,7 +83,7 @@ class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Test can only be run under 5.3 or later');
         }
 
-        $locator = new Zend_File_ClassFileLocator(dirname(__FILE__));
+        $locator = new Zend_File_ClassFileLocator(__DIR__);
         $found = false;
         foreach ($locator as $file) {
             if (preg_match('/LocatorShouldFindThis\.php$/', $file->getFilename())) {
@@ -101,7 +99,7 @@ class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Test can only be run under 5.3 or later');
         }
 
-        $locator = new Zend_File_ClassFileLocator(dirname(__FILE__));
+        $locator = new Zend_File_ClassFileLocator(__DIR__);
         $found = false;
         foreach ($locator as $file) {
             $classes = $file->getClasses();
@@ -120,7 +118,7 @@ class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Test can only be run under 5.3 or later');
         }
 
-        $locator = new Zend_File_ClassFileLocator(dirname(__FILE__));
+        $locator = new Zend_File_ClassFileLocator(__DIR__);
         $found = false;
         foreach ($locator as $file) {
             $classes = $file->getClasses();
@@ -138,7 +136,7 @@ class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Test can only be run under 5.3 or later');
         }
 
-        $locator = new Zend_File_ClassFileLocator(dirname(__FILE__));
+        $locator = new Zend_File_ClassFileLocator(__DIR__);
         $foundFirst = false;
         $foundSecond = false;
         $foundThird = false;
@@ -167,8 +165,4 @@ class Zend_File_ClassFileLocatorTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($foundThird);
         $this->assertTrue($foundFourth);
     }
-}
-
-if (PHPUnit_MAIN_METHOD == 'Zend_File_ClassFileLocatorTest::main') {
-    Zend_File_ClassFileLocatorTest::main();
 }

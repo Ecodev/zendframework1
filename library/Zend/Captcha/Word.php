@@ -22,8 +22,6 @@
 /** @see Zend_Captcha_Base */
 require_once 'Zend/Captcha/Base.php';
 
-/** @see Zend_Crypt_Math */
-require_once 'Zend/Crypt/Math.php';
 
 /**
  * Word-based captcha adapter
@@ -333,8 +331,8 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
         $totIndexVow = count($vowels) - 1;
         for ($i=0; $i < $wordLen; $i = $i + 2) {
             // generate word with mix of vowels and consonants
-            $consonant = $consonants[Zend_Crypt_Math::randInteger(0, $totIndexCon, true)];
-            $vowel     = $vowels[Zend_Crypt_Math::randInteger(0, $totIndexVow, true)];
+            $consonant = $consonants[random_int(0, $totIndexCon)];
+            $vowel     = $vowels[random_int(0, $totIndexVow)];
             $word     .= $consonant . $vowel;
         }
 
@@ -364,7 +362,7 @@ abstract class Zend_Captcha_Word extends Zend_Captcha_Base
 
     protected function _generateRandomId()
     {
-        return md5(Zend_Crypt_Math::randBytes(32));
+        return md5(random_bytes(32));
     }
 
     /**

@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_Placeholder_Container_AbstractTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_Placeholder_ContainerTest::main");
-}
+
 
 /** Zend_View_Helper_Placeholder_Container */
 require_once 'Zend/View/Helper/Placeholder/Container.php';
@@ -39,7 +36,7 @@ require_once 'Zend/View/Helper/Placeholder/Container.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_Placeholder_ContainerTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Placeholder_Container
@@ -54,8 +51,8 @@ class Zend_View_Helper_Placeholder_ContainerTest extends PHPUnit_Framework_TestC
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_Placeholder_ContainerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_ContainerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -464,7 +461,3 @@ class Zend_View_Helper_Placeholder_ContainerTest extends PHPUnit_Framework_TestC
     }
 }
 
-// Call Zend_View_Helper_Placeholder_ContainerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_Placeholder_ContainerTest::main") {
-    Zend_View_Helper_Placeholder_ContainerTest::main();
-}

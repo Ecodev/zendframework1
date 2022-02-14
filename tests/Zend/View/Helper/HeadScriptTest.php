@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_HeadScriptTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_HeadScriptTest::main");
-}
+
 
 /** Zend_View_Helper_HeadScript */
 require_once 'Zend/View/Helper/HeadScript.php';
@@ -45,7 +42,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadScript
@@ -64,8 +61,8 @@ class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_HeadScriptTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadScriptTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -81,7 +78,7 @@ class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
             $registry = Zend_Registry::getInstance();
             unset($registry[$regKey]);
         }
-        $this->basePath = dirname(__FILE__) . '/_files/modules';
+        $this->basePath = __DIR__ . '/_files/modules';
         $this->helper = new Zend_View_Helper_HeadScript();
     }
 
@@ -99,12 +96,12 @@ class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists('Zend_View_Helper_HeadScript')) {
-            $registry->deleteContainer('Zend_View_Helper_HeadScript');
+        if ($registry->containerExists(\Zend_View_Helper_HeadScript::class)) {
+            $registry->deleteContainer(\Zend_View_Helper_HeadScript::class);
         }
-        $this->assertFalse($registry->containerExists('Zend_View_Helper_HeadScript'));
+        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadScript::class));
         $helper = new Zend_View_Helper_HeadScript();
-        $this->assertTrue($registry->containerExists('Zend_View_Helper_HeadScript'));
+        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadScript::class));
     }
 
     public function testHeadScriptReturnsObjectInstance()
@@ -146,7 +143,7 @@ class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
             $string .= ' foo';
             $this->helper->$action($string);
             $values = $this->helper->getArrayCopy();
-            $this->assertEquals($i + 1, count($values));
+            $this->assertEquals($i + 1, is_countable($values) ? count($values) : 0);
             if ('file' == $type) {
                 $this->assertEquals($string, $values[$i]->attributes['src']);
             } elseif ('script' == $type) {
@@ -164,7 +161,7 @@ class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
             $string .= ' foo';
             $this->helper->$action($string);
             $values = $this->helper->getArrayCopy();
-            $this->assertEquals($i + 1, count($values));
+            $this->assertEquals($i + 1, is_countable($values) ? count($values) : 0);
             $first = array_shift($values);
             if ('file' == $type) {
                 $this->assertEquals($string, $first->attributes['src']);
@@ -185,7 +182,7 @@ class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
         }
         $this->helper->$action($string);
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         if ('file' == $type) {
             $this->assertEquals($string, $values[0]->attributes['src']);
         } elseif ('script' == $type) {
@@ -200,7 +197,7 @@ class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
         $string = 'foo';
         $this->helper->$action(5, $string);
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         if ('file' == $type) {
             $this->assertEquals($string, $values[5]->attributes['src']);
         } elseif ('script' == $type) {
@@ -330,7 +327,7 @@ class Zend_View_Helper_HeadScriptTest extends PHPUnit_Framework_TestCase
         echo 'foobar';
         $this->helper->captureEnd();
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values), var_export($values, 1));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0, var_export($values, 1));
         $item = array_shift($values);
         $this->assertContains('foobar', $item->source);
     }
@@ -450,7 +447,7 @@ document.write(bar.strlen());');
 
         $this->assertEquals($expected, $test);
     }
-    
+
     /**
      * @group ZF-12048
      */
@@ -459,7 +456,7 @@ document.write(bar.strlen());');
         $this->helper->appendFile('foo.js');
         $this->helper->appendFile('bar.js');
         $this->helper->setFile('foo.js');
-        
+
         $expected = '<script type="text/javascript" src="foo.js"></script>';
         $test = $this->helper->toString();
         $this->assertEquals($expected, $test);
@@ -536,7 +533,3 @@ document.write(bar.strlen());');
     }
 }
 
-// Call Zend_View_Helper_HeadScriptTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HeadScriptTest::main") {
-    Zend_View_Helper_HeadScriptTest::main();
-}

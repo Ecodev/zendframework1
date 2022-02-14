@@ -42,7 +42,7 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
      * Registry key for placeholder
      * @var string
      */
-    protected $_regKey = 'Zend_View_Helper_HeadStyle';
+    protected $_regKey = \Zend_View_Helper_HeadStyle::class;
 
     /**
      * Allowed optional attributes

@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Validate_File_MimeTypeTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Validate_File_MimeTypeTest::main");
-}
+
 
 /**
  * @see Zend_Validate_File_MimeType
@@ -40,7 +37,7 @@ require_once 'Zend/Validate/File/MimeType.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +46,8 @@ class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Validate_File_MimeTypeTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_MimeTypeTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -73,7 +70,7 @@ class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
             array('image/jpeg2000', false),
         );
 
-        $filetest = dirname(__FILE__) . '/_files/picture.jpg';
+        $filetest = __DIR__ . '/_files/picture.jpg';
         $files = array(
             'name'     => 'picture.jpg',
             'type'     => 'image/jpg',
@@ -205,7 +202,7 @@ class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
             array('image', true),
         );
 
-        $filetest = dirname(__FILE__) . '/_files/picture.jpg';
+        $filetest = __DIR__ . '/_files/picture.jpg';
         $files = array(
             'name'     => 'picture.jpg',
             'type'     => 'image/jpg',
@@ -261,7 +258,7 @@ class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped('Behavior is only applicable and testable for PHP 5.3+');
         }
 
-        $filetest = dirname(__FILE__) . '/_files/picture.jpg';
+        $filetest = __DIR__ . '/_files/picture.jpg';
         $files = array(
             'name'     => 'picture.jpg',
             'size'     => 200,
@@ -291,7 +288,3 @@ class Zend_Validate_File_MimeTypeTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Validate_File_MimeTypeTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_MimeTypeTest::main") {
-    Zend_Validate_File_MimeTypeTest::main();
-}

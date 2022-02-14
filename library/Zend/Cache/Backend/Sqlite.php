@@ -69,10 +69,8 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
 
     /**
      * Boolean to store if the structure has benn checked or not
-     *
-     * @var boolean $_structureChecked
      */
-    private $_structureChecked = false;
+    private bool $_structureChecked = false;
 
     /**
      * Constructor
@@ -350,7 +348,7 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
                 $ids = $ids2;
                 $first = false;
             } else {
-                $ids = array_merge($ids, $ids2);
+                $ids = [...$ids, ...$ids2];
             }
         }
         $result = array();
@@ -527,7 +525,7 @@ class Zend_Cache_Backend_Sqlite extends Zend_Cache_Backend implements Zend_Cache
     private function _automaticVacuum()
     {
         if ($this->_options['automatic_vacuum_factor'] > 0) {
-            $rand = rand(1, $this->_options['automatic_vacuum_factor']);
+            $rand = random_int(1, $this->_options['automatic_vacuum_factor']);
             if ($rand == 1) {
                 $this->_query('VACUUM');
             }

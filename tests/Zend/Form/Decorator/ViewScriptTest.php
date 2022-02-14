@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Form_Decorator_ViewScriptTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Form_Decorator_ViewScriptTest::main");
-}
+
 
 require_once 'Zend/Form/Decorator/ViewScript.php';
 
@@ -41,7 +38,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Decorator_ViewScriptTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -50,8 +47,8 @@ class Zend_Form_Decorator_ViewScriptTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Decorator_ViewScriptTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_ViewScriptTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -78,8 +75,8 @@ class Zend_Form_Decorator_ViewScriptTest extends PHPUnit_Framework_TestCase
     public function getView()
     {
         $view = new Zend_View();
-        $view->addHelperPath(dirname(__FILE__) . '/../../../../library/Zend/View/Helper');
-        $view->addScriptPath(dirname(__FILE__) . '/../_files/views/');
+        $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+        $view->addScriptPath(__DIR__ . '/../_files/views/');
         return $view;
     }
 
@@ -239,7 +236,3 @@ class Zend_Form_Decorator_ViewScriptTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Form_Decorator_ViewScriptTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Decorator_ViewScriptTest::main") {
-    Zend_Form_Decorator_ViewScriptTest::main();
-}

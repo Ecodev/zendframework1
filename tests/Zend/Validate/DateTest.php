@@ -33,7 +33,7 @@ require_once 'Zend/Validate/Date.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_DateTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_DateTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Validate_Date object
@@ -75,7 +75,7 @@ class Zend_Validate_DateTest extends PHPUnit_Framework_TestCase
             '2007-02-99' => false,
             '9999-99-99' => false,
             0            => false,
-            999999999999 => false,
+            999_999_999_999 => false,
             'Jan 1 2007' => false,
             'asdasda'    => false,
             'sdgsdg'     => false
@@ -168,7 +168,7 @@ class Zend_Validate_DateTest extends PHPUnit_Framework_TestCase
             '2008/20/03' => false,
             '99/99/2000' => false,
             0            => false,
-            999999999999 => false,
+            999_999_999_999 => false,
             'Jan 1 2007' => false
             );
         foreach ($valuesExpected as $input => $resultExpected) {
@@ -216,7 +216,7 @@ class Zend_Validate_DateTest extends PHPUnit_Framework_TestCase
      */
     public function testUsingApplicationLocale()
     {
-        Zend_Registry::set('Zend_Locale', new Zend_Locale('de'));
+        Zend_Registry::set(\Zend_Locale::class, new Zend_Locale('de'));
         $valid = new Zend_Validate_Date();
         $this->assertTrue($valid->isValid('10.April.2008'));
     }

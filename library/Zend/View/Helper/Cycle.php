@@ -35,7 +35,7 @@ class Zend_View_Helper_Cycle implements Iterator
      * Default name
      * @var string
      */
-    const DEFAULT_NAME = 'default';
+    public const DEFAULT_NAME = 'default';
 
     /**
      * Pointers
@@ -156,7 +156,7 @@ class Zend_View_Helper_Cycle implements Iterator
      */
     public function next()
     {
-        $count = count($this->_data[$this->_name]);
+        $count = is_countable($this->_data[$this->_name]) ? count($this->_data[$this->_name]) : 0;
         if ($this->_pointers[$this->_name] == ($count - 1))
             $this->_pointers[$this->_name] = 0;
         else
@@ -171,7 +171,7 @@ class Zend_View_Helper_Cycle implements Iterator
      */
     public function prev()
     {
-        $count = count($this->_data[$this->_name]);
+        $count = is_countable($this->_data[$this->_name]) ? count($this->_data[$this->_name]) : 0;
         if ($this->_pointers[$this->_name] <= 0)
             $this->_pointers[$this->_name] = $count - 1;
         else

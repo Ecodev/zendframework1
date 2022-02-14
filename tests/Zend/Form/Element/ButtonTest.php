@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Form_Element_ButtonTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Form_Element_ButtonTest::main");
-}
+
 
 require_once 'Zend/Form/Element/Button.php';
 require_once 'Zend/Translate.php';
@@ -38,7 +35,7 @@ require_once 'Zend/Translate.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_ButtonTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Form_Element_Button
@@ -53,8 +50,8 @@ class Zend_Form_Element_ButtonTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_ButtonTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_ButtonTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -118,7 +115,7 @@ class Zend_Form_Element_ButtonTest extends PHPUnit_Framework_TestCase
 
     public function testGetLabelReturnsTranslatedLabelIfTranslatorIsRegistered()
     {
-        $translations = include dirname(__FILE__) . '/../_files/locale/array.php';
+        $translations = include __DIR__ . '/../_files/locale/array.php';
         $translate = new Zend_Translate('array', $translations, 'en');
         $this->element->setTranslator($translate)
                       ->setLabel('submit');
@@ -204,7 +201,3 @@ class Zend_Form_Element_ButtonTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Form_Element_ButtonTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_ButtonTest::main") {
-    Zend_Form_Element_ButtonTest::main();
-}

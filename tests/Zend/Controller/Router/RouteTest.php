@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Controller_Router_RouteTest::main');
-}
+
 
 /** @see Zend_Controller_Request_Http */
 require_once 'Zend/Controller/Request/Http.php';
@@ -45,7 +43,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Server backup
@@ -73,7 +71,7 @@ class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
        $translator->addTranslation(array('foo' => 'de_foo', 'bar' => 'de_bar'), 'de');
        $translator->setLocale('en');
 
-       Zend_Registry::set('Zend_Translate', $translator);
+       Zend_Registry::set(\Zend_Translate::class, $translator);
     }
 
     /**
@@ -87,8 +85,8 @@ class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
         $_SERVER = $this->_server;
 
         // Remove translator and locale
-        Zend_Registry::set('Zend_Translate', null);
-        Zend_Registry::set('Zend_Locale', null);
+        Zend_Registry::set(\Zend_Translate::class, null);
+        Zend_Registry::set(\Zend_Locale::class, null);
         Zend_Controller_Router_Route::setDefaultTranslator(null);
         Zend_Controller_Router_Route::setDefaultLocale(null);
     }
@@ -718,7 +716,7 @@ class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
 
     public function testTranslationAssembleLocaleRegistryOverride()
     {
-        Zend_Registry::set('Zend_Locale', 'de');
+        Zend_Registry::set(\Zend_Locale::class, 'de');
 
         $route = new Zend_Controller_Router_Route('foo/@foo');
         $url   = $route->assemble();
@@ -752,7 +750,7 @@ class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
     {
         $translator = new Zend_Translate('array', array('foo' => 'en_baz'), 'en');
 
-        Zend_Registry::set('Zend_Translate', $translator);
+        Zend_Registry::set(\Zend_Translate::class, $translator);
 
         $route = new Zend_Controller_Router_Route('foo/@foo');
         $url   = $route->assemble();
@@ -762,7 +760,7 @@ class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
 
     public function testTranslationAssembleTranslatorNotFound()
     {
-        Zend_Registry::set('Zend_Translate', null);
+        Zend_Registry::set(\Zend_Translate::class, null);
 
         $route = new Zend_Controller_Router_Route('foo/@foo');
 
@@ -797,6 +795,3 @@ class Zend_Controller_Router_RouteTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Controller_Router_RouteTests::main') {
-    Zend_Controller_Router_RouteTests::main();
-}

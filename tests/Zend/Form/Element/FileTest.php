@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Form_Element_FileTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Form_Element_FileTest::main");
-}
+
 
 require_once 'Zend/Form/Element/File.php';
 require_once 'Zend/File/Transfer/Adapter/Abstract.php';
@@ -43,7 +40,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Form_Element_File
@@ -62,8 +59,8 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_FileTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_FileTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -155,7 +152,7 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
 
     public function testElementShouldAllowSpecifyingAdapterUsingPluginLoader()
     {
-        $this->element->addPrefixPath('Zend_Form_Element_FileTest_Adapter', dirname(__FILE__) . '/_files/TransferAdapter', 'transfer_adapter');
+        $this->element->addPrefixPath('Zend_Form_Element_FileTest_Adapter', __DIR__ . '/_files/TransferAdapter', 'transfer_adapter');
         $this->element->setTransferAdapter('Foo');
         $test = $this->element->getTransferAdapter();
         $this->assertTrue($test instanceof Zend_Form_Element_FileTest_Adapter_Foo);
@@ -173,7 +170,7 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
         $test       = $this->element->getTransferAdapter()->getValidators();
         $this->assertEquals($validators, $test);
         $this->assertTrue(is_array($test));
-        $this->assertEquals(3, count($test));
+        $this->assertEquals(3, count((array) $test));
 
         $validator = $this->element->getValidator('count');
         $test      = $this->element->getTransferAdapter()->getValidator('count');
@@ -192,7 +189,7 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
         $test       = $this->element->getTransferAdapter()->getValidators();
         $this->assertSame($validators, $test);
         $this->assertTrue(is_array($test));
-        $this->assertEquals(3, count($test), var_export($test, 1));
+        $this->assertEquals(3, count((array) $test), var_export($test, 1));
 
         $this->element->clearValidators();
         $validators = $this->element->getValidators();
@@ -216,9 +213,9 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
         $adapter = new Zend_Form_Element_FileTest_MockAdapter();
         $this->element->setTransferAdapter($adapter);
 
-        $this->element->setDestination(dirname(__FILE__));
-        $this->assertEquals(dirname(__FILE__), $this->element->getDestination());
-        $this->assertEquals(dirname(__FILE__), $this->element->getTransferAdapter()->getDestination('foo'));
+        $this->element->setDestination(__DIR__);
+        $this->assertEquals(__DIR__, $this->element->getDestination());
+        $this->assertEquals(__DIR__, $this->element->getTransferAdapter()->getDestination('foo'));
     }
 
     public function testSettingMultipleFiles()
@@ -303,7 +300,7 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
 
         $this->_errorOccurred = false;
         set_error_handler(array($this, 'errorHandlerIgnore'));
-        $this->element->setMaxFileSize(999999999999);
+        $this->element->setMaxFileSize(999_999_999_999);
         if (!$this->_errorOccurred) {
             $this->fail('INI exception expected');
         }
@@ -337,16 +334,16 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
     public function testFileNameWithoutPath()
     {
         $this->element->setTransferAdapter(new Zend_Form_Element_FileTest_MockAdapter());
-        $this->element->setDestination(dirname(__FILE__));
-        $this->assertEquals(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'foo.jpg', $this->element->getFileName('foo', true));
+        $this->element->setDestination(__DIR__);
+        $this->assertEquals(__DIR__ . DIRECTORY_SEPARATOR . 'foo.jpg', $this->element->getFileName('foo', true));
         $this->assertEquals('foo.jpg', $this->element->getFileName('foo', false));
     }
 
     public function testEmptyFileName()
     {
         $this->element->setTransferAdapter(new Zend_Form_Element_FileTest_MockAdapter());
-        $this->element->setDestination(dirname(__FILE__));
-        $this->assertEquals(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'foo.jpg', $this->element->getFileName());
+        $this->element->setDestination(__DIR__);
+        $this->assertEquals(__DIR__ . DIRECTORY_SEPARATOR . 'foo.jpg', $this->element->getFileName());
     }
 
     public function testIsReceived()
@@ -406,9 +403,9 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
         $adapter = new Zend_Form_Element_FileTest_MockAdapter();
         $element->setTransferAdapter($adapter);
 
-        $this->assertEquals('1.14kB', $element->getFileSize('baz.text'));
+        $this->assertEquals('1.14kB', $element->getFileSize());
         $adapter->setOptions(array('useByteString' => false));
-        $this->assertEquals(1172, $element->getFileSize('baz.text'));
+        $this->assertEquals(1172, $element->getFileSize());
     }
 
     public function testMimeType()
@@ -417,7 +414,7 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
         $adapter = new Zend_Form_Element_FileTest_MockAdapter();
         $element->setTransferAdapter($adapter);
 
-        $this->assertEquals('text/plain', $element->getMimeType('baz.text'));
+        $this->assertEquals('text/plain', $element->getMimeType());
     }
 
     public function testAddedErrorsAreDisplayed()
@@ -499,7 +496,7 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
     {
         $this->assertSame($this->element, $this->element->loadDefaultDecorators());
     }
-    
+
     /**
      * @group ZF-12173
      */
@@ -507,18 +504,18 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
     {
         if (version_compare(PHP_VERSION, '5.3.0', '<')) {
             $this->markTestSkipped(
-                __CLASS__ . '::' . __METHOD__ . ' requires PHP 5.3.0 or greater'
+                self::class . '::' . __METHOD__ . ' requires PHP 5.3.0 or greater'
             );
             return;
         }
         $this->element->addPrefixPath(
             'Zend\Form\Element\FileTest\Adapter',
-            dirname(__FILE__) . '/_files/TransferAdapter',
+            __DIR__ . '/_files/TransferAdapter',
             'transfer_adapter'
         );
         $this->element->setTransferAdapter('Bar');
         $test = $this->element->getTransferAdapter();
-        
+
         $expectedType = 'Zend\Form\Element\FileTest\Adapter\Bar';
         $this->assertTrue(
             $test instanceof $expectedType
@@ -552,7 +549,7 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(
             array(
                  'callback' => array(
-                     'Zend_Form_Element_File',
+                     \Zend_Form_Element_File::class,
                      'resolveElementId',
                  ),
             ),
@@ -566,11 +563,11 @@ class Zend_Form_Element_FileTest extends PHPUnit_Framework_TestCase
     public function testDefaultDecoratorOrder()
     {
         $expected = array(
-            'Zend_Form_Decorator_File',
-            'Zend_Form_Decorator_Errors',
-            'Zend_Form_Decorator_Description',
-            'Zend_Form_Decorator_HtmlTag',
-            'Zend_Form_Decorator_Label',
+            \Zend_Form_Decorator_File::class,
+            \Zend_Form_Decorator_Errors::class,
+            \Zend_Form_Decorator_Description::class,
+            \Zend_Form_Decorator_HtmlTag::class,
+            \Zend_Form_Decorator_Label::class,
         );
 
         $this->assertEquals(
@@ -586,7 +583,7 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
 
     public function __construct()
     {
-        $testfile = dirname(__FILE__) . '/../../File/Transfer/Adapter/_files/test.txt';
+        $testfile = __DIR__ . '/../../File/Transfer/Adapter/_files/test.txt';
         $this->_files = array(
             'foo' => array(
                 'name'       => 'foo.jpg',
@@ -683,7 +680,3 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
     }
 }
 
-// Call Zend_Form_Element_FileTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_FileTest::main") {
-    Zend_Form_Element_FileTest::main();
-}

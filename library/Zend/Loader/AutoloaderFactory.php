@@ -18,9 +18,9 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-require_once dirname(__FILE__) . '/SplAutoloader.php';
+require_once __DIR__ . '/SplAutoloader.php';
 
-if (class_exists('Zend_Loader_AutoloaderFactory')) return;
+if (class_exists(\Zend_Loader_AutoloaderFactory::class)) return;
 
 /**
  * @package    Zend_Loader
@@ -29,8 +29,8 @@ if (class_exists('Zend_Loader_AutoloaderFactory')) return;
  */
 abstract class Zend_Loader_AutoloaderFactory
 {
-    const STANDARD_AUTOLOADER  = 'Zend_Loader_StandardAutoloader';
-    const CLASS_MAP_AUTOLOADER = 'Zend_Loader_ClassMapAutoloader';
+    public const STANDARD_AUTOLOADER  = 'Zend_Loader_StandardAutoloader';
+    public const CLASS_MAP_AUTOLOADER = 'Zend_Loader_ClassMapAutoloader';
 
     /**
      * @var array All autoloaders registered using the factory
@@ -98,7 +98,7 @@ abstract class Zend_Loader_AutoloaderFactory
                             strrchr(self::CLASS_MAP_AUTOLOADER, '_'), 1
                         );
 
-                        require_once dirname(__FILE__) . "/$classMapLoader.php";
+                        require_once __DIR__ . "/$classMapLoader.php";
                     }
                 }
 
@@ -115,7 +115,7 @@ abstract class Zend_Loader_AutoloaderFactory
                 // unfortunately is_subclass_of is broken on some 5.3 versions
                 // additionally instanceof is also broken for this use case
                 if (version_compare(PHP_VERSION, '5.3.7', '>=')) {
-                        if (!is_subclass_of($class, 'Zend_Loader_SplAutoloader')) {
+                        if (!is_subclass_of($class, \Zend_Loader_SplAutoloader::class)) {
                         require_once 'Exception/InvalidArgumentException.php';
                         throw new Zend_Loader_Exception_InvalidArgumentException(sprintf(
                             'Autoloader class %s must implement Zend\\Loader\\SplAutoloader', 
@@ -216,7 +216,7 @@ abstract class Zend_Loader_AutoloaderFactory
         $stdAutoloader = substr(strrchr(self::STANDARD_AUTOLOADER, '_'), 1);
 
         if (!class_exists(self::STANDARD_AUTOLOADER)) {
-            require_once dirname(__FILE__) . "/$stdAutoloader.php";
+            require_once __DIR__ . "/$stdAutoloader.php";
         }
         $loader = new Zend_Loader_StandardAutoloader();
         self::$standardAutoloader = $loader;

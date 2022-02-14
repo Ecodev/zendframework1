@@ -38,7 +38,7 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
      * Registry key for placeholder
      * @var string
      */
-    protected $_regKey = 'Zend_View_Helper_HeadTitle';
+    protected $_regKey = \Zend_View_Helper_HeadTitle::class;
 
     /**
      * Whether or not auto-translation is enabled
@@ -70,9 +70,7 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
     public function headTitle($title = null, $setType = null)
     {
         if (null === $setType) {
-            $setType = (null === $this->getDefaultAttachOrder())
-                     ? Zend_View_Helper_Placeholder_Container_Abstract::APPEND
-                     : $this->getDefaultAttachOrder();
+            $setType = $this->getDefaultAttachOrder() ?? Zend_View_Helper_Placeholder_Container_Abstract::APPEND;
         }
         $title = (string) $title;
         if ($title !== '') {
@@ -151,8 +149,8 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
     {
         if (null === $this->_translator) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Translate')) {
-                $this->setTranslator(Zend_Registry::get('Zend_Translate'));
+            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
+                $this->setTranslator(Zend_Registry::get(\Zend_Translate::class));
             }
         }
         return $this->_translator;

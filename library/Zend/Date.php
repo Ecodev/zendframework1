@@ -38,10 +38,10 @@ class Zend_Date extends Zend_Date_DateObject
     private $_locale  = null;
 
     // Fractional second variables
-    private $_fractional = 0;
-    private $_precision  = 3;
+    private int $_fractional = 0;
+    private int $_precision  = 3;
 
-    private static $_options = array(
+    private static array $_options = array(
         'format_type'  => 'iso',      // format for date strings 'iso' or 'php'
         'fix_dst'      => true,       // fix dst on summer/winter time change
         'extend_month' => false,      // false - addMonth like SQL, true like excel
@@ -50,75 +50,75 @@ class Zend_Date extends Zend_Date_DateObject
     );
 
     // Class wide Date Constants
-    const DAY               = 'dd';
-    const DAY_SHORT         = 'd';
-    const DAY_SUFFIX        = 'SS';
-    const DAY_OF_YEAR       = 'D';
-    const WEEKDAY           = 'EEEE';
-    const WEEKDAY_SHORT     = 'EEE';
-    const WEEKDAY_NARROW    = 'E';
-    const WEEKDAY_NAME      = 'EE';
-    const WEEKDAY_8601      = 'eee';
-    const WEEKDAY_DIGIT     = 'e';
-    const WEEK              = 'ww';
-    const MONTH             = 'MM';
-    const MONTH_SHORT       = 'M';
-    const MONTH_DAYS        = 'ddd';
-    const MONTH_NAME        = 'MMMM';
-    const MONTH_NAME_SHORT  = 'MMM';
-    const MONTH_NAME_NARROW = 'MMMMM';
-    const YEAR              = 'y';
-    const YEAR_SHORT        = 'yy';
-    const YEAR_8601         = 'Y';
-    const YEAR_SHORT_8601   = 'YY';
-    const LEAPYEAR          = 'l';
-    const MERIDIEM          = 'a';
-    const SWATCH            = 'B';
-    const HOUR              = 'HH';
-    const HOUR_SHORT        = 'H';
-    const HOUR_AM           = 'hh';
-    const HOUR_SHORT_AM     = 'h';
-    const MINUTE            = 'mm';
-    const MINUTE_SHORT      = 'm';
-    const SECOND            = 'ss';
-    const SECOND_SHORT      = 's';
-    const MILLISECOND       = 'S';
-    const TIMEZONE_NAME     = 'zzzz';
-    const DAYLIGHT          = 'I';
-    const GMT_DIFF          = 'Z';
-    const GMT_DIFF_SEP      = 'ZZZZ';
-    const TIMEZONE          = 'z';
-    const TIMEZONE_SECS     = 'X';
-    const ISO_8601          = 'c';
-    const RFC_2822          = 'r';
-    const TIMESTAMP         = 'U';
-    const ERA               = 'G';
-    const ERA_NAME          = 'GGGG';
-    const ERA_NARROW        = 'GGGGG';
-    const DATES             = 'F';
-    const DATE_FULL         = 'FFFFF';
-    const DATE_LONG         = 'FFFF';
-    const DATE_MEDIUM       = 'FFF';
-    const DATE_SHORT        = 'FF';
-    const TIMES             = 'WW';
-    const TIME_FULL         = 'TTTTT';
-    const TIME_LONG         = 'TTTT';
-    const TIME_MEDIUM       = 'TTT';
-    const TIME_SHORT        = 'TT';
-    const DATETIME          = 'K';
-    const DATETIME_FULL     = 'KKKKK';
-    const DATETIME_LONG     = 'KKKK';
-    const DATETIME_MEDIUM   = 'KKK';
-    const DATETIME_SHORT    = 'KK';
-    const ATOM              = 'OOO';
-    const COOKIE            = 'CCC';
-    const RFC_822           = 'R';
-    const RFC_850           = 'RR';
-    const RFC_1036          = 'RRR';
-    const RFC_1123          = 'RRRR';
-    const RFC_3339          = 'RRRRR';
-    const RSS               = 'SSS';
-    const W3C               = 'WWW';
+    public const DAY               = 'dd';
+    public const DAY_SHORT         = 'd';
+    public const DAY_SUFFIX        = 'SS';
+    public const DAY_OF_YEAR       = 'D';
+    public const WEEKDAY           = 'EEEE';
+    public const WEEKDAY_SHORT     = 'EEE';
+    public const WEEKDAY_NARROW    = 'E';
+    public const WEEKDAY_NAME      = 'EE';
+    public const WEEKDAY_8601      = 'eee';
+    public const WEEKDAY_DIGIT     = 'e';
+    public const WEEK              = 'ww';
+    public const MONTH             = 'MM';
+    public const MONTH_SHORT       = 'M';
+    public const MONTH_DAYS        = 'ddd';
+    public const MONTH_NAME        = 'MMMM';
+    public const MONTH_NAME_SHORT  = 'MMM';
+    public const MONTH_NAME_NARROW = 'MMMMM';
+    public const YEAR              = 'y';
+    public const YEAR_SHORT        = 'yy';
+    public const YEAR_8601         = 'Y';
+    public const YEAR_SHORT_8601   = 'YY';
+    public const LEAPYEAR          = 'l';
+    public const MERIDIEM          = 'a';
+    public const SWATCH            = 'B';
+    public const HOUR              = 'HH';
+    public const HOUR_SHORT        = 'H';
+    public const HOUR_AM           = 'hh';
+    public const HOUR_SHORT_AM     = 'h';
+    public const MINUTE            = 'mm';
+    public const MINUTE_SHORT      = 'm';
+    public const SECOND            = 'ss';
+    public const SECOND_SHORT      = 's';
+    public const MILLISECOND       = 'S';
+    public const TIMEZONE_NAME     = 'zzzz';
+    public const DAYLIGHT          = 'I';
+    public const GMT_DIFF          = 'Z';
+    public const GMT_DIFF_SEP      = 'ZZZZ';
+    public const TIMEZONE          = 'z';
+    public const TIMEZONE_SECS     = 'X';
+    public const ISO_8601          = 'c';
+    public const RFC_2822          = 'r';
+    public const TIMESTAMP         = 'U';
+    public const ERA               = 'G';
+    public const ERA_NAME          = 'GGGG';
+    public const ERA_NARROW        = 'GGGGG';
+    public const DATES             = 'F';
+    public const DATE_FULL         = 'FFFFF';
+    public const DATE_LONG         = 'FFFF';
+    public const DATE_MEDIUM       = 'FFF';
+    public const DATE_SHORT        = 'FF';
+    public const TIMES             = 'WW';
+    public const TIME_FULL         = 'TTTTT';
+    public const TIME_LONG         = 'TTTT';
+    public const TIME_MEDIUM       = 'TTT';
+    public const TIME_SHORT        = 'TT';
+    public const DATETIME          = 'K';
+    public const DATETIME_FULL     = 'KKKKK';
+    public const DATETIME_LONG     = 'KKKK';
+    public const DATETIME_MEDIUM   = 'KKK';
+    public const DATETIME_SHORT    = 'KK';
+    public const ATOM              = 'OOO';
+    public const COOKIE            = 'CCC';
+    public const RFC_822           = 'R';
+    public const RFC_850           = 'RR';
+    public const RFC_1036          = 'RRR';
+    public const RFC_1123          = 'RRRR';
+    public const RFC_3339          = 'RRRRR';
+    public const RSS               = 'SSS';
+    public const W3C               = 'WWW';
 
     /**
      * Generates the standard date object, could be a unix timestamp, localized date,
@@ -956,7 +956,7 @@ class Zend_Date extends Zend_Date_DateObject
                 $result  = substr($this->getMilliSecond(), 0, 3);
                 $result += $this->date('s', $this->getUnixTimestamp(), false) * 1000;
                 $result += $this->date('i', $this->getUnixTimestamp(), false) * 60000;
-                $result += $this->date('H', $this->getUnixTimestamp(), false) * 3600000;
+                $result += $this->date('H', $this->getUnixTimestamp(), false) * 3_600_000;
 
                 return $this->_toComment(str_pad($result, $length, '0', STR_PAD_LEFT));
                 break;
@@ -1287,6 +1287,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     private function _calculate($calc, $date, $part, $locale)
     {
+        $found = null;
         if ($date === null) {
             require_once 'Zend/Date/Exception.php';
             throw new Zend_Date_Exception('parameter $date must be set, null is not allowed');
@@ -2662,9 +2663,9 @@ class Zend_Date extends Zend_Date_DateObject
                         }
 
                         return $this->_assign($calc, $this->mktime(
-                            isset($parsed['hour']) ? $parsed['hour'] : 0,
-                            isset($parsed['minute']) ? $parsed['minute'] : 0,
-                            isset($parsed['second']) ? $parsed['second'] : 0,
+                            $parsed['hour'] ?? 0,
+                            $parsed['minute'] ?? 0,
+                            $parsed['second'] ?? 0,
                             isset($parsed['month']) ? (1 + $parsed['month']) : 1,
                             isset($parsed['day']) ? (1 + $parsed['day']) : 1,
                             $parsed['year'],
@@ -3432,7 +3433,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     public function isYesterday()
     {
-        list($year, $month, $day) = explode('-', $this->date('Y-m-d', $this->_getTime()));
+        [$year, $month, $day] = explode('-', $this->date('Y-m-d', $this->_getTime()));
         // adjusts for leap days and DST changes that are timezone specific
         $yesterday = $this->date('Ymd', $this->mktime(0, 0, 0, $month, $day -1, $year));
         $day   = $this->date('Ymd', $this->getUnixTimestamp());
@@ -3447,7 +3448,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     public function isTomorrow()
     {
-        list($year, $month, $day) = explode('-', $this->date('Y-m-d', $this->_getTime()));
+        [$year, $month, $day] = explode('-', $this->date('Y-m-d', $this->_getTime()));
         // adjusts for leap days and DST changes that are timezone specific
         $tomorrow = $this->date('Ymd', $this->mktime(0, 0, 0, $month, $day +1, $year));
         $day   = $this->date('Ymd', $this->getUnixTimestamp());
@@ -3665,6 +3666,7 @@ class Zend_Date extends Zend_Date_DateObject
      */
     private function _month($calc, $month, $locale)
     {
+        $found = null;
         if ($month === null) {
             require_once 'Zend/Date/Exception.php';
             throw new Zend_Date_Exception('parameter $month must be set, null is not allowed');
@@ -4487,7 +4489,7 @@ class Zend_Date extends Zend_Date_DateObject
     public function setMilliSecond($milli = null, $precision = null)
     {
         if ($milli === null) {
-            list($milli, $time) = explode(" ", microtime());
+            [$milli, $time] = explode(" ", microtime());
             $milli = intval($milli);
             $precision = 6;
         } else if (!is_numeric($milli)) {
@@ -4520,7 +4522,7 @@ class Zend_Date extends Zend_Date_DateObject
     public function addMilliSecond($milli = null, $precision = null)
     {
         if ($milli === null) {
-            list($milli, $time) = explode(" ", microtime());
+            [$milli, $time] = explode(" ", microtime());
             $milli = intval($milli);
         } else if (!is_numeric($milli)) {
             require_once 'Zend/Date/Exception.php';
@@ -4543,15 +4545,15 @@ class Zend_Date extends Zend_Date_DateObject
         }
 
         if ($this->_precision > $precision) {
-            $milli = $milli * pow(10, $this->_precision - $precision);
+            $milli = $milli * 10 ** ($this->_precision - $precision);
         } elseif ($this->_precision < $precision) {
-            $milli = round($milli / pow(10, $precision - $this->_precision));
+            $milli = round($milli / 10 ** ($precision - $this->_precision));
         }
 
         $this->_fractional += $milli;
 
         // Add/sub milliseconds + add/sub seconds
-        $max = pow(10, $this->_precision);
+        $max = 10 ** $this->_precision;
         // Milli includes seconds
         if ($this->_fractional >= $max) {
             while ($this->_fractional >= $max) {
@@ -4599,7 +4601,7 @@ class Zend_Date extends Zend_Date_DateObject
     public function compareMilliSecond($milli = null, $precision = null)
     {
         if ($milli === null) {
-            list($milli, $time) = explode(" ", microtime());
+            [$milli, $time] = explode(" ", microtime());
             $milli = intval($milli);
         } else if (is_numeric($milli) === false) {
             require_once 'Zend/Date/Exception.php';

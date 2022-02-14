@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Controller_Router_RewriteTest::main');
-}
+
 
 /** Zend_Controller_Router_Rewrite */
 require_once 'Zend/Controller/Router/Rewrite.php';
@@ -58,7 +56,7 @@ require_once 'Zend/Uri/Http.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
 {
     protected $_router;
 
@@ -71,8 +69,8 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Router_RewriteTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_RewriteTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp() {
@@ -93,13 +91,13 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
         $this->_router->addRoute('archive', new Zend_Controller_Router_Route('archive/:year', array('year' => '2006', 'controller' => 'archive', 'action' => 'show'), array('year' => '\d+')));
         $routes = $this->_router->getRoutes();
 
-        $this->assertEquals(1, count($routes));
+        $this->assertEquals(1, is_countable($routes) ? count($routes) : 0);
         $this->assertTrue($routes['archive'] instanceof Zend_Controller_Router_Route);
 
         $this->_router->addRoute('register', new Zend_Controller_Router_Route('register/:action', array('controller' => 'profile', 'action' => 'register')));
         $routes = $this->_router->getRoutes();
 
-        $this->assertEquals(2, count($routes));
+        $this->assertEquals(2, is_countable($routes) ? count($routes) : 0);
         $this->assertTrue($routes['register'] instanceof Zend_Controller_Router_Route);
     }
 
@@ -113,7 +111,7 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
 
         $values = $this->_router->getRoutes();
 
-        $this->assertEquals(2, count($values));
+        $this->assertEquals(2, is_countable($values) ? count($values) : 0);
         $this->assertTrue($values['archive'] instanceof Zend_Controller_Router_Route);
         $this->assertTrue($values['register'] instanceof Zend_Controller_Router_Route);
     }
@@ -146,7 +144,7 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
         $this->_router->removeRoute('archive');
 
         $routes = $this->_router->getRoutes();
-        $this->assertEquals(0, count($routes));
+        $this->assertEquals(0, is_countable($routes) ? count($routes) : 0);
 
         try {
             $route = $this->_router->removeRoute('archive');
@@ -302,6 +300,8 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
 
     public function testGetCurrentRoute()
     {
+        $name = null;
+        $route = null;
         $request = new Zend_Controller_Router_RewriteTest_Request('http://localhost/ctrl/act');
 
         try {
@@ -334,7 +334,7 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
     public function testAddConfig()
     {
         require_once 'Zend/Config/Ini.php';
-        $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'routes.ini';
+        $file = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'routes.ini';
         $config = new Zend_Config_Ini($file, 'testing');
 
         $this->_router->addConfig($config, 'routes');
@@ -353,7 +353,7 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
     public function testAddConfigWithoutSection()
     {
         require_once 'Zend/Config/Ini.php';
-        $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'routes.ini';
+        $file = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'routes.ini';
         $config = new Zend_Config_Ini($file, 'testing');
 
         $this->_router->addConfig($config->routes);
@@ -365,7 +365,7 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
     public function testAddConfigWithRootNode()
     {
         require_once 'Zend/Config/Ini.php';
-        $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'routes-root.ini';
+        $file = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'routes-root.ini';
         $config = new Zend_Config_Ini($file, 'routes');
 
         $this->_router->addConfig($config);
@@ -387,14 +387,14 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
         }
 
         $routes = $this->_router->getRoutes();
-        $this->assertEquals(0, count($routes));
+        $this->assertEquals(0, is_countable($routes) ? count($routes) : 0);
     }
 
     public function testDefaultRouteMatchedWithModules()
     {
         Zend_Controller_Front::getInstance()->setControllerDirectory(array(
-            'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'mod'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin',
+            'default' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
+            'mod'     => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin',
         ));
         $request = new Zend_Controller_Router_RewriteTest_Request('http://localhost/mod/ctrl/act');
         $token = $this->_router->route($request);
@@ -418,8 +418,8 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
     public function testDefaultRouteWithEmptyControllerAndAction()
     {
         Zend_Controller_Front::getInstance()->setControllerDirectory(array(
-            'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'mod'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin',
+            'default' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
+            'mod'     => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin',
         ));
         $request = new Zend_Controller_Router_RewriteTest_Request('http://localhost/mod');
 
@@ -689,10 +689,10 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit_Framework_TestCase
 
     public function testChainNameSeparatorisUsedCorrectly() {
         $config = new Zend_Config(array('chains' => array(
-            'type'=>'Zend_Controller_Router_Route_Static',
+            'type'=>\Zend_Controller_Router_Route_Static::class,
             'route'=>'foo',
             'chains'=> array('bar'=>
-                array('type'=>'Zend_Controller_Router_Route_Static',
+                array('type'=>\Zend_Controller_Router_Route_Static::class,
                     'route'=>'bar',
                     'defaults'=>array(
                     'module'=>'module',
@@ -868,6 +868,3 @@ class Zend_Controller_Router_Route_Interface_Mockup implements Zend_Controller_R
     }
 }
 
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_RewriteTest::main") {
-    Zend_Controller_Router_RewriteTest::main();
-}

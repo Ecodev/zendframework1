@@ -23,7 +23,7 @@
 require_once 'Zend/Acl.php';
 require_once 'Zend/Acl/Resource.php';
 require_once 'Zend/Acl/Role.php';
-require_once dirname(__FILE__) . '/_files/MockAssertion.php';
+require_once __DIR__ . '/_files/MockAssertion.php';
 
 /**
  * @category   Zend
@@ -33,7 +33,7 @@ require_once dirname(__FILE__) . '/_files/MockAssertion.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Acl_AclTest extends PHPUnit_Framework_TestCase
+class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * ACL object for each test method
@@ -1070,7 +1070,7 @@ class Zend_Acl_AclTest extends PHPUnit_Framework_TestCase
      */
     public function testAclInternalDFSMethodsBehaveProperly()
     {
-        require_once dirname(__FILE__) . '/_files/ExtendedAclZF2234.php';
+        require_once __DIR__ . '/_files/ExtendedAclZF2234.php';
         $acl = new Zend_Acl_ExtendedAclZF2234();
 
         $someResource = new Zend_Acl_Resource('someResource');
@@ -1170,17 +1170,17 @@ class Zend_Acl_AclTest extends PHPUnit_Framework_TestCase
     protected function _loadUseCase1()
     {
         if (!class_exists('Zend_Acl_UseCase1_Acl')) {
-            require_once dirname(__FILE__) . '/_files/UseCase1/User.php';
-            require_once dirname(__FILE__) . '/_files/UseCase1/BlogPost.php';
-            require_once dirname(__FILE__) . '/_files/UseCase1/UserIsBlogPostOwnerAssertion.php';
-            require_once dirname(__FILE__) . '/_files/UseCase1/Acl.php';
+            require_once __DIR__ . '/_files/UseCase1/User.php';
+            require_once __DIR__ . '/_files/UseCase1/BlogPost.php';
+            require_once __DIR__ . '/_files/UseCase1/UserIsBlogPostOwnerAssertion.php';
+            require_once __DIR__ . '/_files/UseCase1/Acl.php';
         }
         return new Zend_Acl_UseCase1_Acl();
     }
 
     /**
      * Returns an array of registered roles
-     * @expectedException PHPUnit_Framework_Error
+     * @expectedException \PHPUnit\Framework\Exception
      * @group ZF-5638
      */
     public function testGetRegisteredRoles()
@@ -1244,14 +1244,14 @@ class Zend_Acl_AclTest extends PHPUnit_Framework_TestCase
      * @group ZF-7973
      */
     public function testAclPassesPrivilegeToAssertClass() {
-        require_once dirname(__FILE__) . '/_files/AssertionZF7973.php';
+        require_once __DIR__ . '/_files/AssertionZF7973.php';
         $assertion = new Zend_Acl_AclTest_AssertionZF7973();
 
         $acl = new Zend_Acl();
         $acl->addRole('role');
         $acl->addResource('resource');
         $acl->allow('role',null,null,$assertion);
-        $allowed = $acl->isAllowed('role','resource','privilege',$assertion);
+        $allowed = $acl->isAllowed('role','resource','privilege');
 
         $this->assertTrue($allowed);
     }
@@ -1263,7 +1263,7 @@ class Zend_Acl_AclTest extends PHPUnit_Framework_TestCase
         try {
             $this->_acl->getRegisteredRoles();
             $this->fail('getRegisteredRoles() did not throw an exception');
-        } catch(PHPUnit_Framework_Error $e) {
+        } catch(\PHPUnit\Framework\Exception $e) {
             return;
         }
 

@@ -26,10 +26,7 @@ require_once 'Zend/Controller/Router/Route/Module.php';
 /** Zend_Controller_Front */
 require_once 'Zend/Controller/Front.php';
 
-// Call Zend_Controller_Router_Route_ModuleTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Router_Route_ModuleTest::main");
-}
+
 
 /**
  * @category   Zend
@@ -40,7 +37,7 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_ModuleTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_request;
@@ -56,8 +53,8 @@ class Zend_Controller_Router_Route_ModuleTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Router_Route_ModuleTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_ModuleTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -70,8 +67,8 @@ class Zend_Controller_Router_Route_ModuleTest extends PHPUnit_Framework_TestCase
         $this->_dispatcher = $front->getDispatcher();
 
         $this->_dispatcher->setControllerDirectory(array(
-            'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'mod'     => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin',
+            'default' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
+            'mod'     => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin',
         ));
 
         $defaults = array(
@@ -485,7 +482,3 @@ class Zend_Controller_Router_Route_ModuleTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Controller_Router_Route_ModuleTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_Route_ModuleTest::main") {
-    Zend_Controller_Router_Route_ModuleTest::main();
-}

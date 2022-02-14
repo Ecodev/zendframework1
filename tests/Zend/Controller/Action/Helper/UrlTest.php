@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Action_Helper_UrlTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Action_Helper_UrlTest::main");
-}
+
 
 require_once 'Zend/Controller/Action/Helper/Url.php';
 
@@ -42,7 +39,7 @@ require_once 'Zend/Controller/Request/Http.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_UrlTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -52,8 +49,8 @@ class Zend_Controller_Action_Helper_UrlTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_UrlTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_UrlTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -143,7 +140,7 @@ class Zend_Controller_Action_Helper_UrlTest extends PHPUnit_Framework_TestCase
     public function testUrlMethodCreatesUrlBasedOnPassedParametersUsingDefaultRouteWhenNoNamedRoutePassed()
     {
         $this->front->getRouter()->addDefaultRoutes();
-        $this->front->addModuleDirectory(dirname(__FILE__) . '/../../_files/modules');
+        $this->front->addModuleDirectory(__DIR__ . '/../../_files/modules');
         $url = $this->helper->url(array(
             'module'     => 'foo',
             'controller' => 'bar',
@@ -180,7 +177,3 @@ class Zend_Controller_Action_Helper_UrlTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Controller_Action_Helper_UrlTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_UrlTest::main") {
-    Zend_Controller_Action_Helper_UrlTest::main();
-}

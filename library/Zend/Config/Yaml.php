@@ -37,7 +37,7 @@ class Zend_Config_Yaml extends Zend_Config
     /**
      * Attribute name that indicates what section a config extends from
      */
-    const EXTENDS_NAME = "_extends";
+    public const EXTENDS_NAME = "_extends";
 
     /**
      * Whether to skip extends or not
@@ -51,7 +51,7 @@ class Zend_Config_Yaml extends Zend_Config
      *
      * @var callable
      */
-    protected $_yamlDecoder = array(__CLASS__, 'decode');
+    protected $_yamlDecoder = array(self::class, 'decode');
 
     /**
      * Whether or not to ignore constants in parsed YAML
@@ -289,33 +289,27 @@ class Zend_Config_Yaml extends Zend_Config
     {
         $config   = array();
         $inIndent = false;
-        while (list($n, $line) = each($lines)) {
+        foreach ($lines as $n => $line) {
             $lineno = $n + 1;
-
             $line = rtrim(preg_replace("/#.*$/", "", $line));
             if (strlen($line) == 0) {
                 continue;
             }
-
             $indent = strspn($line, " ");
-
             // line without the spaces
             $line = trim($line);
             if (strlen($line) == 0) {
                 continue;
             }
-
             if ($indent < $currentIndent) {
                 // this level is done
                 prev($lines);
                 return $config;
             }
-
             if (!$inIndent) {
                 $currentIndent = $indent;
                 $inIndent      = true;
             }
-
             if (preg_match("/(?!-)([\w\-]+):\s*(.*)/", $line, $m)) {
                 // key: value
                 if (strlen($m[2])) {
@@ -363,10 +357,10 @@ class Zend_Config_Yaml extends Zend_Config
 
         // remove quotes from string.
         if ('"' == $value['0']) {
-            if ('"' == $value[count($value) -1]) {
+            if ('"' == $value[(is_countable($value) ? count($value) : 0) -1]) {
                 $value = substr($value, 1, -1);
             }
-        } elseif ('\'' == $value['0'] && '\'' == $value[count($value) -1]) {
+        } elseif ('\'' == $value['0'] && '\'' == $value[(is_countable($value) ? count($value) : 0) -1]) {
             $value = strtr($value, array("''" => "'", "'" => ''));
         }
 
@@ -394,7 +388,7 @@ class Zend_Config_Yaml extends Zend_Config
     protected static function _replaceConstants($value)
     {
         foreach (self::_getConstants() as $constant) {
-            if (strstr($value, $constant)) {
+            if (strstr($value, (string) $constant)) {
                 $value = str_replace($constant, constant($constant), $value);
             }
         }

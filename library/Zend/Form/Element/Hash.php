@@ -22,8 +22,6 @@
 /** Zend_Form_Element_Xhtml */
 require_once 'Zend/Form/Element/Xhtml.php';
 
-/** @see Zend_Crypt_Math */
-require_once 'Zend/Crypt/Math.php';
 
 /**
  * CSRF form protection
@@ -181,7 +179,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
      */
     public function getSessionName()
     {
-        return __CLASS__ . '_' . $this->getSalt() . '_' . $this->getName();
+        return self::class . '_' . $this->getSalt() . '_' . $this->getName();
     }
 
     /**
@@ -252,7 +250,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     protected function _generateHash()
     {
         $this->_hash = md5(
-            Zend_Crypt_Math::randBytes(32)
+            random_bytes(32)
         );
         $this->setValue($this->_hash);
     }

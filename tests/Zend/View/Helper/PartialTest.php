@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_PartialTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_PartialTest::main");
-}
+
 
 /** Zend_View_Helper_Partial */
 require_once 'Zend/View/Helper/Partial.php';
@@ -45,7 +42,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_PartialTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Partial
@@ -65,8 +62,8 @@ class Zend_View_Helper_PartialTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_PartialTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PartialTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -77,7 +74,7 @@ class Zend_View_Helper_PartialTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->basePath = dirname(__FILE__) . '/_files/modules';
+        $this->basePath = __DIR__ . '/_files/modules';
         $this->helper = new Zend_View_Helper_Partial();
         Zend_Controller_Front::getInstance()->resetInstance();
     }
@@ -291,7 +288,3 @@ class Zend_View_Helper_PartialTest_Aggregate
     }
 }
 
-// Call Zend_View_Helper_PartialTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_PartialTest::main") {
-    Zend_View_Helper_PartialTest::main();
-}

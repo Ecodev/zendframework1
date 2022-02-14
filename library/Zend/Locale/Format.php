@@ -34,9 +34,9 @@ require_once 'Zend/Locale/Data.php';
  */
 class Zend_Locale_Format
 {
-    const STANDARD   = 'auto';
+    public const STANDARD   = 'auto';
 
-    private static $_options = array('date_format'   => null,
+    private static array $_options = array('date_format'   => null,
                                      'number_format' => null,
                                      'format_type'   => 'iso',
                                      'fix_date'      => false,
@@ -197,6 +197,8 @@ class Zend_Locale_Format
      */
     public static function convertNumerals($input, $from, $to = null)
     {
+        $asource = [];
+        $atarget = [];
         if (!self::_getUniCodeSupport()) {
             trigger_error("Sorry, your PCRE extension does not support UTF8 which is needed for the I18N core", E_USER_NOTICE);
         }
@@ -263,7 +265,7 @@ class Zend_Locale_Format
         }
 
         $input = str_replace($symbols['group'],'', $input);
-        if (strpos($input, $symbols['decimal']) !== false) {
+        if (strpos($input, (string) $symbols['decimal']) !== false) {
             if ($symbols['decimal'] != '.') {
                 $input = str_replace($symbols['decimal'], ".", $input);
             }
@@ -809,6 +811,8 @@ class Zend_Locale_Format
      */
     private static function _parseDate($date, $options)
     {
+        $result = [];
+        $parse = [];
         if (!self::_getUniCodeSupport()) {
             trigger_error("Sorry, your PCRE extension does not support UTF8 which is needed for the I18N core", E_USER_NOTICE);
         }
@@ -907,12 +911,12 @@ class Zend_Locale_Format
         $split = false;
         preg_match_all('/\d+/u', $number, $splitted);
 
-        if (count($splitted[0]) == 0) {
+        if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) == 0) {
             self::_setEncoding($oenc);
             require_once 'Zend/Locale/Exception.php';
             throw new Zend_Locale_Exception("No date part in '$date' found.");
         }
-        if (count($splitted[0]) == 1) {
+        if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) == 1) {
             $split = 0;
         }
         $cnt = 0;
@@ -921,7 +925,7 @@ class Zend_Locale_Format
             switch($value) {
                 case 'd':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) > $cnt) {
                             $result['day']    = $splitted[0][$cnt];
                         }
                     } else {
@@ -932,7 +936,7 @@ class Zend_Locale_Format
                     break;
                 case 'M':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) > $cnt) {
                             $result['month']  = $splitted[0][$cnt];
                         }
                     } else {
@@ -949,7 +953,7 @@ class Zend_Locale_Format
                     }
 
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) > $cnt) {
                             $result['year']   = $splitted[0][$cnt];
                         }
                     } else {
@@ -961,7 +965,7 @@ class Zend_Locale_Format
                     break;
                 case 'H':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) > $cnt) {
                             $result['hour']   = $splitted[0][$cnt];
                         }
                     } else {
@@ -972,7 +976,7 @@ class Zend_Locale_Format
                     break;
                 case 'm':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) > $cnt) {
                             $result['minute'] = $splitted[0][$cnt];
                         }
                     } else {
@@ -983,7 +987,7 @@ class Zend_Locale_Format
                     break;
                 case 's':
                     if ($split === false) {
-                        if (count($splitted[0]) > $cnt) {
+                        if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) > $cnt) {
                             $result['second'] = $splitted[0][$cnt];
                         }
                     } else {
@@ -1181,7 +1185,7 @@ class Zend_Locale_Format
 
         if (empty($options['date_format'])) {
             $options['format_type'] = 'iso';
-            $options['date_format'] = self::getDateFormat(isset($options['locale']) ? $options['locale'] : null);
+            $options['date_format'] = self::getDateFormat($options['locale'] ?? null);
         }
         $options = self::_checkOptions($options) + self::$_options;
 

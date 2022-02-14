@@ -105,7 +105,7 @@ class Zend_Rest_Client_Result implements IteratorAggregate {
         }
 
         $result = $this->_sxml->xpath("//$name");
-        $count  = count($result);
+        $count  = is_countable($result) ? count($result) : 0;
 
         if ($count == 0) {
             return null;

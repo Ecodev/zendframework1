@@ -69,11 +69,11 @@ abstract class Zend_Cache
     /**
      * Consts for clean() method
      */
-    const CLEANING_MODE_ALL              = 'all';
-    const CLEANING_MODE_OLD              = 'old';
-    const CLEANING_MODE_MATCHING_TAG     = 'matchingTag';
-    const CLEANING_MODE_NOT_MATCHING_TAG = 'notMatchingTag';
-    const CLEANING_MODE_MATCHING_ANY_TAG = 'matchingAnyTag';
+    public const CLEANING_MODE_ALL              = 'all';
+    public const CLEANING_MODE_OLD              = 'old';
+    public const CLEANING_MODE_MATCHING_TAG     = 'matchingTag';
+    public const CLEANING_MODE_NOT_MATCHING_TAG = 'notMatchingTag';
+    public const CLEANING_MODE_MATCHING_ANY_TAG = 'matchingAnyTag';
 
     /**
      * Factory
@@ -90,10 +90,12 @@ abstract class Zend_Cache
      */
     public static function factory($frontend, $backend, $frontendOptions = array(), $backendOptions = array(), $customFrontendNaming = false, $customBackendNaming = false, $autoload = false)
     {
+        $frontendObject = null;
+        $backendObject = null;
         if (is_string($backend)) {
             $backendObject = self::_makeBackend($backend, $backendOptions, $customBackendNaming, $autoload);
         } else {
-            if ((is_object($backend)) && (in_array('Zend_Cache_Backend_Interface', class_implements($backend)))) {
+            if ((is_object($backend)) && (in_array(\Zend_Cache_Backend_Interface::class, class_implements($backend)))) {
                 $backendObject = $backend;
             } else {
                 self::throwException('backend must be a backend name (string) or an object which implements Zend_Cache_Backend_Interface');

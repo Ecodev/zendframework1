@@ -251,7 +251,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
                 foreach ($multiOptions as $opt_value => $opt_label) {
                     // optgroup instead of option label
                     if (is_array($opt_label)) {
-                        $options = array_merge($options, array_keys($opt_label));
+                        $options = [...$options, ...array_keys($opt_label)];
                     }
                     else {
                         $options[] = $opt_value;

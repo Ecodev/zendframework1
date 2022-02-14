@@ -29,10 +29,7 @@ require_once 'Zend/Controller/Front.php';
 /** Zend_Controller_Request_HttpTestCase */
 require_once 'Zend/Controller/Request/HttpTestCase.php';
 
-// Call Zend_Rest_RouteTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Rest_RouteTest::main");
-}
+
 
 /**
  * @category   Zend
@@ -42,7 +39,7 @@ if (!defined("PHPUnit_MAIN_METHOD")) {
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  */
-class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
+class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_front;
@@ -58,8 +55,8 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Rest_RouteTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_RouteTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -72,11 +69,11 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
         $this->_dispatcher = $this->_front->getDispatcher();
 
         $this->_dispatcher->setControllerDirectory(array(
-            'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR .
+            'default' => __DIR__ . DIRECTORY_SEPARATOR .
                 '..' . DIRECTORY_SEPARATOR .
                 'Controller' . DIRECTORY_SEPARATOR .
                 '_files',
-            'mod'     => dirname(__FILE__) . DIRECTORY_SEPARATOR .
+            'mod'     => __DIR__ . DIRECTORY_SEPARATOR .
                 '..' . DIRECTORY_SEPARATOR .
                 'Controller' . DIRECTORY_SEPARATOR .
                 '_files' . DIRECTORY_SEPARATOR .
@@ -93,7 +90,7 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
     public function test_getInstance_fromINIConfig()
     {
     	require_once('Zend/Config/Ini.php');
-    	$config = new Zend_Config_Ini(dirname(__FILE__) . '/../Controller/_files/routes.ini', 'testing');
+    	$config = new Zend_Config_Ini(__DIR__ . '/../Controller/_files/routes.ini', 'testing');
     	require_once('Zend/Controller/Router/Rewrite.php');
     	$router = new Zend_Controller_Router_Rewrite();
     	$router->addConfig($config, 'routes');
@@ -167,7 +164,7 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('default', $values['module']);
         $this->assertEquals('user', $values['controller']);
         $this->assertEquals('index', $values['action']);
-        $this->assertEquals(123456789, $values['changedSince']);
+        $this->assertEquals(123_456_789, $values['changedSince']);
         $this->assertEquals('active', $values['status']);
     }
 
@@ -181,7 +178,7 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('default', $values['module']);
         $this->assertEquals('user', $values['controller']);
         $this->assertEquals('index', $values['action']);
-        $this->assertEquals(123456789, $values['changedSince']);
+        $this->assertEquals(123_456_789, $values['changedSince']);
         $this->assertEquals('active', $values['status']);
     }
 
@@ -966,7 +963,3 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Rest_RouteTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Rest_RouteTest::main") {
-    Zend_Rest_RouteTest::main();
-}

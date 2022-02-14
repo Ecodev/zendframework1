@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Validate_File_ImageSizeTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Validate_File_ImageSizeTest::main");
-}
+
 
 /**
  * @see Zend_Validate_File_ImageSize
@@ -38,7 +35,7 @@ require_once 'Zend/Validate/File/ImageSize.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_ImageSizeTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_File_ImageSizeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +44,8 @@ class Zend_Validate_File_ImageSizeTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Validate_File_ImageSizeTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_ImageSizeTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -58,6 +55,7 @@ class Zend_Validate_File_ImageSizeTest extends PHPUnit_Framework_TestCase
      */
     public function testBasic()
     {
+        $file = [];
         $valuesExpected = array(
             array(array('minwidth' => 0, 'minheight' => 10, 'maxwidth' => 1000, 'maxheight' => 2000), true),
             array(array('minwidth' => 0, 'minheight' => 0, 'maxwidth' => 200, 'maxheight' => 200), true),
@@ -73,24 +71,24 @@ class Zend_Validate_File_ImageSizeTest extends PHPUnit_Framework_TestCase
             $validator = new Zend_Validate_File_ImageSize($element[0]);
             $this->assertEquals(
                 $element[1],
-                $validator->isValid(dirname(__FILE__) . '/_files/picture.jpg'),
+                $validator->isValid(__DIR__ . '/_files/picture.jpg'),
                 "Tested with " . var_export($element, 1)
             );
         }
 
         $validator = new Zend_Validate_File_ImageSize(array('minwidth' => 0, 'minheight' => 10, 'maxwidth' => 1000, 'maxheight' => 2000));
-        $this->assertEquals(false, $validator->isValid(dirname(__FILE__) . '/_files/nofile.jpg'));
+        $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/nofile.jpg'));
         $failures = $validator->getMessages();
         $this->assertContains('is not readable', $failures['fileImageSizeNotReadable']);
 
         $file['name'] = 'TestName';
         $validator = new Zend_Validate_File_ImageSize(array('minwidth' => 0, 'minheight' => 10, 'maxwidth' => 1000, 'maxheight' => 2000));
-        $this->assertEquals(false, $validator->isValid(dirname(__FILE__) . '/_files/nofile.jpg', $file));
+        $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/nofile.jpg', $file));
         $failures = $validator->getMessages();
         $this->assertContains('TestName', $failures['fileImageSizeNotReadable']);
 
         $validator = new Zend_Validate_File_ImageSize(array('minwidth' => 0, 'minheight' => 10, 'maxwidth' => 1000, 'maxheight' => 2000));
-        $this->assertEquals(false, $validator->isValid(dirname(__FILE__) . '/_files/badpicture.jpg'));
+        $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/badpicture.jpg'));
         $failures = $validator->getMessages();
         $this->assertContains('could not be detected', $failures['fileImageSizeNotDetected']);
     }

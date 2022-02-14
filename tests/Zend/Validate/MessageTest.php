@@ -21,9 +21,7 @@
  */
 
 // Call Zend_Validate_MessageTest::main() if this source file is executed directly.
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Validate_MessageTest::main');
-}
+
 
 /**
  * @see Zend_Validate_StringLength
@@ -39,7 +37,7 @@ require_once 'Zend/Validate/StringLength.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_MessageTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Default instance created for all test methods
@@ -50,8 +48,8 @@ class Zend_Validate_MessageTest extends PHPUnit_Framework_TestCase
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -262,9 +260,8 @@ class Zend_Validate_MessageTest extends PHPUnit_Framework_TestCase
             $property = $this->_validator->unknownProperty;
             $this->fail('Expected to catch Zend_Validate_Exception');
         } catch (Zend_Exception $e) {
-            $this->assertTrue($e instanceof Zend_Validate_Exception,
-                'Expected exception of type Zend_Validate_Exception, got ' . get_class($e));
-            $this->assertEquals("No property exists by the name 'unknownProperty'", $e->getMessage());
+            static::assertTrue($e instanceof Zend_Validate_Exception, 'Expected exception of type Zend_Validate_Exception, got ' . get_class($e));
+            static::assertEquals("No property exists by the name 'unknownProperty'", $e->getMessage());
         }
     }
 
@@ -311,6 +308,3 @@ class Zend_Validate_MessageTest extends PHPUnit_Framework_TestCase
 }
 
 // Call Zend_Validate_MessageTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == 'Zend_Validate_MessageTest::main') {
-    Zend_Validate_MessageTest::main();
-}

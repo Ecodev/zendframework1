@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Form_SubFormTest::main');
-}
+
 
 // error_reporting(E_ALL);
 
@@ -38,12 +36,12 @@ require_once 'Zend/Version.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_SubFormTest extends PHPUnit_Framework_TestCase
+class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Form_SubFormTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_SubFormTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -61,12 +59,12 @@ class Zend_Form_SubFormTest extends PHPUnit_Framework_TestCase
     public function testSubFormUtilizesDefaultDecorators()
     {
         $decorators = $this->form->getDecorators();
-        $this->assertTrue(array_key_exists('Zend_Form_Decorator_FormElements', $decorators));
-        $this->assertTrue(array_key_exists('Zend_Form_Decorator_HtmlTag', $decorators));
-        $this->assertTrue(array_key_exists('Zend_Form_Decorator_Fieldset', $decorators));
-        $this->assertTrue(array_key_exists('Zend_Form_Decorator_DtDdWrapper', $decorators));
+        $this->assertTrue(array_key_exists(\Zend_Form_Decorator_FormElements::class, $decorators));
+        $this->assertTrue(array_key_exists(\Zend_Form_Decorator_HtmlTag::class, $decorators));
+        $this->assertTrue(array_key_exists(\Zend_Form_Decorator_Fieldset::class, $decorators));
+        $this->assertTrue(array_key_exists(\Zend_Form_Decorator_DtDdWrapper::class, $decorators));
 
-        $htmlTag = $decorators['Zend_Form_Decorator_HtmlTag'];
+        $htmlTag = $decorators[\Zend_Form_Decorator_HtmlTag::class];
         $tag = $htmlTag->getOption('tag');
         $this->assertEquals('dl', $tag);
     }
@@ -167,6 +165,3 @@ class Zend_Form_SubFormTest_SubForm extends Zend_Form_SubForm
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Form_SubFormTest::main') {
-    Zend_Form_SubFormTest::main();
-}

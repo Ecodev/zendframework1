@@ -33,7 +33,7 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
-class Zend_ConfigTest extends PHPUnit_Framework_TestCase
+class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
 {
     protected $_iniFileConfig;
     protected $_iniFileNested;
@@ -131,7 +131,7 @@ class Zend_ConfigTest extends PHPUnit_Framework_TestCase
         try {
             $config->hostname = 'test';
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('is read only', $expected->getMessage());
+            static::assertContains('is read only', $expected->getMessage());
             return;
         }
         $this->fail('An expected Zend_Config_Exception has not been raised');
@@ -143,7 +143,7 @@ class Zend_ConfigTest extends PHPUnit_Framework_TestCase
         try {
             $config->db->host = 'test';
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('is read only', $expected->getMessage());
+            static::assertContains('is read only', $expected->getMessage());
             return;
         }
         $this->fail('An expected Zend_Config_Exception has not been raised');
@@ -159,7 +159,7 @@ class Zend_ConfigTest extends PHPUnit_Framework_TestCase
     public function testCount()
     {
         $data = new Zend_Config($this->_menuData1);
-        $this->assertEquals(3, count($data->button));
+        $this->assertEquals(3, is_countable($data->button) ? count($data->button) : 0);
     }
 
     public function testIterator()
@@ -209,7 +209,7 @@ class Zend_ConfigTest extends PHPUnit_Framework_TestCase
         try {
             $config->test = '32';
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('read only', $expected->getMessage());
+            static::assertContains('read only', $expected->getMessage());
             return;
         }
 
@@ -287,7 +287,7 @@ class Zend_ConfigTest extends PHPUnit_Framework_TestCase
         try {
             unset($config->hostname);
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('is read only', $expected->getMessage());
+            static::assertContains('is read only', $expected->getMessage());
             return;
         }
         $this->fail('Expected read only exception has not been raised.');
@@ -377,7 +377,7 @@ class Zend_ConfigTest extends PHPUnit_Framework_TestCase
         try {
             $config->c = 'c';
         } catch (Zend_Config_Exception $expected) {
-            $this->assertContains('is read only', $expected->getMessage());
+            static::assertContains('is read only', $expected->getMessage());
             return;
         }
         $this->fail('Expected read only exception has not been raised.');
@@ -420,14 +420,14 @@ class Zend_ConfigTest extends PHPUnit_Framework_TestCase
         try {
             $config2->key2 = 'no';
         }  catch (Zend_Config_Exception $e) {
-            $this->fail('Unexpected exception at top level has been raised: ' . $e->getMessage());
+            static::fail('Unexpected exception at top level has been raised: ' . $e->getMessage());
         }
         $this->assertEquals('no', $config2->key2);
 
         try {
             $config2->key->nested = 'no';
         }  catch (Zend_Config_Exception $e) {
-            $this->fail('Unexpected exception on nested object has been raised: ' . $e->getMessage());
+            static::fail('Unexpected exception on nested object has been raised: ' . $e->getMessage());
         }
         $this->assertEquals('no', $config2->key->nested);
 

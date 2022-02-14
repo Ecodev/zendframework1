@@ -29,10 +29,7 @@ require_once 'Zend/Controller/Request/HttpTestCase.php';
 /** Zend_Controller_Response_HttpTestCase */
 require_once 'Zend/Controller/Response/HttpTestCase.php';
 
-// Call Zend_Rest_ControllerTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Rest_ControllerTest::main");
-}
+
 
 /**
  * @category   Zend
@@ -84,7 +81,7 @@ class Zend_Rest_TestController extends Zend_Rest_Controller
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  */
-class Zend_Rest_ControllerTest extends PHPUnit_Framework_TestCase
+class Zend_Rest_ControllerTest extends \PHPUnit\Framework\TestCase
 {
     protected $_testController;
 
@@ -97,8 +94,8 @@ class Zend_Rest_ControllerTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Rest_ControllerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_ControllerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -125,7 +122,3 @@ class Zend_Rest_ControllerTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Rest_ControllerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Rest_ControllerTest::main") {
-    Zend_Rest_ControllerTest::main();
-}

@@ -26,7 +26,7 @@
 require_once 'Zend/Paginator/ScrollingStyle/Elastic.php';
 
 /**
- * @see PHPUnit_Framework_TestCase
+ * @see \PHPUnit\Framework\TestCase
  */
 
 /**
@@ -42,16 +42,10 @@ require_once 'Zend/Paginator.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
-class Zend_Paginator_ScrollingStyle_ElasticTest extends PHPUnit_Framework_TestCase
+class Zend_Paginator_ScrollingStyle_ElasticTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var Zend_Paginator_ScrollingStyle_Elastic
-     */
-    private $_scrollingStyle;
-    /**
-     * @var Zend_Paginator
-     */
-    private $_paginator;
+    private \Zend_Paginator_ScrollingStyle_Elastic $_scrollingStyle;
+    private \Zend_Paginator $_paginator;
 
     /**
      * Prepares the environment before running a test.
@@ -150,7 +144,7 @@ class Zend_Paginator_ScrollingStyle_ElasticTest extends PHPUnit_Framework_TestCa
         $this->_paginator->setPageRange(3);
         $this->_paginator->setCurrentPageNumber(21);
         $pages = $this->_paginator->getPages('Elastic');
-        $this->assertEquals(3, count($pages->pagesInRange));
+        $this->assertEquals(3, is_countable($pages->pagesInRange) ? count($pages->pagesInRange) : 0);
     }
 
     public function testNoPagesOnSecondLastPageEqualsPageRangeMinOne()
@@ -158,7 +152,7 @@ class Zend_Paginator_ScrollingStyle_ElasticTest extends PHPUnit_Framework_TestCa
         $this->_paginator->setPageRange(3);
         $this->_paginator->setCurrentPageNumber(20);
         $pages = $this->_paginator->getPages('Elastic');
-        $this->assertEquals(4, count($pages->pagesInRange));
+        $this->assertEquals(4, is_countable($pages->pagesInRange) ? count($pages->pagesInRange) : 0);
     }
 
     public function testNoPagesBeforeSecondLastPageEqualsPageRangeMinTwo()
@@ -166,6 +160,6 @@ class Zend_Paginator_ScrollingStyle_ElasticTest extends PHPUnit_Framework_TestCa
         $this->_paginator->setPageRange(3);
         $this->_paginator->setCurrentPageNumber(19);
         $pages = $this->_paginator->getPages('Elastic');
-        $this->assertEquals(5, count($pages->pagesInRange));
+        $this->assertEquals(5, is_countable($pages->pagesInRange) ? count($pages->pagesInRange) : 0);
     }
 }

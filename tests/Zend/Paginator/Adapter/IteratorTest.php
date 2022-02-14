@@ -26,7 +26,7 @@
 require_once 'Zend/Paginator/Adapter/Iterator.php';
 
 /**
- * @see PHPUnit_Framework_TestCase
+ * @see \PHPUnit\Framework\TestCase
  */
 
 /**
@@ -37,12 +37,9 @@ require_once 'Zend/Paginator/Adapter/Iterator.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
-class Zend_Paginator_Adapter_IteratorTest extends PHPUnit_Framework_TestCase
+class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var Zend_Paginator_Adapter_Iterator
-     */
-    private $_adapter;
+    private \Zend_Paginator_Adapter_Iterator $_adapter;
 
     /**
      * Prepares the environment before running a test.
@@ -113,7 +110,7 @@ class Zend_Paginator_Adapter_IteratorTest extends PHPUnit_Framework_TestCase
         try {
             foreach ($items as $item);
         } catch (OutOfBoundsException $e) {
-            $this->fail('Empty iterator caused in an OutOfBoundsException');
+            static::fail('Empty iterator caused in an OutOfBoundsException');
         }
     }
 

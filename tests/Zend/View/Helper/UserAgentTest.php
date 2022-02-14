@@ -21,10 +21,7 @@
  * @version    $Id: UserAgentTest.php $
  */
 
-// Call Zend_View_Helper_UserAgentTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_UserAgentTest::main");
-}
+
 
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/UserAgent.php';
@@ -41,7 +38,7 @@ require_once 'Zend/Http/UserAgent.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_UserAgentTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_UserAgentTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -60,8 +57,8 @@ class Zend_View_Helper_UserAgentTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_UrlTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_UrlTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -103,7 +100,3 @@ class Zend_View_Helper_UserAgentTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_UrlTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_UserAgentTest::main") {
-    Zend_View_Helper_UserAgentTest::main();
-}

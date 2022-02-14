@@ -55,6 +55,9 @@ class Zend_View_Helper_FormButton extends Zend_View_Helper_FormElement
      */
     public function formButton($name, $value = null, $attribs = null)
     {
+        $disable = null;
+        $escape = null;
+        $id = null;
         $info    = $this->_getInfo($name, $value, $attribs);
         extract($info); // name, id, value, attribs, options, listsep, disable, escape
 

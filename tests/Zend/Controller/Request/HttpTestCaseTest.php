@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Request_HttpTestCaseTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Request_HttpTestCaseTest::main");
-}
+
 
 /** Zend_Controller_Request_HttpTestCase */
 require_once 'Zend/Controller/Request/HttpTestCase.php';
@@ -39,7 +36,7 @@ require_once 'Zend/Controller/Request/HttpTestCase.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
-class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -48,8 +45,8 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Request_HttpTestCaseTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Request_HttpTestCaseTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -110,7 +107,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
         $this->request->setQuery('bat', 'bogus');
         $this->assertEquals('bogus', $this->request->getQuery('bat'));
         $test = $this->request->getQuery();
-        $this->assertEquals(4, count($test));
+        $this->assertEquals(4, is_countable($test) ? count($test) : 0);
         foreach ($expected as $key => $value) {
             $this->assertEquals($value, $test[$key]);
         }
@@ -160,7 +157,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
         $this->request->setPost('bat', 'bogus');
         $this->assertEquals('bogus', $this->request->getPost('bat'));
         $test = $this->request->getPost();
-        $this->assertEquals(4, count($test));
+        $this->assertEquals(4, is_countable($test) ? count($test) : 0);
         foreach ($expected as $key => $value) {
             $this->assertEquals($value, $test[$key]);
         }
@@ -221,14 +218,14 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
         $this->request->setHeaders($headers);
         $test = $this->request->getHeaders();
         $this->assertTrue(is_array($test));
-        $this->assertEquals(2, count($test));
+        $this->assertEquals(2, is_countable($test) ? count($test) : 0);
         foreach ($headers as $key => $value) {
             $this->assertEquals($value, $this->request->getHeader($key));
         }
         $this->request->setHeader('X-Requested-With', 'XMLHttpRequest');
         $test = $this->request->getHeaders();
         $this->assertTrue(is_array($test));
-        $this->assertEquals(3, count($test));
+        $this->assertEquals(3, is_countable($test) ? count($test) : 0);
         $this->assertEquals('XMLHttpRequest', $this->request->getHeader('X-Requested-With'));
     }
 
@@ -312,7 +309,3 @@ class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit_Framework_TestCas
     }
 }
 
-// Call Zend_Controller_Request_HttpTestCaseTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Request_HttpTestCaseTest::main") {
-    Zend_Controller_Request_HttpTestCaseTest::main();
-}

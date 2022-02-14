@@ -20,7 +20,7 @@
  * @version    $Id$
  */
 
-require_once dirname(__FILE__) . '/TestAbstract.php';
+require_once __DIR__ . '/TestAbstract.php';
 require_once 'Zend/View/Helper/Navigation/Menu.php';
 
 /**
@@ -42,7 +42,7 @@ class Zend_View_Helper_Navigation_MenuTest
      *
      * @var string
      */
-    protected $_helperName = 'Zend_View_Helper_Navigation_Menu';
+    protected $_helperName = \Zend_View_Helper_Navigation_Menu::class;
 
     /**
      * View helper
@@ -288,17 +288,17 @@ class Zend_View_Helper_Navigation_MenuTest
 
     public function testTranslationUsingTranslatorFromRegistry()
     {
-        $oldReg = Zend_Registry::isRegistered('Zend_Translate')
-                ? Zend_Registry::get('Zend_Translate')
+        $oldReg = Zend_Registry::isRegistered(\Zend_Translate::class)
+                ? Zend_Registry::get(\Zend_Translate::class)
                 : null;
 
         $translator = $this->_getTranslator();
-        Zend_Registry::set('Zend_Translate', $translator);
+        Zend_Registry::set(\Zend_Translate::class, $translator);
 
         $expected = $this->_getExpected('menu/translated.html');
         $actual = $this->_helper->render();
 
-        Zend_Registry::set('Zend_Translate', $oldReg);
+        Zend_Registry::set(\Zend_Translate::class, $oldReg);
 
         $this->assertEquals($expected, $actual);
 

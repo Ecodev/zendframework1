@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_HeadMetaTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_HeadMetaTest::main");
-}
+
 
 /** Zend_View_Helper_HeadMeta */
 require_once 'Zend/View/Helper/HeadMeta.php';
@@ -48,7 +45,7 @@ require_once 'Zend/View.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadMeta
@@ -67,8 +64,8 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_HeadMetaTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadMetaTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -80,13 +77,13 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->error = false;
-        foreach (array(Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, 'Zend_View_Helper_Doctype') as $key) {
+        foreach (array(Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, \Zend_View_Helper_Doctype::class) as $key) {
             if (Zend_Registry::isRegistered($key)) {
                 $registry = Zend_Registry::getInstance();
                 unset($registry[$key]);
             }
         }
-        $this->basePath = dirname(__FILE__) . '/_files/modules';
+        $this->basePath = __DIR__ . '/_files/modules';
         $this->view     = new Zend_View();
         $this->view->doctype('XHTML1_STRICT');
         $this->helper   = new Zend_View_Helper_HeadMeta();
@@ -112,12 +109,12 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists('Zend_View_Helper_HeadMeta')) {
-            $registry->deleteContainer('Zend_View_Helper_HeadMeta');
+        if ($registry->containerExists(\Zend_View_Helper_HeadMeta::class)) {
+            $registry->deleteContainer(\Zend_View_Helper_HeadMeta::class);
         }
-        $this->assertFalse($registry->containerExists('Zend_View_Helper_HeadMeta'));
+        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadMeta::class));
         $helper = new Zend_View_Helper_HeadMeta();
-        $this->assertTrue($registry->containerExists('Zend_View_Helper_HeadMeta'));
+        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadMeta::class));
     }
 
     public function testHeadMetaReturnsObjectInstance()
@@ -166,7 +163,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
             $string .= ' foo';
             $this->helper->$action('keywords', $string);
             $values = $this->helper->getArrayCopy();
-            $this->assertEquals($i + 1, count($values));
+            $this->assertEquals($i + 1, is_countable($values) ? count($values) : 0);
 
             $item   = $values[$i];
             $this->assertObjectHasAttribute('type', $item);
@@ -186,7 +183,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
             $string .= ' foo';
             $this->helper->$action('keywords', $string);
             $values = $this->helper->getArrayCopy();
-            $this->assertEquals($i + 1, count($values));
+            $this->assertEquals($i + 1, is_countable($values) ? count($values) : 0);
             $item = array_shift($values);
 
             $this->assertObjectHasAttribute('type', $item);
@@ -209,7 +206,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
         }
         $this->helper->$setAction('keywords', $string);
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         $item = array_shift($values);
 
         $this->assertObjectHasAttribute('type', $item);
@@ -322,7 +319,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
     {
         $this->helper->headMeta('foo', 'keywords');
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         $item = array_shift($values);
         $this->assertEquals('foo', $item->content);
         $this->assertEquals('name', $item->type);
@@ -333,7 +330,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
     {
         $this->helper->offsetSetName(100, 'keywords', 'foo');
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         $this->assertTrue(array_key_exists(100, $values));
         $item = $values[100];
         $this->assertEquals('foo', $item->content);
@@ -521,14 +518,14 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
 			'<meta charset="utf-8"/>',
 			$view->headMeta()->toString());
 	}
-    
+
     /**
      * @group ZF-11835
      */
-    public function testConditional() 
+    public function testConditional()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', array('conditional' => 'lt IE 7'))->toString();
-        
+
         $this->assertRegExp("|^<!--\[if lt IE 7\]>|", $html);
         $this->assertRegExp("|<!\[endif\]-->$|", $html);
     }
@@ -565,7 +562,3 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_HeadMetaTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HeadMetaTest::main") {
-    Zend_View_Helper_HeadMetaTest::main();
-}

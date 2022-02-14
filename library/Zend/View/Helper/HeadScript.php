@@ -46,15 +46,15 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      * Script type contants
      * @const string
      */
-    const FILE   = 'FILE';
-    const SCRIPT = 'SCRIPT';
+    public const FILE   = 'FILE';
+    public const SCRIPT = 'SCRIPT';
     /**#@-*/
 
     /**
      * Registry key for placeholder
      * @var string
      */
-    protected $_regKey = 'Zend_View_Helper_HeadScript';
+    protected $_regKey = \Zend_View_Helper_HeadScript::class;
 
     /**
      * Are arbitrary attributes allowed?
@@ -210,6 +210,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      */
     public function __call($method, $args)
     {
+        $index = null;
         if (preg_match('/^(?P<action>set|(ap|pre)pend|offsetSet)(?P<mode>File|Script)$/', $method, $matches)) {
             if (1 > count($args)) {
                 require_once 'Zend/View/Exception.php';

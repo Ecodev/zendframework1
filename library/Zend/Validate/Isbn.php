@@ -32,11 +32,11 @@ require_once 'Zend/Validate/Abstract.php';
  */
 class Zend_Validate_Isbn extends Zend_Validate_Abstract
 {
-    const AUTO    = 'auto';
-    const ISBN10  = '10';
-    const ISBN13  = '13';
-    const INVALID = 'isbnInvalid';
-    const NO_ISBN = 'isbnNoIsbn';
+    public const AUTO    = 'auto';
+    public const ISBN10  = '10';
+    public const ISBN13  = '13';
+    public const INVALID = 'isbnInvalid';
+    public const NO_ISBN = 'isbnNoIsbn';
 
     /**
      * Validation failure message template definitions.
@@ -167,7 +167,7 @@ class Zend_Validate_Isbn extends Zend_Validate_Abstract
                 $isbn10 = str_replace($this->_separator, '', $value);
                 $sum    = 0;
                 for ($i = 0; $i < 9; $i++) {
-                    $sum += (10 - $i) * $isbn10{$i};
+                    $sum += (10 - $i) * $isbn10[$i];
                 }
 
                 // checksum
@@ -185,9 +185,9 @@ class Zend_Validate_Isbn extends Zend_Validate_Abstract
                 $sum    = 0;
                 for ($i = 0; $i < 12; $i++) {
                     if ($i % 2 == 0) {
-                        $sum += $isbn13{$i};
+                        $sum += $isbn13[$i];
                     } else {
-                        $sum += 3 * $isbn13{$i};
+                        $sum += 3 * $isbn13[$i];
                     }
                 }
                 // checksum

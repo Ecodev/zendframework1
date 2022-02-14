@@ -36,12 +36,12 @@ class Zend_Cache_Manager
     /**
      * Constant holding reserved name for default Page Cache
      */
-    const PAGECACHE = 'page';
+    public const PAGECACHE = 'page';
 
     /**
      * Constant holding reserved name for default Page Tag Cache
      */
-    const PAGETAGCACHE = 'pagetag';
+    public const PAGETAGCACHE = 'pagetag';
 
     /**
      * Array of caches stored by the Cache Manager instance
@@ -165,11 +165,11 @@ class Zend_Cache_Manager
             $this->_caches[$name] = Zend_Cache::factory(
                 $this->_optionTemplates[$name]['frontend']['name'],
                 $this->_optionTemplates[$name]['backend']['name'],
-                isset($this->_optionTemplates[$name]['frontend']['options']) ? $this->_optionTemplates[$name]['frontend']['options'] : array(),
-                isset($this->_optionTemplates[$name]['backend']['options']) ? $this->_optionTemplates[$name]['backend']['options'] : array(),
-                isset($this->_optionTemplates[$name]['frontend']['customFrontendNaming']) ? $this->_optionTemplates[$name]['frontend']['customFrontendNaming'] : false,
-                isset($this->_optionTemplates[$name]['backend']['customBackendNaming']) ? $this->_optionTemplates[$name]['backend']['customBackendNaming'] : false,
-                isset($this->_optionTemplates[$name]['frontendBackendAutoload']) ? $this->_optionTemplates[$name]['frontendBackendAutoload'] : false
+                $this->_optionTemplates[$name]['frontend']['options'] ?? array(),
+                $this->_optionTemplates[$name]['backend']['options'] ?? array(),
+                $this->_optionTemplates[$name]['frontend']['customFrontendNaming'] ?? false,
+                $this->_optionTemplates[$name]['backend']['customBackendNaming'] ?? false,
+                $this->_optionTemplates[$name]['frontendBackendAutoload'] ?? false
             );
 
             return $this->_caches[$name];

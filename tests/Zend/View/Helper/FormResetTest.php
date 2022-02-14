@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_FormResetTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_FormResetTest::main");
-}
+
 
 require_once 'Zend/View/Helper/FormReset.php';
 require_once 'Zend/View.php';
@@ -40,7 +37,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_FormResetTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_FormResetTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +46,8 @@ class Zend_View_Helper_FormResetTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_FormResetTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormResetTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -61,9 +58,9 @@ class Zend_View_Helper_FormResetTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        if (Zend_Registry::isRegistered('Zend_View_Helper_Doctype')) {
+        if (Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class)) {
             $registry = Zend_Registry::getInstance();
-            unset($registry['Zend_View_Helper_Doctype']);
+            unset($registry[\Zend_View_Helper_Doctype::class]);
         }
         $this->view   = new Zend_View();
         $this->helper = new Zend_View_Helper_FormReset();
@@ -117,7 +114,3 @@ class Zend_View_Helper_FormResetTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_FormResetTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormResetTest::main") {
-    Zend_View_Helper_FormResetTest::main();
-}

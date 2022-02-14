@@ -19,7 +19,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @version    $Id$
  */
-require_once dirname(__FILE__) . '/TestAbstract.php';
+require_once __DIR__ . '/TestAbstract.php';
 require_once 'Zend/View/Helper/Navigation/Breadcrumbs.php';
 
 /**
@@ -41,7 +41,7 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest
      *
      * @var string
      */
-    protected $_helperName = 'Zend_View_Helper_Navigation_Breadcrumbs';
+    protected $_helperName = \Zend_View_Helper_Navigation_Breadcrumbs::class;
 
     /**
      * View helper
@@ -183,17 +183,17 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest
 
     public function testTranslationFromTranslatorInRegistry()
     {
-        $oldReg = Zend_Registry::isRegistered('Zend_Translate')
-                ? Zend_Registry::get('Zend_Translate')
+        $oldReg = Zend_Registry::isRegistered(\Zend_Translate::class)
+                ? Zend_Registry::get(\Zend_Translate::class)
                 : null;
 
         $translator = $this->_getTranslator();
-        Zend_Registry::set('Zend_Translate', $translator);
+        Zend_Registry::set(\Zend_Translate::class, $translator);
 
         $expected = $this->_getExpected('bc/translated.html');
         $actual = $this->_helper->render();
 
-        Zend_Registry::set('Zend_Translate', $oldReg);
+        Zend_Registry::set(\Zend_Translate::class, $oldReg);
 
         $this->assertEquals($expected, $actual);
     }

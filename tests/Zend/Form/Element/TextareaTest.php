@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Form_Element_TextareaTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Form_Element_TextareaTest::main");
-}
+
 
 require_once 'Zend/Form/Element/Textarea.php';
 
@@ -37,7 +34,7 @@ require_once 'Zend/Form/Element/Textarea.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_TextareaTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_TextareaTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +44,8 @@ class Zend_Form_Element_TextareaTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_TextareaTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_TextareaTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -107,7 +104,3 @@ class Zend_Form_Element_TextareaTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Form_Element_TextareaTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_TextareaTest::main") {
-    Zend_Form_Element_TextareaTest::main();
-}

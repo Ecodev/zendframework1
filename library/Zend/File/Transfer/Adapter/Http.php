@@ -138,7 +138,7 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
             $temp = array($files => array(
                 'name'  => $files,
                 'error' => 1));
-            $validator = $this->_validators['Zend_Validate_File_Upload'];
+            $validator = $this->_validators[\Zend_Validate_File_Upload::class];
             $validator->setFiles($temp)
                       ->isValid($files, null);
             $this->_messages += $validator->getMessages();
@@ -306,6 +306,7 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
      */
     public static function getProgress($id = null)
     {
+        $call = null;
         if (!function_exists('apc_fetch') and !function_exists('uploadprogress_get_info')) {
             require_once 'Zend/File/Transfer/Exception.php';
             throw new Zend_File_Transfer_Exception('Neither APC nor uploadprogress extension installed');

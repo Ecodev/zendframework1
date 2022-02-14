@@ -39,32 +39,32 @@ class Zend_Http_UserAgent implements Serializable
     /**
      * 'desktop' by default if the sequence return false for each item or is empty
      */
-    const DEFAULT_IDENTIFICATION_SEQUENCE = 'mobile,desktop';
+    public const DEFAULT_IDENTIFICATION_SEQUENCE = 'mobile,desktop';
 
     /**
      * Default persitent storage adapter : Session or NonPersitent
      */
-    const DEFAULT_PERSISTENT_STORAGE_ADAPTER = 'Session';
+    public const DEFAULT_PERSISTENT_STORAGE_ADAPTER = 'Session';
 
     /**
      * 'desktop' by default if the sequence return false for each item
      */
-    const DEFAULT_BROWSER_TYPE = 'desktop';
+    public const DEFAULT_BROWSER_TYPE = 'desktop';
 
     /**
      * Default User Agent chain to prevent empty value
      */
-    const DEFAULT_HTTP_USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)';
+    public const DEFAULT_HTTP_USER_AGENT = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)';
 
     /**
      * Default Http Accept param to prevent empty value
      */
-    const DEFAULT_HTTP_ACCEPT = "application/xhtml+xml";
+    public const DEFAULT_HTTP_ACCEPT = "application/xhtml+xml";
 
     /**
      * Default markup language
      */
-    const DEFAULT_MARKUP_LANGUAGE = "xhtml";
+    public const DEFAULT_MARKUP_LANGUAGE = "xhtml";
 
     /**
      * Browser type
@@ -240,7 +240,7 @@ class Zend_Http_UserAgent implements Serializable
         // Get plugin loaders sorted
         if (isset($options['plugin_loader'])) {
             $plConfig = $options['plugin_loader'];
-            if (is_array($plConfig) || $plConfig instanceof Traversable) {
+            if (is_iterable($plConfig)) {
                 foreach ($plConfig as $type => $class) {
                     $this->setPluginLoader($type, $class);
                 }
@@ -285,7 +285,7 @@ class Zend_Http_UserAgent implements Serializable
     {
         // Validate device class
         $r = new ReflectionClass($deviceClass);
-        if (!$r->implementsInterface('Zend_Http_UserAgent_Device')) {
+        if (!$r->implementsInterface(\Zend_Http_UserAgent_Device::class)) {
             throw new Zend_Http_UserAgent_Exception(sprintf(
                 'Invalid device class provided ("%s"); must implement Zend_Http_UserAgent_Device',
                 $deviceClass
@@ -333,7 +333,7 @@ class Zend_Http_UserAgent implements Serializable
             } elseif (is_array($deviceConfig) && isset($deviceConfig['path'])) {
                 $loader = $this->getPluginLoader('device');
                 $path   = $deviceConfig['path'];
-                $prefix = isset($deviceConfig['prefix']) ? $deviceConfig['prefix'] : 'Zend_Http_UserAgent';
+                $prefix = $deviceConfig['prefix'] ?? \Zend_Http_UserAgent::class;
                 $loader->addPrefixPath($prefix, $path);
 
                 $device = $loader->load($browserType);
@@ -713,6 +713,8 @@ class Zend_Http_UserAgent implements Serializable
      */
     public function setPluginLoader($type, $loader)
     {
+        $prefix = null;
+        $path = null;
         $type       = $this->_validateLoaderType($type);
 
         if (is_string($loader)) {

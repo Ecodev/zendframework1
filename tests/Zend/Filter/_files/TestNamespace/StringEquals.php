@@ -41,7 +41,7 @@ require_once 'Zend/Validate/Abstract.php';
 class TestNamespace_StringEquals extends Zend_Validate_Abstract
 {
 
-    const NOT_EQUALS = 'stringNotEquals';
+    public const NOT_EQUALS = 'stringNotEquals';
 
     /**
      * Array with message templates

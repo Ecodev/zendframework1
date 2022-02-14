@@ -425,7 +425,7 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
         }
 
         // Grab singleton instance, if class has been loaded
-        if (class_exists('Zend_Controller_Front')) {
+        if (class_exists(\Zend_Controller_Front::class)) {
             $this->_frontController = Zend_Controller_Front::getInstance();
             return $this->_frontController;
         }

@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Application_Resource_CacheManagerTest::main');
-}
+
 
 /**
  * Zend_Loader_Autoloader
@@ -57,12 +55,12 @@ require_once 'Zend/Cache/Core.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_CacheManagerTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_CacheManagerTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -80,7 +78,7 @@ class Zend_Application_Resource_CacheManagerTest extends PHPUnit_Framework_TestC
 
         $this->application = new Zend_Application('testing');
 
-        require_once dirname(__FILE__) . '/../_files/ZfAppBootstrap.php';
+        require_once __DIR__ . '/../_files/ZfAppBootstrap.php';
         $this->bootstrap = new ZfAppBootstrap($this->application);
     }
 
@@ -237,38 +235,6 @@ class Zend_Application_Resource_CacheManagerTest extends PHPUnit_Framework_TestC
         $this->assertTrue($cache->getBackend() instanceof Zend_Cache_Backend_Custom_Naming);
         $this->assertTrue($cache instanceof Zend_Cache_Frontend_CustomNaming);
     }
-
-    /**
-     * @group GH-103
-     */
-    public function testLoggerFactory()
-    {
-        $options = array(
-            'page' => array(
-                'frontend' => array(
-                    'options' => array(
-                        'logging' => true,
-                        'logger'  => array(
-                            new Zend_Log_Writer_Mock()
-                        )
-                    )
-                )
-            )
-        );
-
-        $resource = new Zend_Application_Resource_Cachemanager($options);
-        $resource->setBootstrap($this->bootstrap);
-        $resource->init();
-
-        $page = $resource->getCacheManager()->getCache('page');
-        $page->getBackend()->clean(Zend_Cache::CLEANING_MODE_OLD);
-
-        $event = current($options['page']['frontend']['options']['logger'][0]->events);
-
-        $this->assertTrue(is_array($event));
-        $this->assertTrue(array_key_exists('message', $event));
-        $this->assertContains('Zend_Cache_Backend_Static', $event['message']);
-    }
 }
 
 
@@ -280,6 +246,3 @@ class Zend_Cache_Frontend_CustomNaming extends Zend_Cache_Core
 {
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_CacheManagerTest::main') {
-    Zend_Application_Resource_CacheManagerTest::main();
-}

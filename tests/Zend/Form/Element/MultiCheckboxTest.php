@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Form_Element_MultiCheckboxTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Form_Element_MultiCheckboxTest::main");
-}
+
 
 require_once 'Zend/Form/Element/MultiCheckbox.php';
 
@@ -37,7 +34,7 @@ require_once 'Zend/Form/Element/MultiCheckbox.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_MultiCheckboxTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -46,8 +43,8 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_MultiCheckboxTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_MultiCheckboxTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -75,7 +72,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit_Framework_TestCase
     {
         require_once 'Zend/View.php';
         $view = new Zend_View();
-        $view->addHelperPath(dirname(__FILE__) . '/../../../../library/Zend/View/Helper');
+        $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
         return $view;
     }
 
@@ -290,28 +287,28 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit_Framework_TestCase
             'baz' => 'Baz',
         ));
         $this->element->setRegisterInArrayValidator(true);
-    
+
         $this->assertTrue($this->element->isValid(array('foo')));
         $this->assertTrue($this->element->isValid(array('foo','baz')));
-        
+
         $this->element->setAllowEmpty(true);
         $this->assertTrue($this->element->isValid(array()));
 
         // Empty value + AllowEmpty=true = no error messages
         $messages = $this->element->getMessages();
-        $this->assertEquals(0, count($messages), 'Received unexpected error message(s)');
-        
+        $this->assertEquals(0, is_countable($messages) ? count($messages) : 0, 'Received unexpected error message(s)');
+
         $this->element->setAllowEmpty(false);
         $this->assertFalse($this->element->isValid(array()));
-        
+
         // Empty value + AllowEmpty=false = notInArray error message
         $messages = $this->element->getMessages();
         $this->assertTrue(is_array($messages), 'Expected error message');
         $this->assertArrayHasKey('notInArray', $messages, 'Expected \'notInArray\' error message');
-        
+
         $this->element->setRequired(true)->setAllowEmpty(false);
         $this->assertFalse($this->element->isValid(array()));
-        
+
         // Empty value + Required=true + AllowEmpty=false = isEmpty error message
         $messages = $this->element->getMessages();
         $this->assertTrue(is_array($messages), 'Expected error message');
@@ -347,7 +344,3 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Form_Element_MultiCheckboxTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_MultiCheckboxTest::main") {
-    Zend_Form_Element_MultiCheckboxTest::main();
-}

@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Captcha_ImageTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Captcha_ImageTest::main");
-}
+
 
 require_once 'Zend/Form/Element/Captcha.php';
 require_once 'Zend/Captcha/Adapter.php';
@@ -36,7 +33,7 @@ require_once 'Zend/Captcha/Adapter.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
-class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
+class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
 {
     protected $_tmpDir;
 
@@ -48,8 +45,8 @@ class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Captcha_ImageTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Captcha_ImageTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -82,7 +79,7 @@ class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
                     array('captcha' => array('Image',
                                              'sessionClass' => 'Zend_Captcha_ImageTest_SessionContainer',
                                              'imgDir' => $this->testDir,
-                                             'font' => dirname(__FILE__). '/../Pdf/_fonts/Vera.ttf')
+                                             'font' => __DIR__. '/../Pdf/_fonts/Vera.ttf')
                          ));
         $this->captcha =  $this->element->getCaptcha();
     }
@@ -123,7 +120,7 @@ class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
                 $tmpdir = realpath($_ENV['TEMP']);
             } else {
                 // Attemp to detect by creating a temporary file
-                $tempFile = tempnam(md5(uniqid(rand(), TRUE)), '');
+                $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), TRUE)), '');
                 if ($tempFile) {
                     $tmpdir = realpath(dirname($tempFile));
                     unlink($tempFile);
@@ -141,7 +138,7 @@ class Zend_Captcha_ImageTest extends PHPUnit_Framework_TestCase
     {
         require_once 'Zend/View.php';
         $view = new Zend_View();
-        $view->addHelperPath(dirname(__FILE__) . '/../../../../library/Zend/View/Helper');
+        $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
         return $view;
     }
 
@@ -372,7 +369,3 @@ class Zend_Captcha_ImageTest_SessionContainer
     }
 }
 
-// Call Zend_Captcha_ImageTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Captcha_ImageTest::main") {
-    Zend_Captcha_ImageTest::main();
-}

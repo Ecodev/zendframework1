@@ -19,9 +19,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Loader_AutoloaderFactoryClassMapLoaderTest::main');
-}
+
 
 require_once 'Zend/Loader/AutoloaderFactory.php';
 
@@ -32,7 +30,7 @@ require_once 'Zend/Loader/AutoloaderFactory.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
-class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends PHPUnit_Framework_TestCase
+class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -47,8 +45,8 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends PHPUnit_Framework_
 
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -94,20 +92,17 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends PHPUnit_Framework_
     {
         Zend_Loader_AutoloaderFactory::factory(
             array(
-                'Zend_Loader_ClassMapAutoloader' => array(
-                    dirname(__FILE__) . '/_files/goodmap.php',
+                \Zend_Loader_ClassMapAutoloader::class => array(
+                    __DIR__ . '/_files/goodmap.php',
                 ),
             )
         );
         $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader(
-            'Zend_Loader_ClassMapAutoloader'
+            \Zend_Loader_ClassMapAutoloader::class
         );
         $map = $loader->getAutoloadMap();
         $this->assertTrue(is_array($map));
-        $this->assertEquals(2, count($map));
+        $this->assertEquals(2, is_countable($map) ? count($map) : 0);
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Loader_AutoloaderFactoryClassMapLoaderTest::main') {
-    Zend_Loader_AutoloaderFactoryClassMapLoaderTest::main();
-}

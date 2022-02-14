@@ -34,7 +34,7 @@ require_once 'Zend/Filter/Decrypt.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_EncryptTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_EncryptTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
@@ -87,10 +87,10 @@ class Zend_Filter_EncryptTest extends PHPUnit_Framework_TestCase
             'A b C'  => 'A B C'
         );
 
-        $filter->setPublicKey(dirname(__FILE__) . '/_files/publickey.pem');
+        $filter->setPublicKey(__DIR__ . '/_files/publickey.pem');
         $key = $filter->getPublicKey();
         $this->assertEquals(
-            array(dirname(__FILE__) . '/_files/publickey.pem' =>
+            array(__DIR__ . '/_files/publickey.pem' =>
                   '-----BEGIN CERTIFICATE-----
 MIIC3jCCAkegAwIBAgIBADANBgkqhkiG9w0BAQQFADCBtDELMAkGA1UEBhMCTkwx
 FjAUBgNVBAgTDU5vb3JkLUhvbGxhbmQxEDAOBgNVBAcTB1phYW5kYW0xFzAVBgNV
@@ -221,7 +221,7 @@ PIDs9E7uuizAKDhRRRvho8BS
         }
 
         $filter = new Zend_Filter_Encrypt(array('adapter' => 'Openssl'));
-        $filter->setPublicKey(dirname(__FILE__) . '/_files/publickey.pem');
+        $filter->setPublicKey(__DIR__ . '/_files/publickey.pem');
         $output = $filter->filter('teststring');
         $envelopekeys = $filter->getEnvelopeKey();
         $this->assertNotEquals('teststring', $output);
@@ -233,7 +233,7 @@ ccL43V3Z4JN9OXRAfGWXyrBJNmwURkq7a2EyFElBBWK03OLYVMevQyRJcMKY0ai+
 tmnFUSkH2zwnkXQfPUxg9aV7TmGQv/3TkK1SziyDyNm7GwtyIlfcigCCRz3uc77U
 Izcez5wgmkpNElg/D7/VCd9E+grTfPYNmuTVccGOes+n8ISJJdW0vYX1xwWv5l
 bK22CwD/l7SMBOz4M9XH0Jb0OhNxLza4XMDu0ANMIpnkn1KOcmQ4gB8fmAbBt');
-        $filter->setPrivateKey(dirname(__FILE__) . '/_files/privatekey.pem');
+        $filter->setPrivateKey(__DIR__ . '/_files/privatekey.pem');
         $filter->setEnvelopeKey($envelopekeys);
         $input = $filter->filter($output);
         $this->assertEquals('teststring', trim($input));

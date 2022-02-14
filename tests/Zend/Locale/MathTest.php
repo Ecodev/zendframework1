@@ -35,9 +35,9 @@ require_once 'Zend/Locale/Math/PhpMath.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Locale
  */
-class Zend_Locale_MathTest extends PHPUnit_Framework_TestCase
+class Zend_Locale_MathTest extends \PHPUnit\Framework\TestCase
 {
-    private static $savedLocale = 'C';
+    private static string $savedLocale = 'C';
 
     /**
      * setup for tests (BCMath is not designed to normalize localized numbers)
@@ -81,8 +81,8 @@ class Zend_Locale_MathTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(      round(3.6,0), Zend_Locale_Math::round('3.6', 0));
         $this->assertEquals(            '1.96', Zend_Locale_Math::round('1.95583', 2), '', 0.02);
         $this->assertEquals(  round(1.95583,2), Zend_Locale_Math::round('1.95583', 2), '', 0.02);
-        $this->assertEquals(           1242000, Zend_Locale_Math::round('1241757', -3), '', 250);
-        $this->assertEquals(round(1241757, -3), Zend_Locale_Math::round('1241757', -3), '', 250);
+        $this->assertEquals(           1_242_000, Zend_Locale_Math::round('1241757', -3), '', 250);
+        $this->assertEquals(round(1_241_757, -3), Zend_Locale_Math::round('1241757', -3), '', 250);
         $this->assertEquals(              5.05, Zend_Locale_Math::round('5.045', 2), '', 0.02);
         $this->assertEquals(   round(5.045, 2), Zend_Locale_Math::round('5.045', 2), '', 0.02);
         $this->assertEquals(              5.06, Zend_Locale_Math::round('5.055', 2), '', 0.02);
@@ -1419,7 +1419,7 @@ class Zend_Locale_MathTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(    11899.64, Zend_Locale_Math_PhpMath::Pow( 10.4444, 4.5556, 2));
         $this->assertEquals(       11900, Zend_Locale_Math_PhpMath::Pow( 10.4444, 4.5556, 0));
         $this->assertEquals(       11900, Zend_Locale_Math_PhpMath::Pow(-10.4444, 4,      0));
-        $this->assertEquals(100000000000, Zend_Locale_Math_PhpMath::Pow( 10,     11,      2));
+        $this->assertEquals(100_000_000_000, Zend_Locale_Math_PhpMath::Pow( 10,     11,      2));
     }
 
     public function testMul()
@@ -1647,8 +1647,8 @@ class Zend_Locale_MathTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(      round(-3.6,0), Zend_Locale_Math::round('-3.6', 0));
         $this->assertEquals(            '-1.96', Zend_Locale_Math::round('-1.95583', 2), '', 0.02);
         $this->assertEquals(  round(-1.95583,2), Zend_Locale_Math::round('-1.95583', 2), '', 0.02);
-        $this->assertEquals(           -1242000, Zend_Locale_Math::round('-1241757', -3), '', 250);
-        $this->assertEquals(round(-1241757, -3), Zend_Locale_Math::round('-1241757', -3), '', 250);
+        $this->assertEquals(           -1_242_000, Zend_Locale_Math::round('-1241757', -3), '', 250);
+        $this->assertEquals(round(-1_241_757, -3), Zend_Locale_Math::round('-1241757', -3), '', 250);
         $this->assertEquals(              -5.05, Zend_Locale_Math::round('-5.045', 2), '', 0.02);
         $this->assertEquals(   round(-5.045, 2), Zend_Locale_Math::round('-5.045', 2), '', 0.02);
         $this->assertEquals(              -5.06, Zend_Locale_Math::round('-5.055', 2), '', 0.02);

@@ -39,8 +39,8 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
     /**
      * Consts for master_files_mode
      */
-    const MODE_AND = 'AND';
-    const MODE_OR  = 'OR';
+    public const MODE_AND = 'AND';
+    public const MODE_OR  = 'OR';
 
     /**
      * Available options
@@ -74,10 +74,8 @@ class Zend_Cache_Frontend_File extends Zend_Cache_Core
      * Master file mtimes
      *
      * Array of int
-     *
-     * @var array
      */
-    private $_masterFile_mtimes = null;
+    private ?array $_masterFile_mtimes = null;
 
     /**
      * Constructor

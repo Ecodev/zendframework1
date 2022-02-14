@@ -48,9 +48,9 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
      * @var array
      */
     protected $_buttonTypes = array(
-        'Zend_Form_Element_Button',
-        'Zend_Form_Element_Reset',
-        'Zend_Form_Element_Submit',
+        \Zend_Form_Element_Button::class,
+        \Zend_Form_Element_Reset::class,
+        \Zend_Form_Element_Submit::class,
     );
 
     /**

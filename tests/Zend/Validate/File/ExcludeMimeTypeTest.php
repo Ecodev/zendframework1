@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Validate_File_ExcludeMimeTypeTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Validate_File_ExcludeMimeTypeTest::main");
-}
+
 
 /**
  * @see Zend_Validate_File_ExcludeMimeType
@@ -40,7 +37,7 @@ require_once 'Zend/Validate/File/ExcludeMimeType.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_ExcludeMimeTypeTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +46,8 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Validate_File_ExcludeMimeTypeTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_ExcludeMimeTypeTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -71,7 +68,7 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends PHPUnit_Framework_TestCase
             array(array('image/gif', 'gif'), true),
         );
 
-        $filetest = dirname(__FILE__) . '/_files/picture.jpg';
+        $filetest = __DIR__ . '/_files/picture.jpg';
         $files = array(
             'name'     => 'picture.jpg',
             'type'     => 'image/jpeg',
@@ -170,7 +167,3 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Validate_File_ExcludeMimeTypeTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_ExcludeMimeTypeTest::main") {
-    Zend_Validate_File_ExcludeMimeTypeTest::main();
-}

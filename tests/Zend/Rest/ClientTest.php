@@ -37,11 +37,11 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Rest
  * @group      Zend_Rest_Client
  */
-class Zend_Rest_ClientTest extends PHPUnit_Framework_TestCase
+class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp()
     {
-        $this->path = dirname(__FILE__) . '/responses/';
+        $this->path = __DIR__ . '/responses/';
 
         $this->adapter = new Zend_Http_Client_Adapter_Test();
         $client        = new Zend_Http_Client(null, array(
@@ -51,14 +51,14 @@ class Zend_Rest_ClientTest extends PHPUnit_Framework_TestCase
 
         $this->rest = new Zend_Rest_Client('http://framework.zend.com/');
     }
-    
+
     /**
      * @group ZF-10664
-     * 
-     * Test that you can post a file using a preset 
+     *
+     * Test that you can post a file using a preset
      * Zend_Http_Client that has a file to post,
      * by calling $restClient->setNoReset() prior to issuing the
-     * restPost() call.    
+     * restPost() call.
      */
     public function testCanPostFileInPresetHttpClient()
     {
@@ -257,7 +257,7 @@ class Zend_Rest_ClientTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($response instanceof Zend_Http_Response);
         $body = $response->getBody();
         $this->assertContains($expXml, $response->getBody());
-        
+
         $request = Zend_Rest_Client::getHttpClient()->getLastRequest();
         $this->assertContains($reqXml, $request, $request);
     }
@@ -333,7 +333,7 @@ class Zend_Rest_ClientTest extends PHPUnit_Framework_TestCase
 
         }
     }
-    
+
     /**
      * @group ZF-11281
      */

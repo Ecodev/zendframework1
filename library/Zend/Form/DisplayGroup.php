@@ -703,6 +703,8 @@ class Zend_Form_DisplayGroup implements Iterator,Countable
      */
     public function addDecorator($decorator, $options = null)
     {
+        $name = null;
+        $spec = null;
         if ($decorator instanceof Zend_Form_Decorator_Interface) {
             $name = get_class($decorator);
         } elseif (is_string($decorator)) {

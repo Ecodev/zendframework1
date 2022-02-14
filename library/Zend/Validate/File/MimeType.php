@@ -37,9 +37,9 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
     /**
      * @const Error type constants
      */
-    const FALSE_TYPE   = 'fileMimeTypeFalse';
-    const NOT_DETECTED = 'fileMimeTypeNotDetected';
-    const NOT_READABLE = 'fileMimeTypeNotReadable';
+    public const FALSE_TYPE   = 'fileMimeTypeFalse';
+    public const NOT_DETECTED = 'fileMimeTypeNotDetected';
+    public const NOT_READABLE = 'fileMimeTypeNotReadable';
 
     /**
      * @var array Error message templates
@@ -207,7 +207,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
     {
         if (empty($file)) {
             $this->_magicfile = null;
-        } else if (!(class_exists('finfo', false))) {
+        } else if (!(class_exists(\finfo::class, false))) {
             $this->_magicfile = null;
             require_once 'Zend/Validate/Exception.php';
             throw new Zend_Validate_Exception('Magicfile can not be set. There is no finfo extension installed');
@@ -433,7 +433,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
         $mimefile = $this->getMagicFile();
         $type = null;
 
-        if (class_exists('finfo', false)) {
+        if (class_exists(\finfo::class, false)) {
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
 
             if (!empty($mimefile) && empty($this->_finfo)) {

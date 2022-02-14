@@ -133,6 +133,7 @@ class Zend_Cache_Frontend_Function extends Zend_Cache_Core
      */
     public function makeId($callback, array $args = array())
     {
+        $tmp = null;
         if (!is_callable($callback, true, $name)) {
             Zend_Cache::throwException('Invalid callback');
         }

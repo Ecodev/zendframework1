@@ -47,7 +47,7 @@ class Zend_Loader_Autoloader
     /**
      * @var array Default autoloader callback
      */
-    protected $_defaultAutoloader = array('Zend_Loader', 'loadClass');
+    protected $_defaultAutoloader = array(\Zend_Loader::class, 'loadClass');
 
     /**
      * @var bool Whether or not to act as a fallback autoloader
@@ -334,7 +334,7 @@ class Zend_Loader_Autoloader
             if ('' == $ns) {
                 continue;
             }
-            if (0 === strpos($class, $ns)) {
+            if (0 === strpos($class, (string) $ns)) {
                 if ((false === $namespace) || (strlen($ns) > strlen($namespace))) {
                     $namespace = $ns;
                     $autoloaders = $this->getNamespaceAutoloaders($ns);
@@ -344,7 +344,7 @@ class Zend_Loader_Autoloader
 
         // Add internal namespaced autoloader
         foreach ($this->getRegisteredNamespaces() as $ns) {
-            if (0 === strpos($class, $ns)) {
+            if (0 === strpos($class, (string) $ns)) {
                 $namespace     = $ns;
                 $autoloaders[] = $this->_internalAutoloader;
                 break;
@@ -459,7 +459,7 @@ class Zend_Loader_Autoloader
      */
     protected function __construct()
     {
-        spl_autoload_register(array(__CLASS__, 'autoload'));
+        spl_autoload_register(array(self::class, 'autoload'));
         $this->_internalAutoloader = array($this, '_autoload');
     }
 

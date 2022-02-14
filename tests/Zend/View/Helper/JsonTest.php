@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_JsonTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_JsonTest::main");
-}
+
 
 require_once 'Zend/View/Helper/Json.php';
 require_once 'Zend/Controller/Front.php';
@@ -42,7 +39,7 @@ require_once 'Zend/Layout.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -52,8 +49,8 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_JsonTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_JsonTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -88,6 +85,7 @@ class Zend_View_Helper_JsonTest extends PHPUnit_Framework_TestCase
 
     public function verifyJsonHeader()
     {
+        $value = null;
         $headers = $this->response->getHeaders();
 
         $found = false;
@@ -194,7 +192,3 @@ class Zend_View_Helper_JsonTest_Layout extends Zend_Layout
     }
 }
 
-// Call Zend_View_Helper_JsonTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_JsonTest::main") {
-    Zend_View_Helper_JsonTest::main();
-}

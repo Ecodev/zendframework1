@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_HeadLinkTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_HeadLinkTest::main");
-}
+
 
 /** Zend_View_Helper_HeadLink */
 require_once 'Zend/View/Helper/HeadLink.php';
@@ -48,7 +45,7 @@ require_once 'Zend/View.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HeadLinkTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadLink
@@ -68,8 +65,8 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_HeadLinkTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadLinkTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -80,13 +77,13 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        foreach (array(Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, 'Zend_View_Helper_Doctype') as $key) {
+        foreach (array(Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, \Zend_View_Helper_Doctype::class) as $key) {
             if (Zend_Registry::isRegistered($key)) {
                 $registry = Zend_Registry::getInstance();
                 unset($registry[$key]);
             }
         }
-        $this->basePath = dirname(__FILE__) . '/_files/modules';
+        $this->basePath = __DIR__ . '/_files/modules';
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_HeadLink();
         $this->helper->setView($this->view);
@@ -106,12 +103,12 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit_Framework_TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists('Zend_View_Helper_HeadLink')) {
-            $registry->deleteContainer('Zend_View_Helper_HeadLink');
+        if ($registry->containerExists(\Zend_View_Helper_HeadLink::class)) {
+            $registry->deleteContainer(\Zend_View_Helper_HeadLink::class);
         }
-        $this->assertFalse($registry->containerExists('Zend_View_Helper_HeadLink'));
+        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadLink::class));
         $helper = new Zend_View_Helper_HeadLink();
-        $this->assertTrue($registry->containerExists('Zend_View_Helper_HeadLink'));
+        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadLink::class));
     }
 
     public function testHeadLinkReturnsObjectInstance()
@@ -528,7 +525,3 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_HeadLinkTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HeadLinkTest::main") {
-    Zend_View_Helper_HeadLinkTest::main();
-}

@@ -34,7 +34,7 @@ require_once 'Zend/Locale/Data.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Locale
  */
-class Zend_Locale_DataTest extends PHPUnit_Framework_TestCase
+class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
 {
 
     private $_cache = null;
@@ -44,7 +44,7 @@ class Zend_Locale_DataTest extends PHPUnit_Framework_TestCase
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
                  array('lifetime' => 1, 'automatic_serialization' => true),
-                 array('cache_dir' => dirname(__FILE__) . '/../_files/'));
+                 array('cache_dir' => __DIR__ . '/../_files/'));
         Zend_Locale_Data::setCache($this->_cache);
     }
 
@@ -7239,7 +7239,7 @@ class Zend_Locale_DataTest extends PHPUnit_Framework_TestCase
         try {
             $content = Zend_Locale_Data::getContent('de_DE', 'language', 1234.56);
         } catch (Zend_Cache_Exception $e) {
-            $this->fail($e->getMessage());
+            static::fail($e->getMessage());
         }
     }
 
@@ -7251,7 +7251,7 @@ class Zend_Locale_DataTest extends PHPUnit_Framework_TestCase
         try {
             $list = Zend_Locale_Data::getList('de_DE', 'language', 1234.56);
         } catch (Zend_Cache_Exception $e) {
-            $this->fail($e->getMessage());
+            static::fail($e->getMessage());
         }
     }
 

@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_Placeholder_StandaloneContainerTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_Placeholder_StandaloneContainerTest::main");
-}
+
 
 /** Zend_View_Helper_Placeholder_Container_Standalone */
 require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
@@ -48,7 +45,7 @@ require_once 'Zend/View.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_Placeholder_StandaloneContainerTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_Placeholder_StandaloneContainerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -57,8 +54,8 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends PHPUnit_Frame
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_Placeholder_StandaloneContainerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_StandaloneContainerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -74,7 +71,7 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends PHPUnit_Frame
             $registry = Zend_Registry::getInstance();
             unset($registry[$regKey]);
         }
-        $this->basePath = dirname(__FILE__) . '/_files/modules';
+        $this->basePath = __DIR__ . '/_files/modules';
         $this->helper = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo();
     }
 
@@ -117,7 +114,3 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo extends Zend_View
     protected $_regKey = 'foo';
 }
 
-// Call Zend_View_Helper_Placeholder_StandaloneContainerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_Placeholder_StandaloneContainerTest::main") {
-    Zend_View_Helper_Placeholder_StandaloneContainerTest::main();
-}

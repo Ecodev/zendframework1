@@ -142,7 +142,7 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
     {
         $segments          = explode('_', $class);
         $namespaceTopLevel = $this->getNamespace();
-        $namespace         = '';
+        $namespace         = [];
 
         if (!empty($namespaceTopLevel)) {
             $namespace = array();

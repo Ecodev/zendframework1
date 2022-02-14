@@ -42,9 +42,9 @@ require_once 'Zend/Navigation.php';
  * @group      Zend_View_Helper
  */
 abstract class Zend_View_Helper_Navigation_TestAbstract
-    extends PHPUnit_Framework_TestCase
+    extends \PHPUnit\Framework\TestCase
 {
-    const REGISTRY_KEY = 'Zend_Navigation';
+    public const REGISTRY_KEY = 'Zend_Navigation';
 
     /**
      * Path to files needed for test
@@ -96,7 +96,7 @@ abstract class Zend_View_Helper_Navigation_TestAbstract
      */
     protected function setUp()
     {
-        $cwd = dirname(__FILE__);
+        $cwd = __DIR__;
 
         // read navigation config
         $this->_files = $cwd . '/_files';

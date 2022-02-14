@@ -120,7 +120,7 @@ abstract class Zend_Uri
                 case 'http':
                     // Break intentionally omitted
                 case 'https':
-                    $className = 'Zend_Uri_Http';
+                    $className = \Zend_Uri_Http::class;
                     break;
 
                 case 'mailto':

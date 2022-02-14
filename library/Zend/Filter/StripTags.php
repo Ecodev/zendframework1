@@ -37,7 +37,7 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
     /**
      * Unique ID prefix used for allowing comments
      */
-    const UNIQUE_ID_PREFIX = '__Zend_Filter_StripTags__';
+    public const UNIQUE_ID_PREFIX = '__Zend_Filter_StripTags__';
 
     /**
      * Whether comments are allowed
@@ -82,6 +82,7 @@ class Zend_Filter_StripTags implements Zend_Filter_Interface
      */
     public function __construct($options = null)
     {
+        $temp = [];
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if ((!is_array($options)) || (is_array($options) && !array_key_exists('allowTags', $options) &&

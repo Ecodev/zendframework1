@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_DoctypeTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_DoctypeTest::main");
-}
+
 
 /** Zend_View_Helper_Doctype */
 require_once 'Zend/View/Helper/Doctype.php';
@@ -42,7 +39,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_DoctypeTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Doctype
@@ -62,8 +59,8 @@ class Zend_View_Helper_DoctypeTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_DoctypeTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_DoctypeTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -74,7 +71,7 @@ class Zend_View_Helper_DoctypeTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $regKey = 'Zend_View_Helper_Doctype';
+        $regKey = \Zend_View_Helper_Doctype::class;
         if (Zend_Registry::isRegistered($regKey)) {
             $registry = Zend_Registry::getInstance();
             unset($registry[$regKey]);
@@ -95,8 +92,8 @@ class Zend_View_Helper_DoctypeTest extends PHPUnit_Framework_TestCase
 
     public function testRegistryEntryCreatedAfterInstantiation()
     {
-        $this->assertTrue(Zend_Registry::isRegistered('Zend_View_Helper_Doctype'));
-        $doctype = Zend_Registry::get('Zend_View_Helper_Doctype');
+        $this->assertTrue(Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class));
+        $doctype = Zend_Registry::get(\Zend_View_Helper_Doctype::class);
         $this->assertTrue($doctype instanceof ArrayObject);
         $this->assertTrue(isset($doctype['doctype']));
         $this->assertTrue(isset($doctype['doctypes']));
@@ -213,12 +210,8 @@ class Zend_View_Helper_DoctypeTest extends PHPUnit_Framework_TestCase
     {
         $doctype  = $this->helper->doctype('XHTML1_STRICT');
         $string   = $doctype->__toString();
-        $registry = Zend_Registry::get('Zend_View_Helper_Doctype');
+        $registry = Zend_Registry::get(\Zend_View_Helper_Doctype::class);
         $this->assertEquals($registry['doctypes']['XHTML1_STRICT'], $string);
     }
 }
 
-// Call Zend_View_Helper_DoctypeTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_DoctypeTest::main") {
-    Zend_View_Helper_DoctypeTest::main();
-}

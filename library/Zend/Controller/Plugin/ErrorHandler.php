@@ -39,22 +39,22 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
     /**
      * Const - No controller exception; controller does not exist
      */
-    const EXCEPTION_NO_CONTROLLER = 'EXCEPTION_NO_CONTROLLER';
+    public const EXCEPTION_NO_CONTROLLER = 'EXCEPTION_NO_CONTROLLER';
 
     /**
      * Const - No action exception; controller exists, but action does not
      */
-    const EXCEPTION_NO_ACTION = 'EXCEPTION_NO_ACTION';
+    public const EXCEPTION_NO_ACTION = 'EXCEPTION_NO_ACTION';
 
     /**
      * Const - No route exception; no routing was possible
      */
-    const EXCEPTION_NO_ROUTE = 'EXCEPTION_NO_ROUTE';
+    public const EXCEPTION_NO_ROUTE = 'EXCEPTION_NO_ROUTE';
 
     /**
      * Const - Other Exception; exceptions thrown by application controllers
      */
-    const EXCEPTION_OTHER = 'EXCEPTION_OTHER';
+    public const EXCEPTION_OTHER = 'EXCEPTION_OTHER';
 
     /**
      * Module to use for errors; defaults to default module in dispatcher
@@ -261,17 +261,17 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
             $exceptionType    = get_class($exception);
             $error->exception = $exception;
             switch ($exceptionType) {
-                case 'Zend_Controller_Router_Exception':
+                case \Zend_Controller_Router_Exception::class:
                     if (404 == $exception->getCode()) {
                         $error->type = self::EXCEPTION_NO_ROUTE;
                     } else {
                         $error->type = self::EXCEPTION_OTHER;
                     }
                     break;
-                case 'Zend_Controller_Dispatcher_Exception':
+                case \Zend_Controller_Dispatcher_Exception::class:
                     $error->type = self::EXCEPTION_NO_CONTROLLER;
                     break;
-                case 'Zend_Controller_Action_Exception':
+                case \Zend_Controller_Action_Exception::class:
                     if (404 == $exception->getCode()) {
                         $error->type = self::EXCEPTION_NO_ACTION;
                     } else {

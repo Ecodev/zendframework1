@@ -21,9 +21,7 @@
  */
 
 // Call Zend_LoaderTest::main() if this source file is executed directly.
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_LoaderTest::main');
-}
+
 
 /**
  * Zend_Loader
@@ -43,7 +41,7 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_LoaderTest extends PHPUnit_Framework_TestCase
+class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -53,8 +51,8 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_LoaderTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_LoaderTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -118,7 +116,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
      */
     public function testLoaderClassValid()
     {
-        $dir = implode(array(dirname(__FILE__), '_files', '_testDir1'), DIRECTORY_SEPARATOR);
+        $dir = implode(DIRECTORY_SEPARATOR, array(__DIR__, '_files', '_testDir1'));
 
         Zend_Loader::loadClass('Class1', $dir);
     }
@@ -126,7 +124,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     public function testLoaderInterfaceViaLoadClass()
     {
         try {
-            Zend_Loader::loadClass('Zend_Controller_Dispatcher_Interface');
+            Zend_Loader::loadClass(\Zend_Controller_Dispatcher_Interface::class);
         } catch (Zend_Exception $e) {
             $this->fail('Loading interfaces should not fail');
         }
@@ -136,7 +134,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     {
         $dirs = array('.');
         try {
-            Zend_Loader::loadClass('Zend_Version', $dirs);
+            Zend_Loader::loadClass(\Zend_Version::class, $dirs);
         } catch (Zend_Exception $e) {
             $this->fail('Loading from dot should not fail');
         }
@@ -148,7 +146,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
      */
     public function testLoaderClassNonexistent()
     {
-        $dir = implode(array(dirname(__FILE__), '_files', '_testDir1'), DIRECTORY_SEPARATOR);
+        $dir = implode(DIRECTORY_SEPARATOR, array(__DIR__, '_files', '_testDir1'));
 
         try {
             Zend_Loader::loadClass('ClassNonexistent', $dir);
@@ -179,7 +177,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     {
         $dirs = array();
         foreach (array('_testDir1', '_testDir2') as $dir) {
-            $dirs[] = implode(array(dirname(__FILE__), '_files', $dir), DIRECTORY_SEPARATOR);
+            $dirs[] = implode(DIRECTORY_SEPARATOR, array(__DIR__, '_files', $dir));
         }
 
         // throws exception on failure
@@ -194,7 +192,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     {
         $dirs = array();
         foreach (array('_testDir1', '_testDir2') as $dir) {
-            $dirs[] = implode(array(dirname(__FILE__), '_files', $dir), DIRECTORY_SEPARATOR);
+            $dirs[] = implode(DIRECTORY_SEPARATOR, array(__DIR__, '_files', $dir));
         }
 
         // throws exception on failure
@@ -220,7 +218,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     public function testLoaderFileIncludePathEmptyDirs()
     {
         $saveIncludePath = get_include_path();
-        set_include_path(implode(array($saveIncludePath, implode(array(dirname(__FILE__), '_files', '_testDir1'), DIRECTORY_SEPARATOR)), PATH_SEPARATOR));
+        set_include_path(implode(PATH_SEPARATOR, array($saveIncludePath, implode(DIRECTORY_SEPARATOR, array(__DIR__, '_files', '_testDir1')))));
 
         $this->assertTrue(Zend_Loader::loadFile('Class3.php', null));
 
@@ -234,7 +232,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     public function testLoaderFileIncludePathNonEmptyDirs()
     {
         $saveIncludePath = get_include_path();
-        set_include_path(implode(array($saveIncludePath, implode(array(dirname(__FILE__), '_files', '_testDir1'), DIRECTORY_SEPARATOR)), PATH_SEPARATOR));
+        set_include_path(implode(PATH_SEPARATOR, array($saveIncludePath, implode(DIRECTORY_SEPARATOR, array(__DIR__, '_files', '_testDir1')))));
 
         $this->assertTrue(Zend_Loader::loadFile('Class4.php', implode(PATH_SEPARATOR, array('foo', 'bar'))));
 
@@ -259,10 +257,10 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
     public function testLoaderAutoloadLoadsValidClasses()
     {
         $this->setErrorHandler();
-        $this->assertEquals('Zend_Db_Profiler_Exception', Zend_Loader::autoload('Zend_Db_Profiler_Exception'));
+        $this->assertEquals(\Zend_Db_Profiler_Exception::class, Zend_Loader::autoload(\Zend_Db_Profiler_Exception::class));
         $this->assertContains('deprecated', $this->error);
         $this->error = null;
-        $this->assertEquals('Zend_Auth_Storage_Interface', Zend_Loader::autoload('Zend_Auth_Storage_Interface'));
+        $this->assertEquals(\Zend_Auth_Storage_Interface::class, Zend_Loader::autoload(\Zend_Auth_Storage_Interface::class));
         $this->assertContains('deprecated', $this->error);
     }
 
@@ -291,7 +289,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
         foreach($autoloaders as $function) {
             if (is_array($function)) {
                 $class = $function[0];
-                if ($class == 'Zend_Loader_Autoloader') {
+                if ($class == \Zend_Loader_Autoloader::class) {
                     $found = true;
                     spl_autoload_unregister($function);
                     break;
@@ -327,6 +325,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
 
     public function testLoaderRegisterAutoloadExtendedClassWithAutoloadMethod()
     {
+        $function = [];
         if (!function_exists('spl_autoload_register')) {
             $this->markTestSkipped("spl_autoload not installed on this PHP installation");
         }
@@ -340,7 +339,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
         foreach ($autoloaders as $function) {
             if (is_array($function)) {
                 $class = $function[0];
-                if ($class == 'Zend_Loader_Autoloader') {
+                if ($class == \Zend_Loader_Autoloader::class) {
                     $found = true;
                     break;
                 }
@@ -388,7 +387,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
 
         $this->setErrorHandler();
         try {
-            Zend_Loader::registerAutoload('stdClass');
+            Zend_Loader::registerAutoload(\stdClass::class);
             $this->fail('registerAutoload should fail without spl_autoload');
         } catch (Zend_Exception $e) {
             $this->assertEquals('The class "stdClass" does not have an autoload() method', $e->getMessage());
@@ -417,7 +416,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
         foreach (spl_autoload_functions() as $function) {
             if (is_array($function)) {
                 $class = $function[0];
-                if ($class == 'Zend_Loader_Autoloader') {
+                if ($class == \Zend_Loader_Autoloader::class) {
                     spl_autoload_unregister($function);
                     break;
                 }
@@ -444,7 +443,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
         foreach (spl_autoload_functions() as $function) {
             if (is_array($function)) {
                 $class = $function[0];
-                if ($class == 'Zend_Loader_Autoloader') {
+                if ($class == \Zend_Loader_Autoloader::class) {
                     spl_autoload_unregister($function);
                     break;
                 }
@@ -460,7 +459,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
         if (version_compare(PHP_VERSION, '5.3.0') < 0) {
             $this->markTestSkipped('PHP < 5.3.0 does not support namespaces');
         }
-        Zend_Loader::loadClass('\Zfns\Foo', array(dirname(__FILE__) . '/Loader/_files'));
+        Zend_Loader::loadClass('\Zfns\Foo', array(__DIR__ . '/Loader/_files'));
     }
 
     /**
@@ -473,7 +472,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped();
         }
 
-        $pharFile = dirname(__FILE__) . '/Loader/_files/Zend_LoaderTest.phar';
+        $pharFile = __DIR__ . '/Loader/_files/Zend_LoaderTest.phar';
         $phar     = new Phar($pharFile, 0, 'zlt.phar');
         $incPath = 'phar://zlt.phar'
                  . PATH_SEPARATOR . $this->includePath;
@@ -491,7 +490,7 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped();
         }
 
-        $pharFile = dirname(__FILE__) . '/Loader/_files/Zend_LoaderTest.phar';
+        $pharFile = __DIR__ . '/Loader/_files/Zend_LoaderTest.phar';
         $phar     = new Phar($pharFile, 0, 'zlt.phar');
         $incPath = 'phar://zlt.phar'
                  . PATH_SEPARATOR . $this->includePath;
@@ -524,8 +523,8 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
      */
     public function testIsReadableShouldReturnTrueForAbsolutePaths()
     {
-        set_include_path(dirname(__FILE__) . '../../');
-        $path = dirname(__FILE__);
+        set_include_path(__DIR__ . '../../');
+        $path = __DIR__;
         $this->assertTrue(Zend_Loader::isReadable($path));
     }
 
@@ -542,37 +541,4 @@ class Zend_LoaderTest extends PHPUnit_Framework_TestCase
         $path = 'C:/this/file/should/not/exist.php';
         $this->assertFalse(Zend_Loader::isReadable($path));
     }
-
-    /**
-     * In order to play nice with spl_autoload, an autoload callback should
-     * *not* emit errors (exceptions are okay). ZF-2923 requests that this
-     * behavior be applied, which counters the previous request in ZF-2463.
-     *
-     * As it is, the new behavior *will* hide parse and other errors. However,
-     * a fatal error *will* be raised in such situations, which is as
-     * appropriate or more appropriate than raising an exception.
-     *
-     * NOTE: Removed from test suite, as autoload functionality in Zend_Loader
-     * is now deprecated.
-     *
-     * @see    http://framework.zend.com/issues/browse/ZF-2463
-     * @group  ZF-2923
-     * @return void
-    public function testLoaderAutoloadShouldHideParseError()
-    {
-        if (isset($_SERVER['OS'])  &&  strstr($_SERVER['OS'], 'Win')) {
-            $this->markTestSkipped(__METHOD__ . ' does not work on Windows');
-        }
-        $command = 'php -d include_path='
-            . escapeshellarg(get_include_path())
-            . ' Zend/Loader/AutoloadDoesNotHideParseError.php 2>&1';
-        $output = shell_exec($command);
-        $this->assertTrue(empty($output));
-    }
-     */
-}
-
-// Call Zend_LoaderTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD === 'Zend_LoaderTest::main') {
-    Zend_LoaderTest::main();
 }

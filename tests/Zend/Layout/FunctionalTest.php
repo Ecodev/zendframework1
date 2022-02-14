@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Layout_FunctionalTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Layout_FunctionalTest::main");
-}
+
 
 require_once 'Zend/Test/PHPUnit/ControllerTestCase.php';
 
@@ -47,8 +44,8 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -59,7 +56,7 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function appBootstrap()
     {
-        $this->frontController->setControllerDirectory(dirname(__FILE__) . '/_files/functional-test-app/controllers/');
+        $this->frontController->setControllerDirectory(__DIR__ . '/_files/functional-test-app/controllers/');
 
         // create an instance of the ErrorHandler so we can make sure it will point to our specially named ErrorController
         $plugin = new Zend_Controller_Plugin_ErrorHandler();
@@ -67,7 +64,7 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
                ->setErrorHandlerAction('error');
         $this->frontController->registerPlugin($plugin, 100);
 
-        Zend_Layout::startMvc(dirname(__FILE__) . '/_files/functional-test-app/layouts/');
+        Zend_Layout::startMvc(__DIR__ . '/_files/functional-test-app/layouts/');
     }
 
     public function testMissingViewScriptDoesNotDoubleRender()
@@ -87,7 +84,3 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
 
 }
 
-// Call Zend_Layout_FunctionalTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Layout_FunctionalTest::main") {
-    Zend_Layout_FunctionalTest::main();
-}

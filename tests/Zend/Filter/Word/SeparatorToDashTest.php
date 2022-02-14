@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Filter_SeparatorToDashTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Filter_Word_SeparatorToDashTest::main");
-}
+
 
 
 require_once 'Zend/Filter/Word/SeparatorToDash.php';
@@ -38,7 +35,7 @@ require_once 'Zend/Filter/Word/SeparatorToDash.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_Word_SeparatorToDashTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_Word_SeparatorToDashTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +46,8 @@ class Zend_Filter_Word_SeparatorToDashTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Filter_Word_SeparatorToDashTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_SeparatorToDashTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testFilterSeparatesDashedWordsWithDefaultSpaces()
@@ -75,7 +72,3 @@ class Zend_Filter_Word_SeparatorToDashTest extends PHPUnit_Framework_TestCase
 
 }
 
-// Call Zend_Filter_Word_SeparatorToDashTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Filter_Word_SeparatorToDashTest::main") {
-    Zend_Filter_Word_SeparatorToDashTest::main();
-}

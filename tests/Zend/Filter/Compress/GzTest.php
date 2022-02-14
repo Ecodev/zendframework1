@@ -20,9 +20,7 @@
  * @version    $Id: $
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Filter_Compress_GzTest::main');
-}
+
 
 /**
  * @see Zend_Filter_Compress_Gz
@@ -37,7 +35,7 @@ require_once 'Zend/Filter/Compress/Gz.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Filter_Compress_GzTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs this test suite
@@ -46,8 +44,8 @@ class Zend_Filter_Compress_GzTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite('Zend_Filter_Compress_GzTest');
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_Compress_GzTest');
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -59,8 +57,8 @@ class Zend_Filter_Compress_GzTest extends PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        if (file_exists(dirname(__FILE__) . '/../_files/compressed.gz')) {
-            unlink(dirname(__FILE__) . '/../_files/compressed.gz');
+        if (file_exists(__DIR__ . '/../_files/compressed.gz')) {
+            unlink(__DIR__ . '/../_files/compressed.gz');
         }
     }
 
@@ -179,7 +177,7 @@ class Zend_Filter_Compress_GzTest extends PHPUnit_Framework_TestCase
     public function testGzCompressToFile()
     {
         $filter   = new Zend_Filter_Compress_Gz();
-        $archive = dirname(__FILE__) . '/../_files/compressed.gz';
+        $archive = __DIR__ . '/../_files/compressed.gz';
         $filter->setArchive($archive);
 
         $content = $filter->compress('compress me');
@@ -223,6 +221,3 @@ class Zend_Filter_Compress_GzTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Filter_Compress_GzTest::main') {
-    Zend_Filter_Compress_GzTest::main();
-}

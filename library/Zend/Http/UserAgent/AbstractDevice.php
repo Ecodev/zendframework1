@@ -288,7 +288,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
         $server = array();
 
         // gets info from user agent chain
-        $uaExtract = $this->extractFromUserAgent($this->getUserAgent());
+        $uaExtract = static::extractFromUserAgent($this->getUserAgent());
 
         if (is_array($uaExtract)) {
             foreach ($uaExtract as $key => $info) {
@@ -322,7 +322,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
         if (isset($this->list) && empty($this->_browser)) {
             $lowerUserAgent = strtolower($this->getUserAgent());
             foreach ($this->list as $browser_signature) {
-                if (strpos($lowerUserAgent, $browser_signature) !== false) {
+                if (strpos($lowerUserAgent, (string) $browser_signature) !== false) {
                     $this->_browser = strtolower($browser_signature);
                     $this->setFeature('browser_name', $this->_browser, 'product_info');
                 }
@@ -400,6 +400,9 @@ abstract class Zend_Http_UserAgent_AbstractDevice
      */
     public static function extractFromUserAgent($userAgent)
     {
+        $result = [];
+        $real = [];
+        $compatibility = [];
         $userAgent = trim($userAgent);
 
         /**
@@ -447,7 +450,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
         }
         if ($match2) {
             $i = 0;
-            $max = count($match2[0]);
+            $max = is_countable($match2[0]) ? count($match2[0]) : 0;
             for ($i = 0; $i < $max; $i ++) {
                 if (!empty($match2[0][$i])) {
                     $result['others']['detail'][] = array(
@@ -594,7 +597,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
                 if (empty($result['others']['detail'][2][1]) || $result['others']['detail'][2][1] == 'Safari') {
                     if (isset($result['others']['detail'][1])) {
                         $result['browser_name']    = ($result['others']['detail'][1][1] && $result['others']['detail'][1][1] != 'Version' ? $result['others']['detail'][1][1] : 'Safari');
-                        $result['browser_version'] = ($result['others']['detail'][1][2] ? $result['others']['detail'][1][2] : $result['others']['detail'][0][2]);
+                        $result['browser_version'] = ($result['others']['detail'][1][2] ?: $result['others']['detail'][0][2]);
                     } else {
                         $result['browser_name']    = ($result['others']['detail'][0][1] && $result['others']['detail'][0][1] != 'Version' ? $result['others']['detail'][0][1] : 'Safari');
                         $result['browser_version'] = $result['others']['detail'][0][2];
@@ -986,7 +989,7 @@ abstract class Zend_Http_UserAgent_AbstractDevice
         $userAgent = strtolower($userAgent);
         foreach ($signatures as $signature) {
             if (!empty($signature)) {
-                if (strpos($userAgent, $signature) !== false) {
+                if (strpos($userAgent, (string) $signature) !== false) {
                     // Browser signature was found in user agent string
                     return true;
                 }

@@ -68,7 +68,7 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
 
         $modules = $front->getControllerDirectory();
         $default = $front->getDefaultModule();
-        $curBootstrapClass = get_class($bootstrap);
+        $curBootstrapClass = $bootstrap !== null ? get_class($bootstrap) : self::class;
         foreach ($modules as $module => $moduleDirectory) {
             $bootstrapClass = $this->_formatModuleName($module) . '_Bootstrap';
             if (!class_exists($bootstrapClass, false)) {

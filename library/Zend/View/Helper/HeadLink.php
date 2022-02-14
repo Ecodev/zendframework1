@@ -65,7 +65,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
     /**
      * @var string registry key
      */
-    protected $_regKey = 'Zend_View_Helper_HeadLink';
+    protected $_regKey = \Zend_View_Helper_HeadLink::class;
 
     /**
      * Constructor
@@ -146,7 +146,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
     public function __call($method, $args)
     {
         if (preg_match('/^(?P<action>set|(ap|pre)pend|offsetSet)(?P<type>Stylesheet|Alternate)$/', $method, $matches)) {
-            $argc   = count($args);
+            $argc   = is_countable($args) ? count($args) : 0;
             $action = $matches['action'];
             $type   = $matches['type'];
             $index  = null;
@@ -396,6 +396,7 @@ class Zend_View_Helper_HeadLink extends Zend_View_Helper_Placeholder_Container_S
             }
         }
 
+        $extras = [];
         if(0 < count($args) && is_array($args[0])) {
             $extras = array_shift($args);
             $extras = (array) $extras;

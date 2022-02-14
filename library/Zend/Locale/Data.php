@@ -41,38 +41,28 @@ class Zend_Locale_Data
 {
     /**
      * Locale files
-     *
-     * @var array
      */
-    private static $_ldml = array();
+    private static array $_ldml = array();
 
     /**
      * List of values which are collected
-     *
-     * @var array
      */
-    private static $_list = array();
+    private static array $_list = array();
 
     /**
      * Internal cache for ldml values
-     *
-     * @var Zend_Cache_Core
      */
-    private static $_cache = null;
+    private static ?\Zend_Cache_Core $_cache = null;
 
     /**
      * Internal value to remember if cache supports tags
-     *
-     * @var boolean
      */
-    private static $_cacheTags = false;
+    private static bool $_cacheTags = false;
 
     /**
      * Internal option, cache disabled
-     *
-     * @var boolean
      */
-    private static $_cacheDisabled = false;
+    private static bool $_cacheDisabled = false;
 
     /**
      * Read the content from locale
@@ -151,7 +141,7 @@ class Zend_Locale_Data
         // load locale file if not already in cache
         // needed for alias tag when referring to other locale
         if (empty(self::$_ldml[(string) $locale])) {
-            $filename = dirname(__FILE__) . '/Data/' . $locale . '.xml';
+            $filename = __DIR__ . '/Data/' . $locale . '.xml';
             if (!file_exists($filename)) {
                 require_once 'Zend/Locale/Exception.php';
                 throw new Zend_Locale_Exception("Missing locale file '$filename' for '$locale' locale.");
@@ -947,7 +937,7 @@ class Zend_Locale_Data
 
         if (isset(self::$_cache)) {
             if (self::$_cacheTags) {
-                self::$_cache->save( serialize($temp), $id, array('Zend_Locale'));
+                self::$_cache->save( serialize($temp), $id, array(\Zend_Locale::class));
             } else {
                 self::$_cache->save( serialize($temp), $id);
             }
@@ -967,6 +957,7 @@ class Zend_Locale_Data
      */
     public static function getContent($locale, $path, $value = false)
     {
+        $temp = [];
         $locale = self::_checkLocale($locale);
 
         if (!isset(self::$_cache) && !self::$_cacheDisabled) {
@@ -1016,7 +1007,7 @@ class Zend_Locale_Data
                 unset($givenLocale);
                 $temp = self::_getFile('supplementalData', '/supplementalData/calendarPreferenceData/calendarPreference[contains(@territories,\'' . $territory . '\')]', 'ordering', 'ordering');
                 if (isset($temp['ordering'])) {
-                    list($temp) = explode(' ', $temp['ordering']);
+                    [$temp] = explode(' ', $temp['ordering']);
                 } else {
                     $temp = 'gregorian';
                 }
@@ -1500,7 +1491,7 @@ class Zend_Locale_Data
         }
         if (isset(self::$_cache)) {
             if (self::$_cacheTags) {
-                self::$_cache->save( serialize($temp), $id, array('Zend_Locale'));
+                self::$_cache->save( serialize($temp), $id, array(\Zend_Locale::class));
             } else {
                 self::$_cache->save( serialize($temp), $id);
             }
@@ -1562,7 +1553,7 @@ class Zend_Locale_Data
     public static function clearCache()
     {
         if (self::$_cacheTags) {
-            self::$_cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array('Zend_Locale'));
+            self::$_cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, array(\Zend_Locale::class));
         } else {
             self::$_cache->clean(Zend_Cache::CLEANING_MODE_ALL);
         }

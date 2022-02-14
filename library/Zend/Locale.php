@@ -32,10 +32,8 @@ class Zend_Locale
     /**
      * List of locales that are no longer part of CLDR along with a
      * mapping to an appropriate alternative.
-     *
-     * @var array
      */
-    private static $_localeAliases = array(
+    private static array $_localeAliases = array(
         'az_AZ'  => 'az_Latn_AZ',
         'bs_BA'  => 'bs_Latn_BA',
         'ha_GH'  => 'ha_Latn_GH',
@@ -789,10 +787,8 @@ class Zend_Locale
 
     /**
      * Class wide Locale Constants
-     *
-     * @var array $_territoryData
      */
-    private static $_territoryData = array(
+    private static array $_territoryData = array(
         'AD' => 'ca_AD',
         'AE' => 'ar_AE',
         'AF' => 'fa_AF',
@@ -1044,9 +1040,9 @@ class Zend_Locale
     /**
      * Autosearch constants
      */
-    const BROWSER     = 'browser';
-    const ENVIRONMENT = 'environment';
-    const ZFDEFAULT   = 'default';
+    public const BROWSER     = 'browser';
+    public const ENVIRONMENT = 'environment';
+    public const ZFDEFAULT   = 'default';
 
     /**
      * Defines if old behaviour should be supported
@@ -1058,10 +1054,8 @@ class Zend_Locale
 
     /**
      * Internal variable
-     *
-     * @var boolean
      */
-    private static $_breakChain = false;
+    private static bool $_breakChain = false;
 
     /**
      * Actual set locale
@@ -1741,8 +1735,8 @@ class Zend_Locale
     {
         if ($locale === null) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Locale')) {
-                $locale = Zend_Registry::get('Zend_Locale');
+            if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
+                $locale = Zend_Registry::get(\Zend_Locale::class);
             }
         }
 
@@ -1854,7 +1848,7 @@ class Zend_Locale
     public static function clearCache($tag = null)
     {
         require_once 'Zend/Locale/Data.php';
-        Zend_Locale_Data::clearCache($tag);
+        Zend_Locale_Data::clearCache();
     }
 
     /**

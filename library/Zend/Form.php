@@ -35,24 +35,24 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     /**#@+
      * Plugin loader type constants
      */
-    const DECORATOR = 'DECORATOR';
-    const ELEMENT = 'ELEMENT';
+    public const DECORATOR = 'DECORATOR';
+    public const ELEMENT = 'ELEMENT';
     /**#@-*/
 
     /**#@+
      * Method type constants
      */
-    const METHOD_DELETE = 'delete';
-    const METHOD_GET    = 'get';
-    const METHOD_POST   = 'post';
-    const METHOD_PUT    = 'put';
+    public const METHOD_DELETE = 'delete';
+    public const METHOD_GET    = 'get';
+    public const METHOD_POST   = 'post';
+    public const METHOD_PUT    = 'put';
     /**#@-*/
 
     /**#@+
      * Encoding type constants
      */
-    const ENCTYPE_URLENCODED = 'application/x-www-form-urlencoded';
-    const ENCTYPE_MULTIPART  = 'multipart/form-data';
+    public const ENCTYPE_URLENCODED = 'application/x-www-form-urlencoded';
+    public const ENCTYPE_MULTIPART  = 'multipart/form-data';
     /**#@-*/
 
     /**
@@ -71,7 +71,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      * Default display group class
      * @var string
      */
-    protected $_defaultDisplayGroupClass = 'Zend_Form_DisplayGroup';
+    protected $_defaultDisplayGroupClass = \Zend_Form_DisplayGroup::class;
 
     /**
      * Form description
@@ -1170,7 +1170,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                 } else {
                     switch ($argc) {
                         case 0:
-                            continue;
+                            break;
                         case (1 <= $argc):
                             $type = array_shift($spec);
                         case (2 <= $argc):
@@ -1638,14 +1638,14 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
 
         if (!empty($this->_elementPrefixPaths)) {
             foreach ($this->_elementPrefixPaths as $spec) {
-                list($prefix, $path, $type) = array_values($spec);
+                [$prefix, $path, $type] = array_values($spec);
                 $form->addElementPrefixPath($prefix, $path, $type);
             }
         }
 
         if (!empty($this->_displayGroupPrefixPaths)) {
             foreach ($this->_displayGroupPrefixPaths as $spec) {
-                list($prefix, $path) = array_values($spec);
+                [$prefix, $path] = array_values($spec);
                 $form->addDisplayGroupPrefixPath($prefix, $path);
             }
         }
@@ -1687,7 +1687,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                 $order = null;
                 switch ($argc) {
                     case 0:
-                        continue;
+                        break;
                     case (1 <= $argc):
                         $subForm = array_shift($spec);
 
@@ -2212,7 +2212,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     {
         $ordered = array();
         foreach ($this->_order as $name => $order) {
-            $order = isset($order) ? $order : count($ordered);
+            $order ??= count($ordered);
             if ($this->$name instanceof Zend_Form_Element ||
                 $this->$name instanceof Zend_Form) {
                 array_splice($ordered, $order, 0, array($this->$name));
@@ -2221,7 +2221,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                 /** @var Zend_Form_Element $element */
                 foreach ($this->$name->getElements() as $element) {
                     $suborder = $element->getOrder();
-                    $suborder = (null !== $suborder) ? $suborder : count($subordered);
+                    $suborder ??= count($subordered);
                     array_splice($subordered, $suborder, 0, array($element));
                 }
                 if (!empty($subordered)) {
@@ -2726,6 +2726,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function addDecorator($decorator, $options = null)
     {
+        $name = null;
+        $spec = null;
         if ($decorator instanceof Zend_Form_Decorator_Interface) {
             $name = get_class($decorator);
         } elseif (is_string($decorator)) {
@@ -3101,8 +3103,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     {
         if (null === self::$_translatorDefault) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Translate')) {
-                $translator = Zend_Registry::get('Zend_Translate');
+            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
+                $translator = Zend_Registry::get(\Zend_Translate::class);
                 if ($translator instanceof Zend_Translate_Adapter) {
                     return $translator;
                 } elseif ($translator instanceof Zend_Translate) {

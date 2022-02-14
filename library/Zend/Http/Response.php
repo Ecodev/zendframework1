@@ -550,8 +550,7 @@ class Zend_Http_Response
             if (preg_match("|^[ \t](.+)$|s", $line, $m) && $last_header !== null) {
                 $h_value = trim($m[1]);
                 if (is_array($headers[$last_header])) {
-                    end($headers[$last_header]);
-                    $last_header_key = key($headers[$last_header]);
+                    $last_header_key = array_key_last($headers[$last_header]);
 
                     $h_value = $headers[$last_header][$last_header_key] . $h_value;
                     Zend_Http_Header_HeaderValue::assertValid($h_value);

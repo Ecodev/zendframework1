@@ -62,6 +62,7 @@ class Zend_Filter_HtmlEntities implements Zend_Filter_Interface
      */
     public function __construct($options = array())
     {
+        $temp = [];
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {

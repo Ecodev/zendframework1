@@ -37,8 +37,8 @@ require_once 'Zend/Locale/Format.php';
  */
 class Zend_Validate_PostCode extends Zend_Validate_Abstract
 {
-    const INVALID  = 'postcodeInvalid';
-    const NO_MATCH = 'postcodeNoMatch';
+    public const INVALID  = 'postcodeInvalid';
+    public const NO_MATCH = 'postcodeNoMatch';
 
     /**
      * @var array
@@ -79,8 +79,8 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
 
         if (empty($options)) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Locale')) {
-                $this->setLocale(Zend_Registry::get('Zend_Locale'));
+            if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
+                $this->setLocale(Zend_Registry::get(\Zend_Locale::class));
             }
         } elseif (is_array($options)) {
             // Received

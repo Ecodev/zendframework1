@@ -74,46 +74,46 @@ class Zend_Http_Client
     /**
      * HTTP request methods
      */
-    const GET     = 'GET';
-    const POST    = 'POST';
-    const PUT     = 'PUT';
-    const HEAD    = 'HEAD';
-    const DELETE  = 'DELETE';
-    const TRACE   = 'TRACE';
-    const OPTIONS = 'OPTIONS';
-    const CONNECT = 'CONNECT';
-    const MERGE   = 'MERGE';
-    const PATCH   = 'PATCH';
+    public const GET     = 'GET';
+    public const POST    = 'POST';
+    public const PUT     = 'PUT';
+    public const HEAD    = 'HEAD';
+    public const DELETE  = 'DELETE';
+    public const TRACE   = 'TRACE';
+    public const OPTIONS = 'OPTIONS';
+    public const CONNECT = 'CONNECT';
+    public const MERGE   = 'MERGE';
+    public const PATCH   = 'PATCH';
 
     /**
      * Supported HTTP Authentication methods
      */
-    const AUTH_BASIC = 'basic';
+    public const AUTH_BASIC = 'basic';
     //const AUTH_DIGEST = 'digest'; <-- not implemented yet
 
     /**
      * HTTP protocol versions
      */
-    const HTTP_1 = '1.1';
-    const HTTP_0 = '1.0';
+    public const HTTP_1 = '1.1';
+    public const HTTP_0 = '1.0';
 
     /**
      * Content attributes
      */
-    const CONTENT_TYPE   = 'Content-Type';
-    const CONTENT_LENGTH = 'Content-Length';
+    public const CONTENT_TYPE   = 'Content-Type';
+    public const CONTENT_LENGTH = 'Content-Length';
 
     /**
      * POST data encoding methods
      */
-    const ENC_URLENCODED = 'application/x-www-form-urlencoded';
-    const ENC_FORMDATA   = 'multipart/form-data';
+    public const ENC_URLENCODED = 'application/x-www-form-urlencoded';
+    public const ENC_FORMDATA   = 'multipart/form-data';
 
     /**
      * Value types for Body key/value pairs
      */
-    const VTYPE_SCALAR  = 'SCALAR';
-    const VTYPE_FILE    = 'FILE';
+    public const VTYPE_SCALAR  = 'SCALAR';
+    public const VTYPE_FILE    = 'FILE';
 
     /**
      * Configuration array, set using the constructor or using ::setConfig()
@@ -123,9 +123,9 @@ class Zend_Http_Client
     protected $config = array(
         'maxredirects'    => 5,
         'strictredirects' => false,
-        'useragent'       => 'Zend_Http_Client',
+        'useragent'       => \Zend_Http_Client::class,
         'timeout'         => 10,
-        'adapter'         => 'Zend_Http_Client_Adapter_Socket',
+        'adapter'         => \Zend_Http_Client_Adapter_Socket::class,
         'httpversion'     => self::HTTP_1,
         'keepalive'       => false,
         'storeresponse'   => true,
@@ -446,7 +446,7 @@ class Zend_Http_Client
 
         // Check if $name needs to be split
         if ($value === null && (strpos($name, ':') > 0)) {
-            list($name, $value) = explode(':', $name, 2);
+            [$name, $value] = explode(':', $name, 2);
         }
 
         // Make sure the name is valid if we are in strict mode
@@ -641,7 +641,7 @@ class Zend_Http_Client
      */
     public function setCookieJar($cookiejar = true)
     {
-        Zend_Loader::loadClass('Zend_Http_CookieJar');
+        Zend_Loader::loadClass(\Zend_Http_CookieJar::class);
 
         if ($cookiejar instanceof Zend_Http_CookieJar) {
             $this->cookiejar = $cookiejar;
@@ -679,7 +679,7 @@ class Zend_Http_Client
      */
     public function setCookie($cookie, $value = null)
     {
-        Zend_Loader::loadClass('Zend_Http_Cookie');
+        Zend_Loader::loadClass(\Zend_Http_Cookie::class);
 
         if (is_array($cookie)) {
             foreach ($cookie as $c => $v) {
@@ -991,8 +991,8 @@ class Zend_Http_Client
         $this->_stream_name = $this->config['output_stream'];
         if(!is_string($this->_stream_name)) {
             // If name is not given, create temp name
-            $this->_stream_name = tempnam(isset($this->config['stream_tmp_dir'])?$this->config['stream_tmp_dir']:sys_get_temp_dir(),
-                 'Zend_Http_Client');
+            $this->_stream_name = tempnam($this->config['stream_tmp_dir'] ?? sys_get_temp_dir(),
+                 \Zend_Http_Client::class);
         }
 
         if (false === ($fp = @fopen($this->_stream_name, "w+b"))) {
@@ -1015,6 +1015,7 @@ class Zend_Http_Client
      */
     public function request($method = null)
     {
+        $stream = null;
         if (! $this->uri instanceof Zend_Uri_Http) {
             /** @see Zend_Http_Client_Exception */
             require_once 'Zend/Http/Client/Exception.php';
@@ -1145,7 +1146,7 @@ class Zend_Http_Client
 
                     // Split into path and query and set the query
                     if (strpos($location, '?') !== false) {
-                        list($location, $query) = explode('?', $location, 2);
+                        [$location, $query] = explode('?', $location, 2);
                     } else {
                         $query = '';
                     }
@@ -1244,7 +1245,7 @@ class Zend_Http_Client
 
         // Add all other user defined headers
         foreach ($this->headers as $header) {
-            list($name, $value) = $header;
+            [$name, $value] = $header;
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }

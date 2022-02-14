@@ -32,9 +32,9 @@ require_once 'Zend/Validate/Abstract.php';
  */
 class Zend_Validate_Date extends Zend_Validate_Abstract
 {
-    const INVALID        = 'dateInvalid';
-    const INVALID_DATE   = 'dateInvalidDate';
-    const FALSEFORMAT    = 'dateFalseFormat';
+    public const INVALID        = 'dateInvalid';
+    public const INVALID_DATE   = 'dateInvalidDate';
+    public const FALSEFORMAT    = 'dateFalseFormat';
 
     /**
      * Validation failure message template definitions
@@ -75,6 +75,7 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
      */
     public function __construct($options = array())
     {
+        $temp = [];
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options)) {
@@ -93,8 +94,8 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
 
         if (!array_key_exists('locale', $options)) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Locale')) {
-                $options['locale'] = Zend_Registry::get('Zend_Locale');
+            if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
+                $options['locale'] = Zend_Registry::get(\Zend_Locale::class);
             }
         }
 
@@ -187,7 +188,7 @@ class Zend_Validate_Date extends Zend_Validate_Abstract
                 return false;
             }
 
-            list($year, $month, $day) = sscanf($value, '%d-%d-%d');
+            [$year, $month, $day] = sscanf($value, '%d-%d-%d');
 
             if (!checkdate($month, $day, $year)) {
                 $this->_error(self::INVALID_DATE);

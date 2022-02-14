@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Dispatcher_StandardTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Dispatcher_StandardTest::main");
-}
+
 
 require_once 'Zend/Controller/Dispatcher/Standard.php';
 require_once 'Zend/Controller/Action/HelperBroker.php';
@@ -41,7 +38,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Dispatcher
  */
-class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCase
 {
     protected $_dispatcher;
 
@@ -53,8 +50,8 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Dispatcher_StandardTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Dispatcher_StandardTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -67,8 +64,8 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         Zend_Controller_Action_HelperBroker::removeHelper('viewRenderer');
         $this->_dispatcher = new Zend_Controller_Dispatcher_Standard();
         $this->_dispatcher->setControllerDirectory(array(
-            'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'admin'   => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
+            'default' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
+            'admin'   => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
         ));
     }
 
@@ -104,8 +101,8 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
     public function testSetGetControllerDirectory()
     {
         $expected = array(
-            'default' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
-            'admin'   => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
+            'default' => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files',
+            'admin'   => __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Admin'
         );
         $dirs = $this->_dispatcher->getControllerDirectory();
         $this->assertEquals($expected, $dirs);
@@ -148,7 +145,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
      */
     public function testIsDispatchableManuallyIncludedController()
     {
-        require_once dirname(__FILE__) . '/../_files/ManuallyIncludedControllers.php';
+        require_once __DIR__ . '/../_files/ManuallyIncludedControllers.php';
         $request = new Zend_Controller_Request_Http();
 
 
@@ -445,7 +442,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
         Zend_Controller_Front::getInstance()
             ->setDispatcher($this->_dispatcher)
             ->addControllerDirectory(
-                dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'controllers',
+                __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'controllers',
                 'foo'
         );
 
@@ -533,7 +530,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
     {
         Zend_Controller_Front::getInstance()
             ->setDispatcher($this->_dispatcher)
-            ->addModuleDirectory(dirname(__FILE__) . '/../_files/modules');
+            ->addModuleDirectory(__DIR__ . '/../_files/modules');
         $request = new Zend_Controller_Request_Simple();
         $request->setControllerName('index')
                 ->setModuleName('bar');
@@ -550,7 +547,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
     public function testLoadClassLoadsControllerInSpecifiedModuleWithHyphenatedModuleName()
     {
         $front = Zend_Controller_Front::getInstance();
-        $front->addModuleDirectory(dirname(__FILE__) . '/../_files/modules');
+        $front->addModuleDirectory(__DIR__ . '/../_files/modules');
         $dispatcher = $front->getDispatcher();
 
         $request = new Zend_Controller_Request_Simple();
@@ -569,7 +566,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
     public function testDispatcherCanDispatchControllersFromModuleWithHyphenatedName()
     {
         $front = Zend_Controller_Front::getInstance();
-        $front->addModuleDirectory(dirname(__FILE__) . '/../_files/modules');
+        $front->addModuleDirectory(__DIR__ . '/../_files/modules');
         $dispatcher = $front->getDispatcher();
 
         $request = new Zend_Controller_Request_Simple();
@@ -584,7 +581,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
     {
         Zend_Controller_Front::getInstance()
             ->setDispatcher($this->_dispatcher)
-            ->addModuleDirectory(dirname(__FILE__) . '/../_files/modules');
+            ->addModuleDirectory(__DIR__ . '/../_files/modules');
         $this->_dispatcher->setDefaultModule('foo')
                           ->setParam('prefixDefaultModule', true);
         $request = new Zend_Controller_Request_Simple();
@@ -603,7 +600,7 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
     {
         Zend_Controller_Front::getInstance()
             ->setDispatcher($this->_dispatcher)
-            ->addModuleDirectory(dirname(__FILE__) . '/../_files/modules');
+            ->addModuleDirectory(__DIR__ . '/../_files/modules');
         $dirs = $this->_dispatcher->getControllerDirectory();
         $this->_dispatcher->removeControllerDirectory('foo');
         $test = $this->_dispatcher->getControllerDirectory();
@@ -704,7 +701,3 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Controller_Dispatcher_StandardTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Dispatcher_StandardTest::main") {
-    Zend_Controller_Dispatcher_StandardTest::main();
-}

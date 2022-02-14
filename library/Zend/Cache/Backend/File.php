@@ -854,7 +854,7 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
     protected function _expireTime($lifetime)
     {
         if ($lifetime === null) {
-            return 9999999999;
+            return 9_999_999_999;
         }
         return time() + $lifetime;
     }

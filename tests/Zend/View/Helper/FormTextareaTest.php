@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_FormTextareaTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_FormTextareaTest::main");
-}
+
 
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/FormTextarea.php';
@@ -33,7 +30,7 @@ require_once 'Zend/View/Helper/FormTextarea.php';
  *
  * Tests formTextarea helper
  *
- * @uses PHPUnit_Framework_TestCase
+ * @uses \PHPUnit\Framework\TestCase
  *
  * @category   Zend
  * @package    Zend_View
@@ -43,7 +40,7 @@ require_once 'Zend/View/Helper/FormTextarea.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_FormTextareaTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_FormTextareaTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -53,8 +50,8 @@ class Zend_View_Helper_FormTextareaTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_FormTextareaTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormTextareaTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -99,7 +96,3 @@ class Zend_View_Helper_FormTextareaTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_FormTextareaTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_FormTextareaTest::main") {
-    Zend_View_Helper_FormTextareaTest::main();
-}

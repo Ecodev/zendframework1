@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Validate_File_CountTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Validate_File_CountTest::main");
-}
+
 
 /**
  * @see Zend_Validate_File_Count
@@ -38,7 +35,7 @@ require_once 'Zend/Validate/File/Count.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_CountTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_File_CountTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -47,8 +44,8 @@ class Zend_Validate_File_CountTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Validate_File_CountTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_CountTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -70,22 +67,22 @@ class Zend_Validate_File_CountTest extends PHPUnit_Framework_TestCase
             $validator = new Zend_Validate_File_Count($element[0]);
             $this->assertEquals(
                 $element[1],
-                $validator->isValid(dirname(__FILE__) . '/_files/testsize.mo'),
+                $validator->isValid(__DIR__ . '/_files/testsize.mo'),
                 "Tested with " . var_export($element, 1)
             );
             $this->assertEquals(
                 $element[2],
-                $validator->isValid(dirname(__FILE__) . '/_files/testsize2.mo'),
+                $validator->isValid(__DIR__ . '/_files/testsize2.mo'),
                 "Tested with " . var_export($element, 1)
             );
             $this->assertEquals(
                 $element[3],
-                $validator->isValid(dirname(__FILE__) . '/_files/testsize3.mo'),
+                $validator->isValid(__DIR__ . '/_files/testsize3.mo'),
                 "Tested with " . var_export($element, 1)
             );
             $this->assertEquals(
                 $element[4],
-                $validator->isValid(dirname(__FILE__) . '/_files/testsize4.mo'),
+                $validator->isValid(__DIR__ . '/_files/testsize4.mo'),
                 "Tested with " . var_export($element, 1)
             );
         }
@@ -164,15 +161,11 @@ class Zend_Validate_File_CountTest extends PHPUnit_Framework_TestCase
     public function testSetMax()
     {
         $validator = new Zend_Validate_File_Count(array('min' => 1000, 'max' => 10000));
-        $validator->setMax(1000000);
-        $this->assertEquals(1000000, $validator->getMax());
+        $validator->setMax(1_000_000);
+        $this->assertEquals(1_000_000, $validator->getMax());
 
         $validator->setMin(100);
-        $this->assertEquals(1000000, $validator->getMax());
+        $this->assertEquals(1_000_000, $validator->getMax());
     }
 }
 
-// Call Zend_Validate_File_CountTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_CountTest::main") {
-    Zend_Validate_File_CountTest::main();
-}

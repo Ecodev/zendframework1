@@ -363,7 +363,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
             }
 
             if (class_exists($plugin)
-            && is_subclass_of($plugin, 'Zend_Application_Resource_Resource')
+            && is_subclass_of($plugin, \Zend_Application_Resource_Resource::class)
             ) { //@SEE ZF-7550
                 $spec = (array) $spec;
                 $spec['bootstrap'] = $this;
@@ -771,7 +771,7 @@ abstract class Zend_Application_Bootstrap_BootstrapAbstract
             $pluginName = $className;
             $loader     = $this->getPluginLoader();
             foreach ($loader->getPaths() as $prefix => $paths) {
-                if (0 === strpos($className, $prefix)) {
+                if (0 === strpos($className, (string) $prefix)) {
                     $pluginName = substr($className, strlen($prefix));
                     $pluginName = trim($pluginName, '_');
                     break;

@@ -39,7 +39,7 @@ require_once 'Zend/Loader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
-class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
+class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @group ZF-11267
@@ -63,7 +63,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($input->isValid(), 'invalid input is valid');
         $messages = $input->getMessages();
         $this->assertSame($messages['field1']['notDigits'], $customMessage, 'The custom message is not used');
-        
+
         // test with a NotEmpty validator
         $data = array('field1' => '');
         $customMessage = 'You should really supply a value...';
@@ -78,24 +78,24 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertSame($messages['field1']['isEmpty'], $customMessage, 'For the NotEmpty validator the custom message is not used');
     }
-    
+
     /**
-     * 
+     *
      * If setAllowEmpty(true) is called, all fields are optional, but fields with
      * a NotEmpty validator attached to them, should contain a non empty value.
-     * 
+     *
      * @group ZF-9289
      */
     function testAllowEmptyTrueRespectsNotEmtpyValidators()
     {
         require_once 'Zend/Validate/NotEmpty.php';
         require_once 'Zend/Validate/Digits.php';
-        
+
         $data = array(
             'field1' => 'foo',
             'field2' => ''
         );
-        
+
         $validators = array(
             'field1' => array(
                 new Zend_Validate_NotEmpty(),
@@ -105,22 +105,22 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
                     )
                 )
             ),
-        
+
             'field2' => array(
                 new Zend_Validate_NotEmpty()
             )
         );
-        
+
         $options = array(Zend_Filter_Input::ALLOW_EMPTY => true);
         $input = new Zend_Filter_Input( null, $validators, $data, $options );
         $this->assertFalse($input->isValid(), 'Ouch, the NotEmpty validators are ignored!');
-        
+
         $validators = array(
             'field1' => array(
                 'Digits',
-                array('NotEmpty', 'integer'), 
+                array('NotEmpty', 'integer'),
                 Zend_Filter_Input::MESSAGES => array(
-                    1 => 
+                    1 =>
                     array(
                         Zend_Validate_NotEmpty::IS_EMPTY => '\'field1\' is required'
                     )
@@ -128,7 +128,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
             ),
 
         );
-        
+
         $data = array(
             'field1' => 0,
             'field2' => ''
@@ -136,14 +136,14 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $options = array(Zend_Filter_Input::ALLOW_EMPTY => true);
         $input = new Zend_Filter_Input( null, $validators, $data, $options );
         $this->assertFalse($input->isValid(), 'Ouch, if the NotEmpty validator is not the first rule, the NotEmpty validators are ignored !');
-        
+
         // and now with a string 'NotEmpty' instead of an instance:
-        
+
         $validators = array(
             'field1' => array(
                 'NotEmpty',
                 Zend_Filter_Input::MESSAGES => array(
-                    0 => 
+                    0 =>
                     array(
                         Zend_Validate_NotEmpty::IS_EMPTY => '\'field1\' is required'
                     )
@@ -151,23 +151,23 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
             ),
 
         );
-        
+
         $data = array(
             'field1' => '',
             'field2' => ''
         );
-        
+
         $options = array(Zend_Filter_Input::ALLOW_EMPTY => true);
         $input = new Zend_Filter_Input( null, $validators, $data, $options );
         $this->assertFalse($input->isValid(), 'If the NotEmpty validator is a string, the NotEmpty validator is ignored !');
-        
+
         // and now with an array
-        
+
         $validators = array(
             'field1' => array(
                 array('NotEmpty', 'integer'),
                 Zend_Filter_Input::MESSAGES => array(
-                    0 => 
+                    0 =>
                     array(
                         Zend_Validate_NotEmpty::IS_EMPTY => '\'field1\' is required'
                     )
@@ -175,21 +175,21 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
             ),
 
         );
-        
+
         $data = array(
             'field1' => 0,
             'field2' => ''
         );
-        
+
         $options = array(Zend_Filter_Input::ALLOW_EMPTY => true);
         $input = new Zend_Filter_Input( null, $validators, $data, $options );
         $this->assertFalse($input->isValid(), 'If the NotEmpty validator is an array, the NotEmpty validator is ignored !');
-    } 
+    }
 
      /**
       * @group ZF-8446
       * The issue reports about nested error messages. This is to assure these do not occur.
-      * 
+      *
       * Example:
       * Expected Result
       *      array(2) {
@@ -221,7 +221,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
             'field1' => '',
             'field2' => ''
         );
-        
+
         $validators = array(
             'field1' => array(
                 new Zend_Validate_NotEmpty(),
@@ -231,20 +231,20 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
                     )
                 )
             ),
-        
+
             'field2' => array(
                 new Zend_Validate_NotEmpty()
             )
         );
-        
+
         $input = new Zend_Filter_Input( null, $validators, $data );
-        
+
         $this->assertFalse($input->isValid());
         $messages = $input->getMessages();
         $this->assertFalse(is_array($messages['field1']['isEmpty']), 'oh oh, we  may have got nested messages');
         $this->assertTrue(isset($messages['field1']['isEmpty']), 'oh no, we not even got the normally expected messages');
     }
-    
+
     /**
      * @group ZF-11142, ZF-8446, ZF-9289
      */
@@ -265,7 +265,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
                     'presence' => 'required'
                 )
         );
-        
+
         $data = array('field1' => 0.0, 'field2' => '');
         $input = new Zend_Filter_Input(null, $validators, $data);
         $this->assertFalse($input->isValid());
@@ -295,7 +295,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $data = array(
             'month' => '6abc '
         );
-        Zend_Loader::loadClass('Zend_Filter_Digits');
+        Zend_Loader::loadClass(\Zend_Filter_Digits::class);
         $filters = array(
             'month' => array(new Zend_Filter_Digits())
         );
@@ -442,7 +442,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $data = array(
             'month' => '6'
         );
-        Zend_Loader::loadClass('Zend_Validate_Digits');
+        Zend_Loader::loadClass(\Zend_Validate_Digits::class);
         $validators = array(
             'month' => array(
                 new Zend_Validate_Digits()
@@ -498,7 +498,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
             'field2' => 'abc123',
             'field3' => 150,
         );
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
         $btw = new Zend_Validate_Between(1, 100);
         $validators = array(
             'field1' => array('digits', $btw),
@@ -527,7 +527,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $data = array(
             'field2' => 'abc123',
         );
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
         $validators = array(
             'field2a' => array(
                 'digits',
@@ -623,7 +623,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         );
 
         $ip = get_include_path();
-        $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files';
+        $dir = __DIR__ . DIRECTORY_SEPARATOR . '_files';
         $newIp = $dir . PATH_SEPARATOR . $ip;
         set_include_path($newIp);
 
@@ -675,7 +675,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         );
 
         $ip = get_include_path();
-        $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files';
+        $dir = __DIR__ . DIRECTORY_SEPARATOR . '_files';
         $newIp = $dir . PATH_SEPARATOR . $ip;
         set_include_path($newIp);
 
@@ -705,7 +705,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
             'field2' => '150'
         );
 
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
 
         $btw1 = new Zend_Validate_Between(1, 100);
 
@@ -825,9 +825,9 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
 
     public function testValidatorAllowEmptyNoValidatorChain()
     {
-        Zend_Loader::loadClass('Zend_Filter_StringTrim');
-        Zend_Loader::loadClass('Zend_Filter_StripTags');
-        Zend_Loader::loadClass('Zend_Validate_EmailAddress');
+        Zend_Loader::loadClass(\Zend_Filter_StringTrim::class);
+        Zend_Loader::loadClass(\Zend_Filter_StripTags::class);
+        Zend_Loader::loadClass(\Zend_Validate_EmailAddress::class);
 
         $data = array(
             'nick'    => '',
@@ -868,7 +868,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('nick'), array_keys($messages));
-        $this->assertEquals(1, count($messages['nick']));
+        $this->assertEquals(1, is_countable($messages['nick']) ? count($messages['nick']) : 0);
     }
 
     public function testValidatorAllowEmptySetNotEmptyMessage()
@@ -1038,7 +1038,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('month'), array_keys($messages));
-        $this->assertEquals(1, count($messages['month']));
+        $this->assertEquals(1, is_countable($messages['month']) ? count($messages['month']) : 0);
         $this->assertEquals($digitsMesg, current($messages['month']));
     }
 
@@ -1047,7 +1047,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $data = array('month' => '13abc');
         $digitsMesg = 'Month should consist of digits';
         $betweenMesg = 'Month should be between 1 and 12';
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
         $validators = array(
             'month' => array(
                 'digits',
@@ -1068,7 +1068,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('month'), array_keys($messages));
-        $this->assertEquals(2, count($messages['month']));
+        $this->assertEquals(2, is_countable($messages['month']) ? count($messages['month']) : 0);
         $this->assertEquals($digitsMesg, $messages['month']['notDigits']);
         $this->assertEquals($betweenMesg, $messages['month']['notBetween']);
     }
@@ -1078,7 +1078,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $data = array('field1' => array('13abc', '234'));
         $digitsMesg = 'Field1 should consist of digits';
         $betweenMesg = 'Field1 should be between 1 and 12';
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
         $validators = array(
             'field1' => array(
                 'digits',
@@ -1099,7 +1099,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('field1'), array_keys($messages));
-        $this->assertEquals(3, count($messages['field1']));
+        $this->assertEquals(3, is_countable($messages['field1']) ? count($messages['field1']) : 0);
         $this->assertEquals($digitsMesg, $messages['field1']['notDigits']);
         $this->assertEquals($betweenMesg, $messages['field1']['notBetween']);
     }
@@ -1108,7 +1108,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
     {
         $data = array('month' => '13abc');
         $betweenMesg = 'Month should be between 1 and 12';
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
         $validators = array(
             'month' => array(
                 'digits',
@@ -1128,7 +1128,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('month'), array_keys($messages));
-        $this->assertEquals(2, count($messages['month']));
+        $this->assertEquals(2, is_countable($messages['month']) ? count($messages['month']) : 0);
         $this->assertEquals("'13abc' must contain only digits", current($messages['month']));
         /**
          * @todo $this->assertEquals($betweenMesg, next($messages['month']));
@@ -1155,7 +1155,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('month'), array_keys($messages));
-        $this->assertEquals(1, count($messages['month']));
+        $this->assertEquals(1, is_countable($messages['month']) ? count($messages['month']) : 0);
         // $this->assertEquals($digitsMesg, $messages['month'][0]);
     }
 
@@ -1164,7 +1164,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $data = array('month' => '13abc');
         $digitsMesg = 'Month should consist of digits';
         $betweenMesg = 'Month should be between 1 and 12';
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
         $validators = array(
             'month' => array(
                 'digits',
@@ -1185,7 +1185,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('month'), array_keys($messages));
-        $this->assertEquals(2, count($messages['month']));
+        $this->assertEquals(2, is_countable($messages['month']) ? count($messages['month']) : 0);
         // $this->assertEquals($digitsMesg, $messages['month'][0]);
         // $this->assertEquals($betweenMesg, $messages['month'][1]);
     }
@@ -1195,7 +1195,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $data = array('month' => '13abc');
         $digitsMesg = 'Month should consist of digits';
         $betweenMesg = 'Month should be between 1 and 12';
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
         $validators = array(
             'month' => array(
                 'digits',
@@ -1216,7 +1216,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('month'), array_keys($messages));
-        $this->assertEquals(2, count($messages['month']));
+        $this->assertEquals(2, is_countable($messages['month']) ? count($messages['month']) : 0);
         // $this->assertEquals($digitsMesg, $messages['month'][0]);
         // $this->assertEquals($betweenMesg, $messages['month'][1]);
     }
@@ -1415,7 +1415,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         );
 
         $ip = get_include_path();
-        $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files';
+        $dir = __DIR__ . DIRECTORY_SEPARATOR . '_files';
         $newIp = $dir . PATH_SEPARATOR . $ip;
         set_include_path($newIp);
 
@@ -1443,7 +1443,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
 
         $loader = $input->getPluginLoader(Zend_Filter_Input::VALIDATE);
         $this->assertTrue($loader instanceof Zend_Loader_PluginLoader,
-            'Expected object of type Zend_Loader_PluginLoader, got ' , get_class($loader));
+            'Expected object of type Zend_Loader_PluginLoader, got ');
 
         try {
             $loader = $input->getPluginLoader('foo');
@@ -1582,7 +1582,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $data = array(
             'field1' => '150'
         );
-        Zend_Loader::loadClass('Zend_Validate_Between');
+        Zend_Loader::loadClass(\Zend_Validate_Between::class);
         $btw1 = new Zend_Validate_Between(1, 100);
         $btw2 = new Zend_Validate_Between(1, 125);
         $validators = array(
@@ -1601,7 +1601,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $messages = $input->getMessages();
         $this->assertTrue(is_array($messages));
         $this->assertEquals(array('field1'), array_keys($messages));
-        $this->assertEquals(1, count($messages['field1']), 'Expected rule for field1 to break 1 validator');
+        $this->assertEquals(1, is_countable($messages['field1']) ? count($messages['field1']) : 0, 'Expected rule for field1 to break 1 validator');
         $this->assertEquals("'150' is not between '1' and '100', inclusively",
             current($messages['field1']));
     }
@@ -1641,7 +1641,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         );
 
         $ip = get_include_path();
-        $dir = dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files';
+        $dir = __DIR__ . DIRECTORY_SEPARATOR . '_files';
         $newIp = $dir . PATH_SEPARATOR . $ip;
         set_include_path($newIp);
 
@@ -1764,7 +1764,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
 
         $multi = $input->getEscaped('multiSelect');
         $this->assertTrue(is_array($multi));
-        $this->assertEquals(3, count($multi));
+        $this->assertEquals(3, is_countable($multi) ? count($multi) : 0);
         $this->assertEquals(array('C&amp;H', 'B&amp;O', 'AT&amp;T'), $multi);
     }
 
@@ -2162,7 +2162,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         require_once 'Zend/Translate/Adapter/Array.php';
         $translator = new Zend_Translate_Adapter_Array(array('missingMessage' => 'Still missing'), 'en');
         require_once 'Zend/Registry.php';
-        Zend_Registry::set('Zend_Translate', $translator);
+        Zend_Registry::set(\Zend_Translate::class, $translator);
 
         $validators = array(
             'rule1'   => array('presence' => 'required',
@@ -2282,12 +2282,12 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
         $input = new Zend_Filter_Input( null, $validators, $data, $options );
         $this->assertFalse($input->isValid(), 'If the NotEmpty validator is an array, the NotEmpty validator is ignored !');
     }
-    
+
     /**
-     * This test doesn't include any assertions as it's purpose is to 
-     * ensure that passing an empty array value into a $validators rule 
+     * This test doesn't include any assertions as it's purpose is to
+     * ensure that passing an empty array value into a $validators rule
      * doesn't cause a notice to be emitted
-     *  
+     *
      * @group ZF-11819
      */
     public function testValidatorRuleCanHaveEmptyArrayAsMetacommandValue()
@@ -2298,7 +2298,7 @@ class Zend_Filter_InputTest extends PHPUnit_Framework_TestCase
 
         $validate = new Zend_Filter_Input(NULL, $validators);
         $validate->isValid();
-    }    
+    }
 }
 
 class MyZend_Filter_Date implements Zend_Filter_Interface

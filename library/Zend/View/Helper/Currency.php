@@ -50,8 +50,8 @@ class Zend_View_Helper_Currency extends Zend_View_Helper_Abstract
     {
         if ($currency === null) {
             require_once 'Zend/Registry.php';
-            if (Zend_Registry::isRegistered('Zend_Currency')) {
-                $currency = Zend_Registry::get('Zend_Currency');
+            if (Zend_Registry::isRegistered(\Zend_Currency::class)) {
+                $currency = Zend_Registry::get(\Zend_Currency::class);
             }
         }
 

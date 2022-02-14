@@ -30,8 +30,8 @@ class Zend_Cache_Core
     /**
      * Messages
      */
-    const BACKEND_NOT_SUPPORTS_TAG = 'tags are not supported by the current backend';
-    const BACKEND_NOT_IMPLEMENTS_EXTENDED_IF = 'Current backend doesn\'t implement the Zend_Cache_Backend_ExtendedInterface, so this method is not available';
+    public const BACKEND_NOT_SUPPORTS_TAG = 'tags are not supported by the current backend';
+    public const BACKEND_NOT_IMPLEMENTS_EXTENDED_IF = 'Current backend doesn\'t implement the Zend_Cache_Backend_ExtendedInterface, so this method is not available';
 
     /**
      * Backend Object
@@ -108,10 +108,8 @@ class Zend_Cache_Core
 
     /**
      * Last used cache id
-     *
-     * @var string $_lastId
      */
-    private $_lastId = null;
+    private ?string $_lastId = null;
 
     /**
      * True if the backend implements Zend_Cache_Backend_ExtendedInterface
@@ -146,7 +144,6 @@ class Zend_Cache_Core
         foreach ($options as $name => $value) {
             $this->setOption($name, $value);
         }
-        $this->_loggerSanity();
     }
 
     /**
@@ -181,7 +178,7 @@ class Zend_Cache_Core
             $directives[$directive] = $this->_options[$directive];
         }
         $this->_backend->setDirectives($directives);
-        if (in_array('Zend_Cache_Backend_ExtendedInterface', class_implements($this->_backend))) {
+        if (in_array(\Zend_Cache_Backend_ExtendedInterface::class, class_implements($this->_backend))) {
             $this->_extendedBackend = true;
             $this->_backendCapabilities = $this->_backend->getCapabilities();
         }
@@ -347,6 +344,7 @@ class Zend_Cache_Core
      */
     public function save($data, $id = null, $tags = array(), $specificLifetime = false, $priority = 8)
     {
+        $abort = null;
         if (!$this->_options['caching']) {
             return true;
         }
@@ -368,7 +366,7 @@ class Zend_Cache_Core
 
         // automatic cleaning
         if ($this->_options['automatic_cleaning_factor'] > 0) {
-            $rand = rand(1, $this->_options['automatic_cleaning_factor']);
+            $rand = random_int(1, $this->_options['automatic_cleaning_factor']);
             if ($rand==1) {
                 //  new way                 || deprecated way
                 if ($this->_extendedBackend || method_exists($this->_backend, 'isAutomaticCleaningAvailable')) {
@@ -489,7 +487,7 @@ class Zend_Cache_Core
             $prefix    = & $this->_options['cache_id_prefix'];
             $prefixLen = strlen($prefix);
             foreach ($ids as &$id) {
-                if (strpos($id, $prefix) === 0) {
+                if (strpos($id, (string) $prefix) === 0) {
                     $id = substr($id, $prefixLen);
                 }
             }
@@ -522,7 +520,7 @@ class Zend_Cache_Core
             $prefix    = & $this->_options['cache_id_prefix'];
             $prefixLen = strlen($prefix);
             foreach ($ids as &$id) {
-                if (strpos($id, $prefix) === 0) {
+                if (strpos($id, (string) $prefix) === 0) {
                     $id = substr($id, $prefixLen);
                 }
             }
@@ -555,7 +553,7 @@ class Zend_Cache_Core
             $prefix    = & $this->_options['cache_id_prefix'];
             $prefixLen = strlen($prefix);
             foreach ($ids as &$id) {
-                if (strpos($id, $prefix) === 0) {
+                if (strpos($id, (string) $prefix) === 0) {
                     $id = substr($id, $prefixLen);
                 }
             }
@@ -582,7 +580,7 @@ class Zend_Cache_Core
             $prefix    = & $this->_options['cache_id_prefix'];
             $prefixLen = strlen($prefix);
             foreach ($ids as &$id) {
-                if (strpos($id, $prefix) === 0) {
+                if (strpos($id, (string) $prefix) === 0) {
                     $id = substr($id, $prefixLen);
                 }
             }
@@ -701,33 +699,6 @@ class Zend_Cache_Core
     }
 
     /**
-     * Make sure if we enable logging that the Zend_Log class
-     * is available.
-     * Create a default log object if none is set.
-     *
-     * @throws Zend_Cache_Exception
-     * @return void
-     */
-    protected function _loggerSanity()
-    {
-        if (!isset($this->_options['logging']) || !$this->_options['logging']) {
-            return;
-        }
-
-        if (isset($this->_options['logger']) && $this->_options['logger'] instanceof Zend_Log) {
-            return;
-        }
-
-        // Create a default logger to the standard output stream
-        require_once 'Zend/Log.php';
-        require_once 'Zend/Log/Writer/Stream.php';
-        require_once 'Zend/Log/Filter/Priority.php';
-        $logger = new Zend_Log(new Zend_Log_Writer_Stream('php://output'));
-        $logger->addFilter(new Zend_Log_Filter_Priority(Zend_Log::WARN, '<='));
-        $this->_options['logger'] = $logger;
-    }
-
-    /**
      * Log a message at the WARN (4) priority.
      *
      * @param string $message
@@ -736,14 +707,6 @@ class Zend_Cache_Core
      */
     protected function _log($message, $priority = 4)
     {
-        if (!$this->_options['logging']) {
-            return;
-        }
-        if (!(isset($this->_options['logger']) || $this->_options['logger'] instanceof Zend_Log)) {
-            Zend_Cache::throwException('Logging is enabled but logger is not set');
-        }
-        $logger = $this->_options['logger'];
-        $logger->log($message, $priority);
     }
 
     /**

@@ -20,19 +20,6 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Plugin_ErrorHandlerTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD"))
-{
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Plugin_ErrorHandlerTest::main");
-    $basePath = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..');
-    set_include_path(
-        $basePath . DIRECTORY_SEPARATOR . 'tests'
-        . PATH_SEPARATOR . $basePath . DIRECTORY_SEPARATOR . 'library'
-        . PATH_SEPARATOR . get_include_path()
-    );
-}
-
-
 require_once 'Zend/Controller/Plugin/ErrorHandler.php';
 require_once 'Zend/Controller/Request/Http.php';
 require_once 'Zend/Controller/Response/Http.php';
@@ -54,7 +41,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
-class Zend_Controller_Plugin_ErrorHandlerTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Plugin_ErrorHandlerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Request object
@@ -83,8 +70,8 @@ class Zend_Controller_Plugin_ErrorHandlerTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Plugin_ErrorHandlerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_ErrorHandlerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -213,7 +200,7 @@ class Zend_Controller_Plugin_ErrorHandlerTest extends PHPUnit_Framework_TestCase
             $this->fail('Repeated calls with new exceptions should throw exceptions');
         } catch (Exception $e) {
             $type = get_class($e);
-            $this->assertEquals('Zend_Controller_Dispatcher_Exception', $type);
+            $this->assertEquals(\Zend_Controller_Dispatcher_Exception::class, $type);
             $this->assertEquals('Another exception', $e->getMessage());
         }
     }
@@ -275,9 +262,4 @@ class Zend_Controller_Plugin_ErrorHandlerTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Controller_Plugin_ErrorHandlerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_ErrorHandlerTest::main")
-{
-    Zend_Controller_Plugin_ErrorHandlerTest::main();
-}
 

@@ -45,7 +45,7 @@ class HelperFlashMessengerController extends Zend_Controller_Action
         $this->getResponse()->appendBody(get_class($flashmessenger));
 
         $messages = $flashmessenger->getCurrentMessages();
-        if (count($messages) === 0) {
+        if ((is_countable($messages) ? count($messages) : 0) === 0) {
             $this->getResponse()->appendBody('1');
         }
 

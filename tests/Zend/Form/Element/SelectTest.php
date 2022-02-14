@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Form_Element_SelectTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Form_Element_SelectTest::main");
-}
+
 
 require_once 'Zend/Form/Element/Select.php';
 
@@ -37,7 +34,7 @@ require_once 'Zend/Form/Element/Select.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
-class Zend_Form_Element_SelectTest extends PHPUnit_Framework_TestCase
+class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -46,8 +43,8 @@ class Zend_Form_Element_SelectTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Form_Element_SelectTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_SelectTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -77,7 +74,7 @@ class Zend_Form_Element_SelectTest extends PHPUnit_Framework_TestCase
         $view = new Zend_View(array(
             'encoding' => 'UTF-8',
         ));
-        $view->addHelperPath(dirname(__FILE__) . '/../../../../library/Zend/View/Helper');
+        $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
         return $view;
     }
 
@@ -284,7 +281,3 @@ class Zend_Form_Element_SelectTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Form_Element_SelectTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Form_Element_SelectTest::main") {
-    Zend_Form_Element_SelectTest::main();
-}

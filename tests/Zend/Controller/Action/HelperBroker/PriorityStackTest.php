@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Action_HelperBrokerTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Action_HelperBrokerTest::main");
-}
+
 
 require_once 'Zend/Controller/Action/HelperBroker.php';
 require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
@@ -39,7 +36,7 @@ require_once 'Zend/Controller/Action/Helper/Redirector.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_HelperBroker_PriorityStackTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_HelperBroker_PriorityStackTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -58,9 +55,9 @@ class Zend_Controller_Action_HelperBroker_PriorityStackTest extends PHPUnit_Fram
         $this->stack->push(new Zend_Controller_Action_Helper_Redirector());
         $this->assertEquals(2, count($this->stack));
         $iterator = $this->stack->getIterator();
-        $this->assertEquals('Zend_Controller_Action_Helper_Redirector', get_class(current($iterator)));
+        $this->assertEquals(\Zend_Controller_Action_Helper_Redirector::class, get_class(current($iterator)));
         next($iterator);
-        $this->assertEquals('Zend_Controller_Action_Helper_ViewRenderer', get_class(current($iterator)));
+        $this->assertEquals(\Zend_Controller_Action_Helper_ViewRenderer::class, get_class(current($iterator)));
     }
 
     public function testStackPrioritiesWithDefaults()
@@ -107,10 +104,10 @@ class Zend_Controller_Action_HelperBroker_PriorityStackTest extends PHPUnit_Fram
         $this->stack->push(new Zend_Controller_Action_Helper_Redirector());
         unset($this->stack->ViewRenderer);
         $this->assertEquals(1, count($this->stack));
-        $this->assertEquals('Zend_Controller_Action_Helper_Redirector', get_class(current($this->stack->getIterator())));
-        $this->assertEquals('Zend_Controller_Action_Helper_Redirector', get_class($this->stack->Redirector));
-        $this->assertEquals('Zend_Controller_Action_Helper_Redirector', get_class($this->stack->offsetGet('Redirector')));
-        $this->assertEquals('Zend_Controller_Action_Helper_Redirector', get_class($this->stack->offsetGet(2)));
+        $this->assertEquals(\Zend_Controller_Action_Helper_Redirector::class, get_class(current($this->stack->getIterator())));
+        $this->assertEquals(\Zend_Controller_Action_Helper_Redirector::class, get_class($this->stack->Redirector));
+        $this->assertEquals(\Zend_Controller_Action_Helper_Redirector::class, get_class($this->stack->offsetGet('Redirector')));
+        $this->assertEquals(\Zend_Controller_Action_Helper_Redirector::class, get_class($this->stack->offsetGet(2)));
     }
 
 }

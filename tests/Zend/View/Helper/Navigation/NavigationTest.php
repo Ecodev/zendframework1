@@ -20,7 +20,7 @@
  * @version    $Id$
  */
 
-require_once dirname(__FILE__) . '/TestAbstract.php';
+require_once __DIR__ . '/TestAbstract.php';
 require_once 'Zend/View/Helper/Navigation.php';
 
 /**
@@ -42,7 +42,7 @@ class Zend_View_Helper_Navigation_NavigationTest
      *
      * @var string
      */
-    protected $_helperName = 'Zend_View_Helper_Navigation';
+    protected $_helperName = \Zend_View_Helper_Navigation::class;
 
     /**
      * View helper

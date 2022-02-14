@@ -54,6 +54,7 @@ class Zend_Filter_Callback implements Zend_Filter_Interface
      */
     public function __construct($options)
     {
+        $temp = [];
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } else if (!is_array($options) || !array_key_exists('callback', $options)) {

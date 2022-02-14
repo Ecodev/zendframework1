@@ -52,7 +52,7 @@ class Zend_Controller_Action_Helper_ActionStack extends Zend_Controller_Action_H
     public function __construct()
     {
         $front = Zend_Controller_Front::getInstance();
-        if (!$front->hasPlugin('Zend_Controller_Plugin_ActionStack')) {
+        if (!$front->hasPlugin(\Zend_Controller_Plugin_ActionStack::class)) {
             /**
              * @see Zend_Controller_Plugin_ActionStack
              */
@@ -60,7 +60,7 @@ class Zend_Controller_Action_Helper_ActionStack extends Zend_Controller_Action_H
             $this->_actionStack = new Zend_Controller_Plugin_ActionStack();
             $front->registerPlugin($this->_actionStack, 97);
         } else {
-            $this->_actionStack = $front->getPlugin('Zend_Controller_Plugin_ActionStack');
+            $this->_actionStack = $front->getPlugin(\Zend_Controller_Plugin_ActionStack::class);
         }
     }
 
@@ -108,8 +108,8 @@ class Zend_Controller_Action_Helper_ActionStack extends Zend_Controller_Action_H
             throw new Zend_Controller_Action_Exception('Request object not set yet');
         }
 
-        $controller = (null === $controller) ? $request->getControllerName() : $controller;
-        $module = (null === $module) ? $request->getModuleName() : $module;
+        $controller ??= $request->getControllerName();
+        $module ??= $request->getModuleName();
 
         /**
          * @see Zend_Controller_Request_Simple

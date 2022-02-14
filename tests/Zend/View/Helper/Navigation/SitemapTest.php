@@ -20,7 +20,7 @@
  * @version    $Id$
  */
 
-require_once dirname(__FILE__) . '/TestAbstract.php';
+require_once __DIR__ . '/TestAbstract.php';
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Request/Http.php';
 require_once 'Zend/View/Helper/Navigation/Sitemap.php';
@@ -49,7 +49,7 @@ class Zend_View_Helper_Navigation_SitemapTest
      *
      * @var string
      */
-    protected $_helperName = 'Zend_View_Helper_Navigation_Sitemap';
+    protected $_helperName = \Zend_View_Helper_Navigation_Sitemap::class;
 
     /**
      * View helper

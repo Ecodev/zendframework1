@@ -395,7 +395,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             }
             return '';
         }
-        if (count($var) > 0) {
+        if (count((array) $var) > 0) {
             return false;
         }
         return '';

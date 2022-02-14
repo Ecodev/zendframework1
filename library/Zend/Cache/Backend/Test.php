@@ -55,17 +55,13 @@ class Zend_Cache_Backend_Test extends Zend_Cache_Backend implements Zend_Cache_B
 
     /**
      * Array to log actions
-     *
-     * @var array $_log
      */
-    private $_log = array();
+    private array $_log = array();
 
     /**
      * Current index for log array
-     *
-     * @var int $_index
      */
-    private $_index = 0;
+    private int $_index = 0;
 
     /**
      * Constructor

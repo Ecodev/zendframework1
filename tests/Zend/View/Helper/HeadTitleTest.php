@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_HeadTitleTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_HeadTitleTest::main");
-}
+
 
 /** Zend_View_Helper_HeadTitle */
 require_once 'Zend/View/Helper/HeadTitle.php';
@@ -45,7 +42,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HeadTitleTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadTitle
@@ -64,8 +61,8 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_HeadTitleTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadTitleTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -81,7 +78,7 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit_Framework_TestCase
             $registry = Zend_Registry::getInstance();
             unset($registry[$regKey]);
         }
-        $this->basePath = dirname(__FILE__) . '/_files/modules';
+        $this->basePath = __DIR__ . '/_files/modules';
         $this->helper = new Zend_View_Helper_HeadTitle();
     }
 
@@ -99,12 +96,12 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit_Framework_TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists('Zend_View_Helper_HeadTitle')) {
-            $registry->deleteContainer('Zend_View_Helper_HeadTitle');
+        if ($registry->containerExists(\Zend_View_Helper_HeadTitle::class)) {
+            $registry->deleteContainer(\Zend_View_Helper_HeadTitle::class);
         }
-        $this->assertFalse($registry->containerExists('Zend_View_Helper_HeadTitle'));
+        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadTitle::class));
         $helper = new Zend_View_Helper_HeadTitle();
-        $this->assertTrue($registry->containerExists('Zend_View_Helper_HeadTitle'));
+        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadTitle::class));
     }
 
     public function testHeadTitleReturnsObjectInstance()
@@ -213,8 +210,8 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit_Framework_TestCase
     {
         require_once 'Zend/Translate/Adapter/Ini.php';
         require_once 'Zend/Registry.php';
-        $adapter = new Zend_Translate_Adapter_Ini(dirname(__FILE__) . '/../../Translate/Adapter/_files/translation_en.ini', 'en');
-        Zend_Registry::set('Zend_Translate', $adapter);
+        $adapter = new Zend_Translate_Adapter_Ini(__DIR__ . '/../../Translate/Adapter/_files/translation_en.ini', 'en');
+        Zend_Registry::set(\Zend_Translate::class, $adapter);
         $this->helper->enableTranslation();
         $this->helper->headTitle('Message_1');
         $this->assertEquals('<title>Message 1 (en)</title>', $this->helper->toString());
@@ -247,7 +244,3 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_HeadTitleTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HeadTitleTest::main") {
-    Zend_View_Helper_HeadTitleTest::main();
-}

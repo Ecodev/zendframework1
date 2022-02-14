@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Validate_File_IsImageTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Validate_File_IsImageTest::main");
-}
+
 
 /**
  * @see Zend_Validate_File_IsImage
@@ -40,7 +37,7 @@ require_once 'Zend/Validate/File/IsImage.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
-class Zend_Validate_File_IsImageTest extends PHPUnit_Framework_TestCase
+class Zend_Validate_File_IsImageTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +46,8 @@ class Zend_Validate_File_IsImageTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Validate_File_IsImageTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_IsImageTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -74,7 +71,7 @@ class Zend_Validate_File_IsImageTest extends PHPUnit_Framework_TestCase
             'name'     => 'picture.jpg',
             'type'     => 'image/jpeg',
             'size'     => 200,
-            'tmp_name' => dirname(__FILE__) . '/_files/picture.jpg',
+            'tmp_name' => __DIR__ . '/_files/picture.jpg',
             'error'    => 0
         );
 
@@ -83,7 +80,7 @@ class Zend_Validate_File_IsImageTest extends PHPUnit_Framework_TestCase
             $validator->enableHeaderCheck();
             $this->assertEquals(
                 $element[1],
-                $validator->isValid(dirname(__FILE__) . '/_files/picture.jpg', $files),
+                $validator->isValid(__DIR__ . '/_files/picture.jpg', $files),
                 "Tested with " . var_export($element, 1)
             );
         }
@@ -161,13 +158,13 @@ class Zend_Validate_File_IsImageTest extends PHPUnit_Framework_TestCase
             'name'     => 'picture.jpg',
             'type'     => 'image/jpeg',
             'size'     => 200,
-            'tmp_name' => dirname(__FILE__) . '/_files/picture.jpg',
+            'tmp_name' => __DIR__ . '/_files/picture.jpg',
             'error'    => 0
         );
 
         $validator = new Zend_Validate_File_IsImage('test/notype');
         $validator->enableHeaderCheck();
-        $this->assertFalse($validator->isValid(dirname(__FILE__) . '/_files/picture.jpg', $files));
+        $this->assertFalse($validator->isValid(__DIR__ . '/_files/picture.jpg', $files));
         $error = $validator->getMessages();
         $this->assertTrue(array_key_exists('fileIsImageFalseType', $error));
     }
@@ -179,9 +176,9 @@ class Zend_Validate_File_IsImageTest extends PHPUnit_Framework_TestCase
         }
 
         if (version_compare(PHP_VERSION, '5.3', '>=')) {
-            $magicFile = dirname(__FILE__) . '/_files/magic-php53.mime';
+            $magicFile = __DIR__ . '/_files/magic-php53.mime';
         } else {
-            $magicFile = dirname(__FILE__) . '/_files/magic.mime';
+            $magicFile = __DIR__ . '/_files/magic.mime';
         }
 
         $validator = new Zend_Validate_File_IsImage(array(
@@ -196,7 +193,3 @@ class Zend_Validate_File_IsImageTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_Validate_File_IsImage::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Validate_File_IsImage::main") {
-    Zend_Validate_File_IsImage::main();
-}

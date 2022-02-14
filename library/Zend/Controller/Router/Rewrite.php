@@ -210,7 +210,7 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
      */
     protected function _getRouteFromConfig(Zend_Config $info)
     {
-        $class = (isset($info->type)) ? $info->type : 'Zend_Controller_Router_Route';
+        $class = $info->type ?? \Zend_Controller_Router_Route::class;
         if (!class_exists($class)) {
             require_once 'Zend/Loader.php';
             Zend_Loader::loadClass($class);

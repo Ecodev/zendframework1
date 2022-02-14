@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Application_Resource_ModulesTest::main');
-}
+
 
 /**
  * Zend_Loader_Autoloader
@@ -37,12 +35,12 @@ require_once 'Zend/Loader/Autoloader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Resource_ModulesTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -60,7 +58,7 @@ class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
 
         $this->application = new Zend_Application('testing');
 
-        require_once dirname(__FILE__) . '/../_files/ZfAppBootstrap.php';
+        require_once __DIR__ . '/../_files/ZfAppBootstrap.php';
         $this->bootstrap = new ZfAppBootstrap($this->application);
 
         $this->front = Zend_Controller_Front::getInstance();
@@ -105,7 +103,7 @@ class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
         require_once 'Zend/Application/Resource/Modules.php';
 
         $this->bootstrap->registerPluginResource('Frontcontroller', array(
-            'moduleDirectory' => dirname(__FILE__) . '/../_files/modules',
+            'moduleDirectory' => __DIR__ . '/../_files/modules',
         ));
         $resource = new Zend_Application_Resource_Modules(array());
         $resource->setBootstrap($this->bootstrap);
@@ -118,7 +116,7 @@ class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
         require_once 'Zend/Application/Resource/Modules.php';
 
         $this->bootstrap->registerPluginResource('Frontcontroller', array(
-            'moduleDirectory' => dirname(__FILE__) . '/../_files/modules',
+            'moduleDirectory' => __DIR__ . '/../_files/modules',
         ));
         $resource = new Zend_Application_Resource_Modules(array());
         $resource->setBootstrap($this->bootstrap);
@@ -136,7 +134,7 @@ class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
         require_once 'Zend/Application/Resource/Modules.php';
 
         $this->bootstrap->registerPluginResource('Frontcontroller', array(
-            'moduleDirectory' => dirname(__FILE__) . '/../_files/modules',
+            'moduleDirectory' => __DIR__ . '/../_files/modules',
         ));
         $resource = new Zend_Application_Resource_Modules(array());
         $resource->setBootstrap($this->bootstrap);
@@ -158,7 +156,7 @@ class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
         require_once 'Zend/Application/Resource/Modules.php';
 
         $this->bootstrap->registerPluginResource('Frontcontroller', array(
-            'moduleDirectory' => dirname(__FILE__) . '/../_files/modules',
+            'moduleDirectory' => __DIR__ . '/../_files/modules',
         ));
         $resource = new Zend_Application_Resource_Modules(array());
         $resource->setBootstrap($this->bootstrap);
@@ -169,13 +167,13 @@ class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('foo',     (array)$bootstraps);
         $this->assertArrayHasKey('default', (array)$bootstraps);
     }
-    
+
     public function testBootstrapBootstrapsIsOwnMethod()
     {
         require_once 'Zend/Application/Resource/Modules.php';
 
         $this->bootstrap->registerPluginResource('Frontcontroller', array(
-            'moduleDirectory' => dirname(__FILE__) . '/../_files/modules',
+            'moduleDirectory' => __DIR__ . '/../_files/modules',
         ));
         $resource = new ZendTest_Application_Resource_ModulesHalf(array());
         $resource->setBootstrap($this->bootstrap);
@@ -191,7 +189,7 @@ class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
         require_once 'Zend/Application/Resource/Modules.php';
 
         $this->bootstrap->registerPluginResource('Frontcontroller', array(
-            'moduleDirectory' => dirname(__FILE__) . '/../_files/modules',
+            'moduleDirectory' => __DIR__ . '/../_files/modules',
         ));
         $resource = new Zend_Application_Resource_Modules(array());
         $resource->setBootstrap($this->bootstrap);
@@ -203,7 +201,7 @@ class Zend_Application_Resource_ModulesTest extends PHPUnit_Framework_TestCase
 
 require_once 'Zend/Application/Resource/Modules.php';
 class ZendTest_Application_Resource_ModulesHalf
-    extends Zend_Application_Resource_Modules 
+    extends Zend_Application_Resource_Modules
 {
     protected function bootstrapBootstraps($bootstraps)
     {
@@ -212,6 +210,3 @@ class ZendTest_Application_Resource_ModulesHalf
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Resource_ModulesTest::main') {
-    Zend_Application_Resource_ModulesTest::main();
-}

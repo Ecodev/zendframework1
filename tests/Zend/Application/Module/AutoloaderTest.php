@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Application_Module_AutoloaderTest::main');
-}
+
 
 /**
  * @see Zend_Loader_Autoloader
@@ -50,12 +48,12 @@ require_once 'Zend/Config.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
-class Zend_Application_Module_AutoloaderTest extends PHPUnit_Framework_TestCase
+class Zend_Application_Module_AutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -79,7 +77,7 @@ class Zend_Application_Module_AutoloaderTest extends PHPUnit_Framework_TestCase
 
         $this->loader = new Zend_Application_Module_Autoloader(array(
             'namespace' => 'FooBar',
-            'basePath'  => realpath(dirname(__FILE__) . '/_files'),
+            'basePath'  => realpath(__DIR__ . '/_files'),
         ));
     }
 
@@ -185,6 +183,3 @@ class Zend_Application_Module_AutoloaderTest extends PHPUnit_Framework_TestCase
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Application_Module_AutoloaderTest::main') {
-    Zend_Application_Module_AutoloaderTest::main();
-}

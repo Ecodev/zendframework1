@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_ActionTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_ActionTest::main");
-}
+
 
 
 require_once 'Zend/Controller/Action.php';
@@ -41,7 +38,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  */
-class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -52,8 +49,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_ActionTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_ActionTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -285,8 +282,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
 
     public function testInitView()
     {
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController(
             new Zend_Controller_Request_Http(),
             new Zend_Controller_Response_Cli()
@@ -295,7 +292,7 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($view instanceof Zend_View);
         $scriptPath = $view->getScriptPaths();
         $this->assertTrue(is_array($scriptPath));
-        $this->assertEquals(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'scripts/', $scriptPath[0]);
+        $this->assertEquals(__DIR__ . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'scripts/', $scriptPath[0]);
     }
 
     public function testRender()
@@ -304,8 +301,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('index');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
 
         $controller->indexAction();
@@ -318,8 +315,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('test');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
 
         $controller->testAction();
@@ -332,8 +329,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('site');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
 
         $controller->siteAction();
@@ -346,8 +343,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('name');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
 
         $controller->nameAction();
@@ -360,8 +357,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('foo.bar')
                 ->setActionName('baz_bat');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'FooBarController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'FooBarController.php';
         $controller = new FooBarController($request, $response);
 
         $controller->bazBatAction();
@@ -374,8 +371,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('test');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
 
         $script = $controller->getViewScript();
@@ -387,8 +384,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
 
     public function testGetViewScriptDoesNotOverwriteNoControllerFlagWhenNullPassed()
     {
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
 
         $request    = new Zend_Controller_Request_Http();
@@ -413,8 +410,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('script');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
 
         $controller->scriptAction();
@@ -427,8 +424,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('script-name');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
 
         $controller->scriptNameAction();
@@ -458,8 +455,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('script');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
         $this->assertNotNull($controller->view);
     }
@@ -471,8 +468,8 @@ class Zend_Controller_ActionTest extends PHPUnit_Framework_TestCase
         $request->setControllerName('view')
                 ->setActionName('script');
         $response = new Zend_Controller_Response_Cli();
-        Zend_Controller_Front::getInstance()->setControllerDirectory(dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files');
-        require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
+        Zend_Controller_Front::getInstance()->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        require_once __DIR__ . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'ViewController.php';
         $controller = new ViewController($request, $response);
 
         $controller->scriptAction();
@@ -547,7 +544,3 @@ class Zend_Controller_ActionTest_TestController extends Zend_Controller_Action
     }
 }
 
-// Call Zend_Controller_ActionTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_ActionTest::main") {
-    Zend_Controller_ActionTest::main();
-}

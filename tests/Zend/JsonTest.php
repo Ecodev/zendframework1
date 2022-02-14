@@ -48,7 +48,7 @@ require_once 'Zend/Json/Decoder.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Json
  */
-class Zend_JsonTest extends PHPUnit_Framework_TestCase
+class Zend_JsonTest extends \PHPUnit\Framework\TestCase
 {
     private $_originalUseBuiltinEncoderDecoderValue;
 
@@ -126,8 +126,8 @@ class Zend_JsonTest extends PHPUnit_Framework_TestCase
         $o = new stdClass();
         $o->test = 1;
         $o->faz = 'fubar';
-        
-        // The escaped double-quote in item 'stringwithjsonchars' ensures that 
+
+        // The escaped double-quote in item 'stringwithjsonchars' ensures that
         // escaped double-quotes don't throw off prettyPrint's string literal detection
         $test = array(
             'simple'=>'simple test string',
@@ -268,7 +268,7 @@ EOB;
         $value->one = 1;
         $value->two = 2;
 
-        $array = array('__className' => 'stdClass', 'one' => 1, 'two' => 2);
+        $array = array('__className' => \stdClass::class, 'one' => 1, 'two' => 2);
 
         $encoded = Zend_Json_Encoder::encode($value);
         $this->assertSame($array, Zend_Json_Decoder::decode($encoded));
@@ -823,7 +823,7 @@ EOB;
         $expectedDecoding = '{"__className":"ArrayIterator","0":"foo"}';
         $this->assertEquals($encoded, $expectedDecoding);
     }
-    
+
     /**
      * @group ZF-11356
      */
@@ -832,11 +832,11 @@ EOB;
         if (version_compare(PHP_VERSION, '5.3.0') === -1) {
             $this->markTestSkipped('Namespaces not available in PHP < 5.3.0');
         }
-        
-        require_once dirname(__FILE__ ) . "/Json/_files/ZF11356-NamespacedClass.php";        
+
+        require_once __DIR__ . "/Json/_files/ZF11356-NamespacedClass.php";
         $className = '\Zend\JsonTest\ZF11356\NamespacedClass';
         $inputValue = new $className(array('foo'));
-        
+
         $encoded = Zend_Json_Encoder::encode($inputValue);
         $this->assertEquals(
             '{"__className":"Zend\\\\JsonTest\\\\ZF11356\\\\NamespacedClass","0":"foo"}',
@@ -908,14 +908,14 @@ EOB;
         $json = Zend_Json::encode($array);
         $this->assertEquals($expected, $json);
     }
-    
+
     /**
      * @group ZF-7586
      */
     public function testWillDecodeStructureWithEmptyKeyToObjectProperly()
     {
         Zend_Json::$useBuiltinEncoderDecoder = true;
-        
+
         $json = '{"":"test"}';
         $object = Zend_Json::decode($json, Zend_Json::TYPE_OBJECT);
         $this->assertTrue(isset($object->_empty_));
@@ -936,7 +936,7 @@ class Zend_JsonTest_Item
  */
 class Zend_JsonTest_Object
 {
-    const FOO = 'bar';
+    public const FOO = 'bar';
 
     public $foo = 'bar';
     public $bar = 'baz';
@@ -958,11 +958,11 @@ class Zend_JsonTest_Object
 
 class ToJsonClass
 {
-    private $_firstName = 'John';
+    private string $_firstName = 'John';
 
-    private $_lastName = 'Doe';
+    private string $_lastName = 'Doe';
 
-    private $_email = 'john@doe.com';
+    private string $_email = 'john@doe.com';
 
     public function toJson()
     {
@@ -982,11 +982,11 @@ class ToJsonClass
  */
 class ZF11167_ToArrayClass
 {
-    private $_firstName = 'John';
+    private string $_firstName = 'John';
 
-    private $_lastName = 'Doe';
+    private string $_lastName = 'Doe';
 
-    private $_email = 'john@doe.com';
+    private string $_email = 'john@doe.com';
 
     public function toArray()
     {
@@ -1004,7 +1004,7 @@ class ZF11167_ToArrayClass
  * @see ZF-11167
  */
 class ZF11167_ToArrayToJsonClass extends ZF11167_ToArrayClass
-{    
+{
     public function toJson()
     {
         return Zend_Json::encode('bogus');
@@ -1017,9 +1017,9 @@ class ZF11167_ToArrayToJsonClass extends ZF11167_ToArrayClass
  */
 class Zend_Json_ToJsonWithExpr
 {
-    private $_string = 'text';
-    private $_int = 9;
-    private $_expr = 'window.alert("Zend Json Expr")';
+    private string $_string = 'text';
+    private int $_int = 9;
+    private string $_expr = 'window.alert("Zend Json Expr")';
 
     public function toJson()
     {

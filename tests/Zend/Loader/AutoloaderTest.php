@@ -20,9 +20,7 @@
  * @version    $Id$
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Loader_AutoloaderTest::main');
-}
+
 
 /**
  * @see Zend_Loader_Autoloader
@@ -42,12 +40,12 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
-class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
+class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite(__CLASS__);
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -119,7 +117,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
 
     public function testDefaultAutoloaderShouldBeZendLoader()
     {
-        $this->assertSame(array('Zend_Loader', 'loadClass'), $this->autoloader->getDefaultAutoloader());
+        $this->assertSame(array(\Zend_Loader::class, 'loadClass'), $this->autoloader->getDefaultAutoloader());
     }
 
     public function testDefaultAutoloaderShouldBeMutable()
@@ -386,7 +384,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
             $this->markTestSkipped(__METHOD__ . ' requires PHP version 5.3.0 or greater');
         }
 
-        $closure = require_once dirname(__FILE__) . '/_files/AutoloaderClosure.php';
+        $closure = require_once __DIR__ . '/_files/AutoloaderClosure.php';
         $this->autoloader->pushAutoloader($closure);
         $this->assertTrue(Zend_Loader_Autoloader::autoload('AutoloaderTest_AutoloaderClosure'));
     }
@@ -400,7 +398,7 @@ class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
                          ->pushAutoloader(array($this, 'autoloadSecondLevel'), 'Level1_Level2');
         $class = 'Level1_Level2_Foo';
         $als   = $this->autoloader->getClassAutoloaders($class);
-        $this->assertEquals(1, count($als));
+        $this->assertEquals(1, is_countable($als) ? count($als) : 0);
         $al    = array_shift($als);
         $this->assertEquals(array($this, 'autoloadSecondLevel'), $al);
     }
@@ -416,12 +414,12 @@ class Zend_Loader_AutoloaderTest extends PHPUnit_Framework_TestCase
 
         $class = 'Zend_Autoloader_Test';
         $autoloaders = $this->autoloader->getClassAutoloaders($class);
-        $this->assertEquals(3, count($autoloaders));
+        $this->assertEquals(3, is_countable($autoloaders) ? count($autoloaders) : 0);
     }
 
     public function addTestIncludePath()
     {
-        set_include_path(dirname(__FILE__) . '/_files/' . PATH_SEPARATOR . $this->includePath);
+        set_include_path(__DIR__ . '/_files/' . PATH_SEPARATOR . $this->includePath);
     }
 
     public function handleErrors($errno, $errstr)
@@ -458,6 +456,3 @@ class Zend_Loader_AutoloaderTest_Autoloader implements Zend_Loader_Autoloader_In
     }
 }
 
-if (PHPUnit_MAIN_METHOD == 'Zend_Loader_AutoloaderTest::main') {
-    Zend_Loader_AutoloaderTest::main();
-}

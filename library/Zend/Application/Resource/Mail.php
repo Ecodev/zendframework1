@@ -90,7 +90,7 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
         if (isset($options[$key]['email'])
             && !is_numeric($options[$key]['email'])
         ) {
-            $method = array('Zend_Mail', 'setDefault' . ucfirst($type));
+            $method = array(\Zend_Mail::class, 'setDefault' . ucfirst($type));
             if (isset($options[$key]['name'])
                 && !is_numeric(
                     $options[$key]['name']
@@ -130,7 +130,7 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
         unset($options['register']); //@see ZF-11022
 
         switch($transportName) {
-            case 'Zend_Mail_Transport_Smtp':
+            case \Zend_Mail_Transport_Smtp::class:
                 if (!isset($options['host'])) {
                     throw new Zend_Application_Resource_Exception(
                         'A host is necessary for smtp transport,'
@@ -140,7 +140,7 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
 
                 $transport = new $transportName($options['host'], $options);
                 break;
-            case 'Zend_Mail_Transport_Sendmail':
+            case \Zend_Mail_Transport_Sendmail::class:
             default:
                 $transport = new $transportName($options);
                 break;

@@ -20,9 +20,7 @@
  * @version    $Id $
  */
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_LocaleTest::main');
-}
+
 
 // define('TESTS_ZEND_LOCALE_BCMATH_ENABLED', false); // uncomment to disable use of bcmath extension by Zend_Date
 
@@ -40,7 +38,7 @@ require_once 'Zend/Cache.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Locale
  */
-class Zend_LocaleTest extends PHPUnit_Framework_TestCase
+class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -49,8 +47,8 @@ class Zend_LocaleTest extends PHPUnit_Framework_TestCase
      */
     public static function main()
     {
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_LocaleTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_LocaleTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     private $_cache  = null;
@@ -63,7 +61,7 @@ class Zend_LocaleTest extends PHPUnit_Framework_TestCase
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
                  array('lifetime' => 120, 'automatic_serialization' => true),
-                 array('cache_dir' => dirname(__FILE__) . '/_files/'));
+                 array('cache_dir' => __DIR__ . '/_files/'));
         Zend_LocaleTestHelper::resetObject();
         Zend_LocaleTestHelper::setCache($this->_cache);
 
@@ -820,7 +818,7 @@ class Zend_LocaleTest extends PHPUnit_Framework_TestCase
             $this->assertContains('is no known locale', $e->getMessage());
         }
 
-        Zend_Registry::set('Zend_Locale', 'de');
+        Zend_Registry::set(\Zend_Locale::class, 'de');
         $this->assertEquals('de', Zend_LocaleTestHelper::findLocale());
     }
 
@@ -916,7 +914,7 @@ class Zend_LocaleTest extends PHPUnit_Framework_TestCase
         }
 
         $dir = new DirectoryIterator(
-            dirname(__FILE__) . '/../../library/Zend/Locale/Data'
+            __DIR__ . '/../../library/Zend/Locale/Data'
         );
         $skip = array(
             'characters.xml',
@@ -945,7 +943,7 @@ class Zend_LocaleTest extends PHPUnit_Framework_TestCase
             }
         }
 
-        $class    = new ReflectionClass('Zend_Locale');
+        $class    = new ReflectionClass(\Zend_Locale::class);
         $property = $class->getProperty('_localeData');
         $property->setAccessible(true);
 
@@ -982,7 +980,3 @@ class Zend_LocaleTestHelper extends Zend_Locale
     }
 }
 
-// Call Zend_LocaleTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_LocaleTest::main") {
-    Zend_LocaleTest::main();
-}

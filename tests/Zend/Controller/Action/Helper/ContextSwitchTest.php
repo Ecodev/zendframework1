@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Action_Helper_ContextSwitchTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Action_Helper_ContextSwitchTest::main");
-}
+
 
 
 require_once 'Zend/Controller/Action/Helper/ContextSwitch.php';
@@ -51,7 +48,7 @@ require_once 'Zend/View/Interface.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
-class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -62,8 +59,8 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit_Framework_
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Action_Helper_ContextSwitchTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ContextSwitchTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -79,7 +76,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit_Framework_
 
         $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
-        $this->front->addModuleDirectory(dirname(__FILE__) . '/../../_files/modules');
+        $this->front->addModuleDirectory(__DIR__ . '/../../_files/modules');
 
         $this->layout = Zend_Layout::startMvc();
 
@@ -91,7 +88,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit_Framework_
 
         $this->front->setRequest($this->request)
                     ->setResponse($this->response)
-                    ->addControllerDirectory(dirname(__FILE__));
+                    ->addControllerDirectory(__DIR__);
 
         $this->view = new Zend_View();
         $this->viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
@@ -299,7 +296,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit_Framework_
     {
         $callbacks = array(
             'init' => 'htmlentities',
-            'post' => array('Zend_Loader', 'registerAutoload')
+            'post' => array(\Zend_Loader::class, 'registerAutoload')
         );
         $this->helper->setCallbacks('xml', $callbacks);
         $returned = $this->helper->getCallbacks('xml');
@@ -532,6 +529,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit_Framework_
 
     public function testInitContextSetsAppropriateResponseHeader()
     {
+        $value = null;
         $this->request->setParam('format', 'xml')
                       ->setActionName('foo');
         $this->helper->initContext();
@@ -550,6 +548,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit_Framework_
 
     public function testInitContextUsesPassedFormatWhenContextParamPresent()
     {
+        $value = null;
         $this->request->setParam('format', 'xml')
                       ->setActionName('foo');
         $this->helper->initContext('json');
@@ -571,6 +570,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit_Framework_
 
     public function testInitContextUsesPassedFormatWhenNoContextParamNotPresent()
     {
+        $value = null;
         $this->request->setActionName('foo');
         $this->helper->initContext('xml');
 
@@ -975,10 +975,10 @@ class Zend_Controller_Action_Helper_ContextSwitchText_CustomView implements Zend
     public function getScriptPaths()
     {}
 
-    public function setBasePath($path, $classPrefix = 'Zend_View')
+    public function setBasePath($path, $classPrefix = \Zend_View::class)
     {}
 
-    public function addBasePath($path, $classPrefix = 'Zend_View')
+    public function addBasePath($path, $classPrefix = \Zend_View::class)
     {}
 
     public function __set($key, $val)
@@ -1000,7 +1000,3 @@ class Zend_Controller_Action_Helper_ContextSwitchText_CustomView implements Zend
     {}
 }
 
-// Call Zend_Controller_Action_Helper_ContextSwitchTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Action_Helper_ContextSwitchTest::main") {
-    Zend_Controller_Action_Helper_ContextSwitchTest::main();
-}

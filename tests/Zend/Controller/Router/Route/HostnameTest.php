@@ -26,9 +26,7 @@ require_once 'Zend/Controller/Router/Route/Hostname.php';
 /** Zend_Controller_Request_Http */
 require_once 'Zend/Controller/Request/Http.php';
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Zend_Controller_Router_Route_HostnameTest::main');
-}
+
 
 /**
  * @category   Zend
@@ -39,7 +37,7 @@ if (!defined('PHPUnit_MAIN_METHOD')) {
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
-class Zend_Controller_Router_Route_HostnameTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -50,8 +48,8 @@ class Zend_Controller_Router_Route_HostnameTest extends PHPUnit_Framework_TestCa
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Router_Route_HostnameTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_HostnameTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testCorrectStaticHostMatch()
@@ -263,6 +261,3 @@ class Zend_Controller_Router_RewriteTest_Request_Stub extends Zend_Controller_Re
     }
 }
 
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Router_Route_HostnameTest::main") {
-    Zend_Controller_Router_Route_HostnameTest::main();
-}

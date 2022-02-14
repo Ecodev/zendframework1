@@ -20,7 +20,7 @@
  * @version    $Id$
  */
 
-require_once dirname(__FILE__) . '/TestAbstract.php';
+require_once __DIR__ . '/TestAbstract.php';
 require_once 'Zend/View/Helper/Navigation/Links.php';
 
 /**
@@ -42,7 +42,7 @@ class Zend_View_Helper_Navigation_LinksTest
      *
      * @var string
      */
-    protected $_helperName = 'Zend_View_Helper_Navigation_Links';
+    protected $_helperName = \Zend_View_Helper_Navigation_Links::class;
 
     /**
      * View helper
@@ -101,13 +101,13 @@ class Zend_View_Helper_Navigation_LinksTest
         $found = $this->_helper->findRelation($active, 'rel', 'example');
 
         $expected = array(
-            'type'  => 'Zend_Navigation_Page_Uri',
+            'type'  => \Zend_Navigation_Page_Uri::class,
             'href'  => 'http://www.example.com/',
             'label' => null
         );
 
         $actual = array(
-            'type'  => get_class($found),
+            'type'  => $found !== null ? get_class($found) : self::class,
             'href'  => $found->getHref(),
             'label' => $found->getLabel()
         );
@@ -125,7 +125,7 @@ class Zend_View_Helper_Navigation_LinksTest
         $found = $this->_helper->findRelExample($active);
 
         $expected = array(
-            'type'  => 'Zend_Navigation_Page_Uri',
+            'type'  => \Zend_Navigation_Page_Uri::class,
             'href'  => 'http://www.example.com/',
             'label' => 'An example page'
         );
@@ -149,7 +149,7 @@ class Zend_View_Helper_Navigation_LinksTest
         $found = $this->_helper->findRelExample($active);
 
         $expected = array(
-            'type'  => 'Zend_Navigation_Page_Uri',
+            'type'  => \Zend_Navigation_Page_Uri::class,
             'href'  => 'http://www.example.com/',
             'label' => 'An example page'
         );
@@ -173,7 +173,7 @@ class Zend_View_Helper_Navigation_LinksTest
         $found = $this->_helper->findRelExample($active);
 
         $expected = array(
-            'type'  => 'Zend_Navigation_Page_Uri',
+            'type'  => \Zend_Navigation_Page_Uri::class,
             'href'  => 'http://www.example.com/',
             'label' => 'An example page'
         );
@@ -205,7 +205,7 @@ class Zend_View_Helper_Navigation_LinksTest
         $found = $this->_helper->findRelAlternate($active);
 
         $expected = array('type' => 'array', 'count' => 2);
-        $actual = array('type' => gettype($found), 'count' => count($found));
+        $actual = array('type' => gettype($found), 'count' => is_countable($found) ? count($found) : 0);
         $this->assertEquals($expected, $actual);
     }
 
@@ -227,7 +227,7 @@ class Zend_View_Helper_Navigation_LinksTest
         $found = $this->_helper->findRelAlternate($active);
 
         $expected = array('type' => 'array', 'count' => 2);
-        $actual = array('type' => gettype($found), 'count' => count($found));
+        $actual = array('type' => gettype($found), 'count' => is_countable($found) ? count($found) : 0);
         $this->assertEquals($expected, $actual);
     }
 

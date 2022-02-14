@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_RenderToPlaceholderTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_RenderToPlaceholderTest::main");
-}
+
 
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/Placeholder.php';
@@ -38,14 +35,14 @@ require_once 'Zend/View/Helper/Placeholder.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_RenderToPlaceholderTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_RenderToPlaceholderTest extends \PHPUnit\Framework\TestCase
 {
 
     protected $_view = null;
 
     public function setUp()
     {
-        $this->_view = new Zend_View(array('scriptPath'=>dirname(__FILE__).'/_files/scripts/'));
+        $this->_view = new Zend_View(array('scriptPath'=>__DIR__.'/_files/scripts/'));
     }
 
     public function testDefaultEmpty()

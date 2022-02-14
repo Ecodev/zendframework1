@@ -37,8 +37,8 @@ class Zend_Validate_File_ExcludeExtension extends Zend_Validate_File_Extension
     /**
      * @const string Error constants
      */
-    const FALSE_EXTENSION = 'fileExcludeExtensionFalse';
-    const NOT_FOUND       = 'fileExcludeExtensionNotFound';
+    public const FALSE_EXTENSION = 'fileExcludeExtensionFalse';
+    public const NOT_FOUND       = 'fileExcludeExtensionNotFound';
 
     /**
      * @var array Error message templates
@@ -60,6 +60,7 @@ class Zend_Validate_File_ExcludeExtension extends Zend_Validate_File_Extension
      */
     public function isValid($value, $file = null)
     {
+        $info = [];
         // Is file readable ?
         require_once 'Zend/Loader.php';
         if (!Zend_Loader::isReadable($value)) {

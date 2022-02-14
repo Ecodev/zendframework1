@@ -45,7 +45,7 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
      * Registry key under which actions are stored
      * @var string
      */
-    protected $_registryKey = 'Zend_Controller_Plugin_ActionStack';
+    protected $_registryKey = \Zend_Controller_Plugin_ActionStack::class;
 
     /**
      * Valid keys for stack items
@@ -214,7 +214,7 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
         }
         $action = $next->getActionName();
         if (empty($action)) {
-            return $this->popStack($stack);
+            return $this->popStack();
         }
 
         $request    = $this->getRequest();

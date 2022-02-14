@@ -33,13 +33,12 @@ class Zend_Registry extends ArrayObject
      * Class name of the singleton registry object.
      * @var string
      */
-    private static $_registryClassName = 'Zend_Registry';
+    private static $_registryClassName = \Zend_Registry::class;
 
     /**
      * Registry object provides storage for shared objects.
-     * @var Zend_Registry
      */
-    private static $_registry = null;
+    private static ?\Zend_Registry $_registry = null;
 
     /**
      * Retrieves the default registry instance.
@@ -94,7 +93,7 @@ class Zend_Registry extends ArrayObject
      * @throws Zend_Exception if the registry is initialized or if the
      *   class name is not valid.
      */
-    public static function setClassName($registryClassName = 'Zend_Registry')
+    public static function setClassName($registryClassName = \Zend_Registry::class)
     {
         if (self::$_registry !== null) {
             require_once 'Zend/Exception.php';
@@ -194,16 +193,4 @@ class Zend_Registry extends ArrayObject
     {
         parent::__construct($array, $flags);
     }
-
-    /**
-     * @param string $index
-     * @returns mixed
-     *
-     * Workaround for http://bugs.php.net/bug.php?id=40442 (ZF-960).
-     */
-    public function offsetExists($index)
-    {
-        return array_key_exists($index, $this);
-    }
-
 }

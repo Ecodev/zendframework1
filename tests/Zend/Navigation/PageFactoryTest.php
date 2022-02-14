@@ -33,7 +33,7 @@ require_once 'Zend/Navigation/Page.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Navigation
  */
-class Zend_Navigation_PageFactoryTest extends PHPUnit_Framework_TestCase
+class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
 {
     protected $_oldIncludePath;
 
@@ -43,7 +43,7 @@ class Zend_Navigation_PageFactoryTest extends PHPUnit_Framework_TestCase
         $this->_oldIncludePath = get_include_path();
 
         // add _files dir to include path
-        $addToPath = dirname(__FILE__) . '/_files';
+        $addToPath = __DIR__ . '/_files';
         set_include_path($addToPath . PATH_SEPARATOR . $this->_oldIncludePath);
     }
 
@@ -80,7 +80,7 @@ class Zend_Navigation_PageFactoryTest extends PHPUnit_Framework_TestCase
             )),
         );
 
-        $this->assertContainsOnly('Zend_Navigation_Page_Mvc', $pages);
+        $this->assertContainsOnly(\Zend_Navigation_Page_Mvc::class, $pages);
     }
 
     public function testDetectUriPage()

@@ -42,13 +42,13 @@ require_once 'Zend/Config/Writer/Json.php';
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Config_Writer_JsonTest extends PHPUnit_Framework_TestCase
+class Zend_Config_Writer_JsonTest extends \PHPUnit\Framework\TestCase
 {
     protected $_tempName;
 
     public function setUp()
     {
-        $this->_tempName = tempnam(dirname(__FILE__) . '/temp', 'tmp');
+        $this->_tempName = tempnam(__DIR__ . '/temp', 'tmp');
     }
 
     public function tearDown()
@@ -119,7 +119,7 @@ class Zend_Config_Writer_JsonTest extends PHPUnit_Framework_TestCase
 
     public function testWriteAndReadOriginalFile()
     {
-        $config = new Zend_Config_Json(dirname(__FILE__) . '/files/allsections.json', null, array('skip_extends' => true));
+        $config = new Zend_Config_Json(__DIR__ . '/files/allsections.json', null, array('skip_extends' => true));
 
         $writer = new Zend_Config_Writer_Json(array('config' => $config, 'filename' => $this->_tempName));
         $writer->write();
@@ -134,7 +134,7 @@ class Zend_Config_Writer_JsonTest extends PHPUnit_Framework_TestCase
 
     public function testWriteAndReadSingleSection()
     {
-        $config = new Zend_Config_Json(dirname(__FILE__) . '/files/allsections.json', 'staging', array('skip_extends' => true));
+        $config = new Zend_Config_Json(__DIR__ . '/files/allsections.json', 'staging', array('skip_extends' => true));
 
         $writer = new Zend_Config_Writer_Json(array('config' => $config, 'filename' => $this->_tempName));
         $writer->write();
@@ -160,7 +160,7 @@ class Zend_Config_Writer_JsonTest extends PHPUnit_Framework_TestCase
 
     public function testCanWritePrettyPrintedVersion()
     {
-        $config = new Zend_Config_Json(dirname(__FILE__) . '/files/allsections-pretty.json');
+        $config = new Zend_Config_Json(__DIR__ . '/files/allsections-pretty.json');
 
         $writer = new Zend_Config_Writer_Json(array('config' => $config, 'filename' => $this->_tempName));
         $writer->setPrettyPrint(true);

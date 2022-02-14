@@ -40,13 +40,13 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
      * Scheme for http
      *
      */
-    const SCHEME_HTTP  = 'http';
+    public const SCHEME_HTTP  = 'http';
 
     /**
      * Scheme for https
      *
      */
-    const SCHEME_HTTPS = 'https';
+    public const SCHEME_HTTPS = 'https';
 
     /**
      * Allowed parameter sources
@@ -278,7 +278,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_GET;
         }
 
-        return (isset($_GET[$key])) ? $_GET[$key] : $default;
+        return $_GET[$key] ?? $default;
     }
 
     /**
@@ -320,7 +320,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_POST;
         }
 
-        return (isset($_POST[$key])) ? $_POST[$key] : $default;
+        return $_POST[$key] ?? $default;
     }
 
     /**
@@ -339,7 +339,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_COOKIE;
         }
 
-        return (isset($_COOKIE[$key])) ? $_COOKIE[$key] : $default;
+        return $_COOKIE[$key] ?? $default;
     }
 
     /**
@@ -357,7 +357,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_SERVER;
         }
 
-        return (isset($_SERVER[$key])) ? $_SERVER[$key] : $default;
+        return $_SERVER[$key] ?? $default;
     }
 
     /**
@@ -375,7 +375,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             return $_ENV;
         }
 
-        return (isset($_ENV[$key])) ? $_ENV[$key] : $default;
+        return $_ENV[$key] ?? $default;
     }
 
     /**
@@ -488,8 +488,8 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             } else {
                 // Backtrack up the script_filename to find the portion matching
                 // php_self
-                $path    = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '';
-                $file    = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
+                $path    = $_SERVER['PHP_SELF'] ?? '';
+                $file    = $_SERVER['SCRIPT_FILENAME'] ?? '';
                 $segs    = explode('/', trim($file, '/'));
                 $segs    = array_reverse($segs);
                 $index   = 0;
@@ -505,7 +505,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             // Does the baseUrl have anything in common with the request_uri?
             $requestUri = $this->getRequestUri();
 
-            if (0 === strpos($requestUri, $baseUrl)) {
+            if (0 === strpos($requestUri, (string) $baseUrl)) {
                 // full $baseUrl matches
                 $this->_baseUrl = $baseUrl;
                 return $this;
@@ -533,7 +533,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
             // out of baseUrl. $pos !== 0 makes sure it is not matching a value
             // from PATH_INFO or QUERY_STRING
             if ((strlen($requestUri) >= strlen($baseUrl))
-                && ((false !== ($pos = strpos($requestUri, $baseUrl))) && ($pos !== 0)))
+                && ((false !== ($pos = strpos($requestUri, (string) $baseUrl))) && ($pos !== 0)))
             {
                 $baseUrl = substr($requestUri, 0, $pos + strlen($baseUrl));
             }
@@ -1018,7 +1018,7 @@ class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
         // This seems to be the only way to get the Authorization header on
         // Apache
         if (function_exists('apache_request_headers')) {
-            $headers = apache_request_headers();
+            $headers = getallheaders();
             if (isset($headers[$header])) {
                 return $headers[$header];
             }

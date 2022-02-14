@@ -20,19 +20,6 @@
  * @version    $Id$
  */
 
-// Call Zend_Controller_Plugin_BrokerTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_Controller_Plugin_BrokerTest::main");
-
-    $basePath = realpath(dirname(__FILE__) . str_repeat(DIRECTORY_SEPARATOR . '..', 3));
-
-    set_include_path(
-        $basePath . DIRECTORY_SEPARATOR . 'tests'
-        . PATH_SEPARATOR . $basePath . DIRECTORY_SEPARATOR . 'library'
-        . PATH_SEPARATOR . get_include_path()
-    );
-}
-
 
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Action/HelperBroker.php';
@@ -49,7 +36,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
-class Zend_Controller_Plugin_BrokerTest extends PHPUnit_Framework_TestCase
+class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
 {
     public $controller;
 
@@ -62,8 +49,8 @@ class Zend_Controller_Plugin_BrokerTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_Controller_Plugin_BrokerTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_BrokerTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
@@ -90,7 +77,7 @@ class Zend_Controller_Plugin_BrokerTest extends PHPUnit_Framework_TestCase
 
     public function testUsingFrontController()
     {
-        $this->controller->setControllerDirectory(dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . '_files');
+        $this->controller->setControllerDirectory(dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . '_files');
         $request = new Zend_Controller_Request_Http('http://framework.zend.com/empty');
         $this->controller->setResponse(new Zend_Controller_Response_Cli());
         $plugin = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
@@ -165,7 +152,7 @@ class Zend_Controller_Plugin_BrokerTest extends PHPUnit_Framework_TestCase
 
         $retrieved = $broker->getPlugin('Zend_Controller_Plugin_BrokerTest_TestPlugin');
         $this->assertTrue(is_array($retrieved));
-        $this->assertEquals(2, count($retrieved));
+        $this->assertEquals(2, is_countable($retrieved) ? count($retrieved) : 0);
         $this->assertSame($plugin, $retrieved[0]);
         $this->assertSame($plugin2, $retrieved[1]);
     }
@@ -341,7 +328,3 @@ class Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin extends Zend_Control
 }
 
 
-// Call Zend_Controller_Plugin_BrokerTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_Controller_Plugin_BrokerTest::main") {
-    Zend_Controller_Plugin_BrokerTest::main();
-}

@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_HeadStyleTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_HeadStyleTest::main");
-}
+
 
 /** Zend_View_Helper_HeadStyle */
 require_once 'Zend/View/Helper/HeadStyle.php';
@@ -45,7 +42,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadStyle
@@ -65,8 +62,8 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite  = new PHPUnit_Framework_TestSuite("Zend_View_Helper_HeadStyleTest");
-        $result = PHPUnit_TextUI_TestRunner::run($suite);
+        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadStyleTest");
+        $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -82,7 +79,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
             $registry = Zend_Registry::getInstance();
             unset($registry[$regKey]);
         }
-        $this->basePath = dirname(__FILE__) . '/_files/modules';
+        $this->basePath = __DIR__ . '/_files/modules';
         $this->helper = new Zend_View_Helper_HeadStyle();
     }
 
@@ -100,12 +97,12 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists('Zend_View_Helper_HeadStyle')) {
-            $registry->deleteContainer('Zend_View_Helper_HeadStyle');
+        if ($registry->containerExists(\Zend_View_Helper_HeadStyle::class)) {
+            $registry->deleteContainer(\Zend_View_Helper_HeadStyle::class);
         }
-        $this->assertFalse($registry->containerExists('Zend_View_Helper_HeadStyle'));
+        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadStyle::class));
         $helper = new Zend_View_Helper_HeadStyle();
-        $this->assertTrue($registry->containerExists('Zend_View_Helper_HeadStyle'));
+        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadStyle::class));
     }
 
     public function testHeadStyleReturnsObjectInstance()
@@ -141,7 +138,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
             $string .= PHP_EOL . 'a {}';
             $this->helper->appendStyle($string);
             $values = $this->helper->getArrayCopy();
-            $this->assertEquals($i + 1, count($values));
+            $this->assertEquals($i + 1, is_countable($values) ? count($values) : 0);
             $item = $values[$i];
 
             $this->assertTrue($item instanceof stdClass);
@@ -158,7 +155,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
             $string .= PHP_EOL . 'a {}';
             $this->helper->prependStyle($string);
             $values = $this->helper->getArrayCopy();
-            $this->assertEquals($i + 1, count($values));
+            $this->assertEquals($i + 1, is_countable($values) ? count($values) : 0);
             $item = array_shift($values);
 
             $this->assertTrue($item instanceof stdClass);
@@ -177,7 +174,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
         }
         $this->helper->setStyle($string);
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         $item = array_shift($values);
 
         $this->assertTrue($item instanceof stdClass);
@@ -255,9 +252,9 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
                      ->headStyle($style3, 'APPEND');
         $this->assertEquals(3, count($this->helper));
         $values = $this->helper->getArrayCopy();
-        $this->assertTrue((strstr($values[0]->content, $style2)) ? true : false);
+        $this->assertTrue((strstr($values[0]->content, (string) $style2)) ? true : false);
         $this->assertTrue((strstr($values[1]->content, $style1)) ? true : false);
-        $this->assertTrue((strstr($values[2]->content, $style3)) ? true : false);
+        $this->assertTrue((strstr($values[2]->content, (string) $style3)) ? true : false);
     }
 
     public function testToStyleGeneratesValidHtml()
@@ -289,7 +286,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
         echo 'foobar';
         $this->helper->captureEnd();
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         $item = array_shift($values);
         $this->assertContains('foobar', $item->content);
     }
@@ -298,7 +295,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit_Framework_TestCase
     {
         $this->helper->offsetSetStyle(100, 'foobar');
         $values = $this->helper->getArrayCopy();
-        $this->assertEquals(1, count($values));
+        $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         $this->assertTrue(isset($values[100]));
         $item = $values[100];
         $this->assertContains('foobar', $item->content);
@@ -486,7 +483,3 @@ a {
     }
 }
 
-// Call Zend_View_Helper_HeadStyleTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_HeadStyleTest::main") {
-    Zend_View_Helper_HeadStyleTest::main();
-}

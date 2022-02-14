@@ -20,10 +20,7 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_PaginationControlTest::main() if this source file is executed directly.
-if (!defined("PHPUnit_MAIN_METHOD")) {
-    define("PHPUnit_MAIN_METHOD", "Zend_View_Helper_PaginationControlTest::main");
-}
+
 
 require_once 'Zend/View.php';
 require_once 'Zend/Paginator.php';
@@ -38,12 +35,9 @@ require_once 'Zend/View/Helper/PaginationControl.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_PaginationControlTest extends PHPUnit_Framework_TestCase
+class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var Zend_View_Helper_PaginationControl
-     */
-    private $_viewHelper;
+    private \Zend_View_Helper_PaginationControl $_viewHelper;
 
     private $_paginator;
 
@@ -56,8 +50,8 @@ class Zend_View_Helper_PaginationControlTest extends PHPUnit_Framework_TestCase
     public static function main()
     {
 
-        $suite = new PHPUnit_Framework_TestSuite("Zend_View_Helper_PaginationControlTest");
-        PHPUnit_TextUI_TestRunner::run($suite);
+        $suite = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PaginationControlTest");
+        \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -69,7 +63,7 @@ class Zend_View_Helper_PaginationControlTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $view = new Zend_View();
-        $view->addBasePath(dirname(__FILE__) . '/_files');
+        $view->addBasePath(__DIR__ . '/_files');
 
         Zend_View_Helper_PaginationControl::setDefaultViewPartial(null);
         $this->_viewHelper = new Zend_View_Helper_PaginationControl();
@@ -141,6 +135,7 @@ class Zend_View_Helper_PaginationControlTest extends PHPUnit_Framework_TestCase
      */
     public function testUsesPaginatorFromViewIfNoneSupplied()
     {
+        $output = null;
         $this->_viewHelper->view->paginator = $this->_paginator;
         Zend_View_Helper_PaginationControl::setDefaultViewPartial('testPagination.phtml');
 
@@ -202,6 +197,7 @@ class Zend_View_Helper_PaginationControlTest extends PHPUnit_Framework_TestCase
      */
     public function testCanUseObjectForScrollingStyle()
     {
+        $output = null;
         $all = new Zend_Paginator_ScrollingStyle_All();
 
         try {
@@ -214,7 +210,3 @@ class Zend_View_Helper_PaginationControlTest extends PHPUnit_Framework_TestCase
     }
 }
 
-// Call Zend_View_Helper_PaginationControlTest::main() if this source file is executed directly.
-if (PHPUnit_MAIN_METHOD == "Zend_View_Helper_PaginationControlTest::main") {
-    Zend_View_Helper_PaginationControlTest::main();
-}

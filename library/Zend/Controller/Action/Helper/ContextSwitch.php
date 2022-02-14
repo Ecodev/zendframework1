@@ -40,8 +40,8 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
     /**
      * Trigger type constants
      */
-    const TRIGGER_INIT = 'TRIGGER_INIT';
-    const TRIGGER_POST = 'TRIGGER_POST';
+    public const TRIGGER_INIT = 'TRIGGER_INIT';
+    public const TRIGGER_POST = 'TRIGGER_POST';
 
     /**
      * Supported contexts
@@ -959,9 +959,9 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
 
         $this->_contexts[$context] = array();
 
-        $this->setSuffix($context,    (isset($spec['suffix'])    ? $spec['suffix']    : ''))
-             ->setHeaders($context,   (isset($spec['headers'])   ? $spec['headers']   : array()))
-             ->setCallbacks($context, (isset($spec['callbacks']) ? $spec['callbacks'] : array()));
+        $this->setSuffix($context,    ($spec['suffix'] ?? ''))
+             ->setHeaders($context,   ($spec['headers'] ?? array()))
+             ->setCallbacks($context, ($spec['callbacks'] ?? array()));
         return $this;
     }
 
