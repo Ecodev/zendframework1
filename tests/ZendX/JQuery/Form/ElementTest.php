@@ -20,11 +20,8 @@
  * @version     $Id: AllTests.php 11232 2008-09-05 08:16:33Z beberlei $
  */
 
-require_once dirname(__FILE__)."/../../../TestHelper.php";
+require_once __DIR__."/../../../TestHelper.php";
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'ZendX_JQuery_Form_ElementTest::main');
-}
 
 require_once "Zend/Registry.php";
 require_once "Zend/View.php";
@@ -220,31 +217,27 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $widget = new ZendX_JQuery_Form_Element_DatePicker("dp1");;
         $decorators = $widget->getDecorators();
-        $this->assertEquals(5, count($decorators));
+        $this->assertEquals(5, is_countable($decorators) ? count($decorators) : 0);
 
         $this->assertTrue(
             $decorators['ZendX_JQuery_Form_Decorator_UiWidgetElement'] instanceof
             ZendX_JQuery_Form_Decorator_UiWidgetElement
         );
         $this->assertTrue(
-            $decorators['Zend_Form_Decorator_Errors'] instanceof
+            $decorators[\Zend_Form_Decorator_Errors::class] instanceof
             Zend_Form_Decorator_Errors
         );
         $this->assertTrue(
-            $decorators['Zend_Form_Decorator_Description'] instanceof
+            $decorators[\Zend_Form_Decorator_Description::class] instanceof
             Zend_Form_Decorator_Description
         );
         $this->assertTrue(
-            $decorators['Zend_Form_Decorator_HtmlTag'] instanceof
+            $decorators[\Zend_Form_Decorator_HtmlTag::class] instanceof
             Zend_Form_Decorator_HtmlTag
         );
         $this->assertTrue(
-            $decorators['Zend_Form_Decorator_Label'] instanceof
+            $decorators[\Zend_Form_Decorator_Label::class] instanceof
             Zend_Form_Decorator_Label
         );
     }
-}
-
-if (PHPUnit_MAIN_METHOD == 'ZendX_JQuery_Form_ElementTest::main') {
-    ZendX_JQuery_Form_ElementTest::main();
 }

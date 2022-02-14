@@ -20,11 +20,8 @@
  * @version     $Id: AllTests.php 11232 2008-09-05 08:16:33Z beberlei $
  */
 
-require_once dirname(__FILE__) . "/../../../TestHelper.php";
+require_once __DIR__ . "/../../../TestHelper.php";
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'ZendX_JQuery_View_DecoratorTest::main');
-}
 
 require_once "Zend/Registry.php";
 require_once "Zend/View.php";
@@ -54,7 +51,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
      */
     protected function _getExpected($file)
     {
-        return file_get_contents(dirname(__FILE__) . '/_files/expected/' . $file);
+        return file_get_contents(__DIR__ . '/_files/expected/' . $file);
     }
 
     public function testUiWidgetElementDecoratorRender()
@@ -400,8 +397,4 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         $html = $widget->render();
         $this->assertContains('<input type="text" name="spinner1" id="spinner1" value="">[SEP]', $html);
     }
-}
-
-if (PHPUnit_MAIN_METHOD == 'ZendX_JQuery_Form_DecoratorTest::main') {
-    ZendX_JQuery_Form_DecoratorTest::main();
 }

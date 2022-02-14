@@ -62,7 +62,7 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
 	 * @see	      http://docs.jquery.com/Using_jQuery_with_Other_Libraries
 	 * @staticvar Boolean Status of noConflict Mode
 	 */
-    private static $noConflictMode = false;
+    private static bool $noConflictMode = false;
 
     /**
      * Initialize helper
@@ -73,12 +73,12 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
     public function __construct()
     {
         $registry = Zend_Registry::getInstance();
-        if (!isset($registry[__CLASS__])) {
+        if (!isset($registry[self::class])) {
             require_once 'ZendX/JQuery/View/Helper/JQuery/Container.php';
             $container = new ZendX_JQuery_View_Helper_JQuery_Container();
-            $registry[__CLASS__] = $container;
+            $registry[self::class] = $container;
         }
-        $this->_container = $registry[__CLASS__];
+        $this->_container = $registry[self::class];
     }
 
 	/**

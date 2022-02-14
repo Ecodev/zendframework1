@@ -167,7 +167,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
     {
         $this->jquery->addOnLoad('1');
         $this->jquery->addOnLoad('2');
-        $this->assertEquals(2, count($this->jquery->getOnLoadActions()));
+        $this->assertEquals(2, is_countable($this->jquery->getOnLoadActions()) ? count($this->jquery->getOnLoadActions()) : 0);
     }
 
     public function testAddOnLoadEnablesJQuery()
@@ -213,7 +213,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->onLoadCaptureStart();
         $this->jquery->onLoadCaptureStart();
 
-        $this->expectException('Zend_Exception');
+        $this->expectException(\Zend_Exception::class);
     }
 
     public function testAddJavascriptFiles()

@@ -84,6 +84,8 @@ abstract class ZendX_JQuery_View_Helper_UiWidgetPane extends ZendX_JQuery_View_H
      */
     public function captureEnd($id)
     {
+        $name = null;
+        $options = null;
         if (!array_key_exists($id, $this->_captureLock)) {
             require_once 'ZendX/JQuery/View/Exception.php';
             throw new ZendX_JQuery_View_Exception(sprintf('No capture lock exists for id "%s"; nothing to capture', $id));

@@ -58,7 +58,7 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
     {
         $view = $this->getView();
         $locale = new Zend_Locale('de');
-        Zend_Registry::set('Zend_Locale', $locale);
+        Zend_Registry::set(\Zend_Locale::class, $locale);
         $view->datePicker("dp1");
 
         $this->assertEquals(array(
@@ -71,7 +71,7 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
         $view = $this->getView();
 
         $locale = new Zend_Locale('en');
-        Zend_Registry::set('Zend_Locale', $locale);
+        Zend_Registry::set(\Zend_Locale::class, $locale);
         $view->datePicker("dp2");
 
         $this->assertEquals(array(
@@ -84,7 +84,7 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
         $view = $this->getView();
 
         $locale = new Zend_Locale('fr');
-        Zend_Registry::set('Zend_Locale', $locale);
+        Zend_Registry::set(\Zend_Locale::class, $locale);
         $view->datePicker("dp3");
 
         $this->assertEquals(array(

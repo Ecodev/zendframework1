@@ -81,7 +81,7 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
 
         $attribs['id'] .= "-slider";
 
-        if(count($params) > 0) {
+        if((is_countable($params) ? count($params) : 0) > 0) {
             $params = ZendX_JQuery::encodeJson($params);
         } else {
             $params = '{}';
@@ -115,9 +115,9 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
     protected function getHandleCount($params)
     {
         if(version_compare($this->jquery->getUiVersion(), "1.7.0") >= 0) {
-            return count($params['values']);
+            return is_countable($params['values']) ? count($params['values']) : 0;
         } else {
-            return count($params['handles']);
+            return is_countable($params['handles']) ? count($params['handles']) : 0;
         }
     }
 
@@ -140,7 +140,7 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
             $values = $params['values'];
             unset($params['values']);
         } else if(isset($params['handles'])) {
-            for($i = 0; $i < count($params['handles']); $i++) {
+            for($i = 0; $i < (is_countable($params['handles']) ? count($params['handles']) : 0); $i++) {
                 $values[] = $params['handles'][$i]['start'];
             }
             unset($params['handles']);
@@ -155,7 +155,7 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
             $params['values'] = $values;
         } else {
             $params['handles'] = array();
-            for($i = 0; $i < count($values); $i++) {
+            for($i = 0; $i < (is_countable($values) ? count($values) : 0); $i++) {
                 $params['handles'][$i]['start'] = $values[$i];
             }
         }

@@ -40,36 +40,36 @@ class ZendX_JQuery
      * 
      * @const string
      */
-    const DEFAULT_JQUERY_VERSION = "1.3.2";
+    public const DEFAULT_JQUERY_VERSION = "1.3.2";
 
     /**
      * Currently supported jQuery UI library version with ZendX_JQuery
      *
      * @const string
      */
-    const DEFAULT_UI_VERSION = "1.7.1";
+    public const DEFAULT_UI_VERSION = "1.7.1";
 
     /**
      * @see http://code.google.com/apis/ajaxlibs/documentation/index.html#jquery
      * @const string Base path to CDN
      */
-    const CDN_BASE_GOOGLE = 'http://ajax.googleapis.com/ajax/libs/';
+    public const CDN_BASE_GOOGLE = 'http://ajax.googleapis.com/ajax/libs/';
 
     /**
      * @see http://code.google.com/apis/ajaxlibs/documentation/index.html#jquery
      * @const string Base path to CDN
      */
-    const CDN_BASE_GOOGLE_SSL = 'https://ajax.googleapis.com/ajax/libs/';
+    public const CDN_BASE_GOOGLE_SSL = 'https://ajax.googleapis.com/ajax/libs/';
 
     /**
      * @const string
      */
-    const CDN_SUBFOLDER_JQUERY = 'jquery/';
+    public const CDN_SUBFOLDER_JQUERY = 'jquery/';
 
     /**
      * @const string
      */
-    const CDN_SUBFOLDER_JQUERYUI = 'jqueryui/';
+    public const CDN_SUBFOLDER_JQUERYUI = 'jqueryui/';
 
     /**
      * Always uses compressed version, because this is assumed to be the use case
@@ -78,7 +78,7 @@ class ZendX_JQuery
      * @see http://code.google.com/apis/ajaxlibs/documentation/index.html#jquery
      * @const string File path after base and version
      */
-    const CDN_JQUERY_PATH_GOOGLE = '/jquery.min.js';
+    public const CDN_JQUERY_PATH_GOOGLE = '/jquery.min.js';
 
     /**
      * Which parts of the the jQuery library should be rendered on echo'ing
@@ -88,12 +88,12 @@ class ZendX_JQuery
      * @see ZendX_JQuery_Helper_JQuery::setRenderMode
      * @const Integer
      */
-    const RENDER_LIBRARY         = 1;
-    const RENDER_SOURCES         = 2;
-    const RENDER_STYLESHEETS     = 4;
-    const RENDER_JAVASCRIPT      = 8;
-    const RENDER_JQUERY_ON_LOAD  = 16;
-    const RENDER_ALL             = 255;
+    public const RENDER_LIBRARY         = 1;
+    public const RENDER_SOURCES         = 2;
+    public const RENDER_STYLESHEETS     = 4;
+    public const RENDER_JAVASCRIPT      = 8;
+    public const RENDER_JQUERY_ON_LOAD  = 16;
+    public const RENDER_ALL             = 255;
 
     /**
      * jQuery-enable a view instance
@@ -146,7 +146,7 @@ class ZendX_JQuery
             return '{}';
         }
 
-        if(!class_exists('Zend_Json')) {
+        if(!class_exists(\Zend_Json::class)) {
             /**
              * @see Zend_Json
              */
