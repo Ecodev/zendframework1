@@ -44,7 +44,7 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Test with PHPUnit
-        run: ./vendor/bin/phpunit
+        run: ./vendor/bin/phpunit --debug
 
   release:
     runs-on: ubuntu-latest
