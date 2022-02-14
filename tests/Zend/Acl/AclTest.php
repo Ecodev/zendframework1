@@ -1228,6 +1228,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $acl->addResource('blog');
         $acl->allow('admin', 'blog', 'read');
         $acl->removeAllow(array('admin'), array('blog'), null);
+        self::assertTrue(true);
     }
 
     public function testRoleObjectImplementsToString() {
@@ -1264,6 +1265,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
             $this->_acl->getRegisteredRoles();
             $this->fail('getRegisteredRoles() did not throw an exception');
         } catch(\PHPUnit\Framework\Exception $e) {
+            self::assertTrue(true);
             return;
         }
 

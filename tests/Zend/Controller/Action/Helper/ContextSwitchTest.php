@@ -847,6 +847,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         } catch(Zend_Controller_Action_Exception $zcae) {
             $this->fail('Exception should be throw when view does not implement getVars() method');
         }
+        self::assertTrue(true);
     }
 
     /**
@@ -862,6 +863,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
             $this->helper->postJsonContext();
             $this->fail('Exception should be throw when view does not implement getVars() method');
         } catch(Zend_Controller_Action_Exception $zcae) {
+            self::assertTrue(true);
         }
     }
 

@@ -618,6 +618,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
             'verbose|v' => 'Print verbose output'
           )
         );
+        self::assertTrue(true);
     }
 
     /**

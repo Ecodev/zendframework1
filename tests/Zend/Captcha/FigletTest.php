@@ -253,6 +253,8 @@ class Zend_Captcha_FigletTest extends \PHPUnit\Framework\TestCase
         $this->captcha->setName('foo')
                       ->setWordLen(14);
         $id = $this->captcha->generate();
+
+        self::assertIsString($id);
     }
 
     public function testShouldNotValidateEmptyInputAgainstEmptySession()

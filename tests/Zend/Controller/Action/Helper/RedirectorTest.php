@@ -168,6 +168,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
             $this->redirector->setCode('304');
             $this->fail('Invalid redirect code should throw exception');
         } catch (Zend_Controller_Action_Exception $e) {
+            self::assertTrue(true);
         }
     }
 

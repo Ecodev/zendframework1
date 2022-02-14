@@ -348,7 +348,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('some', "some content\n");
         $this->_response->append('more', "more content\n");
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'some' => "some content\n",
@@ -362,7 +362,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('some', "some content\n");
         $this->_response->append('some', "more content\n");
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'some' => "more content\n"
@@ -375,7 +375,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->prepend('some', "some content\n");
         $this->_response->prepend('more', "more content\n");
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'more' => "more content\n",
@@ -389,7 +389,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->prepend('some', "some content\n");
         $this->_response->prepend('some', "more content\n");
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'some' => "more content\n"
@@ -403,7 +403,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('more', "more content\n");
         $this->_response->insert('foobar', "foobar content\n", 'some');
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'some'   => "some content\n",
@@ -419,7 +419,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('more', "more content\n");
         $this->_response->insert('foobar', "foobar content\n", 'some', true);
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'foobar' => "foobar content\n",
@@ -435,7 +435,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('more', "more content\n");
         $this->_response->insert('foobar', "foobar content\n", 'baz', true);
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'some'   => "some content\n",
@@ -450,7 +450,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('some', "some content\n");
         $this->_response->setBody("more content\n", 'some');
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'some'   => "more content\n"
@@ -463,7 +463,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('some', "some content\n");
         $this->_response->setBody("more content\n");
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'default'   => "more content\n"
@@ -476,7 +476,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->setBody("some content\n");
         $this->_response->appendBody("more content\n");
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'default'   => "some content\nmore content\n"
@@ -489,7 +489,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->setBody("some content\n", 'some');
         $this->_response->appendBody("more content\n", 'some');
 
-        $content = $this->_response->getBody();
+        $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
             'some'   => "some content\nmore content\n"
@@ -502,8 +502,8 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('some', "some content\n");
         $this->_response->append('more', "more content\n");
 
-        $this->assertEquals("more content\n", $this->_response->getBody());
-        $this->assertEquals("some content\n", $this->_response->getBody());
+        $this->assertEquals("more content\n", $this->_response->getBody('more'));
+        $this->assertEquals("some content\n", $this->_response->getBody('some'));
     }
 
     public function testGetBodyAsArray()
@@ -521,7 +521,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
             'string3' => $string3
         );
 
-        $this->assertEquals($expected, $this->_response->getBody());
+        $this->assertEquals($expected, $this->_response->getBody(true));
     }
 
     public function testClearBody()
@@ -529,7 +529,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->append('some', "some content\n");
 
         $this->assertTrue($this->_response->clearBody());
-        $body = $this->_response->getBody();
+        $body = $this->_response->getBody(true);
         $this->assertTrue(is_array($body));
         $this->assertEquals(0, is_countable($body) ? count($body) : 0);
     }
@@ -542,7 +542,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $this->assertFalse($this->_response->clearBody('many'));
         $this->assertTrue($this->_response->clearBody('more'));
-        $body = $this->_response->getBody();
+        $body = $this->_response->getBody(true);
         $this->assertTrue(is_array($body));
         $this->assertEquals(2, is_countable($body) ? count($body) : 0);
         $this->assertTrue(isset($body['some']));

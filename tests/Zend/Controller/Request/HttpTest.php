@@ -678,7 +678,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     {
         try {
             // Suppressing warning
-            $header = @$this->_request->getHeader();
+            $header = @$this->_request->getHeader('');
             $this->fail('getHeader() should fail with no arguments)');
         } catch (Exception $e) {
             // success
