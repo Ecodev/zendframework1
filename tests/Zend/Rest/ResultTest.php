@@ -40,7 +40,7 @@ class Zend_Rest_ResultTest extends \PHPUnit\Framework\TestCase
 {
     static $path;
 
-    public function __construct()
+    public function setUp()
     {
         self::$path = __DIR__.'/responses/';
     }

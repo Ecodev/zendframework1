@@ -67,7 +67,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     public function setUp()
     {
         $_SESSION = array();
-        $this->expectException(null);
         $this->testCase = new Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete();
         $this->testCase->reset();
         $this->testCase->bootstrap = array($this, 'bootstrap');
@@ -95,7 +94,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
             unset($registry['viewRenderer']);
         }
         Zend_Session::$_unitTestEnabled = false;
-        session_id(uniqid());
     }
 
     public function bootstrap()
@@ -274,249 +272,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals('zend-test-php-unit-foo', $request->getControllerName(), $content);
         $this->assertEquals('bar', $request->getActionName());
         $this->assertContains('FooController::barAction', $content, $content);
-    }
-
-    public function testAssertQueryShouldDoNothingForValidResponseContent()
-    {
-        $this->testCase->getFrontController()->setControllerDirectory(realpath(__DIR__) . '/_files/application/controllers', 'default');
-        $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
-        $body = $this->testCase->getResponse()->getBody();
-        $this->testCase->assertQuery('div#foo legend.bar', $body);
-        $this->testCase->assertQuery('div#foo legend.baz', $body);
-        $this->testCase->assertQuery('div#foo legend.bat', $body);
-        $this->testCase->assertNotQuery('div#foo legend.bogus', $body);
-        $this->testCase->assertQueryContentContains('legend.bat', 'La di da', $body);
-        $this->testCase->assertQueryContentContains('legend.numeric', 42, $body);
-        $this->testCase->assertNotQueryContentContains('legend.numeric', 31, $body);
-        $this->testCase->assertNotQueryContentContains('legend.bat', 'La do da', $body);
-        $this->testCase->assertQueryContentRegex('legend.bat', '/d[a|i]/i', $body);
-        $this->testCase->assertNotQueryContentRegex('legend.bat', '/d[o|e]/i', $body);
-        $this->testCase->assertQueryCountMin('div#foo legend.bar', 2, $body);
-        $this->testCase->assertQueryCount('div#foo legend.bar', 2, $body);
-        $this->testCase->assertQueryCountMin('div#foo legend.bar', 2, $body);
-        $this->testCase->assertQueryCountMax('div#foo legend.bar', 2, $body);
-    }
-
-    /**
-     * @group ZF-4673
-     */
-    public function testAssertionsShouldIncreasePhpUnitAssertionCounter()
-    {
-        $this->testAssertQueryShouldDoNothingForValidResponseContent();
-        $this->assertTrue(0 < $this->testCase->getNumAssertions());
-        $this->assertTrue(12 <= $this->testCase->getNumAssertions());
-    }
-
-    public function testAssertQueryShouldThrowExceptionsForInValidResponseContent()
-    {
-        $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
-        $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
-        try {
-            $this->testCase->assertNotQuery('div#foo legend.bar');
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertQuery('div#foo legend.bogus');
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertNotQueryContentContains('legend.bat', 'La di da');
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertQueryContentContains('legend.bat', 'La do da');
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertNotQueryContentRegex('legend.bat', '/d[a|i]/i');
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertQueryContentRegex('legend.bat', '/d[o|e]/i');
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertQueryCountMin('div#foo legend.bar', 3);
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertQueryCount('div#foo legend.bar', 1);
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertQueryCountMin('div#foo legend.bar', 3);
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertQueryCountMax('div#foo legend.bar', 1);
-            $this->fail('Invalid assertions should throw exceptions');
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-    }
-
-    public function testAssertXpathShouldDoNothingForValidResponseContent()
-    {
-        $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
-        $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
-        $this->testCase->assertXpath("//div[@id='foo']//legend[contains(@class, ' bar ')]");
-        $this->testCase->assertXpath("//div[@id='foo']//legend[contains(@class, ' baz ')]");
-        $this->testCase->assertXpath("//div[@id='foo']//legend[contains(@class, ' bat ')]");
-        $this->testCase->assertNotXpath("//div[@id='foo']//legend[contains(@class, ' bogus ')]");
-        $this->testCase->assertXpathContentContains("//legend[contains(@class, ' bat ')]", "La di da");
-        $this->testCase->assertNotXpathContentContains("//legend[contains(@class, ' bat ')]", "La do da");
-        $this->testCase->assertXpathContentRegex("//legend[contains(@class, ' bat ')]", "/d[a'i]/i");
-        $this->testCase->assertNotXpathContentRegex("//legend[contains(@class, ' bat ')]", "/d[o'e]/i");
-        $this->testCase->assertXpathCountMin("//div[@id='foo']//legend[contains(@class, ' bar ')]", 2);
-        $this->testCase->assertXpathCount("//div[@id='foo']//legend[contains(@class, ' bar ')]", 2);
-        $this->testCase->assertXpathCountMin("//div[@id='foo']//legend[contains(@class, ' bar ')]", 2);
-        $this->testCase->assertXpathCountMax("//div[@id='foo']//legend[contains(@class, ' bar ')]", 2);
-    }
-
-    public function testAssertXpathShouldThrowExceptionsForInValidResponseContent()
-    {
-        $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
-        $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
-        try {
-            $this->testCase->assertNotXpath("//div[@id='foo']//legend[contains(@class, ' bar ')]");
-            $this->fail("Invalid assertions should throw exceptions; assertion against //div[@id='foo']//legend[contains(@class, ' bar ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertXpath("//div[@id='foo']//legend[contains(@class, ' bogus ')]");
-            $this->fail("Invalid assertions should throw exceptions; assertion against //div[@id='foo']//legend[contains(@class, ' bogus ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertNotXpathContentContains("//legend[contains(@class, ' bat ')]", "La di da");
-            $this->fail("Invalid assertions should throw exceptions; assertion against //legend[contains(@class, ' bat ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertXpathContentContains("//legend[contains(@class, ' bat ')]", 'La do da');
-            $this->fail("Invalid assertions should throw exceptions; assertion against //legend[contains(@class, ' bat ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertNotXpathContentRegex("//legend[contains(@class, ' bat ')]", '/d[a|i]/i');
-            $this->fail("Invalid assertions should throw exceptions; assertion against //legend[contains(@class, ' bat ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertXpathContentRegex("//legend[contains(@class, ' bat ')]", '/d[o|e]/i');
-            $this->fail("Invalid assertions should throw exceptions; assertion against //legend[contains(@class, ' bat ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertXpathCountMin("//div[@id='foo']//legend[contains(@class, ' bar ')]", 3);
-            $this->fail("Invalid assertions should throw exceptions; assertion against //div[@id='foo']//legend[contains(@class, ' bar ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertXpathCount("//div[@id='foo']//legend[contains(@class, ' bar ')]", 1);
-            $this->fail("Invalid assertions should throw exceptions; assertion against //div[@id='foo']//legend[contains(@class, ' bar ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertXpathCountMin("//div[@id='foo']//legend[contains(@class, ' bar ')]", 3);
-            $this->fail("Invalid assertions should throw exceptions; assertion against //div[@id='foo']//legend[contains(@class, ' bar ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-        try {
-            $this->testCase->assertXpathCountMax("//div[@id='foo']//legend[contains(@class, ' bar ')]", 1);
-            $this->fail("Invalid assertions should throw exceptions; assertion against //div[@id='foo']//legend[contains(@class, ' bar ')] failed");
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-        }
-    }
-
-    public function testRedirectAssertionsShouldDoNothingForValidAssertions()
-    {
-        $this->testCase->getResponse()->setRedirect('/foo');
-        $this->testCase->assertRedirect();
-        $this->testCase->assertRedirectTo('/foo', var_export($this->testCase->getResponse()->sendHeaders(), 1));
-        $this->testCase->assertRedirectRegex('/FOO$/i');
-
-        $this->testCase->reset();
-        $this->testCase->assertNotRedirect();
-        $this->testCase->assertNotRedirectTo('/foo');
-        $this->testCase->assertNotRedirectRegex('/FOO$/i');
-        $this->testCase->getResponse()->setRedirect('/foo');
-        $this->testCase->assertNotRedirectTo('/bar');
-        $this->testCase->assertNotRedirectRegex('/bar/i');
-    }
-
-    public function testHeaderAssertionShouldDoNothingForValidComparison()
-    {
-        $this->testCase->getResponse()->setHeader('Content-Type', 'x-application/my-foo');
-        $this->testCase->assertResponseCode(200);
-        $this->testCase->assertNotResponseCode(500);
-        $this->testCase->assertHeader('Content-Type');
-        $this->testCase->assertNotHeader('X-Bogus');
-        $this->testCase->assertHeaderContains('Content-Type', 'my-foo');
-        $this->testCase->assertNotHeaderContains('Content-Type', 'my-bar');
-        $this->testCase->assertHeaderRegex('Content-Type', '#^[a-z-]+/[a-z-]+$#i');
-        $this->testCase->assertNotHeaderRegex('Content-Type', '#^\d+#i');
-    }
-
-    public function testHeaderAssertionShouldThrowExceptionForInvalidComparison()
-    {
-        $this->testCase->getResponse()->setHeader('Content-Type', 'x-application/my-foo');
-        try {
-            $this->testCase->assertResponseCode(500);
-            $this->fail();
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-            $this->assertContains('Failed', $e->getMessage());
-        }
-        try {
-            $this->testCase->assertNotResponseCode(200);
-            $this->fail();
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-            $this->assertContains('Failed', $e->getMessage());
-        }
-        try {
-            $this->testCase->assertNotHeader('Content-Type');
-            $this->fail();
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-            $this->assertContains('Failed', $e->getMessage());
-        }
-        try {
-            $this->testCase->assertHeader('X-Bogus');
-            $this->fail();
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-            $this->assertContains('Failed', $e->getMessage());
-        }
-        try {
-            $this->testCase->assertNotHeaderContains('Content-Type', 'my-foo');
-            $this->fail();
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-            $this->assertContains('Failed', $e->getMessage());
-        }
-        try {
-            $this->testCase->assertHeaderContains('Content-Type', 'my-bar');
-            $this->fail();
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-            $this->assertContains('Failed', $e->getMessage());
-        }
-        try {
-            $this->testCase->assertNotHeaderRegex('Content-Type', '#^[a-z-]+/[a-z-]+$#i');
-            $this->fail();
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-            $this->assertContains('Failed', $e->getMessage());
-        }
-        try {
-            $this->testCase->assertHeaderRegex('Content-Type', '#^\d+#i');
-            $this->fail();
-        } catch (Zend_Test_PHPUnit_Constraint_Exception $e) {
-            $this->assertContains('Failed', $e->getMessage());
-        }
     }
 
     public function testModuleAssertionShouldDoNothingForValidComparison()
@@ -745,18 +500,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     }
 
     /**
-     * @group ZF-7496
-     * @dataProvider providerRedirectWorksAsExpectedFromHookMethodsInActionController
-     */
-    public function testRedirectWorksAsExpectedFromHookMethodsInActionController($dispatchTo)
-    {
-        $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
-        $this->testCase->dispatch($dispatchTo);
-        $this->testCase->assertRedirectTo('/login');
-        $this->assertNotEquals('action body', $this->testCase->getResponse()->getBody());
-    }
-
-    /**
      * Data provider for testRedirectWorksAsExpectedFromHookMethodsInActionController
      * @return array
      */
@@ -765,55 +508,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         return array(
             array('/zend-test-redirect-from-init/baz'),
             array('/zend-test-redirect-from-pre-dispatch/baz')
-        );
-    }
-
-    /**
-     * @group ZF-7496
-     * @dataProvider providerRedirectWorksAsExpectedFromHookMethodsInFrontControllerPlugin
-     */
-    public function testRedirectWorksAsExpectedFromHookMethodsInFrontControllerPlugin($pluginName)
-    {
-        require_once __DIR__ . "/_files/application/plugins/RedirectFrom{$pluginName}.php";
-        $className = "Application_Plugin_RedirectFrom{$pluginName}";
-
-        $fc = $this->testCase->getFrontController();
-        $fc->setControllerDirectory(__DIR__ . '/_files/application/controllers')
-           ->registerPlugin(new $className());
-        $this->testCase->dispatch('/');
-        $this->testCase->assertRedirectTo('/login');
-        $this->assertNotEquals('action body', $this->testCase->getResponse()->getBody());
-    }
-
-    /**
-     * @group ZF-12492
-     * @internal Since header value is being cast into a string, we should only
-     * need to check 0 and 0.0
-     */
-    public function testHeaderAssertionShouldDoNothingForValidComparisonWithZeroForValue()
-    {
-        $this->testCase->getResponse()->setHeader('Expires', '0', true);
-        $this->testCase->assertResponseCode(200);
-        $this->testCase->assertNotResponseCode(500);
-        $this->testCase->assertHeader('Expires');
-        $this->testCase->assertNotHeader('X-Bogus');
-        $this->testCase->assertHeaderContains('Expires', '0');
-        $this->testCase->assertNotHeaderContains('Expires', 'my-bar');
-        $this->testCase->assertHeaderRegex('Expires', '#^\d#i');
-        $this->testCase->assertNotHeaderRegex(
-            'Expires', '#^[a-z-]+/[a-z-]+$#i'
-        );
-
-        $this->testCase->getResponse()->setHeader('Expires', '0.0', true);
-        $this->testCase->assertResponseCode(200);
-        $this->testCase->assertNotResponseCode(500);
-        $this->testCase->assertHeader('Expires');
-        $this->testCase->assertNotHeader('X-Bogus');
-        $this->testCase->assertHeaderContains('Expires', '0.0');
-        $this->testCase->assertNotHeaderContains('Expires', 'my-bar');
-        $this->testCase->assertHeaderRegex('Expires', '#^\d+#i');
-        $this->testCase->assertNotHeaderRegex(
-            'Expires', '#^[a-z-]+/[a-z-]+$#i'
         );
     }
 

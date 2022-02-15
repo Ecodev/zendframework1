@@ -94,24 +94,16 @@ class Zend_Filter_File_RenameTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function __construct()
+    public function setUp()
     {
         $this->_filesPath = __DIR__ . DIRECTORY_SEPARATOR
-                          . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR;
+            . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR;
         $this->_origFile  = $this->_filesPath . 'original.file';
         $this->_oldFile   = $this->_filesPath . 'testfile.txt';
         $this->_newFile   = $this->_filesPath . 'newfile.xml';
         $this->_newDir    = $this->_filesPath . DIRECTORY_SEPARATOR . '_testDir2';
         $this->_newDirFile = $this->_newDir . DIRECTORY_SEPARATOR . 'testfile.txt';
-    }
 
-    /**
-     * Sets the path to test files
-     *
-     * @return void
-     */
-    public function setUp()
-    {
         if (file_exists($this->_origFile)) {
             unlink($this->_origFile);
         }

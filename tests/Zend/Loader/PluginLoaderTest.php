@@ -420,27 +420,6 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-4670
-     */
-    public function testPluginLoaderShouldAppendIncludeCacheWhenClassIsFound()
-    {
-        $cacheFile = $this->_includeCache;
-        Zend_Loader_PluginLoader::setIncludeFileCache($cacheFile);
-        $loader = new Zend_Loader_PluginLoader(array());
-        $loader->addPrefixPath('Zend_View_Helper', $this->libPath . '/Zend/View/Helper');
-        $loader->addPrefixPath('ZfTest', __DIR__ . '/_files/ZfTest');
-        try {
-            $className = $loader->load('CacheTest');
-        } catch (Exception $e) {
-            $paths = $loader->getPaths();
-            $this->fail(sprintf("Failed loading helper; paths: %s", var_export($paths, 1)));
-        }
-        $this->assertTrue(file_exists($cacheFile));
-        $cache = file_get_contents($cacheFile);
-        $this->assertContains('CacheTest.php', $cache);
-    }
-
-    /**
      * @group ZF-5208
      */
     public function testStaticRegistryNamePersistsInDifferentLoaderObjects()

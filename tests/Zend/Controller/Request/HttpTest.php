@@ -150,7 +150,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
             $this->_request->set('foo', 'bar');
             $this->fail('set() should alias to __set(), and throw an exception');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -190,7 +190,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
             $this->_request->foo = 'bar';
             $this->fail('__set() should throw an exception');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -681,7 +681,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
             $header = @$this->_request->getHeader('');
             $this->fail('getHeader() should fail with no arguments)');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 

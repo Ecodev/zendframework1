@@ -291,12 +291,6 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($application->hasOption('foo'));
     }
 
-    public function testPassingStringXmlConfigPathOptionToConstructorShouldLoadOptions()
-    {
-        $application = new Zend_Application('testing', __DIR__ . '/_files/appconfig.xml');
-        $this->assertTrue($application->hasOption('foo'));
-    }
-
     public function testPassingStringPhpConfigPathOptionToConstructorShouldLoadOptions()
     {
         $application = new Zend_Application('testing', __DIR__ . '/_files/appconfig.php');
@@ -326,33 +320,6 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
         $application = new Zend_Application('testing', array('bar' => 'baz', 'config' => __DIR__ . '/_files/appconfig.ini.dist'));
         $this->assertTrue($application->hasOption('foo'));
         $this->assertTrue($application->hasOption('bar'));
-    }
-
-    /**
-     * @group ZF-10568
-     */
-    public function testPassingStringYamlConfigPathOptionToConstructorShouldLoadOptions()
-    {
-        $application = new Zend_Application('testing', __DIR__ . '/_files/appconfig.yaml');
-        $this->assertTrue($application->hasOption('foo'));
-    }
-
-    /**
-     * @group ZF-10568
-     */
-    public function testPassingStringJsonConfigPathOptionToConstructorShouldLoadOptions()
-    {
-        $application = new Zend_Application('testing', __DIR__ . '/_files/appconfig.json');
-        $this->assertTrue($application->hasOption('foo'));
-    }
-
-    /**
-     * @group ZF-11425
-     */
-    public function testPassingStringYmlConfigPathOptionToConstructorShouldLoadOptionsAsYaml()
-    {
-        $application = new Zend_Application('testing', __DIR__ . '/_files/appconfig.yml');
-        $this->assertTrue($application->hasOption('foo'));
     }
 
     public function testPassingArrayOptionsWithConfigKeyShouldLoadOptions()

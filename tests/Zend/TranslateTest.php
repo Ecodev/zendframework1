@@ -263,8 +263,8 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         try {
             $lang = new Zend_Translate(\Zend_Locale::class, __DIR__ . '/Translate/_files/test2', null, array('scan' => Zend_Translate::LOCALE_FILENAME));
             $this->fail('Exception due to false adapter class expected');
-        } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('does not extend Zend_Translate_Adapter', $e->getMessage());
+        } catch (Throwable $e) {
+            $this->assertContains('must be an instance of Zend_Translate_Adapter,', $e->getMessage());
         }
     }
 
@@ -687,74 +687,6 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(array_key_exists('de_AT', $langs));
         $this->assertTrue(array_key_exists('ja', $langs));
         $this->assertTrue(array_key_exists('en_US', $langs));
-        $this->assertEquals('Message 5 (en)', $translate->translate('Message 5', 'ja'));
-    }
-
-    /**
-     * @group ZF-2736
-     */
-    public function testCircleReroutingForTranslations()
-    {
-        $translate = new Zend_Translate(
-            array(
-                'adapter' => Zend_Translate::AN_ARRAY,
-                'content' => __DIR__ . '/Translate/Adapter/_files/testarray/',
-                'locale'  => 'auto',
-                'scan'    => Zend_Translate::LOCALE_FILENAME,
-                'ignore'  => array('.', 'ignoreme', 'LC_TEST'),
-                'route'   => array('ja' => 'en_US', 'en_US' => 'ja'),
-            )
-        );
-
-        $translate2 = new Zend_Translate(
-            array(
-                'adapter' => Zend_Translate::AN_CSV,
-                'content' => __DIR__ . '/Translate/Adapter/_files/translation_en.csv',
-                'locale'  => 'en_US',
-            )
-        );
-
-        $translate->addTranslation($translate2);
-
-        $langs = $translate->getList();
-        $this->assertFalse(array_key_exists('de_DE', $langs));
-        $this->assertTrue(array_key_exists('ja', $langs));
-        $this->assertTrue(array_key_exists('en_US', $langs));
-        $this->assertEquals('Message 5 (en)', $translate->translate('Message 5', 'ja'));
-        $this->assertEquals('Message 10', $translate->translate('Message 10', 'ja'));
-    }
-
-    /**
-     * @group ZF-2736
-     */
-    public function testDoubleReroutingForTranslations()
-    {
-        $translate = new Zend_Translate(
-            array(
-                'adapter' => Zend_Translate::AN_ARRAY,
-                'content' => __DIR__ . '/Translate/Adapter/_files/testarray/',
-                'locale'  => 'auto',
-                'scan'    => Zend_Translate::LOCALE_FILENAME,
-                'ignore'  => array('.', 'ignoreme', 'LC_TEST'),
-                'route'   => array('ja' => 'en_US', 'en_US' => 'ja'),
-            )
-        );
-
-        $translate2 = new Zend_Translate(
-            array(
-                'adapter' => Zend_Translate::AN_CSV,
-                'content' => __DIR__ . '/Translate/Adapter/_files/translation_en.csv',
-                'locale'  => 'en_US',
-            )
-        );
-
-        $translate->addTranslation($translate2);
-
-        $langs = $translate->getList();
-        $this->assertFalse(array_key_exists('de_DE', $langs));
-        $this->assertTrue(array_key_exists('ja', $langs));
-        $this->assertTrue(array_key_exists('en_US', $langs));
-        $this->assertEquals('Message 5 (en)', $translate->translate('Message 5', 'ja'));
         $this->assertEquals('Message 5 (en)', $translate->translate('Message 5', 'ja'));
     }
 

@@ -37,7 +37,7 @@ require_once 'Zend/Navigation.php';
  */
 class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
 {
-    private \Zend_Navigation $_navigation;
+    private ?\Zend_Navigation $_navigation;
 
     protected function setUp()
     {

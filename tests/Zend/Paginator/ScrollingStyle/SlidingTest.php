@@ -44,8 +44,8 @@ require_once 'Zend/Paginator.php';
  */
 class Zend_Paginator_ScrollingStyle_SlidingTest extends \PHPUnit\Framework\TestCase
 {
-    private \Zend_Paginator_ScrollingStyle_Sliding $_scrollingStyle;
-    private \Zend_Paginator $_paginator;
+    private ?\Zend_Paginator_ScrollingStyle_Sliding $_scrollingStyle;
+    private ?\Zend_Paginator $_paginator;
 
     /**
      * Prepares the environment before running a test.

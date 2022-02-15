@@ -159,7 +159,7 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
     {
         $validator = new Zend_Validate_File_ExcludeMimeType('image/jpeg');
 
-        $this->assertFalse($validator->isValid('notexisting'), array('name' => 'notexisting'));
+        $this->assertFalse($validator->isValid('notexisting'));
         $this->assertEquals(
             array('fileExcludeMimeTypeNotReadable' => "File 'notexisting' is not readable or does not exist"),
             $validator->getMessages()

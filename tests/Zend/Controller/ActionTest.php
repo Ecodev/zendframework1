@@ -55,6 +55,7 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
 
     public function setUp()
     {
+        Zend_Controller_Action_HelperBroker::setPluginLoader(null);
         Zend_Controller_Action_HelperBroker::resetHelpers();
         $front = Zend_Controller_Front::getInstance();
         $front->resetInstance();

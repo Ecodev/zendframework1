@@ -39,7 +39,7 @@ require_once 'Zend/Paginator/Adapter/Iterator.php';
  */
 class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
 {
-    private \Zend_Paginator_Adapter_Iterator $_adapter;
+    private ?\Zend_Paginator_Adapter_Iterator $_adapter;
 
     /**
      * Prepares the environment before running a test.

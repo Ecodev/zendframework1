@@ -320,6 +320,8 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
             $this->fail('Should not accept non-integer response codes');
         } catch (Exception $e) {
         }
+
+        self::assertTrue(true);
     }
 
     /**

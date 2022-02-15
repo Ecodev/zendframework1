@@ -134,7 +134,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     {
         $dirs = array('.');
         try {
-            Zend_Loader::loadClass(\Zend_Version::class, $dirs);
+            Zend_Loader::loadClass(\Zend_View::class, $dirs);
         } catch (Zend_Exception $e) {
             $this->fail('Loading from dot should not fail');
         }
@@ -257,10 +257,10 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testLoaderAutoloadLoadsValidClasses()
     {
         $this->setErrorHandler();
-        $this->assertEquals(\Zend_Db_Profiler_Exception::class, Zend_Loader::autoload(\Zend_Db_Profiler_Exception::class));
+        $this->assertEquals(\Zend_Application_Exception::class, Zend_Loader::autoload(\Zend_Application_Exception::class));
         $this->assertContains('deprecated', $this->error);
         $this->error = null;
-        $this->assertEquals(\Zend_Auth_Storage_Interface::class, Zend_Loader::autoload(\Zend_Auth_Storage_Interface::class));
+        $this->assertEquals(\Zend_Acl_Assert_Interface::class, Zend_Loader::autoload(\Zend_Acl_Assert_Interface::class));
         $this->assertContains('deprecated', $this->error);
     }
 

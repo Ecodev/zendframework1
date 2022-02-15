@@ -44,7 +44,7 @@ require_once 'Zend/Paginator/Adapter/Null.php';
  */
 class Zend_Paginator_Adapter_NullTest extends \PHPUnit\Framework\TestCase
 {
-    private \Zend_Paginator_Adapter_Array $_adapter;
+    private ?\Zend_Paginator_Adapter_Null $_adapter;
 
     /**
      * Prepares the environment before running a test.

@@ -45,7 +45,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 
     public function testSetSaveHandler()
     {
-        $saveHandler = $this->getMock(\Zend_Session_SaveHandler_Interface::class);
+        $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
 
         $this->resource->setSaveHandler($saveHandler);
         $this->assertSame($saveHandler, $this->resource->getSaveHandler());
@@ -53,8 +53,8 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 
     public function testSetSaveHandlerString()
     {
-        $saveHandlerClassName = 'Zend_Application_Resource_SessionTestHandlerMock1';
-        $saveHandler = $this->getMock(\Zend_Session_SaveHandler_Interface::class, array(), array(), $saveHandlerClassName);
+        $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
+        $saveHandlerClassName = get_class($saveHandler);
 
         $this->resource->setSaveHandler($saveHandlerClassName);
 
@@ -63,14 +63,17 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 
     public function testSetSaveHandlerArray()
     {
-        $saveHandlerClassName = 'Zend_Application_Resource_SessionTestHandlerMock2';
-        $saveHandler = $this->getMock(\Zend_Session_SaveHandler_Interface::class, array(), array(), $saveHandlerClassName);
+        $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
+        $saveHandlerClassName = get_class($saveHandler);
 
         $this->resource->setSaveHandler(array('class' => $saveHandlerClassName));
 
         $this->assertTrue($this->resource->getSaveHandler() instanceof $saveHandlerClassName);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testSetOptions()
     {
         Zend_Session::setOptions(array(
@@ -93,7 +96,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
     {
         Zend_Session::$_unitTestEnabled = true;
 
-        $saveHandler = $this->getMock(\Zend_Session_SaveHandler_Interface::class);
+        $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
 
         $this->resource->setSaveHandler($saveHandler);
 

@@ -74,6 +74,7 @@ class Zend_View_Helper_Navigation_SitemapTest
             $this->_oldServer['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
         }
 
+        $_SERVER['HTTP_HOST'] = 'localhost';
         $_SERVER['SERVER_NAME'] = 'localhost';
         $_SERVER['SERVER_PORT'] = 80;
         $_SERVER['REQUEST_URI'] = '/';

@@ -44,8 +44,8 @@ require_once 'Zend/Paginator/ScrollingStyle/Jumping.php';
  */
 class Zend_Paginator_ScrollingStyle_JumpingTest extends \PHPUnit\Framework\TestCase
 {
-    private \Zend_Paginator_ScrollingStyle_Jumping $_scrollingStyle;
-    private \Zend_Paginator $_paginator;
+    private ?\Zend_Paginator_ScrollingStyle_Jumping $_scrollingStyle;
+    private ?\Zend_Paginator $_paginator;
 
     private $_expectedRange;
 

@@ -39,7 +39,7 @@ require_once 'Zend/Paginator/Adapter/Array.php';
  */
 class Zend_Paginator_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 {
-    private \Zend_Paginator_Adapter_Array $_adapter;
+    private ?\Zend_Paginator_Adapter_Array $_adapter;
 
     /**
      * Prepares the environment before running a test.

@@ -91,8 +91,9 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
 
     /**
      * Callback for escaping.
+     * @var callable
      */
-    private string $_escape = 'htmlspecialchars';
+    private $_escape = 'htmlspecialchars';
 
     /**
      * Encoding to use in escaping mechanisms; defaults to utf-8
