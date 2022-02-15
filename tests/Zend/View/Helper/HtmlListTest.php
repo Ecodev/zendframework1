@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,14 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/HtmlList.php';
 
 /**
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -44,21 +34,17 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HtmlListTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HtmlListTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp()
     {
@@ -130,9 +116,7 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /*
-     * @group ZF-5018
-     */
+    // @group ZF-5018
     public function testMakeNestedUnorderedList()
     {
         $items = array('one', array('four', 'five', 'six'), 'two', 'three');
@@ -141,14 +125,12 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
 
         $this->assertContains('<ul>' . Zend_View_Helper_HtmlList::EOL, $list);
         $this->assertContains('</ul>' . Zend_View_Helper_HtmlList::EOL, $list);
-        $this->assertContains('one<ul>' . Zend_View_Helper_HtmlList::EOL.'<li>four', $list);
-        $this->assertContains('<li>six</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>' .
-            Zend_View_Helper_HtmlList::EOL . '</li>' . Zend_View_Helper_HtmlList::EOL . '<li>two', $list);
+        $this->assertContains('one<ul>' . Zend_View_Helper_HtmlList::EOL . '<li>four', $list);
+        $this->assertContains('<li>six</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>'
+            . Zend_View_Helper_HtmlList::EOL . '</li>' . Zend_View_Helper_HtmlList::EOL . '<li>two', $list);
     }
 
-    /*
-     * @group ZF-5018
-     */
+    // @group ZF-5018
     public function testMakeNestedDeepUnorderedList()
     {
         $items = array('one', array('four', array('six', 'seven', 'eight'), 'five'), 'two', 'three');
@@ -159,8 +141,8 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('</ul>' . Zend_View_Helper_HtmlList::EOL, $list);
         $this->assertContains('one<ul>' . Zend_View_Helper_HtmlList::EOL . '<li>four', $list);
         $this->assertContains('<li>four<ul>' . Zend_View_Helper_HtmlList::EOL . '<li>six', $list);
-        $this->assertContains('<li>five</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>' .
-            Zend_View_Helper_HtmlList::EOL . '</li>' . Zend_View_Helper_HtmlList::EOL . '<li>two', $list);
+        $this->assertContains('<li>five</li>' . Zend_View_Helper_HtmlList::EOL . '</ul>'
+            . Zend_View_Helper_HtmlList::EOL . '</li>' . Zend_View_Helper_HtmlList::EOL . '<li>two', $list);
     }
 
     public function testListWithValuesToEscapeForZF2283()
@@ -216,11 +198,14 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
         foreach ($items[1] as $item) {
             $this->assertRegexp('#<ul[^>]*?class="foo"[^>]*>.*?(<li>' . $item . ')#s', $list);
         }
-
     }
 
     /**
      * @group ZF-2870
+     *
+     * @param mixed $value
+     * @param mixed $key
+     * @param mixed $userdata
      */
     /*public function testEscapeFlagShouldBePassedRecursively()
     {
@@ -252,4 +237,3 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('<li>' . $value, $userdata);
     }
 }
-

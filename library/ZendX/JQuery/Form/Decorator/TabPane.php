@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,28 +12,22 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
 
 /**
  * @see ZendX_JQuery_Form_Decorator_UiWidgetContainer
  */
-require_once "UiWidgetPane.php";
+require_once 'UiWidgetPane.php';
 
 /**
- * Form Decorator for jQuery Tab Pane View Helper
+ * Form Decorator for jQuery Tab Pane View Helper.
  *
- * @package    ZendX_JQuery
- * @subpackage Form
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_JQuery_Form_Decorator_TabPane extends ZendX_JQuery_Form_Decorator_UiWidgetPane
 {
-    protected $_helper = "tabPane";
+    protected $_helper = 'tabPane';
 }

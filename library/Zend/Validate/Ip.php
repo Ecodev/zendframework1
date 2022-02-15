@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,36 +23,33 @@
 require_once 'Zend/Validate/Abstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Ip extends Zend_Validate_Abstract
 {
-    public const INVALID        = 'ipInvalid';
+    public const INVALID = 'ipInvalid';
     public const NOT_IP_ADDRESS = 'notIpAddress';
 
     /**
      * @var array
      */
     protected $_messageTemplates = array(
-        self::INVALID        => "Invalid type given. String expected",
+        self::INVALID => 'Invalid type given. String expected',
         self::NOT_IP_ADDRESS => "'%value%' does not appear to be a valid IP address",
     );
 
     /**
-     * internal options
+     * internal options.
      *
      * @var array
      */
     protected $_options = array(
         'allowipv6' => true,
-        'allowipv4' => true
+        'allowipv4' => true,
     );
 
     /**
-     * Sets validator options
+     * Sets validator options.
      *
      * @param array $options OPTIONAL Options to set, see the manual for all available options
      */
@@ -63,7 +58,7 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
         $temp = [];
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
-        } else if (!is_array($options)) {
+        } elseif (!is_array($options)) {
             $options = func_get_args();
             $temp['allowipv6'] = array_shift($options);
             if (!empty($options)) {
@@ -78,7 +73,7 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
     }
 
     /**
-     * Returns all set options
+     * Returns all set options.
      *
      * @return array
      */
@@ -88,10 +83,10 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
     }
 
     /**
-     * Sets the options for this validator
+     * Sets the options for this validator.
      *
      * @param array $options
-     * @throws Zend_Validate_Exception
+     *
      * @return Zend_Validate_Ip
      */
     public function setOptions($options)
@@ -106,6 +101,7 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
 
         if (!$this->_options['allowipv4'] && !$this->_options['allowipv6']) {
             require_once 'Zend/Validate/Exception.php';
+
             throw new Zend_Validate_Exception('Nothing to validate. Check your options');
         }
 
@@ -113,25 +109,28 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
     }
 
     /**
-     * Defined by Zend_Validate_Interface
+     * Defined by Zend_Validate_Interface.
      *
      * Returns true if and only if $value is a valid IP address
      *
      * @param  mixed $value
-     * @return boolean
+     *
+     * @return bool
      */
     public function isValid($value)
     {
         if (!is_string($value)) {
             $this->_error(self::INVALID);
+
             return false;
         }
 
         $this->_setValue($value);
-        if (($this->_options['allowipv4'] && !$this->_options['allowipv6'] && !$this->_validateIPv4($value)) ||
-            (!$this->_options['allowipv4'] && $this->_options['allowipv6'] && !$this->_validateIPv6($value)) ||
-            ($this->_options['allowipv4'] && $this->_options['allowipv6'] && !$this->_validateIPv4($value) && !$this->_validateIPv6($value))) {
+        if (($this->_options['allowipv4'] && !$this->_options['allowipv6'] && !$this->_validateIPv4($value))
+            || (!$this->_options['allowipv4'] && $this->_options['allowipv6'] && !$this->_validateIPv6($value))
+            || ($this->_options['allowipv4'] && $this->_options['allowipv6'] && !$this->_validateIPv4($value) && !$this->_validateIPv6($value))) {
             $this->_error(self::NOT_IP_ADDRESS);
+
             return false;
         }
 
@@ -139,14 +138,16 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
     }
 
     /**
-     * Validates an IPv4 address
+     * Validates an IPv4 address.
      *
      * @param string $value
+     *
      * @return bool
      */
-    protected function _validateIPv4($value) {
+    protected function _validateIPv4($value)
+    {
         $ip2long = ip2long($value);
-        if($ip2long === false) {
+        if ($ip2long === false) {
             return false;
         }
 
@@ -154,13 +155,15 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
     }
 
     /**
-     * Validates an IPv6 address
+     * Validates an IPv6 address.
      *
      * @param  string $value Value to check against
-     * @return boolean True when $value is a valid ipv6 address
+     *
+     * @return bool True when $value is a valid ipv6 address
      *                 False otherwise
      */
-    protected function _validateIPv6($value) {
+    protected function _validateIPv6($value)
+    {
         if (strlen($value) < 3) {
             return $value == '::';
         }

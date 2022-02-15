@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,12 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 // Call Zend_View_Helper_BaseUrlTest::main() if this source file is executed directly.
-
 
 /**
  * @see Zend_View_Helper_BaseUrl
@@ -34,10 +30,6 @@ require_once 'Zend/View/Helper/BaseUrl.php';
 require_once 'Zend/Controller/Front.php';
 
 /**
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -45,25 +37,25 @@ require_once 'Zend/Controller/Front.php';
 class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Previous baseUrl before changing
+     * Previous baseUrl before changing.
      *
      * @var string
      */
     protected $_previousBaseUrl;
 
     /**
-     * Server backup
+     * Server backup.
      *
      * @var array
      */
     protected $_server;
 
     /**
-     * Main
+     * Main.
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_BaseUrlTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_BaseUrlTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -88,8 +80,7 @@ class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test and make sure base url returned is consistent with the FC
-     *
+     * Test and make sure base url returned is consistent with the FC.
      */
     public function testBaseUrlIsSameAsFrontController()
     {
@@ -103,14 +94,13 @@ class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test and make sure if paths given without / prefix are fixed
-     *
+     * Test and make sure if paths given without / prefix are fixed.
      */
     public function testBaseUrlIsCorrectingFilePath()
     {
         $baseUrls = array(
-            ''             => '/file.js',
-            '/subdir'      => '/subdir/file.js',
+            '' => '/file.js',
+            '/subdir' => '/subdir/file.js',
             '/sub/sub/dir' => '/sub/sub/dir/file.js',
         );
 
@@ -123,14 +113,13 @@ class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test and make sure baseUrl appended with file works
-     *
+     * Test and make sure baseUrl appended with file works.
      */
     public function testBaseUrlIsAppendedWithFile()
     {
         $baseUrls = array(
-            ''             => '/file.js',
-            '/subdir'      => '/subdir/file.js',
+            '' => '/file.js',
+            '/subdir' => '/subdir/file.js',
             '/sub/sub/dir' => '/sub/sub/dir/file.js',
         );
 
@@ -143,14 +132,13 @@ class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test and makes sure that baseUrl appended with path works
-     *
+     * Test and makes sure that baseUrl appended with path works.
      */
     public function testBaseUrlIsAppendedWithPath()
     {
         $baseUrls = array(
-            ''             => '/path/bar',
-            '/subdir'      => '/subdir/path/bar',
+            '' => '/path/bar',
+            '/subdir' => '/subdir/path/bar',
             '/sub/sub/dir' => '/sub/sub/dir/path/bar',
         );
 
@@ -163,14 +151,13 @@ class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test and makes sure that baseUrl appended with root path
-     *
+     * Test and makes sure that baseUrl appended with root path.
      */
     public function testBaseUrlIsAppendedWithRootPath()
     {
         $baseUrls = array(
-            ''     => '/',
-            '/foo' => '/foo/'
+            '' => '/',
+            '/foo' => '/foo/',
         );
 
         foreach ($baseUrls as $baseUrl => $val) {

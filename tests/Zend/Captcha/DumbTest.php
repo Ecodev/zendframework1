@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,14 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Captcha
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Element/Captcha.php';
 require_once 'Zend/View.php';
 
 /**
- * @category   Zend
- * @package    Zend_Captcha
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
@@ -37,20 +27,16 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Captcha_DumbTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Captcha_DumbTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -63,18 +49,16 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
             array(
                 'captcha' => array(
                     'Dumb',
-                    'sessionClass' => 'Zend_Captcha_DumbTest_SessionContainer'
-                )
+                    'sessionClass' => 'Zend_Captcha_DumbTest_SessionContainer',
+                ),
             )
         );
-        $this->captcha =  $this->element->getCaptcha();
+        $this->captcha = $this->element->getCaptcha();
     }
 
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -82,9 +66,9 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
 
     public function testRendersWordInReverse()
     {
-        $id   = $this->captcha->generate('test');
+        $id = $this->captcha->generate('test');
         $word = $this->captcha->getWord();
-        $html = $this->captcha->render(new Zend_View);
+        $html = $this->captcha->render(new Zend_View());
         $this->assertContains(strrev($word), $html);
         $this->assertNotContains($word, $html);
     }
@@ -113,8 +97,8 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
     {
         $this->captcha->setLabel('Testing 123');
 
-        $id   = $this->captcha->generate('test');
-        $html = $this->captcha->render(new Zend_View);
+        $id = $this->captcha->generate('test');
+        $html = $this->captcha->render(new Zend_View());
         $this->assertContains('Testing 123', $html);
     }
 }
@@ -143,7 +127,7 @@ class Zend_Captcha_DumbTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('word' == $name) && (null !== self::$_word))  {
+        if (('word' == $name) && (null !== self::$_word)) {
             return true;
         }
 
@@ -156,9 +140,9 @@ class Zend_Captcha_DumbTest_SessionContainer
             case 'setExpirationHops':
             case 'setExpirationSeconds':
                 $this->$method = array_shift($args);
+
                 break;
             default:
         }
     }
 }
-

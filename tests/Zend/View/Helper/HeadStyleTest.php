@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_HeadStyle */
 require_once 'Zend/View/Helper/HeadStyle.php';
@@ -34,10 +29,6 @@ require_once 'Zend/Registry.php';
 /**
  * Test class for Zend_View_Helper_HeadStyle.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -56,21 +47,16 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadStyleTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadStyleTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -86,8 +72,6 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -116,19 +100,26 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         try {
             $this->helper->append('foo');
             $this->fail('Non-style value should not append');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
+
         try {
             $this->helper->offsetSet(5, 'foo');
             $this->fail('Non-style value should not offsetSet');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
+
         try {
             $this->helper->prepend('foo');
             $this->fail('Non-style value should not prepend');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
+
         try {
             $this->helper->set('foo');
             $this->fail('Non-style value should not set');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testOverloadAppendStyleAppendsStyleToStack()
@@ -186,11 +177,11 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
     public function testCanBuildStyleTagsWithAttributes()
     {
         $this->helper->setStyle('a {}', array(
-            'lang'  => 'us_en',
+            'lang' => 'us_en',
             'title' => 'foo',
             'media' => 'projection',
-            'dir'   => 'rtol',
-            'bogus' => 'unused'
+            'dir' => 'rtol',
+            'bogus' => 'unused',
         ));
         $value = $this->helper->getValue();
 
@@ -212,11 +203,11 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
     public function testRenderedStyleTagsContainHtmlEscaping()
     {
         $this->helper->setStyle('a {}', array(
-            'lang'  => 'us_en',
+            'lang' => 'us_en',
             'title' => 'foo',
             'media' => 'screen',
-            'dir'   => 'rtol',
-            'bogus' => 'unused'
+            'dir' => 'rtol',
+            'bogus' => 'unused',
         ));
         $value = $this->helper->toString();
         $this->assertContains('<!--' . PHP_EOL, $value);
@@ -248,8 +239,8 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $style3 = 'a {}' . PHP_EOL . 'h2 {}';
 
         $this->helper->headStyle($style1, 'SET')
-                     ->headStyle($style2, 'PREPEND')
-                     ->headStyle($style3, 'APPEND');
+            ->headStyle($style2, 'PREPEND')
+            ->headStyle($style3, 'APPEND');
         $this->assertEquals(3, count($this->helper));
         $values = $this->helper->getArrayCopy();
         $this->assertTrue((strstr($values[0]->content, (string) $style2)) ? true : false);
@@ -264,11 +255,11 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $style3 = 'div {}' . PHP_EOL . 'li {}';
 
         $this->helper->headStyle($style1, 'SET')
-                     ->headStyle($style2, 'PREPEND')
-                     ->headStyle($style3, 'APPEND');
+            ->headStyle($style2, 'PREPEND')
+            ->headStyle($style3, 'APPEND');
         $html = $this->helper->toString();
-        $doc  = new DOMDocument;
-        $dom  = $doc->loadHtml($html);
+        $doc = new DOMDocument();
+        $dom = $doc->loadHtml($html);
         $this->assertTrue(($dom !== false));
 
         $styles = substr_count($html, '<style type="text/css"');
@@ -306,7 +297,8 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         try {
             $this->helper->bogusMethod();
             $this->fail('Invalid method should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testTooFewArgumentsRaisesException()
@@ -314,7 +306,8 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         try {
             $this->helper->appendStyle();
             $this->fail('Too few arguments should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testIndentationIsHonored()
@@ -343,7 +336,7 @@ h1 {
     public function testSerialCapturingWorks()
     {
         $this->helper->headStyle()->captureStart();
-        echo "Captured text";
+        echo 'Captured text';
         $this->helper->headStyle()->captureEnd();
 
         try {
@@ -357,15 +350,16 @@ h1 {
     public function testNestedCapturingFails()
     {
         $this->helper->headStyle()->captureStart();
-        echo "Captured text";
-            try {
-                $this->helper->headStyle()->captureStart();
-                $this->helper->headStyle()->captureEnd();
-                $this->fail('Nested capturing should fail');
-            } catch (Zend_View_Exception $e) {
-                $this->helper->headStyle()->captureEnd();
-                $this->assertContains('Cannot nest', $e->getMessage());
-            }
+        echo 'Captured text';
+
+        try {
+            $this->helper->headStyle()->captureStart();
+            $this->helper->headStyle()->captureEnd();
+            $this->fail('Nested capturing should fail');
+        } catch (Zend_View_Exception $e) {
+            $this->helper->headStyle()->captureEnd();
+            $this->assertContains('Cannot nest', $e->getMessage());
+        }
     }
 
     public function testMediaAttributeAsArray()
@@ -382,7 +376,6 @@ a {
         $this->assertContains('    <!--', $string);
         $this->assertContains('    a {', $string);
         $this->assertContains(' media="screen,projection"', $string);
-
     }
 
     public function testMediaAttributeAsCommaSeperatedString()
@@ -399,7 +392,6 @@ a {
         $this->assertContains('    <!--', $string);
         $this->assertContains('    a {', $string);
         $this->assertContains(' media="screen,projection"', $string);
-
     }
 
     public function testConditionalScript()
@@ -417,7 +409,6 @@ a {
      */
     public function testContainerMaintainsCorrectOrderOfItems()
     {
-
         $style1 = 'a {display: none;}';
         $this->helper->offsetSetStyle(10, $style1);
 
@@ -446,7 +437,7 @@ a {
     {
         $style = 'a{display:none;}';
         $this->helper->appendStyle($style, array(
-        	'conditional' => 'IE 8'
+            'conditional' => 'IE 8',
         ));
         $value = $this->helper->toString();
 
@@ -482,4 +473,3 @@ a {
         $this->assertContains('<!--<![endif]-->', $test);
     }
 }
-

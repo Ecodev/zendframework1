@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,13 +23,7 @@ require_once 'Zend/Controller/Router/Route/Hostname.php';
 /** Zend_Controller_Request_Http */
 require_once 'Zend/Controller/Request/Http.php';
 
-
-
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
@@ -42,13 +33,11 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Router_Route_HostnameTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Router_Route_HostnameTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -141,7 +130,7 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
 
     public function testHostGetDefaults()
     {
-        $route    = $this->_getHostRouteWithDefault();
+        $route = $this->_getHostRouteWithDefault();
         $defaults = $route->getDefaults();
 
         $this->assertEquals('bar', $defaults['subdomain']);
@@ -184,7 +173,7 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
 
     public function testAutomaticSchemeAssembling()
     {
-        $route   = new Zend_Controller_Router_Route_Hostname('www.zend.com', array('controller' => 'host-foo', 'action' => 'host-bar'), array());
+        $route = new Zend_Controller_Router_Route_Hostname('www.zend.com', array('controller' => 'host-foo', 'action' => 'host-bar'), array());
 
         $url = $route->assemble();
 
@@ -194,7 +183,7 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     public function testForcedSchemeAssembling()
     {
         $request = new Zend_Controller_Router_RewriteTest_Request_Stub('www.zend.com');
-        $route   = new Zend_Controller_Router_Route_Hostname('www.zend.com', array('controller' => 'host-foo', 'action' => 'host-bar'), array(), 'https');
+        $route = new Zend_Controller_Router_Route_Hostname('www.zend.com', array('controller' => 'host-foo', 'action' => 'host-bar'), array(), 'https');
         $route->setRequest($request);
 
         $url = $route->assemble();
@@ -206,7 +195,7 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     {
         $route = new Zend_Controller_Router_Route_Hostname('www.zend.com',
                                                             array('controller' => 'ctrl',
-                                                                  'action' => 'act'));
+                                                                'action' => 'act', ));
 
         return $route;
     }
@@ -215,7 +204,7 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     {
         $route = new Zend_Controller_Router_Route_Hostname(':subdomain.zend.com',
                                                             array('controller' => 'ctrl',
-                                                                  'action' => 'act'),
+                                                                'action' => 'act', ),
                                                             array('subdomain' => '(foo|bar)'));
 
         return $route;
@@ -225,21 +214,21 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     {
         $route = new Zend_Controller_Router_Route_Hostname(':subdomain.zend.com',
                                                             array('controller' => 'ctrl',
-                                                                  'action' => 'act',
-                                                                  'subdomain' => 'bar'),
+                                                                'action' => 'act',
+                                                                'subdomain' => 'bar', ),
                                                             array('subdomain' => '(foo|bar)'));
 
         return $route;
     }
 
-    protected function _getRequest($host) {
+    protected function _getRequest($host)
+    {
         return new Zend_Controller_Router_RewriteTest_Request_Stub($host);
     }
-
 }
 
 /**
- * Zend_Controller_RouterTest_Request_Stub - request object for route testing
+ * Zend_Controller_RouterTest_Request_Stub - request object for route testing.
  */
 class Zend_Controller_Router_RewriteTest_Request_Stub extends Zend_Controller_Request_Abstract
 {
@@ -247,17 +236,19 @@ class Zend_Controller_Router_RewriteTest_Request_Stub extends Zend_Controller_Re
 
     protected $_scheme;
 
-    public function __construct($host, $scheme = 'http') {
-        $this->_host   = $host;
+    public function __construct($host, $scheme = 'http')
+    {
+        $this->_host = $host;
         $this->_scheme = $scheme;
     }
 
-    public function getHttpHost() {
+    public function getHttpHost()
+    {
         return $this->_host;
     }
 
-    public function getScheme() {
+    public function getScheme()
+    {
         return $this->_scheme;
     }
 }
-

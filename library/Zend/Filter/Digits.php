@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -13,41 +13,32 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
 
 /**
  * @see Zend_Filter_Interface
  */
 require_once 'Zend/Filter/Interface.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_Digits implements Zend_Filter_Interface
 {
     /**
-     * Is PCRE is compiled with UTF-8 and Unicode support
+     * Is PCRE is compiled with UTF-8 and Unicode support.
      *
      * @var mixed
      **/
     protected static $_unicodeEnabled;
 
     /**
-     * Class constructor
+     * Class constructor.
      *
      * Checks if PCRE is compiled with UTF-8 and Unicode support
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -57,11 +48,12 @@ class Zend_Filter_Digits implements Zend_Filter_Interface
     }
 
     /**
-     * Defined by Zend_Filter_Interface
+     * Defined by Zend_Filter_Interface.
      *
      * Returns the string $value, removing all but digit characters
      *
      * @param  string $value
+     *
      * @return string
      */
     public function filter($value)
@@ -69,7 +61,7 @@ class Zend_Filter_Digits implements Zend_Filter_Interface
         if (!self::$_unicodeEnabled) {
             // POSIX named classes are not supported, use alternative 0-9 match
             $pattern = '/[^0-9]/';
-        } else if (extension_loaded('mbstring')) {
+        } elseif (extension_loaded('mbstring')) {
             // Filter for the value with mbstring
             $pattern = '/[^[:digit:]]/';
         } else {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Validate_File_ExcludeMimeType
@@ -28,12 +23,8 @@
 require_once 'Zend/Validate/File/ExcludeMimeType.php';
 
 /**
- * ExcludeMimeType testbed
+ * ExcludeMimeType testbed.
  *
- * @category   Zend
- * @package    Zend_Validate_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
@@ -41,19 +32,15 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_ExcludeMimeTypeTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_File_ExcludeMimeTypeTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -70,11 +57,11 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
 
         $filetest = __DIR__ . '/_files/picture.jpg';
         $files = array(
-            'name'     => 'picture.jpg',
-            'type'     => 'image/jpeg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'type' => 'image/jpeg',
+            'size' => 200,
             'tmp_name' => $filetest,
-            'error'    => 0
+            'error' => 0,
         );
 
         foreach ($valuesExpected as $element) {
@@ -83,15 +70,13 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals(
                 $element[1],
                 $validator->isValid($filetest, $files),
-                "Tested with " . var_export($element, 1)
+                'Tested with ' . var_export($element, 1)
             );
         }
     }
 
     /**
-     * Ensures that getMimeType() returns expected value
-     *
-     * @return void
+     * Ensures that getMimeType() returns expected value.
      */
     public function testGetMimeType()
     {
@@ -106,9 +91,7 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that setMimeType() returns expected value
-     *
-     * @return void
+     * Ensures that setMimeType() returns expected value.
      */
     public function testSetMimeType()
     {
@@ -127,9 +110,7 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that addMimeType() returns expected value
-     *
-     * @return void
+     * Ensures that addMimeType() returns expected value.
      */
     public function testAddMimeType()
     {
@@ -151,9 +132,8 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(array('image/gif', 'text', 'jpg', 'to', 'zip', 'ti'), $validator->getMimeType(true));
     }
 
-
     /**
-     * Ensure validator is not affected by PHP bug #63976
+     * Ensure validator is not affected by PHP bug #63976.
      */
     public function testShouldHaveProperErrorMessageOnNotReadableFile()
     {
@@ -166,4 +146,3 @@ class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase
         );
     }
 }
-

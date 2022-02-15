@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,26 +22,21 @@
  */
 require_once 'Zend/Filter/Alnum.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
 class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Filter_Alnum object
+     * Zend_Filter_Alnum object.
      *
      * @var Zend_Filter_Alnum
      */
     protected $_filter;
 
     /**
-     * Is PCRE is compiled with UTF-8 and Unicode support
+     * Is PCRE is compiled with UTF-8 and Unicode support.
      *
      * @var mixed
      **/
@@ -60,14 +52,12 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
     /**
      * The Alphabet means english alphabet.
      *
-     * @var boolean
+     * @var bool
      */
     protected static $_meansEnglishAlphabet;
 
     /**
-     * Creates a new Zend_Filter_Alnum object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Filter_Alnum object for each test method.
      */
     public function setUp()
     {
@@ -84,22 +74,21 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testBasic()
     {
         if (!self::$_unicodeEnabled) {
             // POSIX named classes are not supported, use alternative a-zA-Z match
             $valuesExpected = array(
-                'abc123'  => 'abc123',
+                'abc123' => 'abc123',
                 'abc 123' => 'abc123',
-                'abcxyz'  => 'abcxyz',
+                'abcxyz' => 'abcxyz',
                 'AZ@#4.3' => 'AZ43',
-                ''        => ''
-                );
-        } if (self::$_meansEnglishAlphabet) {
+                '' => '',
+            );
+        }
+        if (self::$_meansEnglishAlphabet) {
             //The Alphabet means english alphabet.
             /**
              * The first element contains multibyte alphabets and digits.
@@ -109,21 +98,21 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
              * The third  contains various multibyte or singebyte characters.
              */
             $valuesExpected = array(
-                'aＡBｂ3４5６'  => 'aB35',
-                'z７ Ｙ8　x９'  => 'z8x',
+                'aＡBｂ3４5６' => 'aB35',
+                'z７ Ｙ8　x９' => 'z8x',
                 '，s1.2r３#:q,' => 's12rq',
             );
         } else {
             //The Alphabet means each language's alphabet.
             $valuesExpected = array(
-                'abc123'  => 'abc123',
+                'abc123' => 'abc123',
                 'abc 123' => 'abc123',
-                'abcxyz'  => 'abcxyz',
-                'če2t3ně'         => 'če2t3ně',
-                'grz5e4gżółka'    => 'grz5e4gżółka',
-                'Be3l5gië'        => 'Be3l5gië',
-                ''        => ''
-                );
+                'abcxyz' => 'abcxyz',
+                'če2t3ně' => 'če2t3ně',
+                'grz5e4gżółka' => 'grz5e4gżółka',
+                'Be3l5gië' => 'Be3l5gië',
+                '' => '',
+            );
         }
         foreach ($valuesExpected as $input => $output) {
             $this->assertEquals(
@@ -135,9 +124,7 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the allowWhiteSpace option works as expected
-     *
-     * @return void
+     * Ensures that the allowWhiteSpace option works as expected.
      */
     public function testAllowWhiteSpace()
     {
@@ -146,30 +133,31 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
         if (!self::$_unicodeEnabled) {
             // POSIX named classes are not supported, use alternative a-zA-Z match
             $valuesExpected = array(
-                'abc123'  => 'abc123',
+                'abc123' => 'abc123',
                 'abc 123' => 'abc 123',
-                'abcxyz'  => 'abcxyz',
+                'abcxyz' => 'abcxyz',
                 'AZ@#4.3' => 'AZ43',
-                ''        => '',
-                "\n"      => "\n",
-                " \t "    => " \t "
-                );
-        } if (self::$_meansEnglishAlphabet) {
+                '' => '',
+                "\n" => "\n",
+                " \t " => " \t ",
+            );
+        }
+        if (self::$_meansEnglishAlphabet) {
             //The Alphabet means english alphabet.
             $valuesExpected = array(
-                'a B ４5'  => 'a B 5',
-                'z3　x'  => 'z3x'
-                );
+                'a B ４5' => 'a B 5',
+                'z3　x' => 'z3x',
+            );
         } else {
             //The Alphabet means each language's alphabet.
             $valuesExpected = array(
-                'abc123'  => 'abc123',
+                'abc123' => 'abc123',
                 'abc 123' => 'abc 123',
-                'abcxyz'  => 'abcxyz',
-                'če2 t3ně'         => 'če2 t3ně',
-                'gr z5e4gżółka'    => 'gr z5e4gżółka',
-                'Be3l5 gië'        => 'Be3l5 gië',
-                ''        => '',
+                'abcxyz' => 'abcxyz',
+                'če2 t3ně' => 'če2 t3ně',
+                'gr z5e4gżółka' => 'gr z5e4gżółka',
+                'Be3l5 gië' => 'Be3l5 gië',
+                '' => '',
             );
         }
         foreach ($valuesExpected as $input => $output) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,16 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/View/Helper/ServerUrl.php';
 
 /**
- * Tests Zend_View_Helper_ServerUrl
+ * Tests Zend_View_Helper_ServerUrl.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -37,7 +29,7 @@ require_once 'Zend/View/Helper/ServerUrl.php';
 class Zend_View_Helper_ServerUrlTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Back up of $_SERVER
+     * Back up of $_SERVER.
      *
      * @var array
      */
@@ -125,8 +117,8 @@ class Zend_View_Helper_ServerUrlTest extends \PHPUnit\Framework\TestCase
 
     public function testServerUrlWithTrueParam()
     {
-        $_SERVER['HTTPS']       = 'off';
-        $_SERVER['HTTP_HOST']   = 'example.com';
+        $_SERVER['HTTPS'] = 'off';
+        $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 
         $url = new Zend_View_Helper_ServerUrl();
@@ -135,7 +127,7 @@ class Zend_View_Helper_ServerUrlTest extends \PHPUnit\Framework\TestCase
 
     public function testServerUrlWithInteger()
     {
-        $_SERVER['HTTPS']     = 'off';
+        $_SERVER['HTTPS'] = 'off';
         $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 
@@ -145,7 +137,7 @@ class Zend_View_Helper_ServerUrlTest extends \PHPUnit\Framework\TestCase
 
     public function testServerUrlWithObject()
     {
-        $_SERVER['HTTPS']     = 'off';
+        $_SERVER['HTTPS'] = 'off';
         $_SERVER['HTTP_HOST'] = 'example.com';
         $_SERVER['REQUEST_URI'] = '/foo.html';
 

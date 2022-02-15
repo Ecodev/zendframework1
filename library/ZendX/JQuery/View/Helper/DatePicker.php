@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,50 +12,47 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
 
 /**
  * @see Zend_Registry
  */
-require_once "Zend/Registry.php";
+require_once 'Zend/Registry.php';
 
 /**
  * @see ZendX_JQuery_View_Helper_UiWidget
  */
-require_once "ZendX/JQuery/View/Helper/UiWidget.php";
+require_once 'ZendX/JQuery/View/Helper/UiWidget.php';
 
 /**
- * jQuery Date Picker View Helper
+ * jQuery Date Picker View Helper.
  *
  * @uses 	   Zend_View_Helper_FormText
- * @package    ZendX_JQuery
- * @subpackage View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_JQuery_View_Helper_DatePicker extends ZendX_JQuery_View_Helper_UiWidget
 {
     /**
-     * Create a jQuery UI Widget Date Picker
+     * Create a jQuery UI Widget Date Picker.
      *
-     * @link   http://docs.jquery.com/UI/Datepicker
+     * @see   http://docs.jquery.com/UI/Datepicker
+     *
      * @param  string $id
      * @param  string $value
      * @param  array  $params jQuery Widget Parameters
      * @param  array  $attribs HTML Element Attributes
+     *
      * @return string
      */
     public function datePicker($id, $value = null, array $params = array(), array $attribs = array())
     {
         $attribs = $this->_prepareAttributes($id, $value, $attribs);
 
-        if(!isset($params['dateFormat']) && Zend_Registry::isRegistered(\Zend_Locale::class)) {
+        if (!isset($params['dateFormat']) && Zend_Registry::isRegistered(\Zend_Locale::class)) {
             $params['dateFormat'] = self::resolveZendLocaleToDatePickerFormat();
         }
 
@@ -81,21 +78,22 @@ class ZendX_JQuery_View_Helper_DatePicker extends ZendX_JQuery_View_Helper_UiWid
      * to be easily overriden.
      *
      * @param  string $format
-     * @throws ZendX_JQuery_Exception
+     *
      * @return string
      */
-    public static function resolveZendLocaleToDatePickerFormat($format=null)
+    public static function resolveZendLocaleToDatePickerFormat($format = null)
     {
-        if($format == null) {
+        if ($format == null) {
             $locale = Zend_Registry::get(\Zend_Locale::class);
-            if( !($locale instanceof Zend_Locale) ) {
-                require_once "ZendX/JQuery/Exception.php";
-                throw new ZendX_JQuery_Exception("Cannot resolve Zend Locale format by default, no application wide locale is set.");
+            if (!($locale instanceof Zend_Locale)) {
+                require_once 'ZendX/JQuery/Exception.php';
+
+                throw new ZendX_JQuery_Exception('Cannot resolve Zend Locale format by default, no application wide locale is set.');
             }
             /**
              * @see Zend_Locale_Format
              */
-            require_once "Zend/Locale/Format.php";
+            require_once 'Zend/Locale/Format.php';
             $format = Zend_Locale_Format::getDateFormat($locale);
         }
 
@@ -108,26 +106,26 @@ class ZendX_JQuery_View_Helper_DatePicker extends ZendX_JQuery_View_Helper_UiWid
             's' => '', 'S' => '', 'z' => '', 'Z' => '', 'A' => '',
         );
 
-        $newFormat = "";
+        $newFormat = '';
         $isText = false;
         $i = 0;
-        while($i < strlen($format)) {
+        while ($i < strlen($format)) {
             $chr = $format[$i];
-            if($chr == '"' || $chr == "'") {
+            if ($chr == '"' || $chr == "'") {
                 $isText = !$isText;
             }
             $replaced = false;
-            if($isText == false) {
-                foreach($dateFormat AS $zl => $jql) {
-                    if(substr($format, $i, strlen($zl)) == $zl) {
+            if ($isText == false) {
+                foreach ($dateFormat as $zl => $jql) {
+                    if (substr($format, $i, strlen($zl)) == $zl) {
                         $chr = $jql;
                         $i += strlen($zl);
                         $replaced = true;
                     }
                 }
             }
-            if($replaced == false) {
-                $i++;
+            if ($replaced == false) {
+                ++$i;
             }
             $newFormat .= $chr;
         }

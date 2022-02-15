@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Loader_Autoloader
@@ -41,10 +36,6 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
 require_once 'Zend/Config.php';
 
 /**
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
@@ -52,7 +43,7 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -77,7 +68,7 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
 
         $this->loader = new Zend_Loader_Autoloader_Resource(array(
             'namespace' => 'FooBar',
-            'basePath'  => realpath(__DIR__ . '/_files'),
+            'basePath' => realpath(__DIR__ . '/_files'),
         ));
     }
 
@@ -185,7 +176,7 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
     {
         $this->loader->addResourceTypes(array(
             'model' => array('path' => 'models', 'namespace' => 'Model'),
-            'form'  => array('path' => 'forms', 'namespace' => 'Form'),
+            'form' => array('path' => 'forms', 'namespace' => 'Form'),
         ));
         $resources = $this->loader->getResourceTypes();
         $this->assertContains('model', array_keys($resources));
@@ -212,11 +203,11 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
     {
         $this->loader->addResourceTypes(array(
             'model' => array('path' => 'models', 'namespace' => 'Model'),
-            'form'  => array('path' => 'forms', 'namespace' => 'Form'),
+            'form' => array('path' => 'forms', 'namespace' => 'Form'),
         ));
 
         $this->loader->setResourceTypes(array(
-            'view'   => array('path' => 'views', 'namespace' => 'View'),
+            'view' => array('path' => 'views', 'namespace' => 'View'),
             'layout' => array('path' => 'layouts', 'namespace' => 'Layout'),
         ));
 
@@ -244,7 +235,7 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
     {
         $this->loader->addResourceTypes(array(
             'model' => array('path' => 'models', 'namespace' => 'Model'),
-            'form'  => array('path' => 'forms', 'namespace' => 'Form'),
+            'form' => array('path' => 'forms', 'namespace' => 'Form'),
         ));
         $this->loader->removeResourceType('form');
 
@@ -300,7 +291,7 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
         ));
         $object = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
         $this->assertTrue($object instanceof FooBar_Form_ZendLoaderAutoloaderResourceTest);
-        $test   = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
+        $test = $this->loader->load('ZendLoaderAutoloaderResourceTest', 'form');
         $this->assertSame($object, $test);
     }
 
@@ -308,7 +299,7 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
     {
         $loader = new Zend_Loader_Autoloader_Resource(array(
             'namespace' => '',
-            'basePath'  => realpath(__DIR__ . '/_files'),
+            'basePath' => realpath(__DIR__ . '/_files'),
         ));
         $loader->addResourceTypes(array(
             'service' => array('path' => 'services', 'namespace' => 'Service'),
@@ -425,27 +416,27 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
     {
         // namespace is after resourceTypes - fails in ZF 1.11.1
         $data = array(
-            'basePath'      => 'path/to/some/directory',
+            'basePath' => 'path/to/some/directory',
             'resourceTypes' => array(
                 'acl' => array(
-                    'path'      => 'acls/',
+                    'path' => 'acls/',
                     'namespace' => 'Acl',
-                )
+                ),
             ),
-            'namespace'     => 'My'
+            'namespace' => 'My',
         );
         $loader1 = new Zend_Loader_Autoloader_Resource($data);
 
         // namespace is defined before resourceTypes - always worked as expected
         $data = array(
-            'basePath'      => 'path/to/some/directory',
-            'namespace'     => 'My',
+            'basePath' => 'path/to/some/directory',
+            'namespace' => 'My',
             'resourceTypes' => array(
                 'acl' => array(
-                    'path'      => 'acls/',
+                    'path' => 'acls/',
                     'namespace' => 'Acl',
-                )
-            )
+                ),
+            ),
         );
         $loader2 = new Zend_Loader_Autoloader_Resource($data);
 
@@ -465,4 +456,3 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(__DIR__ . '/_files/models/Baz.php', $path, var_export($path, 1));
     }
 }
-

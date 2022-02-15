@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,37 +12,25 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/Placeholder.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
 class Zend_View_Helper_RenderToPlaceholderTest extends \PHPUnit\Framework\TestCase
 {
-
-    protected $_view = null;
+    protected $_view;
 
     public function setUp()
     {
-        $this->_view = new Zend_View(array('scriptPath'=>__DIR__.'/_files/scripts/'));
+        $this->_view = new Zend_View(array('scriptPath' => __DIR__ . '/_files/scripts/'));
     }
 
     public function testDefaultEmpty()
@@ -51,6 +39,4 @@ class Zend_View_Helper_RenderToPlaceholderTest extends \PHPUnit\Framework\TestCa
         $placeholder = new Zend_View_Helper_Placeholder();
         $this->assertEquals("Foo Bar\n", $placeholder->placeholder('fooPlaceholder')->getValue());
     }
-
 }
-

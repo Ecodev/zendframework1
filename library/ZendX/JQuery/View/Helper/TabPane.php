@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,23 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
-
-require_once "UiWidgetPane.php";
+require_once 'UiWidgetPane.php';
 
 /**
- * jQuery Tabs Pane View Helper, goes with Tab Container
+ * jQuery Tabs Pane View Helper, goes with Tab Container.
  *
  * @uses 	   Zend_Json, ZendX_JQuery_View_Helper_TabContainer
- * @package    ZendX_JQuery
- * @subpackage View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_JQuery_View_Helper_TabPane extends ZendX_JQuery_View_Helper_UiWidgetPane
@@ -38,22 +32,23 @@ class ZendX_JQuery_View_Helper_TabPane extends ZendX_JQuery_View_Helper_UiWidget
      *
      * @param  string $id
      * @param  string $content
-     * @param  array  $options
+     *
      * @return string always empty
      */
-    public function tabPane($id=null, $content='', array $options=array())
+    public function tabPane($id = null, $content = '', array $options = array())
     {
-        if(0 === func_num_args()) {
+        if (0 === func_num_args()) {
             return $this;
         }
 
         $name = '';
-        if(isset($options['title'])) {
+        if (isset($options['title'])) {
             $name = $options['title'];
             unset($options['title']);
         }
 
         $this->_addPane($id, $name, $content, $options);
+
         return '';
     }
 
@@ -61,13 +56,12 @@ class ZendX_JQuery_View_Helper_TabPane extends ZendX_JQuery_View_Helper_UiWidget
      * Register new tab pane with tabContainer view helper.
      *
      * @see    ZendX_JQuery_View_Helper_TabContainer::addPane
+     *
      * @param  string $id
      * @param  string $name
      * @param  string $content
-     * @param  array  $options
-     * @return void
      */
-    protected function _addPane($id, $name, $content, array $options=array())
+    protected function _addPane($id, $name, $content, array $options = array())
     {
         $this->view->tabContainer()->addPane($id, $name, $content, $options);
     }

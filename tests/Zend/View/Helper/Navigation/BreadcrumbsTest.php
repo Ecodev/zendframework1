@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,39 +12,31 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 require_once __DIR__ . '/TestAbstract.php';
 require_once 'Zend/View/Helper/Navigation/Breadcrumbs.php';
 
 /**
- * Tests Zend_View_Helper_Navigation_Breadcrumbs
+ * Tests Zend_View_Helper_Navigation_Breadcrumbs.
  *
- * @category   Zend_Tests
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-class Zend_View_Helper_Navigation_BreadcrumbsTest
-    extends Zend_View_Helper_Navigation_TestAbstract
+class Zend_View_Helper_Navigation_BreadcrumbsTest extends Zend_View_Helper_Navigation_TestAbstract
 {
     /**
-     * Class name for view helper to test
+     * Class name for view helper to test.
      *
      * @var string
      */
     protected $_helperName = \Zend_View_Helper_Navigation_Breadcrumbs::class;
 
     /**
-     * View helper
+     * View helper.
      *
      * @var Zend_View_Helper_Navigation_Breadcrumbs
      */
@@ -140,15 +132,15 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest
         $rendered2 = 'Site 2';
 
         $expected = array(
-            'registered'       => $rendered1,
-            'supplied'         => $rendered2,
-            'registered_again' => $rendered1
+            'registered' => $rendered1,
+            'supplied' => $rendered2,
+            'registered_again' => $rendered1,
         );
 
         $actual = array(
-            'registered'       => $this->_helper->render(),
-            'supplied'         => $this->_helper->render($this->_nav2),
-            'registered_again' => $this->_helper->render()
+            'registered' => $this->_helper->render(),
+            'supplied' => $this->_helper->render($this->_nav2),
+            'registered_again' => $this->_helper->render(),
         );
 
         $this->assertEquals($expected, $actual);
@@ -240,10 +232,10 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest
     {
         $container = new Zend_Navigation(array(
             array(
-                'label'  => 'Live & Learn',
-                'uri'    => '#',
-                'active' => true
-            )
+                'label' => 'Live & Learn',
+                'uri' => '#',
+                'active' => true,
+            ),
         ));
 
         $expected = 'Live &amp; Learn';
@@ -259,24 +251,24 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest
     {
         $container = new Zend_Navigation(array(
             array(
-                'label'             => 'Page 1',
-                'uri'               => 'p1',
+                'label' => 'Page 1',
+                'uri' => 'p1',
                 'customHtmlAttribs' => array(
-                    'rel'   => 'nofollow',
+                    'rel' => 'nofollow',
                     'style' => 'font-weight: bold;',
                 ),
-                'pages'             => array(
+                'pages' => array(
                     array(
-                        'label'             => 'Page 2',
-                        'uri'               => 'p2',
+                        'label' => 'Page 2',
+                        'uri' => 'p2',
                         'customHtmlAttribs' => array(
-                            'rel'   => 'nofollow',
+                            'rel' => 'nofollow',
                         ),
-                        'pages'             => array(
+                        'pages' => array(
                             array(
-                                'label'             => 'Page 3',
-                                'uri'               => 'p3',
-                                'active'            => true,
+                                'label' => 'Page 3',
+                                'uri' => 'p3',
+                                'active' => true,
                             ),
                         ),
                     ),

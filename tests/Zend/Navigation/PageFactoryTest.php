@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Navigation
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
 require_once 'Zend/Navigation/Page.php';
 
 /**
- * Tests Zend_Navigation_Page::factory()
- *
-/**
- * @category   Zend
- * @package    Zend_Navigation
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * Tests Zend_Navigation_Page::factory().
+ * /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Navigation
  */
@@ -57,23 +48,23 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $pages = array(
             Zend_Navigation_Page::factory(array(
-                'label'  => 'MVC Page',
-                'action' => 'index'
-            )),
-            Zend_Navigation_Page::factory(array(
-                'label'      => 'MVC Page',
-                'controller' => 'index'
-            )),
-            Zend_Navigation_Page::factory(array(
-                'label'  => 'MVC Page',
-                'module' => 'index'
+                'label' => 'MVC Page',
+                'action' => 'index',
             )),
             Zend_Navigation_Page::factory(array(
                 'label' => 'MVC Page',
-                'route' => 'home'
+                'controller' => 'index',
             )),
             Zend_Navigation_Page::factory(array(
-                'label'  => 'MVC Page',
+                'label' => 'MVC Page',
+                'module' => 'index',
+            )),
+            Zend_Navigation_Page::factory(array(
+                'label' => 'MVC Page',
+                'route' => 'home',
+            )),
+            Zend_Navigation_Page::factory(array(
+                'label' => 'MVC Page',
                 'params' => array(
                     'foo' => 'bar',
                 ),
@@ -87,7 +78,7 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
     {
         $page = Zend_Navigation_Page::factory(array(
             'label' => 'URI Page',
-            'uri'   => '#'
+            'uri' => '#',
         ));
 
         $this->assertTrue($page instanceof Zend_Navigation_Page_Uri);
@@ -96,10 +87,10 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
     public function testSupportsMvcShorthand()
     {
         $mvcPage = Zend_Navigation_Page::factory(array(
-            'type'       => 'mvc',
-            'label'      => 'MVC Page',
-            'action'     => 'index',
-            'controller' => 'index'
+            'type' => 'mvc',
+            'label' => 'MVC Page',
+            'action' => 'index',
+            'controller' => 'index',
         ));
 
         $this->assertTrue($mvcPage instanceof Zend_Navigation_Page_Mvc);
@@ -108,9 +99,9 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
     public function testSupportsUriShorthand()
     {
         $uriPage = Zend_Navigation_Page::factory(array(
-            'type'  => 'uri',
+            'type' => 'uri',
             'label' => 'URI Page',
-            'uri'   => 'http://www.example.com/'
+            'uri' => 'http://www.example.com/',
         ));
 
         $this->assertTrue($uriPage instanceof Zend_Navigation_Page_Uri);
@@ -119,8 +110,8 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
     public function testSupportsCustomPageTypes()
     {
         $page = Zend_Navigation_Page::factory(array(
-            'type'  => 'My_Page',
-            'label' => 'My Custom Page'
+            'type' => 'My_Page',
+            'label' => 'My Custom Page',
         ));
 
         return $this->assertTrue($page instanceof My_Page);
@@ -130,10 +121,10 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
     {
         try {
             $page = Zend_Navigation_Page::factory(array(
-                'type'  => 'My_InvalidPage',
-                'label' => 'My Invalid Page'
+                'type' => 'My_InvalidPage',
+                'label' => 'My Invalid Page',
             ));
-        } catch(Zend_Navigation_Exception $e) {
+        } catch (Zend_Navigation_Exception $e) {
             return;
         }
 
@@ -143,8 +134,8 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
     public function testShouldFailForNonExistantType()
     {
         $pageConfig = array(
-            'type'  => 'My_NonExistant_Page',
-            'label' => 'My non-existant Page'
+            'type' => 'My_NonExistant_Page',
+            'label' => 'My non-existant Page',
         );
 
         try {
@@ -153,7 +144,7 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
             $this->fail(
                 'A Zend_Exception has not been thrown for non-existant class'
             );
-        } catch(Zend_Exception $e) {
+        } catch (Zend_Exception $e) {
             $this->assertEquals(
                 'File "My' . DIRECTORY_SEPARATOR . 'NonExistant' . DIRECTORY_SEPARATOR . 'Page.php" does not exist or class '
                 . '"My_NonExistant_Page" was not found in the file',
@@ -166,13 +157,13 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
     {
         try {
             $page = Zend_Navigation_Page::factory(array(
-                'label' => 'My Invalid Page'
+                'label' => 'My Invalid Page',
             ));
 
             $this->fail(
                 'An exception has not been thrown for invalid page type'
             );
-        } catch(Zend_Navigation_Exception $e) {
+        } catch (Zend_Navigation_Exception $e) {
             $this->assertEquals(
                 'Invalid argument: Unable to determine class to instantiate '
                 . '(Page label: My Invalid Page)',

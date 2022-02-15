@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Controller/Plugin/PutHandler.php';
 require_once 'Zend/Controller/Request/HttpTestCase.php';
 require_once 'Zend/Controller/Front.php';
@@ -30,10 +24,6 @@ require_once 'Zend/Controller/Front.php';
  * Test class for Zend_Controller_Plugin_PutHandler.
  */
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
@@ -41,13 +31,15 @@ require_once 'Zend/Controller/Front.php';
 class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Request object
+     * Request object.
+     *
      * @var Zend_Controller_Request_Http
      */
     public $request;
 
     /**
-     * Error handler plugin
+     * Error handler plugin.
+     *
      * @var Zend_Controller_Plugin_PutHandler
      */
     public $plugin;
@@ -55,27 +47,23 @@ class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_PutHandlerTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Plugin_PutHandlerTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp()
     {
         Zend_Controller_Front::getInstance()->resetInstance();
-        $this->request  = new Zend_Controller_Request_HttpTestCase();
-        $this->plugin   = new Zend_Controller_Plugin_PutHandler();
+        $this->request = new Zend_Controller_Request_HttpTestCase();
+        $this->plugin = new Zend_Controller_Plugin_PutHandler();
 
         $this->plugin->setRequest($this->request);
     }
@@ -90,5 +78,3 @@ class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('value2', $this->request->getParam('param2'));
     }
 }
-
-

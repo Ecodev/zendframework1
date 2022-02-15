@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -35,17 +32,14 @@ require_once 'Zend/Paginator/ScrollingStyle/All.php';
  */
 
 /**
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
 class Zend_Paginator_ScrollingStyle_AllTest extends \PHPUnit\Framework\TestCase
 {
     private ?\Zend_Paginator_ScrollingStyle_All $_scrollingStyle = null;
-    private $_paginator = null;
+
+    private $_paginator;
 
     /**
      * Prepares the environment before running a test.
@@ -57,10 +51,11 @@ class Zend_Paginator_ScrollingStyle_AllTest extends \PHPUnit\Framework\TestCase
         $this->_paginator = Zend_Paginator::factory(range(1, 101));
         $this->_paginator->setItemCountPerPage(10);
     }
+
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown ()
+    protected function tearDown()
     {
         $this->_scrollingStyle = null;
         $this->_paginator = null;
@@ -68,7 +63,7 @@ class Zend_Paginator_ScrollingStyle_AllTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests Zend_Paginator_ScrollingStyle_All->getPages()
+     * Tests Zend_Paginator_ScrollingStyle_All->getPages().
      */
     public function testGetsPages()
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,28 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
-
-
 /**
- * Zend_Loader_Autoloader
+ * Zend_Loader_Autoloader.
  */
 require_once 'Zend/Loader/Autoloader.php';
 
 require_once 'Zend/Application/Resource/View.php';
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
@@ -41,7 +32,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -106,7 +97,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/Application/Resource/View.php';
         $resource = new Zend_Application_Resource_View($options);
         $resource->init();
-        $view  = $resource->getView();
+        $view = $resource->getView();
         $paths = $view->getScriptPaths();
         $this->assertContains(__DIR__ . '/', $paths, var_export($paths, 1));
     }
@@ -116,7 +107,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         $options = array('doctype' => 'XHTML1_FRAMESET');
         $resource = new Zend_Application_Resource_View($options);
         $resource->init();
-        $view  = $resource->getView();
+        $view = $resource->getView();
         $this->assertEquals('XHTML1_FRAMESET', $view->doctype()->getDoctype());
     }
 
@@ -135,6 +126,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         foreach ($container as $item) {
             if ('Content-Type' == $item->{$item->type}) {
                 $actual = $item->content;
+
                 break;
             }
         }
@@ -164,6 +156,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         foreach ($container as $item) {
             if ('charset' == $item->type) {
                 $actual = $item->charset;
+
                 break;
             }
         }
@@ -181,7 +174,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetMetaCharsetShouldOnlyAvailableForHtml5()
     {
-    	$charset = 'UTF-8';
+        $charset = 'UTF-8';
         $options = array(
             'doctype' => 'XHTML1_STRICT',
             'charset' => $charset,
@@ -195,6 +188,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         foreach ($container as $item) {
             if ('charset' == $item->type) {
                 $actual = $item->charset;
+
                 break;
             }
         }
@@ -216,7 +210,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
             'assign' => array(
                 'foo' => 'barbapapa',
                 'bar' => 'barbazoo',
-            )
+            ),
         );
         $resource = new Zend_Application_Resource_View($options);
         $view = $resource->init();
@@ -240,5 +234,3 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($view, $viewRenderer->view);
     }
 }
-
-

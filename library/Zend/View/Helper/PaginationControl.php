@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,51 +12,48 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * @category   Zend
- * @package    Zend_View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_PaginationControl
 {
     /**
-     * View instance
+     * View instance.
      *
      * @var Zend_View_Instance
      */
-    public $view = null;
+    public $view;
 
     /**
-     * Default view partial
+     * Default view partial.
      *
-     * @var string|array
+     * @var array|string
      */
-    protected static $_defaultViewPartial = null;
+    protected static $_defaultViewPartial;
 
     /**
      * Sets the view instance.
      *
      * @param  Zend_View_Interface $view View instance
+     *
      * @return Zend_View_Helper_PaginationControl
      */
     public function setView(Zend_View_Interface $view)
     {
         $this->view = $view;
+
         return $this;
     }
 
     /**
      * Sets the default view partial.
      *
-     * @param string|array $partial View partial
+     * @param array|string $partial View partial
      */
     public static function setDefaultViewPartial($partial)
     {
@@ -64,9 +61,9 @@ class Zend_View_Helper_PaginationControl
     }
 
     /**
-     * Gets the default view partial
+     * Gets the default view partial.
      *
-     * @return string|array
+     * @return array|string
      */
     public static function getDefaultViewPartial()
     {
@@ -82,10 +79,10 @@ class Zend_View_Helper_PaginationControl
      * @param  string $scrollingStyle (Optional) Scrolling style
      * @param  string $partial (Optional) View partial
      * @param  array|string $params (Optional) params to pass to the partial
+     *
      * @return string
-     * @throws Zend_View_Exception
      */
-    public function paginationControl(Zend_Paginator $paginator = null, $scrollingStyle = null, $partial = null, $params = null)
+    public function paginationControl(?Zend_Paginator $paginator = null, $scrollingStyle = null, $partial = null, $params = null)
     {
         if ($paginator === null) {
             if (isset($this->view->paginator) and $this->view->paginator !== null and $this->view->paginator instanceof Zend_Paginator) {
@@ -98,6 +95,7 @@ class Zend_View_Helper_PaginationControl
 
                 $e = new Zend_View_Exception('No paginator instance provided or incorrect type');
                 $e->setView($this->view);
+
                 throw $e;
             }
         }
@@ -110,6 +108,7 @@ class Zend_View_Helper_PaginationControl
                 require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception('No view partial provided and no default set');
                 $e->setView($this->view);
+
                 throw $e;
             }
 
@@ -130,6 +129,7 @@ class Zend_View_Helper_PaginationControl
                 require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception('A view partial supplied as an array must contain two values: the filename and its module');
                 $e->setView($this->view);
+
                 throw $e;
             }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,19 +12,12 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Plugins
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Plugins
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Controller_Plugin_Abstract
@@ -40,19 +33,19 @@ abstract class Zend_Controller_Plugin_Abstract
     protected $_response;
 
     /**
-     * Set request object
+     * Set request object.
      *
-     * @param Zend_Controller_Request_Abstract $request
      * @return Zend_Controller_Plugin_Abstract
      */
     public function setRequest(Zend_Controller_Request_Abstract $request)
     {
         $this->_request = $request;
+
         return $this;
     }
 
     /**
-     * Get request object
+     * Get request object.
      *
      * @return Zend_Controller_Request_Abstract $request
      */
@@ -62,19 +55,19 @@ abstract class Zend_Controller_Plugin_Abstract
     }
 
     /**
-     * Set response object
+     * Set response object.
      *
-     * @param Zend_Controller_Response_Abstract $response
      * @return Zend_Controller_Plugin_Abstract
      */
     public function setResponse(Zend_Controller_Response_Abstract $response)
     {
         $this->_response = $response;
+
         return $this;
     }
 
     /**
-     * Get response object
+     * Get response object.
      *
      * @return Zend_Controller_Response_Abstract $response
      */
@@ -86,32 +79,26 @@ abstract class Zend_Controller_Plugin_Abstract
     /**
      * Called before Zend_Controller_Front begins evaluating the
      * request against its routes.
-     *
-     * @param Zend_Controller_Request_Abstract $request
-     * @return void
      */
     public function routeStartup(Zend_Controller_Request_Abstract $request)
-    {}
+    {
+    }
 
     /**
      * Called after Zend_Controller_Router exits.
      *
      * Called after Zend_Controller_Front exits from the router.
-     *
-     * @param  Zend_Controller_Request_Abstract $request
-     * @return void
      */
     public function routeShutdown(Zend_Controller_Request_Abstract $request)
-    {}
+    {
+    }
 
     /**
      * Called before Zend_Controller_Front enters its dispatch loop.
-     *
-     * @param  Zend_Controller_Request_Abstract $request
-     * @return void
      */
     public function dispatchLoopStartup(Zend_Controller_Request_Abstract $request)
-    {}
+    {
+    }
 
     /**
      * Called before an action is dispatched by Zend_Controller_Dispatcher.
@@ -120,12 +107,10 @@ abstract class Zend_Controller_Plugin_Abstract
      * request and resetting its dispatched flag (via
      * {@link Zend_Controller_Request_Abstract::setDispatched() setDispatched(false)}),
      * the current action may be skipped.
-     *
-     * @param  Zend_Controller_Request_Abstract $request
-     * @return void
      */
     public function preDispatch(Zend_Controller_Request_Abstract $request)
-    {}
+    {
+    }
 
     /**
      * Called after an action is dispatched by Zend_Controller_Dispatcher.
@@ -134,18 +119,15 @@ abstract class Zend_Controller_Plugin_Abstract
      * request and resetting its dispatched flag (via
      * {@link Zend_Controller_Request_Abstract::setDispatched() setDispatched(false)}),
      * a new action may be specified for dispatching.
-     *
-     * @param  Zend_Controller_Request_Abstract $request
-     * @return void
      */
     public function postDispatch(Zend_Controller_Request_Abstract $request)
-    {}
+    {
+    }
 
     /**
      * Called before Zend_Controller_Front exits its dispatch loop.
-     *
-     * @return void
      */
     public function dispatchLoopShutdown()
-    {}
+    {
+    }
 }

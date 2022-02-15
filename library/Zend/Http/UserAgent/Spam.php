@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,22 +12,13 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Http
- * @subpackage UserAgent
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-
 require_once 'Zend/Http/UserAgent/AbstractDevice.php';
 
 /**
- * Spam browser type matcher
+ * Spam browser type matcher.
  *
- * @category   Zend
- * @package    Zend_Http
- * @subpackage UserAgent
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Http_UserAgent_Spam extends Zend_Http_UserAgent_AbstractDevice
@@ -42,10 +33,11 @@ class Zend_Http_UserAgent_Spam extends Zend_Http_UserAgent_AbstractDevice
     );
 
     /**
-     * Comparison of the UserAgent chain and User Agent signatures
+     * Comparison of the UserAgent chain and User Agent signatures.
      *
      * @param  string $userAgent User Agent chain
      * @param  array $server $_SERVER like param
+     *
      * @return bool
      */
     public static function match($userAgent, $server)
@@ -54,7 +46,7 @@ class Zend_Http_UserAgent_Spam extends Zend_Http_UserAgent_AbstractDevice
     }
 
     /**
-     * Gives the current browser type
+     * Gives the current browser type.
      *
      * @return string
      */
@@ -64,7 +56,7 @@ class Zend_Http_UserAgent_Spam extends Zend_Http_UserAgent_AbstractDevice
     }
 
     /**
-     * Look for features
+     * Look for features.
      *
      * @return string
      */
@@ -74,6 +66,7 @@ class Zend_Http_UserAgent_Spam extends Zend_Http_UserAgent_AbstractDevice
         $this->setFeature('iframes', false, 'product_capability');
         $this->setFeature('frames', false, 'product_capability');
         $this->setFeature('javascript', false, 'product_capability');
+
         return parent::_defineFeatures();
     }
 }

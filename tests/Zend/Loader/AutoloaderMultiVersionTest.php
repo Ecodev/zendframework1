@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Loader_Autoloader
@@ -28,10 +23,6 @@
 require_once 'Zend/Loader/Autoloader.php';
 
 /**
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
@@ -39,7 +30,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -61,12 +52,12 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
         }
 
         Zend_Loader_Autoloader::resetInstance();
-        $this->path        = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH');
-        $this->latest      = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST');
+        $this->path = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH');
+        $this->latest = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST');
         $this->latestMajor = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MAJOR');
         $this->latestMinor = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST_MINOR');
-        $this->specific    = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC');
-        $this->autoloader  = Zend_Loader_Autoloader::getInstance();
+        $this->specific = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_SPECIFIC');
+        $this->autoloader = Zend_Loader_Autoloader::getInstance();
     }
 
     public function tearDown()
@@ -208,13 +199,15 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
         switch ($type) {
             case 'major':
                 $value = array_shift($parts);
+
                 break;
             case 'minor':
-                $value  = array_shift($parts);
+                $value = array_shift($parts);
                 $value .= '.' . array_shift($parts);
+
                 break;
         }
+
         return $value;
     }
 }
-

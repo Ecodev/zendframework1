@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,55 +12,50 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
-
-require_once "Zend/Form.php";
+require_once 'Zend/Form.php';
 
 /**
- * Form Wrapper for jQuery-enabled forms
+ * Form Wrapper for jQuery-enabled forms.
  *
- * @package    ZendX_JQuery
- * @subpackage Form
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
-  */
+ */
 class ZendX_JQuery_Form extends Zend_Form
 {
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param  array|Zend_Config|null $options
+     * @param  null|array|Zend_Config $options
      */
     public function __construct($options = null)
     {
         $this->addPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator', 'decorator')
-             ->addPrefixPath('ZendX_JQuery_Form_Element', 'ZendX/JQuery/Form/Element', 'element')
-             ->addElementPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator', 'decorator')
-             ->addDisplayGroupPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator');
+            ->addPrefixPath('ZendX_JQuery_Form_Element', 'ZendX/JQuery/Form/Element', 'element')
+            ->addElementPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator', 'decorator')
+            ->addDisplayGroupPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator');
         parent::__construct($options);
     }
 
     /**
-     * Set the view object
+     * Set the view object.
      *
      * Ensures that the view object has the jQuery view helper path set.
      *
      * @param  Zend_View_Interface $view
+     *
      * @return ZendX_JQuery_Form
      */
-    public function setView(Zend_View_Interface $view = null)
+    public function setView(?Zend_View_Interface $view = null)
     {
         if (null !== $view) {
             if (false === $view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')) {
                 $view->addHelperPath('ZendX/JQuery/View/Helper', 'ZendX_JQuery_View_Helper');
             }
         }
+
         return parent::setView($view);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,32 +12,24 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 // Call Zend_LoaderTest::main() if this source file is executed directly.
 
-
 /**
- * Zend_Loader
+ * Zend_Loader.
  */
 require_once 'Zend/Loader.php';
 
 /**
- * Zend_Loader_Autoloader
+ * Zend_Loader_Autoloader.
  */
 require_once 'Zend/Loader/Autoloader.php';
 
 /**
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
@@ -45,13 +37,10 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_LoaderTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_LoaderTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -112,7 +101,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests that a class can be loaded from a well-formed PHP file
+     * Tests that a class can be loaded from a well-formed PHP file.
      */
     public function testLoaderClassValid()
     {
@@ -133,6 +122,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testLoaderLoadClassWithDotDir()
     {
         $dirs = array('.');
+
         try {
             Zend_Loader::loadClass(\Zend_View::class, $dirs);
         } catch (Zend_Exception $e) {
@@ -142,7 +132,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that an exception is thrown when a file is loaded but the
-     * class is not found within the file
+     * class is not found within the file.
      */
     public function testLoaderClassNonexistent()
     {
@@ -186,7 +176,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests that a class locatedin a subdirectory can be loaded from the search directories
+     * Tests that a class locatedin a subdirectory can be loaded from the search directories.
      */
     public function testLoaderClassSearchSubDirs()
     {
@@ -213,7 +203,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests that loadFile() finds a file in the include_path when $dirs is null
+     * Tests that loadFile() finds a file in the include_path when $dirs is null.
      */
     public function testLoaderFileIncludePathEmptyDirs()
     {
@@ -227,7 +217,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that loadFile() finds a file in the include_path when $dirs is non-null
-     * This was not working vis-a-vis ZF-1174
+     * This was not working vis-a-vis ZF-1174.
      */
     public function testLoaderFileIncludePathNonEmptyDirs()
     {
@@ -240,7 +230,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests that isReadable works
+     * Tests that isReadable works.
      */
     public function testLoaderIsReadable()
     {
@@ -252,7 +242,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests that autoload works for valid classes and interfaces
+     * Tests that autoload works for valid classes and interfaces.
      */
     public function testLoaderAutoloadLoadsValidClasses()
     {
@@ -265,7 +255,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests that autoload returns false on invalid classes
+     * Tests that autoload returns false on invalid classes.
      */
     public function testLoaderAutoloadFailsOnInvalidClasses()
     {
@@ -277,7 +267,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testLoaderRegisterAutoloadRegisters()
     {
         if (!function_exists('spl_autoload_register')) {
-            $this->markTestSkipped("spl_autoload not installed on this PHP installation");
+            $this->markTestSkipped('spl_autoload not installed on this PHP installation');
         }
 
         $this->setErrorHandler();
@@ -285,24 +275,25 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
-        $found       = false;
-        foreach($autoloaders as $function) {
+        $found = false;
+        foreach ($autoloaders as $function) {
             if (is_array($function)) {
                 $class = $function[0];
                 if ($class == \Zend_Loader_Autoloader::class) {
                     $found = true;
                     spl_autoload_unregister($function);
+
                     break;
                 }
             }
         }
-        $this->assertTrue($found, "Failed to register Zend_Loader_Autoloader with spl_autoload");
+        $this->assertTrue($found, 'Failed to register Zend_Loader_Autoloader with spl_autoload');
     }
 
     public function testLoaderRegisterAutoloadExtendedClassNeedsAutoloadMethod()
     {
         if (!function_exists('spl_autoload_register')) {
-            $this->markTestSkipped("spl_autoload not installed on this PHP installation");
+            $this->markTestSkipped('spl_autoload not installed on this PHP installation');
         }
 
         $this->setErrorHandler();
@@ -310,15 +301,16 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
-        $expected    = array('Zend_Loader_MyLoader', 'autoload');
-        $found       = false;
+        $expected = array('Zend_Loader_MyLoader', 'autoload');
+        $found = false;
         foreach ($autoloaders as $function) {
             if ($expected == $function) {
                 $found = true;
+
                 break;
             }
         }
-        $this->assertFalse($found, "Failed to register Zend_Loader_MyLoader::autoload() with spl_autoload");
+        $this->assertFalse($found, 'Failed to register Zend_Loader_MyLoader::autoload() with spl_autoload');
 
         spl_autoload_unregister($expected);
     }
@@ -327,7 +319,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     {
         $function = [];
         if (!function_exists('spl_autoload_register')) {
-            $this->markTestSkipped("spl_autoload not installed on this PHP installation");
+            $this->markTestSkipped('spl_autoload not installed on this PHP installation');
         }
 
         $this->setErrorHandler();
@@ -335,21 +327,22 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
-        $found       = false;
+        $found = false;
         foreach ($autoloaders as $function) {
             if (is_array($function)) {
                 $class = $function[0];
                 if ($class == \Zend_Loader_Autoloader::class) {
                     $found = true;
+
                     break;
                 }
             }
         }
-        $this->assertTrue($found, "Failed to register Zend_Loader_Autoloader with spl_autoload");
+        $this->assertTrue($found, 'Failed to register Zend_Loader_Autoloader with spl_autoload');
 
         $autoloaders = Zend_Loader_Autoloader::getInstance()->getAutoloaders();
-        $found       = false;
-        $expected    = array('Zend_Loader_MyOverloader', 'autoload');
+        $found = false;
+        $expected = array('Zend_Loader_MyOverloader', 'autoload');
         $this->assertTrue(in_array($expected, $autoloaders, true), 'Failed to register My_Loader_MyOverloader with Zend_Loader_Autoloader: ' . var_export($autoloaders, 1));
 
         // try to instantiate a class that is known not to be loaded
@@ -361,7 +354,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
         // and we verify it is the correct type
         $this->assertTrue($obj instanceof Zend_Loader_AutoloadableClass,
-            'Expected to instantiate Zend_Loader_AutoloadableClass, got '.get_class($obj));
+            'Expected to instantiate Zend_Loader_AutoloadableClass, got ' . get_class($obj));
 
         spl_autoload_unregister($function);
     }
@@ -369,7 +362,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testLoaderRegisterAutoloadFailsWithoutSplAutoload()
     {
         if (function_exists('spl_autoload_register')) {
-            $this->markTestSkipped("spl_autoload() is installed on this PHP installation; cannot test for failure");
+            $this->markTestSkipped('spl_autoload() is installed on this PHP installation; cannot test for failure');
         }
 
         try {
@@ -382,10 +375,11 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testLoaderRegisterAutoloadInvalidClass()
     {
         if (!function_exists('spl_autoload_register')) {
-            $this->markTestSkipped("spl_autoload() not installed on this PHP installation");
+            $this->markTestSkipped('spl_autoload() not installed on this PHP installation');
         }
 
         $this->setErrorHandler();
+
         try {
             Zend_Loader::registerAutoload(\stdClass::class);
             $this->fail('registerAutoload should fail without spl_autoload');
@@ -398,14 +392,14 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testLoaderUnregisterAutoload()
     {
         if (!function_exists('spl_autoload_register')) {
-            $this->markTestSkipped("spl_autoload() not installed on this PHP installation");
+            $this->markTestSkipped('spl_autoload() not installed on this PHP installation');
         }
 
         $this->setErrorHandler();
         Zend_Loader::registerAutoload('Zend_Loader_MyOverloader');
         $this->assertContains('deprecated', $this->error);
 
-        $expected    = array('Zend_Loader_MyOverloader', 'autoload');
+        $expected = array('Zend_Loader_MyOverloader', 'autoload');
         $autoloaders = Zend_Loader_Autoloader::getInstance()->getAutoloaders();
         $this->assertTrue(in_array($expected, $autoloaders, true), 'Failed to register autoloader');
 
@@ -418,6 +412,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
                 $class = $function[0];
                 if ($class == \Zend_Loader_Autoloader::class) {
                     spl_autoload_unregister($function);
+
                     break;
                 }
             }
@@ -430,7 +425,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     public function testRegisterAutoloadShouldEnableZendLoaderAutoloaderAsFallbackAutoloader()
     {
         if (!function_exists('spl_autoload_register')) {
-            $this->markTestSkipped("spl_autoload() not installed on this PHP installation");
+            $this->markTestSkipped('spl_autoload() not installed on this PHP installation');
         }
 
         $this->setErrorHandler();
@@ -445,6 +440,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
                 $class = $function[0];
                 if ($class == \Zend_Loader_Autoloader::class) {
                     spl_autoload_unregister($function);
+
                     break;
                 }
             }
@@ -473,7 +469,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         }
 
         $pharFile = __DIR__ . '/Loader/_files/Zend_LoaderTest.phar';
-        $phar     = new Phar($pharFile, 0, 'zlt.phar');
+        $phar = new Phar($pharFile, 0, 'zlt.phar');
         $incPath = 'phar://zlt.phar'
                  . PATH_SEPARATOR . $this->includePath;
         set_include_path($incPath);
@@ -491,7 +487,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         }
 
         $pharFile = __DIR__ . '/Loader/_files/Zend_LoaderTest.phar';
-        $phar     = new Phar($pharFile, 0, 'zlt.phar');
+        $phar = new Phar($pharFile, 0, 'zlt.phar');
         $incPath = 'phar://zlt.phar'
                  . PATH_SEPARATOR . $this->includePath;
         set_include_path($incPath);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Zend_Controller_Action_Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,40 +23,38 @@
 require_once 'Zend/Controller/Action.php';
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Zend_Controller_Action_Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Controller_Action_Helper_Abstract
 {
     /**
-     * $_actionController
+     * $_actionController.
      *
-     * @var Zend_Controller_Action $_actionController
+     * @var Zend_Controller_Action
      */
-    protected $_actionController = null;
+    protected $_actionController;
 
     /**
-     * @var mixed $_frontController
+     * @var mixed
      */
-    protected $_frontController = null;
+    protected $_frontController;
 
     /**
-     * setActionController()
+     * setActionController().
      *
      * @param  Zend_Controller_Action $actionController
+     *
      * @return Zend_Controller_Action_Helper_Abstract Provides a fluent interface
      */
-    public function setActionController(Zend_Controller_Action $actionController = null)
+    public function setActionController(?Zend_Controller_Action $actionController = null)
     {
         $this->_actionController = $actionController;
+
         return $this;
     }
 
     /**
-     * Retrieve current action controller
+     * Retrieve current action controller.
      *
      * @return Zend_Controller_Action
      */
@@ -69,7 +64,7 @@ abstract class Zend_Controller_Action_Helper_Abstract
     }
 
     /**
-     * Retrieve front controller instance
+     * Retrieve front controller instance.
      *
      * @return Zend_Controller_Front
      */
@@ -79,34 +74,28 @@ abstract class Zend_Controller_Action_Helper_Abstract
     }
 
     /**
-     * Hook into action controller initialization
-     *
-     * @return void
+     * Hook into action controller initialization.
      */
     public function init()
     {
     }
 
     /**
-     * Hook into action controller preDispatch() workflow
-     *
-     * @return void
+     * Hook into action controller preDispatch() workflow.
      */
     public function preDispatch()
     {
     }
 
     /**
-     * Hook into action controller postDispatch() workflow
-     *
-     * @return void
+     * Hook into action controller postDispatch() workflow.
      */
     public function postDispatch()
     {
     }
 
     /**
-     * getRequest() -
+     * getRequest() -.
      *
      * @return Zend_Controller_Request_Abstract $request
      */
@@ -121,7 +110,7 @@ abstract class Zend_Controller_Action_Helper_Abstract
     }
 
     /**
-     * getResponse() -
+     * getResponse() -.
      *
      * @return Zend_Controller_Response_Abstract $response
      */
@@ -136,7 +125,7 @@ abstract class Zend_Controller_Action_Helper_Abstract
     }
 
     /**
-     * getName()
+     * getName().
      *
      * @return string
      */
@@ -145,12 +134,15 @@ abstract class Zend_Controller_Action_Helper_Abstract
         $fullClassName = get_class($this);
         if (strpos($fullClassName, '_') !== false) {
             $helperName = strrchr($fullClassName, '_');
+
             return ltrim($helperName, '_');
-        } elseif (strpos($fullClassName, '\\') !== false) {
-            $helperName = strrchr($fullClassName, '\\');
-            return ltrim($helperName, '\\');
-        } else {
-            return $fullClassName;
         }
+        if (strpos($fullClassName, '\\') !== false) {
+            $helperName = strrchr($fullClassName, '\\');
+
+            return ltrim($helperName, '\\');
+        }
+
+        return $fullClassName;
     }
 }

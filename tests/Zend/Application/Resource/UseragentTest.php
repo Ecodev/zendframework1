@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,27 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-
-
 /**
- * Zend_Loader_Autoloader
+ * Zend_Loader_Autoloader.
  */
 require_once 'Zend/Loader/Autoloader.php';
 require_once 'Zend/Application/Resource/ResourceAbstract.php';
 require_once 'Zend/Application/Resource/Useragent.php';
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
@@ -40,7 +30,7 @@ class Zend_Application_Resource_UseragentTest extends \PHPUnit\Framework\TestCas
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -97,7 +87,7 @@ class Zend_Application_Resource_UseragentTest extends \PHPUnit\Framework\TestCas
         $resource = new Zend_Application_Resource_Useragent($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $ua      = $resource->getUserAgent();
+        $ua = $resource->getUserAgent();
         $storage = $ua->getStorage();
         $this->assertTrue($storage instanceof Zend_Http_UserAgent_Storage_NonPersistent);
     }
@@ -109,11 +99,10 @@ class Zend_Application_Resource_UseragentTest extends \PHPUnit\Framework\TestCas
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
 
-        $view   = $this->bootstrap->getResource('view');
+        $view = $this->bootstrap->getResource('view');
         $helper = $view->getHelper('userAgent');
 
         $expected = $resource->getUserAgent();
         $this->assertSame($expected, $helper->getUserAgent());
     }
 }
-

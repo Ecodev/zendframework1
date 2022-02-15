@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Controller/Request/Simple.php';
 
 /**
  * Test class for Zend_Controller_Request_Simple.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
@@ -41,13 +30,11 @@ class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Request_SimpleTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Request_SimpleTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -71,13 +58,11 @@ class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
      */
     public function testSettingParamToNullInSetparamsCorrectlyUnsetsValue()
     {
-        $request = new Zend_Controller_Request_Simple;
+        $request = new Zend_Controller_Request_Simple();
         $request->setParam('key', 'value');
         $request->setParams(array(
-            'key' => null
+            'key' => null,
         ));
         $this->assertNull($request->getParam('key'));
     }
-
 }
-

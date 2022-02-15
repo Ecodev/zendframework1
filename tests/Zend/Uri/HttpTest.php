@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Uri
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -30,25 +27,19 @@ require_once 'Zend/Uri.php';
  */
 require_once 'Zend/Uri/Http.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Uri
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Uri
  */
 class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
 {
-
     public function setup()
     {
         Zend_Uri::setConfig(array('allow_unwise' => false));
     }
 
     /**
-     * Tests for proper URI decomposition
+     * Tests for proper URI decomposition.
      */
     public function testSimple()
     {
@@ -56,8 +47,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that fromString() works proprerly for simple valid URLs
-     *
+     * Test that fromString() works proprerly for simple valid URLs.
      */
     public function testSimpleFromString()
     {
@@ -65,7 +55,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
             'http://www.zend.com',
             'https://www.zend.com',
             'http://www.zend.com/path',
-            'http://www.zend.com/path?query=value'
+            'http://www.zend.com/path?query=value',
         );
 
         foreach ($tests as $uri) {
@@ -77,7 +67,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Make sure an exception is thrown when trying to use fromString() with a
-     * non-HTTP scheme
+     * non-HTTP scheme.
      *
      * @group ZF-4395
      *
@@ -91,7 +81,6 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     /**
      * Make sure an exception is thrown when trying to use fromString() with a variable that is not
      * a string.
-     *
      */
     public function testFromStringWithInvalidVariableType()
     {
@@ -185,9 +174,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that successive slashes are considered valid
-     *
-     * @return void
+     * Ensures that successive slashes are considered valid.
      */
     public function testSuccessiveSlashes()
     {
@@ -202,30 +189,28 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test that setQuery() can handle unencoded query parameters (as other
-     * browsers do), ZF-1934
+     * browsers do), ZF-1934.
      *
      * @group ZF-1934
-     * @return void
      */
     public function testUnencodedQueryParameters()
     {
-         $uri = Zend_Uri::factory('http://foo.com/bar');
+        $uri = Zend_Uri::factory('http://foo.com/bar');
 
-         // First, make sure no exceptions are thrown
-         try {
-             $uri->setQuery('id=123&url=http://example.com/?bar=foo baz');
-         } catch (Exception $e) {
-             $this->fail('setQuery() was expected to handle unencoded parameters, but failed');
-         }
+        // First, make sure no exceptions are thrown
+        try {
+            $uri->setQuery('id=123&url=http://example.com/?bar=foo baz');
+        } catch (Exception $e) {
+            $this->fail('setQuery() was expected to handle unencoded parameters, but failed');
+        }
 
-         // Second, make sure the query string was properly encoded
-         $parts = parse_url($uri->getUri());
-         $this->assertEquals('id=123&url=http%3A%2F%2Fexample.com%2F%3Fbar%3Dfoo+baz', $parts['query']);
+        // Second, make sure the query string was properly encoded
+        $parts = parse_url($uri->getUri());
+        $this->assertEquals('id=123&url=http%3A%2F%2Fexample.com%2F%3Fbar%3Dfoo+baz', $parts['query']);
     }
 
     /**
-     * Test that unwise characters in the query string are not valid
-     *
+     * Test that unwise characters in the query string are not valid.
      */
     public function testExceptionUnwiseQueryString()
     {
@@ -245,8 +230,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test that after setting 'allow_unwise' to true unwise characters are
-     * accepted
-     *
+     * accepted.
      */
     public function testAllowUnwiseQueryString()
     {
@@ -269,24 +253,24 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that an extremely long URI does not break things up
+     * Test that an extremely long URI does not break things up.
      *
      * @group ZF-3712
      * @group ZF-7840
      */
     public function testVeryLongUriZF3712()
     {
-        if(!defined('TESTS_ZEND_URI_CRASH_TEST_ENABLED') || constant('TESTS_ZEND_URI_CRASH_TEST_ENABLED') == false) {
+        if (!defined('TESTS_ZEND_URI_CRASH_TEST_ENABLED') || constant('TESTS_ZEND_URI_CRASH_TEST_ENABLED') == false) {
             $this->markTestSkipped('The constant TESTS_ZEND_URI_CRASH_TEST_ENABLED has to be defined and true to allow the test to work.');
         }
-        $uri = file_get_contents(dirname(realpath(__FILE__)) . DIRECTORY_SEPARATOR .
-           '_files' . DIRECTORY_SEPARATOR . 'testVeryLongUriZF3712.txt');
+        $uri = file_get_contents(dirname(realpath(__FILE__)) . DIRECTORY_SEPARATOR
+           . '_files' . DIRECTORY_SEPARATOR . 'testVeryLongUriZF3712.txt');
 
         $this->_testValidUri($uri);
     }
 
     /**
-     * Test a known valid URI
+     * Test a known valid URI.
      *
      * @param string $uri
      */
@@ -297,7 +281,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test a known invalid URI
+     * Test a known invalid URI.
      *
      * @param string $uri
      */
@@ -398,8 +382,8 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
         $uri = Zend_Uri_Http::fromString('http://example.com/foo/?test=a&var[]=1&var[]=2&some[thing]=3');
         $this->assertEquals(array(
             'test' => 'a',
-            'var'  => array(1, 2),
-            'some' => array('thing' => 3)
+            'var' => array(1, 2),
+            'some' => array('thing' => 3),
         ), $uri->getQueryAsArray());
     }
 
@@ -411,13 +395,13 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
         $uri = Zend_Uri_Http::fromString('http://example.com/foo/?a=1&b=2&c=3');
         $this->assertEquals('a=1&b=2&c=3', $uri->addReplaceQueryParameters(array(
             'b' => 4,
-            'd' => -1
+            'd' => -1,
         )));
         $this->assertEquals(array(
             'a' => 1,
             'b' => 4,
             'c' => 3,
-            'd' => -1
+            'd' => -1,
         ), $uri->getQueryAsArray());
         $this->assertEquals('a=1&b=4&c=3&d=-1', $uri->getQuery());
     }
@@ -431,23 +415,24 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('a=1&b=2&c=3&d=4', $uri->removeQueryParameters(array('b', 'd', 'e')));
         $this->assertEquals(array(
             'a' => 1,
-            'c' => 3
+            'c' => 3,
         ), $uri->getQueryAsArray());
         $this->assertEquals('a=1&c=3', $uri->getQuery());
     }
 
     /**
      * @group ZF-11188
+     *
      * @see http://www.ietf.org/rfc/rfc2732.txt
      */
     public function testParserSupportsLiteralIpv6AddressesInUri()
     {
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[1080:0:0:0:8:800:200C:417A]/index.html')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[3ffe:2a00:100:7031::1]')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[1080::8:800:200C:417A]/foo')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[::192.9.5.5]/ipng')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[::FFFF:129.144.52.38]:80/index.html')->valid());
-      $this->assertTrue(Zend_Uri_Http::fromString('http://[2010:836B:4179::836B:4179]')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[1080:0:0:0:8:800:200C:417A]/index.html')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[3ffe:2a00:100:7031::1]')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[1080::8:800:200C:417A]/foo')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[::192.9.5.5]/ipng')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[::FFFF:129.144.52.38]:80/index.html')->valid());
+        $this->assertTrue(Zend_Uri_Http::fromString('http://[2010:836B:4179::836B:4179]')->valid());
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id: $
  */
-
-
 
 /**
  * @see Zend_Filter_Compress_Lzf
@@ -28,23 +23,18 @@
 require_once 'Zend/Filter/Compress/Lzf.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
  * @group      Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_Compress_LzfTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Runs this test suite
-     *
-     * @return void
+     * Runs this test suite.
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_Compress_LzfTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Filter_Compress_LzfTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -56,15 +46,13 @@ class Zend_Filter_Compress_LzfTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Basic usage
-     *
-     * @return void
+     * Basic usage.
      */
     public function testBasicUsage()
     {
-        $filter  = new Zend_Filter_Compress_Lzf();
+        $filter = new Zend_Filter_Compress_Lzf();
 
-        $text       = 'compress me';
+        $text = 'compress me';
         $compressed = $filter->compress($text);
         $this->assertNotEquals($text, $compressed);
 
@@ -73,9 +61,7 @@ class Zend_Filter_Compress_LzfTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * testing toString
-     *
-     * @return void
+     * testing toString.
      */
     public function testLzfToString()
     {
@@ -83,4 +69,3 @@ class Zend_Filter_Compress_LzfTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Lzf', $filter->toString());
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Rest
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,10 +24,8 @@ require_once 'Zend/Controller/Action.php';
  * An abstract class to guide implementation of action controllers for use with
  * Zend_Rest_Route.
  *
- * @category   Zend
- * @package Zend_Rest
  * @see Zend_Rest_Route
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Rest_Controller extends Zend_Controller_Action
@@ -73,5 +69,4 @@ abstract class Zend_Rest_Controller extends Zend_Controller_Action
      * identified by the 'id' value.
      */
     abstract public function deleteAction();
-
 }

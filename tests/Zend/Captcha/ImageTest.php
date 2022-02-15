@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,14 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Captcha
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Element/Captcha.php';
 require_once 'Zend/Captcha/Adapter.php';
 
 /**
- * @category   Zend
- * @package    Zend_Captcha
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Captcha
  */
@@ -39,73 +29,65 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Captcha_ImageTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Captcha_ImageTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
         if (!extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
+
             return;
         }
-        if(!function_exists("imagepng")) {
-            $this->markTestSkipped("Image CAPTCHA requires PNG support");
+        if (!function_exists('imagepng')) {
+            $this->markTestSkipped('Image CAPTCHA requires PNG support');
         }
-        if(!function_exists("imageftbbox")) {
-            $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
+        if (!function_exists('imageftbbox')) {
+            $this->markTestSkipped('Image CAPTCHA requires FT fonts support');
         }
 
         if (isset($this->word)) {
             unset($this->word);
         }
         $this->testDir = $this->_getTmpDir() . '/ZF_test_images';
-        if(!is_dir($this->testDir)) {
+        if (!is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
         $this->element = new Zend_Form_Element_Captcha('captchaI',
                     array('captcha' => array('Image',
-                                             'sessionClass' => 'Zend_Captcha_ImageTest_SessionContainer',
-                                             'imgDir' => $this->testDir,
-                                             'font' => __DIR__. '/../Pdf/_fonts/Vera.ttf')
-                         ));
-        $this->captcha =  $this->element->getCaptcha();
+                        'sessionClass' => 'Zend_Captcha_ImageTest_SessionContainer',
+                        'imgDir' => $this->testDir,
+                        'font' => __DIR__ . '/../Pdf/_fonts/Vera.ttf', ),
+                    ));
+        $this->captcha = $this->element->getCaptcha();
     }
 
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
         // remove chaptcha images
-        foreach(new DirectoryIterator($this->testDir) as $file) {
-            if(!$file->isDot() && !$file->isDir()) {
-                    unlink($file->getPathname());
+        foreach (new DirectoryIterator($this->testDir) as $file) {
+            if (!$file->isDot() && !$file->isDir()) {
+                unlink($file->getPathname());
             }
         }
-
     }
 
     /**
-     * Determine system TMP directory
+     * Determine system TMP directory.
      *
      * @return string
-     * @throws Zend_File_Transfer_Exception if unable to determine directory
      */
     protected function _getTmpDir()
     {
@@ -116,21 +98,23 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
                 $tmpdir = realpath($_ENV['TMP']);
             } elseif (!empty($_ENV['TMPDIR'])) {
                 $tmpdir = realpath($_ENV['TMPDIR']);
-            } else if (!empty($_ENV['TEMP'])) {
+            } elseif (!empty($_ENV['TEMP'])) {
                 $tmpdir = realpath($_ENV['TEMP']);
             } else {
                 // Attemp to detect by creating a temporary file
-                $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), TRUE)), '');
+                $tempFile = tempnam(md5(uniqid(random_int(0, mt_getrandmax()), true)), '');
                 if ($tempFile) {
                     $tmpdir = realpath(dirname($tempFile));
                     unlink($tempFile);
                 } else {
                     require_once 'Zend/File/Transfer/Exception.php';
+
                     throw new Zend_File_Transfer_Exception('Could not determine temp directory');
                 }
             }
-            $this->_tmpDir = rtrim($tmpdir, "/\\");
+            $this->_tmpDir = rtrim($tmpdir, '/\\');
         }
+
         return $this->_tmpDir;
     }
 
@@ -139,6 +123,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+
         return $view;
     }
 
@@ -168,29 +153,29 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $html = $this->element->render($this->getView());
         $this->assertRegexp('|<img[^>]*? alt=""|', $html, "Expected alt= in HTML:\n" . $html);
-        $this->captcha->setImgAlt("Test Image");
+        $this->captcha->setImgAlt('Test Image');
         $html = $this->element->render($this->getView());
         $this->assertRegexp('|<img[^>]*? alt="Test Image"|', $html, "Wrong alt in HTML:\n" . $html);
     }
 
     public function testCaptchaSetSuffix()
     {
-        $this->captcha->setSuffix(".jpeg");
+        $this->captcha->setSuffix('.jpeg');
         $html = $this->element->render($this->getView());
-        $this->assertContains(".jpeg", $html, $html);
+        $this->assertContains('.jpeg', $html, $html);
     }
 
     public function testCaptchaSetImgURL()
     {
-        $this->captcha->setImgURL("/some/other/URL/");
+        $this->captcha->setImgURL('/some/other/URL/');
         $html = $this->element->render($this->getView());
-        $this->assertContains("/some/other/URL/", $html, $html);
+        $this->assertContains('/some/other/URL/', $html, $html);
     }
 
     public function testCaptchaCreatesImage()
     {
         $this->element->render($this->getView());
-        $this->assertTrue(file_exists($this->testDir."/".$this->captcha->getId().".png"));
+        $this->assertTrue(file_exists($this->testDir . '/' . $this->captcha->getId() . '.png'));
     }
 
     public function testCaptchaSetExpiration()
@@ -271,23 +256,23 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     public function testWordValidates()
     {
         $this->testCaptchaIsRendered();
-        $input = array($this->element->getName() => array("id" => $this->captcha->getId(), "input" => $this->captcha->getWord()));
-        $this->assertTrue($this->element->isValid("", $input));
+        $input = array($this->element->getName() => array('id' => $this->captcha->getId(), 'input' => $this->captcha->getWord()));
+        $this->assertTrue($this->element->isValid('', $input));
     }
 
     public function testMissingNotValid()
     {
         $this->testCaptchaIsRendered();
-        $this->assertFalse($this->element->isValid("", array()));
-        $input = array($this->element->getName() => array("input" => "blah"));
-        $this->assertFalse($this->element->isValid("", $input));
+        $this->assertFalse($this->element->isValid('', array()));
+        $input = array($this->element->getName() => array('input' => 'blah'));
+        $this->assertFalse($this->element->isValid('', $input));
     }
 
     public function testWrongWordNotValid()
     {
         $this->testCaptchaIsRendered();
-        $input = array($this->element->getName() => array("id" => $this->captcha->getId(), "input" => "blah"));
-        $this->assertFalse($this->element->isValid("", $input));
+        $input = array($this->element->getName() => array('id' => $this->captcha->getId(), 'input' => 'blah'));
+        $this->assertFalse($this->element->isValid('', $input));
     }
 
     /**
@@ -296,7 +281,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     public function testIsValidShouldAllowPassingArrayValueWithNoContext()
     {
         $this->testCaptchaIsRendered();
-        $input = array($this->element->getName() => array("id" => $this->captcha->getId(), "input" => $this->captcha->getWord()));
+        $input = array($this->element->getName() => array('id' => $this->captcha->getId(), 'input' => $this->captcha->getWord()));
         $this->assertTrue($this->element->isValid($input));
     }
 
@@ -306,7 +291,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     public function testIsValidShouldNotRequireValueToBeNestedArray()
     {
         $this->testCaptchaIsRendered();
-        $input = array("id" => $this->captcha->getId(), "input" => $this->captcha->getWord());
+        $input = array('id' => $this->captcha->getId(), 'input' => $this->captcha->getWord());
         $this->assertTrue($this->element->isValid($input));
     }
 
@@ -350,7 +335,7 @@ class Zend_Captcha_ImageTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('word' == $name) && (null !== self::$_word))  {
+        if (('word' == $name) && (null !== self::$_word)) {
             return true;
         }
 
@@ -363,9 +348,9 @@ class Zend_Captcha_ImageTest_SessionContainer
             case 'setExpirationHops':
             case 'setExpirationSeconds':
                 $this->$method = array_shift($args);
+
                 break;
             default:
         }
     }
 }
-

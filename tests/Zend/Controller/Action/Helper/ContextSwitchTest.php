@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,17 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Controller/Action/Helper/ContextSwitch.php';
 
 require_once 'Zend/Config.php';
@@ -39,10 +32,6 @@ require_once 'Zend/View/Interface.php';
 /**
  * Test class for Zend_Controller_Action_Helper_ContextSwitch.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
@@ -53,21 +42,17 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ContextSwitchTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ContextSwitchTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -87,8 +72,8 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->response = new Zend_Controller_Response_Cli();
 
         $this->front->setRequest($this->request)
-                    ->setResponse($this->response)
-                    ->addControllerDirectory(__DIR__);
+            ->setResponse($this->response)
+            ->addControllerDirectory(__DIR__);
 
         $this->view = new Zend_View();
         $this->viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
@@ -106,8 +91,6 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -170,7 +153,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         $this->helper->addHeaders('xml', array(
             'X-Foo' => 'Bar',
-            'X-Bar' => 'Baz'
+            'X-Bar' => 'Baz',
         ));
         $headers = $this->helper->getHeaders('xml');
         $this->assertTrue(isset($headers['Content-Type']));
@@ -201,7 +184,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         $headers = array(
             'X-Foo' => 'Bar',
-            'X-Bar' => 'Baz'
+            'X-Bar' => 'Baz',
         );
         $this->helper->setHeaders('xml', $headers);
         $this->assertEquals($headers, $this->helper->getHeaders('xml'));
@@ -296,7 +279,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         $callbacks = array(
             'init' => 'htmlentities',
-            'post' => array(\Zend_Loader::class, 'registerAutoload')
+            'post' => array(\Zend_Loader::class, 'registerAutoload'),
         );
         $this->helper->setCallbacks('xml', $callbacks);
         $returned = $this->helper->getCallbacks('xml');
@@ -320,7 +303,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testCanAddContext()
     {
         $this->helper->addContext('foobar', array(
-            'suffix'  => 'foo.bar',
+            'suffix' => 'foo.bar',
             'headers' => array('Content-Type' => 'application/x-foobar', 'X-Foo' => 'Bar'),
         ));
         $context = $this->helper->getContext('foobar');
@@ -356,13 +339,13 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         $this->helper->addContexts(array(
             'foobar' => array(
-                'suffix'  => 'foo.bar',
+                'suffix' => 'foo.bar',
                 'headers' => array('Content-Type' => 'application/x-foobar', 'X-Foo' => 'Bar'),
             ),
             'barbaz' => array(
-                'suffix'  => 'bar.baz',
+                'suffix' => 'bar.baz',
                 'headers' => array('Content-Type' => 'application/x-barbaz', 'X-Bar' => 'Baz'),
-            )
+            ),
         ));
         $this->assertTrue($this->helper->hasContext('foobar'));
         $this->assertTrue($this->helper->hasContext('barbaz'));
@@ -371,19 +354,19 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testCanOverwriteManyContextsAtOnce()
     {
         $this->helper->setContexts(array(
-            'xml'    => array(
-                'suffix'    => array('suffix' => 'xml', 'prependViewRendererSuffix' => false),
-                'headers'   => array('Content-Type' => 'application/xml'),
-                'callbacks' => array('TRIGGER_INIT' => 'foobar')
+            'xml' => array(
+                'suffix' => array('suffix' => 'xml', 'prependViewRendererSuffix' => false),
+                'headers' => array('Content-Type' => 'application/xml'),
+                'callbacks' => array('TRIGGER_INIT' => 'foobar'),
             ),
             'foobar' => array(
-                'suffix'  => 'foo.bar',
+                'suffix' => 'foo.bar',
                 'headers' => array('Content-Type' => 'application/x-foobar', 'X-Foo' => 'Bar'),
             ),
             'barbaz' => array(
-                'suffix'  => 'bar.baz',
+                'suffix' => 'bar.baz',
                 'headers' => array('Content-Type' => 'application/x-barbaz', 'X-Bar' => 'Baz'),
-            )
+            ),
         ));
         $this->assertTrue($this->helper->hasContext('xml'));
         $this->assertFalse($this->helper->hasContext('json'));
@@ -470,7 +453,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         unset($this->controller->contexts);
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->checkNothingIsDone();
     }
@@ -478,12 +461,12 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testInitContextDoesNothingIfActionHasNoContexts()
     {
         $this->request->setParam('format', 'xml')
-                      ->setActionName('baz');
+            ->setActionName('baz');
         $this->helper->initContext();
         $this->checkNothingIsDone();
 
         $this->request->setParam('format', 'json')
-                      ->setActionName('baz');
+            ->setActionName('baz');
         $this->helper->initContext();
         $this->checkNothingIsDone();
     }
@@ -491,7 +474,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testInitContextDoesNothingIfActionDoesNotHaveContext()
     {
         $this->request->setParam('format', 'json')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->checkNothingIsDone();
     }
@@ -499,13 +482,13 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testInitContextUsesBooleanTrueActionValueToAssumeAllContexts()
     {
         $this->request->setParam('format', 'json')
-                      ->setActionName('all');
+            ->setActionName('all');
         $this->helper->initContext();
         $this->assertEquals('json', $this->helper->getCurrentContext());
         $this->assertContains('json', $this->viewRenderer->getViewSuffix());
 
         $this->request->setParam('format', 'xml')
-                      ->setActionName('all');
+            ->setActionName('all');
         $this->helper->initContext();
         $this->assertEquals('xml', $this->helper->getCurrentContext());
         $this->assertContains('xml', $this->viewRenderer->getViewSuffix());
@@ -514,7 +497,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testInitContextDoesNothingIfActionDoesNotHaveContextAndPassedFormatInvalid()
     {
         $this->request->setParam('format', 'json')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext('bogus');
         $this->checkNothingIsDone();
     }
@@ -522,7 +505,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testInitContextSetsViewRendererViewSuffix()
     {
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->assertContains('xml', $this->viewRenderer->getViewSuffix());
     }
@@ -531,7 +514,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         $value = null;
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $headers = $this->response->getHeaders();
 
@@ -550,7 +533,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         $value = null;
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext('json');
 
         $this->assertContains('json', $this->viewRenderer->getViewSuffix());
@@ -592,7 +575,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testInitContextDisablesLayoutByDefault()
     {
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
 
         $this->assertFalse($this->layout->isEnabled());
@@ -602,7 +585,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         $this->helper->setAutoDisableLayout(false);
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
 
         $this->assertTrue($this->layout->isEnabled());
@@ -616,7 +599,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testGetCurrentContextReturnsContextAfterInitContextIsSuccessful()
     {
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
 
         $this->assertEquals('xml', $this->helper->getCurrentContext());
@@ -627,12 +610,12 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->assertNull($this->helper->getCurrentContext());
 
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->assertEquals('xml', $this->helper->getCurrentContext());
 
         $this->request->setParam('format', 'foo')
-                      ->setActionName('bogus');
+            ->setActionName('bogus');
         $this->helper->initContext();
         $this->assertNull($this->helper->getCurrentContext());
     }
@@ -642,12 +625,12 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->assertNull($this->helper->getCurrentContext());
 
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->assertEquals('xml', $this->helper->getCurrentContext());
 
         $this->request->setParam('format', 'json')
-                      ->setActionName('bar');
+            ->setActionName('bar');
         $this->helper->initContext();
         $this->assertEquals('json', $this->helper->getCurrentContext());
     }
@@ -655,17 +638,18 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testJsonContextShouldEncodeViewVariablesByDefaultAndNotRequireRenderingView()
     {
         $this->request->setParam('format', 'json')
-                      ->setActionName('bar')
-                      ->setDispatched(true);
+            ->setActionName('bar')
+            ->setDispatched(true);
         $this->controller->dispatch('barAction');
 
         $headers = $this->response->getHeaders();
-        $found   = false;
+        $found = false;
         foreach ($headers as $header) {
             if ($header['name'] == 'Content-Type') {
                 if ($header['value'] == 'application/json') {
                     $found = true;
                 }
+
                 break;
             }
         }
@@ -683,19 +667,19 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testAutoJsonSerializationMayBeDisabled()
     {
         $this->request->setParam('format', 'json')
-                      ->setActionName('bar')
-                      ->setDispatched(true);
+            ->setActionName('bar')
+            ->setDispatched(true);
         $this->helper->setAutoJsonSerialization(false);
         $this->controller->dispatch('barAction');
 
-
         $headers = $this->response->getHeaders();
-        $found   = false;
+        $found = false;
         foreach ($headers as $header) {
             if ($header['name'] == 'Content-Type') {
                 if ($header['value'] == 'application/json') {
                     $found = true;
                 }
+
                 break;
             }
         }
@@ -750,7 +734,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->assertTrue($this->helper->hasActionContext('bar', 'xml'));
         $this->helper->setActionContexts(array(
             'foo' => 'json',
-            'bar' => 'xml'
+            'bar' => 'xml',
         ));
         $this->assertFalse($this->helper->hasActionContext('foo', 'xml'));
         $this->assertTrue($this->helper->hasActionContext('foo', 'json'));
@@ -795,6 +779,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
             'defaultContext' => 'json',
             'autoDisableLayout' => false,
         );
+
         return $options;
     }
 
@@ -844,7 +829,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         try {
             $this->helper->setAutoJsonSerialization(true);
             $this->helper->postJsonContext();
-        } catch(Zend_Controller_Action_Exception $zcae) {
+        } catch (Zend_Controller_Action_Exception $zcae) {
             $this->fail('Exception should be throw when view does not implement getVars() method');
         }
         self::assertTrue(true);
@@ -862,7 +847,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
             $this->helper->setAutoJsonSerialization(true);
             $this->helper->postJsonContext();
             $this->fail('Exception should be throw when view does not implement getVars() method');
-        } catch(Zend_Controller_Action_Exception $zcae) {
+        } catch (Zend_Controller_Action_Exception $zcae) {
             self::assertTrue(true);
         }
     }
@@ -873,7 +858,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     public function testForwardingShouldNotUseContextSuffixIfNewActionDoesNotDetectValidContext()
     {
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->setActionContext('bar', 'json');
         $this->helper->initContext();
         $this->assertEquals('xml', $this->helper->getCurrentContext());
@@ -893,7 +878,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->helper->setActionContext('foo', 'foo');
         $this->helper->setActionContext('bar', 'foo');
         $this->request->setParam('format', 'foo')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->assertEquals('foo', $this->helper->getCurrentContext());
         $suffix = $this->viewRenderer->getViewSuffix();
@@ -916,7 +901,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $expected = array(
             'foo' => array('xml'),
             'bar' => array('xml', 'json'),
-            'all' => array('json','xml')
+            'all' => array('json','xml'),
         );
         $actual = $this->helper->getActionContexts(null);
         $this->assertEquals($expected, $actual);
@@ -941,7 +926,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTestController extends Zend_Con
         $this->_helper->contextSwitch()->setActionContexts(array(
             'foo' => 'xml',
             'bar' => array('xml', 'json'),
-            'all' => true
+            'all' => true,
         ));
     }
 
@@ -969,36 +954,46 @@ class Zend_Controller_Action_Helper_ContextSwitchTest_LayoutOverride extends Zen
 class Zend_Controller_Action_Helper_ContextSwitchText_CustomView implements Zend_View_Interface
 {
     public function getEngine()
-    {}
+    {
+    }
 
     public function setScriptPath($path)
-    {}
+    {
+    }
 
     public function getScriptPaths()
-    {}
+    {
+    }
 
     public function setBasePath($path, $classPrefix = \Zend_View::class)
-    {}
+    {
+    }
 
     public function addBasePath($path, $classPrefix = \Zend_View::class)
-    {}
+    {
+    }
 
     public function __set($key, $val)
-    {}
+    {
+    }
 
     public function __isset($key)
-    {}
+    {
+    }
 
     public function __unset($key)
-    {}
+    {
+    }
 
     public function assign($spec, $value = null)
-    {}
+    {
+    }
 
     public function clearVars()
-    {}
+    {
+    }
 
     public function render($name)
-    {}
+    {
+    }
 }
-

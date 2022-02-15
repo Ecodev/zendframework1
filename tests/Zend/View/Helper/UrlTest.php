@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,33 +12,23 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version $Id$
  */
-
-
-
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/Url.php';
 
-/* Test dependency on Front Controller because there is no way to get the Controller out of View instance dynamically */
+// Test dependency on Front Controller because there is no way to get the Controller out of View instance dynamically
 require_once 'Zend/Controller/Front.php';
 
 require_once 'Zend/Controller/Request/Http.php';
 
 /**
- * Zend_View_Helper_UrlTest
+ * Zend_View_Helper_UrlTest.
  *
  * Tests formText helper, including some common functionality of all form helpers
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -48,21 +38,17 @@ class Zend_View_Helper_UrlTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_UrlTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_UrlTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp()
     {
@@ -85,6 +71,4 @@ class Zend_View_Helper_UrlTest extends \PHPUnit\Framework\TestCase
         $url = $this->helper->url(array('controller' => 'ctrl', 'action' => 'act'));
         $this->assertEquals('/ctrl/act', $url);
     }
-
 }
-

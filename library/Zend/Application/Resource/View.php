@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,15 +22,11 @@
  */
 require_once 'Zend/Application/Resource/ResourceAbstract.php';
 
-
 /**
- * Resource for settings view options
+ * Resource for settings view options.
  *
  * @uses       Zend_Application_Resource_ResourceAbstract
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Application_Resource_View extends Zend_Application_Resource_ResourceAbstract
@@ -44,7 +37,7 @@ class Zend_Application_Resource_View extends Zend_Application_Resource_ResourceA
     protected $_view;
 
     /**
-     * Defined by Zend_Application_Resource_Resource
+     * Defined by Zend_Application_Resource_Resource.
      *
      * @return Zend_View
      */
@@ -54,11 +47,12 @@ class Zend_Application_Resource_View extends Zend_Application_Resource_ResourceA
 
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
         $viewRenderer->setView($view);
+
         return $view;
     }
 
     /**
-     * Retrieve view object
+     * Retrieve view object.
      *
      * @return Zend_View
      */
@@ -81,6 +75,7 @@ class Zend_Application_Resource_View extends Zend_Application_Resource_ResourceA
                 $this->_view->assign($options['assign']);
             }
         }
+
         return $this->_view;
     }
 }

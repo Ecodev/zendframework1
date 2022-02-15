@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category  ZendX
- * @package   ZendX_Whois
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version   $Id$
  */
 
@@ -25,12 +23,10 @@
 require_once 'Zend/Exception.php';
 
 /**
- * Exception class for ZendX
+ * Exception class for ZendX.
  *
- * @category  ZendX
- * @package   ZendX
  * @uses      Zend_Exception
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_Exception extends Zend_Exception

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,21 +22,14 @@
  */
 require_once 'Zend/Validate/Regex.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -47,12 +37,12 @@ class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
          * The elements of each array are, in order:
          *      - pattern
          *      - expected validation result
-         *      - array of test input values
+         *      - array of test input values.
          */
         $valuesExpected = array(
             array('/[a-z]/', true, array('abc123', 'foo', 'a', 'z')),
-            array('/[a-z]/', false, array('123', 'A'))
-            );
+            array('/[a-z]/', false, array('123', 'A')),
+        );
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_Regex($element[0]);
             foreach ($element[2] as $input) {
@@ -62,9 +52,7 @@ class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -73,9 +61,7 @@ class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getPattern() returns expected value
-     *
-     * @return void
+     * Ensures that getPattern() returns expected value.
      */
     public function testGetPattern()
     {
@@ -84,9 +70,7 @@ class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that a bad pattern results in a thrown exception upon isValid() call
-     *
-     * @return void
+     * Ensures that a bad pattern results in a thrown exception upon isValid() call.
      */
     public function testBadPattern()
     {

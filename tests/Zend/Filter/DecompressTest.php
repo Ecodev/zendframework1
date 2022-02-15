@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id: $
  */
-
-
 
 /**
  * @see Zend_Filter_Decompress
@@ -28,23 +23,18 @@
 require_once 'Zend/Filter/Decompress.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
  * @group      Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_DecompressTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Runs this test suite
-     *
-     * @return void
+     * Runs this test suite.
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_DecompressTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Filter_DecompressTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -63,15 +53,13 @@ class Zend_Filter_DecompressTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Basic usage
-     *
-     * @return void
+     * Basic usage.
      */
     public function testBasicUsage()
     {
-        $filter  = new Zend_Filter_Decompress('bz2');
+        $filter = new Zend_Filter_Decompress('bz2');
 
-        $text       = 'compress me';
+        $text = 'compress me';
         $compressed = $filter->compress($text);
         $this->assertNotEquals($text, $compressed);
 
@@ -80,20 +68,18 @@ class Zend_Filter_DecompressTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Setting Archive
-     *
-     * @return void
+     * Setting Archive.
      */
     public function testCompressToFile()
     {
-        $filter   = new Zend_Filter_Decompress('bz2');
+        $filter = new Zend_Filter_Decompress('bz2');
         $archive = __DIR__ . '/../_files/compressed.bz2';
         $filter->setArchive($archive);
 
         $content = $filter->compress('compress me');
         $this->assertTrue($content);
 
-        $filter2  = new Zend_Filter_Decompress('bz2');
+        $filter2 = new Zend_Filter_Decompress('bz2');
         $content2 = $filter2->filter($archive);
         $this->assertEquals('compress me', $content2);
 
@@ -104,22 +90,19 @@ class Zend_Filter_DecompressTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Basic usage
-     *
-     * @return void
+     * Basic usage.
      */
     public function testDecompressArchive()
     {
-        $filter   = new Zend_Filter_Decompress('bz2');
+        $filter = new Zend_Filter_Decompress('bz2');
         $archive = __DIR__ . '/../_files/compressed.bz2';
         $filter->setArchive($archive);
 
         $content = $filter->compress('compress me');
         $this->assertTrue($content);
 
-        $filter2  = new Zend_Filter_Decompress('bz2');
+        $filter2 = new Zend_Filter_Decompress('bz2');
         $content2 = $filter2->filter($archive);
         $this->assertEquals('compress me', $content2);
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,27 +23,27 @@
 require_once 'Zend/Validate/Barcode/AdapterAbstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Barcode_Postnet extends Zend_Validate_Barcode_AdapterAbstract
 {
     /**
-     * Allowed barcode lengths
-     * @var integer
+     * Allowed barcode lengths.
+     *
+     * @var int
      */
     protected $_length = array(6, 7, 10, 12);
 
     /**
-     * Allowed barcode characters
+     * Allowed barcode characters.
+     *
      * @var string
      */
     protected $_characters = '0123456789';
 
     /**
-     * Checksum function
+     * Checksum function.
+     *
      * @var string
      */
     protected $_checksum = '_postnet';

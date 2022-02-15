@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
-
-
 /**
- * Zend_Loader_Autoloader
+ * Zend_Loader_Autoloader.
  */
 require_once 'Zend/Loader/Autoloader.php';
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
@@ -39,7 +30,7 @@ class Zend_Application_Resource_RouterTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -105,13 +96,13 @@ class Zend_Application_Resource_RouterTest extends \PHPUnit\Framework\TestCase
     {
         $options = array('routes' => array(
             'archive' => array(
-                'route'    => 'archive/:year/*',
+                'route' => 'archive/:year/*',
                 'defaults' => array(
                     'controller' => 'archive',
-                    'action'     => 'show',
-                    'year'       => 2000,
+                    'action' => 'show',
+                    'year' => 2000,
                 ),
-                'reqs'     => array(
+                'reqs' => array(
                     'year' => '\d+',
                 ),
             ),
@@ -120,11 +111,10 @@ class Zend_Application_Resource_RouterTest extends \PHPUnit\Framework\TestCase
         $resource = new Zend_Application_Resource_Router($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $router   = $resource->getRouter();
+        $router = $resource->getRouter();
         $this->assertTrue($router->hasRoute('archive'));
         $route = $router->getRoute('archive');
         $this->assertTrue($route instanceof Zend_Controller_Router_Route);
         $this->assertEquals($options['routes']['archive']['defaults'], $route->getDefaults());
     }
 }
-

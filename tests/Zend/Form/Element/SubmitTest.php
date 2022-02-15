@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Element/Submit.php';
 require_once 'Zend/Form.php';
 require_once 'Zend/Registry.php';
@@ -29,12 +23,8 @@ require_once 'Zend/Translate.php';
 require_once 'Zend/Translate/Adapter/Array.php';
 
 /**
- * Test class for Zend_Form_Element_Submit
+ * Test class for Zend_Form_Element_Submit.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -42,21 +32,16 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_SubmitTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_SubmitTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -68,8 +53,6 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -80,6 +63,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper/');
+
         return $view;
     }
 
@@ -116,7 +100,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
         $translations = include __DIR__ . '/../_files/locale/array.php';
         $translate = new Zend_Translate('array', $translations, 'en');
         $this->element->setTranslator($translate)
-                      ->setLabel('submit');
+            ->setLabel('submit');
         $test = $this->element->getLabel();
         $this->assertEquals($translations['submit'], $test);
     }
@@ -173,7 +157,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     {
         require_once 'Zend/Translate.php';
         $translations = array('firstLabel' => 'secondLabel',
-                              'secondLabel' => 'thirdLabel');
+            'secondLabel' => 'thirdLabel', );
         $translate = new Zend_Translate('array', $translations);
         $submit = new Zend_Form_Element_Submit('foo', 'firstLabel');
         $submit->setTranslator($translate);
@@ -201,6 +185,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that the isChecked method works as expected when using a translator.
+     *
      * @group ZF-4073
      */
     public function testIsCheckedReturnsExpectedValueWhenUsingTranslator()
@@ -226,7 +211,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     public function testTitleAttributeGetsTranslated()
     {
         $this->element->setAttrib('title', 'bar');
-        $translator = new Zend_Translate_Adapter_Array(array("bar" => "baz"), 'de');
+        $translator = new Zend_Translate_Adapter_Array(array('bar' => 'baz'), 'de');
         $this->element->setTranslator($translator);
         $html = $this->element->render(new Zend_View());
         $this->assertContains('title', $html);
@@ -237,7 +222,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     public function testTitleAttributeDoesNotGetTranslatedIfTranslatorIsDisabled()
     {
         $this->element->setAttrib('title', 'bar');
-        $translator = new Zend_Translate_Adapter_Array(array("bar" => "baz"), 'de');
+        $translator = new Zend_Translate_Adapter_Array(array('bar' => 'baz'), 'de');
         $this->element->setTranslator($translator);
         // now disable translator and see if that works
         $this->element->setDisableTranslator(true);
@@ -253,10 +238,9 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
+     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
      *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
+     * @see   http://framework.zend.com/issues/browse/ZF-2794
      */
     protected function _checkZf2794()
     {
@@ -266,14 +250,12 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Prove the fluent interface on Zend_Form_Element_Submit::loadDefaultDecorators
+     * Prove the fluent interface on Zend_Form_Element_Submit::loadDefaultDecorators.
      *
-     * @link http://framework.zend.com/issues/browse/ZF-9913
-     * @return void
+     * @see http://framework.zend.com/issues/browse/ZF-9913
      */
     public function testFluentInterfaceOnLoadDefaultDecorators()
     {
         $this->assertSame($this->element, $this->element->loadDefaultDecorators());
     }
 }
-

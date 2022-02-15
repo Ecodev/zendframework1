@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,35 +12,26 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 // Call Zend_Validate_MessageTest::main() if this source file is executed directly.
-
 
 /**
  * @see Zend_Validate_StringLength
  */
 require_once 'Zend/Validate/StringLength.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Default instance created for all test methods
+     * Default instance created for all test methods.
      *
      * @var Zend_Validate_StringLength
      */
@@ -48,14 +39,12 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Creates a new Zend_Validate_StringLength object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Validate_StringLength object for each test method.
      */
     public function setUp()
     {
@@ -65,8 +54,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
     /**
      * Ensures that we can change a specified message template by its key
      * and that this message is returned when the input is invalid.
-     *
-     * @return void
      */
     public function testSetMessage()
     {
@@ -90,8 +77,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
      * the first one in the list of message templates.
      * In the case of Zend_Validate_StringLength, TOO_SHORT is
      * the one we should expect to change.
-     *
-     * @return void
      */
     public function testSetMessageDefaultKey()
     {
@@ -109,8 +94,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
     /**
      * Ensures that we can include the %value% parameter in the message,
      * and that it is substituted with the value we are validating.
-     *
-     * @return void
      */
     public function testSetMessageWithValueParam()
     {
@@ -130,8 +113,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
      * class-by-class basis, in the message string.
      * In the case of Zend_Validate_StringLength, one such parameter
      * is %max%.
-     *
-     * @return void
      */
     public function testSetMessageWithOtherParam()
     {
@@ -150,8 +131,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
      * Ensures that if we set a parameter in the message that is not
      * known to the validator class, it is not changed; %shazam% is
      * left as literal text in the message.
-     *
-     * @return void
      */
     public function testSetMessageWithUnknownParam()
     {
@@ -169,12 +148,11 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
     /**
      * Ensures that the validator throws an exception when we
      * try to set a message for a key that is unknown to the class.
-     *
-     * @return void
      */
     public function testSetMessageExceptionInvalidKey()
     {
         $keyInvalid = 'invalidKey';
+
         try {
             $this->_validator->setMessage(
                 'Your value is too long',
@@ -192,15 +170,13 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
      * Ensures that we can set more than one message at a time,
      * by passing an array of key/message pairs.  Both messages
      * should be defined.
-     *
-     * @return void
      */
     public function testSetMessages()
     {
         $this->_validator->setMessages(
             array(
-                Zend_Validate_StringLength::TOO_LONG  => 'Your value is too long',
-                Zend_Validate_StringLength::TOO_SHORT => 'Your value is too short'
+                Zend_Validate_StringLength::TOO_LONG => 'Your value is too long',
+                Zend_Validate_StringLength::TOO_SHORT => 'Your value is too short',
             )
         );
 
@@ -218,8 +194,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
      * that are permitted to be substituted in the message string.
      * The access is by the parameter name, not by the protected
      * property variable name.
-     *
-     * @return void
      */
     public function testGetProperty()
     {
@@ -242,8 +216,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
     /**
      * Ensures that the class throws an exception when we try to
      * access a property that doesn't exist as a parameter.
-     *
-     * @return void
      */
     public function testGetPropertyException()
     {
@@ -268,8 +240,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
     /**
      * Ensures that the getError() function returns an array of
      * message key values corresponding to the messages.
-     *
-     * @return void
      */
     public function testGetErrors()
     {
@@ -304,7 +274,6 @@ class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
         $messages = $this->_validator->getMessages();
         $this->assertEquals('variables: %notvar% 4 8 ', current($messages));
     }
-
 }
 
 // Call Zend_Validate_MessageTest::main() if this source file is executed directly.

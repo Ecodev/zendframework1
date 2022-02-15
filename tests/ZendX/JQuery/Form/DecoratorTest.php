@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,28 +12,23 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id: AllTests.php 11232 2008-09-05 08:16:33Z beberlei $
  */
+require_once __DIR__ . '/../../../TestHelper.php';
 
-require_once __DIR__ . "/../../../TestHelper.php";
+require_once 'Zend/Registry.php';
+require_once 'Zend/View.php';
+require_once 'ZendX/JQuery.php';
+require_once 'ZendX/JQuery/View/Helper/JQuery.php';
 
-
-require_once "Zend/Registry.php";
-require_once "Zend/View.php";
-require_once "ZendX/JQuery.php";
-require_once "ZendX/JQuery/View/Helper/JQuery.php";
-
-require_once "ZendX/JQuery/Form.php";
-require_once "ZendX/JQuery/Form/Element/Spinner.php";
-require_once "Zend/Form/Decorator/ViewHelper.php";
-require_once "ZendX/JQuery/Form/Decorator/UiWidgetElement.php";
-require_once "ZendX/JQuery/Form/Decorator/TabContainer.php";
-require_once "ZendX/JQuery/Form/Decorator/TabPane.php";
+require_once 'ZendX/JQuery/Form.php';
+require_once 'ZendX/JQuery/Form/Element/Spinner.php';
+require_once 'Zend/Form/Decorator/ViewHelper.php';
+require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElement.php';
+require_once 'ZendX/JQuery/Form/Decorator/TabContainer.php';
+require_once 'ZendX/JQuery/Form/Decorator/TabPane.php';
 
 class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
 {
@@ -43,7 +38,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Returns the contens of the exepcted $file
+     * Returns the contens of the exepcted $file.
      *
      * @param string $file
      *
@@ -56,7 +51,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
 
     public function testUiWidgetElementDecoratorRender()
     {
-        $ac = new ZendX_JQuery_Form_Element_Spinner("ac1");
+        $ac = new ZendX_JQuery_Form_Element_Spinner('ac1');
         // Remove all non jQUery related decorators
         $ac->removeDecorator('Errors');
         $ac->removeDecorator('HtmlTag');
@@ -66,7 +61,6 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
             $ac->render();
             $this->fail();
         } catch (Zend_Form_Decorator_Exception $e) {
-
         } catch (Zend_Exception $e) {
             $this->fail();
         }
@@ -77,23 +71,23 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         $ac->setView($view);
         $output = $ac->render();
 
-        $this->assertContains("ac1", $output);
+        $this->assertContains('ac1', $output);
     }
 
     public function testUiWidgetElementJQueryParams()
     {
-        $spinner = new ZendX_JQuery_Form_Element_Spinner("ac1");
+        $spinner = new ZendX_JQuery_Form_Element_Spinner('ac1');
         $uiWidget = $spinner->getDecorator('UiWidgetElement');
 
-        $uiWidget->setJQueryParam("foo", "bar");
-        $this->assertEquals(["foo" => "bar"], $uiWidget->getJQueryParams());
+        $uiWidget->setJQueryParam('foo', 'bar');
+        $this->assertEquals(['foo' => 'bar'], $uiWidget->getJQueryParams());
 
-        $uiWidget->setJQueryParams(["bar" => "baz"]);
-        $this->assertEquals(["foo" => "bar", "bar" => "baz"], $uiWidget->getJQueryParams());
+        $uiWidget->setJQueryParams(['bar' => 'baz']);
+        $this->assertEquals(['foo' => 'bar', 'bar' => 'baz'], $uiWidget->getJQueryParams());
 
-        $this->assertEquals("bar", $uiWidget->getJQueryParam("foo"));
-        $this->assertEquals("baz", $uiWidget->getJQueryParam("bar"));
-        $this->assertNull($uiWidget->getJQueryParam("unknownParam"));
+        $this->assertEquals('bar', $uiWidget->getJQueryParam('foo'));
+        $this->assertEquals('baz', $uiWidget->getJQueryParam('bar'));
+        $this->assertNull($uiWidget->getJQueryParam('unknownParam'));
     }
 
     public function testUiWidgetElementRendersElementJQueryParams()
@@ -101,7 +95,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         ZendX_JQuery::enableView($view);
 
-        $spinner = new ZendX_JQuery_Form_Element_Spinner("ac1");
+        $spinner = new ZendX_JQuery_Form_Element_Spinner('ac1');
         $spinner->setJQueryParam('min', 100);
         $spinner->setView($view);
         $output = $spinner->render();
@@ -111,56 +105,55 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
     public function testUiWidgetContainerGetHelper()
     {
         $container = new ZendX_JQuery_Form_Decorator_TabContainer();
-        $this->assertEquals("tabContainer", $container->getHelper());
+        $this->assertEquals('tabContainer', $container->getHelper());
     }
 
     public function testUiWidgetContainerGetAttribs()
     {
         $container = new ZendX_JQuery_Form_Decorator_TabContainer();
-        $ac = new ZendX_JQuery_Form_Element_Spinner("ac1");
+        $ac = new ZendX_JQuery_Form_Element_Spinner('ac1');
         $container->setElement($ac);
 
-        $this->assertEquals(["options" => []], $container->getAttribs());
+        $this->assertEquals(['options' => []], $container->getAttribs());
     }
 
     public function testUiWidgetContainerGetJQueryParams()
     {
         $container = new ZendX_JQuery_Form_Decorator_TabContainer();
-        $ac = new ZendX_JQuery_Form_Element_Spinner("spinner");
-        $ac->setJQueryParams(["foo" => "bar", "baz" => "baz"]);
+        $ac = new ZendX_JQuery_Form_Element_Spinner('spinner');
+        $ac->setJQueryParams(['foo' => 'bar', 'baz' => 'baz']);
         $container->setElement($ac);
 
-        $this->assertEquals(["foo" => "bar", "baz" => "baz"], $container->getJQueryParams());
+        $this->assertEquals(['foo' => 'bar', 'baz' => 'baz'], $container->getJQueryParams());
     }
 
     public function testUiWidgetPaneRenderingThrowsExceptionWithoutContainerIdOption()
     {
-        $spinner = new ZendX_JQuery_Form_Element_Spinner("spinner1");
+        $spinner = new ZendX_JQuery_Form_Element_Spinner('spinner1');
         $spinner->setView(new Zend_View());
-        $spinner->setJQueryParam("title", "Title");
+        $spinner->setJQueryParam('title', 'Title');
 
         $pane = new ZendX_JQuery_Form_Decorator_TabPane();
         $pane->setElement($spinner);
 
         try {
-            $pane->render("");
+            $pane->render('');
             $this->fail();
         } catch (Zend_Form_Decorator_Exception $e) {
-
         }
     }
 
     public function testUiWidgetPaneRenderingThrowsExceptionWithoutTitleOption()
     {
-        $spinner = new ZendX_JQuery_Form_Element_Spinner("spinner1");
+        $spinner = new ZendX_JQuery_Form_Element_Spinner('spinner1');
         $spinner->setView(new Zend_View());
-        $spinner->setJQueryParam("containerId", "xyzId");
+        $spinner->setJQueryParam('containerId', 'xyzId');
 
         $pane = new ZendX_JQuery_Form_Decorator_TabPane();
         $pane->setElement($spinner);
 
         try {
-            $pane->render("");
+            $pane->render('');
             $this->fail();
         } catch (Zend_Form_Decorator_Exception $e) {
             self::assertTrue(true);
@@ -169,12 +162,12 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
 
     public function testUiWidgetPaneRenderingNoPaneWhenElementHasNoView()
     {
-        $spinner = new ZendX_JQuery_Form_Element_Spinner("spinner1");
+        $spinner = new ZendX_JQuery_Form_Element_Spinner('spinner1');
 
         $pane = new ZendX_JQuery_Form_Decorator_TabPane();
         $pane->setElement($spinner);
 
-        $this->assertEquals("justthis", $pane->render("justthis"));
+        $this->assertEquals('justthis', $pane->render('justthis'));
     }
 
     public function testUiWidgetContainerRender()
@@ -205,7 +198,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         $subForm1->setView($view);
 
         // Add Element Spinner
-        $elem = new ZendX_JQuery_Form_Element_Spinner("spinner1", ['label' => 'Spinner:', 'attribs' => ['class' => 'flora']]);
+        $elem = new ZendX_JQuery_Form_Element_Spinner('spinner1', ['label' => 'Spinner:', 'attribs' => ['class' => 'flora']]);
         $elem->setJQueryParams(['min' => 0, 'max' => 1000, 'start' => 100]);
 
         $subForm1->addElement($elem);
@@ -216,7 +209,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
             ['TabPane', ['jQueryParams' => ['containerId' => 'mainForm', 'title' => 'Slider']]],
         ]);
 
-        $form->addSubForm($subForm1, "form1");
+        $form->addSubForm($subForm1, 'form1');
 
         $output = $form->render($view);
         $this->assertContains('id="tabContainer"', $output);
@@ -349,7 +342,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         $subForm1->setView($view);
 
         // Add Element Spinner
-        $elem = new ZendX_JQuery_Form_Element_Spinner("spinner1", ['label' => 'Spinner:', 'attribs' => ['class' => 'flora']]);
+        $elem = new ZendX_JQuery_Form_Element_Spinner('spinner1', ['label' => 'Spinner:', 'attribs' => ['class' => 'flora']]);
         $elem->setJQueryParams(['min' => 0, 'max' => 1000, 'start' => 100]);
 
         $subForm1->addElement($elem);
@@ -359,7 +352,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
             ['HtmlTag', ['tag' => 'dl']],
         ]);
 
-        $form->addSubForm($subForm1, "form1");
+        $form->addSubForm($subForm1, 'form1');
 
         $output = $form->render($view);
 
@@ -370,7 +363,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
 
-        $widget = new ZendX_JQuery_Form_Element_Spinner("spinner1", ["label" => "Spinner"]);
+        $widget = new ZendX_JQuery_Form_Element_Spinner('spinner1', ['label' => 'Spinner']);
         $widget->setView($view);
 
         $view->jQuery()->disable();
@@ -385,7 +378,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
     public function testSettingWidgetPlacement()
     {
         $view = new Zend_View();
-        $widget = new ZendX_JQuery_Form_Element_Spinner("spinner1");
+        $widget = new ZendX_JQuery_Form_Element_Spinner('spinner1');
         $widget->setView($view);
         $widget->getDecorator('UiWidgetElement')->setOption('separator', '[SEP]');
 

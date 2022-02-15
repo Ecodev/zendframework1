@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,44 +22,40 @@
  */
 require_once 'Zend/Application/Resource/ResourceAbstract.php';
 
-
 /**
- * Resource for setting session options
+ * Resource for setting session options.
  *
  * @uses       Zend_Application_Resource_ResourceAbstract
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Application_Resource_Session extends Zend_Application_Resource_ResourceAbstract
 {
     /**
-     * Save handler to use
+     * Save handler to use.
      *
      * @var Zend_Session_SaveHandler_Interface
      */
-    protected $_saveHandler = null;
+    protected $_saveHandler;
 
     /**
-     * Set session save handler
+     * Set session save handler.
      *
      * @param  array|string|Zend_Session_SaveHandler_Interface $saveHandler
+     *
      * @return Zend_Application_Resource_Session
-     * @throws Zend_Application_Resource_Exception When $saveHandler is not a valid save handler
      */
     public function setSaveHandler($saveHandler)
     {
         $this->_saveHandler = $saveHandler;
+
         return $this;
     }
 
     /**
-     * Get session save handler
+     * Get session save handler.
      *
      * @return Zend_Session_SaveHandler_Interface
-     * @throws Zend_Application_Resource_Exception
      */
     public function getSaveHandler()
     {
@@ -85,6 +78,7 @@ class Zend_Application_Resource_Session extends Zend_Application_Resource_Resour
                 throw new Zend_Application_Resource_Exception('Invalid session save handler');
             }
         }
+
         return $this->_saveHandler;
     }
 
@@ -93,13 +87,11 @@ class Zend_Application_Resource_Session extends Zend_Application_Resource_Resour
      */
     protected function _hasSaveHandler()
     {
-        return ($this->_saveHandler !== null);
+        return $this->_saveHandler !== null;
     }
 
     /**
-     * Defined by Zend_Application_Resource_Resource
-     *
-     * @return void
+     * Defined by Zend_Application_Resource_Resource.
      */
     public function init()
     {

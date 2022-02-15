@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,26 +23,20 @@
 require_once 'Zend/Filter/Boolean.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
 class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Filter_Boolean object
+     * Zend_Filter_Boolean object.
      *
      * @var Zend_Filter_Boolean
      */
     protected $_filter;
 
     /**
-     * Creates a new Zend_Filter_Boolean object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Filter_Boolean object for each test method.
      */
     public function setUp()
     {
@@ -53,9 +44,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testBasic()
     {
@@ -79,9 +68,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyBoolean()
     {
@@ -106,9 +93,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyInteger()
     {
@@ -133,9 +118,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyFloat()
     {
@@ -160,9 +143,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyString()
     {
@@ -187,9 +168,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyZero()
     {
@@ -214,9 +193,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyArray()
     {
@@ -241,9 +218,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyNull()
     {
@@ -268,9 +243,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyPHP()
     {
@@ -295,9 +268,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyFalseString()
     {
@@ -322,9 +293,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyYes()
     {
@@ -350,9 +319,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyAll()
     {
@@ -378,9 +345,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testArrayConstantNotation()
     {
@@ -389,8 +354,8 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
                 'type' => array(
                     Zend_Filter_Boolean::ZERO,
                     Zend_Filter_Boolean::STRING,
-                    Zend_Filter_Boolean::BOOLEAN
-                )
+                    Zend_Filter_Boolean::BOOLEAN,
+                ),
             )
         );
 
@@ -414,9 +379,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testArrayConfigNotation()
     {
@@ -425,8 +388,8 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
                 'type' => array(
                     Zend_Filter_Boolean::ZERO,
                     Zend_Filter_Boolean::STRING,
-                    Zend_Filter_Boolean::BOOLEAN),
-                'test' => false
+                    Zend_Filter_Boolean::BOOLEAN, ),
+                'test' => false,
             )
         );
 
@@ -450,9 +413,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testMultiConstantNotation()
     {
@@ -480,15 +441,13 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testStringNotation()
     {
         $filter = new Zend_Filter_Boolean(
             array(
-                'type' => array('zero', 'string', 'boolean')
+                'type' => array('zero', 'string', 'boolean'),
             )
         );
 
@@ -512,9 +471,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSingleStringNotation()
     {
@@ -542,9 +499,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSettingLocale()
     {
@@ -572,9 +527,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSettingLocalePerConstructorString()
     {
@@ -604,15 +557,13 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testConfigObject()
     {
         require_once 'Zend/Config.php';
         $options = array('type' => 'all', 'locale' => 'de');
-        $config  = new Zend_Config($options);
+        $config = new Zend_Config($options);
 
         $filter = new Zend_Filter_Boolean(
             $config
@@ -640,9 +591,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSettingLocalePerConstructorArray()
     {
@@ -672,9 +621,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSettingLocaleInstance()
     {
@@ -705,9 +652,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testWithoutCasting()
     {
@@ -741,9 +686,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSettingFalseType()
     {
@@ -756,9 +699,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testGetType()
     {
@@ -766,9 +707,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSettingFalseLocaleType()
     {
@@ -781,9 +720,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSettingUnknownLocale()
     {

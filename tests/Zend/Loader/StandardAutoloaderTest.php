@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,14 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Loader/StandardAutoloader.php';
 require_once 'Zend/Loader/TestAsset/StandardAutoloader.php';
 
 /**
- * @category   Zend
- * @package    Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
@@ -86,7 +76,7 @@ class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
     {
         $loader = new Zend_Loader_StandardAutoloader();
 
-        $obj  = new stdClass();
+        $obj = new stdClass();
         foreach (array(true, 'foo', $obj) as $arg) {
             try {
                 $loader->setOptions(true);
@@ -101,10 +91,10 @@ class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
     {
         $options = array(
             'namespaces' => array(
-                'Zend\\'   => dirname(__FILE__, 2) . DIRECTORY_SEPARATOR,
+                'Zend\\' => dirname(__FILE__, 2) . DIRECTORY_SEPARATOR,
             ),
-            'prefixes'   => array(
-                'Zend_'  => dirname(__FILE__, 2) . DIRECTORY_SEPARATOR,
+            'prefixes' => array(
+                'Zend_' => dirname(__FILE__, 2) . DIRECTORY_SEPARATOR,
             ),
             'fallback_autoloader' => true,
         );
@@ -125,7 +115,7 @@ class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
         ));
         $options = new ArrayObject(array(
             'namespaces' => $namespaces,
-            'prefixes'   => $prefixes,
+            'prefixes' => $prefixes,
             'fallback_autoloader' => true,
         ));
         $loader = new Zend_Loader_TestAsset_StandardAutoloader();
@@ -208,10 +198,9 @@ class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
     public function testCanTellAutoloaderToRegisterZfPrefixAtInstantiation()
     {
         $loader = new Zend_Loader_StandardAutoloader(array('autoregister_zf' => true));
-        $r      = new ReflectionClass($loader);
-        $file   = $r->getFileName();
+        $r = new ReflectionClass($loader);
+        $file = $r->getFileName();
         $expected = array('Zend_' => dirname($file, 2) . DIRECTORY_SEPARATOR);
         $this->assertAttributeEquals($expected, 'prefixes', $loader);
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,20 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage Ressource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id:$
  */
 
-/**
- * EN-Revision: 21134
- */
+// EN-Revision: 21134
 return array(
     // Zend_Validate_Alnum
-    "Invalid type given, value should be float, string, or integer" => "Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком чи цілим числом",
+    'Invalid type given, value should be float, string, or integer' => 'Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком чи цілим числом',
     "'%value%' contains characters which are non alphabetic and no digits" => "'%value%' містить символи які не є літерами чи цифрами",
     "'%value%' is an empty string" => "'%value%' - пустий рядок",
 
     // Zend_Validate_Alpha
-    "Invalid type given, value should be a string" => "Неприпустимий тип даних, значення повинно бути рядком",
+    'Invalid type given, value should be a string' => 'Неприпустимий тип даних, значення повинно бути рядком',
     "'%value%' contains non alphabetic characters" => "'%value%' містить символи які не є літерами",
     "'%value%' is an empty string" => "'%value%' - пустий рядок",
 
@@ -38,7 +33,7 @@ return array(
     "'%value%' failed checksum validation" => "'%value%' помилка перевірки контрольної суми",
     "'%value%' contains invalid characters" => "'%value%' містить неприпустимі символи",
     "'%value%' should have a length of %length% characters" => "Довжина '%value%' повинна складати %length% символів",
-    "Invalid type given, value should be string" => "Неприпустимий тип даних, значення повинно бути рядком",
+    'Invalid type given, value should be string' => 'Неприпустимий тип даних, значення повинно бути рядком',
 
     // Zend_Validate_Between
     "'%value%' is not between '%min%' and '%max%', inclusively" => "'%value%' за межами діапазону від '%min%' до '%max%', включно",
@@ -46,7 +41,7 @@ return array(
 
     // Zend_Validate_Callback
     "'%value%' is not valid" => "'%value%' - неприпустиме значення",
-    "Failure within the callback, exception returned" => "Помилка в зворотньому виклику, повернено виключення",
+    'Failure within the callback, exception returned' => 'Помилка в зворотньому виклику, повернено виключення',
 
     // Zend_Validate_Ccnum
     "'%value%' must contain between 13 and 19 digits" => "'%value%' має містити від 13 до 19 цифр",
@@ -55,14 +50,14 @@ return array(
     // Zend_Validate_CreditCard
     "Luhn algorithm (mod-10 checksum) failed on '%value%'" => "Алгоритм Луна (обчислення контрольної цифри) повернув помилку для '%value%'",
     "'%value%' must contain only digits" => "'%value%' має містити тільки цифри",
-    "Invalid type given, value should be a string" => "Неприпустимий тип даних, значення повинно бути рядком",
+    'Invalid type given, value should be a string' => 'Неприпустимий тип даних, значення повинно бути рядком',
     "'%value%' contains an invalid amount of digits" => "'%value%' містить неприпустиму кількість цифр",
     "'%value%' is not from an allowed institute" => "'%value%' не відноситься до дозволенних платіжних систем",
     "Validation of '%value%' has been failed by the service" => "Перевірка '%value%' закінчилась помилкою сервісу",
     "The service returned a failure while validating '%value%'" => "Сервіс повернув помилку під час перевірки '%value%'",
 
     // Zend_Validate_Date
-    "Invalid type given, value should be string, integer, array or Zend_Date" => "Неприпустимий тип даних, значення повинно бути рядком, цілим числом, масивом чи об'єктом Zend_Date",
+    'Invalid type given, value should be string, integer, array or Zend_Date' => "Неприпустимий тип даних, значення повинно бути рядком, цілим числом, масивом чи об'єктом Zend_Date",
     "'%value%' does not appear to be a valid date" => "'%value%' - некоректна дата",
     "'%value%' does not fit the date format '%format%'" => "'%value%' не відповідає формату дати '%format%'",
 
@@ -71,12 +66,12 @@ return array(
     "A record matching '%value%' was found" => "Знайдено запис, що відповідає '%value%'",
 
     // Zend_Validate_Digits
-    "Invalid type given, value should be string, integer or float" => "Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком чи цілим числом",
+    'Invalid type given, value should be string, integer or float' => 'Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком чи цілим числом',
     "'%value%' contains characters which are not digits; but only digits are allowed" => "'%value%' має містити тільки цифри",
     "'%value%' is an empty string" => "'%value%' - пустий рядок",
 
     // Zend_Validate_EmailAddress
-    "Invalid type given, value should be a string" => "Неприпустимий тип даних, значення повинно рядком",
+    'Invalid type given, value should be a string' => 'Неприпустимий тип даних, значення повинно рядком',
     "'%value%' is not a valid email address in the basic format local-part@hostname" => "'%value%' неприпустима адреса електронної пошти для формату ім'я@домен",
     "'%hostname%' is not a valid hostname for email address '%value%'" => "'%hostname%' неприпустиме ім'я хоста для адреси '%value%'",
     "'%hostname%' does not appear to have a valid MX record for the email address '%value%'" => "'%hostname%' не має коректного MX-запису про адресу '%value%'",
@@ -92,7 +87,7 @@ return array(
 
     // Zend_Validate_File_Crc32
     "File '%value%' does not match the given crc32 hashes" => "Файл '%value%' не відповідає заданому crc32 хешу",
-    "A crc32 hash could not be evaluated for the given file" => "crc32 хеш не може бути обчисленний для цього файлу",
+    'A crc32 hash could not be evaluated for the given file' => 'crc32 хеш не може бути обчисленний для цього файлу',
     "File '%value%' could not be found" => "Файл '%value%' не знайдено",
 
     // Zend_Validate_File_ExcludeExtension
@@ -114,11 +109,11 @@ return array(
     // Zend_Validate_File_FilesSize
     "All files in sum should have a maximum size of '%max%' but '%size%' were detected" => "Загальний розмір файлів не повинен перевищувати '%max%', зараз - '%size%'",
     "All files in sum should have a minimum size of '%min%' but '%size%' were detected" => "Загальний розмір файлів має бути менше '%min%', зараз - '%size%'",
-    "One or more files can not be read" => "Неможливо прочитати один чи декілька файлів",
+    'One or more files can not be read' => 'Неможливо прочитати один чи декілька файлів',
 
     // Zend_Validate_File_Hash
     "File '%value%' does not match the given hashes" => "Файл '%value%' не відповідає вказаному хешу",
-    "A hash could not be evaluated for the given file" => "Не можливо обчислити хеш для вказаного файла",
+    'A hash could not be evaluated for the given file' => 'Не можливо обчислити хеш для вказаного файла',
     "File '%value%' could not be found" => "Файл '%value%' не знайдено",
 
     // Zend_Validate_File_ImageSize
@@ -141,7 +136,7 @@ return array(
 
     // Zend_Validate_File_Md5
     "File '%value%' does not match the given md5 hashes" => "Файл '%value%' не відповідає вказаному md5 хешу",
-    "A md5 hash could not be evaluated for the given file" => "md5 хеш не може бути визначений для вказаного файлу",
+    'A md5 hash could not be evaluated for the given file' => 'md5 хеш не може бути визначений для вказаного файлу',
     "File '%value%' could not be found" => "Файл '%value%' не знайдено",
 
     // Zend_Validate_File_MimeType
@@ -154,7 +149,7 @@ return array(
 
     // Zend_Validate_File_Sha1
     "File '%value%' does not match the given sha1 hashes" => "Файл '%value%' не відповідає хешу sha1",
-    "A sha1 hash could not be evaluated for the given file" => "Неможливо визначити sha1 хеш для вказаного файлу",
+    'A sha1 hash could not be evaluated for the given file' => 'Неможливо визначити sha1 хеш для вказаного файлу',
     "File '%value%' could not be found" => "Файл '%value%' не знайдено",
 
     // Zend_Validate_File_Size
@@ -180,18 +175,18 @@ return array(
     "File '%value%' could not be found" => "Файл '%value%' не знайдено",
 
     // Zend_Validate_Float
-    "Invalid type given, value should be float, string, or integer" => "Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком, або цілим числом",
+    'Invalid type given, value should be float, string, or integer' => 'Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком, або цілим числом',
     "'%value%' does not appear to be a float" => "'%value%' не є числом з плаваючою крапкою",
 
     // Zend_Validate_GreaterThan
     "'%value%' is not greater than '%min%'" => "'%value%' не більше ніж '%min%'",
 
     // Zend_Validate_Hex
-    "Invalid type given, value should be a string" => "Неприпустимий тип даних, значення повинно бути рядком",
+    'Invalid type given, value should be a string' => 'Неприпустимий тип даних, значення повинно бути рядком',
     "'%value%' has not only hexadecimal digit characters" => "Значення '%value%' повинно містити тільки шістнадцятирічні символи",
 
     // Zend_Validate_Hostname
-    "Invalid type given, value should be a string" => "Неприпустимий тип даних, значення повинно бути рядком",
+    'Invalid type given, value should be a string' => 'Неприпустимий тип даних, значення повинно бути рядком',
     "'%value%' appears to be an IP address, but IP addresses are not allowed" => "Значення '%value%' виглядає як IP-адреса, але IP-адреси не дозволені",
     "'%value%' appears to be a DNS hostname but cannot match TLD against known list" => "'%value%' виглядає як DNS ім’я хоста, але воно не повинно бути зі списку доменів верхнього рівня",
     "'%value%' appears to be a DNS hostname but contains a dash in an invalid position" => "'%value%' виглядає як DNS ім’я хоста, але знак '-' знаходиться в неприпустимому місці",
@@ -209,17 +204,17 @@ return array(
 
     // Zend_Validate_Identical
     "The token '%token%' does not match the given token '%value%'" => "Значення '%token%' не співпадає з вказаним значенням '%value%'",
-    "No token was provided to match against" => "Не вказано значення для перевірки на ідентичність",
+    'No token was provided to match against' => 'Не вказано значення для перевірки на ідентичність',
 
     // Zend_Validate_InArray
     "'%value%' was not found in the haystack" => "'%value%' не знайдено в списку допустимих значень",
 
     // Zend_Validate_Int
-    "Invalid type given, value should be string or integer" => "Неприпустимий тип даних, значення повинно бути рядком чи цілим числом",
+    'Invalid type given, value should be string or integer' => 'Неприпустимий тип даних, значення повинно бути рядком чи цілим числом',
     "'%value%' does not appear to be an integer" => "'%value%' не є цілим числом",
 
     // Zend_Validate_Ip
-    "Invalid type given, value should be a string" => "Неприпустимий тип даних, значення повинно бути рядком",
+    'Invalid type given, value should be a string' => 'Неприпустимий тип даних, значення повинно бути рядком',
     "'%value%' does not appear to be a valid IP address" => "'%value%' - некоректна IP-адреса",
 
     // Zend_Validate_Isbn
@@ -229,15 +224,15 @@ return array(
     "'%value%' is not less than '%max%'" => "'%value%' не менше ніж '%max%'",
 
     // Zend_Validate_NotEmpty
-    "Invalid type given, value should be float, string, array, boolean or integer" => "Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком, масивом чи цілим числом",
+    'Invalid type given, value should be float, string, array, boolean or integer' => 'Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком, масивом чи цілим числом',
     "Value is required and can't be empty" => "Значення обов'язкове і не може бути порожнім",
 
     // Zend_Validate_PostCode
-    "Invalid type given, value should be string or integer" => "Неприпустимий тип даних, значення повинно бути рядком чи цілим числом",
+    'Invalid type given, value should be string or integer' => 'Неприпустимий тип даних, значення повинно бути рядком чи цілим числом',
     "'%value%' does not appear to be an postal code" => "'%value%' не являється поштовим індексом",
 
     // Zend_Validate_Regex
-    "Invalid type given, value should be string, integer or float" => "Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком чи цілим числом",
+    'Invalid type given, value should be string, integer or float' => 'Неприпустимий тип даних, значення повинно бути числом з плаваючою крапкою, рядком чи цілим числом',
     "'%value%' does not match against pattern '%pattern%'" => "'%value%' не відповідає шаблону '%pattern%'",
 
     // Zend_Validate_Sitemap_Changefreq
@@ -253,7 +248,7 @@ return array(
     "'%value%' is not a valid sitemap priority" => "'%value%' неприпустиме значення для sitemap priority",
 
     // Zend_Validate_StringLength
-    "Invalid type given, value should be a string" => "Неприпустимий тип даних, значення повинно бути рядком",
+    'Invalid type given, value should be a string' => 'Неприпустимий тип даних, значення повинно бути рядком',
     "'%value%' is less than %min% characters long" => "Довжина '%value%' менше %min% символів",
     "'%value%' is more than %max% characters long" => "Довжина '%value%' перевищує %max% символів",
 );

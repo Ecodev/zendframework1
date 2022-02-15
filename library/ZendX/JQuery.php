@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,42 +12,38 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
 
 /**
  * @see Zend_Json
  */
-require_once "Zend/Json.php";
+require_once 'Zend/Json.php';
 
 /**
  * jQuery Global Class holding constants and static convienience methods.
  *
  * @todo       Offer convenience methods to add a tab or accordion container/pane combination.
- * @package    ZendX_JQuery
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
-  */
+ */
 class ZendX_JQuery
 {
     /**
-     * Current default supported jQuery library version with ZendX_JQuery
-     * 
-     * @const string
-     */
-    public const DEFAULT_JQUERY_VERSION = "1.3.2";
-
-    /**
-     * Currently supported jQuery UI library version with ZendX_JQuery
+     * Current default supported jQuery library version with ZendX_JQuery.
      *
      * @const string
      */
-    public const DEFAULT_UI_VERSION = "1.7.1";
+    public const DEFAULT_JQUERY_VERSION = '1.3.2';
+
+    /**
+     * Currently supported jQuery UI library version with ZendX_JQuery.
+     *
+     * @const string
+     */
+    public const DEFAULT_UI_VERSION = '1.7.1';
 
     /**
      * @see http://code.google.com/apis/ajaxlibs/documentation/index.html#jquery
@@ -88,18 +84,15 @@ class ZendX_JQuery
      * @see ZendX_JQuery_Helper_JQuery::setRenderMode
      * @const Integer
      */
-    public const RENDER_LIBRARY         = 1;
-    public const RENDER_SOURCES         = 2;
-    public const RENDER_STYLESHEETS     = 4;
-    public const RENDER_JAVASCRIPT      = 8;
-    public const RENDER_JQUERY_ON_LOAD  = 16;
-    public const RENDER_ALL             = 255;
+    public const RENDER_LIBRARY = 1;
+    public const RENDER_SOURCES = 2;
+    public const RENDER_STYLESHEETS = 4;
+    public const RENDER_JAVASCRIPT = 8;
+    public const RENDER_JQUERY_ON_LOAD = 16;
+    public const RENDER_ALL = 255;
 
     /**
-     * jQuery-enable a view instance
-     *
-     * @param  Zend_View_Interface $view
-     * @return void
+     * jQuery-enable a view instance.
      */
     public static function enableView(Zend_View_Interface $view)
     {
@@ -109,17 +102,14 @@ class ZendX_JQuery
     }
 
     /**
-     * jQuery-enable a form instance
-     *
-     * @param  Zend_Form $form
-     * @return void
+     * jQuery-enable a form instance.
      */
     public static function enableForm(Zend_Form $form)
     {
         $form->addPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator', 'decorator')
-             ->addPrefixPath('ZendX_JQuery_Form_Element', 'ZendX/JQuery/Form/Element', 'element')
-             ->addElementPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator', 'decorator')
-             ->addDisplayGroupPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator');
+            ->addPrefixPath('ZendX_JQuery_Form_Element', 'ZendX/JQuery/Form/Element', 'element')
+            ->addElementPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator', 'decorator')
+            ->addDisplayGroupPrefixPath('ZendX_JQuery_Form_Decorator', 'ZendX/JQuery/Form/Decorator');
 
         foreach ($form->getSubForms() as $subForm) {
             self::enableForm($subForm);
@@ -137,7 +127,9 @@ class ZendX_JQuery
      * magic key mechanism as of now.
      *
      * @see Zend_Json::encode
+     *
      * @param  mixed $value
+     *
      * @return mixed
      */
     public static function encodeJson($value)
@@ -146,12 +138,13 @@ class ZendX_JQuery
             return '{}';
         }
 
-        if(!class_exists(\Zend_Json::class)) {
+        if (!class_exists(\Zend_Json::class)) {
             /**
              * @see Zend_Json
              */
-            require_once "Zend/Json.php";
+            require_once 'Zend/Json.php';
         }
+
         return Zend_Json::encode($value, false, array('enableJsonExprFinder' => true));
     }
 }

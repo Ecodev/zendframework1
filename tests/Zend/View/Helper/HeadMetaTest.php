@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_HeadMeta */
 require_once 'Zend/View/Helper/HeadMeta.php';
@@ -37,10 +32,6 @@ require_once 'Zend/View.php';
 /**
  * Test class for Zend_View_Helper_HeadMeta.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -59,20 +50,16 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadMetaTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadMetaTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -84,17 +71,15 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
             }
         }
         $this->basePath = __DIR__ . '/_files/modules';
-        $this->view     = new Zend_View();
+        $this->view = new Zend_View();
         $this->view->doctype('XHTML1_STRICT');
-        $this->helper   = new Zend_View_Helper_HeadMeta();
+        $this->helper = new Zend_View_Helper_HeadMeta();
         $this->helper->setView($this->view);
     }
 
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -130,16 +115,19 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
             $this->fail('Non-meta value should not append');
         } catch (Zend_View_Exception $e) {
         }
+
         try {
             $this->helper->offsetSet(3, 'foo');
             $this->fail('Non-meta value should not offsetSet');
         } catch (Zend_View_Exception $e) {
         }
+
         try {
             $this->helper->prepend('foo');
             $this->fail('Non-meta value should not prepend');
         } catch (Zend_View_Exception $e) {
         }
+
         try {
             $this->helper->set('foo');
             $this->fail('Non-meta value should not set');
@@ -152,6 +140,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $type = str_replace('-', ' ', $type);
         $type = ucwords($type);
         $type = str_replace(' ', '', $type);
+
         return $type;
     }
 
@@ -165,7 +154,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
             $values = $this->helper->getArrayCopy();
             $this->assertEquals($i + 1, is_countable($values) ? count($values) : 0);
 
-            $item   = $values[$i];
+            $item = $values[$i];
             $this->assertObjectHasAttribute('type', $item);
             $this->assertObjectHasAttribute('modifiers', $item);
             $this->assertObjectHasAttribute('content', $item);
@@ -281,8 +270,8 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
     public function testToStringReturnsValidHtml()
     {
         $this->helper->setName('keywords', 'foo bar', array('lang' => 'us_en', 'scheme' => 'foo', 'bogus' => 'unused'))
-                     ->prependName('title', 'boo bah')
-                     ->appendHttpEquiv('screen', 'projection');
+            ->prependName('title', 'boo bah')
+            ->appendHttpEquiv('screen', 'projection');
         $string = $this->helper->toString();
 
         $metas = substr_count($string, '<meta ');
@@ -451,7 +440,8 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3780
-     * @link http://framework.zend.com/issues/browse/ZF-3780
+     *
+     * @see http://framework.zend.com/issues/browse/ZF-3780
      */
     public function testPlacesMetaTagsInProperOrder()
     {
@@ -470,7 +460,6 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
      */
     public function testContainerMaintainsCorrectOrderOfItems()
     {
-
         $this->helper->offsetSetName(1, 'keywords', 'foo');
         $this->helper->offsetSetName(10, 'description', 'foo');
         $this->helper->offsetSetHttpEquiv(20, 'pragma', 'baz');
@@ -486,38 +475,40 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $test);
     }
 
-	/**
-	 * @group ZF-7722
-	 */
-	public function testCharsetValidateFail()
-	{
-		$view = new Zend_View();
-		$view->doctype('HTML4_STRICT');
+    /**
+     * @group ZF-7722
+     */
+    public function testCharsetValidateFail()
+    {
+        $view = new Zend_View();
+        $view->doctype('HTML4_STRICT');
 
-		try {
-			$view->headMeta()->setCharset('utf-8');
-			$this->fail('Should not be able to set charset for a HTML4 doctype');
-		} catch (Zend_View_Exception $e) {}
-	}
+        try {
+            $view->headMeta()->setCharset('utf-8');
+            $this->fail('Should not be able to set charset for a HTML4 doctype');
+        } catch (Zend_View_Exception $e) {
+        }
+    }
 
-	/**
-	 * @group ZF-7722
-	 */
-	public function testCharset() {
-		$view = new Zend_View();
-		$view->doctype('HTML5');
+    /**
+     * @group ZF-7722
+     */
+    public function testCharset()
+    {
+        $view = new Zend_View();
+        $view->doctype('HTML5');
 
-		$view->headMeta()->setCharset('utf-8');
-		$this->assertEquals(
-			'<meta charset="utf-8">',
-			$view->headMeta()->toString());
+        $view->headMeta()->setCharset('utf-8');
+        $this->assertEquals(
+            '<meta charset="utf-8">',
+            $view->headMeta()->toString());
 
-		$view->doctype('XHTML5');
+        $view->doctype('XHTML5');
 
-		$this->assertEquals(
-			'<meta charset="utf-8"/>',
-			$view->headMeta()->toString());
-	}
+        $this->assertEquals(
+            '<meta charset="utf-8"/>',
+            $view->headMeta()->toString());
+    }
 
     /**
      * @group ZF-11835
@@ -537,7 +528,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
     {
         $expected = '<meta name="foo" content="bar" />';
         $helper = new Zend_View_Helper_HeadMeta();
-        $result = (string)$helper->headMeta()->appendName('foo','bar');
+        $result = (string) $helper->headMeta()->appendName('foo','bar');
         $this->assertEquals($expected, $result);
     }
 
@@ -561,4 +552,3 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('<!--<![endif]-->', $html);
     }
 }
-

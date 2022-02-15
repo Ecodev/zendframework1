@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
-
-
 /**
- * Zend_Loader_Autoloader
+ * Zend_Loader_Autoloader.
  */
 require_once 'Zend/Loader/Autoloader.php';
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
@@ -39,7 +30,7 @@ class Zend_Application_Resource_LayoutTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -98,19 +89,18 @@ class Zend_Application_Resource_LayoutTest extends \PHPUnit\Framework\TestCase
     public function testOptionsPassedToResourceAreUsedToSetLayoutState()
     {
         $options = array(
-            'layout'     => 'foo.phtml',
+            'layout' => 'foo.phtml',
             'layoutPath' => __DIR__,
         );
 
         $resource = new Zend_Application_Resource_Layout($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
-        $layout   = $resource->getLayout();
-        $test     = array(
-            'layout'     => $layout->getLayout(),
+        $layout = $resource->getLayout();
+        $test = array(
+            'layout' => $layout->getLayout(),
             'layoutPath' => $layout->getLayoutPath(),
         );
         $this->assertEquals($options, $test);
     }
 }
-

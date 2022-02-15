@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,14 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-
-
 
 /*
  * Preload a number of classes to ensure they're available once we've disabled
@@ -30,9 +24,6 @@ require_once 'Zend/Loader/ClassMapAutoloader.php';
 require_once 'Zend/Loader/StandardAutoloader.php';
 
 /**
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
@@ -40,7 +31,7 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -97,7 +88,7 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * This tests checks if invalid autoloaders cause exceptions
+     * This tests checks if invalid autoloaders cause exceptions.
      *
      * @expectedException Zend_Loader_Exception_InvalidArgumentException
      */
@@ -108,7 +99,7 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
         }
         include __DIR__ . '/_files/InvalidInterfaceAutoloader.php';
         Zend_Loader_AutoloaderFactory::factory(array(
-            'InvalidInterfaceAutoloader' => array()
+            'InvalidInterfaceAutoloader' => array(),
         ));
     }
 
@@ -214,15 +205,15 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
         $loader = array_shift($loaders);
         $this->assertTrue($loader instanceof Zend_Loader_StandardAutoloader);
 
-        $test  = array($loader, 'autoload');
+        $test = array($loader, 'autoload');
         $found = false;
         foreach (spl_autoload_functions() as $function) {
             if ($function === $test) {
                 $found = true;
+
                 break;
             }
         }
         $this->assertTrue($found, 'StandardAutoloader not registered with spl_autoload');
     }
 }
-

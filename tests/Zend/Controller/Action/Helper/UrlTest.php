@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Controller/Action/Helper/Url.php';
 
 require_once 'Zend/Controller/Front.php';
@@ -30,10 +24,6 @@ require_once 'Zend/Controller/Request/Http.php';
 /**
  * Test class for Zend_Controller_Action_Helper_Url.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
@@ -43,21 +33,16 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_UrlTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_UrlTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -70,8 +55,6 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -90,7 +73,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
     {
         $request = $this->front->getRequest();
         $request->setModuleName('foo')
-                ->setControllerName('bar');
+            ->setControllerName('bar');
         $url = $this->helper->simple('baz', null, null, array('bat' => 'foo', 'ho' => 'hum'));
         $this->assertEquals('/foo/bar/baz', substr($url, 0, 12));
         $this->assertContains('/bat/foo', $url);
@@ -106,13 +89,13 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
     public function testUrlMethodCreatesUrlBasedOnNamedRouteAndPassedParameters()
     {
         $router = $this->front->getRouter();
-        $route  = new Zend_Controller_Router_Route(
+        $route = new Zend_Controller_Router_Route(
             'foo/:action/:page',
             array(
-                'module'     => 'default',
+                'module' => 'default',
                 'controller' => 'foobar',
-                'action'     => 'bazbat',
-                'page'       => 1
+                'action' => 'bazbat',
+                'page' => 1,
             )
         );
         $router->addRoute('foo', $route);
@@ -123,13 +106,13 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
     public function testUrlMethodCreatesUrlBasedOnNamedRouteAndDefaultParameters()
     {
         $router = $this->front->getRouter();
-        $route  = new Zend_Controller_Router_Route(
+        $route = new Zend_Controller_Router_Route(
             'foo/:action/:page',
             array(
-                'module'     => 'default',
+                'module' => 'default',
                 'controller' => 'foobar',
-                'action'     => 'bazbat',
-                'page'       => 1
+                'action' => 'bazbat',
+                'page' => 1,
             )
         );
         $router->addRoute('foo', $route);
@@ -142,11 +125,11 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
         $this->front->getRouter()->addDefaultRoutes();
         $this->front->addModuleDirectory(__DIR__ . '/../../_files/modules');
         $url = $this->helper->url(array(
-            'module'     => 'foo',
+            'module' => 'foo',
             'controller' => 'bar',
-            'action'     => 'baz',
-            'bat'        => 'foo',
-            'ho'         => 'hum'
+            'action' => 'baz',
+            'bat' => 'foo',
+            'ho' => 'hum',
         ));
         $this->assertEquals('/foo/bar/baz', substr($url, 0, 12));
         $this->assertContains('/bat/foo', $url);
@@ -170,10 +153,9 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 
         $request = $this->front->getRequest();
         $request->setModuleName('module')
-                ->setControllerName('controller');
+            ->setControllerName('controller');
 
         $url = $this->helper->simple('action', null, null, array('foo' => 'bar'));
         $this->assertEquals('/baseurl/module/controller/action/foo/bar', $url);
     }
 }
-

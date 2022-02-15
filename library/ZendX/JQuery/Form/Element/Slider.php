@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,28 +12,22 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
 
 /**
  * @see ZendX_JQuery_Form_Element_UiWidget
  */
-require_once "UiWidget.php";
+require_once 'UiWidget.php';
 
 /**
- * Form Element for jQuery Slider View Helper
+ * Form Element for jQuery Slider View Helper.
  *
- * @package    ZendX_JQuery
- * @subpackage Form
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
-  */
+ */
 class ZendX_JQuery_Form_Element_Slider extends ZendX_JQuery_Form_Element_UiWidget
 {
-    public $helper = "slider";
+    public $helper = 'slider';
 }

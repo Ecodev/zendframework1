@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,28 +12,21 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 // Call Zend_Validate_IdenticalTest::main() if this source file is executed directly.
 
-
 /** Zend_Validate_Identical */
 require_once 'Zend/Validate/Identical.php';
 
 /**
- * Zend_Validate_Identical
+ * Zend_Validate_Identical.
  *
- * @category   Zend
- * @package    Zend
- * @subpackage UnitTests
  * @uses       Zend_Validate_Identical
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
@@ -43,13 +36,13 @@ class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_IdenticalTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_IdenticalTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
     {
-        $this->validator = new Zend_Validate_Identical;
+        $this->validator = new Zend_Validate_Identical();
     }
 
     public function testTokenInitiallyNull()

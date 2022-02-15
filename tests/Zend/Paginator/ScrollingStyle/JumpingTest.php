@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -35,16 +32,13 @@ require_once 'Zend/Paginator/ScrollingStyle/Jumping.php';
  */
 
 /**
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
 class Zend_Paginator_ScrollingStyle_JumpingTest extends \PHPUnit\Framework\TestCase
 {
     private ?\Zend_Paginator_ScrollingStyle_Jumping $_scrollingStyle;
+
     private ?\Zend_Paginator $_paginator;
 
     private $_expectedRange;
@@ -61,6 +55,7 @@ class Zend_Paginator_ScrollingStyle_JumpingTest extends \PHPUnit\Framework\TestC
         $this->_paginator->setPageRange(10);
         $this->_expectedRange = array_combine(range(1, 10), range(1, 10));
     }
+
     /**
      * Cleans up the environment after running a test.
      */

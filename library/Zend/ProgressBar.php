@@ -1,6 +1,6 @@
 <?php
 /**
- * LICENSE
+ * LICENSE.
  *
  * This source file is subject to the new BSD license that is bundled
  * with this package in the file LICENSE.txt.
@@ -10,91 +10,85 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_ProgressBar
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
  * Zend_ProgressBar offers an interface for multiple enviroments.
  *
- * @category  Zend
- * @package   Zend_ProgressBar
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_ProgressBar
 {
     /**
-     * Min value
+     * Min value.
      *
      * @var float
      */
     protected $_min;
 
     /**
-     * Max value
+     * Max value.
      *
      * @var float
      */
     protected $_max;
 
     /**
-     * Current value
+     * Current value.
      *
      * @var float
      */
     protected $_current;
 
     /**
-     * Start time of the progressbar, required for ETA
+     * Start time of the progressbar, required for ETA.
      *
-     * @var integer
+     * @var int
      */
     protected $_startTime;
 
     /**
-     * Current status text
+     * Current status text.
      *
      * @var string
      */
-    protected $_statusText = null;
+    protected $_statusText;
 
     /**
-     * Adapter for the output
+     * Adapter for the output.
      *
      * @var Zend_ProgressBar_Adapter
      */
     protected $_adapter;
 
     /**
-     * Namespace for keeping the progressbar persistent
+     * Namespace for keeping the progressbar persistent.
      *
      * @var string
      */
-    protected $_persistenceNamespace = null;
+    protected $_persistenceNamespace;
 
     /**
      * Create a new progressbar backend.
      *
-     * @param  Zend_ProgressBar_Adapter $adapter
      * @param  float                    $min
      * @param  float                    $max
      * @param  string                   $persistenceNamespace
-     * @throws Zend_ProgressBar_Exception When $min is greater than $max
      */
     public function __construct(Zend_ProgressBar_Adapter $adapter, $min = 0, $max = 100, $persistenceNamespace = null)
     {
         // Check min/max values and set them
         if ($min > $max) {
             require_once 'Zend/ProgressBar/Exception.php';
+
             throw new Zend_ProgressBar_Exception('$max must be greater than $min');
         }
 
-        $this->_min     = (float) $min;
-        $this->_max     = (float) $max;
+        $this->_min = (float) $min;
+        $this->_max = (float) $max;
         $this->_current = (float) $min;
 
         // See if we have to open a session namespace
@@ -113,13 +107,13 @@ class Zend_ProgressBar
         // See If a persistenceNamespace exists and handle accordingly
         if ($this->_persistenceNamespace !== null) {
             if (isset($this->_persistenceNamespace->isSet)) {
-                $this->_startTime  = $this->_persistenceNamespace->startTime;
-                $this->_current    = $this->_persistenceNamespace->current;
+                $this->_startTime = $this->_persistenceNamespace->startTime;
+                $this->_current = $this->_persistenceNamespace->current;
                 $this->_statusText = $this->_persistenceNamespace->statusText;
             } else {
-                $this->_persistenceNamespace->isSet      = true;
-                $this->_persistenceNamespace->startTime  = $this->_startTime;
-                $this->_persistenceNamespace->current    = $this->_current;
+                $this->_persistenceNamespace->isSet = true;
+                $this->_persistenceNamespace->startTime = $this->_startTime;
+                $this->_persistenceNamespace->current = $this->_current;
                 $this->_persistenceNamespace->statusText = $this->_statusText;
             }
         } else {
@@ -128,7 +122,7 @@ class Zend_ProgressBar
     }
 
     /**
-     * Get the current adapter
+     * Get the current adapter.
      *
      * @return Zend_ProgressBar_Adapter
      */
@@ -138,11 +132,10 @@ class Zend_ProgressBar
     }
 
     /**
-     * Update the progressbar
+     * Update the progressbar.
      *
      * @param  float  $value
      * @param  string $text
-     * @return void
      */
     public function update($value = null, $text = null)
     {
@@ -158,7 +151,7 @@ class Zend_ProgressBar
 
         // See if we have to update a namespace
         if ($this->_persistenceNamespace !== null) {
-            $this->_persistenceNamespace->current    = $this->_current;
+            $this->_persistenceNamespace->current = $this->_current;
             $this->_persistenceNamespace->statusText = $this->_statusText;
         }
 
@@ -183,10 +176,10 @@ class Zend_ProgressBar
     }
 
     /**
-     * Update the progressbar to the next value
+     * Update the progressbar to the next value.
      *
      * @param  string $text
-     * @return void
+     * @param mixed $diff
      */
     public function next($diff = 1, $text = null)
     {
@@ -194,9 +187,7 @@ class Zend_ProgressBar
     }
 
     /**
-     * Call the adapters finish() behaviour
-     *
-     * @return void
+     * Call the adapters finish() behaviour.
      */
     public function finish()
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -30,10 +27,6 @@ require_once 'Zend/Paginator/Adapter/Iterator.php';
  */
 
 /**
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
@@ -44,16 +37,17 @@ class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp ()
+    protected function setUp()
     {
         parent::setUp();
         $iterator = new ArrayIterator(range(1, 101));
         $this->_adapter = new Zend_Paginator_Adapter_Iterator($iterator);
     }
+
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown ()
+    protected function tearDown()
     {
         $this->_adapter = null;
         parent::tearDown();
@@ -67,7 +61,7 @@ class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
         $i = 1;
         foreach ($actual as $item) {
             $this->assertEquals($i, $item);
-            $i++;
+            ++$i;
         }
     }
 
@@ -79,7 +73,7 @@ class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
         $i = 11;
         foreach ($actual as $item) {
             $this->assertEquals($i, $item);
-            $i++;
+            ++$i;
         }
     }
 
@@ -107,6 +101,7 @@ class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
     {
         $this->_paginator = Zend_Paginator::factory(new ArrayIterator(array()));
         $items = $this->_paginator->getCurrentItems();
+
         try {
             foreach ($items as $item);
         } catch (OutOfBoundsException $e) {
@@ -117,17 +112,19 @@ class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
     /**
      * @group ZF-8084
      */
-    public function testGetItemsSerializable() {
+    public function testGetItemsSerializable()
+    {
         $items = $this->_adapter->getItems(0, 1);
         $innerIterator = $items->getInnerIterator();
         $items = unserialize(serialize($items));
-        $this->assertTrue( ($items->getInnerIterator() == $innerIterator), 'getItems has to be serializable to use caching');
+        $this->assertTrue(($items->getInnerIterator() == $innerIterator), 'getItems has to be serializable to use caching');
     }
 
     /**
      * @group ZF-4151
      */
-    public function testEmptySet() {
+    public function testEmptySet()
+    {
         $iterator = new ArrayIterator(array());
         $this->_adapter = new Zend_Paginator_Adapter_Iterator($iterator);
         $actual = $this->_adapter->getItems(0, 10);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Decorator/ViewScript.php';
 
 require_once 'Zend/Form/Element.php';
@@ -29,12 +23,8 @@ require_once 'Zend/Form/Element/Text.php';
 require_once 'Zend/View.php';
 
 /**
- * Test class for Zend_Form_Decorator_ViewScript
+ * Test class for Zend_Form_Decorator_ViewScript.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -42,20 +32,16 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_ViewScriptTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_ViewScriptTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -65,8 +51,6 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -77,6 +61,7 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
         $view->addScriptPath(__DIR__ . '/../_files/views/');
+
         return $view;
     }
 
@@ -85,12 +70,14 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
         $element = new Zend_Form_Element_Text('foo');
         $element->setView($this->getView());
         $this->decorator->setElement($element);
+
         return $element;
     }
 
     public function testRenderRaisesExceptionIfNoViewScriptRegistered()
     {
         $this->getElement();
+
         try {
             $this->decorator->render('');
         } catch (Zend_Form_Exception $e) {
@@ -170,10 +157,10 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
     public function testOptionsArePassedToPartialAsVariables()
     {
         $this->decorator->setOptions(array(
-            'foo'        => 'Foo Value',
-            'bar'        => 'Bar Value',
-            'baz'        => 'Baz Value',
-            'bat'        => 'Bat Value',
+            'foo' => 'Foo Value',
+            'bar' => 'Bar Value',
+            'baz' => 'Baz Value',
+            'bat' => 'Bat Value',
             'viewScript' => 'decorator.phtml',
         ));
         $this->getElement();
@@ -186,8 +173,8 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
     public function testCanReplaceContentBySpecifyingFalsePlacement()
     {
         $this->decorator->setViewScript('replacingDecorator.phtml')
-             ->setOption('placement', false)
-             ->setElement($this->getElement());
+            ->setOption('placement', false)
+            ->setElement($this->getElement());
         $test = $this->decorator->render('content to decorate');
         $this->assertNotContains('content to decorate', $test, $test);
         $this->assertContains('This is content from the view script', $test);
@@ -196,8 +183,8 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
     public function testContentCanBeRenderedWithinViewScript()
     {
         $this->decorator->setViewScript('contentWrappingDecorator.phtml')
-             ->setOption('placement', false)
-             ->setElement($this->getElement());
+            ->setOption('placement', false)
+            ->setElement($this->getElement());
 
         $test = $this->decorator->render('content to decorate');
         $this->assertContains('content to decorate', $test, $test);
@@ -208,7 +195,7 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
     public function testDecoratorCanControlPlacementFromWithinViewScript()
     {
         $this->decorator->setViewScript('decoratorCausesReplacement.phtml')
-             ->setElement($this->getElement());
+            ->setElement($this->getElement());
 
         $test = $this->decorator->render('content to decorate');
         $this->assertContains('content to decorate', $test, $test);
@@ -235,4 +222,3 @@ class Zend_Form_Decorator_ViewScriptTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $this->decorator->render('Foo:'));
     }
 }
-

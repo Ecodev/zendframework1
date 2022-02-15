@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category  Zend
- * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version   $Id$
  */
 
@@ -25,11 +23,8 @@
 require_once 'Zend/Validate/File/Count.php';
 
 /**
- * Validator for counting all words in a file
+ * Validator for counting all words in a file.
  *
- * @category  Zend
- * @package   Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_File_WordCount extends Zend_Validate_File_Count
@@ -37,10 +32,10 @@ class Zend_Validate_File_WordCount extends Zend_Validate_File_Count
     /**#@+
      * @const string Error constants
      */
-    public const TOO_MUCH  = 'fileWordCountTooMuch';
-    public const TOO_LESS  = 'fileWordCountTooLess';
+    public const TOO_MUCH = 'fileWordCountTooMuch';
+    public const TOO_LESS = 'fileWordCountTooLess';
     public const NOT_FOUND = 'fileWordCountNotFound';
-    /**#@-*/
+    // #@-
 
     /**
      * @var array Error message templates
@@ -52,14 +47,15 @@ class Zend_Validate_File_WordCount extends Zend_Validate_File_Count
     );
 
     /**
-     * Defined by Zend_Validate_Interface
+     * Defined by Zend_Validate_Interface.
      *
      * Returns true if and only if the counted words are at least min and
      * not bigger than max (when max is not null).
      *
      * @param  string $value Filename to check for word count
      * @param  array  $file  File data from Zend_File_Transfer
-     * @return boolean
+     *
+     * @return bool
      */
     public function isValid($value, $file = null)
     {
@@ -83,10 +79,11 @@ class Zend_Validate_File_WordCount extends Zend_Validate_File_Count
     }
 
     /**
-     * Throws an error of the given type
+     * Throws an error of the given type.
      *
      * @param  string $file
      * @param  string $errorType
+     *
      * @return false
      */
     protected function _throw($file, $errorType)
@@ -96,6 +93,7 @@ class Zend_Validate_File_WordCount extends Zend_Validate_File_Count
         }
 
         $this->_error($errorType);
+
         return false;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,20 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage Ressource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id:$
  */
 
-/**
- * EN-Revision: 22668
- */
+// EN-Revision: 22668
 return array(
     // Zend_Validate_Alnum
-    "Invalid type given. String, integer or float expected" => "Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo",
+    'Invalid type given. String, integer or float expected' => 'Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo',
     "'%value%' contains characters which are non alphabetic and no digits" => "'%value%' obsahuje i jiné znaky než písmena a číslice",
     "'%value%' is an empty string" => "'%value%' je prázdný řetězec",
 
     // Zend_Validate_Alpha
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
     "'%value%' contains non alphabetic characters" => "'%value%' obsahuje i jiné znaky než písmena",
     "'%value%' is an empty string" => "'%value%' je prázdný řetězec",
 
@@ -38,7 +33,7 @@ return array(
     "'%value%' failed checksum validation" => "'%value%' má chybný kontrolní součet",
     "'%value%' contains invalid characters" => "'%value%' obsahuje neplatné znaky",
     "'%value%' should have a length of %length% characters" => "'%value%' by měl mít délku %length% znaků",
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec.",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec.',
 
     // Zend_Validate_Between
     "'%value%' is not between '%min%' and '%max%', inclusively" => "'%value%' není mezi '%min%' a '%max%', včetně",
@@ -46,7 +41,7 @@ return array(
 
     // Zend_Validate_Callback
     "'%value%' is not valid" => "Hodnota '%value%' není platná",
-    "An exception has been raised within the callback" => "Během volání byla vyvolána výjimka",
+    'An exception has been raised within the callback' => 'Během volání byla vyvolána výjimka',
 
     // Zend_Validate_Ccnum
     "'%value%' must contain between 13 and 19 digits" => "'%value%' musí obsahovat 13 až 19 číslic",
@@ -55,14 +50,14 @@ return array(
     // Zend_Validate_CreditCard
     "'%value%' seems to contain an invalid checksum" => "'%value%' obsahuje neplatný kontrolní součet",
     "'%value%' must contain only digits" => "'%value%' musí obsahovat jen čísla",
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
     "'%value%' contains an invalid amount of digits" => "'%value%' obsahuje neplatný počet číslic",
     "'%value%' is not from an allowed institute" => "'%value%' není od povolené společnosti",
     "'%value%' seems to be an invalid creditcard number" => "'%value%' není platné číslo kreditní karty",
     "An exception has been raised while validating '%value%'" => "Během validace '%value%' byla vyvolána výjimka",
 
     // Zend_Validate_Date
-    "Invalid type given. String, integer, array or Zend_Date expected" => "Chybný typ. Byl očekáván řetězec, číslo, pole nebo Zend_Date",
+    'Invalid type given. String, integer, array or Zend_Date expected' => 'Chybný typ. Byl očekáván řetězec, číslo, pole nebo Zend_Date',
     "'%value%' does not appear to be a valid date" => "'%value%' není platné datum",
     "'%value%' does not fit the date format '%format%'" => "'%value%' neodpovídá formátu data '%format%'",
 
@@ -71,12 +66,12 @@ return array(
     "A record matching '%value%' was found" => "Byl nalezen záznam odpovídající '%value%'",
 
     // Zend_Validate_Digits
-    "Invalid type given. String, integer or float expected" => "Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo",
+    'Invalid type given. String, integer or float expected' => 'Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo',
     "'%value%' must contain only digits" => "'%value%' musí obsahovat jen číslice",
     "'%value%' is an empty string" => "'%value%' je prázdný řetězec",
 
     // Zend_Validate_EmailAddress
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
     "'%value%' is no valid email address in the basic format local-part@hostname" => "'%value%' není platná e-mailová adresa ve formátu local-part@hostname",
     "'%hostname%' is not a valid hostname for email address '%value%'" => "'%hostname%' není platné hostname pro emailovou adresu '%value%'",
     "'%hostname%' does not appear to have a valid MX record for the email address '%value%'" => "'%hostname%' neobsahuje platný MX záznam pro e-mailovou adresu '%value%'",
@@ -92,7 +87,7 @@ return array(
 
     // Zend_Validate_File_Crc32
     "File '%value%' does not match the given crc32 hashes" => "Soubor '%value%' neodpovídá zadanému crc32 hashi",
-    "A crc32 hash could not be evaluated for the given file" => "Pro zadaný soubor nemohl být vypočítán crc32 hash",
+    'A crc32 hash could not be evaluated for the given file' => 'Pro zadaný soubor nemohl být vypočítán crc32 hash',
     "File '%value%' is not readable or does not exist" => "Soubor '%value%' buď není čitelný nebo neexistuje",
 
     // Zend_Validate_File_ExcludeExtension
@@ -114,11 +109,11 @@ return array(
     // Zend_Validate_File_FilesSize
     "All files in sum should have a maximum size of '%max%' but '%size%' were detected" => "Součet velikostí všech souborů by měl být maximálně '%max%', ale je '%size%'",
     "All files in sum should have a minimum size of '%min%' but '%size%' were detected" => "Součet velikostí všech souborů by měl být nejméně '%min%', ale je '%size%'",
-    "One or more files can not be read" => "Jeden nebo více souborů není možné načíst",
+    'One or more files can not be read' => 'Jeden nebo více souborů není možné načíst',
 
     // Zend_Validate_File_Hash
     "File '%value%' does not match the given hashes" => "Soubor '%value%' neodpovídané danému hashi",
-    "A hash could not be evaluated for the given file" => "Hash nemohl být pro daný soubor vypočítán",
+    'A hash could not be evaluated for the given file' => 'Hash nemohl být pro daný soubor vypočítán',
     "File '%value%' is not readable or does not exist" => "Soubor '%value%' buď není čitelný nebo neexistuje",
 
     // Zend_Validate_File_ImageSize
@@ -141,7 +136,7 @@ return array(
 
     // Zend_Validate_File_Md5
     "File '%value%' does not match the given md5 hashes" => "Soubor '%value%' neodpovídá danému md5 hashi",
-    "A md5 hash could not be evaluated for the given file" => "md5 hash nemohl být pro daný soubor vypočítán",
+    'A md5 hash could not be evaluated for the given file' => 'md5 hash nemohl být pro daný soubor vypočítán',
     "File '%value%' is not readable or does not exist" => "Soubor '%value%' buď není čitelný nebo neexistuje",
 
     // Zend_Validate_File_MimeType
@@ -154,7 +149,7 @@ return array(
 
     // Zend_Validate_File_Sha1
     "File '%value%' does not match the given sha1 hashes" => "Soubor '%value%' neodpovídá danému sha1 hashi",
-    "A sha1 hash could not be evaluated for the given file" => "sha1 hash nemohl být pro daný soubor vypočítán",
+    'A sha1 hash could not be evaluated for the given file' => 'sha1 hash nemohl být pro daný soubor vypočítán',
     "File '%value%' is not readable or does not exist" => "Soubor '%value%' buď není čitelný nebo neexistuje",
 
     // Zend_Validate_File_Size
@@ -180,18 +175,18 @@ return array(
     "File '%value%' is not readable or does not exist" => "Soubor '%value%' buď není čitelný nebo neexistuje",
 
     // Zend_Validate_Float
-    "Invalid type given. String, integer or float expected" => "Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo",
+    'Invalid type given. String, integer or float expected' => 'Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo',
     "'%value%' does not appear to be a float" => "'%value%' není desetinné číslo",
 
     // Zend_Validate_GreaterThan
     "'%value%' is not greater than '%min%'" => "'%value%' není větší než '%min%'",
 
     // Zend_Validate_Hex
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
     "'%value%' has not only hexadecimal digit characters" => "'%value%' neobsahuje jen znaky hexadecimálních čísel.",
 
     // Zend_Validate_Hostname
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
     "'%value%' appears to be an IP address, but IP addresses are not allowed" => "'%value%' vypadá jako IP adresa, ale ty nejsou dovoleny",
     "'%value%' appears to be a DNS hostname but cannot match TLD against known list" => "'%value%' vypadá jako hostname, ale nemohl být ověřen proti známým TLD",
     "'%value%' appears to be a DNS hostname but contains a dash in an invalid position" => "'%value%' vypadá jako hostname, ale obsahuje pomlčku na nedovoleném místě",
@@ -208,58 +203,58 @@ return array(
     "'%value%' has failed the IBAN check" => "'%value%' neprošlo kontrolou IBAN",
 
     // Zend_Validate_Identical
-    "The two given tokens do not match" => "Zadané položky nejsou shodné",
-    "No token was provided to match against" => "Nebyla zadána položka pro porovnání",
+    'The two given tokens do not match' => 'Zadané položky nejsou shodné',
+    'No token was provided to match against' => 'Nebyla zadána položka pro porovnání',
 
     // Zend_Validate_InArray
     "'%value%' was not found in the haystack" => "'%value%' nebyla nalezena v seznamu",
 
     // Zend_Validate_Int
-    "Invalid type given. String or integer expected" => "Chybný typ. Byl očekáván řetězec nebo celé číslo",
+    'Invalid type given. String or integer expected' => 'Chybný typ. Byl očekáván řetězec nebo celé číslo',
     "'%value%' does not appear to be an integer" => "'%value%' není celé číslo",
 
     // Zend_Validate_Ip
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
     "'%value%' does not appear to be a valid IP address" => "'%value%' není platná IP adresa",
 
     // Zend_Validate_Isbn
-    "Invalid type given. String or integer expected" => "Chybný typ. Byl očekáván řetězec nebo celé číslo",
+    'Invalid type given. String or integer expected' => 'Chybný typ. Byl očekáván řetězec nebo celé číslo',
     "'%value%' is no valid ISBN number" => "'%value%' není platné ISBN",
 
     // Zend_Validate_LessThan
     "'%value%' is not less than '%max%'" => "'%value%' není méně než '%max%'",
 
     // Zend_Validate_NotEmpty
-    "Invalid type given. String, integer, float, boolean or array expected" => "Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo, boolean nebo pole",
-    "Value is required and can't be empty" => "Položka je povinná a nesmí být prázdná",
+    'Invalid type given. String, integer, float, boolean or array expected' => 'Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo, boolean nebo pole',
+    "Value is required and can't be empty" => 'Položka je povinná a nesmí být prázdná',
 
     // Zend_Validate_PostCode
-    "Invalid type given. String or integer expected" => "Chybný typ. Byl očekáván řetězec nebo celé číslo",
+    'Invalid type given. String or integer expected' => 'Chybný typ. Byl očekáván řetězec nebo celé číslo',
     "'%value%' does not appear to be a postal code" => "'%value%' nevypadá jako PSČ",
 
     // Zend_Validate_Regex
-    "Invalid type given. String, integer or float expected" => "Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo",
+    'Invalid type given. String, integer or float expected' => 'Chybný typ. Byl očekáván řetězec, celé nebo desetinné číslo',
     "'%value%' does not match against pattern '%pattern%'" => "'%value%' neodpovídá šabloně '%pattern%'",
     "There was an internal error while using the pattern '%pattern%'" => "Během zpracování šablony '%pattern%' došlo k interní chybě",
 
     // Zend_Validate_Sitemap_Changefreq
     "'%value%' is no valid sitemap changefreq" => "'%value%' není platné 'changefreq' pro sitemapu",
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
 
     // Zend_Validate_Sitemap_Lastmod
     "'%value%' is no valid sitemap lastmod" => "'%value%' není platné 'lastmod' pro sitemapu",
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
 
     // Zend_Validate_Sitemap_Loc
     "'%value%' is no valid sitemap location" => "'%value%' není platná 'location' pro sitemapu",
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
 
     // Zend_Validate_Sitemap_Priority
     "'%value%' is no valid sitemap priority" => "'%value%' není platná 'priority' pro sitemapu",
-    "Invalid type given. Numeric string, integer or float expected" => "Chybný typ. Byl očekáván číselný řetězec, celé nebo desetinné číslo.",
+    'Invalid type given. Numeric string, integer or float expected' => 'Chybný typ. Byl očekáván číselný řetězec, celé nebo desetinné číslo.',
 
     // Zend_Validate_StringLength
-    "Invalid type given. String expected" => "Chybný typ. Byl očekáván řetězec",
+    'Invalid type given. String expected' => 'Chybný typ. Byl očekáván řetězec',
     "'%value%' is less than %min% characters long" => "'%value%' je kratší než %min% znaků",
     "'%value%' is more than %max% characters long" => "'%value%' je delší než %max% znaků",
 );

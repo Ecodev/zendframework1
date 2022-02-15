@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Loader_Autoloader
@@ -41,10 +36,6 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
 require_once 'Zend/Config.php';
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
@@ -52,7 +43,7 @@ class Zend_Application_Module_AutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -77,7 +68,7 @@ class Zend_Application_Module_AutoloaderTest extends \PHPUnit\Framework\TestCase
 
         $this->loader = new Zend_Application_Module_Autoloader(array(
             'namespace' => 'FooBar',
-            'basePath'  => realpath(__DIR__ . '/_files'),
+            'basePath' => realpath(__DIR__ . '/_files'),
         ));
     }
 
@@ -182,4 +173,3 @@ class Zend_Application_Module_AutoloaderTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('model', $this->loader->getDefaultResourceType());
     }
 }
-

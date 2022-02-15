@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Xml_Security
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * This is a class that overrides Zend_Xml_Security to mark the heuristicScan()
@@ -33,10 +28,6 @@ require_once 'Zend/Xml/TestAsset/Security.php';
 require_once 'Zend/Xml/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Xml_Security
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Xml
  * @group      ZF2015-06
@@ -45,39 +36,37 @@ class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function multibyteEncodings()
     {
         return array(
-            'UTF-16LE' => array('UTF-16LE', pack('CC', 0xff, 0xfe), 3),
-            'UTF-16BE' => array('UTF-16BE', pack('CC', 0xfe, 0xff), 3),
-            'UTF-32LE' => array('UTF-32LE', pack('CCCC', 0xff, 0xfe, 0x00, 0x00), 4),
-            'UTF-32BE' => array('UTF-32BE', pack('CCCC', 0x00, 0x00, 0xfe, 0xff), 4),
+            'UTF-16LE' => array('UTF-16LE', pack('CC', 0xFF, 0xFE), 3),
+            'UTF-16BE' => array('UTF-16BE', pack('CC', 0xFE, 0xFF), 3),
+            'UTF-32LE' => array('UTF-32LE', pack('CCCC', 0xFF, 0xFE, 0x00, 0x00), 4),
+            'UTF-32BE' => array('UTF-32BE', pack('CCCC', 0x00, 0x00, 0xFE, 0xFF), 4),
         );
     }
 
     public function getXmlWithXXE()
     {
         return <<<XML
-<?xml version="1.0" encoding="{ENCODING}"?>
-<!DOCTYPE methodCall [
-  <!ENTITY pocdata SYSTEM "file:///etc/passwd">
-]>
-<methodCall>
-    <methodName>retrieved: &pocdata;</methodName>
-</methodCall>
-XML;
+            <?xml version="1.0" encoding="{ENCODING}"?>
+            <!DOCTYPE methodCall [
+              <!ENTITY pocdata SYSTEM "file:///etc/passwd">
+            ]>
+            <methodCall>
+                <methodName>retrieved: &pocdata;</methodName>
+            </methodCall>
+            XML;
     }
 
     /**
      * Invoke Zend_Xml_Security::heuristicScan with the provided XML.
      *
      * @param string $xml
-     * @return void
-     * @throws Zend_Xml_Exception
      */
     public function invokeHeuristicScan($xml)
     {
@@ -87,6 +76,10 @@ XML;
     /**
      * @dataProvider multibyteEncodings
      * @group heuristicDetection
+     *
+     * @param mixed $encoding
+     * @param mixed $bom
+     * @param mixed $bomLength
      */
     public function testDetectsMultibyteXXEVectorsUnderFPMWithEncodedStringMissingBOM($encoding, $bom, $bomLength)
     {
@@ -100,13 +93,16 @@ XML;
 
     /**
      * @dataProvider multibyteEncodings
+     *
+     * @param mixed $encoding
+     * @param mixed $bom
      */
     public function testDetectsMultibyteXXEVectorsUnderFPMWithEncodedStringUsingBOM($encoding, $bom)
     {
-        $xml  = $this->getXmlWithXXE();
-        $xml  = str_replace('{ENCODING}', $encoding, $xml);
+        $xml = $this->getXmlWithXXE();
+        $xml = str_replace('{ENCODING}', $encoding, $xml);
         $orig = iconv('UTF-8', $encoding, $xml);
-        $xml  = $bom . $orig;
+        $xml = $bom . $orig;
         $this->expectException(\Zend_Xml_Exception::class, 'ENTITY');
         $this->invokeHeuristicScan($xml);
     }
@@ -114,21 +110,24 @@ XML;
     public function getXmlWithoutXXE()
     {
         return <<<XML
-<?xml version="1.0" encoding="{ENCODING}"?>
-<methodCall>
-    <methodName>retrieved: &pocdata;</methodName>
-</methodCall>
-XML;
+            <?xml version="1.0" encoding="{ENCODING}"?>
+            <methodCall>
+                <methodName>retrieved: &pocdata;</methodName>
+            </methodCall>
+            XML;
     }
 
     /**
      * @dataProvider multibyteEncodings
+     *
+     * @param mixed $encoding
      */
     public function testDoesNotFlagValidMultibyteXmlAsInvalidUnderFPM($encoding)
     {
         $xml = $this->getXmlWithoutXXE();
         $xml = str_replace('{ENCODING}', $encoding, $xml);
         $xml = iconv('UTF-8', $encoding, $xml);
+
         try {
             $result = $this->invokeHeuristicScan($xml);
             $this->assertNull($result);
@@ -140,6 +139,9 @@ XML;
     /**
      * @dataProvider multibyteEncodings
      * @group mixedEncoding
+     *
+     * @param mixed $encoding
+     * @param mixed $bom
      */
     public function testDetectsXXEWhenXMLDocumentEncodingDiffersFromFileEncoding($encoding, $bom)
     {
@@ -151,4 +153,3 @@ XML;
         $this->invokeHeuristicScan($xml);
     }
 }
-

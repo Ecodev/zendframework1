@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Test
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -35,13 +33,10 @@ require_once 'Zend/Session.php';
 require_once 'Zend/Registry.php';
 
 /**
- * Functional testing scaffold for MVC applications
+ * Functional testing scaffold for MVC applications.
  *
  * @uses       \PHPUnit\Framework\TestCase
- * @category   Zend
- * @package    Zend_Test
- * @subpackage PHPUnit
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\TestCase
@@ -67,33 +62,35 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     protected $_response;
 
     /**
-     * XPath namespaces
+     * XPath namespaces.
+     *
      * @var array
      */
     protected $_xpathNamespaces = array();
 
     /**
-     * Overloading: prevent overloading to special properties
+     * Overloading: prevent overloading to special properties.
      *
      * @param  string $name
      * @param  mixed  $value
-     * @throws Zend_Exception
      */
     public function __set($name, $value)
     {
         if (in_array($name, array('request', 'response', 'frontController'))) {
             require_once 'Zend/Exception.php';
+
             throw new Zend_Exception(sprintf('Setting %s object manually is not allowed', $name));
         }
         $this->$name = $value;
     }
 
     /**
-     * Overloading for common properties
+     * Overloading for common properties.
      *
      * Provides overloading for request, response, and frontController objects.
      *
      * @param  mixed $name
+     *
      * @return null|Zend_Controller_Front|Zend_Controller_Request_HttpTestCase|Zend_Controller_Response_HttpTestCase
      */
     public function __get($name)
@@ -111,7 +108,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Set up MVC app
+     * Set up MVC app.
      *
      * Calls {@link bootstrap()} by default
      */
@@ -121,7 +118,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Bootstrap the front controller
+     * Bootstrap the front controller.
      *
      * Resets the front controller, and then bootstraps it.
      *
@@ -146,19 +143,19 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
             }
         }
         $this->frontController
-             ->setRequest($this->getRequest())
-             ->setResponse($this->getResponse());
+            ->setRequest($this->getRequest())
+            ->setResponse($this->getResponse());
     }
 
     /**
-     * Dispatch the MVC
+     * Dispatch the MVC.
      *
      * If a URL is provided, sets it as the request URI in the request object.
      * Then sets test case request and response objects in front controller,
      * disables throwing exceptions, and disables returning the response.
      * Finally, dispatches the front controller.
      *
-     * @param string|null $url
+     * @param null|string $url
      */
     public function dispatch($url = null)
     {
@@ -170,7 +167,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
         $json = Zend_Controller_Action_HelperBroker::getStaticHelper('json');
         $json->suppressExit = true;
 
-        $request    = $this->getRequest();
+        $request = $this->getRequest();
         if (null !== $url) {
             $request->setRequestUri($url);
         }
@@ -178,10 +175,10 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
 
         $controller = $this->getFrontController();
         $this->frontController
-             ->setRequest($request)
-             ->setResponse($this->getResponse())
-             ->throwExceptions(false)
-             ->returnResponse(false);
+            ->setRequest($request)
+            ->setResponse($this->getResponse())
+            ->throwExceptions(false)
+            ->returnResponse(false);
 
         if ($this->bootstrap instanceof Zend_Application) {
             $this->bootstrap->run();
@@ -191,7 +188,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Reset MVC state
+     * Reset MVC state.
      *
      * Creates new request/response objects, resets the front controller
      * instance, and resets the action helper broker.
@@ -201,9 +198,9 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     public function reset()
     {
         $_SESSION = array();
-        $_GET     = array();
-        $_POST    = array();
-        $_COOKIE  = array();
+        $_GET = array();
+        $_POST = array();
+        $_COOKIE = array();
         $this->resetRequest();
         $this->resetResponse();
         Zend_Layout::resetMvcInstance();
@@ -213,12 +210,12 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Rest all view placeholders
+     * Rest all view placeholders.
      */
     protected function _resetPlaceholders()
     {
         $registry = Zend_Registry::getInstance();
-        $remove   = array();
+        $remove = array();
         foreach ($registry as $key => $value) {
             if (strstr($key, '_View_')) {
                 $remove[] = $key;
@@ -231,7 +228,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Reset the request object
+     * Reset the request object.
      *
      * Useful for test cases that need to test multiple trips to the server.
      *
@@ -241,14 +238,15 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     {
         if ($this->_request instanceof Zend_Controller_Request_HttpTestCase) {
             $this->_request->clearQuery()
-                           ->clearPost();
+                ->clearPost();
         }
         $this->_request = null;
+
         return $this;
     }
 
     /**
-     * Reset the response object
+     * Reset the response object.
      *
      * Useful for test cases that need to test multiple trips to the server.
      *
@@ -258,13 +256,12 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     {
         $this->_response = null;
         $this->_resetPlaceholders();
+
         return $this;
     }
 
-
-
     /**
-     * Register XPath namespaces
+     * Register XPath namespaces.
      *
      * @param array $xpathNamespaces
      */
@@ -274,7 +271,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Assert that the last handled request used the given module
+     * Assert that the last handled request used the given module.
      *
      * @param string $module
      * @param string $message
@@ -295,7 +292,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Assert that the last handled request did NOT use the given module
+     * Assert that the last handled request did NOT use the given module.
      *
      * @param string $module
      * @param string $message
@@ -313,7 +310,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Assert that the last handled request used the given controller
+     * Assert that the last handled request used the given controller.
      *
      * @param string $controller
      * @param string $message
@@ -334,7 +331,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Assert that the last handled request did NOT use the given controller
+     * Assert that the last handled request did NOT use the given controller.
      *
      * @param  string $controller
      * @param  string $message
@@ -355,7 +352,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Assert that the last handled request used the given action
+     * Assert that the last handled request used the given action.
      *
      * @param string $action
      * @param string $message
@@ -373,7 +370,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Assert that the last handled request did NOT use the given action
+     * Assert that the last handled request did NOT use the given action.
      *
      * @param string $action
      * @param string $message
@@ -391,7 +388,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Assert that the specified route was used
+     * Assert that the specified route was used.
      *
      * @param string $route
      * @param string $message
@@ -413,7 +410,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Assert that the route matched is NOT as specified
+     * Assert that the route matched is NOT as specified.
      *
      * @param string $route
      * @param string $message
@@ -432,7 +429,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     }
 
     /**
-     * Retrieve front controller instance
+     * Retrieve front controller instance.
      *
      * @return Zend_Controller_Front
      */
@@ -441,11 +438,12 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
         if (null === $this->_frontController) {
             $this->_frontController = Zend_Controller_Front::getInstance();
         }
+
         return $this->_frontController;
     }
 
     /**
-     * Retrieve test case request object
+     * Retrieve test case request object.
      *
      * @return Zend_Controller_Request_HttpTestCase
      */
@@ -453,13 +451,14 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     {
         if (null === $this->_request) {
             require_once 'Zend/Controller/Request/HttpTestCase.php';
-            $this->_request = new Zend_Controller_Request_HttpTestCase;
+            $this->_request = new Zend_Controller_Request_HttpTestCase();
         }
+
         return $this->_request;
     }
 
     /**
-     * Retrieve test case response object
+     * Retrieve test case response object.
      *
      * @return Zend_Controller_Response_HttpTestCase
      */
@@ -467,20 +466,20 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     {
         if (null === $this->_response) {
             require_once 'Zend/Controller/Response/HttpTestCase.php';
-            $this->_response = new Zend_Controller_Response_HttpTestCase;
+            $this->_response = new Zend_Controller_Response_HttpTestCase();
         }
+
         return $this->_response;
     }
 
     /**
-     * URL Helper
+     * URL Helper.
      *
      * @param  array  $urlOptions
      * @param  string $name
      * @param  bool   $reset
      * @param  bool   $encode
-     * @throws Exception
-     * @throws Zend_Controller_Router_Exception
+     *
      * @return string
      */
     public function url($urlOptions = array(), $name = null, $reset = false, $encode = true)
@@ -493,14 +492,16 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
         if (count($router->getRoutes()) == 0) {
             $router->addDefaultRoutes();
         }
+
         return $router->assemble($urlOptions, $name, $reset, $encode);
     }
 
     /**
-     * Urlize options
+     * Urlize options.
      *
      * @param  array $urlOptions
      * @param  bool  $actionControllerModuleOnly
+     *
      * @return mixed
      */
     public function urlizeOptions($urlOptions, $actionControllerModuleOnly = true)
@@ -511,11 +512,12 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
                 $urlOptions[$n] = $ccToDash->filter($v);
             }
         }
+
         return $urlOptions;
     }
 
     /**
-     * Increment assertion count
+     * Increment assertion count.
      */
     protected function _incrementAssertionCount()
     {
@@ -524,7 +526,8 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
             if (isset($step['object'])
                 && $step['object'] instanceof \PHPUnit\Framework\TestCase
             ) {
-                    $step['object']->addToAssertionCount(1);
+                $step['object']->addToAssertionCount(1);
+
                 break;
             }
         }

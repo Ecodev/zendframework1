@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_HeadTitle */
 require_once 'Zend/View/Helper/HeadTitle.php';
@@ -34,10 +29,6 @@ require_once 'Zend/Registry.php';
 /**
  * Test class for Zend_View_Helper_HeadTitle.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -56,20 +47,16 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadTitleTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadTitleTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -85,8 +72,6 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -148,8 +133,8 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
     public function testToStringEscapesSeparator()
     {
         $this->helper->headTitle('Foo')
-                     ->headTitle('Bar')
-                     ->setSeparator(' <br /> ');
+            ->headTitle('Bar')
+            ->setSeparator(' <br /> ');
         $string = $this->helper->toString();
         $this->assertNotContains('<br />', $string);
         $this->assertContains('Foo', $string);
@@ -175,13 +160,13 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
         $this->helper->headTitle()->setAutoEscape(false);
         $this->assertFalse($this->helper->headTitle()->getAutoEscape());
 
-
         $this->assertEquals('<title>Some Title &copyright;</title>', $this->helper->toString());
     }
 
     /**
      * @group ZF-2918
-     * @link http://framework.zend.com/issues/browse/ZF-2918
+     *
+     * @see http://framework.zend.com/issues/browse/ZF-2918
      */
     public function testZF2918()
     {
@@ -194,7 +179,8 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3577
-     * @link http://framework.zend.com/issues/browse/ZF-3577
+     *
+     * @see http://framework.zend.com/issues/browse/ZF-3577
      */
     public function testZF3577()
     {
@@ -217,9 +203,9 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('<title>Message 1 (en)</title>', $this->helper->toString());
     }
 
-   /**
-    * @group ZF-8036
-    */
+    /**
+     * @group ZF-8036
+     */
     public function testHeadTitleZero()
     {
         $this->helper->headTitle('0');
@@ -239,8 +225,7 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
      */
     public function testReturnTypeDefaultAttachOrder()
     {
-        $this->assertTrue($this->helper->setDefaultAttachOrder('PREPEND') instanceof  Zend_View_Helper_HeadTitle);
+        $this->assertTrue($this->helper->setDefaultAttachOrder('PREPEND') instanceof Zend_View_Helper_HeadTitle);
         $this->assertEquals('PREPEND', $this->helper->getDefaultAttachOrder());
     }
 }
-

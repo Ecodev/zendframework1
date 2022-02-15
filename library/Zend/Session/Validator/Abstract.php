@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Session
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
+ *
  * @since      Preview Release 0.2
  */
 
@@ -26,24 +25,18 @@
 require_once 'Zend/Session/Validator/Interface.php';
 
 /**
- * Zend_Session_Validator_Abstract
+ * Zend_Session_Validator_Abstract.
  *
- * @category   Zend
- * @package    Zend_Session
- * @subpackage Validator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Session_Validator_Abstract implements Zend_Session_Validator_Interface
 {
-
     /**
      * SetValidData() - This method should be used to store the environment variables that
      * will be needed in order to validate the session later in the validate() method.
-     * These values are stored in the session in the __ZF namespace, in an array named VALID
+     * These values are stored in the session in the __ZF namespace, in an array named VALID.
      *
      * @param  mixed $data
-     * @return void
      */
     protected function setValidData($data)
     {
@@ -51,7 +44,6 @@ abstract class Zend_Session_Validator_Abstract implements Zend_Session_Validator
 
         $_SESSION['__ZF']['VALID'][$validatorName] = $data;
     }
-
 
     /**
      * GetValidData() - This method should be used to retrieve the environment variables that
@@ -65,7 +57,7 @@ abstract class Zend_Session_Validator_Abstract implements Zend_Session_Validator
         if (isset($_SESSION['__ZF']['VALID'][$validatorName])) {
             return $_SESSION['__ZF']['VALID'][$validatorName];
         }
+
         return null;
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -27,9 +25,6 @@ require_once 'Zend/View/Abstract.php';
 /**
  * Concrete class for handling view scripts.
  *
- * @category  Zend
- * @package   Zend_View
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  *
  * Convenience methods for build in helpers (@see __call):
@@ -84,23 +79,21 @@ require_once 'Zend/View/Abstract.php';
 class Zend_View extends Zend_View_Abstract
 {
     /**
-     * Whether or not to use streams to mimic short tags
+     * Whether or not to use streams to mimic short tags.
      */
     private bool $_useViewStream = false;
 
     /**
-     * Whether or not to use stream wrapper if short_open_tag is false
+     * Whether or not to use stream wrapper if short_open_tag is false.
      */
     private bool $_useStreamWrapper = false;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * Register Zend_View_Stream stream wrapper if short tags are disabled.
      *
      * @param array $config
-     *
-     * @return void
      */
     public function __construct($config = [])
     {
@@ -120,7 +113,7 @@ class Zend_View extends Zend_View_Abstract
     }
 
     /**
-     * Set flag indicating if stream wrapper should be used if short_open_tag is off
+     * Set flag indicating if stream wrapper should be used if short_open_tag is off.
      *
      * @param bool $flag
      *
@@ -146,7 +139,8 @@ class Zend_View extends Zend_View_Abstract
     /**
      * Includes the view script in a scope with only public $this variables.
      *
-     * @param string|false The view script to execute.
+     * @param false|string the view script to execute
+     * @param mixed $script
      */
     protected function _run($script = false)
     {

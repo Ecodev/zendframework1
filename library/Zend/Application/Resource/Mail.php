@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,18 +23,14 @@
 require_once 'Zend/Application/Resource/ResourceAbstract.php';
 
 /**
- * Resource for setting up Mail Transport and default From & ReplyTo addresses
+ * Resource for setting up Mail Transport and default From & ReplyTo addresses.
  *
  * @uses       Zend_Application_Resource_ResourceAbstract
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceAbstract
 {
-
     /**
      * @var Zend_Mail_Transport_Abstract
      */
@@ -49,8 +42,7 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
     }
 
     /**
-     *
-     * @return Zend_Mail_Transport_Abstract|null
+     * @return null|Zend_Mail_Transport_Abstract
      */
     public function getMail()
     {
@@ -69,7 +61,7 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
                     || $options['transport']['register'] == '1'
                     || (isset($options['transport']['register'])
                         && !is_numeric($options['transport']['register'])
-                        && (bool)$options['transport']['register'] == true)
+                        && (bool) $options['transport']['register'] == true)
                 ) {
                     Zend_Mail::setDefaultTransport($this->_transport);
                 }
@@ -126,10 +118,10 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
             }
         }
 
-        unset($options['type']);
-        unset($options['register']); //@see ZF-11022
+        unset($options['type'], $options['register']);
+         //@see ZF-11022
 
-        switch($transportName) {
+        switch ($transportName) {
             case \Zend_Mail_Transport_Smtp::class:
                 if (!isset($options['host'])) {
                     throw new Zend_Application_Resource_Exception(
@@ -139,10 +131,12 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
                 }
 
                 $transport = new $transportName($options['host'], $options);
+
                 break;
             case \Zend_Mail_Transport_Sendmail::class:
             default:
                 $transport = new $transportName($options);
+
                 break;
         }
 

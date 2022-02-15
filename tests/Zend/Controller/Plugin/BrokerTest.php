@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Action/HelperBroker.php';
 require_once 'Zend/Controller/Request/Http.php';
@@ -28,10 +23,6 @@ require_once 'Zend/Controller/Request/Simple.php';
 require_once 'Zend/Controller/Response/Cli.php';
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
@@ -43,13 +34,11 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_BrokerTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Plugin_BrokerTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -58,7 +47,7 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
         $this->controller = Zend_Controller_Front::getInstance();
         $this->controller->resetInstance();
         $this->controller->setParam('noViewRenderer', true)
-                         ->setParam('noErrorHandler', true);
+            ->setParam('noErrorHandler', true);
     }
 
     public function testDuplicatePlugin()
@@ -66,6 +55,7 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
         $broker = new Zend_Controller_Plugin_Broker();
         $plugin = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
         $broker->registerPlugin($plugin);
+
         try {
             $broker->registerPlugin($plugin);
             $this->fail('Duplicate registry of plugin object should be disallowed');
@@ -73,7 +63,6 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
             $this->assertContains('already', $expected->getMessage());
         }
     }
-
 
     public function testUsingFrontController()
     {
@@ -169,12 +158,13 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
 
     public function testBrokerCatchesExceptions()
     {
-        $request  = new Zend_Controller_Request_Http('http://framework.zend.com/empty');
+        $request = new Zend_Controller_Request_Http('http://framework.zend.com/empty');
         $response = new Zend_Controller_Response_Cli();
-        $broker   = new Zend_Controller_Plugin_Broker();
+        $broker = new Zend_Controller_Plugin_Broker();
         $broker->setRequest($request);
         $broker->setResponse($response);
         $broker->registerPlugin(new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin());
+
         try {
             $broker->routeStartup($request);
             $broker->routeShutdown($request);
@@ -196,10 +186,10 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
 
     public function testRegisterPluginStackOrderIsSane()
     {
-        $broker   = new Zend_Controller_Plugin_Broker();
-        $plugin1  = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
-        $plugin2  = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
-        $plugin3  = new Zend_Controller_Plugin_BrokerTest_TestPlugin2();
+        $broker = new Zend_Controller_Plugin_Broker();
+        $plugin1 = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
+        $plugin2 = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
+        $plugin3 = new Zend_Controller_Plugin_BrokerTest_TestPlugin2();
         $broker->registerPlugin($plugin1, 5);
         $broker->registerPlugin($plugin2, -5);
         $broker->registerPlugin($plugin3, 2);
@@ -211,10 +201,11 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
 
     public function testRegisterPluginThrowsExceptionOnDuplicateStackIndex()
     {
-        $broker   = new Zend_Controller_Plugin_Broker();
-        $plugin1  = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
-        $plugin2  = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
+        $broker = new Zend_Controller_Plugin_Broker();
+        $plugin1 = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
+        $plugin2 = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
         $broker->registerPlugin($plugin1, 5);
+
         try {
             $broker->registerPlugin($plugin2, 5);
             $this->fail('Registering plugins with same stack index should raise exception');
@@ -224,10 +215,10 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
 
     public function testRegisterPluginStackOrderWithAutmaticNumbersIncrementsCorrectly()
     {
-        $broker   = new Zend_Controller_Plugin_Broker();
-        $plugin1  = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
-        $plugin2  = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
-        $plugin3  = new Zend_Controller_Plugin_BrokerTest_TestPlugin2();
+        $broker = new Zend_Controller_Plugin_Broker();
+        $plugin1 = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
+        $plugin2 = new Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin();
+        $plugin3 = new Zend_Controller_Plugin_BrokerTest_TestPlugin2();
         $broker->registerPlugin($plugin1, 2);
         $broker->registerPlugin($plugin2, 3);
         $broker->registerPlugin($plugin3);
@@ -238,18 +229,17 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test for ZF-2305
-     * @return void
+     * Test for ZF-2305.
      */
     public function testRegisterPluginSetsRequestAndResponse()
     {
-        $broker   = new Zend_Controller_Plugin_Broker();
-        $request  = new Zend_Controller_Request_Simple();
+        $broker = new Zend_Controller_Plugin_Broker();
+        $request = new Zend_Controller_Request_Simple();
         $response = new Zend_Controller_Response_Cli();
         $broker->setRequest($request);
         $broker->setResponse($response);
 
-        $plugin   = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
+        $plugin = new Zend_Controller_Plugin_BrokerTest_TestPlugin();
         $broker->registerPlugin($plugin);
 
         $this->assertSame($request, $plugin->getRequest());
@@ -326,5 +316,3 @@ class Zend_Controller_Plugin_BrokerTest_ExceptionTestPlugin extends Zend_Control
         throw new Exception('dispatchLoopShutdown triggered exception');
     }
 }
-
-

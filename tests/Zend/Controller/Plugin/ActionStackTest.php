@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,17 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Controller/Plugin/ActionStack.php';
 require_once 'Zend/Controller/Request/Simple.php';
 require_once 'Zend/Registry.php';
@@ -30,37 +23,30 @@ require_once 'Zend/Registry.php';
 /**
  * Test class for Zend_Controller_Plugin_ActionStack.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
 class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
 {
-    public $key       = \Zend_Controller_Plugin_ActionStack::class;
+    public $key = \Zend_Controller_Plugin_ActionStack::class;
+
     public $registry;
 
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Plugin_ActionStackTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Plugin_ActionStackTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -71,8 +57,6 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     protected function tearDown()
     {
@@ -80,9 +64,7 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensure registry is clean
-     *
-     * @return void
+     * Ensure registry is clean.
      */
     public function removeRegistryEntry()
     {
@@ -98,14 +80,14 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(isset($registry[$this->key]));
 
         $plugin = new Zend_Controller_Plugin_ActionStack();
-        $key    = $plugin->getRegistryKey();
+        $key = $plugin->getRegistryKey();
         $this->assertTrue(isset($registry[$key]));
     }
 
     public function testKeyPassedToConstructorUsedAsRegistryKey()
     {
         $this->key = $key = 'foobar';
-        $registry  = Zend_Registry::getInstance();
+        $registry = Zend_Registry::getInstance();
         $this->assertFalse(isset($registry[$key]));
 
         $plugin = new Zend_Controller_Plugin_ActionStack(null, $key);
@@ -115,19 +97,16 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
     public function testRegistryPassedToConstructorUsedByPlugin()
     {
         $registry = new Zend_Controller_Plugin_ActionStack_Registry();
-        $plugin   = new Zend_Controller_Plugin_ActionStack($registry);
+        $plugin = new Zend_Controller_Plugin_ActionStack($registry);
         $registered = $plugin->getRegistry();
         $this->assertNotSame($this->registry, $registered);
         $this->assertSame($registry, $registered);
     }
 
-    /**
-     * @return void
-     */
     public function testRegistryAccessorsWork()
     {
         $registry = new Zend_Controller_Plugin_ActionStack_Registry();
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
         $original = $plugin->getRegistry();
 
         $plugin->setRegistry($registry);
@@ -140,36 +119,27 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
     public function testRegistryKeyHasDefaultValue()
     {
         $plugin = new Zend_Controller_Plugin_ActionStack();
-        $key    = $plugin->getRegistryKey();
+        $key = $plugin->getRegistryKey();
         $this->assertNotNull($key);
         $this->assertEquals($this->key, $key);
     }
 
-    /**
-     * @return void
-     */
     public function testRegistryKeyAccessorsWork()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
         $plugin->setRegistryKey('foobar');
         $key = $plugin->getRegistryKey();
         $this->assertEquals('foobar', $key);
     }
 
-    /**
-     * @return void
-     */
     public function testGetStackInitiallyReturnsEmptyArray()
     {
         $plugin = new Zend_Controller_Plugin_ActionStack();
-        $stack  = $plugin->getStack();
+        $stack = $plugin->getStack();
         $this->assertTrue(is_array($stack));
         $this->assertTrue(empty($stack));
     }
 
-    /**
-     * @return void
-     */
     public function testPushStackAppendsToStack()
     {
         $plugin = new Zend_Controller_Plugin_ActionStack();
@@ -194,59 +164,57 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
     {
         $request = new Zend_Controller_Request_Simple();
         $request->setActionName('baz')
-                ->setControllerName('bar')
-                ->setModuleName('foo');
+            ->setControllerName('bar')
+            ->setModuleName('foo');
+
         return $request;
     }
 
-    /**
-     * @return void
-     */
     public function testPopStackPullsFromEndOfStack()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
         $request1 = $this->getNewRequest();
         $request2 = $this->getNewRequest();
         $request3 = $this->getNewRequest();
         $plugin->pushStack($request1)
-               ->pushStack($request2)
-               ->pushStack($request3);
-        $stack    = $plugin->getStack();
+            ->pushStack($request2)
+            ->pushStack($request3);
+        $stack = $plugin->getStack();
         $this->assertEquals(3, count($stack));
 
         $received = $plugin->popStack();
-        $stack    = $plugin->getStack();
+        $stack = $plugin->getStack();
         $this->assertSame($request3, $received);
         $this->assertEquals(2, count($stack));
     }
 
     public function testPopEmptyStackReturnsFalse()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
         $received = $plugin->popStack();
         $this->assertFalse($received);
     }
 
     public function testPopStackPopsMultipleItemsWhenRequestActionEmpty()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
         $request1 = $this->getNewRequest();
         $request2 = new Zend_Controller_Request_Simple();
         $plugin->pushStack($request1)
-               ->pushStack($request2);
-        $stack    = $plugin->getStack();
+            ->pushStack($request2);
+        $stack = $plugin->getStack();
         $this->assertEquals(2, count($stack));
 
         $received = $plugin->popStack();
-        $stack    = $plugin->getStack();
+        $stack = $plugin->getStack();
         $this->assertSame($request1, $received);
         $this->assertEquals(0, count($stack));
     }
 
     public function testPopStackPopulatesControllerAndModuleFromRequestIfEmpty()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
-        $request  = $this->getNewRequest();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
+        $request = $this->getNewRequest();
         $plugin->setRequest($request);
 
         $request1 = new Zend_Controller_Request_Simple();
@@ -262,8 +230,8 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
 
     public function testForwardResetsInternalRequestStateFromGivenRequest()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
-        $request  = new Zend_Controller_Request_Simple();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
+        $request = new Zend_Controller_Request_Simple();
         $plugin->setRequest($request);
 
         $next = $this->getNewRequest();
@@ -277,9 +245,9 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
 
     public function testForwardResetsRequestParamsIfFlagSet()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
-        $request  = $this->getNewRequest();
-        $params   = array('foo' => 'bar','baz'=>'bat');
+        $plugin = new Zend_Controller_Plugin_ActionStack();
+        $request = $this->getNewRequest();
+        $params = array('foo' => 'bar','baz' => 'bat');
         $request->setParams($params);
         $plugin->setRequest($request);
 
@@ -298,13 +266,10 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(array(),$plugin->getRequest()->getParams());
     }
 
-    /**
-     * @return void
-     */
     public function testPostDispatchResetsInternalRequestFromLastRequestOnStack()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
-        $request  = new Zend_Controller_Request_Simple();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
+        $request = new Zend_Controller_Request_Simple();
         $request->setDispatched(true);
         $plugin->setRequest($request);
 
@@ -312,11 +277,11 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
         $request2 = $this->getNewRequest();
         $request3 = $this->getNewRequest();
         $request3->setActionName('foobar')
-                 ->setControllerName('bazbat')
-                 ->setModuleName('bogus');
+            ->setControllerName('bazbat')
+            ->setModuleName('bogus');
         $plugin->pushStack($request1)
-               ->pushStack($request2)
-               ->pushStack($request3);
+            ->pushStack($request2)
+            ->pushStack($request3);
 
         $plugin->postDispatch($request);
 
@@ -328,12 +293,12 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
 
     public function testPostDispatchDoesNothingWithEmptyStack()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
 
-        $request  = $this->getNewRequest();
+        $request = $this->getNewRequest();
         $request->setDispatched(true);
 
-        $clone    = clone $request;
+        $clone = clone $request;
 
         $plugin->postDispatch($request);
 
@@ -345,8 +310,8 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
 
     public function testPostDispatchDoesNothingWithStackThatEvaluatesToEmpty()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
-        $request  = new Zend_Controller_Request_Simple();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
+        $request = new Zend_Controller_Request_Simple();
         $request->setDispatched(true);
         $plugin->setRequest($request);
 
@@ -354,10 +319,10 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
         $request2 = new Zend_Controller_Request_Simple();
         $request3 = new Zend_Controller_Request_Simple();
         $plugin->pushStack($request1)
-               ->pushStack($request2)
-               ->pushStack($request3);
+            ->pushStack($request2)
+            ->pushStack($request3);
 
-        $clone    = clone $request;
+        $clone = clone $request;
         $plugin->postDispatch($request);
 
         $this->assertEquals($clone->getActionName(), $request->getActionName());
@@ -368,8 +333,8 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
 
     public function testPostDispatchDoesNothingWithExistingForwardRequest()
     {
-        $plugin   = new Zend_Controller_Plugin_ActionStack();
-        $request  = new Zend_Controller_Request_Simple();
+        $plugin = new Zend_Controller_Plugin_ActionStack();
+        $request = new Zend_Controller_Request_Simple();
         $request->setDispatched(false);
         $plugin->setRequest($request);
 
@@ -377,8 +342,8 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
         $request2 = new Zend_Controller_Request_Simple();
         $request3 = new Zend_Controller_Request_Simple();
         $plugin->pushStack($request1)
-               ->pushStack($request2)
-               ->pushStack($request3);
+            ->pushStack($request2)
+            ->pushStack($request3);
 
         $plugin->postDispatch($request);
         $stack = $plugin->getStack();
@@ -390,4 +355,3 @@ class Zend_Controller_Plugin_ActionStack_Registry extends Zend_Registry
 {
     protected static $_registryClassName = 'Zend_Controller_Plugin_ActionStack_Registry';
 }
-

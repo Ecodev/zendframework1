@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -24,17 +21,12 @@
 require_once 'Zend/Controller/Router/Route/Regex.php';
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
 class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testStaticMatch()
     {
         $route = new Zend_Controller_Router_Route_Regex('users/all');
@@ -105,7 +97,6 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
 
     public function testNegativeMatch()
     {
-
         $route = new Zend_Controller_Router_Route_Regex('((?!admin|moderator).+)',
            array('module' => 'index', 'controller' => 'index'),
            array(1 => 'action')
@@ -360,7 +351,6 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('users/vicki', $url);
     }
 
-
     public function testAssembleZF1332()
     {
         $route = new Zend_Controller_Router_Route_Regex(
@@ -389,8 +379,8 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
             'route' => 'forum/(\d+)',
             'reverse' => 'forum/%d',
             'defaults' => array(
-                'controller' => 'ctrl'
-            )
+                'controller' => 'ctrl',
+            ),
         );
         /* numeric Zend_Config indexes don't work at the moment
             'map' => array(
@@ -406,7 +396,6 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
         $values = $route->match('forum/1');
 
         $this->assertSame('ctrl', $values['controller']);
-
     }
 
     /**
@@ -438,7 +427,6 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
 
         // check to make sure that the assembly can reset a single parameter
         $this->assertEquals('itemlist/1', $route->assemble(array('page' => null)));
-
     }
 
     /**
@@ -450,11 +438,11 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
             'blog/archive/(.+)-(.+)\.html',
             array(
                 'controller' => 'blog',
-                'action'     => 'view'
+                'action' => 'view',
             ),
             array(
                 1 => 'name',
-                2 => 'description'
+                2 => 'description',
             ),
             'blog/archive/%s-%s.html'
         );
@@ -488,7 +476,6 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
      *     </routes>
      * </zend-config>
      *
-     *
      * @group ZF-7658
      */
     public function testAssembleWithFlippedMappedVariables()
@@ -501,8 +488,8 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
         );
 
         $url = $route->assemble(array(
-            'lang'  => 'fi',
-            'title' => 'Suomi'
+            'lang' => 'fi',
+            'title' => 'Suomi',
         ), true, true);
 
         $this->assertEquals($url, 'fi/page/Suomi');

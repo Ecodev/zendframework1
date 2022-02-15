@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -35,10 +32,6 @@ require_once 'Zend/Paginator/Adapter/Null.php';
  */
 
 /**
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
@@ -49,11 +42,12 @@ class Zend_Paginator_Adapter_NullTest extends \PHPUnit\Framework\TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp ()
+    protected function setUp()
     {
         parent::setUp();
         $this->_adapter = new Zend_Paginator_Adapter_Null(101);
     }
+
     /**
      * Cleans up the environment after running a test.
      */
@@ -101,16 +95,18 @@ class Zend_Paginator_Adapter_NullTest extends \PHPUnit\Framework\TestCase
     /**
      * @group ZF-4151
      */
-    public function testEmptySet() {
+    public function testEmptySet()
+    {
         $this->_adapter = new Zend_Paginator_Adapter_Null(0);
         $actual = $this->_adapter->getItems(0, 10);
         $this->assertEquals(array(), $actual);
     }
 
     /**
-     * Verify that the fix for ZF-4151 doesn't create an OBO error
+     * Verify that the fix for ZF-4151 doesn't create an OBO error.
      */
-    public function testSetOfOne() {
+    public function testSetOfOne()
+    {
         $this->_adapter = new Zend_Paginator_Adapter_Null(1);
         $actual = $this->_adapter->getItems(0, 10);
         $this->assertEquals(array_fill(0, 1, null), $actual);

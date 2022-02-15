@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,31 +12,26 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Config
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Zend_Config_Ini
+ * Zend_Config_Ini.
  */
 require_once 'Zend/Config/Ini.php';
 
 /**
- * @category   Zend
- * @package    Zend_Config
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
 class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
 {
     protected $_iniFileConfig;
+
     protected $_iniFileAllSectionsConfig;
+
     protected $_iniFileCircularConfig;
 
     public function setUp()
@@ -146,7 +141,6 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('otherStaging', $config->only_in);
         $this->assertEquals('staging', $config->hostname);
-
     }
 
     public function testZF413_AllSections()
@@ -217,17 +211,17 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Config_Exception $expected) {
             $this->assertContains('cannot be found', $expected->getMessage());
         }
-
     }
 
     public function testZF739()
     {
         if (version_compare('5.3.0', PHP_VERSION) < 1) {
             $this->markTestSkipped('PHP >= 5.3.0 does not allow : as a nest separator');
+
             return;
         }
 
-        $config = new Zend_Config_Ini($this->_iniFileSeparatorConfig, 'all', array('nestSeparator'=>':'));
+        $config = new Zend_Config_Ini($this->_iniFileSeparatorConfig, 'all', array('nestSeparator' => ':'));
 
         $this->assertEquals('all', $config->hostname);
         $this->assertEquals('live', $config->db->name);
@@ -261,7 +255,6 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Config_Exception $expected) {
             $this->assertRegexp('/(Error parsing|parse error|syntax error, unexpected)/', $expected->getMessage());
         }
-
     }
 
     /**
@@ -284,10 +277,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /*
-     * @group ZF-5800
-     *
-     */
+    // @group ZF-5800
     public function testArraysOfKeysCreatedUsingAttributesAndKeys()
     {
         $filename = __DIR__ . '/_files/zf5800.ini';
@@ -297,16 +287,11 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($config->receiver->mail);
     }
 
-    /*
-     * @group ZF-6508
-     */
+    // @group ZF-6508
     public function testPreservationOfIntegerKeys()
     {
         $filename = __DIR__ . '/_files/zf6508.ini';
         $config = new Zend_Config_Ini($filename, 'all');
         $this->assertEquals(true, isset($config->{1002}));
-
     }
-
-
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,20 +22,14 @@
  */
 require_once 'Zend/Application/Resource/ResourceAbstract.php';
 
-
 /**
- * Resource for setting navigation structure
+ * Resource for setting navigation structure.
  *
  * @uses       Zend_Application_Resource_ResourceAbstract
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @author     Dolf Schimmel
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Application_Resource_Navigation
-    extends Zend_Application_Resource_ResourceAbstract
+class Zend_Application_Resource_Navigation extends Zend_Application_Resource_ResourceAbstract
 {
     public const DEFAULT_REGISTRY_KEY = 'Zend_Navigation';
 
@@ -48,7 +39,7 @@ class Zend_Application_Resource_Navigation
     protected $_container;
 
     /**
-     * Defined by Zend_Application_Resource_Resource
+     * Defined by Zend_Application_Resource_Resource.
      *
      * @return Zend_Navigation
      */
@@ -68,19 +59,18 @@ class Zend_Application_Resource_Navigation
         }
 
         $this->store();
+
         return $this->_container;
     }
 
     /**
-     * Stores navigation container in registry or Navigation view helper
-     *
-     * @return void
+     * Stores navigation container in registry or Navigation view helper.
      */
     public function store()
     {
         $options = $this->getOptions();
-        if (isset($options['storage']['registry']) &&
-            $options['storage']['registry'] == true) {
+        if (isset($options['storage']['registry'])
+            && $options['storage']['registry'] == true) {
             $this->_storeRegistry();
         } else {
             $this->_storeHelper();
@@ -88,9 +78,7 @@ class Zend_Application_Resource_Navigation
     }
 
     /**
-     * Stores navigation container in the registry
-     *
-     * @return void
+     * Stores navigation container in the registry.
      */
     protected function _storeRegistry()
     {
@@ -108,9 +96,7 @@ class Zend_Application_Resource_Navigation
     }
 
     /**
-     * Stores navigation container in the Navigation helper
-     *
-     * @return void
+     * Stores navigation container in the Navigation helper.
      */
     protected function _storeHelper()
     {
@@ -120,7 +106,7 @@ class Zend_Application_Resource_Navigation
     }
 
     /**
-     * Returns navigation container
+     * Returns navigation container.
      *
      * @return Zend_Navigation
      */

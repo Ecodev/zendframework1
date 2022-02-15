@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,27 +12,16 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-
-
-
 require_once 'Zend/Loader/AutoloaderFactory.php';
 
 /**
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
 class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * @var array
      */
@@ -45,7 +34,7 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework
 
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -105,4 +94,3 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework
         $this->assertEquals(2, is_countable($map) ? count($map) : 0);
     }
 }
-

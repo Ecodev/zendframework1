@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Decorator/Errors.php';
 
 require_once 'Zend/Form/Element.php';
@@ -29,12 +23,8 @@ require_once 'Zend/Form/SubForm.php';
 require_once 'Zend/View.php';
 
 /**
- * Test class for Zend_Form_Decorator_Errors
+ * Test class for Zend_Form_Decorator_Errors.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -42,21 +32,16 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_ErrorsTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_ErrorsTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -66,8 +51,6 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -85,6 +68,7 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+
         return $view;
     }
 
@@ -92,8 +76,8 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element('foo');
         $element->addValidator('Alnum')
-                ->addValidator('Alpha')
-                ->setView($this->getView());
+            ->addValidator('Alpha')
+            ->setView($this->getView());
         $element->isValid('abc-123');
         $this->element = $element;
         $this->decorator->setElement($element);
@@ -152,12 +136,12 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
         // Set up form
         $form = new Zend_Form(
             array(
-                 'elements'         => array(
-                     'foo' => new Zend_Form_Element('foo'),
-                     'bar' => new Zend_Form_Element('bar'),
-                 ),
-                 'view'             => $this->getView(),
-                 'elementsBelongTo' => 'foobar',
+                'elements' => array(
+                    'foo' => new Zend_Form_Element('foo'),
+                    'bar' => new Zend_Form_Element('bar'),
+                ),
+                'view' => $this->getView(),
+                'elementsBelongTo' => 'foobar',
             )
         );
 
@@ -186,12 +170,12 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
         // Set up sub form
         $subForm = new Zend_Form_SubForm(
             array(
-                 'elements' => array(
-                     'foo' => new Zend_Form_Element('foo'),
-                     'bar' => new Zend_Form_Element('bar'),
-                 ),
-                 'view'     => $this->getView(),
-                 'name'     => 'foobar',
+                'elements' => array(
+                    'foo' => new Zend_Form_Element('foo'),
+                    'bar' => new Zend_Form_Element('bar'),
+                ),
+                'view' => $this->getView(),
+                'name' => 'foobar',
             )
         );
 
@@ -212,4 +196,3 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
         );
     }
 }
-

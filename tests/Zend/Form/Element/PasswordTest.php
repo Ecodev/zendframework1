@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,16 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Element/Password.php';
 require_once 'Zend/View.php';
 
 /**
- * Test class for Zend_Form_Element_Password
+ * Test class for Zend_Form_Element_Password.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -39,21 +29,16 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_PasswordTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_PasswordTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -64,8 +49,6 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -101,9 +84,9 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
     {
         $this->element->addValidators(array(
             'Alpha',
-            'Alnum'
+            'Alnum',
         ));
-        $value  = 'abc-123';
+        $value = 'abc-123';
         $expect = '*******';
         $this->assertFalse($this->element->isValid($value));
         foreach ($this->element->getMessages() as $message) {
@@ -121,7 +104,7 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-2656
+     * ZF-2656.
      */
     public function testGetMessagesReturnsEmptyArrayWhenNoMessagesRegistered()
     {
@@ -133,10 +116,9 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
+     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
      *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
+     * @see   http://framework.zend.com/issues/browse/ZF-2794
      */
     protected function _checkZf2794()
     {
@@ -162,7 +144,7 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
     public function testShouldPassRenderPasswordAttributeToViewHelper()
     {
         $this->element->setValue('foobar')
-                      ->setView(new Zend_View());
+            ->setView(new Zend_View());
         $test = $this->element->render();
         $this->assertContains('value=""', $test);
 
@@ -171,4 +153,3 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('value="foobar"', $test);
     }
 }
-

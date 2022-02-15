@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,31 +12,22 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Uri
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id $
  */
 
-
-
 /**
- * Zend_Uri
+ * Zend_Uri.
  */
 require_once 'Zend/Uri.php';
 
 /**
- * Zend_Config
+ * Zend_Config.
  */
 require_once 'Zend/Config.php';
 
 /**
- * @category   Zend
- * @package    Zend_Uri
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Uri
  */
@@ -44,7 +35,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_UriTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_UriTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -52,7 +43,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     {
         $this->notices = array();
         $this->errorReporting = error_reporting();
-        $this->displayErrors  = ini_get('display_errors');
+        $this->displayErrors = ini_get('display_errors');
     }
 
     public function tearDown()
@@ -95,7 +86,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests that Zend_Uri::setConfig() allows Zend_Config
+     * Tests that Zend_Uri::setConfig() allows Zend_Config.
      *
      * @group ZF-5578
      */
@@ -105,7 +96,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests that Zend_Uri::setConfig() allows Array
+     * Tests that Zend_Uri::setConfig() allows Array.
      *
      * @group ZF-5578
      */
@@ -116,7 +107,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that Zend_Uri::setConfig() throws Zend_Uri_Exception if no array
-     * nor Zend_Config is given as first parameter
+     * nor Zend_Config is given as first parameter.
      *
      * @group ZF-5578
      * @expectedException Zend_Uri_Exception
@@ -146,13 +137,17 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(empty($text));
         $this->assertTrue(isset($this->error));
         $this->assertContains('Exception in getUri()', $this->error);
-
     }
 
     /**
-     * Error handler for testExceptionThrownInToString()
+     * Error handler for testExceptionThrownInToString().
      *
      * @group ZF-10405
+     *
+     * @param mixed $errno
+     * @param mixed $errstr
+     * @param mixed $errfile
+     * @param mixed $errline
      */
     public function handleErrors($errno, $errstr, $errfile = '', $errline = 0, array $errcontext = array())
     {
@@ -169,10 +164,12 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     protected function _testInvalidUri($uri, $regex)
     {
         $e = null;
+
         try {
             $uri = Zend_Uri::factory($uri);
         } catch (Zend_Uri_Exception $e) {
             $this->assertRegExp($regex, $e->getMessage());
+
             return;
         }
         $this->fail('Zend_Uri_Exception was expected but not thrown');
@@ -182,11 +179,13 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
      * Tests that a valid $uri returns a Zend_Uri object.
      *
      * @param string $uri
+     * @param null|mixed $className
      */
     protected function _testValidUri($uri, $className = null)
     {
         $uri = Zend_Uri::factory($uri, $className);
         $this->assertTrue($uri instanceof Zend_Uri, 'Zend_Uri object not returned.');
+
         return $uri;
     }
 
@@ -207,18 +206,31 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
         $uri = $this->_testValidUri('http://example.net', 'Zend_Uri_Mock');
         $this->assertTrue($uri instanceof Zend_Uri_Mock, 'Zend_Uri_Mock object not returned.');
     }
-
 }
 class Zend_Uri_Mock extends Zend_Uri
 {
-    protected function __construct($scheme, $schemeSpecific = '') { }
-    public function getUri() { }
-    public function valid() { }
+    protected function __construct($scheme, $schemeSpecific = '')
+    {
+    }
+
+    public function getUri()
+    {
+    }
+
+    public function valid()
+    {
+    }
 }
 class Zend_Uri_ExceptionCausing extends Zend_Uri
 {
-    protected function __construct($scheme, $schemeSpecific = '') { }
-    public function valid() { }
+    protected function __construct($scheme, $schemeSpecific = '')
+    {
+    }
+
+    public function valid()
+    {
+    }
+
     public function getUri()
     {
         throw new Exception('Exception in getUri()');
@@ -227,4 +239,3 @@ class Zend_Uri_ExceptionCausing extends Zend_Uri
 class Fake_Zend_Uri
 {
 }
-

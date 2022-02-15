@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,21 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
-/*
- * Set error reporting to the level to which Zend Framework code must comply.
- */
+// Set error reporting to the level to which Zend Framework code must comply.
 error_reporting(E_ALL | E_STRICT);
 
 /*
  * Determine the root, library, and tests directories of the framework
  * distribution.
  */
-$zfRoot        = realpath(dirname(__FILE__, 2));
+$zfRoot = realpath(dirname(__FILE__, 2));
 $zfCoreLibrary = "$zfRoot/library";
-$zfCoreTests   = "$zfRoot/tests";
+$zfCoreTests = "$zfRoot/tests";
 
 /*
  * Prepend the Zend Framework library/ and tests/ directories to the
@@ -42,8 +37,8 @@ $zfCoreTests   = "$zfRoot/tests";
 $path = array(
     $zfCoreLibrary,
     $zfCoreTests,
-    get_include_path()
-    );
+    get_include_path(),
+);
 set_include_path(implode(PATH_SEPARATOR, $path));
 
 /*
@@ -56,18 +51,13 @@ if (is_readable($zfCoreTests . DIRECTORY_SEPARATOR . 'TestConfiguration.php')) {
     require_once $zfCoreTests . DIRECTORY_SEPARATOR . 'TestConfiguration.php.dist';
 }
 
-/**
- * Start output buffering, if enabled
- */
+// Start output buffering, if enabled
 if (defined('TESTS_ZEND_OB_ENABLED') && constant('TESTS_ZEND_OB_ENABLED')) {
     ob_start();
 }
 
-/*
- * Unset global variables that are no longer needed.
- */
+// Unset global variables that are no longer needed.
 unset($zfRoot, $zfCoreLibrary, $zfCoreTests, $path);
 
 // Suppress DateTime warnings
 date_default_timezone_set(@date_default_timezone_get());
-

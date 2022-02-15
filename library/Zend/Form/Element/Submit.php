@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -23,29 +19,26 @@
 require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
- * Submit form element
+ * Submit form element.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
 {
     /**
-     * Default view helper to use
+     * Default view helper to use.
+     *
      * @var string
      */
     public $helper = 'formSubmit';
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param  string|array|Zend_Config $spec Element name or configuration
-     * @param  string|array|Zend_Config $options Element value or configuration
-     * @return void
+     * @param  array|string|Zend_Config $spec Element name or configuration
+     * @param  array|string|Zend_Config $options Element value or configuration
      */
     public function __construct($spec, $options = null)
     {
@@ -61,7 +54,7 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Return label
+     * Return label.
      *
      * If no label is present, returns the currently set name.
      *
@@ -104,7 +97,7 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Default decorators
+     * Default decorators.
      *
      * Uses only 'Submit' and 'DtDdWrapper' decorators by default.
      *
@@ -119,9 +112,10 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
         $decorators = $this->getDecorators();
         if (empty($decorators)) {
             $this->addDecorator('Tooltip')
-                 ->addDecorator('ViewHelper')
-                 ->addDecorator('DtDdWrapper');
+                ->addDecorator('ViewHelper')
+                ->addDecorator('DtDdWrapper');
         }
+
         return $this;
     }
 }

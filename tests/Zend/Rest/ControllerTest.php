@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -29,55 +26,51 @@ require_once 'Zend/Controller/Request/HttpTestCase.php';
 /** Zend_Controller_Response_HttpTestCase */
 require_once 'Zend/Controller/Response/HttpTestCase.php';
 
-
-
 /**
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Rest_TestController extends Zend_Rest_Controller
 {
     public $testValue = '';
+
     public function __construct(Zend_Controller_Request_Abstract $request,
                                 Zend_Controller_Response_Abstract $response,
                                 array $invokeArgs = array())
     {
         $this->testValue = '';
     }
+
     public function indexAction()
     {
         $this->testValue = 'indexAction';
     }
+
     public function getAction()
     {
         $this->testValue = 'getAction';
     }
+
     public function headAction()
     {
         $this->testValue = 'headAction';
     }
+
     public function postAction()
     {
         $this->testValue = 'postAction';
     }
+
     public function putAction()
     {
         $this->testValue = 'putAction';
     }
+
     public function deleteAction()
     {
         $this->testValue = 'deleteAction';
     }
-
 }
 /**
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  */
@@ -88,13 +81,11 @@ class Zend_Rest_ControllerTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Rest_ControllerTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Rest_ControllerTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -121,4 +112,3 @@ class Zend_Rest_ControllerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('deleteAction', $this->_testController->testValue);
     }
 }
-

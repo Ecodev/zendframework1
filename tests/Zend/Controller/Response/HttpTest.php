@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 // Call Zend_Controller_Response_HttpTest::main() if this source file is executed directly.
 
-
 require_once 'Zend/Controller/Response/Http.php';
 require_once 'Zend/Controller/Response/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Response
@@ -45,13 +37,11 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Response_HttpTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Response_HttpTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -72,7 +62,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->setHeader('Content-Type', 'text/xml');
         $this->assertSame($expected, $this->_response->getHeaders());
 
-        $expected[] =array('name' => 'Content-Type', 'value' => 'text/html', 'replace' => false);
+        $expected[] = array('name' => 'Content-Type', 'value' => 'text/html', 'replace' => false);
         $this->_response->setHeader('Content-Type', 'text/html');
         $this->assertSame($expected, $this->_response->getHeaders());
 
@@ -95,7 +85,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
     {
         $this->_response->setRedirect('http://www.example.com/foo/bar');
         $this->_response->setRedirect('http://www.example.com/bar/baz');
-        $headers  = $this->_response->getHeaders();
+        $headers = $this->_response->getHeaders();
         $location = 0;
         foreach ($headers as $header) {
             if ('Location' == $header['name']) {
@@ -116,16 +106,16 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, count($headers));
     }
 
-	/**
-	 * @group ZF-6038
-	 */
+    /**
+     * @group ZF-6038
+     */
     public function testClearHeader()
     {
         $this->_response->setHeader('Connection', 'keep-alive');
         $original_headers = $this->_response->getHeaders();
 
         $this->_response->clearHeader('Connection');
-        $updated_headers  = $this->_response->getHeaders();
+        $updated_headers = $this->_response->getHeaders();
 
         $this->assertFalse($original_headers == $updated_headers);
     }
@@ -148,9 +138,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(empty($headers));
     }
 
-	/**
-	 * @group ZF-6038
-	 */
+    /**
+     * @group ZF-6038
+     */
     public function testClearRawHeader()
     {
         $this->_response->setRawHeader('HTTP/1.0 404 Not Found');
@@ -158,14 +148,14 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $originalHeadersRaw = $this->_response->getRawHeaders();
 
         $this->_response->clearRawHeader('HTTP/1.0 404 Not Found');
-        $updatedHeadersRaw  = $this->_response->getRawHeaders();
+        $updatedHeadersRaw = $this->_response->getRawHeaders();
 
         $this->assertFalse($originalHeadersRaw == $updatedHeadersRaw);
     }
 
-       /**
-        * @group ZF-6038
-        */
+    /**
+     * @group ZF-6038
+     */
     public function testClearRawHeaderThatDoesNotExist()
     {
         $this->_response->setRawHeader('HTTP/1.0 404 Not Found');
@@ -173,7 +163,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $originalHeadersRaw = $this->_response->getRawHeaders();
 
         $this->_response->clearRawHeader('HTTP/1.0 403 Forbidden');
-        $updatedHeadersRaw  = $this->_response->getRawHeaders();
+        $updatedHeadersRaw = $this->_response->getRawHeaders();
 
         $this->assertTrue($originalHeadersRaw == $updatedHeadersRaw);
     }
@@ -233,10 +223,10 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function test__toString()
     {
-
         $skipHeadersTest = headers_sent();
         if ($skipHeadersTest) {
             $this->markTestSkipped('Unable to run Zend_Controller_Response_Http::__toString() test as headers have already been sent');
+
             return;
         }
 
@@ -248,6 +238,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $result = $this->_response->__toString();
 
         $this->assertSame($expected, $result);
+
         return;
 
         // header checking will not work
@@ -279,7 +270,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $e = new Exception('Test');
         $this->_response->setException($e);
 
-        $test  = $this->_response->getException();
+        $test = $this->_response->getException();
         $found = false;
         foreach ($test as $t) {
             if ($t === $e) {
@@ -325,7 +316,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Same problem as test__toString()
+     * Same problem as test__toString().
      *
      * Specifically for this test, headers_sent will always be false, so canSentHeaders() will
      * never actually throw an exception since the conditional exception code will never trigger
@@ -333,9 +324,11 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
     public function testCanSendHeadersIndicatesFileAndLine()
     {
         $this->markTestSkipped();
+
         return;
 
         $this->_response->headersSentThrowsException = true;
+
         try {
             $this->_response->canSendHeaders(true);
             static::fail('canSendHeaders() should throw exception');
@@ -354,7 +347,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_array($content));
         $expected = array(
             'some' => "some content\n",
-            'more' => "more content\n"
+            'more' => "more content\n",
         );
         $this->assertEquals($expected, $content);
     }
@@ -367,7 +360,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
-            'some' => "more content\n"
+            'some' => "more content\n",
         );
         $this->assertEquals($expected, $content);
     }
@@ -381,7 +374,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_array($content));
         $expected = array(
             'more' => "more content\n",
-            'some' => "some content\n"
+            'some' => "some content\n",
         );
         $this->assertEquals($expected, $content);
     }
@@ -394,7 +387,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
-            'some' => "more content\n"
+            'some' => "more content\n",
         );
         $this->assertEquals($expected, $content);
     }
@@ -408,9 +401,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
-            'some'   => "some content\n",
+            'some' => "some content\n",
             'foobar' => "foobar content\n",
-            'more'   => "more content\n"
+            'more' => "more content\n",
         );
         $this->assertSame($expected, $content);
     }
@@ -425,8 +418,8 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_array($content));
         $expected = array(
             'foobar' => "foobar content\n",
-            'some'   => "some content\n",
-            'more'   => "more content\n"
+            'some' => "some content\n",
+            'more' => "more content\n",
         );
         $this->assertSame($expected, $content);
     }
@@ -440,9 +433,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
-            'some'   => "some content\n",
-            'more'   => "more content\n",
-            'foobar' => "foobar content\n"
+            'some' => "some content\n",
+            'more' => "more content\n",
+            'foobar' => "foobar content\n",
         );
         $this->assertSame($expected, $content);
     }
@@ -455,7 +448,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
-            'some'   => "more content\n"
+            'some' => "more content\n",
         );
         $this->assertEquals($expected, $content);
     }
@@ -468,7 +461,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
-            'default'   => "more content\n"
+            'default' => "more content\n",
         );
         $this->assertEquals($expected, $content);
     }
@@ -481,7 +474,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
-            'default'   => "some content\nmore content\n"
+            'default' => "some content\nmore content\n",
         );
         $this->assertEquals($expected, $content);
     }
@@ -494,7 +487,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
         $expected = array(
-            'some'   => "some content\nmore content\n"
+            'some' => "some content\nmore content\n",
         );
         $this->assertEquals($expected, $content);
     }
@@ -520,7 +513,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $expected = array(
             'string1' => $string1,
             'string2' => $string2,
-            'string3' => $string3
+            'string3' => $string3,
         );
 
         $this->assertEquals($expected, $this->_response->getBody(true));
@@ -634,7 +627,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->setHeader('X-FOO_bar-bAz', 'bat');
 
         $headers = $this->_response->getHeaders();
-        $names   = array();
+        $names = array();
         foreach ($headers as $header) {
             $names[] = $header['name'];
         }
@@ -646,5 +639,5 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
 require_once 'Zend/Controller/Action.php';
 class Zend_Controller_Response_HttpTest_Action extends Zend_Controller_Action
-{}
-
+{
+}

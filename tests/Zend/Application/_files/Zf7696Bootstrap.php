@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,22 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zf7696Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
 {
     public $barExecuted = 0;
+
     public $fooExecuted = 0;
+
     public $executedFooResource = false;
+
     public $executedFooBarResource = false;
 
     protected $_arbitraryValue;
@@ -42,31 +38,34 @@ class Zf7696Bootstrap extends Zend_Application_Bootstrap_BootstrapAbstract
 
     protected function _initFoo()
     {
-        $this->fooExecuted++;
+        ++$this->fooExecuted;
     }
 
     protected function _initBar()
     {
-        $this->barExecuted++;
+        ++$this->barExecuted;
     }
 
     protected function _initBarbaz()
     {
         $o = new stdClass();
         $o->baz = 'Baz';
+
         return $o;
     }
-    
+
     protected function _initFrontController()
     {
         $front = Zend_Controller_Front::getInstance();
         $front->addModuleDirectory(__DIR__ . '/modules');
+
         return $front;
     }
 
     public function setArbitrary($value)
     {
         $this->_arbitraryValue = $value;
+
         return $this;
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_Validate_Abstract */
 require_once 'Zend/Validate/Abstract.php';
@@ -32,23 +27,17 @@ require_once 'Zend/Translate.php';
 require_once 'Zend/Registry.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Runs this test suite
-     *
-     * @return void
+     * Runs this test suite.
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_AbstractTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_AbstractTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -61,9 +50,7 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Creates a new validation object for each test method
-     *
-     * @return void
+     * Creates a new validation object for each test method.
      */
     public function setUp()
     {
@@ -252,7 +239,7 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals(
             array(
-                Zend_Validate_AbstractTest_Concrete::FOO_MESSAGE => '%value% was passed'), $messages);
+                Zend_Validate_AbstractTest_Concrete::FOO_MESSAGE => '%value% was passed', ), $messages);
     }
 
     public function testMaximumErrorMessageLength()
@@ -275,14 +262,12 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
@@ -302,7 +287,7 @@ class Zend_Validate_AbstractTest_Concrete extends Zend_Validate_Abstract
     {
         $this->_setValue($value);
         $this->_error(self::FOO_MESSAGE);
+
         return false;
     }
 }
-

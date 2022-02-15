@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,40 +23,35 @@
 require_once 'Zend/View/Helper/HtmlObject.php';
 
 /**
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_HtmlPage extends Zend_View_Helper_HtmlObject
 {
     /**
-     * Default file type for html
-     *
+     * Default file type for html.
      */
     public const TYPE = 'text/html';
 
     /**
-     * Object classid
-     *
+     * Object classid.
      */
-    public const ATTRIB_CLASSID  = 'clsid:25336920-03F9-11CF-8FD0-00AA00686F13';
+    public const ATTRIB_CLASSID = 'clsid:25336920-03F9-11CF-8FD0-00AA00686F13';
 
     /**
-     * Default attributes
+     * Default attributes.
      *
      * @var array
      */
     protected $_attribs = array('classid' => self::ATTRIB_CLASSID);
 
     /**
-     * Output a html object tag
+     * Output a html object tag.
      *
      * @param string $data The html url
      * @param array  $attribs Attribs for the object tag
      * @param array  $params Params for in the object tag
      * @param string $content Alternative content
+     *
      * @return string
      */
     public function htmlPage($data, array $attribs = array(), array $params = array(), $content = null)

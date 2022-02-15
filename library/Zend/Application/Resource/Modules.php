@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,14 +22,9 @@
  */
 require_once 'Zend/Application/Resource/ResourceAbstract.php';
 
-
 /**
- * Module bootstrapping resource
+ * Module bootstrapping resource.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Resource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Application_Resource_Modules extends Zend_Application_Resource_ResourceAbstract
@@ -43,7 +35,7 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
     protected $_bootstraps;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param  mixed $options
      */
@@ -54,10 +46,9 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
     }
 
     /**
-     * Initialize modules
+     * Initialize modules.
      *
      * @return array
-     * @throws Zend_Application_Resource_Exception When bootstrap class was not found
      */
     public function init()
     {
@@ -84,7 +75,8 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
                                 $eMsgTpl, $module, $bootstrapClass
                             )
                         );
-                    } elseif ($default == $module) {
+                    }
+                    if ($default == $module) {
                         if (!class_exists($bootstrapClass, false)) {
                             $bootstrapClass = 'Bootstrap';
                             if (!class_exists($bootstrapClass, false)) {
@@ -120,7 +112,7 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
     protected function bootstrapBootstraps($bootstraps)
     {
         $bootstrap = $this->getBootstrap();
-        $out       = new ArrayObject(array(), ArrayObject::ARRAY_AS_PROPS);
+        $out = new ArrayObject(array(), ArrayObject::ARRAY_AS_PROPS);
 
         foreach ($bootstraps as $module => $bootstrapClass) {
             $moduleBootstrap = new $bootstrapClass($bootstrap);
@@ -132,7 +124,7 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
     }
 
     /**
-     * Get bootstraps that have been run
+     * Get bootstraps that have been run.
      *
      * @return ArrayObject
      */
@@ -142,9 +134,10 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
     }
 
     /**
-     * Format a module name to the module class prefix
+     * Format a module name to the module class prefix.
      *
      * @param  string $name
+     *
      * @return string
      */
     protected function _formatModuleName($name)
@@ -153,6 +146,7 @@ class Zend_Application_Resource_Modules extends Zend_Application_Resource_Resour
         $name = str_replace(array('-', '.'), ' ', $name);
         $name = ucwords($name);
         $name = str_replace(' ', '', $name);
+
         return $name;
     }
 }

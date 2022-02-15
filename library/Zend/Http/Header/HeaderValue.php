@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,20 +12,12 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Http
- * @subpackage Header
  * @version    $Id$
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-
 /**
- * @category   Zend
- * @package    Zend_Http
- * @subpackage Header
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 final class Zend_Http_Header_HeaderValue
@@ -38,7 +30,7 @@ final class Zend_Http_Header_HeaderValue
     }
 
     /**
-     * Filter a header value
+     * Filter a header value.
      *
      * Ensures CRLF header injection vectors are filtered.
      *
@@ -47,15 +39,17 @@ final class Zend_Http_Header_HeaderValue
      * between visible characters.
      *
      * @see http://en.wikipedia.org/wiki/HTTP_response_splitting
+     *
      * @param string $value
+     *
      * @return string
      */
     public static function filter($value)
     {
-        $value  = (string) $value;
+        $value = (string) $value;
         $length = strlen($value);
         $string = '';
-        for ($i = 0; $i < $length; $i += 1) {
+        for ($i = 0; $i < $length; ++$i) {
             $ascii = ord($value[$i]);
 
             // Non-visible, non-whitespace characters
@@ -84,14 +78,16 @@ final class Zend_Http_Header_HeaderValue
      * between visible characters.
      *
      * @see http://en.wikipedia.org/wiki/HTTP_response_splitting
+     *
      * @param string $value
+     *
      * @return bool
      */
     public static function isValid($value)
     {
-        $value  = (string) $value;
+        $value = (string) $value;
         $length = strlen($value);
-        for ($i = 0; $i < $length; $i += 1) {
+        for ($i = 0; $i < $length; ++$i) {
             $ascii = ord($value[$i]);
 
             // Non-visible, non-whitespace characters
@@ -114,13 +110,12 @@ final class Zend_Http_Header_HeaderValue
      * Assert a header value is valid.
      *
      * @param string $value
-     * @throws Exception\RuntimeException for invalid values
-     * @return void
      */
     public static function assertValid($value)
     {
-        if (! self::isValid($value)) {
+        if (!self::isValid($value)) {
             require_once 'Zend/Http/Header/Exception/InvalidArgumentException.php';
+
             throw new Zend_Http_Header_Exception_InvalidArgumentException('Invalid header value');
         }
     }

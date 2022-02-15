@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -23,43 +19,44 @@
 require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
- * Base class for multi-option form elements
+ * Base class for multi-option form elements.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
 {
     /**
-     * Array of options for multi-item
+     * Array of options for multi-item.
+     *
      * @var array
      */
     public $options = array();
 
     /**
      * Flag: autoregister inArray validator?
+     *
      * @var bool
      */
     protected $_registerInArrayValidator = true;
 
     /**
      * Separator to use between options; defaults to '<br />'.
+     *
      * @var string
      */
     protected $_separator = '<br />';
 
     /**
      * Which values are translated already?
+     *
      * @var array
      */
     protected $_translated = array();
 
     /**
-     * Retrieve separator
+     * Retrieve separator.
      *
      * @return mixed
      */
@@ -69,19 +66,21 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Set separator
+     * Set separator.
      *
      * @param mixed $separator
+     *
      * @return self
      */
     public function setSeparator($separator)
     {
         $this->_separator = $separator;
+
         return $this;
     }
 
     /**
-     * Retrieve options array
+     * Retrieve options array.
      *
      * @return array
      */
@@ -95,15 +94,16 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Add an option
+     * Add an option.
      *
      * @param  string $option
      * @param  string $value
+     *
      * @return Zend_Form_Element_Multi
      */
     public function addMultiOption($option, $value = '')
     {
-        $option  = (string) $option;
+        $option = (string) $option;
         $this->_getMultiOptions();
         if (!$this->_translateOption($option, $value)) {
             $this->options[$option] = $value;
@@ -113,9 +113,8 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Add many options at once
+     * Add many options at once.
      *
-     * @param  array $options
      * @return Zend_Form_Element_Multi
      */
     public function addMultiOptions(array $options)
@@ -130,33 +129,36 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
                 $this->addMultiOption($option, $value);
             }
         }
+
         return $this;
     }
 
     /**
-     * Set all options at once (overwrites)
+     * Set all options at once (overwrites).
      *
-     * @param  array $options
      * @return Zend_Form_Element_Multi
      */
     public function setMultiOptions(array $options)
     {
         $this->clearMultiOptions();
+
         return $this->addMultiOptions($options);
     }
 
     /**
-     * Retrieve single multi option
+     * Retrieve single multi option.
      *
      * @param  string $option
+     *
      * @return mixed
      */
     public function getMultiOption($option)
     {
-        $option  = (string) $option;
+        $option = (string) $option;
         $this->_getMultiOptions();
         if (isset($this->options[$option])) {
             $this->_translateOption($option, $this->options[$option]);
+
             return $this->options[$option];
         }
 
@@ -164,7 +166,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Retrieve options
+     * Retrieve options.
      *
      * @return array
      */
@@ -174,24 +176,27 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
         foreach ($this->options as $option => $value) {
             $this->_translateOption($option, $value);
         }
+
         return $this->options;
     }
 
     /**
-     * Remove a single multi option
+     * Remove a single multi option.
      *
      * @param  string $option
+     *
      * @return bool
      */
     public function removeMultiOption($option)
     {
-        $option  = (string) $option;
+        $option = (string) $option;
         $this->_getMultiOptions();
         if (isset($this->options[$option])) {
             unset($this->options[$option]);
             if (isset($this->_translated[$option])) {
                 unset($this->_translated[$option]);
             }
+
             return true;
         }
 
@@ -199,7 +204,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Clear all options
+     * Clear all options.
      *
      * @return Zend_Form_Element_Multi
      */
@@ -207,23 +212,26 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
     {
         $this->options = array();
         $this->_translated = array();
+
         return $this;
     }
 
     /**
-     * Set flag indicating whether or not to auto-register inArray validator
+     * Set flag indicating whether or not to auto-register inArray validator.
      *
      * @param  bool $flag
+     *
      * @return Zend_Form_Element_Multi
      */
     public function setRegisterInArrayValidator($flag)
     {
         $this->_registerInArrayValidator = (bool) $flag;
+
         return $this;
     }
 
     /**
-     * Get status of auto-register inArray validator flag
+     * Get status of auto-register inArray validator flag.
      *
      * @return bool
      */
@@ -239,6 +247,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
      *
      * @param  string $value
      * @param  mixed $context
+     *
      * @return bool
      */
     public function isValid($value, $context = null)
@@ -246,14 +255,13 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
         if ($this->registerInArrayValidator()) {
             if (!$this->getValidator('InArray')) {
                 $multiOptions = $this->getMultiOptions();
-                $options      = array();
+                $options = array();
 
                 foreach ($multiOptions as $opt_value => $opt_label) {
                     // optgroup instead of option label
                     if (is_array($opt_label)) {
                         $options = [...$options, ...array_keys($opt_label)];
-                    }
-                    else {
+                    } else {
                         $options[] = $opt_value;
                     }
                 }
@@ -265,14 +273,16 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
                 );
             }
         }
+
         return parent::isValid($value, $context);
     }
 
     /**
-     * Translate an option
+     * Translate an option.
      *
      * @param  string $option
      * @param  string $value
+     *
      * @return bool
      */
     protected function _translateOption($option, $value)
@@ -287,6 +297,7 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
                 return false;
             }
             $this->_translated[$option] = true;
+
             return true;
         }
 
@@ -294,9 +305,10 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Translate a multi option value
+     * Translate a multi option value.
      *
      * @param  string $value
+     *
      * @return string
      */
     protected function _translateValue($value)
@@ -305,13 +317,13 @@ abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
             foreach ($value as $key => $val) {
                 $value[$key] = $this->_translateValue($val);
             }
-            return $value;
-        } else {
-            if (null !== ($translator = $this->getTranslator())) {
-                return $translator->translate($value);
-            }
 
             return $value;
         }
+        if (null !== ($translator = $this->getTranslator())) {
+            return $translator->translate($value);
+        }
+
+        return $value;
     }
 }

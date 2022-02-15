@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,40 +12,31 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
 
 /**
  * @see Zend_Filter_Alpha
  */
 require_once 'Zend/Filter/Alpha.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
 class Zend_Filter_AlphaTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Filter_Alpha object
+     * Zend_Filter_Alpha object.
      *
      * @var Zend_Filter_Alpha
      */
     protected $_filter;
 
     /**
-     * Is PCRE is compiled with UTF-8 and Unicode support
+     * Is PCRE is compiled with UTF-8 and Unicode support.
      *
      * @var mixed
      **/
@@ -61,14 +52,12 @@ class Zend_Filter_AlphaTest extends \PHPUnit\Framework\TestCase
     /**
      * The Alphabet means english alphabet.
      *
-     * @var boolean
+     * @var bool
      */
     protected static $_meansEnglishAlphabet;
 
     /**
-     * Creates a new Zend_Filter_Alpha object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Filter_Alpha object for each test method.
      */
     public function setUp()
     {
@@ -85,21 +74,19 @@ class Zend_Filter_AlphaTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testBasic()
     {
         if (!self::$_unicodeEnabled) {
             // POSIX named classes are not supported, use alternative a-zA-Z match
             $valuesExpected = array(
-                'abc123'        => 'abc',
-                'abc 123'       => 'abc',
-                'abcxyz'        => 'abcxyz',
-                ''              => ''
-                );
-        } else if (self::$_meansEnglishAlphabet) {
+                'abc123' => 'abc',
+                'abc 123' => 'abc',
+                'abcxyz' => 'abcxyz',
+                '' => '',
+            );
+        } elseif (self::$_meansEnglishAlphabet) {
             //The Alphabet means english alphabet.
             /**
              * The first element contains multibyte alphabets.
@@ -110,24 +97,24 @@ class Zend_Filter_AlphaTest extends \PHPUnit\Framework\TestCase
              * The last contains only singlebyte alphabets.
              */
             $valuesExpected = array(
-                'aＡBｂc'  => 'aBc',
-                'z Ｙ　x'  => 'zx',
+                'aＡBｂc' => 'aBc',
+                'z Ｙ　x' => 'zx',
                 'Ｗ1v３Ｕ4t' => 'vt',
                 '，sй.rλ:qν＿p' => 'srqp',
-                'onml' => 'onml'
-                );
+                'onml' => 'onml',
+            );
         } else {
             //The Alphabet means each language's alphabet.
             $valuesExpected = array(
-                'abc123'        => 'abc',
-                'abc 123'       => 'abc',
-                'abcxyz'        => 'abcxyz',
-                'četně'         => 'četně',
-                'لعربية'        => 'لعربية',
-                'grzegżółka'    => 'grzegżółka',
-                'België'        => 'België',
-                ''              => ''
-                );
+                'abc123' => 'abc',
+                'abc 123' => 'abc',
+                'abcxyz' => 'abcxyz',
+                'četně' => 'četně',
+                'لعربية' => 'لعربية',
+                'grzegżółka' => 'grzegżółka',
+                'België' => 'België',
+                '' => '',
+            );
         }
 
         foreach ($valuesExpected as $input => $output) {
@@ -140,9 +127,7 @@ class Zend_Filter_AlphaTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testAllowWhiteSpace()
     {
@@ -150,33 +135,34 @@ class Zend_Filter_AlphaTest extends \PHPUnit\Framework\TestCase
         if (!self::$_unicodeEnabled) {
             // POSIX named classes are not supported, use alternative a-zA-Z match
             $valuesExpected = array(
-                'abc123'        => 'abc',
-                'abc 123'       => 'abc ',
-                'abcxyz'        => 'abcxyz',
-                ''              => '',
-                "\n"            => "\n",
-                " \t "          => " \t "
-                );
-        } if (self::$_meansEnglishAlphabet) {
+                'abc123' => 'abc',
+                'abc 123' => 'abc ',
+                'abcxyz' => 'abcxyz',
+                '' => '',
+                "\n" => "\n",
+                " \t " => " \t ",
+            );
+        }
+        if (self::$_meansEnglishAlphabet) {
             //The Alphabet means english alphabet.
             $valuesExpected = array(
-                'a B'  => 'a B',
-                'zＹ　x'  => 'zx'
-                );
+                'a B' => 'a B',
+                'zＹ　x' => 'zx',
+            );
         } else {
             //The Alphabet means each language's alphabet.
             $valuesExpected = array(
-                'abc123'        => 'abc',
-                'abc 123'       => 'abc ',
-                'abcxyz'        => 'abcxyz',
-                'četně'         => 'četně',
-                'لعربية'        => 'لعربية',
-                'grzegżółka'    => 'grzegżółka',
-                'België'        => 'België',
-                ''              => '',
-                "\n"            => "\n",
-                " \t "          => " \t "
-                );
+                'abc123' => 'abc',
+                'abc 123' => 'abc ',
+                'abcxyz' => 'abcxyz',
+                'četně' => 'četně',
+                'لعربية' => 'لعربية',
+                'grzegżółka' => 'grzegżółka',
+                'België' => 'België',
+                '' => '',
+                "\n" => "\n",
+                " \t " => " \t ",
+            );
         }
 
         foreach ($valuesExpected as $input => $output) {

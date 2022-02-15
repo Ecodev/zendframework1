@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Zend_Controller_Action
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @version    $Id$
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -24,13 +21,10 @@
 require_once 'Zend/Controller/Action/Helper/Abstract.php';
 
 /**
- * Helper for interacting with Zend_Layout objects
+ * Helper for interacting with Zend_Layout objects.
  *
  * @uses       Zend_Controller_Action_Helper_Abstract
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Zend_Controller_Action
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action_Helper_Abstract
@@ -51,12 +45,11 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
     protected $_isActionControllerSuccessful = false;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param  Zend_Layout $layout
-     * @return void
      */
-    public function __construct(Zend_Layout $layout = null)
+    public function __construct(?Zend_Layout $layout = null)
     {
         if (null !== $layout) {
             $this->setLayoutInstance($layout);
@@ -84,7 +77,7 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
     }
 
     /**
-     * Get front controller instance
+     * Get front controller instance.
      *
      * @return Zend_Controller_Front
      */
@@ -102,7 +95,7 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
     }
 
     /**
-     * Get layout object
+     * Get layout object.
      *
      * @return Zend_Layout
      */
@@ -122,25 +115,26 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
     }
 
     /**
-     * Set layout object
+     * Set layout object.
      *
-     * @param  Zend_Layout $layout
      * @return Zend_Layout_Controller_Action_Helper_Layout
      */
     public function setLayoutInstance(Zend_Layout $layout)
     {
         $this->_layout = $layout;
+
         return $this;
     }
 
     /**
-     * Mark Action Controller (according to this plugin) as Running successfully
+     * Mark Action Controller (according to this plugin) as Running successfully.
      *
      * @return Zend_Layout_Controller_Action_Helper_Layout
      */
     public function postDispatch()
     {
         $this->_isActionControllerSuccessful = true;
+
         return $this;
     }
 
@@ -155,7 +149,7 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
     }
 
     /**
-     * Strategy pattern; call object as method
+     * Strategy pattern; call object as method.
      *
      * Returns layout object
      *
@@ -167,10 +161,11 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
     }
 
     /**
-     * Proxy method calls to layout object
+     * Proxy method calls to layout object.
      *
      * @param  string $method
      * @param  array $args
+     *
      * @return mixed
      */
     public function __call($method, $args)
@@ -181,6 +176,7 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
         }
 
         require_once 'Zend/Layout/Exception.php';
+
         throw new Zend_Layout_Exception(sprintf("Invalid method '%s' called on layout action helper", $method));
     }
 }

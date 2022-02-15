@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Request/Http.php';
@@ -35,10 +29,6 @@ require_once __DIR__ . '/../../_files/modules/bar/controllers/IndexController.ph
 /**
  * Test class for Zend_Controller_Action_Helper_ViewRenderer.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
@@ -47,31 +37,36 @@ require_once __DIR__ . '/../../_files/modules/bar/controllers/IndexController.ph
 class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Base path to controllers, views
+     * Base path to controllers, views.
+     *
      * @var string
      */
     public $basePath;
 
     /**
-     * Front controller object
+     * Front controller object.
+     *
      * @var Zend_Controller_Front
      */
     public $front;
 
     /**
-     * ViewRenderer helper
+     * ViewRenderer helper.
+     *
      * @var Zend_Controller_Action_Helper_ViewRenderer
      */
     public $helper;
 
     /**
-     * Request object
+     * Request object.
+     *
      * @var Zend_Controller_Request_Http
      */
     public $request;
 
     /**
-     * Response object
+     * Response object.
+     *
      * @var Zend_Controller_Response_Http
      */
     public $response;
@@ -79,41 +74,36 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ViewRendererTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ViewRendererTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp()
     {
         $this->basePath = realpath(__DIR__ . str_repeat(DIRECTORY_SEPARATOR . '..', 2));
-        $this->request  = new Zend_Controller_Request_Http();
+        $this->request = new Zend_Controller_Request_Http();
         $this->response = new Zend_Controller_Response_Http();
-        $this->front    = Zend_Controller_Front::getInstance();
+        $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
         $this->front->addModuleDirectory($this->basePath . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'modules')
-                    ->setRequest($this->request)
-                    ->setResponse($this->response);
+            ->setRequest($this->request)
+            ->setResponse($this->response);
 
-        $this->helper   = new Zend_Controller_Action_Helper_ViewRenderer();
+        $this->helper = new Zend_Controller_Action_Helper_ViewRenderer();
         Zend_Controller_Action_HelperBroker::addHelper($this->helper);
     }
 
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @access protected
      */
     protected function tearDown()
     {
@@ -122,7 +112,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
 
     public function testConstructorSetsViewWhenPassed()
     {
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $helper = new Zend_Controller_Action_Helper_ViewRenderer($view);
         $this->assertNotNull(isset($helper->view));
         $this->assertSame($view, $helper->view);
@@ -131,12 +121,12 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testConstructorSetsOptionsWhenPassed()
     {
         $helper = new Zend_Controller_Action_Helper_ViewRenderer(null, array(
-            'neverRender'     => true,
-            'noRender'        => true,
-            'noController'    => true,
-            'viewSuffix'      => 'php',
-            'scriptAction'    => 'foo',
-            'responseSegment' => 'baz'
+            'neverRender' => true,
+            'noRender' => true,
+            'noController' => true,
+            'viewSuffix' => 'php',
+            'scriptAction' => 'foo',
+            'responseSegment' => 'baz',
         ));
 
         $this->assertTrue($helper->getNeverRender());
@@ -173,8 +163,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertContains($module, $scriptPaths[0]);
 
         $helperPaths = $this->helper->view->getHelperPaths();
-        $test        = ucfirst($module) . '_View_Helper_';
-        $found       = false;
+        $test = ucfirst($module) . '_View_Helper_';
+        $found = false;
         foreach ($helperPaths as $prefix => $paths) {
             if ($test == $prefix) {
                 $found = true;
@@ -183,7 +173,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertTrue($found, 'Did not find auto-initialized helper path: ' . var_export($helperPaths, 1));
 
         $filterPaths = $this->helper->view->getFilterPaths();
-        $test        = ucfirst($module) . '_View_Filter_';
+        $test = ucfirst($module) . '_View_Filter_';
         $found = false;
         foreach ($filterPaths as $prefix => $paths) {
             if ($test == $prefix) {
@@ -196,7 +186,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testInitViewWithDefaults()
     {
         $this->request->setModuleName('foo')
-                      ->setControllerName('index');
+            ->setControllerName('index');
 
         $controller = new Foo_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
@@ -207,7 +197,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testInitViewWillNotRegisterSameViewPathTwice()
     {
         $this->request->setModuleName('foo')
-                      ->setControllerName('index');
+            ->setControllerName('index');
         $controller = new Foo_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
 
@@ -221,7 +211,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testInitViewCanBeCalledAfterPostDispatch()
     {
         $this->request->setModuleName('foo')
-                      ->setControllerName('index');
+            ->setControllerName('index');
         $controller = new Foo_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
 
@@ -229,7 +219,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->helper->setNoRender();
         $this->helper->postDispatch();
         $this->request->setModuleName('bar')
-                      ->setControllerName('index');
+            ->setControllerName('index');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $this->helper->initView();
@@ -239,7 +229,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testPreDispatchWithDefaults()
     {
         $this->request->setModuleName('foo')
-                      ->setControllerName('index');
+            ->setControllerName('index');
         $controller = new Foo_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
 
@@ -250,18 +240,18 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testInitViewWithOptions()
     {
         $this->request->setModuleName('foo')
-                      ->setControllerName('index');
+            ->setControllerName('index');
         $controller = new Foo_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
 
         $viewDir = __DIR__ . str_repeat(DIRECTORY_SEPARATOR . '..', 2) . DIRECTORY_SEPARATOR . 'views';
         $this->helper->initView($viewDir, 'Baz_Bat', array(
-            'neverRender'     => true,
-            'noRender'        => true,
-            'noController'    => true,
-            'viewSuffix'      => 'php',
-            'scriptAction'    => 'foo',
-            'responseSegment' => 'baz'
+            'neverRender' => true,
+            'noRender' => true,
+            'noController' => true,
+            'viewSuffix' => 'php',
+            'scriptAction' => 'foo',
+            'responseSegment' => 'baz',
         ));
 
         $this->assertTrue($this->helper->getNeverRender());
@@ -272,14 +262,14 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertEquals('baz', $this->helper->getResponseSegment());
 
         $scriptPaths = $this->helper->view->getScriptPaths();
-        $scriptPath  = $scriptPaths[0];
+        $scriptPath = $scriptPaths[0];
         $this->assertContains(
             $this->_normalizePath($viewDir),
             $this->_normalizePath($scriptPath)
             );
 
         $helperPaths = $this->helper->view->getHelperPaths();
-        $found       = false;
+        $found = false;
         foreach ($helperPaths as $prefix => $paths) {
             if ('Baz_Bat_Helper_' == $prefix) {
                 $found = true;
@@ -288,7 +278,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertTrue($found, 'Helper prefix not set according to spec: ' . var_export($helperPaths, 1));
 
         $filterPaths = $this->helper->view->getFilterPaths();
-        $found       = false;
+        $found = false;
         foreach ($filterPaths as $prefix => $paths) {
             if ('Baz_Bat_Filter_' == $prefix) {
                 $found = true;
@@ -312,9 +302,9 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     {
         $this->helper->setNeverRender();
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test')
-                      ->setDispatched(true);
+            ->setControllerName('index')
+            ->setActionName('test')
+            ->setDispatched(true);
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $this->helper->postDispatch();
@@ -390,9 +380,9 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testPostDispatchRendersAppropriateScript()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test')
-                      ->setDispatched(true);
+            ->setControllerName('index')
+            ->setActionName('test')
+            ->setDispatched(true);
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $this->helper->postDispatch();
@@ -404,9 +394,9 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testPostDispatchDoesNothingOnForward()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test')
-                      ->setDispatched(false);
+            ->setControllerName('index')
+            ->setActionName('test')
+            ->setDispatched(false);
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $this->helper->postDispatch();
@@ -419,9 +409,9 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testPostDispatchDoesNothingOnRedirect()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test')
-                      ->setDispatched(true);
+            ->setControllerName('index')
+            ->setActionName('test')
+            ->setDispatched(true);
         $this->response->setHttpResponseCode(302);
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
@@ -435,9 +425,9 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testPostDispatchDoesNothingWithNoController()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test')
-                      ->setDispatched(true);
+            ->setControllerName('index')
+            ->setActionName('test')
+            ->setDispatched(true);
         $this->helper->postDispatch();
 
         $content = $this->response->getBody();
@@ -448,9 +438,9 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testPostDispatchDoesNothingWithNeverController()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test')
-                      ->setDispatched(true);
+            ->setControllerName('index')
+            ->setActionName('test')
+            ->setDispatched(true);
         $this->helper->setNeverController(true);
         $this->helper->postDispatch();
 
@@ -501,30 +491,30 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testGetViewScriptWithDefaults()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
-        $expected   = 'index/test.phtml';
+        $expected = 'index/test.phtml';
         $this->assertEquals($expected, $this->helper->getViewScript());
     }
 
     public function testGetViewScriptWithSpecifiedAction()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
-        $expected   = 'index/baz.phtml';
+        $expected = 'index/baz.phtml';
         $this->assertEquals($expected, $this->helper->getViewScript('baz'));
     }
 
     public function testGetViewScriptWithSpecifiedVars()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
-        $expected   = 'baz/bat.php';
+        $expected = 'baz/bat.php';
         $this->assertEquals(
             $expected,
             $this->helper->getViewScript(
@@ -537,19 +527,19 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testGetViewScriptWithNoControllerSet()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setNoController();
-        $expected   = 'test.phtml';
+        $expected = 'test.phtml';
         $this->assertEquals($expected, $this->helper->getViewScript());
     }
 
     public function testRenderScript()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->renderScript('index/test.phtml');
         $body = $this->response->getBody();
@@ -559,8 +549,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderScriptToNamedResponseSegment()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->renderScript('index/test.phtml', 'foo');
         $body = $this->response->getBody('foo');
@@ -570,8 +560,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderScriptToPreviouslyNamedResponseSegment()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setResponseSegment('foo');
         $this->helper->renderScript('index/test.phtml');
@@ -582,8 +572,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderWithDefaults()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->render();
         $body = $this->response->getBody();
@@ -593,8 +583,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderToSpecifiedAction()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('index');
+            ->setControllerName('index')
+            ->setActionName('index');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->render('test');
         $body = $this->response->getBody();
@@ -604,8 +594,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderWithNoController()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->render(null, null, true);
         $body = $this->response->getBody();
@@ -615,8 +605,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderToNamedSegment()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->render(null, 'foo');
         $body = $this->response->getBody('foo');
@@ -626,8 +616,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderBySpec()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('index');
+            ->setControllerName('index')
+            ->setActionName('index');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->renderBySpec('foo', array('controller' => 'test', 'suffix' => 'php'));
         $body = $this->response->getBody();
@@ -637,8 +627,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderBySpecToNamedResponseSegment()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('index');
+            ->setControllerName('index')
+            ->setActionName('index');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->renderBySpec('foo', array('controller' => 'test', 'suffix' => 'php'), 'foo');
         $body = $this->response->getBody('foo');
@@ -648,8 +638,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testInitDoesNotInitViewWhenNoViewRendererSet()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('index');
+            ->setControllerName('index')
+            ->setActionName('index');
         $this->front->setParam('noViewRenderer', true);
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->assertNull($controller->view);
@@ -658,8 +648,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testPostDispatchDoesNotRenderViewWhenNoViewRendererSet()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('index');
+            ->setControllerName('index')
+            ->setActionName('index');
         $this->front->setParam('noViewRenderer', true);
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->postDispatch();
@@ -670,22 +660,22 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testRenderNormalizationIsCorrect()
     {
         $this->request->setModuleName('default')
-                      ->setControllerName('foo')
-                      ->setActionName('myBar');
+            ->setControllerName('foo')
+            ->setActionName('myBar');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $scriptName = $this->helper->getViewScript();
         $this->assertEquals('foo/my-bar.phtml', $scriptName);
 
         $this->request->setModuleName('default')
-                      ->setControllerName('foo')
-                      ->setActionName('baz__bat');
+            ->setControllerName('foo')
+            ->setActionName('baz__bat');
         $scriptName = $this->helper->getViewScript();
         $this->assertEquals('foo/baz-bat.phtml', $scriptName);
 
         $this->request->setModuleName('default')
-                      ->setControllerName('Foo_Bar')
-                      ->setActionName('bar__baz');
+            ->setControllerName('Foo_Bar')
+            ->setActionName('bar__baz');
         $scriptName = $this->helper->getViewScript();
         $this->assertEquals('foo/bar/bar-baz.phtml', $scriptName);
     }
@@ -716,8 +706,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testCustomInflectorCanUseItsOwnTarget()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('index');
+            ->setControllerName('index')
+            ->setActionName('index');
         $controller = new Bar_IndexController($this->request, $this->response, array());
 
         $this->helper->view->addBasePath($this->basePath . '/_files/modules/bar/views');
@@ -734,8 +724,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testCustomInflectorUsesViewRendererTargetWhenPassedInWithReferenceFlag()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('test');
+            ->setControllerName('index')
+            ->setActionName('test');
         $controller = new Bar_IndexController($this->request, $this->response, array());
 
         $this->helper->view->addBasePath($this->basePath . '/_files/modules/bar/views');
@@ -745,12 +735,12 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
 
         $inflector = new Zend_Filter_Inflector('test.phtml');
         $inflector->addRules(array(
-            ':module'     => array('Word_CamelCaseToDash', 'stringToLower'),
+            ':module' => array('Word_CamelCaseToDash', 'stringToLower'),
             ':controller' => array('Word_CamelCaseToDash', new Zend_Filter_Word_UnderscoreToSeparator(DIRECTORY_SEPARATOR), 'StringToLower'),
-            ':action'     => array(
+            ':action' => array(
                 'Word_CamelCaseToDash',
                 new Zend_Filter_PregReplace('/[^a-z0-9]+/i', '-'),
-                'StringToLower'
+                'StringToLower',
             ),
         ));
         $this->helper->setInflector($inflector, true);
@@ -763,8 +753,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testStockInflectorAllowsSubDirectoryViewScripts()
     {
         $this->request->setModuleName('bar')
-                      ->setControllerName('index')
-                      ->setActionName('layout/admin');
+            ->setControllerName('index')
+            ->setActionName('layout/admin');
         $this->assertEquals('index/layout/admin.phtml', $this->helper->getViewScript());
     }
 
@@ -774,8 +764,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testStockInflectorWorksWithViewBaseSpec()
     {
         $this->request->setModuleName('bar')  // bar must exist so the ViewRendere doesnt throw an exception
-                      ->setControllerName('index')
-                      ->setActionName('admin');
+            ->setControllerName('index')
+            ->setActionName('admin');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
 
@@ -798,8 +788,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testStockInflectorWorksWithDottedRequestParts()
     {
         $this->request->setModuleName('foo')
-                      ->setControllerName('car.bar')
-                      ->setActionName('baz');
+            ->setControllerName('car.bar')
+            ->setActionName('baz');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $viewScriptPaths = $this->helper->view->getAllPaths();
@@ -816,22 +806,23 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     {
         require_once $this->basePath . '/_files/modules/foo/controllers/Admin/IndexController.php';
         $this->request->setModuleName('foo')
-                      ->setControllerName('admin_index')
-                      ->setActionName('use-helper');
+            ->setControllerName('admin_index')
+            ->setActionName('use-helper');
         $controller = new Foo_Admin_IndexController($this->request, $this->response, array());
 
         $this->helper->render();
         $body = $this->response->getBody();
         $this->assertContains('fooUseHelper invoked', $body, 'Received ' . $body);
     }
+
     /**
      * @group ZF-10725
      */
     public function testThatCharactersStrippedFromActionNameByDispatcherAreAlsoStrippedFromViewScriptName()
     {
         $this->request->setModuleName('default')
-                      ->setControllerName('foo')
-                      ->setActionName('-myBar-');
+            ->setControllerName('foo')
+            ->setActionName('-myBar-');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $scriptName = $this->helper->getViewScript();
@@ -842,7 +833,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     {
         require_once $this->basePath . '/_files/modules/default/controllers/Admin/HelperController.php';
         $this->request->setControllerName('admin_helper')
-                      ->setActionName('render');
+            ->setActionName('render');
         $controller = new Admin_HelperController($this->request, $this->response, array());
 
         $this->helper->render();
@@ -872,12 +863,14 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     /**
      * @group ZF-10725
      * @dataProvider providerViewScriptNameDoesNotIncludeDisallowedCharacters
+     *
+     * @param mixed $actionName
      */
     public function testViewScriptNameDoesNotIncludeDisallowedCharacters($actionName)
     {
         $this->request->setModuleName('default')
-                      ->setControllerName('foo')
-                      ->setActionName($actionName);
+            ->setControllerName('foo')
+            ->setActionName($actionName);
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $scriptName = $this->helper->getViewScript();
@@ -885,8 +878,10 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     }
 
     /**
-     * Data provider for testViewScriptNameDoesNotIncludeDisallowedCharacters
+     * Data provider for testViewScriptNameDoesNotIncludeDisallowedCharacters.
+     *
      * @group ZF-10725
+     *
      * @return array
      */
     public function providerViewScriptNameDoesNotIncludeDisallowedCharacters()
@@ -897,18 +892,20 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
             array('-myBar-'),
             array('-MyBar-'),
             array('MyBar-'),
-            array('-MyBar')
+            array('-MyBar'),
         );
     }
 
     /**
      * @group GH-440
      * @dataProvider providerControllerNameDoesNotIncludeDisallowedCharacters
+     *
+     * @param mixed $controllerName
      */
     public function testControllerNameDoesNotIncludeDisallowedCharacters($controllerName)
     {
         $this->request->setControllerName($controllerName)
-                      ->setActionName('index');
+            ->setActionName('index');
 
         $this->helper->setActionController(
             new Bar_IndexController(
@@ -922,8 +919,10 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     }
 
     /**
-     * Data provider for testControllerNameDoesNotIncludeDisallowedCharacters
+     * Data provider for testControllerNameDoesNotIncludeDisallowedCharacters.
+     *
      * @group GH-440
+     *
      * @return array
      */
     public function providerControllerNameDoesNotIncludeDisallowedCharacters()
@@ -940,16 +939,16 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
      */
     public function testControllerNameFormattingShouldRespectWordCamelCaseToDash()
     {
-       $this->request->setControllerName('MetadataValidation')
-                     ->setActionName('index');
+        $this->request->setControllerName('MetadataValidation')
+            ->setActionName('index');
 
-       $this->helper->setActionController(
+        $this->helper->setActionController(
            new Bar_IndexController(
                $this->request, $this->response, array()
            )
        );
 
-       $this->assertEquals(
+        $this->assertEquals(
            'metadata-validation/index.phtml', $this->helper->getViewScript()
        );
     }
@@ -965,13 +964,11 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     public function testActionsWithLeadingCapitalLettersShouldNotInvokeTruncatedViewScripts()
     {
         $this->request->setModuleName('default')
-                      ->setControllerName('Controller')
-                      ->setActionName('Action');
+            ->setControllerName('Controller')
+            ->setActionName('Action');
         $controller = new Bar_IndexController($this->request, $this->response, array());
         $this->helper->setActionController($controller);
         $scriptName = $this->helper->getViewScript();
         $this->assertEquals('controller/action.phtml', $scriptName);
     }
 }
-
-

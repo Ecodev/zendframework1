@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,9 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -22,51 +19,50 @@
 require_once 'Zend/Form/Decorator/Interface.php';
 
 /**
- * Zend_Form_Decorator_Abstract
+ * Zend_Form_Decorator_Abstract.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Decorator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Interface
 {
     /**
-     * Placement constants
+     * Placement constants.
      */
-    public const APPEND  = 'APPEND';
+    public const APPEND = 'APPEND';
     public const PREPEND = 'PREPEND';
 
     /**
-     * Default placement: append
+     * Default placement: append.
+     *
      * @var string
      */
     protected $_placement = 'APPEND';
 
     /**
-     * @var Zend_Form_Element|Zend_Form
+     * @var Zend_Form|Zend_Form_Element
      */
     protected $_element;
 
     /**
-     * Decorator options
+     * Decorator options.
+     *
      * @var array
      */
     protected $_options = array();
 
     /**
-     * Separator between new content and old
+     * Separator between new content and old.
+     *
      * @var string
      */
     protected $_separator = PHP_EOL;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param  array|Zend_Config $options
-     * @return void
      */
     public function __construct($options = null)
     {
@@ -78,21 +74,20 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     }
 
     /**
-     * Set options
+     * Set options.
      *
-     * @param  array $options
      * @return Zend_Form_Decorator_Abstract
      */
     public function setOptions(array $options)
     {
         $this->_options = $options;
+
         return $this;
     }
 
     /**
-     * Set options from config object
+     * Set options from config object.
      *
-     * @param  Zend_Config $config
      * @return Zend_Form_Decorator_Abstract
      */
     public function setConfig(Zend_Config $config)
@@ -101,22 +96,25 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     }
 
     /**
-     * Set option
+     * Set option.
      *
      * @param  string $key
      * @param  mixed $value
+     *
      * @return Zend_Form_Decorator_Abstract
      */
     public function setOption($key, $value)
     {
         $this->_options[(string) $key] = $value;
+
         return $this;
     }
 
     /**
-     * Get option
+     * Get option.
      *
      * @param  string $key
+     *
      * @return mixed
      */
     public function getOption($key)
@@ -130,7 +128,7 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     }
 
     /**
-     * Retrieve options
+     * Retrieve options.
      *
      * @return array
      */
@@ -140,15 +138,15 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     }
 
     /**
-     * Remove single option
+     * Remove single option.
      *
      * @param mixed $key
-     * @return void
      */
     public function removeOption($key)
     {
         if (null !== $this->getOption($key)) {
             unset($this->_options[$key]);
+
             return true;
         }
 
@@ -156,41 +154,43 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     }
 
     /**
-     * Clear all options
+     * Clear all options.
      *
      * @return Zend_Form_Decorator_Abstract
      */
     public function clearOptions()
     {
         $this->_options = array();
+
         return $this;
     }
 
     /**
-     * Set current form element
+     * Set current form element.
      *
-     * @param  Zend_Form_Element|Zend_Form $element
+     * @param  Zend_Form|Zend_Form_Element $element
+     *
      * @return Zend_Form_Decorator_Abstract
-     * @throws Zend_Form_Decorator_Exception on invalid element type
      */
     public function setElement($element)
     {
         if ((!$element instanceof Zend_Form_Element)
             && (!$element instanceof Zend_Form)
-            && (!$element instanceof Zend_Form_DisplayGroup))
-        {
+            && (!$element instanceof Zend_Form_DisplayGroup)) {
             require_once 'Zend/Form/Decorator/Exception.php';
+
             throw new Zend_Form_Decorator_Exception('Invalid element type passed to decorator');
         }
 
         $this->_element = $element;
+
         return $this;
     }
 
     /**
-     * Retrieve current element
+     * Retrieve current element.
      *
-     * @return Zend_Form_Element|Zend_Form
+     * @return Zend_Form|Zend_Form_Element
      */
     public function getElement()
     {
@@ -198,7 +198,7 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     }
 
     /**
-     * Determine if decorator should append or prepend content
+     * Determine if decorator should append or prepend content.
      *
      * @return string
      */
@@ -211,9 +211,11 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
                 case self::APPEND:
                 case self::PREPEND:
                     $placement = $this->_placement = $placementOpt;
+
                     break;
                 case false:
                     $placement = $this->_placement = null;
+
                     break;
                 default:
                     break;
@@ -225,7 +227,7 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
     }
 
     /**
-     * Retrieve separator to use between old and new content
+     * Retrieve separator to use between old and new content.
      *
      * @return string
      */
@@ -236,19 +238,21 @@ abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Inter
             $separator = $this->_separator = (string) $separatorOpt;
             $this->removeOption('separator');
         }
+
         return $separator;
     }
 
     /**
-     * Decorate content and/or element
+     * Decorate content and/or element.
      *
      * @param  string $content
+     *
      * @return string
-     * @throws Zend_Form_Decorator_Exception when unimplemented
      */
     public function render($content)
     {
         require_once 'Zend/Form/Decorator/Exception.php';
+
         throw new Zend_Form_Decorator_Exception('render() not implemented');
     }
 }

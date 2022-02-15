@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,39 +22,30 @@
  */
 require_once 'Zend/Filter.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
 class Zend_FilterTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Filter object
+     * Zend_Filter object.
      *
      * @var Zend_Filter
      */
     protected $_filter;
 
     /**
-     * Creates a new Zend_Filter object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Filter object for each test method.
      */
     public function setUp()
     {
-        $this->error   = null;
+        $this->error = null;
         $this->_filter = new Zend_Filter();
     }
 
     /**
-     * Resets the default namespaces
-     *
-     * @return void
+     * Resets the default namespaces.
      */
     public function tearDown()
     {
@@ -65,9 +53,7 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures expected return value from empty filter chain
-     *
-     * @return void
+     * Ensures expected return value from empty filter chain.
      */
     public function testEmpty()
     {
@@ -76,14 +62,12 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that filters are executed in the expected order (FIFO)
-     *
-     * @return void
+     * Ensures that filters are executed in the expected order (FIFO).
      */
     public function testFilterOrder()
     {
         $this->_filter->addFilter(new Zend_FilterTest_LowerCase())
-                      ->addFilter(new Zend_FilterTest_StripUpperCase());
+            ->addFilter(new Zend_FilterTest_StripUpperCase());
         $value = 'AbC';
         $valueExpected = 'abc';
         $this->assertEquals($valueExpected, $this->_filter->filter($value));
@@ -91,12 +75,12 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that filters can be prepended and will be executed in the
-     * expected order
+     * expected order.
      */
     public function testFilterPrependOrder()
     {
         $this->_filter->appendFilter(new Zend_FilterTest_StripUpperCase())
-                      ->prependFilter(new Zend_FilterTest_LowerCase());
+            ->prependFilter(new Zend_FilterTest_LowerCase());
         $value = 'AbC';
         $valueExpected = 'abc';
         $this->assertEquals($valueExpected, $this->_filter->filter($value));
@@ -137,7 +121,6 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
      * Refactored to conform with ZF-2724.
      *
      * @group  ZF-2724
-     * @return void
      * @expectedException Zend_Filter_Exception
      */
     public function testStaticFactoryClassNotFound()
@@ -146,12 +129,12 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Handle file not found errors
+     * Handle file not found errors.
      *
      * @group  ZF-2724
+     *
      * @param  int $errnum
      * @param  string $errstr
-     * @return void
      */
     public function handleNotFoundError($errnum, $errstr)
     {
@@ -161,9 +144,7 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Testing Namespaces
-     *
-     * @return void
+     * Testing Namespaces.
      */
     public function testNamespaces()
     {
@@ -193,7 +174,7 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-2105
+     * ZF-2105.
      */
     public function testUsageOfOldStaticFactory()
     {
@@ -204,21 +185,18 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
         $this->_errorOccurred = true;
     }
 }
-
 
 class Zend_FilterTest_LowerCase implements Zend_Filter_Interface
 {
@@ -227,7 +205,6 @@ class Zend_FilterTest_LowerCase implements Zend_Filter_Interface
         return strtolower($value);
     }
 }
-
 
 class Zend_FilterTest_StripUpperCase implements Zend_Filter_Interface
 {

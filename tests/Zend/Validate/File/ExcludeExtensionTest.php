@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Validate_File_ExcludeExtension
@@ -28,12 +23,8 @@
 require_once 'Zend/Validate/File/ExcludeExtension.php';
 
 /**
- * ExcludeExtension testbed
+ * ExcludeExtension testbed.
  *
- * @category   Zend
- * @package    Zend_Validate_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
@@ -41,19 +32,15 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_ExcludeExtensionTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_File_ExcludeExtensionTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -71,7 +58,7 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
             $this->assertEquals(
                 $element[1],
                 $validator->isValid(__DIR__ . '/_files/testsize.mo'),
-                "Tested with " . var_export($element, 1)
+                'Tested with ' . var_export($element, 1)
             );
         }
 
@@ -80,33 +67,33 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
         $this->assertTrue(array_key_exists('fileExcludeExtensionNotFound', $validator->getMessages()));
 
         $files = array(
-            'name'     => 'test1',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'test1',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => 'tmp_test1',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_ExcludeExtension('mo');
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/nofile.mo', $files));
         $this->assertTrue(array_key_exists('fileExcludeExtensionNotFound', $validator->getMessages()));
 
         $files = array(
-            'name'     => 'testsize.mo',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'testsize.mo',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_ExcludeExtension('mo');
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/testsize.mo', $files));
         $this->assertTrue(array_key_exists('fileExcludeExtensionFalse', $validator->getMessages()));
 
         $files = array(
-            'name'     => 'testsize.mo',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'testsize.mo',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_ExcludeExtension('gif');
         $this->assertEquals(true, $validator->isValid(__DIR__ . '/_files/testsize.mo', $files));
@@ -115,11 +102,11 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
     public function testCaseTesting()
     {
         $files = array(
-            'name'     => 'testsize.mo',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'testsize.mo',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_ExcludeExtension(array('MO', 'case' => true));
         $this->assertEquals(true, $validator->isValid(__DIR__ . '/_files/testsize.mo', $files));
@@ -129,9 +116,7 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
     }
 
     /**
-     * Ensures that getExtension() returns expected value
-     *
-     * @return void
+     * Ensures that getExtension() returns expected value.
      */
     public function testGetExtension()
     {
@@ -143,9 +128,7 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
     }
 
     /**
-     * Ensures that setExtension() returns expected value
-     *
-     * @return void
+     * Ensures that setExtension() returns expected value.
      */
     public function testSetExtension()
     {
@@ -161,9 +144,7 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
     }
 
     /**
-     * Ensures that addExtension() returns expected value
-     *
-     * @return void
+     * Ensures that addExtension() returns expected value.
      */
     public function testAddExtension()
     {
@@ -181,4 +162,3 @@ class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCas
         $this->assertEquals(array('mo', 'gif', 'jpg', 'to', 'zip', 'ti'), $validator->getExtension());
     }
 }
-

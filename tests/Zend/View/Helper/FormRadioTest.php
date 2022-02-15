@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,28 +12,18 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View/Helper/FormRadio.php';
 require_once 'Zend/View.php';
 
 /**
- * Zend_View_Helper_FormRadioTest
+ * Zend_View_Helper_FormRadioTest.
  *
  * Tests formRadio helper
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -43,19 +33,17 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormRadioTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormRadioTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
     {
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->view->doctype('HTML4_LOOSE'); // Set default doctype
         $this->helper = new Zend_View_Helper_FormRadio();
         $this->helper->setView($this->view);
@@ -66,11 +54,11 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
         ));
         foreach ($options as $key => $value) {
@@ -84,23 +72,23 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
-            'attribs' => array('labelPlacement' => 'append')
+            'attribs' => array('labelPlacement' => 'append'),
         ));
         foreach ($options as $key => $value) {
             $this->assertRegexp('#<label.*?>.*?<input .*?' . $value . '</label>#', $html, $html);
         }
 
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
-            'attribs' => array('labelPlacement' => 'prepend')
+            'attribs' => array('labelPlacement' => 'prepend'),
         ));
         foreach ($options as $key => $value) {
             $this->assertRegexp('#<label.*?>' . $value . '<input .*?</label>#', $html, $html);
@@ -116,12 +104,12 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'bar' => 'Bar',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
             'attribs' => array(
                 'labelPlacement' => 'append',
-            )
+            ),
         ));
         $this->assertRegexp('#<input[^>]*(checked="checked")#', $html, $html);
     }
@@ -131,13 +119,13 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
-            'attribs' => array('labelClass' => 'testclass', 'label_id' => 'testid')
+            'attribs' => array('labelClass' => 'testclass', 'label_id' => 'testid'),
         ));
 
         foreach ($options as $key => $value) {
@@ -151,11 +139,11 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
             'listsep' => '--FunkySep--',
         ));
@@ -166,20 +154,20 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-2513
+     * ZF-2513.
      */
     public function testCanDisableAllRadios()
     {
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
-            'attribs' => array('disable' => true)
+            'attribs' => array('disable' => true),
         ));
 
         $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html, $html);
@@ -188,20 +176,20 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-2513
+     * ZF-2513.
      */
     public function testCanDisableIndividualRadios()
     {
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
-            'attribs' => array('disable' => array('bar'))
+            'attribs' => array('disable' => array('bar')),
         ));
 
         $this->assertRegexp('/<input[^>]*?(value="bar")[^>]*(disabled="disabled")/', $html, $html);
@@ -210,20 +198,20 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-2513
+     * ZF-2513.
      */
     public function testCanDisableMultipleRadios()
     {
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
-            'attribs' => array('disable' => array('foo', 'baz'))
+            'attribs' => array('disable' => array('foo', 'baz')),
         ));
 
         foreach (array('foo', 'baz') as $test) {
@@ -240,7 +228,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'bar' => '<b>Bar</b>',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
+            'name' => 'foo',
             'options' => $options,
         ));
 
@@ -254,26 +242,26 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'bar' => '<b>Bar</b>',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
+            'name' => 'foo',
             'options' => $options,
-            'attribs' => array('escape' => false)
+            'attribs' => array('escape' => false),
         ));
 
         $this->assertContains($options['bar'], $html);
     }
 
     /**
-     * ZF-1666
+     * ZF-1666.
      */
     public function testDoesNotRenderHiddenElements()
     {
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
+            'name' => 'foo',
             'options' => $options,
         ));
 
@@ -285,11 +273,11 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
         ));
 
@@ -304,11 +292,11 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => array('foo', 'baz'),
+            'name' => 'foo',
+            'value' => array('foo', 'baz'),
             'options' => $options,
         ));
 
@@ -325,11 +313,11 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo bar' => 'Foo',
             'bar baz' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo[]',
-            'value'   => 'bar',
+            'name' => 'foo[]',
+            'value' => 'bar',
             'options' => $options,
         ));
 
@@ -346,11 +334,11 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo bar' => 'Foo',
             'bar baz' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo[bar]',
-            'value'   => 'bar',
+            'name' => 'foo[bar]',
+            'value' => 'bar',
             'attribs' => array('id' => 'foo-bar'),
             'options' => $options,
         ));
@@ -371,11 +359,11 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
-            'value'   => 'bar',
+            'name' => 'foo',
+            'value' => 'bar',
             'options' => $options,
         ));
         $this->assertNotContains('style="white-space: nowrap;"', $html);
@@ -388,11 +376,11 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
     {
         $actual = $this->helper->formRadio(
             array(
-                 'name'    => 'foo',
-                 'options' => array(
-                     'bar' => 'Bar',
-                     'baz' => 'Baz'
-                 ),
+                'name' => 'foo',
+                'options' => array(
+                    'bar' => 'Bar',
+                    'baz' => 'Baz',
+                ),
             )
         );
 
@@ -402,31 +390,31 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
 
         $this->assertSame($expected, $actual);
     }
-    
+
     /**
      * @group ZF-4191
      */
     public function testDashesShouldNotBeFilteredFromId()
     {
-        $name = "Foo";
+        $name = 'Foo';
         $options = array(
             -1 => 'Test -1',
-             0 => 'Test 0',
-             1 => 'Test 1'
+            0 => 'Test 0',
+            1 => 'Test 1',
         );
-        
+
         $formRadio = new Zend_View_Helper_FormRadio();
         $formRadio->setView(new Zend_View());
         $html = $formRadio->formRadio($name, -1, null, $options);
-        foreach ( $options as $key=>$value ) {
+        foreach ($options as $key => $value) {
             $fid = "{$name}-{$key}";
-            $this->assertRegExp('/<input([^>]*)(id="'.$fid.'")/', $html);
+            $this->assertRegExp('/<input([^>]*)(id="' . $fid . '")/', $html);
         }
-        
+
         // Assert that radio for value -1 is the selected one
-        $this->assertRegExp('/<input([^>]*)(id="'.$name.'--1")([^>]*)(checked="checked")/', $html);
+        $this->assertRegExp('/<input([^>]*)(id="' . $name . '--1")([^>]*)(checked="checked")/', $html);
     }
-    
+
     /**
      * @group ZF-11477
      */
@@ -435,10 +423,10 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
+            'name' => 'foo',
             'options' => $options,
         ));
 
@@ -456,10 +444,10 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $options = array(
             'foo' => 'Foo',
             'bar' => 'Bar',
-            'baz' => 'Baz'
+            'baz' => 'Baz',
         );
         $html = $this->helper->formRadio(array(
-            'name'    => 'foo',
+            'name' => 'foo',
             'options' => $options,
         ));
         $this->assertContains('value="foo" />', $html);
@@ -467,50 +455,47 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('value="baz" />', $html);
     }
 
-     /**
-      * @group ZF-11620
-      */
-     public function testSeparatorCanRendersAsXhtmlByDefault()
-     {
-         $this->view->doctype('XHTML1_STRICT');
-         $options = array(
-             'foo' => 'Foo',
-             'bar' => 'Bar',
-             'baz' => 'Baz'
-         );
-         $html = $this->helper->formRadio(array(
-             'name'    => 'foo',
-             'value'   => 'bar',
-             'options' => $options,
-         ));
- 
-         $this->assertContains('<br />', $html);
-         $count = substr_count($html, '<br />');
-         $this->assertEquals(2, $count);
-     }
- 
-     /**
-      * @group ZF-11620
-      */
-     public function testeparatorCanRendersAsHtml()
-     {
-         $this->view->doctype('HTML4_STRICT');
-         $options = array(
-             'foo' => 'Foo',
-             'bar' => 'Bar',
-             'baz' => 'Baz'
-         );
-         $html = $this->helper->formRadio(array(
-             'name'    => 'foo',
-             'value'   => 'bar',
-             'options' => $options,
-         ));
- 
-         $this->assertContains('<br>', $html);
-         $count = substr_count($html, '<br>');
-         $this->assertEquals(2, $count);
-     }
+    /**
+     * @group ZF-11620
+     */
+    public function testSeparatorCanRendersAsXhtmlByDefault()
+    {
+        $this->view->doctype('XHTML1_STRICT');
+        $options = array(
+            'foo' => 'Foo',
+            'bar' => 'Bar',
+            'baz' => 'Baz',
+        );
+        $html = $this->helper->formRadio(array(
+            'name' => 'foo',
+            'value' => 'bar',
+            'options' => $options,
+        ));
 
+        $this->assertContains('<br />', $html);
+        $count = substr_count($html, '<br />');
+        $this->assertEquals(2, $count);
+    }
+
+    /**
+     * @group ZF-11620
+     */
+    public function testeparatorCanRendersAsHtml()
+    {
+        $this->view->doctype('HTML4_STRICT');
+        $options = array(
+            'foo' => 'Foo',
+            'bar' => 'Bar',
+            'baz' => 'Baz',
+        );
+        $html = $this->helper->formRadio(array(
+            'name' => 'foo',
+            'value' => 'bar',
+            'options' => $options,
+        ));
+
+        $this->assertContains('<br>', $html);
+        $count = substr_count($html, '<br>');
+        $this->assertEquals(2, $count);
+    }
 }
-
-

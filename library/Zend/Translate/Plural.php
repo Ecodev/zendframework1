@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,42 +12,38 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Locale
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Utility class for returning the plural rules according to the given locale
+ * Utility class for returning the plural rules according to the given locale.
  *
- * @category   Zend
- * @package    Zend_Locale
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Translate_Plural
 {
     /**
-     * Manual rule to use
+     * Manual rule to use.
      *
      * @var string
      */
     protected static $_plural = array();
 
     /**
-     * Returns the plural definition to use
+     * Returns the plural definition to use.
      *
-     * @param  integer $number Number for plural selection
+     * @param  int $number Number for plural selection
      * @param  string  $locale Locale to use
-     * @return integer Plural number to use
+     *
+     * @return int Plural number to use
      */
     public static function getPlural($number, $locale)
     {
-        if ($locale == "pt_BR") {
+        if ($locale == 'pt_BR') {
             // temporary set a locale for brasilian
-            $locale = "xbr";
+            $locale = 'xbr';
         }
 
         if (strlen($locale) > 3) {
@@ -64,7 +60,7 @@ class Zend_Translate_Plural
             return $return;
         }
 
-        switch($locale) {
+        switch ($locale) {
             case 'az':
             case 'bo':
             case 'dz':
@@ -81,6 +77,7 @@ class Zend_Translate_Plural
             case 'vi':
             case 'zh':
                 return 0;
+
                 break;
 
             case 'af':
@@ -197,17 +194,16 @@ class Zend_Translate_Plural
     }
 
     /**
-     * Set's a new plural rule
+     * Set's a new plural rule.
      *
      * @param string $rule   Callback which acts as rule
      * @param string $locale Locale which is used for this callback
-     * @return null
      */
     public static function setPlural($rule, $locale)
     {
-        if ($locale == "pt_BR") {
+        if ($locale == 'pt_BR') {
             // temporary set a locale for brasilian
-            $locale = "xbr";
+            $locale = 'xbr';
         }
 
         if (strlen($locale) > 3) {
@@ -216,6 +212,7 @@ class Zend_Translate_Plural
 
         if (!is_callable($rule)) {
             require_once 'Zend/Translate/Exception.php';
+
             throw new Zend_Translate_Exception('The given rule can not be called');
         }
 

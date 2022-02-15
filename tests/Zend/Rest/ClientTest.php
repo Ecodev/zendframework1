@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -27,12 +24,8 @@ require_once 'Zend/Rest/Client.php';
 require_once 'Zend/Http/Client/Adapter/Test.php';
 
 /**
- * Test cases for Zend_Rest_Client
+ * Test cases for Zend_Rest_Client.
  *
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  * @group      Zend_Rest_Client
@@ -44,8 +37,8 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
         $this->path = __DIR__ . '/responses/';
 
         $this->adapter = new Zend_Http_Client_Adapter_Test();
-        $client        = new Zend_Http_Client(null, array(
-            'adapter' => $this->adapter
+        $client = new Zend_Http_Client(null, array(
+            'adapter' => $this->adapter,
         ));
         Zend_Rest_Client::setHttpClient($client);
 
@@ -105,11 +98,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRestGetThrowsExceptionWithNoUri()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -129,11 +122,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRestFixesPathWithMissingSlashes()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -150,11 +143,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRestGet()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -169,11 +162,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRestPost()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -181,7 +174,7 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
                   . $expXml;
         $this->adapter->setResponse($response);
 
-        $reqXml   = file_get_contents($this->path . 'returnInt.xml');
+        $reqXml = file_get_contents($this->path . 'returnInt.xml');
         $response = $this->rest->restPost('/rest/', $reqXml);
         $this->assertTrue($response instanceof Zend_Http_Response);
         $body = $response->getBody();
@@ -193,11 +186,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRestPostWithArrayData()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -216,11 +209,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRestPut()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -228,7 +221,7 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
                   . $expXml;
         $this->adapter->setResponse($response);
 
-        $reqXml   = file_get_contents($this->path . 'returnInt.xml');
+        $reqXml = file_get_contents($this->path . 'returnInt.xml');
         $response = $this->rest->restPut('/rest/', $reqXml);
         $this->assertTrue($response instanceof Zend_Http_Response);
         $body = $response->getBody();
@@ -240,11 +233,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testRestDelete()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -252,7 +245,7 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
                   . $expXml;
         $this->adapter->setResponse($response);
 
-        $reqXml   = file_get_contents($this->path . 'returnInt.xml');
+        $reqXml = file_get_contents($this->path . 'returnInt.xml');
         $response = $this->rest->restDelete('/rest/', $reqXml);
         $this->assertTrue($response instanceof Zend_Http_Response);
         $body = $response->getBody();
@@ -264,11 +257,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testCallWithHttpMethod()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -284,11 +277,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testCallAsObjectMethodReturnsClient()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -303,11 +296,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 
     public function testCallAsObjectMethodChainPerformsRequest()
     {
-        $expXml   = file_get_contents($this->path . 'returnString.xml');
+        $expXml = file_get_contents($this->path . 'returnString.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -327,10 +320,9 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
     public function testInvalidXmlInClientResultLeadsToException()
     {
         try {
-            $result = new Zend_Rest_Client_Result("invalidxml");
+            $result = new Zend_Rest_Client_Result('invalidxml');
             $this->fail();
-        } catch(Zend_Rest_Client_Result_Exception $e) {
-
+        } catch (Zend_Rest_Client_Result_Exception $e) {
         }
     }
 
@@ -339,11 +331,11 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
      */
     public function testCallStatusGetterOnResponseObjectWhenServerResponseHasNoStatusXmlElement()
     {
-        $expXml   = file_get_contents($this->path . 'returnEmptyStatus.xml');
+        $expXml = file_get_contents($this->path . 'returnEmptyStatus.xml');
         $response = "HTTP/1.0 200 OK\r\n"
                   . "X-powered-by: PHP/5.2.0\r\n"
                   . "Content-type: text/xml\r\n"
-                  . "Content-length: " . strlen($expXml) . "\r\n"
+                  . 'Content-length: ' . strlen($expXml) . "\r\n"
                   . "Server: Apache/1.3.34 (Unix) PHP/5.2.0)\r\n"
                   . "Date: Tue, 06 Feb 2007 15:01:47 GMT\r\n"
                   . "Connection: close\r\n"
@@ -355,5 +347,4 @@ class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($response instanceof Zend_Rest_Client_Result);
         $this->assertFalse($response->getStatus());
     }
-
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Filter/Word/DashToCamelCase.php';
 
 /**
  * Test class for Zend_Filter_Word_DashToCamelCase.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
@@ -40,24 +29,21 @@ class Zend_Filter_Word_DashToCamelCaseTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_DashToCamelCaseTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Filter_Word_DashToCamelCaseTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsWithDashes()
     {
-        $string   = 'camel-cased-words';
-        $filter   = new Zend_Filter_Word_DashToCamelCase();
+        $string = 'camel-cased-words';
+        $filter = new Zend_Filter_Word_DashToCamelCase();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
         $this->assertEquals('CamelCasedWords', $filtered);
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -27,24 +24,21 @@ require_once 'Zend/Locale.php';
 require_once 'Zend/View/Helper/Abstract.php';
 
 /**
- * Translation view helper
+ * Translation view helper.
  *
- * @category  Zend
- * @package   Zend_View
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
 {
     /**
-     * Translation object
+     * Translation object.
      *
      * @var Zend_Translate_Adapter
      */
     protected $_translator;
 
     /**
-     * Constructor for manually handling
+     * Constructor for manually handling.
      *
      * @param Zend_Translate|Zend_Translate_Adapter $translate Instance of Zend_Translate
      */
@@ -60,9 +54,10 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
      * You can give multiple params or an array of params.
      * If you want to output another locale just set it as last single parameter
      * Example 1: translate('%1\$s + %2\$s', $value1, $value2, $locale);
-     * Example 2: translate('%1\$s + %2\$s', array($value1, $value2), $locale);
+     * Example 2: translate('%1\$s + %2\$s', array($value1, $value2), $locale);.
      *
      * @param  string $messageid Id of the message to be translated
+     *
      * @return string|Zend_View_Helper_Translate Translated message
      */
     public function translate($messageid = null)
@@ -72,10 +67,10 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
         }
 
         $translate = $this->getTranslator();
-        $options   = func_get_args();
+        $options = func_get_args();
 
         array_shift($options);
-        $count  = count($options);
+        $count = count($options);
         $locale = null;
         if ($count > 0) {
             if (Zend_Locale::isLocale($options[($count - 1)], null, false) !== false) {
@@ -99,22 +94,23 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Sets a translation Adapter for translation
+     * Sets a translation Adapter for translation.
      *
      * @param  Zend_Translate|Zend_Translate_Adapter $translate Instance of Zend_Translate
-     * @throws Zend_View_Exception When no or a false instance was set
+     *
      * @return Zend_View_Helper_Translate
      */
     public function setTranslator($translate)
     {
         if ($translate instanceof Zend_Translate_Adapter) {
             $this->_translator = $translate;
-        } else if ($translate instanceof Zend_Translate) {
+        } elseif ($translate instanceof Zend_Translate) {
             $this->_translator = $translate->getAdapter();
         } else {
             require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('You must set an instance of Zend_Translate or Zend_Translate_Adapter');
             $e->setView($this->view);
+
             throw $e;
         }
 
@@ -122,9 +118,9 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Retrieve translation object
+     * Retrieve translation object.
      *
-     * @return Zend_Translate_Adapter|null
+     * @return null|Zend_Translate_Adapter
      */
     public function getTranslator()
     {
@@ -139,10 +135,10 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Set's an new locale for all further translations
+     * Set's an new locale for all further translations.
      *
      * @param  string|Zend_Locale $locale New locale to set
-     * @throws Zend_View_Exception When no Zend_Translate instance was set
+     *
      * @return Zend_View_Helper_Translate
      */
     public function setLocale($locale = null)
@@ -152,17 +148,18 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
             require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('You must set an instance of Zend_Translate or Zend_Translate_Adapter');
             $e->setView($this->view);
+
             throw $e;
         }
 
         $translate->setLocale($locale);
+
         return $this;
     }
 
     /**
-     * Returns the set locale for translations
+     * Returns the set locale for translations.
      *
-     * @throws Zend_View_Exception When no Zend_Translate instance was set
      * @return string|Zend_Locale
      */
     public function getLocale()
@@ -172,6 +169,7 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
             require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('You must set an instance of Zend_Translate or Zend_Translate_Adapter');
             $e->setView($this->view);
+
             throw $e;
         }
 

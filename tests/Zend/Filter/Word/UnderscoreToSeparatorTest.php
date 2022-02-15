@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Filter/Word/UnderscoreToSeparator.php';
 
 /**
  * Test class for Zend_Filter_Word_UnderscoreToSeparator.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
@@ -40,20 +29,18 @@ class Zend_Filter_Word_UnderscoreToSeparatorTest extends \PHPUnit\Framework\Test
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Filter_Word_UnderscoreToSeparatorTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Filter_Word_UnderscoreToSeparatorTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testFilterSeparatesCamelCasedWordsDefaultSeparator()
     {
-        $string   = 'underscore_separated_words';
-        $filter   = new Zend_Filter_Word_UnderscoreToSeparator();
+        $string = 'underscore_separated_words';
+        $filter = new Zend_Filter_Word_UnderscoreToSeparator();
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
@@ -62,13 +49,11 @@ class Zend_Filter_Word_UnderscoreToSeparatorTest extends \PHPUnit\Framework\Test
 
     public function testFilterSeparatesCamelCasedWordsProvidedSeparator()
     {
-        $string   = 'underscore_separated_words';
-        $filter   = new Zend_Filter_Word_UnderscoreToSeparator(':=:');
+        $string = 'underscore_separated_words';
+        $filter = new Zend_Filter_Word_UnderscoreToSeparator(':=:');
         $filtered = $filter->filter($string);
 
         $this->assertNotEquals($string, $filtered);
         $this->assertEquals('underscore:=:separated:=:words', $filtered);
     }
-
 }
-

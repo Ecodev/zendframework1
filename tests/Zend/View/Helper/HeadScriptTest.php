@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_HeadScript */
 require_once 'Zend/View/Helper/HeadScript.php';
@@ -34,10 +29,6 @@ require_once 'Zend/Registry.php';
 /**
  * Test class for Zend_View_Helper_HeadScript.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -56,20 +47,16 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadScriptTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadScriptTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -85,8 +72,6 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -115,19 +100,26 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
         try {
             $this->helper->append('foo');
             $this->fail('Append should throw exception with invalid item');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
+
         try {
             $this->helper->offsetSet(1, 'foo');
             $this->fail('OffsetSet should throw exception with invalid item');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
+
         try {
             $this->helper->prepend('foo');
             $this->fail('Prepend should throw exception with invalid item');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
+
         try {
             $this->helper->set('foo');
             $this->fail('Set should throw exception with invalid item');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     protected function _inflectAction($type)
@@ -273,8 +265,8 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
     public function testHeadScriptAppropriatelySetsScriptItems()
     {
         $this->helper->headScript('FILE', 'foo', 'set')
-                     ->headScript('SCRIPT', 'bar', 'prepend')
-                     ->headScript('SCRIPT', 'baz', 'append');
+            ->headScript('SCRIPT', 'bar', 'prepend')
+            ->headScript('SCRIPT', 'baz', 'append');
         $items = $this->helper->getArrayCopy();
         for ($i = 0; $i < 3; ++$i) {
             $item = $items[$i];
@@ -282,15 +274,18 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
                 case 0:
                     $this->assertObjectHasAttribute('source', $item);
                     $this->assertEquals('bar', $item->source);
+
                     break;
                 case 1:
                     $this->assertObjectHasAttribute('attributes', $item);
                     $this->assertTrue(isset($item->attributes['src']));
                     $this->assertEquals('foo', $item->attributes['src']);
+
                     break;
                 case 2:
                     $this->assertObjectHasAttribute('source', $item);
                     $this->assertEquals('baz', $item->source);
+
                     break;
             }
         }
@@ -299,8 +294,8 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
     public function testToStringRendersValidHtml()
     {
         $this->helper->headScript('FILE', 'foo', 'set')
-                     ->headScript('SCRIPT', 'bar', 'prepend')
-                     ->headScript('SCRIPT', 'baz', 'append');
+            ->headScript('SCRIPT', 'bar', 'prepend')
+            ->headScript('SCRIPT', 'baz', 'append');
         $string = $this->helper->toString();
 
         $scripts = substr_count($string, '<script ');
@@ -316,7 +311,7 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('bar', $string);
         $this->assertContains('baz', $string);
 
-        $doc = new DOMDocument;
+        $doc = new DOMDocument();
         $dom = $doc->loadHtml($string);
         $this->assertTrue($dom !== false);
     }
@@ -368,7 +363,7 @@ document.write(bar.strlen());');
     public function testCanRenderArbitraryAttributesOnRequest()
     {
         $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', array('bogus' => 'deferred'))
-             ->setAllowArbitraryAttributes(true);
+            ->setAllowArbitraryAttributes(true);
         $test = $this->helper->headScript()->toString();
         $this->assertContains('bogus="deferred"', $test);
     }
@@ -376,21 +371,23 @@ document.write(bar.strlen());');
     public function testCanPerformMultipleSerialCaptures()
     {
         $this->helper->headScript()->captureStart();
-        echo "this is something captured";
+        echo 'this is something captured';
         $this->helper->headScript()->captureEnd();
+
         try {
             $this->helper->headScript()->captureStart();
         } catch (Zend_View_Exception $e) {
             $this->fail('Serial captures should be allowed');
         }
-        echo "this is something else captured";
+        echo 'this is something else captured';
         $this->helper->headScript()->captureEnd();
     }
 
     public function testCannotNestCaptures()
     {
         $this->helper->headScript()->captureStart();
-        echo "this is something captured";
+        echo 'this is something captured';
+
         try {
             $this->helper->headScript()->captureStart();
             $this->helper->headScript()->captureEnd();
@@ -403,7 +400,8 @@ document.write(bar.strlen());');
 
     /**
      * @group ZF-3928
-     * @link http://framework.zend.com/issues/browse/ZF-3928
+     *
+     * @see http://framework.zend.com/issues/browse/ZF-3928
      */
     public function testTurnOffAutoEscapeDoesNotEncodeAmpersand()
     {
@@ -431,12 +429,10 @@ document.write(bar.strlen());');
      */
     public function testContainerMaintainsCorrectOrderOfItems()
     {
-
         $this->helper->offsetSetFile(1, 'test1.js');
         $this->helper->offsetSetFile(20, 'test2.js');
         $this->helper->offsetSetFile(10, 'test3.js');
         $this->helper->offsetSetFile(5, 'test4.js');
-
 
         $test = $this->helper->toString();
 
@@ -532,4 +528,3 @@ document.write(bar.strlen());');
         $this->assertContains('<!--<![endif]-->', $test);
     }
 }
-

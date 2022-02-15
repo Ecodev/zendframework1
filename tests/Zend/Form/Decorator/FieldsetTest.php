@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Decorator/Fieldset.php';
 
 require_once 'Zend/Form.php';
@@ -29,12 +23,8 @@ require_once 'Zend/Form/Element.php';
 require_once 'Zend/View.php';
 require_once 'Zend/Form/SubForm.php';
 /**
- * Test class for Zend_Form_Decorator_Fieldset
+ * Test class for Zend_Form_Decorator_Fieldset.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -42,21 +32,16 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_FieldsetTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_FieldsetTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -66,8 +51,6 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -77,6 +60,7 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+
         return $view;
     }
 
@@ -103,7 +87,7 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
         $this->testLegendInitiallyNull();
         $element = new Zend_Form_Element('foo');
         $this->decorator->setElement($element)
-                        ->setOption('legend', 'this is a legend');
+            ->setOption('legend', 'this is a legend');
         $this->assertEquals('this is a legend', $this->decorator->getLegend());
     }
 
@@ -130,10 +114,10 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $form = new Zend_Form_SubForm();
         $form->setName('bar')
-             ->setView($this->getView());
+            ->setView($this->getView());
         $html = $this->decorator->setElement($form)
-                                ->setOption('id', 'foo-id')
-                                ->render('content');
+            ->setOption('id', 'foo-id')
+            ->render('content');
         $this->assertContains('foo-id', $html);
     }
 
@@ -144,8 +128,8 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $form = new Zend_Form();
         $form->setAction('/foo/bar')
-             ->setMethod('post')
-             ->setView($this->getView());
+            ->setMethod('post')
+            ->setView($this->getView());
         $this->decorator->setElement($form);
         $test = $this->decorator->render('content');
         $this->assertContains('<fieldset', $test, $test);
@@ -160,9 +144,9 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $form = new Zend_Form();
         $form->setAction('/foo/bar')
-             ->setMethod('post')
-             ->setName('foobar')
-             ->setView($this->getView());
+            ->setMethod('post')
+            ->setName('foobar')
+            ->setView($this->getView());
         $this->decorator->setElement($form);
         $test = $this->decorator->render('content');
         $this->assertContains('id="fieldset-foobar"', $test);
@@ -172,13 +156,13 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $form = new Zend_Form();
         $form->setAction('/foo/bar')
-             ->setMethod('post')
-             ->setView($this->getView());
+            ->setMethod('post')
+            ->setView($this->getView());
         $this->decorator->setElement($form);
         $test = $this->decorator->render('content');
         $this->assertNotContains('id="', $test);
     }
-    /**#@-*/
+    // #@-
 
     /**
      * @group ZF-3728
@@ -187,9 +171,9 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $form = new Zend_Form();
         $form->setAction('/foo/bar')
-             ->setMethod('post')
-             ->setAttrib('enctype', 'dojo/method')
-             ->setView($this->getView());
+            ->setMethod('post')
+            ->setAttrib('enctype', 'dojo/method')
+            ->setView($this->getView());
         $this->decorator->setElement($form);
         $test = $this->decorator->render('content');
         $this->assertContains('<fieldset', $test, $test);
@@ -203,9 +187,9 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $form = new Zend_Form();
         $form->setAction('/foo/bar')
-             ->setMethod('post')
-             ->setAttrib('helper', 'form')
-             ->setView($this->getView());
+            ->setMethod('post')
+            ->setAttrib('helper', 'form')
+            ->setView($this->getView());
         $this->decorator->setElement($form);
         $test = $this->decorator->render('content');
         $this->assertContains('<fieldset', $test, $test);
@@ -219,11 +203,11 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $form = new Zend_Form();
         $form->setName('bar')
-             ->setAttrib('id', 'form-id')
-             ->setView($this->getView());
+            ->setAttrib('id', 'form-id')
+            ->setView($this->getView());
         $html = $this->decorator->setElement($form)
-                                ->setOption('id', 'fieldset-id')
-                                ->render('content');
+            ->setOption('id', 'fieldset-id')
+            ->render('content');
         $this->assertContains('<fieldset id="fieldset-id"', $html);
     }
 
@@ -248,11 +232,10 @@ class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
     {
         $form = new Zend_Form();
         $form->setAttrib('id', 'form-id')
-             ->setView($this->getView());
+            ->setView($this->getView());
 
         $html = $this->decorator->setElement($form)->render('content');
 
         $this->assertContains('<fieldset id="fieldset-form-id"', $html);
     }
 }
-

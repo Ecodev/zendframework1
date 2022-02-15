@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,29 +12,22 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id $
  */
 
 /**
- * Zend_Translate
+ * Zend_Translate.
  */
 require_once 'Zend/Translate.php';
 
 /**
- * Zend_Translate_Plural
+ * Zend_Translate_Plural.
  */
 require_once 'Zend/Translate/Plural.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Translate
  */
@@ -42,12 +35,10 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_TranslateTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_TranslateTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -117,7 +108,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
 
         try {
             $lang->xxxFunction();
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             // success
         }
@@ -183,8 +174,8 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     {
         $lang = new Zend_Translate(Zend_Translate::AN_ARRAY, array('msg1' => 'Message 1'), 'en');
         $lang->addTranslation(array('msg1' => 'Message 1 (ru)'), 'ru');
-        $this->assertTrue( $lang->isAvailable('en'));
-        $this->assertTrue( $lang->isAvailable('ru'));
+        $this->assertTrue($lang->isAvailable('en'));
+        $this->assertTrue($lang->isAvailable('ru'));
         $this->assertFalse($lang->isAvailable('fr'));
     }
 
@@ -192,21 +183,21 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     {
         $lang = new Zend_Translate(Zend_Translate::AN_ARRAY, array('msg1' => 'Message 1 (en)'), 'en');
         $lang->addTranslation(array('msg1' => 'Message 1 (ru)'), 'ru');
-        $this->assertEquals('Message 1 (en)', $lang->_('msg1', 'en'        ));
-        $this->assertEquals('Message 1 (ru)', $lang->_('msg1'              ));
-        $this->assertEquals('msg2',           $lang->_('msg2', 'en'        ));
-        $this->assertEquals('msg2',           $lang->_('msg2'              ));
+        $this->assertEquals('Message 1 (en)', $lang->_('msg1', 'en'));
+        $this->assertEquals('Message 1 (ru)', $lang->_('msg1'));
+        $this->assertEquals('msg2',           $lang->_('msg2', 'en'));
+        $this->assertEquals('msg2',           $lang->_('msg2'));
         $this->assertEquals('Message 1 (en)', $lang->translate('msg1', 'en'));
-        $this->assertEquals('Message 1 (ru)', $lang->translate('msg1'      ));
+        $this->assertEquals('Message 1 (ru)', $lang->translate('msg1'));
         $this->assertEquals('msg2',           $lang->translate('msg2', 'en'));
-        $this->assertEquals('msg2',           $lang->translate('msg2'      ));
+        $this->assertEquals('msg2',           $lang->translate('msg2'));
     }
 
     public function testIsTranslated()
     {
         $lang = new Zend_Translate(Zend_Translate::AN_ARRAY, array('msg1' => 'Message 1 (en)'), 'en_US');
-        $this->assertTrue( $lang->isTranslated('msg1'             ));
-        $this->assertFalse($lang->isTranslated('msg2'             ));
+        $this->assertTrue($lang->isTranslated('msg1'));
+        $this->assertFalse($lang->isTranslated('msg2'));
         $this->assertFalse($lang->isTranslated('msg1', false, 'en'));
         $this->assertFalse($lang->isTranslated('msg1', true,  'en'));
         $this->assertFalse($lang->isTranslated('msg1', false, 'ru'));
@@ -281,7 +272,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-4994
+     * ZF-4994.
      */
     public function testCamelCasedOptions()
     {
@@ -291,7 +282,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-4905
+     * ZF-4905.
      */
     public function testPathNameWithColonResolution()
     {
@@ -312,7 +303,6 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         restore_error_handler();
     }
 
-
     public function testSettingUnknownLocaleWithTriggeredError()
     {
         $lang = new Zend_Translate(Zend_Translate::AN_CSV, __DIR__ . '/Translate/Adapter/_files', 'en', array('delimiter' => ','));
@@ -324,9 +314,8 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         restore_error_handler();
     }
 
-
     /**
-     * Tests if cached options are read from the cache for a new instance
+     * Tests if cached options are read from the cache for a new instance.
      */
     public function testGetOptionsFromCache()
     {
@@ -346,7 +335,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests if setting locale as options sets locale
+     * Tests if setting locale as options sets locale.
      */
     public function testSetLocaleAsOption()
     {
@@ -359,7 +348,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests getting null returns all options
+     * Tests getting null returns all options.
      */
     public function testGettingAllOptions()
     {
@@ -368,7 +357,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests if setting locale as options sets locale
+     * Tests if setting locale as options sets locale.
      */
     public function testGettingUnknownOption()
     {
@@ -377,7 +366,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests getting of all message ids works
+     * Tests getting of all message ids works.
      */
     public function testGettingAllMessageIds()
     {
@@ -388,7 +377,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests getting of single message ids
+     * Tests getting of single message ids.
      */
     public function testGettingSingleMessageIds()
     {
@@ -400,7 +389,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests getting of all messages
+     * Tests getting of all messages.
      */
     public function testGettingAllMessages()
     {
@@ -413,23 +402,22 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(
             array(
                 'en' => array('msg1' => 'Message 1', 'msg2' => 'Message 2'),
-                'ru' => array('msg1' => 'Message 1 (ru)')),
+                'ru' => array('msg1' => 'Message 1 (ru)'), ),
             $lang->getMessages('all'));
     }
 
     /**
-     * Tests getting default plurals
+     * Tests getting default plurals.
      */
     public function testGettingPlurals()
     {
         $lang = new Zend_Translate(
             Zend_Translate::AN_ARRAY,
-            array('singular' =>
-                array('plural_0 (en)',
-                    'plural_1 (en)',
-                    'plural_2 (en)',
-                    'plural_3 (en)'),
-                'plural' => ''), 'en'
+            array('singular' => array('plural_0 (en)',
+                'plural_1 (en)',
+                'plural_2 (en)',
+                'plural_3 (en)', ),
+                'plural' => '', ), 'en'
         );
 
         $this->assertEquals('plural_0 (en)', $lang->translate(array('singular', 'plural', 1)));
@@ -440,18 +428,17 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests getting plurals from lowered locale
+     * Tests getting plurals from lowered locale.
      */
     public function testGettingPluralsFromLoweredLocale()
     {
         $lang = new Zend_Translate(
             Zend_Translate::AN_ARRAY,
-            array('singular' =>
-                array('plural_0 (en)',
-                    'plural_1 (en)',
-                    'plural_2 (en)',
-                    'plural_3 (en)'),
-                'plural' => ''), 'en'
+            array('singular' => array('plural_0 (en)',
+                'plural_1 (en)',
+                'plural_2 (en)',
+                'plural_3 (en)', ),
+                'plural' => '', ), 'en'
         );
         $lang->addTranslation(array('msg1' => 'Message 1 (ru)'), 'en_US');
         $lang->setLocale('en_US');
@@ -461,18 +448,17 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests getting plurals from lowered locale
+     * Tests getting plurals from lowered locale.
      */
     public function testGettingPluralsFromUnknownLocale()
     {
         $lang = new Zend_Translate(
             Zend_Translate::AN_ARRAY,
-            array('singular' =>
-                array('plural_0 (en)',
-                    'plural_1 (en)',
-                    'plural_2 (en)',
-                    'plural_3 (en)'),
-                'plural' => ''), 'en'
+            array('singular' => array('plural_0 (en)',
+                'plural_1 (en)',
+                'plural_2 (en)',
+                'plural_3 (en)', ),
+                'plural' => '', ), 'en'
         );
 
         $this->assertEquals('singular', $lang->translate(array('singular', 'plural', 1), 'ru'));
@@ -502,7 +488,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-6671
+     * ZF-6671.
      */
     public function testAddTranslationAfterwards()
     {
@@ -514,7 +500,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-7560
+     * ZF-7560.
      */
     public function testUseNumericTranslations()
     {
@@ -526,19 +512,18 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Message 4', $lang->_(4));
     }
 
-
     /**
-     * ZF-7130
+     * ZF-7130.
      */
     public function testMultiFolderScan()
     {
         $lang = new Zend_Translate(Zend_Translate::AN_ARRAY, __DIR__ . '/Translate/Adapter/_files/testarray', 'en_GB', array('scan' => Zend_Translate::LOCALE_DIRECTORY));
-        $this->assertEquals('Message 1 (ja)', $lang->_('Message 1', 'ja'        ));
-        $this->assertEquals('Message 1 (en)', $lang->_('Message 1'              ));
+        $this->assertEquals('Message 1 (ja)', $lang->_('Message 1', 'ja'));
+        $this->assertEquals('Message 1 (en)', $lang->_('Message 1'));
     }
 
     /**
-     * ZF-7214
+     * ZF-7214.
      */
     public function testMultiClear()
     {
@@ -549,7 +534,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-7941
+     * ZF-7941.
      */
     public function testEmptyTranslation()
     {
@@ -558,7 +543,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Translating Object
+     * Translating Object.
      */
     public function testObjectTranslation()
     {
@@ -569,18 +554,17 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests getting plurals from lowered locale
+     * Tests getting plurals from lowered locale.
      */
     public function testGettingPluralsUsingOwnRule()
     {
         $lang = new Zend_Translate(
             Zend_Translate::AN_ARRAY,
-            array('singular' =>
-                array('plural_0 (en)',
-                    'plural_1 (en)',
-                    'plural_2 (en)',
-                    'plural_3 (en)'),
-                'plural' => ''), 'en'
+            array('singular' => array('plural_0 (en)',
+                'plural_1 (en)',
+                'plural_2 (en)',
+                'plural_3 (en)', ),
+                'plural' => '', ), 'en'
         );
         $lang->addTranslation(array('msg1' => 'Message 1 (ru)'), 'en_US');
         $lang->setLocale('en_US');
@@ -599,12 +583,11 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     {
         $translate = new Zend_Translate(
             Zend_Translate::AN_ARRAY,
-            array('singular' =>
-                array('plural_0 (en)',
-                    'plural_1 (en)',
-                    'plural_2 (en)',
-                    'plural_3 (en)'),
-                'plural' => ''), 'en'
+            array('singular' => array('plural_0 (en)',
+                'plural_1 (en)',
+                'plural_2 (en)',
+                'plural_3 (en)', ),
+                'plural' => '', ), 'en'
         );
 
         $this->assertFalse($translate->isTranslated('Message 1'));
@@ -633,7 +616,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
             'auto',
             array(
                 'scan' => Zend_Translate::LOCALE_FILENAME,
-                'ignore' => array('.', 'ignoreme', 'LC_TEST')
+                'ignore' => array('.', 'ignoreme', 'LC_TEST'),
             )
         );
 
@@ -648,7 +631,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
             'auto',
             array(
                 'scan' => Zend_Translate::LOCALE_FILENAME,
-                'ignore' => array('.', 'regex_1' => '/de_DE/', 'regex' => '/ja/')
+                'ignore' => array('.', 'regex_1' => '/de_DE/', 'regex' => '/ja/'),
             )
         );
 
@@ -667,10 +650,10 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
             array(
                 'adapter' => Zend_Translate::AN_ARRAY,
                 'content' => __DIR__ . '/Translate/Adapter/_files/testarray/',
-                'locale'  => 'auto',
-                'scan'    => Zend_Translate::LOCALE_FILENAME,
-                'ignore'  => array('.', 'ignoreme', 'LC_OTHER'),
-                'route'   => array('ja' => 'en_US'),
+                'locale' => 'auto',
+                'scan' => Zend_Translate::LOCALE_FILENAME,
+                'ignore' => array('.', 'ignoreme', 'LC_OTHER'),
+                'route' => array('ja' => 'en_US'),
             )
         );
 
@@ -678,7 +661,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
             array(
                 'adapter' => Zend_Translate::AN_CSV,
                 'content' => __DIR__ . '/Translate/Adapter/_files/translation_en.csv',
-                'locale'  => 'en_US',
+                'locale' => 'en_US',
             )
         );
 
@@ -691,7 +674,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-9877
+     * ZF-9877.
      */
     public function testSetCacheThroughOptions()
     {
@@ -703,8 +686,8 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         $translate = new Zend_Translate(array(
             'adapter' => Zend_Translate::AN_ARRAY,
             'content' => array('msg1' => 'Message 1 (en)'),
-            'locale'  => 'en',
-            'cache'   => $cache,
+            'locale' => 'en',
+            'cache' => $cache,
         ));
 
         $return = Zend_Translate::getCache();
@@ -713,14 +696,12 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
@@ -728,13 +709,14 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Custom callback for testGettingPluralsUsingOwnRule
+     * Custom callback for testGettingPluralsUsingOwnRule.
      *
-     * @param  integer $number
-     * @return integer
+     * @param  int $number
+     *
+     * @return int
      */
-    public function customPlural($number) {
+    public function customPlural($number)
+    {
         return 1;
     }
 }
-

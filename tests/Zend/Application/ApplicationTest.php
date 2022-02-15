@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_Loader_Autoloader */
 require_once 'Zend/Loader/Autoloader.php';
@@ -29,10 +24,6 @@ require_once 'Zend/Loader/Autoloader.php';
 require_once 'Zend/Application.php';
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
@@ -40,7 +31,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -190,7 +181,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
     public function testPassingPhpSettingsSetsIniValues()
     {
         $this->iniOptions[] = 'html_errors';
-        $orig     = ini_get('html_errors');
+        $orig = ini_get('html_errors');
         $expected = $orig ? 0 : 1;
         $this->application->setOptions(array(
             'phpSettings' => array(
@@ -203,7 +194,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
     public function testPassingPhpSettingsAsArrayShouldConstructDotValuesAndSetRelatedIniValues()
     {
         $this->iniOptions[] = 'date.default_latitude';
-        $orig     = ini_get('date.default_latitude');
+        $orig = ini_get('date.default_latitude');
         $expected = '1.234';
         $this->application->setOptions(array(
             'phpSettings' => array(
@@ -245,7 +236,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
     {
         $this->application->setOptions(array(
             'bootstrap' => array(
-                'path'  => __DIR__ . '/_files/ZfAppBootstrap.php',
+                'path' => __DIR__ . '/_files/ZfAppBootstrap.php',
                 'class' => 'ZfAppBootstrap',
             ),
         ));
@@ -331,6 +322,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 
     /**
      * This was changed to have the passed in array always overwrite the config file.
+     *
      * @group ZF-6811
      */
     public function testPassingArrayOptionsWithConfigKeyShouldLoadOptionsAndNotOverride()
@@ -374,7 +366,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
     {
         $this->application->setOptions(array(
             'bootstrap' => array(
-                'path'  => __DIR__ . '/_files/ZfAppNoBootstrap.php',
+                'path' => __DIR__ . '/_files/ZfAppNoBootstrap.php',
                 'class' => 'ZfAppNoBootstrap',
             ),
         ));
@@ -388,7 +380,7 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
     {
         $this->application->setOptions(array(
             'bootstrap' => array(
-                'path'  => __DIR__ . '/_files/ZfAppBadBootstrap.php',
+                'path' => __DIR__ . '/_files/ZfAppBadBootstrap.php',
                 'class' => 'ZfAppBadBootstrap',
             ),
         ));
@@ -405,12 +397,12 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
             'Resources' => array(
                 'modules' => array(),
                 'FrontController' => array(
-                    'baseUrl'             => '/foo',
-                    'moduleDirectory'     => __DIR__ . '/_files/modules',
+                    'baseUrl' => '/foo',
+                    'moduleDirectory' => __DIR__ . '/_files/modules',
                 ),
             ),
             'Bootstrap' => array(
-                'path'  => __DIR__ . '/_files/ZfAppBootstrap.php',
+                'path' => __DIR__ . '/_files/ZfAppBootstrap.php',
                 'class' => 'ZfAppBootstrap',
             ),
         );
@@ -425,8 +417,8 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
     public function testSetOptionsShouldProperlyMergeTwoConfigFileOptions()
     {
         $application = new Zend_Application(
-            'production', __DIR__ .
-            '/_files/zf-6679-1.inc'
+            'production', __DIR__
+            . '/_files/zf-6679-1.inc'
         );
         $options = $application->getOptions();
         $this->assertEquals(array('includePaths', 'config'), array_keys($options));
@@ -440,15 +432,15 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
         if (!constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST')) {
             $this->markTestSkipped();
         }
-        $path   = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH');
+        $path = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_PATH');
         $latest = constant('TESTS_ZEND_LOADER_AUTOLOADER_MULTIVERSION_LATEST');
 
         $application = new Zend_Application('production', array(
-            'autoloaderZfPath'    => $path,
+            'autoloaderZfPath' => $path,
             'autoloaderZfVersion' => 'latest',
         ));
         $autoloader = $application->getAutoloader();
-        $actual     = $autoloader->getZfPath();
+        $actual = $autoloader->getZfPath();
         $this->assertContains($latest, $actual);
     }
 
@@ -482,9 +474,9 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
         $application = new Zend_Application('testing', array(
             'bootstrap' => array(
                 'path' => __DIR__ . '/_files/ZfAppBootstrap.php',
-                'class' => 'ZfAppBootstrap'
-                )
-            )
+                'class' => 'ZfAppBootstrap',
+            ),
+        )
         );
         $application->bootstrap('foo');
 
@@ -497,12 +489,11 @@ class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
         $application = new Zend_Application('testing', array(
             'config' => array(
                 __DIR__ . '/_files/Zf-6719-1.ini',
-                __DIR__ . '/_files/Zf-6719-2.ini'
-                )
-            )
+                __DIR__ . '/_files/Zf-6719-2.ini',
+            ),
+        )
         );
 
         $this->assertEquals('baz', $application->getOption('foo'));
     }
 }
-

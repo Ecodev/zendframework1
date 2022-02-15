@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,9 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -22,7 +19,7 @@
 require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
- * Zend_Form_Decorator_ViewHelper
+ * Zend_Form_Decorator_ViewHelper.
  *
  * Decorate an element by using a view helper to render it.
  *
@@ -34,17 +31,15 @@ require_once 'Zend/Form/Decorator/Abstract.php';
  * Assumes the view helper accepts three parameters, the name, value, and
  * optional attributes; these will be provided by the element.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Decorator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
 {
     /**
-     * Element types that represent buttons
+     * Element types that represent buttons.
+     *
      * @var array
      */
     protected $_buttonTypes = array(
@@ -54,25 +49,28 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
     );
 
     /**
-     * View helper to use when rendering
+     * View helper to use when rendering.
+     *
      * @var string
      */
     protected $_helper;
 
     /**
-     * Set view helper to use when rendering
+     * Set view helper to use when rendering.
      *
      * @param  string $helper
+     *
      * @return Zend_Form_Decorator_Element_ViewHelper
      */
     public function setHelper($helper)
     {
         $this->_helper = (string) $helper;
+
         return $this;
     }
 
     /**
-     * Retrieve view helper for rendering element
+     * Retrieve view helper for rendering element.
      *
      * @return string
      */
@@ -103,7 +101,7 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * If element is a Zend_Form_Element, will attempt to namespace it if the
      * element belongs to an array.
@@ -136,7 +134,7 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
     }
 
     /**
-     * Retrieve element attributes
+     * Retrieve element attributes.
      *
      * Set id to element name and/or array item.
      *
@@ -179,12 +177,13 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
     }
 
     /**
-     * Get value
+     * Get value.
      *
      * If element type is one of the button types, returns the label.
      *
      * @param  Zend_Form_Element $element
-     * @return string|null
+     *
+     * @return null|string
      */
     public function getValue($element)
     {
@@ -199,6 +198,7 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
 
                     return $element->getValue();
                 }
+
                 return $element->getLabel();
             }
         }
@@ -207,15 +207,15 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
     }
 
     /**
-     * Render an element using a view helper
+     * Render an element using a view helper.
      *
      * Determine view helper from 'viewHelper' option, or, if none set, from
      * the element type. Then call as
      * helper($element->getName(), $element->getValue(), $element->getAttribs())
      *
      * @param  string $content
+     *
      * @return string
-     * @throws Zend_Form_Decorator_Exception if element or view are not registered
      */
     public function render($content)
     {
@@ -224,6 +224,7 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
         $view = $element->getView();
         if (null === $view) {
             require_once 'Zend/Form/Decorator/Exception.php';
+
             throw new Zend_Form_Decorator_Exception('ViewHelper decorator cannot render without a registered view object');
         }
 
@@ -231,15 +232,15 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
             $element->getMultiOptions();
         }
 
-        $helper        = $this->getHelper();
-        $separator     = $this->getSeparator();
-        $value         = $this->getValue($element);
-        $attribs       = $this->getElementAttribs();
-        $name          = $element->getFullyQualifiedName();
-        $id            = $element->getId();
+        $helper = $this->getHelper();
+        $separator = $this->getSeparator();
+        $value = $this->getValue($element);
+        $attribs = $this->getElementAttribs();
+        $name = $element->getFullyQualifiedName();
+        $id = $element->getId();
         $attribs['id'] = $id;
 
-        $helperObject  = $view->getHelper($helper);
+        $helperObject = $view->getHelper($helper);
         if (method_exists($helperObject, 'setTranslator')) {
             $helperObject->setTranslator($element->getTranslator());
         }

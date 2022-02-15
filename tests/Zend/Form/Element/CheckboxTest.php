@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Element/Checkbox.php';
 
 /**
- * Test class for Zend_Form_Element_Checkbox
+ * Test class for Zend_Form_Element_Checkbox.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -38,20 +28,16 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_CheckboxTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_CheckboxTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -61,8 +47,6 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -71,6 +55,7 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
     public function getView()
     {
         require_once 'Zend/View.php';
+
         return new Zend_View();
     }
 
@@ -191,7 +176,7 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
     public function testSetOptionsSetsInitialValueAccordingToCheckedAndUncheckedValues()
     {
         $options = array(
-            'checkedValue'   => 'foo',
+            'checkedValue' => 'foo',
             'uncheckedValue' => 'bar',
         );
 
@@ -203,13 +188,13 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
     {
         $options = array(
             'test1' => array(
-                'value'          => 'foo',
-                'checkedValue'   => 'foo',
+                'value' => 'foo',
+                'checkedValue' => 'foo',
                 'uncheckedValue' => 'bar',
             ),
             'test2' => array(
-                'value'          => 'bar',
-                'checkedValue'   => 'foo',
+                'value' => 'bar',
+                'checkedValue' => 'foo',
                 'uncheckedValue' => 'bar',
             ),
         );
@@ -240,10 +225,9 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
+     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
      *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
+     * @see   http://framework.zend.com/issues/browse/ZF-2794
      */
     protected function _checkZf2794()
     {
@@ -252,4 +236,3 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
         }
     }
 }
-

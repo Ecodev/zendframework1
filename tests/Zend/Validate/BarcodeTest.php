@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -24,20 +21,17 @@
 require_once 'Zend/Validate/Barcode.php';
 
 /**
- * Zend_Validate_Barcode
+ * Zend_Validate_Barcode.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
  * @uses       Zend_Validate_Barcode
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Test if EAN-13 contains only numeric characters
+     * Test if EAN-13 contains only numeric characters.
      *
      * @group ZF-3297
      */
@@ -82,7 +76,7 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
 
     public function testInvalidChecksumAdapter()
     {
-        require_once __DIR__ . "/_files/MyBarcode1.php";
+        require_once __DIR__ . '/_files/MyBarcode1.php';
         $barcode = new Zend_Validate_Barcode('MyBarcode1');
         $this->assertFalse($barcode->isValid('0000000'));
         $this->assertTrue(array_key_exists('barcodeFailed', $barcode->getMessages()));
@@ -91,28 +85,28 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
 
     public function testInvalidCharAdapter()
     {
-        require_once __DIR__ . "/_files/MyBarcode1.php";
+        require_once __DIR__ . '/_files/MyBarcode1.php';
         $barcode = new Zend_Validate_Barcode('MyBarcode1');
         $this->assertFalse($barcode->getAdapter()->checkChars(123));
     }
 
     public function testAscii128CharacterAdapter()
     {
-        require_once __DIR__ . "/_files/MyBarcode2.php";
+        require_once __DIR__ . '/_files/MyBarcode2.php';
         $barcode = new Zend_Validate_Barcode('MyBarcode2');
         $this->assertTrue($barcode->getAdapter()->checkChars('1234QW!"'));
     }
 
     public function testInvalidLengthAdapter()
     {
-        require_once __DIR__ . "/_files/MyBarcode2.php";
+        require_once __DIR__ . '/_files/MyBarcode2.php';
         $barcode = new Zend_Validate_Barcode('MyBarcode2');
         $this->assertFalse($barcode->getAdapter()->checkLength(123));
     }
 
     public function testArrayLengthAdapter()
     {
-        require_once __DIR__ . "/_files/MyBarcode2.php";
+        require_once __DIR__ . '/_files/MyBarcode2.php';
         $barcode = new Zend_Validate_Barcode('MyBarcode2');
         $this->assertTrue($barcode->getAdapter()->checkLength('1'));
         $this->assertFalse($barcode->getAdapter()->checkLength('12'));
@@ -122,7 +116,7 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
 
     public function testArrayLengthAdapter2()
     {
-        require_once __DIR__ . "/_files/MyBarcode3.php";
+        require_once __DIR__ . '/_files/MyBarcode3.php';
         $barcode = new Zend_Validate_Barcode('MyBarcode3');
         $this->assertTrue($barcode->getAdapter()->checkLength('1'));
         $this->assertTrue($barcode->getAdapter()->checkLength('12'));
@@ -132,7 +126,7 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
 
     public function testOddLengthAdapter()
     {
-        require_once __DIR__ . "/_files/MyBarcode4.php";
+        require_once __DIR__ . '/_files/MyBarcode4.php';
         $barcode = new Zend_Validate_Barcode('MyBarcode4');
         $this->assertTrue($barcode->getAdapter()->checkLength('1'));
         $this->assertFalse($barcode->getAdapter()->checkLength('12'));
@@ -143,8 +137,9 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
     public function testInvalidAdapter()
     {
         $barcode = new Zend_Validate_Barcode('Ean13');
+
         try {
-            require_once __DIR__ . "/_files/MyBarcode5.php";
+            require_once __DIR__ . '/_files/MyBarcode5.php';
             $barcode->setAdapter('MyBarcode5');
             $this->fails('Exception expected');
         } catch (Exception $e) {
@@ -221,7 +216,7 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($barcode->isValid('00075678164124'));
         $this->assertTrue($barcode->isValid('Test93Test93Test'));
 
-// @TODO: CODE39 EXTENDED CHECKSUM VALIDATION MISSING
+        // @TODO: CODE39 EXTENDED CHECKSUM VALIDATION MISSING
 //        $barcode->setChecksum(true);
 //        $this->assertTrue($barcode->isValid('159AZH'));
 //        $this->assertFalse($barcode->isValid('159AZG'));
@@ -244,7 +239,7 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($barcode->isValid('TEST93+'));
         $this->assertTrue($barcode->isValid('Test93+'));
 
-// @TODO: CODE93 EXTENDED CHECKSUM VALIDATION MISSING
+        // @TODO: CODE93 EXTENDED CHECKSUM VALIDATION MISSING
 //        $barcode->setChecksum(true);
 //        $this->assertTrue($barcode->isValid('CODE 93E0'));
 //        $this->assertFalse($barcode->isValid('CODE 93E1'));
@@ -437,6 +432,6 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($barcode->isValid('123'));
         $message = $barcode->getMessages();
         $this->assertTrue(array_key_exists('barcodeInvalidLength', $message));
-        $this->assertContains("length of 7/8 characters", $message['barcodeInvalidLength']);
+        $this->assertContains('length of 7/8 characters', $message['barcodeInvalidLength']);
     }
 }

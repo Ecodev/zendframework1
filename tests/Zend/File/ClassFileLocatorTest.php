@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,30 +12,18 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-
-
-
 require_once 'Zend/File/ClassFileLocator.php';
 
 /**
- * Test class for Zend_File_ClassFileLocator
+ * Test class for Zend_File_ClassFileLocator.
  *
- * @category   Zend
- * @package    Zend_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_File
  */
 class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testConstructorThrowsInvalidArgumentExceptionForInvalidStringDirectory()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -74,7 +62,7 @@ class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
                 $found = true;
             }
         }
-        $this->assertFalse($found, "Found PHP file not containing a class?");
+        $this->assertFalse($found, 'Found PHP file not containing a class?');
     }
 
     public function testIterationShouldReturnInterfaces()
@@ -90,7 +78,7 @@ class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
                 $found = true;
             }
         }
-        $this->assertTrue($found, "Locator skipped an interface?");
+        $this->assertTrue($found, 'Locator skipped an interface?');
     }
 
     public function testIterationShouldInjectNamespaceInFoundItems()
@@ -124,6 +112,7 @@ class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
             $classes = $file->getClasses();
             foreach ($classes as $class) {
                 $found = true;
+
                 break;
             }
         }

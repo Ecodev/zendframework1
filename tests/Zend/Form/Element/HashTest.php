@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Element/Hash.php';
 
 /**
- * Test class for Zend_Form_Element_Hash
+ * Test class for Zend_Form_Element_Hash.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -38,21 +28,16 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_HashTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_HashTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -71,8 +56,6 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -155,6 +138,7 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+
         return $view;
     }
 
@@ -203,10 +187,9 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
+     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
      *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
+     * @see   http://framework.zend.com/issues/browse/ZF-2794
      */
     protected function _checkZf2794()
     {
@@ -240,7 +223,7 @@ class Zend_Form_Element_HashTest_SessionContainer
 
     public function __isset($name)
     {
-        if (('hash' == $name) && (null !== self::$_hash))  {
+        if (('hash' == $name) && (null !== self::$_hash)) {
             return true;
         }
 
@@ -253,9 +236,9 @@ class Zend_Form_Element_HashTest_SessionContainer
             case 'setExpirationHops':
             case 'setExpirationSeconds':
                 $this->$method = array_shift($args);
+
                 break;
             default:
         }
     }
 }
-

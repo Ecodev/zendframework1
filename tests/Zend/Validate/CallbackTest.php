@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Validate_Callback
@@ -28,30 +23,22 @@
 require_once 'Zend/Validate/Callback.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_CallbackTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Runs this test suite
-     *
-     * @return void
+     * Runs this test suite.
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_CallbackTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_CallbackTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -91,6 +78,7 @@ class Zend_Validate_CallbackTest extends \PHPUnit\Framework\TestCase
     public function testInvalidCallback()
     {
         $valid = new Zend_Validate_Callback(array($this, 'objectCallback'));
+
         try {
             $valid->setCallback('invalidcallback');
             $this->fail('Exception expected');
@@ -120,7 +108,7 @@ class Zend_Validate_CallbackTest extends \PHPUnit\Framework\TestCase
     {
         $args = func_get_args();
         $this->assertContains('something', $args);
+
         return $args;
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,40 +12,33 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
-
 /**
- * Abstract class for extension
+ * Abstract class for extension.
  */
 require_once 'Zend/View/Helper/FormElement.php';
 
-
 /**
- * Helper to generate a set of radio button elements
+ * Helper to generate a set of radio button elements.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
 {
     /**
-     * Input type to use
+     * Input type to use.
+     *
      * @var string
      */
     protected $_inputType = 'radio';
 
     /**
-     * Whether or not this element represents an array collection by default
+     * Whether or not this element represents an array collection by default.
+     *
      * @var bool
      */
     protected $_isArray = false;
@@ -53,32 +46,27 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
     /**
      * Generates a set of radio button elements.
      *
-     * @access public
-     *
-     * @param string|array $name If a string, the element name.  If an
+     * @param array|string $name If a string, the element name.  If an
      * array, all other parameters are ignored, and the array elements
      * are extracted in place of added parameters.
+     * @param mixed $value the radio value to mark as 'checked'
+     * @param array $options an array of key-value pairs where the array
+     * key is the radio value, and the array value is the radio text
+     * @param array|string $attribs attributes added to each radio
+     * @param mixed $listsep
      *
-     * @param mixed $value The radio value to mark as 'checked'.
-     *
-     * @param array $options An array of key-value pairs where the array
-     * key is the radio value, and the array value is the radio text.
-     *
-     * @param array|string $attribs Attributes added to each radio.
-     *
-     * @return string The radio buttons XHTML.
+     * @return string the radio buttons XHTML
      */
     public function formRadio($name, $value = null, $attribs = null,
         $options = null, $listsep = "<br />\n")
     {
-
         $info = $this->_getInfo($name, $value, $attribs, $options, $listsep);
         extract($info); // name, value, attribs, options, listsep, disable
 
         // retrieve attributes for labels (prefixed with 'label_' or 'label')
         $label_attribs = array();
         foreach ($attribs as $key => $val) {
-            $tmp    = false;
+            $tmp = false;
             $keyLen = strlen($key);
             if ((6 < $keyLen) && (substr($key, 0, 6) == 'label_')) {
                 $tmp = substr($key, 6);
@@ -103,6 +91,7 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
                     if (in_array($val, array('prepend', 'append'))) {
                         $labelPlacement = $val;
                     }
+
                     break;
             }
         }
@@ -112,7 +101,7 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
 
         // build the element
         $xhtml = '';
-        $list  = array();
+        $list = array();
 
         // should the name affect an array collection?
         $name = $this->view->escape($name);
@@ -125,11 +114,11 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
 
         // Set up the filter - Alnum + hyphen + underscore
         require_once 'Zend/Filter/PregReplace.php';
-        $pattern = @preg_match('/\pL/u', 'a') 
+        $pattern = @preg_match('/\pL/u', 'a')
             ? '/[^\p{L}\p{N}\-\_]/u'    // Unicode
             : '/[^a-zA-Z0-9\-\_]/';     // No Unicode
-        $filter = new Zend_Filter_PregReplace($pattern, "");
-        
+        $filter = new Zend_Filter_PregReplace($pattern, '');
+
         // add radio buttons to the list.
         foreach ($options as $opt_value => $opt_label) {
 
@@ -173,7 +162,7 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
             // add to the array of radio buttons
             $list[] = $radio;
         }
-        
+
         // XHTML or HTML for standard list separator?
         if (!$this->_isXhtml() && false !== strpos($listsep, '<br />')) {
             $listsep = str_replace('<br />', '<br>', $listsep);

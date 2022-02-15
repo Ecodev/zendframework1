@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,28 +22,21 @@
  */
 require_once 'Zend/Validate/Hostname.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Default instance created for all test methods
+     * Default instance created for all test methods.
      *
      * @var Zend_Validate_Hostname
      */
     protected $_validator;
 
     /**
-     * Creates a new Zend_Validate_Hostname object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Validate_Hostname object for each test method.
      */
     public function setUp()
     {
@@ -57,7 +47,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Reset iconv
+     * Reset iconv.
      */
     public function tearDown()
     {
@@ -69,9 +59,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -82,7 +70,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
             array(Zend_Validate_Hostname::ALLOW_DNS, false, array('localhost', 'localhost.localdomain', '1.2.3.4', 'domain.invalid')),
             array(Zend_Validate_Hostname::ALLOW_LOCAL, true, array('localhost', 'localhost.localdomain', 'example.com')),
             array(Zend_Validate_Hostname::ALLOW_ALL, true, array('localhost', 'example.com', '1.2.3.4')),
-            array(Zend_Validate_Hostname::ALLOW_LOCAL, false, array('local host', 'example,com', 'exam_ple.com'))
+            array(Zend_Validate_Hostname::ALLOW_LOCAL, false, array('local host', 'example,com', 'exam_ple.com')),
         );
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_Hostname($element[0]);
@@ -98,8 +86,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
             array(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_LOCAL, true, array('domain.com', 'localhost', 'local.localhost')),
             array(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_LOCAL, false, array('1.2.3.4', '255.255.255.255')),
             array(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_IP, true, array('1.2.3.4', '255.255.255.255')),
-            array(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_IP, false, array('localhost', 'local.localhost'))
-            );
+            array(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_IP, false, array('localhost', 'local.localhost')),
+        );
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_Hostname($element[0]);
             foreach ($element[2] as $input) {
@@ -109,15 +97,14 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensure the dash character tests work as expected
-     *
+     * Ensure the dash character tests work as expected.
      */
     public function testDashes()
     {
         $valuesExpected = array(
             array(Zend_Validate_Hostname::ALLOW_DNS, true, array('domain.com', 'doma-in.com')),
-            array(Zend_Validate_Hostname::ALLOW_DNS, false, array('-domain.com', 'domain-.com', 'do--main.com'))
-            );
+            array(Zend_Validate_Hostname::ALLOW_DNS, false, array('-domain.com', 'domain-.com', 'do--main.com')),
+        );
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_Hostname($element[0]);
             foreach ($element[2] as $input) {
@@ -127,9 +114,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -137,8 +122,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensure the IDN check works as expected
-     *
+     * Ensure the IDN check works as expected.
      */
     public function testIDN()
     {
@@ -148,8 +132,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $valuesExpected = array(
             array(true, array('bürger.de', 'hãllo.de', 'hållo.se')),
             array(true, array('bÜrger.de', 'hÃllo.de', 'hÅllo.se')),
-            array(false, array('hãllo.se', 'bürger.lt', 'hãllo.uk'))
-            );
+            array(false, array('hãllo.se', 'bürger.lt', 'hãllo.uk')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -159,8 +143,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         // Check no IDN matching
         $validator->setValidateIdn(false);
         $valuesExpected = array(
-            array(false, array('bürger.de', 'hãllo.de', 'hållo.se'))
-            );
+            array(false, array('bürger.de', 'hãllo.de', 'hållo.se')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -171,8 +155,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         unset($validator);
         $validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_DNS, false);
         $valuesExpected = array(
-            array(false, array('bürger.de', 'hãllo.de', 'hållo.se'))
-            );
+            array(false, array('bürger.de', 'hãllo.de', 'hållo.se')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -181,8 +165,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensure the IDN check works on ressource files as expected
-     *
+     * Ensure the IDN check works on ressource files as expected.
      */
     public function testRessourceIDN()
     {
@@ -192,8 +175,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $valuesExpected = array(
             array(true, array('bürger.com', 'hãllo.com', 'hållo.com')),
             array(true, array('bÜrger.com', 'hÃllo.com', 'hÅllo.com')),
-            array(false, array('hãllo.lt', 'bürger.lt', 'hãllo.lt'))
-            );
+            array(false, array('hãllo.lt', 'bürger.lt', 'hãllo.lt')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -203,8 +186,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         // Check no IDN matching
         $validator->setValidateIdn(false);
         $valuesExpected = array(
-            array(false, array('bürger.com', 'hãllo.com', 'hållo.com'))
-            );
+            array(false, array('bürger.com', 'hãllo.com', 'hållo.com')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -215,8 +198,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         unset($validator);
         $validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_DNS, false);
         $valuesExpected = array(
-            array(false, array('bürger.com', 'hãllo.com', 'hållo.com'))
-            );
+            array(false, array('bürger.com', 'hãllo.com', 'hållo.com')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -225,8 +208,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensure the TLD check works as expected
-     *
+     * Ensure the TLD check works as expected.
      */
     public function testTLD()
     {
@@ -235,8 +217,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         // Check TLD matching
         $valuesExpected = array(
             array(true, array('domain.co.uk', 'domain.uk.com', 'domain.tl', 'domain.zw', 'domain.menu', 'domain.versicherung')),
-            array(false, array('domain.xx', 'domain.zz', 'domain.madeup'))
-            );
+            array(false, array('domain.xx', 'domain.zz', 'domain.madeup')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -246,8 +228,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         // Check no TLD matching
         $validator->setValidateTld(false);
         $valuesExpected = array(
-            array(true, array('domain.xx', 'domain.zz', 'domain.madeup'))
-            );
+            array(true, array('domain.xx', 'domain.zz', 'domain.madeup')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -258,8 +240,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         unset($validator);
         $validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_DNS, true, false);
         $valuesExpected = array(
-            array(true, array('domain.xx', 'domain.zz', 'domain.madeup'))
-            );
+            array(true, array('domain.xx', 'domain.zz', 'domain.madeup')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -268,9 +250,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getAllow() returns expected default value
-     *
-     * @return void
+     * Ensures that getAllow() returns expected default value.
      */
     public function testGetAllow()
     {
@@ -278,7 +258,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test changed with ZF-6676, as IP check is only involved when IP patterns match
+     * Test changed with ZF-6676, as IP check is only involved when IP patterns match.
      *
      * @group ZF-2861
      * @group ZF-6676
@@ -300,6 +280,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         foreach ($messages as $code => $message) {
             if (array_key_exists($code, $translations)) {
                 $found = true;
+
                 break;
             }
         }
@@ -318,8 +299,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         // Check TLD matching
         $valuesExpected = array(
             array(true, array('www.danger1.com', 'danger.com', 'www.danger.com')),
-            array(false, array('www.danger1com', 'dangercom', 'www.dangercom'))
-            );
+            array(false, array('www.danger1com', 'dangercom', 'www.dangercom')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -337,8 +318,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         // Check TLD matching
         $valuesExpected = array(
             array(true, array('xn--brger-kva.com', 'xn--eckwd4c7cu47r2wf.jp')),
-            array(false, array('xn--brger-x45d2va.com', 'xn--bürger.com', 'xn--'))
-            );
+            array(false, array('xn--brger-x45d2va.com', 'xn--bürger.com', 'xn--')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -379,8 +360,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $valuesExpected = array(
             array(true, array('bürger.com', 'hãllo.com', 'hållo.com')),
             array(true, array('bÜrger.com', 'hÃllo.com', 'hÅllo.com')),
-            array(false, array('hãllo.lt', 'bürger.lt', 'hãllo.lt'))
-            );
+            array(false, array('hãllo.lt', 'bürger.lt', 'hãllo.lt')),
+        );
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()) . $input);
@@ -414,7 +395,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensure that a trailing "." in a local hostname is permitted
+     * Ensure that a trailing "." in a local hostname is permitted.
      *
      * @group ZF-6363
      */
@@ -422,7 +403,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     {
         $valuesExpected = array(
             array(Zend_Validate_Hostname::ALLOW_ALL, true, array('example.', 'example.com.', '~ex%20ample.com.')),
-            array(Zend_Validate_Hostname::ALLOW_ALL, false, array('example..',)),
+            array(Zend_Validate_Hostname::ALLOW_ALL, false, array('example..')),
             array(Zend_Validate_Hostname::ALLOW_ALL, true, array('1.2.3.4.')),
             array(Zend_Validate_Hostname::ALLOW_DNS, false, array('example..', '~ex%20ample..')),
             array(Zend_Validate_Hostname::ALLOW_LOCAL, true, array('example.', 'example.com.')),
@@ -438,6 +419,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-11334
+     *
      * @see http://www.ietf.org/rfc/rfc2732.txt
      */
     public function testSupportsIpv6AddressesWhichContainHexDigitF()
@@ -466,6 +448,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->isValid('tàrø.si'));
         $this->assertFalse($validator->isValid('رات.si'));
     }
+
     /**
      * @ZF-12314
      */
@@ -475,7 +458,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * test for IDN CA
+     * test for IDN CA.
      */
     public function testIDNCA()
     {
@@ -500,7 +483,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test for IDN serbia .rs
+     * Test for IDN serbia .rs.
      *
      * @group GH-115
      */

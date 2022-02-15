@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id: PostCodeTest.php 17798 2009-08-24 20:07:53Z thomas $
  */
-
-
 
 /**
  * @see Zend_Validate_PostCode
@@ -28,37 +23,29 @@
 require_once 'Zend/Validate/PostCode.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Validate_PostCode object
+     * Zend_Validate_PostCode object.
      *
      * @var Zend_Validate_PostCode
      */
     protected $_validator;
 
     /**
-     * Runs this test suite
-     *
-     * @return void
+     * Runs this test suite.
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Validate_PostCodeTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_PostCodeTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Creates a new Zend_Validate_PostCode object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Validate_PostCode object for each test method.
      */
     public function setUp()
     {
@@ -66,9 +53,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -83,7 +68,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
             array('ABCD', false),
             array(true, false),
             array('AT-2292', false),
-            array(1.56, false)
+            array(1.56, false),
         );
 
         foreach ($valuesExpected as $element) {
@@ -93,9 +78,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -103,7 +86,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that a region is available
+     * Ensures that a region is available.
      */
     public function testSettingLocalesWithoutRegion()
     {
@@ -116,7 +99,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the region contains postal codes
+     * Ensures that the region contains postal codes.
      */
     public function testSettingLocalesWithoutPostalCodes()
     {
@@ -129,7 +112,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures locales can be retrieved
+     * Ensures locales can be retrieved.
      */
     public function testGettingLocale()
     {
@@ -137,7 +120,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures format can be set and retrieved
+     * Ensures format can be set and retrieved.
      */
     public function testSetGetFormat()
     {
@@ -178,4 +161,3 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('not appear to be a postal code', $message['postcodeNoMatch']);
     }
 }
-

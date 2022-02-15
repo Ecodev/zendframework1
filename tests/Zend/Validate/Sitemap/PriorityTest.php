@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,37 +12,29 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
 require_once 'Zend/Validate/Sitemap/Priority.php';
 
 /**
- * Tests Zend_Validate_Sitemap_Priority
+ * Tests Zend_Validate_Sitemap_Priority.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Validator
+     * Validator.
      *
      * @var Zend_Validate_Sitemap_Priority
      */
     protected $_validator;
 
     /**
-     * Prepares the environment before running a test
+     * Prepares the environment before running a test.
      */
     protected function setUp()
     {
@@ -50,7 +42,7 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Cleans up the environment after running a test
+     * Cleans up the environment after running a test.
      */
     protected function tearDown()
     {
@@ -58,15 +50,14 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests valid priorities
-     *
+     * Tests valid priorities.
      */
     public function testValidPriorities()
     {
         $values = array(
             '0.0', '0.1', '0.2', '0.3', '0.4', '0.5',
             '0.6', '0.7', '0.8', '0.9', '1.0', '0.99',
-            0.1, 0.6667, 0.0001, 0.4, 0, 1, .35
+            0.1, 0.6667, 0.0001, 0.4, 0, 1, .35,
         );
 
         foreach ($values as $value) {
@@ -75,8 +66,7 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests invalid priorities
-     *
+     * Tests invalid priorities.
      */
     public function testInvalidPriorities()
     {
@@ -92,8 +82,7 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests values that are no numbers
-     *
+     * Tests values that are no numbers.
      */
     public function testNotNumbers()
     {

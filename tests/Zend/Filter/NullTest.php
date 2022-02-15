@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,26 +23,20 @@
 require_once 'Zend/Filter/Null.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
 class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Filter_Null object
+     * Zend_Filter_Null object.
      *
      * @var Zend_Filter_Null
      */
     protected $_filter;
 
     /**
-     * Creates a new Zend_Filter_Null object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Filter_Null object for each test method.
      */
     public function setUp()
     {
@@ -53,9 +44,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testBasic()
     {
@@ -69,9 +58,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyBoolean()
     {
@@ -86,9 +73,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyInteger()
     {
@@ -103,9 +88,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyArray()
     {
@@ -120,9 +103,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyString()
     {
@@ -137,9 +118,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testOnlyZero()
     {
@@ -154,9 +133,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testArrayConstantNotation()
     {
@@ -164,7 +141,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
             array(
                 Zend_Filter_Null::ZERO,
                 Zend_Filter_Null::STRING,
-                Zend_Filter_Null::BOOLEAN
+                Zend_Filter_Null::BOOLEAN,
             )
         );
 
@@ -178,9 +155,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testArrayConfigNotation()
     {
@@ -189,8 +164,8 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
                 'type' => array(
                     Zend_Filter_Null::ZERO,
                     Zend_Filter_Null::STRING,
-                    Zend_Filter_Null::BOOLEAN),
-                'test' => false
+                    Zend_Filter_Null::BOOLEAN, ),
+                'test' => false,
             )
         );
 
@@ -204,9 +179,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testMultiConstantNotation()
     {
@@ -224,15 +197,13 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testStringNotation()
     {
         $filter = new Zend_Filter_Null(
             array(
-                'zero', 'string', 'boolean'
+                'zero', 'string', 'boolean',
             )
         );
 
@@ -246,9 +217,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSingleStringNotation()
     {
@@ -266,9 +235,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testSettingFalseType()
     {
@@ -281,9 +248,7 @@ class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testGetType()
     {

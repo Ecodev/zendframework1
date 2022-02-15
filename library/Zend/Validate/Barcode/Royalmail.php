@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,21 +23,20 @@
 require_once 'Zend/Validate/Barcode/AdapterAbstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Barcode_Royalmail extends Zend_Validate_Barcode_AdapterAbstract
 {
     /**
-     * Allowed barcode lengths
-     * @var integer
+     * Allowed barcode lengths.
+     *
+     * @var int
      */
     protected $_length = -1;
 
     /**
-     * Allowed barcode characters
+     * Allowed barcode characters.
+     *
      * @var string
      */
     protected $_characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -51,7 +48,7 @@ class Zend_Validate_Barcode_Royalmail extends Zend_Validate_Barcode_AdapterAbstr
         'I' => 4, 'J' => 4, 'K' => 4, 'L' => 4, 'M' => 4, 'N' => 4,
         'O' => 5, 'P' => 5, 'Q' => 5, 'R' => 5, 'S' => 5, 'T' => 5,
         'U' => 0, 'V' => 0, 'W' => 0, 'X' => 0, 'Y' => 0, 'Z' => 0,
-     );
+    );
 
     protected $_columns = array(
         '0' => 1, '1' => 2, '2' => 3, '3' => 4, '4' => 5, '5' => 0,
@@ -63,24 +60,26 @@ class Zend_Validate_Barcode_Royalmail extends Zend_Validate_Barcode_AdapterAbstr
     );
 
     /**
-     * Checksum function
+     * Checksum function.
+     *
      * @var string
      */
     protected $_checksum = '_royalmail';
 
     /**
-     * Validates the checksum ()
+     * Validates the checksum ().
      *
      * @param  string $value The barcode to validate
-     * @return boolean
+     *
+     * @return bool
      */
     protected function _royalmail($value)
     {
         $checksum = substr($value, -1, 1);
-        $values   = str_split(substr($value, 0, -1));
+        $values = str_split(substr($value, 0, -1));
         $rowvalue = 0;
         $colvalue = 0;
-        foreach($values as $row) {
+        foreach ($values as $row) {
             $rowvalue += $this->_rows[$row];
             $colvalue += $this->_columns[$row];
         }
@@ -90,7 +89,7 @@ class Zend_Validate_Barcode_Royalmail extends Zend_Validate_Barcode_AdapterAbstr
 
         $rowchkvalue = array_keys($this->_rows, $rowvalue);
         $colchkvalue = array_keys($this->_columns, $colvalue);
-        $chkvalue    = current(array_intersect($rowchkvalue, $colchkvalue));
+        $chkvalue = current(array_intersect($rowchkvalue, $colchkvalue));
         if ($chkvalue == $checksum) {
             return true;
         }
@@ -99,10 +98,11 @@ class Zend_Validate_Barcode_Royalmail extends Zend_Validate_Barcode_AdapterAbstr
     }
 
     /**
-     * Allows start and stop tag within checked chars
+     * Allows start and stop tag within checked chars.
      *
      * @param  string $value The barcode to check for allowed characters
-     * @return boolean
+     *
+     * @return bool
      */
     public function checkChars($value)
     {

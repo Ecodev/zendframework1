@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Module
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @version    $Id$
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -26,27 +23,24 @@
 require_once 'Zend/Application/Bootstrap/Bootstrap.php';
 
 /**
- * Base bootstrap class for modules
+ * Base bootstrap class for modules.
  *
  * @uses       Zend_Loader_Autoloader_Resource
  * @uses       Zend_Application_Bootstrap_Bootstrap
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Module
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-abstract class Zend_Application_Module_Bootstrap
-    extends Zend_Application_Bootstrap_Bootstrap
+abstract class Zend_Application_Module_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     /**
-     * Set this explicitly to reduce impact of determining module name
+     * Set this explicitly to reduce impact of determining module name.
+     *
      * @var string
      */
     protected $_moduleName;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param Zend_Application|Zend_Application_Bootstrap_Bootstrapper $application
      */
@@ -67,7 +61,7 @@ abstract class Zend_Application_Module_Bootstrap
 
         if ($application->hasOption('resourceloader')) {
             $this->setOptions(array(
-                'resourceloader' => $application->getOption('resourceloader')
+                'resourceloader' => $application->getOption('resourceloader'),
             ));
         }
         $this->initResourceLoader();
@@ -84,9 +78,7 @@ abstract class Zend_Application_Module_Bootstrap
     }
 
     /**
-     * Ensure resource loader is loaded
-     *
-     * @return void
+     * Ensure resource loader is loaded.
      */
     public function initResourceLoader()
     {
@@ -94,7 +86,7 @@ abstract class Zend_Application_Module_Bootstrap
     }
 
     /**
-     * Get default application namespace
+     * Get default application namespace.
      *
      * Proxies to {@link getModuleName()}, and returns the current module
      * name
@@ -107,7 +99,7 @@ abstract class Zend_Application_Module_Bootstrap
     }
 
     /**
-     * Retrieve module name
+     * Retrieve module name.
      *
      * @return string
      */
@@ -122,6 +114,7 @@ abstract class Zend_Application_Module_Bootstrap
             }
             $this->_moduleName = $prefix;
         }
+
         return $this->_moduleName;
     }
 }

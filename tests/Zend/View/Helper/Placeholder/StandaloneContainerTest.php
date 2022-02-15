@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_Placeholder_Container_Standalone */
 require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
@@ -37,10 +32,6 @@ require_once 'Zend/View.php';
 /**
  * Test class for Zend_View_Helper_Placeholder_StandaloneContainer.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -49,20 +40,16 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends \PHPUnit\Fram
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_StandaloneContainerTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_Placeholder_StandaloneContainerTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -78,8 +65,6 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends \PHPUnit\Fram
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -95,11 +80,11 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends \PHPUnit\Fram
 
     public function testContainersPersistBetweenInstances()
     {
-        $foo1 = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo;
+        $foo1 = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo();
         $foo1->append('Foo');
         $foo1->setSeparator(' - ');
 
-        $foo2 = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo;
+        $foo2 = new Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo();
         $foo2->append('Bar');
 
         $test = $foo1->toString();
@@ -113,4 +98,3 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo extends Zend_View
 {
     protected $_regKey = 'foo';
 }
-

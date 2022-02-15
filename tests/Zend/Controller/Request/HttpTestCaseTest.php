@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_Controller_Request_HttpTestCase */
 require_once 'Zend/Controller/Request/HttpTestCase.php';
@@ -28,10 +23,6 @@ require_once 'Zend/Controller/Request/HttpTestCase.php';
 /**
  * Test class for Zend_Controller_Request_HttpTestCase.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
@@ -40,34 +31,28 @@ class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCa
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Request_HttpTestCaseTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Request_HttpTestCaseTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
         $this->request = new Zend_Controller_Request_HttpTestCase();
-        $_GET    = array();
-        $_POST   = array();
+        $_GET = array();
+        $_POST = array();
         $_COOKIE = array();
     }
 
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -212,7 +197,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCa
     public function testShouldAllowSpecifyingRequestHeaders()
     {
         $headers = array(
-            'Content-Type'     => 'text/html',
+            'Content-Type' => 'text/html',
             'Content-Encoding' => 'utf-8',
         );
         $this->request->setHeaders($headers);
@@ -250,7 +235,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCa
         $cookies = array(
             'foo' => 'bar',
             'bar' => 'baz',
-            'baz' => 'bat'
+            'baz' => 'bat',
         );
         $this->request->setCookies($cookies);
         $test = $this->request->getCookie();
@@ -308,4 +293,3 @@ class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertTrue($this->request->isPatch());
     }
 }
-

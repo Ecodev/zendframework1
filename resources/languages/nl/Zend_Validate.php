@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,20 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage Ressource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id:$
  */
 
-/**
- * EN-Revision: 22076
- */
+// EN-Revision: 22076
 return array(
     // Zend_Validate_Alnum
-    "Invalid type given, value should be float, string, or integer" => "Ongeldig type opgegeven, waarde moet een float, string of integer zijn",
+    'Invalid type given, value should be float, string, or integer' => 'Ongeldig type opgegeven, waarde moet een float, string of integer zijn',
     "'%value%' contains characters which are non alphabetic and no digits" => "'%value%' bevat tekens welke alfabetisch, noch numeriek zijn",
     "'%value%' is an empty string" => "'%value%' is een lege string",
 
     // Zend_Validate_Alpha
-    "Invalid type given, value should be a string" => "Ongeldig type opgegeven, waarde moet een string zijn",
+    'Invalid type given, value should be a string' => 'Ongeldig type opgegeven, waarde moet een string zijn',
     "'%value%' contains non alphabetic characters" => "'%value%' bevat tekens welke niet alfabetisch zijn",
     "'%value%' is an empty string" => "'%value%' is een lege string",
 
@@ -38,7 +33,7 @@ return array(
     "'%value%' failed checksum validation" => "'%value%' slaagde niet in de checksum validatie",
     "'%value%' contains invalid characters" => "'%value%' bevat ongeldige tekens",
     "'%value%' should have a length of %length% characters" => "'%value%' moet een lengte hebben van %length% tekens",
-    "Invalid type given, value should be string" => "Ongeldig type opgegeven, waarde moet een string zijn",
+    'Invalid type given, value should be string' => 'Ongeldig type opgegeven, waarde moet een string zijn',
 
     // Zend_Validate_Between
     "'%value%' is not between '%min%' and '%max%', inclusively" => "'%value%' is niet tussen of gelijk aan '%min%' en '%max%'",
@@ -46,7 +41,7 @@ return array(
 
     // Zend_Validate_Callback
     "'%value%' is not valid" => "'%value%' is ongeldig",
-    "Failure within the callback, exception returned" => "Fout opgetreden in de callback, exceptie teruggegeven",
+    'Failure within the callback, exception returned' => 'Fout opgetreden in de callback, exceptie teruggegeven',
 
     // Zend_Validate_Ccnum
     "'%value%' must contain between 13 and 19 digits" => "'%value%' moet 13 tot 19 cijfers bevatten",
@@ -55,28 +50,28 @@ return array(
     // Zend_Validate_CreditCard
     "Luhn algorithm (mod-10 checksum) failed on '%value%'" => "Het Luhn algoritme (mod-10 checksum) is niet geslaagd op '%value%'",
     "'%value%' must contain only digits" => "'%value%' kan alleen cijfers bevatten",
-    "Invalid type given, value should be a string" => "Ongeldig type opgegeven, waarde moet een string zijn",
+    'Invalid type given, value should be a string' => 'Ongeldig type opgegeven, waarde moet een string zijn',
     "'%value%' contains an invalid amount of digits" => "'%value%' bevat een ongeldige hoeveelheid cijfers",
     "'%value%' is not from an allowed institute" => "'%value%' is niet afkomstig van een toegestaan instituut",
     "Validation of '%value%' has been failed by the service" => "Validatie door de service van '%value%' is mislukt",
     "The service returned a failure while validating '%value%'" => "De service heeft een foutmelding teruggegeven bij het valideren van '%value%'",
 
     // Zend_Validate_Date
-    "Invalid type given, value should be string, integer, array or Zend_Date" => "Ongeldig type opgegeven, waarde moet een string, integer, array of Zend_Date zijn",
+    'Invalid type given, value should be string, integer, array or Zend_Date' => 'Ongeldig type opgegeven, waarde moet een string, integer, array of Zend_Date zijn',
     "'%value%' does not appear to be a valid date" => "'%value%' lijkt geen geldige datum te zijn",
     "'%value%' does not fit the date format '%format%'" => "'%value%' past niet in het datumformaat '%format%'",
 
     // Zend_Validate_Db_Abstract
-    "No record matching '%value%' was found" => "Er kon geen record gevonden wat overeenkomt met %value%",
-    "A record matching '%value%' was found" => "Een record wat overeenkomt met %value% is gevonden",
+    "No record matching '%value%' was found" => 'Er kon geen record gevonden wat overeenkomt met %value%',
+    "A record matching '%value%' was found" => 'Een record wat overeenkomt met %value% is gevonden',
 
     // Zend_Validate_Digits
-    "Invalid type given, value should be string, integer or float" => "Ongeldig type opgegeven, waarde moet een string, integer of float zijn",
+    'Invalid type given, value should be string, integer or float' => 'Ongeldig type opgegeven, waarde moet een string, integer of float zijn',
     "'%value%' contains characters which are not digits; but only digits are allowed" => "'%value%' bevat niet enkel numerieke karakters",
     "'%value%' is an empty string" => "'%value%' is een lege string",
 
     // Zend_Validate_EmailAddress
-    "Invalid type given, value should be a string" => "Ongeldig type opgegeven, waarde moet een string zijn",
+    'Invalid type given, value should be a string' => 'Ongeldig type opgegeven, waarde moet een string zijn',
     "'%value%' is not a valid email address in the basic format local-part@hostname" => "'%value%' is geen geldig e-mail adres in het basis formaat lokaal-gedeelte@hostname",
     "'%hostname%' is not a valid hostname for email address '%value%'" => "'%hostname%' is geen geldige hostnaam voor e-mail adres '%value%'",
     "'%hostname%' does not appear to have a valid MX record for the email address '%value%'" => "'%hostname%' lijkt geen geldig MX record te hebben voor e-mail adres '%value%'",
@@ -92,7 +87,7 @@ return array(
 
     // Zend_Validate_File_Crc32
     "File '%value%' does not match the given crc32 hashes" => "File '%value%' matcht niet met de opgegeven crc32 hashes",
-    "A crc32 hash could not be evaluated for the given file" => "Fout tijdens het genereren van een crc32 hash van het opgegeven bestand",
+    'A crc32 hash could not be evaluated for the given file' => 'Fout tijdens het genereren van een crc32 hash van het opgegeven bestand',
     "File '%value%' could not be found" => "Het bestand '%value%' kon niet worden gevonden",
 
     // Zend_Validate_File_ExcludeExtension
@@ -114,11 +109,11 @@ return array(
     // Zend_Validate_File_FilesSize
     "All files in sum should have a maximum size of '%max%' but '%size%' were detected" => "Alle bestanden tesamen hebben een maximale grootte van '%max%' maar '%size%' was gedetecteerd",
     "All files in sum should have a minimum size of '%min%' but '%size%' were detected" => "Alle bestanden tesamen hebben een minimum grotte van '%min%' maar '%size%' was gedetecteerd",
-    "One or more files can not be read" => "Eén of meer bestanden konden niet worden gelezen",
+    'One or more files can not be read' => 'Eén of meer bestanden konden niet worden gelezen',
 
     // Zend_Validate_File_Hash
     "File '%value%' does not match the given hashes" => "Het bestand '%value%' matcht niet met de opgegeven hashes",
-    "A hash could not be evaluated for the given file" => "Een hash kon niet worden gegenereerd voor het opgegeven bestand",
+    'A hash could not be evaluated for the given file' => 'Een hash kon niet worden gegenereerd voor het opgegeven bestand',
     "File '%value%' could not be found" => "Het bestand '%value%' kon niet worden gevonden",
 
     // Zend_Validate_File_ImageSize
@@ -141,7 +136,7 @@ return array(
 
     // Zend_Validate_File_Md5
     "File '%value%' does not match the given md5 hashes" => "Het bestand '%value%' matcht niet met de opgegeven md5-hashes",
-    "A md5 hash could not be evaluated for the given file" => "Een md5-hash kon niet gegenereerd worden voor het opgegeven bestand",
+    'A md5 hash could not be evaluated for the given file' => 'Een md5-hash kon niet gegenereerd worden voor het opgegeven bestand',
     "File '%value%' could not be found" => "Het bestand '%value%' kon niet worden gevonden",
 
     // Zend_Validate_File_MimeType
@@ -154,7 +149,7 @@ return array(
 
     // Zend_Validate_File_Sha1
     "File '%value%' does not match the given sha1 hashes" => "Het bestand '%value%' matcht niet met de opgegeven sha1-hashes",
-    "A sha1 hash could not be evaluated for the given file" => "Een sha1-hash kon niet worden gegenereerd voor het opgegeven bestand",
+    'A sha1 hash could not be evaluated for the given file' => 'Een sha1-hash kon niet worden gegenereerd voor het opgegeven bestand',
     "File '%value%' could not be found" => "Het bestand '%value%' kon niet worden gevonden",
 
     // Zend_Validate_File_Size
@@ -180,18 +175,18 @@ return array(
     "File '%value%' could not be found" => "Het bestand '%value%' kon niet worden gevonden",
 
     // Zend_Validate_Float
-    "Invalid type given, value should be float, string, or integer" => "Ongeldig type opgegeven, waarde moet een float, string, of integer zijn",
+    'Invalid type given, value should be float, string, or integer' => 'Ongeldig type opgegeven, waarde moet een float, string, of integer zijn',
     "'%value%' does not appear to be a float" => "'%value%' lijkt geen float te zijn",
 
     // Zend_Validate_GreaterThan
     "'%value%' is not greater than '%min%'" => "'%value%' is niet groter dan '%min%'",
 
     // Zend_Validate_Hex
-    "Invalid type given, value should be a string" => "Ongeldig type gegeven, waarde moet een string zijn",
+    'Invalid type given, value should be a string' => 'Ongeldig type gegeven, waarde moet een string zijn',
     "'%value%' has not only hexadecimal digit characters" => "'%value%' bestaat niet enkel uit acht hexadecimale cijfers",
 
     // Zend_Validate_Hostname
-    "Invalid type given, value should be a string" => "Ongeldig type gegeven, waarde moet een string zijn",
+    'Invalid type given, value should be a string' => 'Ongeldig type gegeven, waarde moet een string zijn',
     "'%value%' appears to be an IP address, but IP addresses are not allowed" => "'%value%' lijkt een IP adres te zijn, maar IP adressen zijn niet toegestaan",
     "'%value%' appears to be a DNS hostname but cannot match TLD against known list" => "'%value%' lijkt een DNS hostnaam te zijn, maar het TLD bestaat niet in de lijst met bekende TLD's",
     "'%value%' appears to be a DNS hostname but contains a dash in an invalid position" => "'%value%' lijkt een DNS hostnaam te zijn, maar bevat een streep op een ongeldige plek",
@@ -208,58 +203,58 @@ return array(
     "'%value%' has failed the IBAN check" => "'%value%' is geen geldige IBAN",
 
     // Zend_Validate_Identical
-    "The two given tokens do not match" => "De twee tokens komen niet overeen",
-    "No token was provided to match against" => "Er is geen token opgegeven om mee te matchen",
+    'The two given tokens do not match' => 'De twee tokens komen niet overeen',
+    'No token was provided to match against' => 'Er is geen token opgegeven om mee te matchen',
 
     // Zend_Validate_InArray
     "'%value%' was not found in the haystack" => "'%value%' kon niet worden gevonden in lijst met beschikbare waardes",
 
     // Zend_Validate_Int
-    "Invalid type given, value should be string or integer" => "Ongeldig type opgegeven, waarde moet een string of integer zijn",
+    'Invalid type given, value should be string or integer' => 'Ongeldig type opgegeven, waarde moet een string of integer zijn',
     "'%value%' does not appear to be an integer" => "'%value%' lijkt geen integer te zijn",
 
     // Zend_Validate_Ip
-    "Invalid type given, value should be a string" => "Ongeldig type gegeven, waarde moet een string zijn",
+    'Invalid type given, value should be a string' => 'Ongeldig type gegeven, waarde moet een string zijn',
     "'%value%' does not appear to be a valid IP address" => "'%value%' lijkt geen geldig IP adres te zijn",
 
     // Zend_Validate_Isbn
-    "Invalid type given, value should be string or integer" => "Ongeldig type opgegeven, waarde moet een string of integer zijn",
+    'Invalid type given, value should be string or integer' => 'Ongeldig type opgegeven, waarde moet een string of integer zijn',
     "'%value%' is not a valid ISBN number" => "'%value%' is geen geldig ISBN nummer",
 
     // Zend_Validate_LessThan
     "'%value%' is not less than '%max%'" => "'%value%' is niet minder dan '%max%'",
 
     // Zend_Validate_NotEmpty
-    "Invalid type given, value should be float, string, array, boolean or integer" => "Ongeldig type opgegeven, waarde dient een float, string, array, boolean of integer te zijn",
-    "Value is required and can't be empty" => "Waarde is vereist en kan niet leeg worden gelaten",
+    'Invalid type given, value should be float, string, array, boolean or integer' => 'Ongeldig type opgegeven, waarde dient een float, string, array, boolean of integer te zijn',
+    "Value is required and can't be empty" => 'Waarde is vereist en kan niet leeg worden gelaten',
 
     // Zend_Validate_PostCode
-    "Invalid type given. The value should be a string or a integer" => "Ongeldig type opgegeven, waarde moet een string of integer zijn",
+    'Invalid type given. The value should be a string or a integer' => 'Ongeldig type opgegeven, waarde moet een string of integer zijn',
     "'%value%' does not appear to be a postal code" => "'%value%' lijkt geen geldige postcode te zijn",
 
     // Zend_Validate_Regex
-    "Invalid type given, value should be string, integer or float" => "Ongeldig type opgegeven, waarde dient een string, integer of float te zijn",
+    'Invalid type given, value should be string, integer or float' => 'Ongeldig type opgegeven, waarde dient een string, integer of float te zijn',
     "'%value%' does not match against pattern '%pattern%'" => "'%value%' matcht niet met het patroon '%pattern%'",
     "There was an internal error while using the pattern '%pattern%'" => "Er is een interne fout opgetreden tijdens het gebruik van het patroon '%pattern%'",
 
     // Zend_Validate_Sitemap_Changefreq
     "'%value%' is not a valid sitemap changefreq" => "'%value%' is geen geldige sitemap changefreq",
-    "Invalid type given, the value should be a string" => "Ongeldig type opgegeven, waarde dient een string te zijn",
+    'Invalid type given, the value should be a string' => 'Ongeldig type opgegeven, waarde dient een string te zijn',
 
     // Zend_Validate_Sitemap_Lastmod
     "'%value%' is not a valid sitemap lastmod" => "'%value%' is geen geldige sitemap lastmod",
-    "Invalid type given, the value should be a string" => "Ongeldig type opgegeven, waarde dient een string te zijn",
+    'Invalid type given, the value should be a string' => 'Ongeldig type opgegeven, waarde dient een string te zijn',
 
     // Zend_Validate_Sitemap_Loc
     "'%value%' is not a valid sitemap location" => "'%value%' is geen geldige sitemap locatie",
-    "Invalid type given, the value should be a string" => "Ongeldig type opgegeven, waarde dient een string te zijn",
+    'Invalid type given, the value should be a string' => 'Ongeldig type opgegeven, waarde dient een string te zijn',
 
     // Zend_Validate_Sitemap_Priority
     "'%value%' is not a valid sitemap priority" => "'%value%' is geen geldige sitemap prioriteit",
-    "Invalid type given, the value should be a integer, a float or a numeric string" => "Ongeldig type opgegeven, waarde dient een integer, float of een numerieke string te zijn",
+    'Invalid type given, the value should be a integer, a float or a numeric string' => 'Ongeldig type opgegeven, waarde dient een integer, float of een numerieke string te zijn',
 
     // Zend_Validate_StringLength
-    "Invalid type given, value should be a string" => "Ongeldig type opgegeven, waarde dient een string te zijn",
+    'Invalid type given, value should be a string' => 'Ongeldig type opgegeven, waarde dient een string te zijn',
     "'%value%' is less than %min% characters long" => "'%value%' is minder dan %min% tekens lang",
     "'%value%' is more than %max% characters long" => "'%value%' is meer dan %max% tekens lang",
 );

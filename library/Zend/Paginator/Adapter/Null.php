@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,19 +23,16 @@
 require_once 'Zend/Paginator/Adapter/Interface.php';
 
 /**
- * @category   Zend
- * @package    Zend_Paginator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Paginator_Adapter_Null implements Zend_Paginator_Adapter_Interface
 {
     /**
-     * Item count
+     * Item count.
      *
-     * @var integer
+     * @var int
      */
-    protected $_count = null;
+    protected $_count;
 
     /**
      * Constructor.
@@ -52,8 +47,9 @@ class Zend_Paginator_Adapter_Null implements Zend_Paginator_Adapter_Interface
     /**
      * Returns an array of items for a page.
      *
-     * @param  integer $offset Page offset
-     * @param  integer $itemCountPerPage Number of items per page
+     * @param  int $offset Page offset
+     * @param  int $itemCountPerPage Number of items per page
+     *
      * @return array
      */
     public function getItems($offset, $itemCountPerPage)
@@ -62,7 +58,7 @@ class Zend_Paginator_Adapter_Null implements Zend_Paginator_Adapter_Interface
             return array();
         }
 
-        $remainItemCount  = $this->count() - $offset;
+        $remainItemCount = $this->count() - $offset;
         $currentItemCount = $remainItemCount > $itemCountPerPage ? $itemCountPerPage : $remainItemCount;
 
         return array_fill(0, $currentItemCount, null);
@@ -71,7 +67,7 @@ class Zend_Paginator_Adapter_Null implements Zend_Paginator_Adapter_Interface
     /**
      * Returns the total number of rows in the array.
      *
-     * @return integer
+     * @return int
      */
     public function count()
     {

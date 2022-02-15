@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,27 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once __DIR__ . '/../../../TestHelper.php';
 
 require_once 'Zend/Form/Element/Note.php';
 
 /**
- * Test class for Zend_Form_Element_Text
+ * Test class for Zend_Form_Element_Text.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -40,20 +30,16 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_NoteTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_NoteTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -63,8 +49,6 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -107,11 +91,11 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
         $validators = array(
             array(
                 'options' => array('Alnum'),
-                'value'   => 'aa11?? ',
+                'value' => 'aa11?? ',
             ),
             array(
                 'options' => array('Alpha'),
-                'value'   => 'aabb11',
+                'value' => 'aabb11',
             ),
             array(
                 'options' => array(
@@ -120,25 +104,25 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
                     array(
                         'min' => 0,
                         'max' => 10,
-                    )
+                    ),
                 ),
-                'value'   => '11',
+                'value' => '11',
             ),
             array(
                 'options' => array('Date'),
-                'value'   => '10.10.2000',
+                'value' => '10.10.2000',
             ),
             array(
                 'options' => array('Digits'),
-                'value'   => '1122aa',
+                'value' => '1122aa',
             ),
             array(
                 'options' => array('EmailAddress'),
-                'value'   => 'foo',
+                'value' => 'foo',
             ),
             array(
                 'options' => array('Float'),
-                'value'   => '10a01',
+                'value' => '10a01',
             ),
             array(
                 'options' => array(
@@ -146,26 +130,26 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
                     false,
                     array('min' => 10),
                 ),
-                'value'   => '9',
+                'value' => '9',
             ),
             array(
                 'options' => array('Hex'),
-                'value'   => '123ABCDEFGH',
+                'value' => '123ABCDEFGH',
             ),
             array(
                 'options' => array(
                     'InArray',
                     false,
                     array(
-                        'key'      => 'value',
+                        'key' => 'value',
                         'otherkey' => 'othervalue',
-                    )
+                    ),
                 ),
-                'value'   => 'foo',
+                'value' => 'foo',
             ),
             array(
                 'options' => array('Int'),
-                'value'   => '1234.5',
+                'value' => '1234.5',
             ),
             array(
                 'options' => array(
@@ -173,11 +157,11 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
                     false,
                     array('max' => 10),
                 ),
-                'value'   => '11',
+                'value' => '11',
             ),
             array(
                 'options' => array('NotEmpty'),
-                'value'   => '',
+                'value' => '',
             ),
             array(
                 'options' => array(
@@ -185,7 +169,7 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
                     false,
                     array('pattern' => '/^Test/'),
                 ),
-                'value'   => 'Pest',
+                'value' => 'Pest',
             ),
             array(
                 'options' => array(
@@ -194,9 +178,9 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
                     array(
                         6,
                         20,
-                    )
+                    ),
                 ),
-                'value'   => 'foo',
+                'value' => 'foo',
             ),
         );
 
@@ -213,10 +197,9 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
+     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
      *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
+     * @see   http://framework.zend.com/issues/browse/ZF-2794
      */
     protected function _checkZf2794()
     {
@@ -227,4 +210,3 @@ class Zend_Form_Element_NoteTest extends \PHPUnit\Framework\TestCase
         }
     }
 }
-

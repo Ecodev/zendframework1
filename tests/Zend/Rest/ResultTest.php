@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Zend_Rest_Server
+ * Zend_Rest_Server.
  */
 require_once 'Zend/Rest/Client/Result.php';
 
 /**
- * Test cases for Zend_Rest_Server
+ * Test cases for Zend_Rest_Server.
  *
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  * @group      Zend_Rest_Result
@@ -42,85 +35,85 @@ class Zend_Rest_ResultTest extends \PHPUnit\Framework\TestCase
 
     public function setUp()
     {
-        self::$path = __DIR__.'/responses/';
+        self::$path = __DIR__ . '/responses/';
     }
 
     public function testResponseSuccess()
     {
-        $xml = file_get_contents(self::$path ."returnString.xml");
+        $xml = file_get_contents(self::$path . 'returnString.xml');
         $client = new Zend_Rest_Client_Result($xml);
         $this->assertTrue($client->isSuccess());
     }
 
     public function testResponseIsError()
     {
-        $xml = file_get_contents(self::$path ."returnError.xml");
+        $xml = file_get_contents(self::$path . 'returnError.xml');
         $client = new Zend_Rest_Client_Result($xml);
         $this->assertTrue($client->isError());
     }
 
     public function testResponseString()
     {
-        $xml = file_get_contents(self::$path ."returnString.xml");
+        $xml = file_get_contents(self::$path . 'returnString.xml');
         $client = new Zend_Rest_Client_Result($xml);
-        $this->assertEquals("string", $client->__toString());
+        $this->assertEquals('string', $client->__toString());
     }
 
     public function testResponseInt()
     {
-        $xml = file_get_contents(self::$path ."returnInt.xml");
+        $xml = file_get_contents(self::$path . 'returnInt.xml');
         $client = new Zend_Rest_Client_Result($xml);
-        $this->assertEquals("123", $client->__toString());
+        $this->assertEquals('123', $client->__toString());
     }
 
     public function testResponseArray()
     {
         $result_array = [];
-        $xml = file_get_contents(self::$path ."returnArray.xml");
+        $xml = file_get_contents(self::$path . 'returnArray.xml');
         // <foo>bar</foo><baz>1</baz><key_1>0</key_1><bat>123</bat>
         $client = new Zend_Rest_Client_Result($xml);
         foreach ($client as $key => $value) {
             $result_array[$key] = (string) $value;
         }
-        $this->assertEquals(array("foo" => "bar", "baz" => "1", "key_1" => "0", "bat" => "123", "status" => "success"), $result_array);
+        $this->assertEquals(array('foo' => 'bar', 'baz' => '1', 'key_1' => '0', 'bat' => '123', 'status' => 'success'), $result_array);
     }
 
     public function testResponseObject()
     {
-        $xml = file_get_contents(self::$path ."returnObject.xml");
+        $xml = file_get_contents(self::$path . 'returnObject.xml');
         // <foo>bar</foo><baz>1</baz><bat>123</bat><qux>0</qux><status>success</status>
         $client = new Zend_Rest_Client_Result($xml);
-        $this->assertEquals("bar", $client->foo());
+        $this->assertEquals('bar', $client->foo());
         $this->assertEquals(1, $client->baz());
         $this->assertEquals(123, $client->bat());
         $this->assertEquals(0, $client->qux());
-        $this->assertEquals("success", $client->status());
+        $this->assertEquals('success', $client->status());
     }
 
     public function testResponseTrue()
     {
-        $xml = file_get_contents(self::$path ."returnTrue.xml");
+        $xml = file_get_contents(self::$path . 'returnTrue.xml');
         $client = new Zend_Rest_Client_Result($xml);
-        $this->assertTrue((bool)$client->response);
+        $this->assertTrue((bool) $client->response);
     }
 
     public function testResponseFalse()
     {
-        $xml = file_get_contents(self::$path ."returnFalse.xml");
+        $xml = file_get_contents(self::$path . 'returnFalse.xml');
         $client = new Zend_Rest_Client_Result($xml);
         $this->assertFalse((bool) $client->response());
     }
 
     public function testResponseVoid()
     {
-        $xml = file_get_contents(self::$path . "returnVoid.xml");
+        $xml = file_get_contents(self::$path . 'returnVoid.xml');
         $client = new Zend_Rest_Client_Result($xml);
         $this->assertEquals(null, $client->response());
     }
 
     public function testResponseException()
     {
-        $xml = file_get_contents(self::$path . "returnError.xml");
+        $xml = file_get_contents(self::$path . 'returnError.xml');
         $client = new Zend_Rest_Client_Result($xml);
         $this->assertTrue($client->isError());
     }

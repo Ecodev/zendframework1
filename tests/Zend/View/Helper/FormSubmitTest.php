@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View/Helper/FormSubmit.php';
 require_once 'Zend/View.php';
 require_once 'Zend/Registry.php';
@@ -29,10 +23,6 @@ require_once 'Zend/Registry.php';
 /**
  * Test class for Zend_View_Helper_FormSubmit.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -41,20 +31,16 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormSubmitTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormSubmitTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -62,7 +48,7 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
             $registry = Zend_Registry::getInstance();
             unset($registry[\Zend_View_Helper_Doctype::class]);
         }
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormSubmit();
         $this->helper->setView($this->view);
     }
@@ -70,8 +56,6 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -81,33 +65,33 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
     public function testRendersSubmitInput()
     {
         $html = $this->helper->formSubmit(array(
-            'name'    => 'foo',
-            'value'   => 'Submit!',
+            'name' => 'foo',
+            'value' => 'Submit!',
         ));
         $this->assertRegexp('/<input[^>]*?(type="submit")/', $html);
     }
 
     /**
-     * ZF-2254
+     * ZF-2254.
      */
     public function testCanDisableSubmitButton()
     {
         $html = $this->helper->formSubmit(array(
-            'name'    => 'foo',
-            'value'   => 'Submit!',
-            'attribs' => array('disable' => true)
+            'name' => 'foo',
+            'value' => 'Submit!',
+            'attribs' => array('disable' => true),
         ));
         $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html);
     }
 
     /**
-     * ZF-2239
+     * ZF-2239.
      */
     public function testValueAttributeIsAlwaysRendered()
     {
         $html = $this->helper->formSubmit(array(
-            'name'    => 'foo',
-            'value'   => '',
+            'name' => 'foo',
+            'value' => '',
         ));
         $this->assertRegexp('/<input[^>]*?(value="")/', $html);
     }
@@ -134,4 +118,3 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
         $this->assertNotContains('id=""', $test);
     }
 }
-

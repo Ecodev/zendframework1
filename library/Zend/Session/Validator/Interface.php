@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,31 +12,23 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Session
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
+ *
  * @since      Preview Release 0.2
  */
 
 /**
- * Zend_Session_Validator_Interface
+ * Zend_Session_Validator_Interface.
  *
- * @category   Zend
- * @package    Zend_Session
- * @subpackage Validator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 interface Zend_Session_Validator_Interface
 {
-
     /**
      * Setup() - this method will store the environment variables
      * necessary to be able to validate against in future requests.
-     *
-     * @return void
      */
     public function setup();
 
@@ -45,8 +37,7 @@ interface Zend_Session_Validator_Interface
      * every session to determine if the current environment matches
      * that which was store in the setup() procedure.
      *
-     * @return boolean
+     * @return bool
      */
     public function validate();
-
 }

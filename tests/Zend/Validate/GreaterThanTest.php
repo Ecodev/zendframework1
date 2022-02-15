@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,21 +22,14 @@
  */
 require_once 'Zend/Validate/GreaterThan.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_GreaterThanTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -47,14 +37,14 @@ class Zend_Validate_GreaterThanTest extends \PHPUnit\Framework\TestCase
          * The elements of each array are, in order:
          *      - minimum
          *      - expected validation result
-         *      - array of test input values
+         *      - array of test input values.
          */
         $valuesExpected = array(
             array(0, true, array(0.01, 1, 100)),
             array(0, false, array(0, 0.00, -0.01, -1, -100)),
             array('a', true, array('b', 'c', 'd')),
-            array('z', false, array('x', 'y', 'z'))
-            );
+            array('z', false, array('x', 'y', 'z')),
+        );
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_GreaterThan($element[0]);
             foreach ($element[2] as $input) {
@@ -64,9 +54,7 @@ class Zend_Validate_GreaterThanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -75,9 +63,7 @@ class Zend_Validate_GreaterThanTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMin() returns expected value
-     *
-     * @return void
+     * Ensures that getMin() returns expected value.
      */
     public function testGetMin()
     {

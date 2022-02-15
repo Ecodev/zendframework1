@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
-
-
 /**
- * Zend_Loader_Autoloader
+ * Zend_Loader_Autoloader.
  */
 require_once 'Zend/Loader/Autoloader.php';
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
@@ -39,7 +30,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -97,7 +88,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
     {
         require_once __DIR__ . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options  = array(
+        $options = array(
             'foo' => 'bar',
         );
         $resource->setOptions($options);
@@ -108,20 +99,20 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
     {
         require_once __DIR__ . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options1  = array(
+        $options1 = array(
             'foo' => 'bar',
         );
-        $options2  = array(
+        $options2 = array(
             'bar' => 'baz',
         );
-        $options3  = array(
+        $options3 = array(
             'foo' => 'BAR',
         );
         $expected = $resource->mergeOptions($options1, $options2);
         $expected = $resource->mergeOptions($expected, $options3);
         $resource->setOptions($options1)
-                 ->setOptions($options2)
-                 ->setOptions($options3);
+            ->setOptions($options2)
+            ->setOptions($options3);
         $this->assertEquals($expected, $resource->getOptions());
     }
 
@@ -129,7 +120,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
     {
         require_once __DIR__ . '/../_files/resources/Foo.php';
         $resource = new Zend_Application_BootstrapTest_Resource_Foo();
-        $options  = array(
+        $options = array(
             'someArbitraryKey' => 'test',
         );
         $resource->setOptions($options);
@@ -139,7 +130,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
     public function testConstructorAcceptsArrayConfiguration()
     {
         require_once __DIR__ . '/../_files/resources/Foo.php';
-        $options  = array(
+        $options = array(
             'foo' => 'bar',
         );
         $resource = new Zend_Application_BootstrapTest_Resource_Foo($options);
@@ -149,7 +140,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
     public function testConstructorAcceptsZendConfigObject()
     {
         require_once __DIR__ . '/../_files/resources/Foo.php';
-        $options  = array(
+        $options = array(
             'foo' => 'bar',
         );
         $config = new Zend_Config($options);
@@ -184,8 +175,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
         );
 
         $resource = new Zend_Application_BootstrapTest_Resource_Foo($options);
-        $stored   = $resource->getOptions();
+        $stored = $resource->getOptions();
         $this->assertSame($options, $stored);
     }
 }
-

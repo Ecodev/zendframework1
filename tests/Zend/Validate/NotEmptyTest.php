@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,27 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Validate_NotEmpty
  */
 require_once 'Zend/Validate/NotEmpty.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
@@ -40,26 +30,22 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_NotEmptyTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_NotEmptyTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Zend_Validate_NotEmpty object
+     * Zend_Validate_NotEmpty object.
      *
      * @var Zend_Validate_NotEmpty
      */
     protected $_validator;
 
     /**
-     * Creates a new Zend_Validate_NotEmpty object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Validate_NotEmpty object for each test method.
      */
     public function setUp()
     {
@@ -67,13 +53,12 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
+     * Ensures that the validator follows expected behavior.
      *
      * ZF-6708 introduces a change for validating integer 0; it is a valid
      * integer value. '0' is also valid.
      *
      * @group ZF-6708
-     * @return void
      */
     public function testBasic()
     {
@@ -98,9 +83,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyBoolean()
     {
@@ -121,9 +104,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyInteger()
     {
@@ -144,9 +125,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyFloat()
     {
@@ -167,9 +146,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyString()
     {
@@ -190,9 +167,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyZero()
     {
@@ -213,9 +188,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyArray()
     {
@@ -236,9 +209,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyNull()
     {
@@ -259,9 +230,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyPHP()
     {
@@ -282,9 +251,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlySpace()
     {
@@ -305,9 +272,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testOnlyAll()
     {
@@ -328,9 +293,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testArrayConstantNotation()
     {
@@ -339,8 +302,8 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
                 'type' => array(
                     Zend_Validate_NotEmpty::ZERO,
                     Zend_Validate_NotEmpty::STRING,
-                    Zend_Validate_NotEmpty::BOOLEAN
-                )
+                    Zend_Validate_NotEmpty::BOOLEAN,
+                ),
             )
         );
 
@@ -360,9 +323,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testArrayConfigNotation()
     {
@@ -371,8 +332,8 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
                 'type' => array(
                     Zend_Validate_NotEmpty::ZERO,
                     Zend_Validate_NotEmpty::STRING,
-                    Zend_Validate_NotEmpty::BOOLEAN),
-                'test' => false
+                    Zend_Validate_NotEmpty::BOOLEAN, ),
+                'test' => false,
             )
         );
 
@@ -392,9 +353,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testMultiConstantNotation()
     {
@@ -418,15 +377,13 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testStringNotation()
     {
         $filter = new Zend_Validate_NotEmpty(
             array(
-                'type' => array('zero', 'string', 'boolean')
+                'type' => array('zero', 'string', 'boolean'),
             )
         );
 
@@ -446,9 +403,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testSingleStringNotation()
     {
@@ -472,15 +427,13 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testConfigObject()
     {
         require_once 'Zend/Config.php';
         $options = array('type' => 'all');
-        $config  = new Zend_Config($options);
+        $config = new Zend_Config($options);
 
         $filter = new Zend_Validate_NotEmpty(
             $config
@@ -502,9 +455,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testSettingFalseType()
     {
@@ -517,9 +468,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testGetType()
     {
@@ -535,9 +484,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -555,8 +502,6 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @ZF-8767
-     *
-     * @return void
      */
     public function testZF8767()
     {
@@ -568,9 +513,6 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
         $this->assertContains("can't be empty", $messages['isEmpty']);
     }
 
-    /**
-     * @return void
-     */
     public function testObjects()
     {
         $valid = new Zend_Validate_NotEmpty(Zend_Validate_NotEmpty::STRING);
@@ -582,9 +524,6 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($valid->isValid($object));
     }
 
-    /**
-     * @return void
-     */
     public function testStringObjects()
     {
         $valid = new Zend_Validate_NotEmpty(Zend_Validate_NotEmpty::STRING);
@@ -600,7 +539,9 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-class ClassTest1 {}
+class ClassTest1
+{
+}
 
 class ClassTest2
 {
@@ -617,4 +558,3 @@ class ClassTest3
         return '';
     }
 }
-

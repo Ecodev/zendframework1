@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,28 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
-
 /**
- * Abstract class for extension
+ * Abstract class for extension.
  */
 require_once 'Zend/View/Helper/FormElement.php';
 
-
 /**
- * Helper to generate an "image" element
+ * Helper to generate an "image" element.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_FormImage extends Zend_View_Helper_FormElement
@@ -41,17 +32,13 @@ class Zend_View_Helper_FormImage extends Zend_View_Helper_FormElement
     /**
      * Generates an 'image' element.
      *
-     * @access public
-     *
-     * @param string|array $name If a string, the element name.  If an
+     * @param array|string $name If a string, the element name.  If an
      * array, all other parameters are ignored, and the array elements
      * are extracted in place of added parameters.
-     *
      * @param mixed $value The source ('src="..."') for the image.
+     * @param array $attribs attributes for the element tag
      *
-     * @param array $attribs Attributes for the element tag.
-     *
-     * @return string The element XHTML.
+     * @return string the element XHTML
      */
     public function formImage($name, $value = null, $attribs = null)
     {

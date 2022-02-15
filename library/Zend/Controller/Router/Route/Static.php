@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @version    $Id$
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -28,30 +25,26 @@ require_once 'Zend/Controller/Router/Route/Abstract.php';
  *
  * It's a lot faster compared to the standard Route implementation.
  *
- * @package    Zend_Controller
- * @subpackage Router
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_Abstract
 {
-
     /**
-     * Route
+     * Route.
      *
-     * @var string|null
+     * @var null|string
      */
-    protected $_route = null;
+    protected $_route;
 
     /**
-     * Default values for the route (ie. module, controller, action, params)
+     * Default values for the route (ie. module, controller, action, params).
      *
      * @var array
      */
     protected $_defaults = array();
 
     /**
-     * Get the version of the route
+     * Get the version of the route.
      *
      * @return int
      */
@@ -61,9 +54,10 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Instantiates route based on passed Zend_Config structure
+     * Instantiates route based on passed Zend_Config structure.
      *
      * @param Zend_Config $config Configuration object
+     *
      * @return Zend_Controller_Router_Route_Static
      */
     public static function getInstance(Zend_Config $config)
@@ -81,7 +75,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
      */
     public function __construct($route, $defaults = array())
     {
-        $this->_route    = trim($route, self::URI_DELIMITER);
+        $this->_route = trim($route, self::URI_DELIMITER);
         $this->_defaults = (array) $defaults;
     }
 
@@ -90,6 +84,8 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
      * Assigns and returns an array of defaults on a successful match.
      *
      * @param string $path Path used to match against this routing map
+     * @param mixed $partial
+     *
      * @return array|false An array of assigned values or a false on a mismatch
      */
     public function match($path, $partial = false)
@@ -112,9 +108,13 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Assembles a URL path defined by this route
+     * Assembles a URL path defined by this route.
      *
      * @param array $data An array of variable and value pairs used as parameters
+     * @param mixed $reset
+     * @param mixed $encode
+     * @param mixed $partial
+     *
      * @return string Route path with user submitted parameters
      */
     public function assemble($data = array(), $reset = false, $encode = false, $partial = false)
@@ -123,9 +123,10 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Return a single parameter of route's defaults
+     * Return a single parameter of route's defaults.
      *
      * @param string $name Array key of the parameter
+     *
      * @return string Previously set default
      */
     public function getDefault($name)
@@ -138,7 +139,7 @@ class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Return an array of defaults
+     * Return an array of defaults.
      *
      * @return array Route defaults
      */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,23 +12,20 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 return array(
-    'notDigits'         => 'Translating the notDigits string',
+    'notDigits' => 'Translating the notDigits string',
     'digitsStringEmpty' => 'Translating the stringEmpty string',
-    'stringEmpty'       => 'Translating the stringEmpty string',
-    'isEmpty'           => 'Translating the isEmpty string',
+    'stringEmpty' => 'Translating the stringEmpty string',
+    'isEmpty' => 'Translating the isEmpty string',
 
-    'submit'      => 'Submit Button',
-    'foovalue'    => 'Foo Value',
-    'barvalue'    => 'Bar Value',
-    'Foo'         => 'Foo Translation',
-    'Bar'         => 'Bar Translation',
+    'submit' => 'Submit Button',
+    'foovalue' => 'Foo Value',
+    'barvalue' => 'Bar Value',
+    'Foo' => 'Foo Translation',
+    'Bar' => 'Bar Translation',
 );

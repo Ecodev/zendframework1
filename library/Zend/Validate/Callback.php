@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,52 +23,48 @@
 require_once 'Zend/Validate/Abstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Callback extends Zend_Validate_Abstract
 {
     /**
-     * Invalid callback
+     * Invalid callback.
      */
     public const INVALID_CALLBACK = 'callbackInvalid';
 
     /**
-     * Invalid value
+     * Invalid value.
      */
     public const INVALID_VALUE = 'callbackValue';
 
     /**
-     * Validation failure message template definitions
+     * Validation failure message template definitions.
      *
      * @var array
      */
     protected $_messageTemplates = array(
-        self::INVALID_VALUE    => "'%value%' is not valid",
-        self::INVALID_CALLBACK => "An exception has been raised within the callback",
+        self::INVALID_VALUE => "'%value%' is not valid",
+        self::INVALID_CALLBACK => 'An exception has been raised within the callback',
     );
 
     /**
-     * Callback in a call_user_func format
+     * Callback in a call_user_func format.
      *
-     * @var string|array
+     * @var array|string
      */
-    protected $_callback = null;
+    protected $_callback;
 
     /**
-     * Default options to set for the filter
+     * Default options to set for the filter.
      *
      * @var mixed
      */
     protected $_options = array();
 
     /**
-     * Sets validator options
+     * Sets validator options.
      *
      * @param  mixed $callback
-     * @throws Zend_Validate_Exception
      */
     public function __construct($callback = null)
     {
@@ -87,12 +81,13 @@ class Zend_Validate_Callback extends Zend_Validate_Abstract
 
         if (null === ($initializedCallack = $this->getCallback())) {
             require_once 'Zend/Validate/Exception.php';
+
             throw new Zend_Validate_Exception('No callback registered');
         }
     }
 
     /**
-     * Returns the set callback
+     * Returns the set callback.
      *
      * @return mixed
      */
@@ -102,24 +97,26 @@ class Zend_Validate_Callback extends Zend_Validate_Abstract
     }
 
     /**
-     * Sets the callback
+     * Sets the callback.
      *
-     * @param  string|array $callback
-     * @throws Zend_Validate_Exception
+     * @param  array|string $callback
+     *
      * @return Zend_Validate_Callback Provides a fluent interface
      */
     public function setCallback($callback)
     {
         if (!is_callable($callback)) {
             require_once 'Zend/Validate/Exception.php';
+
             throw new Zend_Validate_Exception('Invalid callback given');
         }
         $this->_callback = $callback;
+
         return $this;
     }
 
     /**
-     * Returns the set options for the callback
+     * Returns the set options for the callback.
      *
      * @return mixed
      */
@@ -129,42 +126,47 @@ class Zend_Validate_Callback extends Zend_Validate_Abstract
     }
 
     /**
-     * Sets options for the callback
+     * Sets options for the callback.
      *
      * @param  mixed $options
+     *
      * @return Zend_Validate_Callback Provides a fluent interface
      */
     public function setOptions($options)
     {
         $this->_options = (array) $options;
+
         return $this;
     }
 
     /**
-     * Defined by Zend_Validate_Interface
+     * Defined by Zend_Validate_Interface.
      *
      * Returns true if and only if the set callback returns
      * for the provided $value
      *
      * @param  mixed $value
-     * @return boolean
+     *
+     * @return bool
      */
     public function isValid($value)
     {
         $this->_setValue($value);
 
-        $options  = $this->getOptions();
+        $options = $this->getOptions();
         $callback = $this->getCallback();
-        $args     = func_get_args();
-        $options  = array_merge($args, $options);
+        $args = func_get_args();
+        $options = array_merge($args, $options);
 
         try {
             if (!call_user_func_array($callback, $options)) {
                 $this->_error(self::INVALID_VALUE);
+
                 return false;
             }
         } catch (Exception $e) {
             $this->_error(self::INVALID_CALLBACK);
+
             return false;
         }
 

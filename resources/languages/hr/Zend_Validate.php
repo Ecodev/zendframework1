@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,18 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage Ressource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-/**
- * HR-Revision: 2
- */
+// HR-Revision: 2
 return array(
     // Zend_Validate_Alnum
-    "Invalid type given, value should be float, string, or integer" => "Neispravan tip, vrijednost bi trebala biti niz slova, brojki ili realni broj",
+    'Invalid type given, value should be float, string, or integer' => 'Neispravan tip, vrijednost bi trebala biti niz slova, brojki ili realni broj',
     "'%value%' contains characters which are non alphabetic and no digits" => "'%value%' sadrži znakove koji nisu ni slova ni brojke",
     "'%value%' is an empty string" => "'%value%' je prazan niz",
 
     // Zend_Validate_Alpha
-    "Invalid type given, value should be a string" => "Neispravan tip, vrijednost mora biti niz slova",
+    'Invalid type given, value should be a string' => 'Neispravan tip, vrijednost mora biti niz slova',
     "'%value%' contains non alphabetic characters" => "'%value%' sadrži znakove koji nisu slova",
     "'%value%' is an empty string" => "'%value%' je prazan niz",
 
@@ -37,7 +31,7 @@ return array(
     "'%value%' failed checksum validation" => "'%value%' nije prošao provjeru",
     "'%value%' contains invalid characters" => "'%value%' sadrži neispravne znakove",
     "'%value%' should have a length of %length% characters" => "'%value%' bi trebao imati dužinu od %length% znakova",
-    "Invalid type given, value should be string" => "Neispravan tip, vrijedno mora biti niz znakova",
+    'Invalid type given, value should be string' => 'Neispravan tip, vrijedno mora biti niz znakova',
 
     // Zend_Validate_Between
     "'%value%' is not between '%min%' and '%max%', inclusively" => "'%value%' nije između '%min%' i '%max%', uključivo",
@@ -45,7 +39,7 @@ return array(
 
     // Zend_Validate_Callback
     "'%value%' is not valid" => "'%value%' nije ispravan",
-    "Failure within the callback, exception returned" => "Pogreška sa povratnim pozivom, iznimka vraćena",
+    'Failure within the callback, exception returned' => 'Pogreška sa povratnim pozivom, iznimka vraćena',
 
     // Zend_Validate_Ccnum
     "'%value%' must contain between 13 and 19 digits" => "'%value%' mora sadržavati između 13 i 19 znamenki",
@@ -54,28 +48,28 @@ return array(
     // Zend_Validate_CreditCard
     "Luhn algorithm (mod-10 checksum) failed on '%value%'" => "Luhn algoritam (mod-10 provjera) nije prošla na '%value%'",
     "'%value%' must contain only digits" => "'%value%' mora sadržavati samo znamenke",
-    "Invalid type given, value should be a string" => "Neispravan tip, vrijednost mora biti niz znakova",
+    'Invalid type given, value should be a string' => 'Neispravan tip, vrijednost mora biti niz znakova',
     "'%value%' contains an invalid amount of digits" => "'%value%' sadrži neispravan broj znamenki",
     "'%value%' is not from an allowed institute" => "'%value%' nije iz dozvoljene institucije",
     "Validation of '%value%' has been failed by the service" => "Servis nije odobrio provjeru '%value%'",
     "The service returned a failure while validating '%value%'" => "Servis je vratio pogrešku provjeravajući '%value%'",
 
     // Zend_Validate_Date
-    "Invalid type given, value should be string, integer, array or Zend_Date" => "Neispravan tip, vrijednost mora biti niz znakova, broj, polje ili Zend_Date",
+    'Invalid type given, value should be string, integer, array or Zend_Date' => 'Neispravan tip, vrijednost mora biti niz znakova, broj, polje ili Zend_Date',
     "'%value%' does not appear to be a valid date" => "'%value%' ne izgleda kao ispravan datum",
     "'%value%' does not fit the date format '%format%'" => "'%value%' ne odgovara formatu datuma '%format%'",
 
     // Zend_Validate_Db_Abstract
-    "No record matching '%value%' was found" => "Nije pronađen zapis koji se podudara sa %value%",
-    "A record matching '%value%' was found" => "Zapis koji se podudara sa %value% je pronađen",
+    "No record matching '%value%' was found" => 'Nije pronađen zapis koji se podudara sa %value%',
+    "A record matching '%value%' was found" => 'Zapis koji se podudara sa %value% je pronađen',
 
     // Zend_Validate_Digits
-    "Invalid type given, value should be string, integer or float" => "Neispravan tip, vrijednost bi trebala biti niz slova, brojki ili realni broj",
+    'Invalid type given, value should be string, integer or float' => 'Neispravan tip, vrijednost bi trebala biti niz slova, brojki ili realni broj',
     "'%value%' contains characters which are not digits; but only digits are allowed" => "'%value%' sadrži znakove koji nisu znamenke; samo znamenke su dozvoljene",
     "'%value%' is an empty string" => "'%value%' je prazan niz",
 
     // Zend_Validate_EmailAddress
-    "Invalid type given, value should be a string" => "Neispravan tip, vrijednost bi trebala biti niz",
+    'Invalid type given, value should be a string' => 'Neispravan tip, vrijednost bi trebala biti niz',
     "'%value%' is not a valid email address in the basic format local-part@hostname" => "'%value%' nije ispravna email adresa u osnovnom formatu lokalni-dio@ime-poslužitelja",
     "'%hostname%' is not a valid hostname for email address '%value%'" => "'%hostname%' nije ispravno ime poslužitelja za email adresu '%value%'",
     "'%hostname%' does not appear to have a valid MX record for the email address '%value%'" => "'%hostname%' nema ispravan MX zapis za email adresu '%value%'",
@@ -91,7 +85,7 @@ return array(
 
     // Zend_Validate_File_Crc32
     "File '%value%' does not match the given crc32 hashes" => "Datoteka '%value%' se ne podudara sa zadanim crc32 hash-em",
-    "A crc32 hash could not be evaluated for the given file" => "crc32 hash se ne može izračunati za zadanu datoteku",
+    'A crc32 hash could not be evaluated for the given file' => 'crc32 hash se ne može izračunati za zadanu datoteku',
     "File '%value%' could not be found" => "Datoteku '%value%' nije moguće pronaći",
 
     // Zend_Validate_File_ExcludeExtension
@@ -113,11 +107,11 @@ return array(
     // Zend_Validate_File_FilesSize
     "All files in sum should have a maximum size of '%max%' but '%size%' were detected" => "Sve datoteke zajedno mogu imati maksimalnu veličinu od '%max%', a imaju '%size%'",
     "All files in sum should have a minimum size of '%min%' but '%size%' were detected" => "Sve datoteke zajedno moraju imati minimalnu veličinu od '%min%', a imaju '%size%'",
-    "One or more files can not be read" => "Jednu ili više datoteka nije moguće pročitati",
+    'One or more files can not be read' => 'Jednu ili više datoteka nije moguće pročitati',
 
     // Zend_Validate_File_Hash
     "File '%value%' does not match the given hashes" => "Datoteka '%value%' ne odgovara danom 'hashu'",
-    "A hash could not be evaluated for the given file" => "'Hash' nije moguće izračunati za zadanu datoteku",
+    'A hash could not be evaluated for the given file' => "'Hash' nije moguće izračunati za zadanu datoteku",
     "File '%value%' could not be found" => "Datoteku '%value%' nije moguće pronaći",
 
     // Zend_Validate_File_ImageSize
@@ -140,7 +134,7 @@ return array(
 
     // Zend_Validate_File_Md5
     "File '%value%' does not match the given md5 hashes" => "Datoteka '%value%' ne odgovara zadanom md5 hash-u",
-    "A md5 hash could not be evaluated for the given file" => "Md5 hash nije moguće izračunati za zadanu datoteku",
+    'A md5 hash could not be evaluated for the given file' => 'Md5 hash nije moguće izračunati za zadanu datoteku',
     "File '%value%' could not be found" => "Datoteku '%value%' nije moguće pronaći",
 
     // Zend_Validate_File_MimeType
@@ -153,7 +147,7 @@ return array(
 
     // Zend_Validate_File_Sha1
     "File '%value%' does not match the given sha1 hashes" => "Datoteka '%value%' ne odgovara zadanom sha1 hash-u",
-    "A sha1 hash could not be evaluated for the given file" => "Sha1 hash se ne može izračunati za zadanu datoteku",
+    'A sha1 hash could not be evaluated for the given file' => 'Sha1 hash se ne može izračunati za zadanu datoteku',
     "File '%value%' could not be found" => "Datoteku '%value%' nije moguće pronaći",
 
     // Zend_Validate_File_Size
@@ -179,18 +173,18 @@ return array(
     "File '%value%' could not be found" => "Datoteku '%value%' nije moguće pronaći",
 
     // Zend_Validate_Float
-    "Invalid type given, value should be float, string, or integer" => "Neispravan tip, vrijednost bi trebala biti niz slova, brojki ili realni broj",
+    'Invalid type given, value should be float, string, or integer' => 'Neispravan tip, vrijednost bi trebala biti niz slova, brojki ili realni broj',
     "'%value%' does not appear to be a float" => "'%value%' nije realni broj",
 
     // Zend_Validate_GreaterThan
     "'%value%' is not greater than '%min%'" => "'%value%' nije veće od '%min%'",
 
     // Zend_Validate_Hex
-    "Invalid type given, value should be a string" => "Neispravan tip, vrijednost bi trebala biti niz",
+    'Invalid type given, value should be a string' => 'Neispravan tip, vrijednost bi trebala biti niz',
     "'%value%' has not only hexadecimal digit characters" => "'%value%' nema samo heksadekadske znamenke",
 
     // Zend_Validate_Hostname
-    "Invalid type given, value should be a string" => "Neispravan tup, vrijednost bi trebala biti niz",
+    'Invalid type given, value should be a string' => 'Neispravan tup, vrijednost bi trebala biti niz',
     "'%value%' appears to be an IP address, but IP addresses are not allowed" => "'%value%' izgleda kao IP adresa, IP adrese nisu dozvoljene",
     "'%value%' appears to be a DNS hostname but cannot match TLD against known list" => "'%value%' izgleda kao DNS ime poslužitelja, ali ne mogu pronaći vršnu domenu u listi poznatih",
     "'%value%' appears to be a DNS hostname but contains a dash in an invalid position" => "'%value%' izgleda kao DNS ime poslužitelja, ali ima crtu ne neispravnoj poziciji",
@@ -207,58 +201,58 @@ return array(
     "'%value%' has failed the IBAN check" => "'%value%' nije prošlo IBAN provjeru",
 
     // Zend_Validate_Identical
-    "The two given tokens do not match" => "Zadane vrijednosti se ne podudaraju",
-    "No token was provided to match against" => "Nije zadano vrijednost s kojom se treba usporediti",
+    'The two given tokens do not match' => 'Zadane vrijednosti se ne podudaraju',
+    'No token was provided to match against' => 'Nije zadano vrijednost s kojom se treba usporediti',
 
     // Zend_Validate_InArray
     "'%value%' was not found in the haystack" => "Vrijednost '%value%' nije pronađena u polju",
 
     // Zend_Validate_Int
-    "Invalid type given, value should be string or integer" => "Neispravan tip, vrijednost bi trebala biti niz ili cijeli broj",
+    'Invalid type given, value should be string or integer' => 'Neispravan tip, vrijednost bi trebala biti niz ili cijeli broj',
     "'%value%' does not appear to be an integer" => "'%value%' ne izgleda kao cijeli broj",
 
     // Zend_Validate_Ip
-    "Invalid type given, value should be a string" => "Neispravan tip, vrijednost mora biti niz",
+    'Invalid type given, value should be a string' => 'Neispravan tip, vrijednost mora biti niz',
     "'%value%' does not appear to be a valid IP address" => "'%value%' ne izgleda kao ispravna IP adresa",
 
     // Zend_Validate_Isbn
-    "Invalid type given, value should be string or integer" => "Neispravan tip, vrijednost mora biti niz ili cijeli broj",
+    'Invalid type given, value should be string or integer' => 'Neispravan tip, vrijednost mora biti niz ili cijeli broj',
     "'%value%' is not a valid ISBN number" => "'%value%' nije ispravan ISBN broj",
 
     // Zend_Validate_LessThan
     "'%value%' is not less than '%max%'" => "'%value%' nije manje od '%max%'",
 
     // Zend_Validate_NotEmpty
-    "Invalid type given, value should be float, string, array, boolean or integer" => "Neispravan tip, vrijednost mora biti realni broj, niz, polje, cijeli broj ili 'boolean'",
-    "Value is required and can't be empty" => "Vrijednost ne smije biti prazna",
+    'Invalid type given, value should be float, string, array, boolean or integer' => "Neispravan tip, vrijednost mora biti realni broj, niz, polje, cijeli broj ili 'boolean'",
+    "Value is required and can't be empty" => 'Vrijednost ne smije biti prazna',
 
     // Zend_Validate_PostCode
-    "Invalid type given. The value should be a string or a integer" => "Neispravan tip. Vrijednost mora biti niz ili cijeli broj",
+    'Invalid type given. The value should be a string or a integer' => 'Neispravan tip. Vrijednost mora biti niz ili cijeli broj',
     "'%value%' does not appear to be a postal code" => "'%value%' ne izgleda kao poštanski kod",
 
     // Zend_Validate_Regex
-    "Invalid type given, value should be string, integer or float" => "Neispravan tip, vrijednost mora biti niz, cijeli ili realni broj",
+    'Invalid type given, value should be string, integer or float' => 'Neispravan tip, vrijednost mora biti niz, cijeli ili realni broj',
     "'%value%' does not match against pattern '%pattern%'" => "'%value%' se ne podudara sa uzorkom '%pattern%'",
     "There was an internal error while using the pattern '%pattern%'" => "Došlo je do interne pogreške prilikom korištenja uzorka '%pattern%'",
 
     // Zend_Validate_Sitemap_Changefreq
     "'%value%' is not a valid sitemap changefreq" => "'%value%' nije ispravna vrijednost za sitemap 'changefreq'",
-    "Invalid type given, the value should be a string" => "Neispravan tip, vrijednost mora biti niz",
+    'Invalid type given, the value should be a string' => 'Neispravan tip, vrijednost mora biti niz',
 
     // Zend_Validate_Sitemap_Lastmod
     "'%value%' is not a valid sitemap lastmod" => "'%value%' nije ispravna vrijednost za sitemap 'lastmod'",
-    "Invalid type given, the value should be a string" => "Neispravan tip, vrijednost mora biti niz",
+    'Invalid type given, the value should be a string' => 'Neispravan tip, vrijednost mora biti niz',
 
     // Zend_Validate_Sitemap_Loc
     "'%value%' is not a valid sitemap location" => "'%value%' nije ispravna lokacija za 'sitemap'",
-    "Invalid type given, the value should be a string" => "Neispravan tip, vrijednost mora biti niz",
+    'Invalid type given, the value should be a string' => 'Neispravan tip, vrijednost mora biti niz',
 
     // Zend_Validate_Sitemap_Priority
     "'%value%' is not a valid sitemap priority" => "'%value%' nije ispravna vrijednost za sitemap 'priority'",
-    "Invalid type given, the value should be a integer, a float or a numeric string" => "Neispravan tip, vrijednost mora biti cijeli broj, realni broj ili niz znamenki",
+    'Invalid type given, the value should be a integer, a float or a numeric string' => 'Neispravan tip, vrijednost mora biti cijeli broj, realni broj ili niz znamenki',
 
     // Zend_Validate_StringLength
-    "Invalid type given, value should be a string" => "Neispravan tip, vrijednost mora biti niz",
+    'Invalid type given, value should be a string' => 'Neispravan tip, vrijednost mora biti niz',
     "'%value%' is less than %min% characters long" => "'%value%' ima manje od %min% znaka",
     "'%value%' is more than %max% characters long" => "'%value%' ima više od %max% znakova",
 );

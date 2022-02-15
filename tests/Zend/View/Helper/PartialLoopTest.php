@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -32,10 +29,6 @@ require_once 'Zend/Controller/Front.php';
 /**
  * Test class for Zend_View_Helper_PartialLoop.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -54,21 +47,16 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PartialLoopTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_PartialLoopTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -80,17 +68,12 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
         unset($this->helper);
     }
 
-    /**
-     * @return void
-     */
     public function testPartialLoopIteratesOverArray()
     {
         $data = [
@@ -112,9 +95,6 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testPartialLoopIteratesOverIterator()
     {
         $data = [
@@ -137,9 +117,6 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testPartialLoopIteratesOverRecursiveIterator()
     {
         $rIterator = new Zend_View_Helper_PartialLoop_RecursiveIteratorTest();
@@ -163,9 +140,6 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testPartialLoopThrowsExceptionWithBadIterator()
     {
         $data = [
@@ -188,9 +162,6 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testPartialLoopFindsModule()
     {
         Zend_Controller_Front::getInstance()->addModuleDirectory($this->basePath);
@@ -315,7 +286,8 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-2737
-     * @link http://framework.zend.com/issues/browse/ZF-2737
+     *
+     * @see http://framework.zend.com/issues/browse/ZF-2737
      */
     public function testPartialLoopIncramentsPartialCounter()
     {
@@ -340,7 +312,8 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-5174
-     * @link http://framework.zend.com/issues/browse/ZF-5174
+     *
+     * @see http://framework.zend.com/issues/browse/ZF-5174
      */
     public function testPartialLoopPartialCounterResets()
     {
@@ -383,8 +356,7 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
 
         $view = new Zend_View(
             [
-                'scriptPath' =>
-                    $this->basePath . '/default/views/scripts',
+                'scriptPath' => $this->basePath . '/default/views/scripts',
             ]
         );
         $this->helper->setView($view);
@@ -428,7 +400,7 @@ class Zend_View_Helper_PartialLoop_IteratorTest implements Iterator, Countable
 
     public function valid()
     {
-        return (current($this->items) !== false);
+        return current($this->items) !== false;
     }
 
     public function toArray()
@@ -480,8 +452,9 @@ class Zend_View_Helper_PartialLoop_RecursiveIteratorTest implements Iterator, Co
 
     public function valid()
     {
-        return (current($this->items) !== false);
+        return current($this->items) !== false;
     }
+
     public function count()
     {
         return count($this->items);
@@ -505,7 +478,7 @@ class Zend_View_Helper_PartialLoop_ToArrayTest
     }
 }
 
-class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator,Countable
+class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator, Countable
 {
     public $items;
 
@@ -541,7 +514,7 @@ class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator,C
 
     public function valid()
     {
-        return (current($this->items) !== false);
+        return current($this->items) !== false;
     }
 
     public function count()
@@ -567,4 +540,3 @@ class Zend_View_Helper_PartialLoop_IteratorWithToArrayTestContainer
         return $this->_info;
     }
 }
-

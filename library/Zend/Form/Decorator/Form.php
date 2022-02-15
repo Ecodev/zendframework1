@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Decorator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -23,7 +19,7 @@
 require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
- * Zend_Form_Decorator_Form
+ * Zend_Form_Decorator_Form.
  *
  * Render a Zend_Form object.
  *
@@ -34,35 +30,35 @@ require_once 'Zend/Form/Decorator/Abstract.php';
  *
  * Any other options passed will be used as HTML attributes of the form tag.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Decorator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 class Zend_Form_Decorator_Form extends Zend_Form_Decorator_Abstract
 {
     /**
-     * Default view helper
+     * Default view helper.
+     *
      * @var string
      */
     protected $_helper = 'form';
 
     /**
-     * Set view helper for rendering form
+     * Set view helper for rendering form.
      *
      * @param  string $helper
+     *
      * @return Zend_Form_Decorator_Form
      */
     public function setHelper($helper)
     {
         $this->_helper = (string) $helper;
+
         return $this;
     }
 
     /**
-     * Get view helper for rendering form
+     * Get view helper for rendering form.
      *
      * @return string
      */
@@ -72,11 +68,12 @@ class Zend_Form_Decorator_Form extends Zend_Form_Decorator_Abstract
             $this->setHelper($helper);
             $this->removeOption('helper');
         }
+
         return $this->_helper;
     }
 
     /**
-     * Retrieve decorator options
+     * Retrieve decorator options.
      *
      * Assures that form action and method are set, and sets appropriate
      * encoding type if current method is POST.
@@ -110,25 +107,27 @@ class Zend_Form_Decorator_Form extends Zend_Form_Decorator_Abstract
     }
 
     /**
-     * Render a form
+     * Render a form.
      *
      * Replaces $content entirely from currently set element.
      *
      * @param  string $content
+     *
      * @return string
      */
     public function render($content)
     {
-        $form    = $this->getElement();
-        $view    = $form->getView();
+        $form = $this->getElement();
+        $view = $form->getView();
         if (null === $view) {
             return $content;
         }
 
-        $helper        = $this->getHelper();
-        $attribs       = $this->getOptions();
-        $name          = $form->getFullyQualifiedName();
+        $helper = $this->getHelper();
+        $attribs = $this->getOptions();
+        $name = $form->getFullyQualifiedName();
         $attribs['id'] = $form->getId();
+
         return $view->$helper($name, $attribs, $content);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,31 +12,24 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
 /** Zend_Form_Element_Xhtml */
 require_once 'Zend/Form/Element/Xhtml.php';
 
-
 /**
- * CSRF form protection
+ * CSRF form protection.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
 {
     /**
-     * Use formHidden view helper by default
+     * Use formHidden view helper by default.
+     *
      * @var string
      */
     public $helper = 'formHidden';
@@ -49,7 +42,8 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     protected $_hash;
 
     /**
-     * Salt for CSRF token
+     * Salt for CSRF token.
+     *
      * @var string
      */
     protected $_salt = 'salt';
@@ -60,44 +54,46 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     protected $_session;
 
     /**
-     * TTL for CSRF token
+     * TTL for CSRF token.
+     *
      * @var int
      */
     protected $_timeout = 300;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * Creates session namespace for CSRF token, and adds validator for CSRF
      * token.
      *
-     * @param  string|array|Zend_Config $spec
+     * @param  array|string|Zend_Config $spec
      * @param  array|Zend_Config $options
-     * @return void
      */
     public function __construct($spec, $options = null)
     {
         parent::__construct($spec, $options);
 
         $this->setAllowEmpty(false)
-             ->setRequired(true)
-             ->initCsrfValidator();
+            ->setRequired(true)
+            ->initCsrfValidator();
     }
 
     /**
-     * Set session object
+     * Set session object.
      *
      * @param  Zend_Session_Namespace $session
+     *
      * @return Zend_Form_Element_Hash
      */
     public function setSession($session)
     {
         $this->_session = $session;
+
         return $this;
     }
 
     /**
-     * Get session object
+     * Get session object.
      *
      * Instantiate session object if none currently exists
      *
@@ -109,11 +105,12 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
             require_once 'Zend/Session/Namespace.php';
             $this->_session = new Zend_Session_Namespace($this->getSessionName());
         }
+
         return $this->_session;
     }
 
     /**
-     * Initialize CSRF validator
+     * Initialize CSRF validator.
      *
      * Creates Session namespace, and initializes CSRF token in session.
      * Additionally, adds validator for validating CSRF token.
@@ -130,23 +127,26 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
         }
 
         $this->addValidator('Identical', true, array($rightHash));
+
         return $this;
     }
 
     /**
-     * Salt for CSRF token
+     * Salt for CSRF token.
      *
      * @param  string $salt
+     *
      * @return Zend_Form_Element_Hash
      */
     public function setSalt($salt)
     {
         $this->_salt = (string) $salt;
+
         return $this;
     }
 
     /**
-     * Retrieve salt for CSRF token
+     * Retrieve salt for CSRF token.
      *
      * @return string
      */
@@ -156,7 +156,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Retrieve CSRF token
+     * Retrieve CSRF token.
      *
      * If no CSRF token currently exists, generates one.
      *
@@ -167,11 +167,12 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
         if (null === $this->_hash) {
             $this->_generateHash();
         }
+
         return $this->_hash;
     }
 
     /**
-     * Get session namespace for CSRF token
+     * Get session namespace for CSRF token.
      *
      * Generates a session namespace based on salt, element name, and class.
      *
@@ -183,19 +184,21 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Set timeout for CSRF session token
+     * Set timeout for CSRF session token.
      *
      * @param  int $ttl
+     *
      * @return Zend_Form_Element_Hash
      */
     public function setTimeout($ttl)
     {
         $this->_timeout = (int) $ttl;
+
         return $this;
     }
 
     /**
-     * Get CSRF session token timeout
+     * Get CSRF session token timeout.
      *
      * @return int
      */
@@ -205,9 +208,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Override getLabel() to always be empty
-     *
-     * @return null
+     * Override getLabel() to always be empty.
      */
     public function getLabel()
     {
@@ -215,9 +216,7 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Initialize CSRF token in session
-     *
-     * @return void
+     * Initialize CSRF token in session.
      */
     public function initCsrfToken()
     {
@@ -228,24 +227,24 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Render CSRF token in form
+     * Render CSRF token in form.
      *
      * @param  Zend_View_Interface $view
+     *
      * @return string
      */
-    public function render(Zend_View_Interface $view = null)
+    public function render(?Zend_View_Interface $view = null)
     {
         $this->initCsrfToken();
+
         return parent::render($view);
     }
 
     /**
-     * Generate CSRF token
+     * Generate CSRF token.
      *
      * Generates CSRF token and stores both in {@link $_hash} and element
      * value.
-     *
-     * @return void
      */
     protected function _generateHash()
     {

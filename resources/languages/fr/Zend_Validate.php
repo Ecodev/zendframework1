@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,18 +12,13 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage Ressource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id:$
  */
 
-/**
- * EN-Revision: 22668
- */
-return array (
+// EN-Revision: 22668
+return array(
     "'%hostname%' does not appear to have a valid MX record for the email address '%value%'" => "'%hostname%' ne semble pas avoir d'enregistrement MX valide pour l'adresse email '%value%'",
     "'%hostname%' is not a valid hostname for email address '%value%'" => "'%hostname%' n'est pas un nom d'hôte valide pour l'adresse email '%value%'",
     "'%hostname%' is not in a routable network segment. The email address '%value%' should not be resolved from public network" => "'%hostname%' n'est pas dans un segment réseau routable. L'adresse email '%value%' ne devrait pas être résolue depuis un réseau public.",
@@ -77,12 +72,12 @@ return array (
     "'%value%' should have a length of %length% characters" => "'%value%' devrait avoir une taille de %length% caractères",
     "'%value%' was not found in the haystack" => "'%value%' ne fait pas partie des valeurs attendues",
     "A PHP extension returned an error while uploading the file '%value%'" => "Une extension PHP a retourné une erreur lors de l'envoi du fichier '%value%'",
-    "A crc32 hash could not be evaluated for the given file" => "La somme de contrôle crc32 n'a pas pu être évaluée pour le fichier",
-    "A hash could not be evaluated for the given file" => "Une somme de contrôle n'a pas pu être calculée pour le fichier",
-    "A md5 hash could not be evaluated for the given file" => "Une somme de contrôle MD5 n'a pas pu être calculée pour le fichier",
+    'A crc32 hash could not be evaluated for the given file' => "La somme de contrôle crc32 n'a pas pu être évaluée pour le fichier",
+    'A hash could not be evaluated for the given file' => "Une somme de contrôle n'a pas pu être calculée pour le fichier",
+    'A md5 hash could not be evaluated for the given file' => "Une somme de contrôle MD5 n'a pas pu être calculée pour le fichier",
     "A record matching '%value%' was found" => "Un enregistrement a été trouvé pour '%value%'",
-    "A sha1 hash could not be evaluated for the given file" => "La valeur de somme de contrôle SHA-1 n'a pas pu être calculée pour le fichier",
-    "An exception has been raised within the callback" => "Une exception a été levée par la fonction de rappel",
+    'A sha1 hash could not be evaluated for the given file' => "La valeur de somme de contrôle SHA-1 n'a pas pu être calculée pour le fichier",
+    'An exception has been raised within the callback' => 'Une exception a été levée par la fonction de rappel',
     "An exception has been raised while validating '%value%'" => "Une exception a été levée lors de la validation de '%value%'",
     "All files in sum should have a maximum size of '%max%' but '%size%' were detected" => "Tous les fichiers devraient avoir une taille maximale de '%max%' mais une taille de '%size%' a été détectée",
     "All files in sum should have a minimum size of '%min%' but '%size%' were detected" => "Tous les fichiers devraient avoir une taille minimale de '%min%' mais une taille de '%size%' a été détectée",
@@ -104,12 +99,12 @@ return array (
     "File '%value%' was not found" => "Fichier '%value%' introuvable",
     "File '%value%' was not uploaded" => "Le fichier '%value%' n'a pas été envoyé",
     "File '%value%' was only partially uploaded" => "Le fichier '%value%' n'a été que partiellement envoyé",
-    "Invalid type given. Numeric string, integer or float expected" => "Type invalide. Chaîne numérique, entier ou flottant attendu",
-    "Invalid type given. String expected" => "Type invalide. Chaîne attendue",
-    "Invalid type given. String or integer expected" => "Type invalide. Chaîne ou entier attendu",
-    "Invalid type given. String, integer, array or Zend_Date expected" => "Type invalide. Chaîne, entier, tableau ou Zend_Date attendu",
-    "Invalid type given. String, integer, float, boolean or array expected" => "Type invalide. Chaîne, entier, flottant, booléen ou tableau attendu",
-    "Invalid type given. String, integer or float expected" => "Type invalide. Chaîne, entier ou flottant attendu",
+    'Invalid type given. Numeric string, integer or float expected' => 'Type invalide. Chaîne numérique, entier ou flottant attendu',
+    'Invalid type given. String expected' => 'Type invalide. Chaîne attendue',
+    'Invalid type given. String or integer expected' => 'Type invalide. Chaîne ou entier attendu',
+    'Invalid type given. String, integer, array or Zend_Date expected' => 'Type invalide. Chaîne, entier, tableau ou Zend_Date attendu',
+    'Invalid type given. String, integer, float, boolean or array expected' => 'Type invalide. Chaîne, entier, flottant, booléen ou tableau attendu',
+    'Invalid type given. String, integer or float expected' => 'Type invalide. Chaîne, entier ou flottant attendu',
     "Luhn algorithm (mod-10 checksum) failed on '%value%'" => "L'algorithme Luhn (somme de contrôle mod-10) a échoué pour '%value%'",
     "Maximum allowed height for image '%value%' should be '%maxheight%' but '%height%' detected" => "La hauteur maximale de l'image '%value%' devrait être '%maxheight%' mais '%height%' a été détectée",
     "Maximum allowed size for file '%value%' is '%max%' but '%size%' detected" => "La taille maximale requise pour le fichier '%value%' est de '%max%' mais '%size%' a été détecté",
@@ -119,11 +114,11 @@ return array (
     "Minimum expected width for image '%value%' should be '%minwidth%' but '%width%' detected" => "La largeur minimale de l'image '%value%' devrait être '%minwidth%' mais '%width%' a été détectée",
     "No record matching '%value%' was found" => "Aucun enregistrement trouvé pour '%value%'",
     "No temporary directory was found for file '%value%'" => "Pas de dossier temporaire trouvé pour le fichier '%value%'",
-    "No token was provided to match against" => "Aucun jeton de correspondance n'a été donné",
-    "One or more files can not be read" => "Un ou plusieurs fichiers n'est pas lisible",
+    'No token was provided to match against' => "Aucun jeton de correspondance n'a été donné",
+    'One or more files can not be read' => "Un ou plusieurs fichiers n'est pas lisible",
     "The mimetype of file '%value%' could not be detected" => "Le type MIME du fichier '%value%' n'a pu être détecté",
     "The size of image '%value%' could not be detected" => "La taille de l'image '%value%' n'a pas pu être détectée",
-    "The two given tokens do not match" => "Les deux jetons passés ne correspondent pas",
+    'The two given tokens do not match' => 'Les deux jetons passés ne correspondent pas',
     "There was an internal error while using the pattern '%pattern%'" => "Il y a eu une erreur interne lors de l'utilisation du motif '%pattern%'",
     "Too few files, minimum '%min%' are expected but '%count%' are given" => "Trop peu de fichiers : un minimum de '%min%' est autorisé mais '%count%' ont été fournis",
     "Too less words, minimum '%min%' are expected but '%count%' were counted" => "Trop peu de mots, un minimum de '%min%' est requis, '%count%' ont été fournis",
@@ -131,5 +126,5 @@ return array (
     "Too much words, maximum '%max%' are allowed but '%count%' were counted" => "Trop de mots, un maximum de '%max%' est requis, '%count%' ont été fournis",
     "Unknown country within the IBAN '%value%'" => "Pays inconnu pour l'IBAN '%value%'",
     "Unknown error while uploading file '%value%'" => "Erreur inconnue lors de l'envoi du fichier '%value%'",
-    "Value is required and can't be empty" => "Cette valeur est obligatoire et ne peut être vide",
+    "Value is required and can't be empty" => 'Cette valeur est obligatoire et ne peut être vide',
 );

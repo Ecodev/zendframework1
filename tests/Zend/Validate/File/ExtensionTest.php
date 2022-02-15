@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Validate_File_Extension
@@ -28,12 +23,8 @@
 require_once 'Zend/Validate/File/Extension.php';
 
 /**
- * Extension testbed
+ * Extension testbed.
  *
- * @category   Zend
- * @package    Zend_Validate_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
@@ -41,19 +32,15 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_ExtensionTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_File_ExtensionTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -71,7 +58,7 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals(
                 $element[1],
                 $validator->isValid(__DIR__ . '/_files/testsize.mo'),
-                "Tested with " . var_export($element, 1)
+                'Tested with ' . var_export($element, 1)
             );
         }
 
@@ -80,32 +67,32 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(array_key_exists('fileExtensionNotFound', $validator->getMessages()));
 
         $files = array(
-            'name'     => 'test1',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'test1',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => 'tmp_test1',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_Extension('mo');
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/nofile.mo', $files));
         $this->assertTrue(array_key_exists('fileExtensionNotFound', $validator->getMessages()));
 
         $files = array(
-            'name'     => 'testsize.mo',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'testsize.mo',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_Extension('mo');
         $this->assertEquals(true, $validator->isValid(__DIR__ . '/_files/testsize.mo', $files));
 
         $files = array(
-            'name'     => 'testsize.mo',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'testsize.mo',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_Extension('gif');
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/testsize.mo', $files));
@@ -113,21 +100,19 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * GitHub issue #287
+     * GitHub issue #287.
      *
      * pathinfo() does not guarantee that the extension index will be set
      * according to the PHP manual (http://se2.php.net/pathinfo#example-2422).
-     *
-     * @return void
      */
     public function testNoExtension()
     {
         $files = array(
-            'name'     => 'no_extension',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'no_extension',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => __DIR__ . '/_files/no_extension',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_Extension('txt');
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/no_extension'));
@@ -136,11 +121,11 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
     public function testZF3891()
     {
         $files = array(
-            'name'     => 'testsize.mo',
-            'type'     => 'text',
-            'size'     => 200,
+            'name' => 'testsize.mo',
+            'type' => 'text',
+            'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
-            'error'    => 0
+            'error' => 0,
         );
         $validator = new Zend_Validate_File_Extension(array('MO', 'case' => true));
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/testsize.mo', $files));
@@ -150,9 +135,7 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getExtension() returns expected value
-     *
-     * @return void
+     * Ensures that getExtension() returns expected value.
      */
     public function testGetExtension()
     {
@@ -164,9 +147,7 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that setExtension() returns expected value
-     *
-     * @return void
+     * Ensures that setExtension() returns expected value.
      */
     public function testSetExtension()
     {
@@ -182,9 +163,7 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that addExtension() returns expected value
-     *
-     * @return void
+     * Ensures that addExtension() returns expected value.
      */
     public function testAddExtension()
     {
@@ -202,4 +181,3 @@ class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(array('mo', 'gif', 'jpg', 'to', 'zip', 'ti'), $validator->getExtension());
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Module
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @version    $Id$
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -24,19 +21,16 @@
 require_once 'Zend/Loader/Autoloader/Resource.php';
 
 /**
- * Resource loader for application module classes
+ * Resource loader for application module classes.
  *
  * @uses       Zend_Loader_Autoloader_Resource
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Module
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Application_Module_Autoloader extends Zend_Loader_Autoloader_Resource
 {
     /**
-     * Constructor
+     * Constructor.
      *
      * @param  array|Zend_Config $options
      */
@@ -47,46 +41,44 @@ class Zend_Application_Module_Autoloader extends Zend_Loader_Autoloader_Resource
     }
 
     /**
-     * Initialize default resource types for module resource classes
-     *
-     * @return void
+     * Initialize default resource types for module resource classes.
      */
     public function initDefaultResourceTypes()
     {
         $basePath = $this->getBasePath();
         $this->addResourceTypes(
             array(
-                'dbtable'    => array(
+                'dbtable' => array(
                     'namespace' => 'Model_DbTable',
-                    'path'      => 'models/DbTable',
+                    'path' => 'models/DbTable',
                 ),
-                'mappers'    => array(
+                'mappers' => array(
                     'namespace' => 'Model_Mapper',
-                    'path'      => 'models/mappers',
+                    'path' => 'models/mappers',
                 ),
-                'form'       => array(
+                'form' => array(
                     'namespace' => 'Form',
-                    'path'      => 'forms',
+                    'path' => 'forms',
                 ),
-                'model'      => array(
+                'model' => array(
                     'namespace' => 'Model',
-                    'path'      => 'models',
+                    'path' => 'models',
                 ),
-                'plugin'     => array(
+                'plugin' => array(
                     'namespace' => 'Plugin',
-                    'path'      => 'plugins',
+                    'path' => 'plugins',
                 ),
-                'service'    => array(
+                'service' => array(
                     'namespace' => 'Service',
-                    'path'      => 'services',
+                    'path' => 'services',
                 ),
                 'viewhelper' => array(
                     'namespace' => 'View_Helper',
-                    'path'      => 'views/helpers',
+                    'path' => 'views/helpers',
                 ),
                 'viewfilter' => array(
                     'namespace' => 'View_Filter',
-                    'path'      => 'views/filters',
+                    'path' => 'views/filters',
                 ),
             )
         );

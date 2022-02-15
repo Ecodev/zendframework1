@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -36,26 +33,20 @@ require_once 'Zend/Validate/Abstract.php';
 require_once 'Zend/Translate.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Validate object
+     * Zend_Validate object.
      *
      * @var Zend_Validate
      */
     protected $_validator;
 
     /**
-     * Creates a new Zend_Validate object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Validate object for each test method.
      */
     public function setUp()
     {
@@ -63,9 +54,7 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Resets the default namespaces
-     *
-     * @return void
+     * Resets the default namespaces.
      */
     public function tearDown()
     {
@@ -73,9 +62,7 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures expected results from empty validator chain
-     *
-     * @return void
+     * Ensures expected results from empty validator chain.
      */
     public function testEmpty()
     {
@@ -86,9 +73,7 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures expected behavior from a validator known to succeed
-     *
-     * @return void
+     * Ensures expected behavior from a validator known to succeed.
      */
     public function testTrue()
     {
@@ -99,9 +84,7 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures expected behavior from a validator known to fail
-     *
-     * @return void
+     * Ensures expected behavior from a validator known to fail.
      */
     public function testFalse()
     {
@@ -111,14 +94,12 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that a validator may break the chain
-     *
-     * @return void
+     * Ensures that a validator may break the chain.
      */
     public function testBreakChainOnFailure()
     {
         $this->_validator->addValidator(new Zend_ValidateTest_False(), true)
-                         ->addValidator(new Zend_ValidateTest_False());
+            ->addValidator(new Zend_ValidateTest_False());
         $this->assertFalse($this->_validator->isValid(null));
         $this->assertEquals(array('error' => 'validation failed'), $this->_validator->getMessages());
     }
@@ -151,7 +132,6 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
      * Refactored to conform with ZF-2724.
      *
      * @group  ZF-2724
-     * @return void
      * @expectedException Zend_Validate_Exception
      */
     public function testStaticFactoryClassNotFound()
@@ -160,9 +140,7 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Testing Namespaces
-     *
-     * @return void
+     * Testing Namespaces.
      */
     public function testNamespaces()
     {
@@ -218,12 +196,12 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Handle file not found errors
+     * Handle file not found errors.
      *
      * @group  ZF-2724
+     *
      * @param  int $errnum
      * @param  string $errstr
-     * @return void
      */
     public function handleNotFoundError($errnum, $errstr)
     {
@@ -233,21 +211,18 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
         $this->_errorOccurred = true;
     }
 }
-
 
 /**
  * Validator to return true to any input.
@@ -260,7 +235,6 @@ class Zend_ValidateTest_True extends Zend_Validate_Abstract
     }
 }
 
-
 /**
  * Validator to return false to any input.
  */
@@ -269,6 +243,7 @@ class Zend_ValidateTest_False extends Zend_Validate_Abstract
     public function isValid($value)
     {
         $this->_messages = array('error' => 'validation failed');
+
         return false;
     }
 }

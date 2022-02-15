@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View/Helper/Json.php';
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Response/Http.php';
@@ -29,12 +23,8 @@ require_once 'Zend/Json.php';
 require_once 'Zend/Layout.php';
 
 /**
- * Test class for Zend_View_Helper_Json
+ * Test class for Zend_View_Helper_Json.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -43,21 +33,16 @@ class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_JsonTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_JsonTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -76,8 +61,6 @@ class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -93,6 +76,7 @@ class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
             if ('Content-Type' == $header['name']) {
                 if ($found) {
                     $this->fail('Content-Type header has been set twice.');
+
                     return null;
                 }
                 $found = true;
@@ -151,17 +135,17 @@ class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($layout->isEnabled());
         $data = $this->helper->json(
             array(
-                 'foobar',
+                'foobar',
             ),
             array(
-                 'keepLayouts' => true,
-                 'encodeData'  => false,
+                'keepLayouts' => true,
+                'encodeData' => false,
             )
         );
         $this->assertTrue($layout->isEnabled());
         $this->assertSame(array('foobar'), $data);
     }
-    
+
     /**
      * @group ZF-10977
      */
@@ -170,7 +154,7 @@ class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
         $data = $this->helper->json(Zend_Json::encode(array('f')), false, false);
         $this->assertEquals('["f"]', $data);
     }
-    
+
     /**
      * @group ZF-10977
      */
@@ -182,7 +166,7 @@ class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
 }
 
 /**
- * Zend_Layout subclass to allow resetting MVC instance
+ * Zend_Layout subclass to allow resetting MVC instance.
  */
 class Zend_View_Helper_JsonTest_Layout extends Zend_Layout
 {
@@ -191,4 +175,3 @@ class Zend_View_Helper_JsonTest_Layout extends Zend_Layout
         self::$_mvcInstance = null;
     }
 }
-

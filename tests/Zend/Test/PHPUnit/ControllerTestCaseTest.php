@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Test
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_Test_PHPUnit_ControllerTestCase */
 require_once 'Zend/Test/PHPUnit/ControllerTestCase.php';
@@ -37,10 +32,6 @@ require_once 'Zend/Controller/Action.php';
 /**
  * Test class for Zend_Test_PHPUnit_ControllerTestCase.
  *
- * @category   Zend
- * @package    Zend_Test
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Test
  * @group      Zend_Test_PHPUnit
@@ -49,20 +40,16 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Test_PHPUnit_ControllerTestCaseTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Test_PHPUnit_ControllerTestCaseTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -75,8 +62,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -144,8 +129,8 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
 
     public function testOverloadingShouldReturnRequestResponseAndFrontControllerObjects()
     {
-        $request         = $this->testCase->getRequest();
-        $response        = $this->testCase->getResponse();
+        $request = $this->testCase->getRequest();
+        $response = $this->testCase->getResponse();
         $frontController = $this->testCase->getFrontController();
         $this->assertSame($request, $this->testCase->request);
         $this->assertSame($response, $this->testCase->response);
@@ -182,16 +167,16 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         require_once 'Zend/Controller/Dispatcher/Standard.php';
         require_once 'Zend/Controller/Plugin/ErrorHandler.php';
         require_once 'Zend/Controller/Router/Rewrite.php';
-        $request    = $this->testCase->getRequest();
-        $response   = $this->testCase->getResponse();
-        $router     = new Zend_Controller_Router_Rewrite();
+        $request = $this->testCase->getRequest();
+        $response = $this->testCase->getResponse();
+        $router = new Zend_Controller_Router_Rewrite();
         $dispatcher = new Zend_Controller_Dispatcher_Standard();
-        $plugin     = new Zend_Controller_Plugin_ErrorHandler();
+        $plugin = new Zend_Controller_Plugin_ErrorHandler();
         $controller = $this->testCase->getFrontController();
         $controller->setParam('foo', 'bar')
-                   ->registerPlugin($plugin)
-                   ->setRouter($router)
-                   ->setDispatcher($dispatcher);
+            ->registerPlugin($plugin)
+            ->setRouter($router)
+            ->setDispatcher($dispatcher);
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $this->testCase->reset();
         $test = $controller->getRouter();
@@ -211,8 +196,8 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     {
         $this->testCase->bootstrap();
         $controller = $this->testCase->getFrontController();
-        $request    = $controller->getRequest();
-        $response   = $controller->getResponse();
+        $request = $controller->getRequest();
+        $response = $controller->getResponse();
         $this->assertSame($this->testCase->getRequest(), $request);
         $this->assertSame($this->testCase->getResponse(), $response);
     }
@@ -247,14 +232,14 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         require_once 'Zend/Controller/Plugin/ErrorHandler.php';
         require_once 'Zend/Controller/Router/Rewrite.php';
         require_once 'Zend/Registry.php';
-        $router     = new Zend_Controller_Router_Rewrite();
+        $router = new Zend_Controller_Router_Rewrite();
         $dispatcher = new Zend_Controller_Dispatcher_Standard();
-        $plugin     = new Zend_Controller_Plugin_ErrorHandler();
+        $plugin = new Zend_Controller_Plugin_ErrorHandler();
         $controller = Zend_Controller_Front::getInstance();
         $controller->setParam('foo', 'bar')
-                   ->registerPlugin($plugin)
-                   ->setRouter($router)
-                   ->setDispatcher($dispatcher);
+            ->registerPlugin($plugin)
+            ->setRouter($router)
+            ->setDispatcher($dispatcher);
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         Zend_Registry::set('router', $router);
         Zend_Registry::set('dispatcher', $dispatcher);
@@ -266,9 +251,9 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
         $this->testCase->dispatch('/zend-test-php-unit-foo/bar');
-        $request  = $this->testCase->getRequest();
+        $request = $this->testCase->getRequest();
         $response = $this->testCase->getResponse();
-        $content  = $response->getBody();
+        $content = $response->getBody();
         $this->assertEquals('zend-test-php-unit-foo', $request->getControllerName(), $content);
         $this->assertEquals('bar', $request->getActionName());
         $this->assertContains('FooController::barAction', $content, $content);
@@ -388,7 +373,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
         $request = $this->testCase->request;
         $request->setQuery('mr', 'proper')
-                ->setQuery('james', 'bond');
+            ->setQuery('james', 'bond');
 
         $this->assertEquals('proper', $request->getQuery('mr'), '(pre) Failed retrieving mr parameter: ' . var_export($request->getQuery(), 1));
         $this->assertEquals('bond', $request->getQuery('james'), '(pre) Failed retrieving james parameter: ' . var_export($request->getQuery(), 1));
@@ -407,7 +392,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
         $request = $this->testCase->request;
         $request->setQuery('mr', 'proper')
-                ->setQuery('james', 'bond');
+            ->setQuery('james', 'bond');
 
         $this->assertEquals('proper', $request->getQuery('mr'), '(pre) Failed retrieving mr parameter: ' . var_export($request->getQuery(), 1));
         $this->assertEquals('bond', $request->getQuery('james'), '(pre) Failed retrieving james parameter: ' . var_export($request->getQuery(), 1));
@@ -427,8 +412,8 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
         $request = $this->testCase->request;
         $request->setQuery('mr', 'proper')
-                ->setPost('foo', 'bar')
-                ->setCookie('bar', 'baz');
+            ->setPost('foo', 'bar')
+            ->setCookie('bar', 'baz');
 
         $this->testCase->setUp();
         $this->assertNull($request->getQuery('mr'), 'Retrieved mr get parameter: ' . var_export($request->getQuery(), 1));
@@ -492,27 +477,29 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->testCase->bootstrap();
         $this->testCase->dispatch('/');
         $front = $application->getBootstrap()->getResource('frontcontroller');
-        $boot  = $front->getParam('bootstrap');
-        $type  = is_object($boot)
+        $boot = $front->getParam('bootstrap');
+        $type = is_object($boot)
                ? get_class($boot)
                : gettype($boot);
         $this->assertTrue($boot === $this->testCase->bootstrap->getBootstrap(), $type);
     }
 
     /**
-     * Data provider for testRedirectWorksAsExpectedFromHookMethodsInActionController
+     * Data provider for testRedirectWorksAsExpectedFromHookMethodsInActionController.
+     *
      * @return array
      */
     public function providerRedirectWorksAsExpectedFromHookMethodsInActionController()
     {
         return array(
             array('/zend-test-redirect-from-init/baz'),
-            array('/zend-test-redirect-from-pre-dispatch/baz')
+            array('/zend-test-redirect-from-pre-dispatch/baz'),
         );
     }
 
     /**
-     * Data provider for testRedirectWorksAsExpectedFromHookMethodsInFrontControllerPlugin
+     * Data provider for testRedirectWorksAsExpectedFromHookMethodsInFrontControllerPlugin.
+     *
      * @return array
      */
     public function providerRedirectWorksAsExpectedFromHookMethodsInFrontControllerPlugin()
@@ -521,7 +508,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
             array('RouteStartup'),
             array('RouteShutdown'),
             array('DispatchLoopStartup'),
-            array('PreDispatch')
+            array('PreDispatch'),
         );
     }
 }
@@ -530,4 +517,3 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
 class Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete extends Zend_Test_PHPUnit_ControllerTestCase
 {
 }
-

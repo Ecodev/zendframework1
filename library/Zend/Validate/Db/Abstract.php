@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,34 +23,32 @@
 require_once 'Zend/Validate/Abstract.php';
 
 /**
- * Class for Database record validation
+ * Class for Database record validation.
  *
- * @category   Zend
- * @package    Zend_Validate
  * @uses       Zend_Validate_Abstract
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
 {
     /**
-     * Error constants
+     * Error constants.
      */
     public const ERROR_NO_RECORD_FOUND = 'noRecordFound';
-    public const ERROR_RECORD_FOUND    = 'recordFound';
+    public const ERROR_RECORD_FOUND = 'recordFound';
 
     /**
      * @var array Message templates
      */
     protected $_messageTemplates = array(
         self::ERROR_NO_RECORD_FOUND => "No record matching '%value%' was found",
-        self::ERROR_RECORD_FOUND    => "A record matching '%value%' was found",
+        self::ERROR_RECORD_FOUND => "A record matching '%value%' was found",
     );
 
     /**
      * @var string
      */
-    protected $_schema = null;
+    protected $_schema;
 
     /**
      * @var string
@@ -67,17 +63,18 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     /**
      * @var mixed
      */
-    protected $_exclude = null;
+    protected $_exclude;
 
     /**
-     * Database adapter to use. If null isValid() will use Zend_Db::getInstance instead
+     * Database adapter to use. If null isValid() will use Zend_Db::getInstance instead.
      *
      * @var unknown_type
      */
-    protected $_adapter = null;
+    protected $_adapter;
 
     /**
-     * Select object to use. can be set, or will be auto-generated
+     * Select object to use. can be set, or will be auto-generated.
+     *
      * @var Zend_Db_Select
      */
     protected $_select;
@@ -97,19 +94,19 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
      * 'adapter' => An optional database adapter to use
      *
      * @param array|Zend_Config $options Options to use for this validator
-     * @throws Zend_Validate_Exception
      */
     public function __construct($options)
     {
         $temp = [];
         if ($options instanceof Zend_Db_Select) {
             $this->setSelect($options);
+
             return;
         }
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
-        } else if (func_num_args() > 1) {
-            $options       = func_get_args();
+        } elseif (func_num_args() > 1) {
+            $options = func_get_args();
             $temp['table'] = array_shift($options);
             $temp['field'] = array_shift($options);
             if (!empty($options)) {
@@ -125,11 +122,13 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
 
         if (!array_key_exists('table', $options) && !array_key_exists('schema', $options)) {
             require_once 'Zend/Validate/Exception.php';
+
             throw new Zend_Validate_Exception('Table or Schema option missing!');
         }
 
         if (!array_key_exists('field', $options)) {
             require_once 'Zend/Validate/Exception.php';
+
             throw new Zend_Validate_Exception('Field option missing!');
         }
 
@@ -152,48 +151,49 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     }
 
     /**
-     * Returns the set adapter
+     * Returns the set adapter.
      *
-     * @throws Zend_Validate_Exception
      * @return Zend_Db_Adapter
      */
     public function getAdapter()
     {
-        /**
-         * Check for an adapter being defined. if not, fetch the default adapter.
-         */
+        // Check for an adapter being defined. if not, fetch the default adapter.
         if ($this->_adapter === null) {
             $this->_adapter = Zend_Db_Table_Abstract::getDefaultAdapter();
             if (null === $this->_adapter) {
                 require_once 'Zend/Validate/Exception.php';
+
                 throw new Zend_Validate_Exception('No database adapter present');
             }
         }
+
         return $this->_adapter;
     }
 
     /**
-     * Sets a new database adapter
+     * Sets a new database adapter.
      *
      * @param  Zend_Db_Adapter_Abstract $adapter
-     * @throws Zend_Validate_Exception
+     *
      * @return Zend_Validate_Db_Abstract
      */
     public function setAdapter($adapter)
     {
         if (!($adapter instanceof Zend_Db_Adapter_Abstract)) {
             require_once 'Zend/Validate/Exception.php';
+
             throw new Zend_Validate_Exception('Adapter option must be a database adapter!');
         }
 
         $this->_adapter = $adapter;
+
         return $this;
     }
 
     /**
-     * Returns the set exclude clause
+     * Returns the set exclude clause.
      *
-     * @return string|array
+     * @return array|string
      */
     public function getExclude()
     {
@@ -201,21 +201,23 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     }
 
     /**
-     * Sets a new exclude clause
+     * Sets a new exclude clause.
      *
-     * @param string|array $exclude
+     * @param array|string $exclude
+     *
      * @return Zend_Validate_Db_Abstract
      */
     public function setExclude($exclude)
     {
         $this->_exclude = $exclude;
+
         return $this;
     }
 
     /**
-     * Returns the set field
+     * Returns the set field.
      *
-     * @return string|array
+     * @return array|string
      */
     public function getField()
     {
@@ -223,19 +225,21 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     }
 
     /**
-     * Sets a new field
+     * Sets a new field.
      *
      * @param string $field
+     *
      * @return Zend_Validate_Db_Abstract
      */
     public function setField($field)
     {
         $this->_field = (string) $field;
+
         return $this;
     }
 
     /**
-     * Returns the set table
+     * Returns the set table.
      *
      * @return string
      */
@@ -245,19 +249,21 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     }
 
     /**
-     * Sets a new table
+     * Sets a new table.
      *
      * @param string $table
+     *
      * @return Zend_Validate_Db_Abstract
      */
     public function setTable($table)
     {
         $this->_table = (string) $table;
+
         return $this;
     }
 
     /**
-     * Returns the set schema
+     * Returns the set schema.
      *
      * @return string
      */
@@ -267,31 +273,34 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
     }
 
     /**
-     * Sets a new schema
+     * Sets a new schema.
      *
      * @param string $schema
+     *
      * @return Zend_Validate_Db_Abstract
      */
     public function setSchema($schema)
     {
         $this->_schema = $schema;
+
         return $this;
     }
 
     /**
-     * Sets the select object to be used by the validator
+     * Sets the select object to be used by the validator.
      *
      * @param Zend_Db_Select $select
-     * @throws Zend_Validate_Exception
+     *
      * @return Zend_Validate_Db_Abstract
      */
     public function setSelect($select)
     {
         if (!$select instanceof Zend_Db_Select) {
-            throw new Zend_Validate_Exception('Select option must be a valid ' .
-                                              'Zend_Db_Select object');
+            throw new Zend_Validate_Exception('Select option must be a valid '
+                                              . 'Zend_Db_Select object');
         }
         $this->_select = $select;
+
         return $this;
     }
 
@@ -308,20 +317,20 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
         if (null === $this->_select) {
             $db = $this->getAdapter();
             /**
-             * Build select object
+             * Build select object.
              */
             $select = new Zend_Db_Select($db);
             $select->from($this->_table, array($this->_field), $this->_schema);
             if ($db->supportsParameters('named')) {
-                $select->where($db->quoteIdentifier($this->_field, true).' = :value'); // named
+                $select->where($db->quoteIdentifier($this->_field, true) . ' = :value'); // named
             } else {
-                $select->where($db->quoteIdentifier($this->_field, true).' = ?'); // positional
+                $select->where($db->quoteIdentifier($this->_field, true) . ' = ?'); // positional
             }
             if ($this->_exclude !== null) {
                 if (is_array($this->_exclude)) {
                     $select->where(
-                          $db->quoteIdentifier($this->_exclude['field'], true) .
-                            ' != ?', $this->_exclude['value']
+                          $db->quoteIdentifier($this->_exclude['field'], true)
+                            . ' != ?', $this->_exclude['value']
                     );
                 } else {
                     $select->where($this->_exclude);
@@ -330,20 +339,22 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
             $select->limit(1);
             $this->_select = $select;
         }
+
         return $this->_select;
     }
 
     /**
      * Run query and returns matches, or null if no matches are found.
      *
-     * @param  String $value
-     * @return Array when matches are found.
+     * @param  string $value
+     *
+     * @return array when matches are found
      */
     protected function _query($value)
     {
         $select = $this->getSelect();
         /**
-         * Run query
+         * Run query.
          */
         $result = $select->getAdapter()->fetchRow(
             $select,

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,35 +12,28 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
+require_once __DIR__ . '/../../TestHelper.php';
 
-require_once __DIR__."/../../TestHelper.php";
-
-
-require_once "Zend/Registry.php";
-require_once "Zend/View.php";
-require_once "Zend/Form.php";
-require_once "ZendX/JQuery.php";
-require_once "ZendX/JQuery/Form.php";
-require_once "Zend/Form/Element.php";
-require_once "ZendX/JQuery/Form/Element/Spinner.php";
+require_once 'Zend/Registry.php';
+require_once 'Zend/View.php';
+require_once 'Zend/Form.php';
+require_once 'ZendX/JQuery.php';
+require_once 'ZendX/JQuery/Form.php';
+require_once 'Zend/Form/Element.php';
+require_once 'ZendX/JQuery/Form/Element/Spinner.php';
 
 class ZendX_JQuery_JQueryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("ZendX_JQuery_JQueryTest");
+        $suite = new \PHPUnit\Framework\TestSuite('ZendX_JQuery_JQueryTest');
         $result = PHPUnit_TextUI_TestRunner::run($suite);
     }
 
@@ -49,20 +42,20 @@ class ZendX_JQuery_JQueryTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         ZendX_JQuery::enableView($view);
 
-        $this->assertTrue( false !== ($view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')) );
+        $this->assertTrue(false !== ($view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')));
     }
 
     public function testShouldAllowEnableForm()
     {
         $form = new Zend_Form();
 
-        $this->assertFalse( false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')) );
-        $this->assertFalse( false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')) );
+        $this->assertFalse(false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')));
+        $this->assertFalse(false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')));
 
         ZendX_JQuery::enableForm($form);
 
-        $this->assertTrue( false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')) );
-        $this->assertTrue( false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')) );
+        $this->assertTrue(false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')));
+        $this->assertTrue(false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')));
     }
 
     public function testFormShouldEnableView()
@@ -71,33 +64,33 @@ class ZendX_JQuery_JQueryTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         $form->setView($view);
 
-        $this->assertFalse( false !== ($form->getView()->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')) );
+        $this->assertFalse(false !== ($form->getView()->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')));
 
         ZendX_JQuery::enableForm($form);
 
-        $this->assertTrue( false !== ($form->getView()->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')) );
+        $this->assertTrue(false !== ($form->getView()->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')));
     }
 
     public function testFormEnableShouldIncludeSubforms()
     {
         $form = new Zend_Form();
         $subform = new Zend_Form();
-        $form->addSubForm($subform, "subform1");
+        $form->addSubForm($subform, 'subform1');
 
-        $this->assertFalse( false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')) );
-        $this->assertFalse( false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')) );
+        $this->assertFalse(false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')));
+        $this->assertFalse(false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')));
 
         ZendX_JQuery::enableForm($form);
 
-        $this->assertTrue( false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')) );
-        $this->assertTrue( false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')) );
+        $this->assertTrue(false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')));
+        $this->assertTrue(false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')));
     }
 
     public function testFormEnableShouldIncludeElementsOnRender()
     {
         $view = new Zend_View();
         $form = new Zend_Form();
-        $element = new ZendX_JQuery_Form_Element_Spinner("spinner1");
+        $element = new ZendX_JQuery_Form_Element_Spinner('spinner1');
         $form->setView($view);
         $form->addElement($element);
 
@@ -107,14 +100,14 @@ class ZendX_JQuery_JQueryTest extends \PHPUnit\Framework\TestCase
 
         $form->render();
         $this->assertTrue($form->getElement('spinner1')->getView() instanceof Zend_View);
-        $this->assertTrue( false !== ($form->getElement('spinner1')->getView()->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')) );
+        $this->assertTrue(false !== ($form->getElement('spinner1')->getView()->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')));
     }
 
     public function testJQueryFormShouldHaveHelperPath()
     {
         $form = new ZendX_JQuery_Form();
-        $this->assertTrue( false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')) );
-        $this->assertTrue( false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')) );
+        $this->assertTrue(false !== ($form->getPluginLoader('element')->getPaths('ZendX_JQuery_Form_Element')));
+        $this->assertTrue(false !== ($form->getPluginLoader('decorator')->getPaths('ZendX_JQuery_Form_Decorator')));
     }
 
     public function testJQueryFormShouldAutomaticallyEnableView()
@@ -122,10 +115,10 @@ class ZendX_JQuery_JQueryTest extends \PHPUnit\Framework\TestCase
         $form = new ZendX_JQuery_Form();
 
         $view = new Zend_View();
-        $this->assertFalse( false !== ($view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')) );
+        $this->assertFalse(false !== ($view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')));
 
         $form->setView($view);
 
-        $this->assertTrue( false !== ($form->getView()->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')) );
+        $this->assertTrue(false !== ($form->getView()->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper')));
     }
 }

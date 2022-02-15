@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id: $
  */
-
-
 
 /**
  * @see Zend_Filter_Compress_Gz
@@ -28,23 +23,18 @@
 require_once 'Zend/Filter/Compress/Gz.php';
 
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
  * @group      Zend_Filter
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Runs this test suite
-     *
-     * @return void
+     * Runs this test suite.
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Filter_Compress_GzTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Filter_Compress_GzTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -63,13 +53,11 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Basic usage
-     *
-     * @return void
+     * Basic usage.
      */
     public function testBasicUsage()
     {
-        $filter  = new Zend_Filter_Compress_Gz();
+        $filter = new Zend_Filter_Compress_Gz();
 
         $content = $filter->compress('compress me');
         $this->assertNotEquals('compress me', $content);
@@ -79,9 +67,7 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Setting Options
-     *
-     * @return void
+     * Setting Options.
      */
     public function testGzGetSetOptions()
     {
@@ -105,20 +91,16 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Setting Options through constructor
-     *
-     * @return void
+     * Setting Options through constructor.
      */
     public function testGzGetSetOptionsInConstructor()
     {
-        $filter2= new Zend_Filter_Compress_Gz(array('level' => 8));
+        $filter2 = new Zend_Filter_Compress_Gz(array('level' => 8));
         $this->assertEquals(array('mode' => 'compress', 'level' => 8, 'archive' => null), $filter2->getOptions());
     }
 
     /**
-     * Setting Level
-     *
-     * @return void
+     * Setting Level.
      */
     public function testGzGetSetLevel()
     {
@@ -130,15 +112,13 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
         try {
             $filter->setLevel(15);
             $this->fail('Exception expected');
-        } catch(Zend_Filter_Exception $e) {
+        } catch (Zend_Filter_Exception $e) {
             $this->assertContains('must be between', $e->getMessage());
         }
     }
 
     /**
-     * Setting Mode
-     *
-     * @return void
+     * Setting Mode.
      */
     public function testGzGetSetMode()
     {
@@ -150,15 +130,13 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
         try {
             $filter->setMode('unknown');
             $this->fail('Exception expected');
-        } catch(Zend_Filter_Exception $e) {
+        } catch (Zend_Filter_Exception $e) {
             $this->assertContains('mode not supported', $e->getMessage());
         }
     }
 
     /**
-     * Setting Archive
-     *
-     * @return void
+     * Setting Archive.
      */
     public function testGzGetSetArchive()
     {
@@ -170,20 +148,18 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Setting Archive
-     *
-     * @return void
+     * Setting Archive.
      */
     public function testGzCompressToFile()
     {
-        $filter   = new Zend_Filter_Compress_Gz();
+        $filter = new Zend_Filter_Compress_Gz();
         $archive = __DIR__ . '/../_files/compressed.gz';
         $filter->setArchive($archive);
 
         $content = $filter->compress('compress me');
         $this->assertTrue($content);
 
-        $filter2  = new Zend_Filter_Compress_Gz();
+        $filter2 = new Zend_Filter_Compress_Gz();
         $content2 = $filter2->decompress($archive);
         $this->assertEquals('compress me', $content2);
 
@@ -194,13 +170,11 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test deflate
-     *
-     * @return void
+     * Test deflate.
      */
     public function testGzDeflate()
     {
-        $filter  = new Zend_Filter_Compress_Gz(array('mode' => 'deflate'));
+        $filter = new Zend_Filter_Compress_Gz(array('mode' => 'deflate'));
 
         $content = $filter->compress('compress me');
         $this->assertNotEquals('compress me', $content);
@@ -210,9 +184,7 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * testing toString
-     *
-     * @return void
+     * testing toString.
      */
     public function testGzToString()
     {
@@ -220,4 +192,3 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Gz', $filter->toString());
     }
 }
-

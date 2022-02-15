@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -35,16 +32,13 @@ require_once 'Zend/Paginator/ScrollingStyle/Elastic.php';
 require_once 'Zend/Paginator.php';
 
 /**
- * @category   Zend
- * @package    Zend_Paginator
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Paginator
  */
 class Zend_Paginator_ScrollingStyle_ElasticTest extends \PHPUnit\Framework\TestCase
 {
     private ?\Zend_Paginator_ScrollingStyle_Elastic $_scrollingStyle;
+
     private ?\Zend_Paginator $_paginator;
 
     /**
@@ -58,6 +52,7 @@ class Zend_Paginator_ScrollingStyle_ElasticTest extends \PHPUnit\Framework\TestC
         $this->_paginator->setItemCountPerPage(5);
         $this->_paginator->setPageRange(5);
     }
+
     /**
      * Cleans up the environment after running a test.
      */

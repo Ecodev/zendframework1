@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Element/File.php';
 require_once 'Zend/File/Transfer/Adapter/Abstract.php';
 require_once 'Zend/Validate/File/Upload.php';
@@ -31,12 +25,8 @@ require_once 'Zend/Registry.php';
 require_once 'Zend/View.php';
 
 /**
- * Test class for Zend_Form_Element_File
+ * Test class for Zend_Form_Element_File.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -54,20 +44,16 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_FileTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_FileTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -79,8 +65,6 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -92,7 +76,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
         $paths = $loader->getPaths('Zend_Form_Decorator');
         $this->assertTrue(is_array($paths));
 
-        $loader = new Zend_Loader_PluginLoader;
+        $loader = new Zend_Loader_PluginLoader();
         $this->element->setPluginLoader($loader, 'decorator');
         $test = $this->element->getPluginLoader('decorator');
         $this->assertSame($loader, $test);
@@ -115,7 +99,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
             $string = ucwords($string);
             $string = str_replace(' ', '_', $string);
             $prefix = 'Foo_' . $string;
-            $paths  = $loader->getPaths($prefix);
+            $paths = $loader->getPaths($prefix);
             $this->assertTrue(is_array($paths), "Failed asserting paths found for prefix $prefix");
         }
     }
@@ -139,7 +123,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
      */
     public function testElementShouldThrowExceptionWhenAddingAdapterOfInvalidType()
     {
-        $this->element->setTransferAdapter(new stdClass);
+        $this->element->setTransferAdapter(new stdClass());
     }
 
     public function testShouldRegisterPluginLoaderWithFileTransferAdapterPathByDefault()
@@ -162,18 +146,18 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
     {
         $this->testElementShouldAllowSpecifyingAdapterUsingConcreteInstance();
         $this->element->addValidator('Count', false, 1)
-                      ->addValidators(array(
-                          'Extension' => 'jpg',
-                          new Zend_Validate_File_Upload(),
-                      ));
+            ->addValidators(array(
+                'Extension' => 'jpg',
+                new Zend_Validate_File_Upload(),
+            ));
         $validators = $this->element->getValidators();
-        $test       = $this->element->getTransferAdapter()->getValidators();
+        $test = $this->element->getTransferAdapter()->getValidators();
         $this->assertEquals($validators, $test);
         $this->assertTrue(is_array($test));
         $this->assertEquals(3, count((array) $test));
 
         $validator = $this->element->getValidator('count');
-        $test      = $this->element->getTransferAdapter()->getValidator('count');
+        $test = $this->element->getTransferAdapter()->getValidator('count');
         $this->assertNotNull($validator);
         $this->assertSame($validator, $test);
 
@@ -186,7 +170,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
             array('validator' => 'Count', 'options' => 1),
         ));
         $validators = $this->element->getValidators();
-        $test       = $this->element->getTransferAdapter()->getValidators();
+        $test = $this->element->getTransferAdapter()->getValidators();
         $this->assertSame($validators, $test);
         $this->assertTrue(is_array($test));
         $this->assertEquals(3, count((array) $test), var_export($test, 1));
@@ -203,7 +187,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
     {
         $this->markTestIncomplete('Unsure how to accurately test');
 
-        $this->element->setTransferAdapter(new Zend_Form_Element_FileTest_MockAdapter);
+        $this->element->setTransferAdapter(new Zend_Form_Element_FileTest_MockAdapter());
         $this->element->addValidator('Regex', '/([a-z0-9]{13})$/i');
         $this->assertTrue($this->element->isValid('foo.jpg'));
     }
@@ -442,7 +426,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 
     public function testDefaultDecoratorsContainDescription()
     {
-        $element    = new Zend_Form_Element_File('baz');
+        $element = new Zend_Form_Element_File('baz');
         $decorators = $element->getDecorator('Description');
         $this->assertTrue($decorators instanceof Zend_Form_Decorator_Description);
     }
@@ -454,15 +438,17 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
             $setting = (integer) substr($setting, 0, -1);
 
             switch ($type) {
-                case 'M' :
+                case 'M':
                     $setting *= 1024;
+
                     break;
 
-                case 'G' :
+                case 'G':
                     $setting *= 1024 * 1024;
+
                     break;
 
-                default :
+                default:
                     break;
             }
         }
@@ -471,26 +457,22 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
         $this->_errorOccurred = true;
     }
 
-
     /**
-     * Prove the fluent interface on Zend_Form_Element_File::loadDefaultDecorators
+     * Prove the fluent interface on Zend_Form_Element_File::loadDefaultDecorators.
      *
-     * @link http://framework.zend.com/issues/browse/ZF-9913
-     * @return void
+     * @see http://framework.zend.com/issues/browse/ZF-9913
      */
     public function testFluentInterfaceOnLoadDefaultDecorators()
     {
@@ -506,6 +488,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
             $this->markTestSkipped(
                 self::class . '::' . __METHOD__ . ' requires PHP 5.3.0 or greater'
             );
+
             return;
         }
         $this->element->addPrefixPath(
@@ -548,10 +531,10 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertEquals(
             array(
-                 'callback' => array(
-                     \Zend_Form_Element_File::class,
-                     'resolveElementId',
-                 ),
+                'callback' => array(
+                    \Zend_Form_Element_File::class,
+                    'resolveElementId',
+                ),
             ),
             $this->element->getDecorator('HtmlTag')->getOption('id')
         );
@@ -586,72 +569,72 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
         $testfile = __DIR__ . '/../../File/Transfer/Adapter/_files/test.txt';
         $this->_files = array(
             'foo' => array(
-                'name'       => 'foo.jpg',
-                'type'       => 'image/jpeg',
-                'size'       => 126976,
-                'tmp_name'   => '/tmp/489127ba5c89c',
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
-                'validated'  => false,
-                'received'   => false,
-                'filtered'   => false,
+                'name' => 'foo.jpg',
+                'type' => 'image/jpeg',
+                'size' => 126976,
+                'tmp_name' => '/tmp/489127ba5c89c',
+                'options' => array('ignoreNoFile' => false, 'useByteString' => true),
+                'validated' => false,
+                'received' => false,
+                'filtered' => false,
                 'validators' => array(),
             ),
             'bar' => array(
-                'name'       => 'bar.png',
-                'type'       => 'image/png',
-                'size'       => 91136,
-                'tmp_name'   => '/tmp/489128284b51f',
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
-                'validated'  => false,
-                'received'   => false,
-                'filtered'   => false,
+                'name' => 'bar.png',
+                'type' => 'image/png',
+                'size' => 91136,
+                'tmp_name' => '/tmp/489128284b51f',
+                'options' => array('ignoreNoFile' => false, 'useByteString' => true),
+                'validated' => false,
+                'received' => false,
+                'filtered' => false,
                 'validators' => array(),
             ),
             'baz' => array(
-                'name'       => 'baz.text',
-                'type'       => 'text/plain',
-                'size'       => 1172,
-                'tmp_name'   => $testfile,
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
-                'validated'  => false,
-                'received'   => false,
-                'filtered'   => false,
+                'name' => 'baz.text',
+                'type' => 'text/plain',
+                'size' => 1172,
+                'tmp_name' => $testfile,
+                'options' => array('ignoreNoFile' => false, 'useByteString' => true),
+                'validated' => false,
+                'received' => false,
+                'filtered' => false,
                 'validators' => array(),
             ),
             'file_1_' => array(
-                'name'       => 'baz.text',
-                'type'       => 'text/plain',
-                'size'       => 1172,
-                'tmp_name'   => '/tmp/4891286cceff3',
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
-                'validated'  => false,
-                'received'   => false,
-                'filtered'   => false,
+                'name' => 'baz.text',
+                'type' => 'text/plain',
+                'size' => 1172,
+                'tmp_name' => '/tmp/4891286cceff3',
+                'options' => array('ignoreNoFile' => false, 'useByteString' => true),
+                'validated' => false,
+                'received' => false,
+                'filtered' => false,
                 'validators' => array(),
             ),
             'file_2_' => array(
-                'name'       => 'baz.text',
-                'type'       => 'text/plain',
-                'size'       => 1172,
-                'tmp_name'   => '/tmp/4891286cceff3',
-                'options'   => array('ignoreNoFile' => false, 'useByteString' => true),
-                'validated'  => false,
-                'received'   => false,
-                'filtered'   => false,
+                'name' => 'baz.text',
+                'type' => 'text/plain',
+                'size' => 1172,
+                'tmp_name' => '/tmp/4891286cceff3',
+                'options' => array('ignoreNoFile' => false, 'useByteString' => true),
+                'validated' => false,
+                'received' => false,
+                'filtered' => false,
                 'validators' => array(),
             ),
-            );
+        );
     }
 
     public function send($options = null)
     {
-        return;
+
     }
 
     public function receive($options = null)
     {
         $this->received = true;
-        return;
+
     }
 
     public function isSent($file = null)
@@ -676,7 +659,6 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
 
     public static function getProgress()
     {
-        return;
+
     }
 }
-

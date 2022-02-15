@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_Partial */
 require_once 'Zend/View/Helper/Partial.php';
@@ -34,10 +29,6 @@ require_once 'Zend/Controller/Front.php';
 /**
  * Test class for Zend_View_Helper_Partial.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -56,21 +47,16 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PartialTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_PartialTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -82,34 +68,26 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
         unset($this->helper);
     }
 
-    /**
-     * @return void
-     */
     public function testPartialRendersScript()
     {
         $view = new Zend_View(array(
-            'scriptPath' => $this->basePath . '/default/views/scripts'
+            'scriptPath' => $this->basePath . '/default/views/scripts',
         ));
         $this->helper->setView($view);
         $return = $this->helper->partial('partialOne.phtml');
         $this->assertContains('This is the first test partial', $return);
     }
 
-    /**
-     * @return void
-     */
     public function testPartialRendersScriptWithVars()
     {
         $view = new Zend_View(array(
-            'scriptPath' => $this->basePath . '/default/views/scripts'
+            'scriptPath' => $this->basePath . '/default/views/scripts',
         ));
         $view->message = 'This should never be read';
         $this->helper->setView($view);
@@ -118,28 +96,22 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('This message should be read', $return, $return);
     }
 
-    /**
-     * @return void
-     */
     public function testPartialRendersScriptInDifferentModuleWhenRequested()
     {
         Zend_Controller_Front::getInstance()->addModuleDirectory($this->basePath);
         $view = new Zend_View(array(
-            'scriptPath' => $this->basePath . '/default/views/scripts'
+            'scriptPath' => $this->basePath . '/default/views/scripts',
         ));
         $this->helper->setView($view);
         $return = $this->helper->partial('partialTwo.phtml', 'foo');
         $this->assertContains('This is the second partial', $return, $return);
     }
 
-    /**
-     * @return void
-     */
     public function testPartialThrowsExceptionWithInvalidModule()
     {
         Zend_Controller_Front::getInstance()->addModuleDirectory($this->basePath);
         $view = new Zend_View(array(
-            'scriptPath' => $this->basePath . '/default/views/scripts'
+            'scriptPath' => $this->basePath . '/default/views/scripts',
         ));
         $this->helper->setView($view);
 
@@ -150,9 +122,6 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testSetViewSetsViewProperty()
     {
         $view = new Zend_View();
@@ -160,9 +129,6 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($view, $this->helper->view);
     }
 
-    /**
-     * @return void
-     */
     public function testCloneViewReturnsDifferentViewInstance()
     {
         $view = new Zend_View();
@@ -172,9 +138,6 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($clone instanceof Zend_View);
     }
 
-    /**
-     * @return void
-     */
     public function testCloneViewClearsViewVariables()
     {
         $view = new Zend_View();
@@ -195,7 +158,7 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         $model->bar = 'baz';
 
         $view = new Zend_View(array(
-            'scriptPath' => $this->basePath . '/default/views/scripts'
+            'scriptPath' => $this->basePath . '/default/views/scripts',
         ));
         $this->helper->setView($view);
         $return = $this->helper->partial('partialVars.phtml', $model);
@@ -211,7 +174,7 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         $model = new Zend_View_Helper_PartialTest_Aggregate();
 
         $view = new Zend_View(array(
-            'scriptPath' => $this->basePath . '/default/views/scripts'
+            'scriptPath' => $this->basePath . '/default/views/scripts',
         ));
         $this->helper->setView($view);
         $return = $this->helper->partial('partialVars.phtml', $model);
@@ -230,7 +193,7 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         $model->bartest = 'baz';
 
         $view = new Zend_View(array(
-            'scriptPath' => $this->basePath . '/default/views/scripts'
+            'scriptPath' => $this->basePath . '/default/views/scripts',
         ));
         $this->helper->setView($view);
         $return = $this->helper->partial('partialObj.phtml', $model);
@@ -279,7 +242,7 @@ class Zend_View_Helper_PartialTest_Aggregate
 {
     public $vars = array(
         'foo' => 'bar',
-        'bar' => 'baz'
+        'bar' => 'baz',
     );
 
     public function toArray()
@@ -287,4 +250,3 @@ class Zend_View_Helper_PartialTest_Aggregate
         return $this->vars;
     }
 }
-

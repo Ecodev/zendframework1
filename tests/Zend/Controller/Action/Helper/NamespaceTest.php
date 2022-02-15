@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -13,24 +13,14 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id:$
  */
-
-
-
 
 /**
  * Test class for Zend_Controller_Action_Helper_Abstract.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
@@ -40,12 +30,10 @@ class Zend_Controller_Action_Helper_NamespaceTest extends \PHPUnit\Framework\Tes
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_NamespaceTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_NamespaceTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -59,9 +47,9 @@ class Zend_Controller_Action_Helper_NamespaceTest extends \PHPUnit\Framework\Tes
         }
 
         require_once __DIR__ . '/../../_files/Helpers/NamespacedHelper.php';
-        
+
         $className = 'MyApp\Controller\Action\Helper\NamespacedHelper';
-        $helper = new $className;
+        $helper = new $className();
         $this->assertEquals('NamespacedHelper', $helper->getName());
     }
 }

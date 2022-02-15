@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_Placeholder_Registry */
 require_once 'Zend/View/Helper/Placeholder/Registry.php';
@@ -28,10 +23,6 @@ require_once 'Zend/View/Helper/Placeholder/Registry.php';
 /**
  * Test class for Zend_View_Helper_Placeholder_Registry.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -45,21 +36,16 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_RegistryTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_Placeholder_RegistryTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -73,17 +59,12 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
         unset($this->registry);
     }
 
-    /**
-     * @return void
-     */
     public function testCreateContainer()
     {
         $this->assertFalse($this->registry->containerExists('foo'));
@@ -91,9 +72,6 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
         $this->assertTrue($this->registry->containerExists('foo'));
     }
 
-    /**
-     * @return void
-     */
     public function testCreateContainerCreatesDefaultContainerClass()
     {
         $this->assertFalse($this->registry->containerExists('foo'));
@@ -101,9 +79,6 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
         $this->assertTrue($container instanceof Zend_View_Helper_Placeholder_Container);
     }
 
-    /**
-     * @return void
-     */
     public function testGetContainerCreatesContainerIfNonExistent()
     {
         $this->assertFalse($this->registry->containerExists('foo'));
@@ -112,9 +87,6 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
         $this->assertTrue($this->registry->containerExists('foo'));
     }
 
-    /**
-     * @return void
-     */
     public function testSetContainerCreatesRegistryEntry()
     {
         $foo = new Zend_View_Helper_Placeholder_Container(array('foo', 'bar'));
@@ -123,9 +95,6 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
         $this->assertTrue($this->registry->containerExists('foo'));
     }
 
-    /**
-     * @return void
-     */
     public function testSetContainerCreatesRegistersContainerInstance()
     {
         $foo = new Zend_View_Helper_Placeholder_Container(array('foo', 'bar'));
@@ -135,9 +104,6 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
         $this->assertSame($foo, $container);
     }
 
-    /**
-     * @return void
-     */
     public function testContainerClassAccessorsSetState()
     {
         $this->assertEquals(\Zend_View_Helper_Placeholder_Container::class, $this->registry->getContainerClass());
@@ -145,9 +111,6 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
         $this->assertEquals('Zend_View_Helper_Placeholder_RegistryTest_Container', $this->registry->getContainerClass());
     }
 
-    /**
-     * @return void
-     */
     public function testSetContainerClassThrowsExceptionWithInvalidContainerClass()
     {
         try {
@@ -172,9 +135,6 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
         $this->assertFalse($result);
     }
 
-    /**
-     * @return void
-     */
     public function testUsingCustomContainerClassCreatesContainersOfCustomClass()
     {
         $this->registry->setContainerClass('Zend_View_Helper_Placeholder_RegistryTest_Container');
@@ -212,7 +172,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
     {
         $this->registry->setContainerClass('Zend_View_Helper_Placeholder_RegistryTest_Container');
         $data = array(
-            'ZF-10793'
+            'ZF-10793',
         );
         $container = $this->registry->createContainer('foo', $data);
         $this->assertEquals(array('ZF-10793'), $container->data);
@@ -232,4 +192,3 @@ class Zend_View_Helper_Placeholder_RegistryTest_Container extends Zend_View_Help
 class Zend_View_Helper_Placeholder_RegistryTest_BogusContainer
 {
 }
-

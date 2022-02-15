@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,13 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Class for mocking php://input
+ * Class for mocking php://input.
  *
  * <code>
  * class ...
@@ -42,11 +39,7 @@
  *         Zend_AllTests_StreamWrapper_PhpInput::restoreDefault();
  *     }
  * }
-*
- * @category   Zend
- * @package    Zend
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_AllTests_StreamWrapper_PhpInput
@@ -111,7 +104,7 @@ class Zend_AllTests_StreamWrapper_PhpInput
             return self::$_returnValues[__FUNCTION__];
         }
 
-        return (0 == strlen(self::$_data));
+        return 0 == strlen(self::$_data);
     }
 
     public function stream_read($count)
@@ -131,6 +124,7 @@ class Zend_AllTests_StreamWrapper_PhpInput
             $data = substr(self::$_data, 0, $count);
             self::$_data = substr(self::$_data, $count);
         }
+
         return $data;
     }
 

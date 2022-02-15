@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Loader_Autoloader
@@ -33,10 +28,6 @@ require_once 'Zend/Loader/Autoloader.php';
 require_once 'Zend/Loader/Autoloader/Interface.php';
 
 /**
- * @category   Zend
- * @package    Zend_Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
@@ -44,7 +35,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -108,6 +99,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
             if (is_array($loader)) {
                 if (('autoload' == $loader[1]) && ($loader[0] === get_class($this->autoloader))) {
                     $found = true;
+
                     break;
                 }
             }
@@ -161,7 +153,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
      */
     public function testRegisteringInvalidNamespaceSpecShouldRaiseException()
     {
-        $o = new stdClass;
+        $o = new stdClass();
         $this->autoloader->registerNamespace($o);
     }
 
@@ -185,7 +177,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
      */
     public function testUnregisteringInvalidNamespaceSpecShouldRaiseException()
     {
-        $o = new stdClass;
+        $o = new stdClass();
         $this->autoloader->unregisterNamespace($o);
     }
 
@@ -299,7 +291,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
     public function testRemovingAutoloaderShouldAlsoRemoveAutoloaderFromNamespacedAutoloaders()
     {
         $this->autoloader->pushAutoloader('require', array('Foo', 'Bar'))
-                         ->pushAutoloader('include');
+            ->pushAutoloader('include');
         $this->autoloader->removeAutoloader('require');
         $test = $this->autoloader->getNamespaceAutoloaders('Foo');
         $this->assertTrue(empty($test));
@@ -310,7 +302,7 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
     public function testAutoloaderShouldAllowRemovingCallbackFromSpecifiedNamespaces()
     {
         $this->autoloader->pushAutoloader('require', array('Foo', 'Bar'))
-                         ->pushAutoloader('include');
+            ->pushAutoloader('include');
         $this->autoloader->removeAutoloader('require', 'Foo');
         $test = $this->autoloader->getNamespaceAutoloaders('Foo');
         $this->assertTrue(empty($test));
@@ -395,11 +387,11 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
     public function testRetrievesAutoloadersFromLongestMatchingNamespace()
     {
         $this->autoloader->pushAutoloader(array($this, 'autoloadFirstLevel'), 'Level1_')
-                         ->pushAutoloader(array($this, 'autoloadSecondLevel'), 'Level1_Level2');
+            ->pushAutoloader(array($this, 'autoloadSecondLevel'), 'Level1_Level2');
         $class = 'Level1_Level2_Foo';
-        $als   = $this->autoloader->getClassAutoloaders($class);
+        $als = $this->autoloader->getClassAutoloaders($class);
         $this->assertEquals(1, is_countable($als) ? count($als) : 0);
-        $al    = array_shift($als);
+        $al = array_shift($als);
         $this->assertEquals(array($this, 'autoloadSecondLevel'), $al);
     }
 
@@ -409,8 +401,8 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
     public function testMergedAutoloadersWithoutNamespace()
     {
         $this->autoloader
-             ->pushAutoloader('autoloadOne')
-             ->pushAutoloader('autoloadSecond');
+            ->pushAutoloader('autoloadOne')
+            ->pushAutoloader('autoloadSecond');
 
         $class = 'Zend_Autoloader_Test';
         $autoloaders = $this->autoloader->getClassAutoloaders($class);
@@ -455,4 +447,3 @@ class Zend_Loader_AutoloaderTest_Autoloader implements Zend_Loader_Autoloader_In
         return $class;
     }
 }
-

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -13,34 +13,23 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id: UserAgentTest.php $
  */
-
-
-
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/UserAgent.php';
 require_once 'Zend/Http/UserAgent.php';
 
 /**
- * Zend_View_Helper_UserAgentTest
+ * Zend_View_Helper_UserAgentTest.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
 class Zend_View_Helper_UserAgentTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * @var Zend_View_Helper_UserAgent
      */
@@ -56,8 +45,7 @@ class Zend_View_Helper_UserAgentTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_UrlTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_UrlTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -67,7 +55,7 @@ class Zend_View_Helper_UserAgentTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
-        $this->helper    = new Zend_View_Helper_UserAgent();
+        $this->helper = new Zend_View_Helper_UserAgent();
         $this->userAgent = new Zend_Http_UserAgent();
     }
 
@@ -99,4 +87,3 @@ class Zend_View_Helper_UserAgentTest extends \PHPUnit\Framework\TestCase
         );
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -24,17 +21,12 @@
 require_once 'Zend/Controller/Router/Route/Static.php';
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
 class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCase
 {
-
     public function testStaticMatch()
     {
         $route = new Zend_Controller_Router_Route_Static('users/all');
@@ -114,8 +106,8 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
         $routeConf = array(
             'route' => 'users/all',
             'defaults' => array(
-                'controller' => 'ctrl'
-            )
+                'controller' => 'ctrl',
+            ),
         );
 
         $config = new Zend_Config($routeConf);
@@ -126,7 +118,5 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
         $values = $route->match('users/all');
 
         $this->assertSame('ctrl', $values['controller']);
-
     }
-
 }

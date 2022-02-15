@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Action.php';
 require_once 'Zend/Controller/Action/HelperBroker.php';
@@ -32,10 +26,6 @@ require_once 'Zend/Controller/Response/Http.php';
 /**
  * Test class for Zend_Controller_Action_Helper_Redirector.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
@@ -68,13 +58,12 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_RedirectorTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_RedirectorTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Set up redirector
+     * Set up redirector.
      *
      * Creates request, response, and action controller objects; sets action
      * controller in redirector, and sets exit to false.
@@ -88,9 +77,9 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         Zend_Controller_Action_HelperBroker::removeHelper('viewRenderer');
 
         $this->redirector = new Zend_Controller_Action_Helper_Redirector();
-        $this->router     = $front->getRouter();
-        $this->request    = new Zend_Controller_Request_Http();
-        $this->response   = new Zend_Controller_Response_Http();
+        $this->router = $front->getRouter();
+        $this->request = new Zend_Controller_Request_Http();
+        $this->response = new Zend_Controller_Response_Http();
         $this->controller = new Zend_Controller_Action_Helper_Redirector_TestController(
             $this->request,
             $this->response,
@@ -104,19 +93,17 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->response->headersSentThrowsException = false;
 
         $this->redirector->setExit(false)
-                         ->setActionController($this->controller);
+            ->setActionController($this->controller);
         $this->_server = $_SERVER;
     }
 
     /**
-     * Unset all properties
+     * Unset all properties.
      */
     public function tearDown()
     {
-        unset($this->redirector);
-        unset($this->controller);
-        unset($this->request);
-        unset($this->response);
+        unset($this->redirector, $this->controller, $this->request, $this->response);
+
         $_SERVER = $this->_server;
     }
 
@@ -164,6 +151,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
             $this->fail('Invalid redirect code should throw exception');
         } catch (Zend_Controller_Action_Exception $e) {
         }
+
         try {
             $this->redirector->setCode('304');
             $this->fail('Invalid redirect code should throw exception');
@@ -202,8 +190,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     {
         $request = $this->request;
         $request->setModuleName('blog')
-                ->setControllerName('list')
-                ->setActionName('all');
+            ->setControllerName('list')
+            ->setActionName('all');
 
         $this->redirector->setGoto('error');
         $this->assertEquals('/blog/list/error', $this->redirector->getRedirectUrl());
@@ -213,8 +201,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     {
         $request = $this->request;
         $request->setModuleName('blog')
-                ->setControllerName('list')
-                ->setActionName('all');
+            ->setControllerName('list')
+            ->setActionName('all');
 
         $this->redirector->setGoto('item', 'view');
         $this->assertEquals('/blog/view/item', $this->redirector->getRedirectUrl());
@@ -224,8 +212,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     {
         $request = $this->request;
         $request->setModuleName('blog')
-                ->setControllerName('list')
-                ->setActionName('all');
+            ->setControllerName('list')
+            ->setActionName('all');
 
         $this->redirector->setGoto('item', 'view', 'news');
         $this->assertEquals('/news/view/item', $this->redirector->getRedirectUrl());
@@ -235,15 +223,15 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     {
         $request = $this->request;
         $request->setModuleName('blog')
-                ->setControllerName('list')
-                ->setActionName('all');
+            ->setControllerName('list')
+            ->setActionName('all');
 
         $this->redirector->setGoto('item', 'view', 'news', array('id' => 42));
         $this->assertEquals('/news/view/item/id/42', $this->redirector->getRedirectUrl());
     }
 
     /**
-     * ZF-2351
+     * ZF-2351.
      */
     public function testGotoDoesNotUtilizeDefaultSegments()
     {
@@ -255,7 +243,6 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->redirector->setGoto('index', 'blog');
         $this->assertEquals('/blog', $this->redirector->getRedirectUrl());
     }
-
 
     public function testSetGotoRoute()
     {
@@ -312,14 +299,14 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     }
 
     /**
-     * goto() is an alias for setGoto(); just do a single test case
+     * goto() is an alias for setGoto(); just do a single test case.
      */
     public function testGoto()
     {
         $request = $this->request;
         $request->setModuleName('blog')
-                ->setControllerName('list')
-                ->setActionName('all');
+            ->setControllerName('list')
+            ->setActionName('all');
 
         $this->redirector->goto('error');
         $this->assertEquals('/blog/list/error', $this->redirector->getRedirectUrl());
@@ -328,12 +315,12 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testGotoAndExit()
     {
         $this->markTestSkipped(
-          "Testing Zend_Controller_Action_Helper_Redirector::gotoAndExit() would break the test suite"
+          'Testing Zend_Controller_Action_Helper_Redirector::gotoAndExit() would break the test suite'
         );
     }
 
     /**
-     * gotoRoute() is an alias for setGotoRoute()
+     * gotoRoute() is an alias for setGotoRoute().
      */
     public function testGotoRoute()
     {
@@ -356,12 +343,12 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testGotoRouteAndExit()
     {
         $this->markTestSkipped(
-          "Testing Zend_Controller_Action_Helper_Redirector::gotoRouteAndExit() would break the test suite"
+          'Testing Zend_Controller_Action_Helper_Redirector::gotoRouteAndExit() would break the test suite'
         );
     }
 
     /**
-     * gotoUrl() is an alias for setGotoUrl()
+     * gotoUrl() is an alias for setGotoUrl().
      */
     public function testGotoUrl()
     {
@@ -372,26 +359,26 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testGotoUrlAndExit()
     {
         $this->markTestSkipped(
-          "Testing Zend_Controller_Action_Helper_Redirector::gotoUrlAndExit() would break the test suite"
+          'Testing Zend_Controller_Action_Helper_Redirector::gotoUrlAndExit() would break the test suite'
         );
     }
 
     public function testRedirectAndExit()
     {
         $this->markTestSkipped(
-          "Testing Zend_Controller_Action_Helper_Redirector::redirectAndExit() would break the test suite"
+          'Testing Zend_Controller_Action_Helper_Redirector::redirectAndExit() would break the test suite'
         );
     }
 
     /**
-     * direct() is an alias for goto(), which is an alias for setGoto()
+     * direct() is an alias for goto(), which is an alias for setGoto().
      */
     public function testDirect()
     {
         $request = $this->request;
         $request->setModuleName('blog')
-                ->setControllerName('list')
-                ->setActionName('all');
+            ->setControllerName('list')
+            ->setActionName('all');
 
         $this->redirector->direct('error');
         $this->assertEquals('/blog/list/error', $this->redirector->getRedirectUrl());
@@ -406,9 +393,9 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
 
     public function testUseAbsoluteUriSetsFullUriInResponse()
     {
-        $_SERVER['HTTP_HOST']   = 'foobar.example.com';
+        $_SERVER['HTTP_HOST'] = 'foobar.example.com';
         $_SERVER['SERVER_PORT'] = '4443';
-        $_SERVER['HTTPS']       = 1;
+        $_SERVER['HTTPS'] = 1;
         $this->redirector->setUseAbsoluteUri(true);
         $this->redirector->gotoUrl('/bar/baz');
         $headers = $this->response->getHeaders();
@@ -421,11 +408,11 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     }
 
     /**
-     * ZF-10163
+     * ZF-10163.
      */
     public function testUseAbsoluteUriStripsPortFromServerHttpHost()
     {
-        $_SERVER['HTTP_HOST']   = 'foobar.example.com:8080';
+        $_SERVER['HTTP_HOST'] = 'foobar.example.com:8080';
         $_SERVER['SERVER_PORT'] = '8080';
         $this->redirector->setUseAbsoluteUri(true);
         $this->redirector->gotoUrl('/bar/baz');
@@ -438,7 +425,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     }
 
     /**
-     * ZF-2602
+     * ZF-2602.
      */
     public function testPassingEmptyStringToGotoUrlRedirectsToRoot()
     {
@@ -452,8 +439,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testPassingNullActionAndNullControllerWithModuleShouldGoToDefaultControllerAndActions()
     {
         $this->request->setModuleName('admin')
-                      ->setControllerName('class')
-                      ->setActionName('view');
+            ->setControllerName('class')
+            ->setActionName('view');
         $this->redirector->gotoSimple(null, null, 'admin');
         $test = $this->redirector->getRedirectUrl();
         $this->assertEquals('/admin', $test, $test);
@@ -462,8 +449,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testPassingNullActionShouldGoToDefaultActionOfCurrentController()
     {
         $this->request->setModuleName('admin')
-                      ->setControllerName('class')
-                      ->setActionName('view');
+            ->setControllerName('class')
+            ->setActionName('view');
         $this->redirector->gotoSimple(null);
         $test = $this->redirector->getRedirectUrl();
         $this->assertEquals('/admin/class', $test, $test);
@@ -472,8 +459,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testPassingDefaultModuleShouldNotRenderModuleNameInRedirectUrl()
     {
         $this->request->setModuleName('admin')
-                      ->setControllerName('class')
-                      ->setActionName('view');
+            ->setControllerName('class')
+            ->setActionName('view');
         $this->redirector->gotoSimple('login', 'account', 'default');
         $test = $this->redirector->getRedirectUrl();
         $this->assertEquals('/account/login', $test, $test);
@@ -485,14 +472,14 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testServerVariableHttpsToOffDoesNotBuildHttpsUrl()
     {
         // Set Preconditions from Issue:
-        $_SERVER['HTTPS'] = "off";
+        $_SERVER['HTTPS'] = 'off';
         $_SERVER['HTTP_HOST'] = 'localhost';
         $_SERVER['SERVER_PORT'] = 80;
         $this->redirector->setUseAbsoluteUri(true);
 
         $this->request->setModuleName('admin')
-                      ->setControllerName('class')
-                      ->setActionName('view');
+            ->setControllerName('class')
+            ->setActionName('view');
         $this->redirector->gotoUrl('/bar/baz');
         $test = $this->redirector->getRedirectUrl();
 
@@ -517,8 +504,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testGotoSimpleDefaultModuleRedirectsToDefaultModule()
     {
         $this->controller->getFrontController()->setDefaultModule('test')
-                                               ->setDefaultControllerName('test')
-                                               ->setDefaultAction('test');
+            ->setDefaultControllerName('test')
+            ->setDefaultAction('test');
 
         $this->redirector->gotoSimple('test', 'test', 'test');
         $result = $this->redirector->getRedirectUrl();
@@ -531,19 +518,21 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertEquals($expected, $result);
     }
 
-    /** @group ZF-6025 */
+    /**
+     * @group ZF-6025
+     */
     public function testGotoSimpleShouldNotHardcodeControllerActionModuleKeys()
     {
         $this->request->setControllerKey('foo')
-                      ->setActionKey('bar')
-                      ->setModuleKey('baz');
+            ->setActionKey('bar')
+            ->setModuleKey('baz');
 
         $this->router->removeRoute('default');
         $this->router->addRoute('default', new Zend_Controller_Router_Route(
             ':baz/:foo/:bar/*', array(
                 'baz' => 'default',
                 'foo' => 'index',
-                'bar' => 'index'
+                'bar' => 'index',
             )
         ));
 
@@ -553,7 +542,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertEquals($expected, $result);
     }
 
-    /**#@-*/
+    // #@-
 
     protected function _parseLocationHeaderValue()
     {
@@ -568,12 +557,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
 }
 
 /**
- * Test controller for use with redirector tests
+ * Test controller for use with redirector tests.
  */
 class Zend_Controller_Action_Helper_Redirector_TestController extends Zend_Controller_Action
 {
 }
-
-
-
-

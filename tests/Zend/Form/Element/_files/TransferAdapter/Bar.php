@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,35 +12,31 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
+
 namespace Zend\Form\Element\FileTest\Adapter;
 
+use Zend_File_Transfer_Adapter_Abstract;
+
 /**
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Bar extends \Zend_File_Transfer_Adapter_Abstract
+class Bar extends Zend_File_Transfer_Adapter_Abstract
 {
     public $received = false;
 
     public function send($options = null)
     {
-        return;
+
     }
 
     public function receive($options = null)
     {
         $this->received = true;
-        return;
+
     }
 
     public function isSent($file = null)
@@ -65,6 +61,6 @@ class Bar extends \Zend_File_Transfer_Adapter_Abstract
 
     public static function getProgress()
     {
-        return;
+
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_Translate */
 require_once 'Zend/View/Helper/Translate.php';
@@ -35,10 +30,6 @@ require_once 'Zend/Translate/Adapter/Array.php';
 /**
  * Test class for Zend_View_Helper_Translate.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -57,13 +48,10 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_TranslateTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_TranslateTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -79,8 +67,6 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -91,8 +77,6 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -194,17 +178,17 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testCanTranslateWithOptions()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', "two %1\$s" => "zwei %1\$s",
-            "three %1\$s %2\$s" => "drei %1\$s %2\$s"), 'de');
-        $trans->addTranslation(array('one' => 'uno', "two %1\$s" => "duo %2\$s",
-            "three %1\$s %2\$s" => "tre %1\$s %2\$s"), 'it');
+        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1$s' => 'zwei %1$s',
+            'three %1$s %2$s' => 'drei %1$s %2$s', ), 'de');
+        $trans->addTranslation(array('one' => 'uno', 'two %1$s' => 'duo %2$s',
+            'three %1$s %2$s' => 'tre %1$s %2$s', ), 'it');
         $trans->setLocale('de');
 
         $this->helper->setTranslator($trans);
-        $this->assertEquals("drei 100 200", $this->helper->translate("three %1\$s %2\$s", "100", "200"));
-        $this->assertEquals("tre 100 200", $this->helper->translate("three %1\$s %2\$s", "100", "200", 'it'));
-        $this->assertEquals("drei 100 200", $this->helper->translate("three %1\$s %2\$s", array("100", "200")));
-        $this->assertEquals("tre 100 200", $this->helper->translate("three %1\$s %2\$s", array("100", "200"), 'it'));
+        $this->assertEquals('drei 100 200', $this->helper->translate('three %1$s %2$s', '100', '200'));
+        $this->assertEquals('tre 100 200', $this->helper->translate('three %1$s %2$s', '100', '200', 'it'));
+        $this->assertEquals('drei 100 200', $this->helper->translate('three %1$s %2$s', array('100', '200')));
+        $this->assertEquals('tre 100 200', $this->helper->translate('three %1$s %2$s', array('100', '200'), 'it'));
     }
 
     public function testTranslationObjectNullByDefault()
@@ -237,26 +221,25 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-6724
+     * ZF-6724.
      */
     public function testTranslationWithPercent()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', "two %1\$s" => "zwei %1\$s",
-            "three %1\$s %2\$s" => "drei %1\$s %2\$s", 'vier%ig' => 'four%'), 'de');
+        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1$s' => 'zwei %1$s',
+            'three %1$s %2$s' => 'drei %1$s %2$s', 'vier%ig' => 'four%', ), 'de');
         $trans->setLocale('de');
 
         $this->helper->setTranslator($trans);
-        $this->assertEquals("four%", $this->helper->translate("vier%ig"));
-        $this->assertEquals("zwei 100", $this->helper->translate("two %1\$s", "100"));
+        $this->assertEquals('four%', $this->helper->translate('vier%ig'));
+        $this->assertEquals('zwei 100', $this->helper->translate('two %1$s', '100'));
     }
 
     /**
-     * ZF-7937
+     * ZF-7937.
      */
     public function testTranslationWithoutTranslator()
     {
-        $result = $this->helper->translate("test %1\$s", "100");
+        $result = $this->helper->translate('test %1$s', '100');
         $this->assertEquals('test 100', $result);
     }
 }
-

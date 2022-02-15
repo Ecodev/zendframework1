@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,49 +12,45 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
 
 /**
  * @see ZendX_JQuery_View_Helper_UiWidget
  */
-require_once "ZendX/JQuery/View/Helper/UiWidget.php";
+require_once 'ZendX/JQuery/View/Helper/UiWidget.php';
 
 /**
- * jQuery Dialog View Helper
+ * jQuery Dialog View Helper.
  *
- * @package    ZendX_JQuery
- * @subpackage View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_JQuery_View_Helper_DialogContainer extends ZendX_JQuery_View_Helper_UiWidget
 {
     /**
-     * Create a jQuery UI Dialog filled with the given content
+     * Create a jQuery UI Dialog filled with the given content.
      *
-     * @link   http://docs.jquery.com/UI/Dialog
+     * @see   http://docs.jquery.com/UI/Dialog
+     *
      * @param  string $id
      * @param  string $content
      * @param  array $params
      * @param  array $attribs
+     *
      * @return string
      */
-    public function dialogContainer($id, $content, $params=array(), $attribs=array())
+    public function dialogContainer($id, $content, $params = array(), $attribs = array())
     {
         if (!array_key_exists('id', $attribs)) {
             $attribs['id'] = $id;
         }
 
-        if(count($params) > 0) {
+        if (count($params) > 0) {
             $params = ZendX_JQuery::encodeJson($params);
         } else {
-            $params = "{}";
+            $params = '{}';
         }
 
         $js = sprintf('%s("#%s").dialog(%s);',
@@ -69,6 +65,7 @@ class ZendX_JQuery_View_Helper_DialogContainer extends ZendX_JQuery_View_Helper_
                 . '>'
                 . $content
                 . '</div>';
+
         return $html;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,40 +12,31 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Acl
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
 require_once 'Zend/Acl.php';
 require_once 'Zend/Acl/Resource.php';
 require_once 'Zend/Acl/Role.php';
 require_once __DIR__ . '/_files/MockAssertion.php';
 
 /**
- * @category   Zend
- * @package    Zend_Acl
- * @subpackage UnitTests
  * @group      Zend_Acl
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * ACL object for each test method
+     * ACL object for each test method.
      *
      * @var Zend_Acl
      */
     protected $_acl;
 
     /**
-     * Instantiates a new ACL object and creates internal reference to it for each test method
-     *
-     * @return void
+     * Instantiates a new ACL object and creates internal reference to it for each test method.
      */
     public function setUp()
     {
@@ -53,49 +44,43 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that basic addition and retrieval of a single Role works
-     *
-     * @return void
+     * Ensures that basic addition and retrieval of a single Role works.
      */
     public function testRoleRegistryAddAndGetOne()
     {
         $roleGuest = new Zend_Acl_Role('guest');
 
         $role = $this->_acl->addRole($roleGuest)
-                          ->getRole($roleGuest->getRoleId());
+            ->getRole($roleGuest->getRoleId());
         $this->assertTrue($roleGuest === $role);
         $role = $this->_acl->getRole($roleGuest);
         $this->assertTrue($roleGuest === $role);
     }
 
     /**
-     * Ensures that basic addition and retrieval of a single Resource works
+     * Ensures that basic addition and retrieval of a single Resource works.
      */
     public function testRoleAddAndGetOneByString()
     {
         $role = $this->_acl->addRole('area')
-                          ->getRole('area');
+            ->getRole('area');
         $this->assertTrue($role instanceof Zend_Acl_Role);
         $this->assertEquals('area', $role->getRoleId());
     }
 
     /**
-     * Ensures that basic removal of a single Role works
-     *
-     * @return void
+     * Ensures that basic removal of a single Role works.
      */
     public function testRoleRegistryRemoveOne()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-                   ->removeRole($roleGuest);
+            ->removeRole($roleGuest);
         $this->assertFalse($this->_acl->hasRole($roleGuest));
     }
 
     /**
-     * Ensures that an exception is thrown when a non-existent Role is specified for removal
-     *
-     * @return void
+     * Ensures that an exception is thrown when a non-existent Role is specified for removal.
      */
     public function testRoleRegistryRemoveOneNonExistent()
     {
@@ -108,22 +93,18 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removal of all Roles works
-     *
-     * @return void
+     * Ensures that removal of all Roles works.
      */
     public function testRoleRegistryRemoveAll()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-                   ->removeRoleAll();
+            ->removeRoleAll();
         $this->assertFalse($this->_acl->hasRole($roleGuest));
     }
 
     /**
-     * Ensures that an exception is thrown when a non-existent Role is specified as a parent upon Role addition
-     *
-     * @return void
+     * Ensures that an exception is thrown when a non-existent Role is specified as a parent upon Role addition.
      */
     public function testRoleRegistryAddInheritsNonExistent()
     {
@@ -136,20 +117,20 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that an exception is thrown when a non-existent Role is specified to each parameter of inherits()
-     *
-     * @return void
+     * Ensures that an exception is thrown when a non-existent Role is specified to each parameter of inherits().
      */
     public function testRoleRegistryInheritsNonExistent()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest);
+
         try {
             $this->_acl->inheritsRole('nonexistent', $roleGuest);
             $this->fail('Expected Zend_Acl_Role_Registry_Exception not thrown upon specifying a non-existent child Role');
         } catch (Zend_Acl_Role_Registry_Exception $e) {
             $this->assertContains('not found', $e->getMessage());
         }
+
         try {
             $this->_acl->inheritsRole($roleGuest, 'nonexistent');
             $this->fail('Expected Zend_Acl_Role_Registry_Exception not thrown upon specifying a non-existent parent Role');
@@ -159,19 +140,17 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests basic Role inheritance
-     *
-     * @return void
+     * Tests basic Role inheritance.
      */
     public function testRoleRegistryInherits()
     {
-        $roleGuest  = new Zend_Acl_Role('guest');
+        $roleGuest = new Zend_Acl_Role('guest');
         $roleMember = new Zend_Acl_Role('member');
         $roleEditor = new Zend_Acl_Role('editor');
         $roleRegistry = new Zend_Acl_Role_Registry();
         $roleRegistry->add($roleGuest)
-                    ->add($roleMember, $roleGuest->getRoleId())
-                    ->add($roleEditor, $roleMember);
+            ->add($roleMember, $roleGuest->getRoleId())
+            ->add($roleEditor, $roleMember);
         $this->assertTrue(0 === count($roleRegistry->getParents($roleGuest)));
         $roleMemberParents = $roleRegistry->getParents($roleMember);
         $this->assertTrue(1 === count($roleMemberParents));
@@ -191,25 +170,23 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests basic Role multiple inheritance
-     *
-     * @return void
+     * Tests basic Role multiple inheritance.
      */
     public function testRoleRegistryInheritsMultiple()
     {
         $roleParent1 = new Zend_Acl_Role('parent1');
         $roleParent2 = new Zend_Acl_Role('parent2');
-        $roleChild   = new Zend_Acl_Role('child');
+        $roleChild = new Zend_Acl_Role('child');
         $roleRegistry = new Zend_Acl_Role_Registry();
         $roleRegistry->add($roleParent1)
-                    ->add($roleParent2)
-                    ->add($roleChild, array($roleParent1, $roleParent2));
+            ->add($roleParent2)
+            ->add($roleChild, array($roleParent1, $roleParent2));
         $roleChildParents = $roleRegistry->getParents($roleChild);
         $this->assertTrue(2 === count($roleChildParents));
         $i = 1;
         foreach ($roleChildParents as $roleParentId => $roleParent) {
             $this->assertTrue("parent$i" === $roleParentId);
-            $i++;
+            ++$i;
         }
         $this->assertTrue($roleRegistry->inherits($roleChild, $roleParent1));
         $this->assertTrue($roleRegistry->inherits($roleChild, $roleParent2));
@@ -221,17 +198,16 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the same Role cannot be registered more than once to the registry
-     *
-     * @return void
+     * Ensures that the same Role cannot be registered more than once to the registry.
      */
     public function testRoleRegistryDuplicate()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $roleRegistry = new Zend_Acl_Role_Registry();
+
         try {
             $roleRegistry->add($roleGuest)
-                        ->add($roleGuest);
+                ->add($roleGuest);
             $this->fail('Expected exception not thrown upon adding same Role twice');
         } catch (Zend_Acl_Role_Registry_Exception $e) {
             $this->assertContains('already exists', $e->getMessage());
@@ -239,18 +215,17 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that two Roles having the same ID cannot be registered
-     *
-     * @return void
+     * Ensures that two Roles having the same ID cannot be registered.
      */
     public function testRoleRegistryDuplicateId()
     {
         $roleGuest1 = new Zend_Acl_Role('guest');
         $roleGuest2 = new Zend_Acl_Role('guest');
         $roleRegistry = new Zend_Acl_Role_Registry();
+
         try {
             $roleRegistry->add($roleGuest1)
-                        ->add($roleGuest2);
+                ->add($roleGuest2);
             $this->fail('Expected exception not thrown upon adding two Roles with same ID');
         } catch (Zend_Acl_Role_Registry_Exception $e) {
             $this->assertContains('already exists', $e->getMessage());
@@ -258,33 +233,31 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that basic addition and retrieval of a single Resource works
-     *
-     * @return void
+     * Ensures that basic addition and retrieval of a single Resource works.
      */
     public function testResourceAddAndGetOne()
     {
         $resourceArea = new Zend_Acl_Resource('area');
         $resource = $this->_acl->add($resourceArea)
-                          ->get($resourceArea->getResourceId());
+            ->get($resourceArea->getResourceId());
         $this->assertTrue($resourceArea === $resource);
         $resource = $this->_acl->get($resourceArea);
         $this->assertTrue($resourceArea === $resource);
     }
 
     /**
-     * Ensures that basic addition and retrieval of a single Resource works
+     * Ensures that basic addition and retrieval of a single Resource works.
      */
     public function testResourceAddAndGetOneByString()
     {
         $resource = $this->_acl->addResource('area')
-                          ->get('area');
+            ->get('area');
         $this->assertTrue($resource instanceof Zend_Acl_Resource);
         $this->assertEquals('area', $resource->getResourceId());
     }
 
     /**
-     * Ensures that basic addition and retrieval of a single Resource works
+     * Ensures that basic addition and retrieval of a single Resource works.
      *
      * @group ZF-1167
      */
@@ -292,29 +265,25 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     {
         $resourceArea = new Zend_Acl_Resource('area');
         $resource = $this->_acl->addResource($resourceArea)
-                          ->get($resourceArea->getResourceId());
+            ->get($resourceArea->getResourceId());
         $this->assertTrue($resourceArea === $resource);
         $resource = $this->_acl->get($resourceArea);
         $this->assertTrue($resourceArea === $resource);
     }
 
     /**
-     * Ensures that basic removal of a single Resource works
-     *
-     * @return void
+     * Ensures that basic removal of a single Resource works.
      */
     public function testResourceRemoveOne()
     {
         $resourceArea = new Zend_Acl_Resource('area');
         $this->_acl->add($resourceArea)
-                   ->remove($resourceArea);
+            ->remove($resourceArea);
         $this->assertFalse($this->_acl->has($resourceArea));
     }
 
     /**
-     * Ensures that an exception is thrown when a non-existent Resource is specified for removal
-     *
-     * @return void
+     * Ensures that an exception is thrown when a non-existent Resource is specified for removal.
      */
     public function testResourceRemoveOneNonExistent()
     {
@@ -327,22 +296,18 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removal of all Resources works
-     *
-     * @return void
+     * Ensures that removal of all Resources works.
      */
     public function testResourceRemoveAll()
     {
         $resourceArea = new Zend_Acl_Resource('area');
         $this->_acl->add($resourceArea)
-                   ->removeAll();
+            ->removeAll();
         $this->assertFalse($this->_acl->has($resourceArea));
     }
 
     /**
-     * Ensures that an exception is thrown when a non-existent Resource is specified as a parent upon Resource addition
-     *
-     * @return void
+     * Ensures that an exception is thrown when a non-existent Resource is specified as a parent upon Resource addition.
      */
     public function testResourceAddInheritsNonExistent()
     {
@@ -355,20 +320,20 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that an exception is thrown when a non-existent Resource is specified to each parameter of inherits()
-     *
-     * @return void
+     * Ensures that an exception is thrown when a non-existent Resource is specified to each parameter of inherits().
      */
     public function testResourceInheritsNonExistent()
     {
         $resourceArea = new Zend_Acl_Resource('area');
         $this->_acl->add($resourceArea);
+
         try {
             $this->_acl->inherits('nonexistent', $resourceArea);
             $this->fail('Expected Zend_Acl_Exception not thrown upon specifying a non-existent child Resource');
         } catch (Zend_Acl_Exception $e) {
             $this->assertContains('not found', $e->getMessage());
         }
+
         try {
             $this->_acl->inherits($resourceArea, 'nonexistent');
             $this->fail('Expected Zend_Acl_Exception not thrown upon specifying a non-existent parent Resource');
@@ -378,18 +343,16 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests basic Resource inheritance
-     *
-     * @return void
+     * Tests basic Resource inheritance.
      */
     public function testResourceInherits()
     {
-        $resourceCity     = new Zend_Acl_Resource('city');
+        $resourceCity = new Zend_Acl_Resource('city');
         $resourceBuilding = new Zend_Acl_Resource('building');
-        $resourceRoom     = new Zend_Acl_Resource('room');
+        $resourceRoom = new Zend_Acl_Resource('room');
         $this->_acl->add($resourceCity)
-                   ->add($resourceBuilding, $resourceCity->getResourceId())
-                   ->add($resourceRoom, $resourceBuilding);
+            ->add($resourceBuilding, $resourceCity->getResourceId())
+            ->add($resourceRoom, $resourceBuilding);
         $this->assertTrue($this->_acl->inherits($resourceBuilding, $resourceCity, true));
         $this->assertTrue($this->_acl->inherits($resourceRoom, $resourceBuilding, true));
         $this->assertTrue($this->_acl->inherits($resourceRoom, $resourceCity));
@@ -401,16 +364,14 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the same Resource cannot be added more than once
-     *
-     * @return void
+     * Ensures that the same Resource cannot be added more than once.
      */
     public function testResourceDuplicate()
     {
         try {
             $resourceArea = new Zend_Acl_Resource('area');
             $this->_acl->add($resourceArea)
-                       ->add($resourceArea);
+                ->add($resourceArea);
             $this->fail('Expected exception not thrown upon adding same Resource twice');
         } catch (Zend_Acl_Exception $e) {
             $this->assertContains('already exists', $e->getMessage());
@@ -418,9 +379,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that two Resources having the same ID cannot be added
-     *
-     * @return void
+     * Ensures that two Resources having the same ID cannot be added.
      */
     public function testResourceDuplicateId()
     {
@@ -428,7 +387,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
             $resourceArea1 = new Zend_Acl_Resource('area');
             $resourceArea2 = new Zend_Acl_Resource('area');
             $this->_acl->add($resourceArea1)
-                       ->add($resourceArea2);
+                ->add($resourceArea2);
             $this->fail('Expected exception not thrown upon adding two Resources with same ID');
         } catch (Zend_Acl_Exception $e) {
             $this->assertContains('already exists', $e->getMessage());
@@ -436,9 +395,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that an exception is thrown when a non-existent Role and Resource parameters are specified to isAllowed()
-     *
-     * @return void
+     * Ensures that an exception is thrown when a non-existent Role and Resource parameters are specified to isAllowed().
      */
     public function testIsAllowedNonExistent()
     {
@@ -448,6 +405,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Acl_Role_Registry_Exception $e) {
             $this->assertContains('not found', $e->getMessage());
         }
+
         try {
             $this->_acl->isAllowed(null, 'nonexistent');
             $this->fail('Expected Zend_Acl_Exception not thrown upon non-existent Resource');
@@ -457,9 +415,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that by default, Zend_Acl denies access to everything by all
-     *
-     * @return void
+     * Ensures that by default, Zend_Acl denies access to everything by all.
      */
     public function testDefaultDeny()
     {
@@ -467,9 +423,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the default rule obeys its assertion
-     *
-     * @return void
+     * Ensures that the default rule obeys its assertion.
      */
     public function testDefaultAssert()
     {
@@ -479,9 +433,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that ACL-wide rules (all Roles, Resources, and privileges) work properly
-     *
-     * @return void
+     * Ensures that ACL-wide rules (all Roles, Resources, and privileges) work properly.
      */
     public function testDefaultRuleSet()
     {
@@ -492,9 +444,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that by default, Zend_Acl denies access to a privilege on anything by all
-     *
-     * @return void
+     * Ensures that by default, Zend_Acl denies access to a privilege on anything by all.
      */
     public function testDefaultPrivilegeDeny()
     {
@@ -502,9 +452,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that ACL-wide rules apply to privileges
-     *
-     * @return void
+     * Ensures that ACL-wide rules apply to privileges.
      */
     public function testDefaultRuleSetPrivilege()
     {
@@ -515,9 +463,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that a privilege allowed for all Roles upon all Resources works properly
-     *
-     * @return void
+     * Ensures that a privilege allowed for all Roles upon all Resources works properly.
      */
     public function testPrivilegeAllow()
     {
@@ -526,9 +472,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that a privilege denied for all Roles upon all Resources works properly
-     *
-     * @return void
+     * Ensures that a privilege denied for all Roles upon all Resources works properly.
      */
     public function testPrivilegeDeny()
     {
@@ -538,9 +482,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that multiple privileges work properly
-     *
-     * @return void
+     * Ensures that multiple privileges work properly.
      */
     public function testPrivileges()
     {
@@ -557,9 +499,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that assertions on privileges work properly
-     *
-     * @return void
+     * Ensures that assertions on privileges work properly.
      */
     public function testPrivilegeAssert()
     {
@@ -570,9 +510,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that by default, Zend_Acl denies access to everything for a particular Role
-     *
-     * @return void
+     * Ensures that by default, Zend_Acl denies access to everything for a particular Role.
      */
     public function testRoleDefaultDeny()
     {
@@ -582,24 +520,20 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that ACL-wide rules (all Resources and privileges) work properly for a particular Role
-     *
-     * @return void
+     * Ensures that ACL-wide rules (all Resources and privileges) work properly for a particular Role.
      */
     public function testRoleDefaultRuleSet()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-                   ->allow($roleGuest);
+            ->allow($roleGuest);
         $this->assertTrue($this->_acl->isAllowed($roleGuest));
         $this->_acl->deny($roleGuest);
         $this->assertFalse($this->_acl->isAllowed($roleGuest));
     }
 
     /**
-     * Ensures that by default, Zend_Acl denies access to a privilege on anything for a particular Role
-     *
-     * @return void
+     * Ensures that by default, Zend_Acl denies access to a privilege on anything for a particular Role.
      */
     public function testRoleDefaultPrivilegeDeny()
     {
@@ -609,57 +543,49 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that ACL-wide rules apply to privileges for a particular Role
-     *
-     * @return void
+     * Ensures that ACL-wide rules apply to privileges for a particular Role.
      */
     public function testRoleDefaultRuleSetPrivilege()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-                   ->allow($roleGuest);
+            ->allow($roleGuest);
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'somePrivilege'));
         $this->_acl->deny($roleGuest);
         $this->assertFalse($this->_acl->isAllowed($roleGuest, null, 'somePrivilege'));
     }
 
     /**
-     * Ensures that a privilege allowed for a particular Role upon all Resources works properly
-     *
-     * @return void
+     * Ensures that a privilege allowed for a particular Role upon all Resources works properly.
      */
     public function testRolePrivilegeAllow()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-                   ->allow($roleGuest, null, 'somePrivilege');
+            ->allow($roleGuest, null, 'somePrivilege');
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'somePrivilege'));
     }
 
     /**
-     * Ensures that a privilege denied for a particular Role upon all Resources works properly
-     *
-     * @return void
+     * Ensures that a privilege denied for a particular Role upon all Resources works properly.
      */
     public function testRolePrivilegeDeny()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-                   ->allow($roleGuest)
-                   ->deny($roleGuest, null, 'somePrivilege');
+            ->allow($roleGuest)
+            ->deny($roleGuest, null, 'somePrivilege');
         $this->assertFalse($this->_acl->isAllowed($roleGuest, null, 'somePrivilege'));
     }
 
     /**
-     * Ensures that multiple privileges work properly for a particular Role
-     *
-     * @return void
+     * Ensures that multiple privileges work properly for a particular Role.
      */
     public function testRolePrivileges()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-                   ->allow($roleGuest, null, array('p1', 'p2', 'p3'));
+            ->allow($roleGuest, null, array('p1', 'p2', 'p3'));
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'p1'));
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'p2'));
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'p3'));
@@ -672,24 +598,20 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that assertions on privileges work properly for a particular Role
-     *
-     * @return void
+     * Ensures that assertions on privileges work properly for a particular Role.
      */
     public function testRolePrivilegeAssert()
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-                   ->allow($roleGuest, null, 'somePrivilege', new Zend_Acl_MockAssertion(true));
+            ->allow($roleGuest, null, 'somePrivilege', new Zend_Acl_MockAssertion(true));
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'somePrivilege'));
         $this->_acl->allow($roleGuest, null, 'somePrivilege', new Zend_Acl_MockAssertion(false));
         $this->assertFalse($this->_acl->isAllowed($roleGuest, null, 'somePrivilege'));
     }
 
     /**
-     * Ensures that removing the default deny rule results in default deny rule
-     *
-     * @return void
+     * Ensures that removing the default deny rule results in default deny rule.
      */
     public function testRemoveDefaultDeny()
     {
@@ -699,9 +621,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removing the default deny rule results in assertion method being removed
-     *
-     * @return void
+     * Ensures that removing the default deny rule results in assertion method being removed.
      */
     public function testRemoveDefaultDenyAssert()
     {
@@ -712,9 +632,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removing the default allow rule results in default deny rule being assigned
-     *
-     * @return void
+     * Ensures that removing the default allow rule results in default deny rule being assigned.
      */
     public function testRemoveDefaultAllow()
     {
@@ -725,9 +643,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removing non-existent default allow rule does nothing
-     *
-     * @return void
+     * Ensures that removing non-existent default allow rule does nothing.
      */
     public function testRemoveDefaultAllowNonExistent()
     {
@@ -736,55 +652,47 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removing non-existent default deny rule does nothing
-     *
-     * @return void
+     * Ensures that removing non-existent default deny rule does nothing.
      */
     public function testRemoveDefaultDenyNonExistent()
     {
         $this->_acl->allow()
-                   ->removeDeny();
+            ->removeDeny();
         $this->assertTrue($this->_acl->isAllowed());
     }
 
     /**
      * Ensures that for a particular Role, a deny rule on a specific Resource is honored before an allow rule
-     * on the entire ACL
-     *
-     * @return void
+     * on the entire ACL.
      */
     public function testRoleDefaultAllowRuleWithResourceDenyRule()
     {
         $this->_acl->addRole(new Zend_Acl_Role('guest'))
-                   ->addRole(new Zend_Acl_Role('staff'), 'guest')
-                   ->add(new Zend_Acl_Resource('area1'))
-                   ->add(new Zend_Acl_Resource('area2'))
-                   ->deny()
-                   ->allow('staff')
-                   ->deny('staff', array('area1', 'area2'));
+            ->addRole(new Zend_Acl_Role('staff'), 'guest')
+            ->add(new Zend_Acl_Resource('area1'))
+            ->add(new Zend_Acl_Resource('area2'))
+            ->deny()
+            ->allow('staff')
+            ->deny('staff', array('area1', 'area2'));
         $this->assertFalse($this->_acl->isAllowed('staff', 'area1'));
     }
 
     /**
      * Ensures that for a particular Role, a deny rule on a specific privilege is honored before an allow
-     * rule on the entire ACL
-     *
-     * @return void
+     * rule on the entire ACL.
      */
     public function testRoleDefaultAllowRuleWithPrivilegeDenyRule()
     {
         $this->_acl->addRole(new Zend_Acl_Role('guest'))
-                   ->addRole(new Zend_Acl_Role('staff'), 'guest')
-                   ->deny()
-                   ->allow('staff')
-                   ->deny('staff', null, array('privilege1', 'privilege2'));
+            ->addRole(new Zend_Acl_Role('staff'), 'guest')
+            ->deny()
+            ->allow('staff')
+            ->deny('staff', null, array('privilege1', 'privilege2'));
         $this->assertFalse($this->_acl->isAllowed('staff', null, 'privilege1'));
     }
 
     /**
-     * Ensure that basic rule removal works
-     *
-     * @return void
+     * Ensure that basic rule removal works.
      */
     public function testRulesRemove()
     {
@@ -798,16 +706,15 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removal of a Role results in its rules being removed
-     *
-     * @return void
+     * Ensures that removal of a Role results in its rules being removed.
      */
     public function testRuleRoleRemove()
     {
         $this->_acl->addRole(new Zend_Acl_Role('guest'))
-                   ->allow('guest');
+            ->allow('guest');
         $this->assertTrue($this->_acl->isAllowed('guest'));
         $this->_acl->removeRole('guest');
+
         try {
             $this->_acl->isAllowed('guest');
             $this->fail('Expected Zend_Acl_Role_Registry_Exception not thrown upon isAllowed() on non-existent Role');
@@ -819,16 +726,15 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removal of all Roles results in Role-specific rules being removed
-     *
-     * @return void
+     * Ensures that removal of all Roles results in Role-specific rules being removed.
      */
     public function testRuleRoleRemoveAll()
     {
         $this->_acl->addRole(new Zend_Acl_Role('guest'))
-                   ->allow('guest');
+            ->allow('guest');
         $this->assertTrue($this->_acl->isAllowed('guest'));
         $this->_acl->removeRoleAll();
+
         try {
             $this->_acl->isAllowed('guest');
             $this->fail('Expected Zend_Acl_Role_Registry_Exception not thrown upon isAllowed() on non-existent Role');
@@ -840,16 +746,15 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removal of a Resource results in its rules being removed
-     *
-     * @return void
+     * Ensures that removal of a Resource results in its rules being removed.
      */
     public function testRulesResourceRemove()
     {
         $this->_acl->add(new Zend_Acl_Resource('area'))
-                   ->allow(null, 'area');
+            ->allow(null, 'area');
         $this->assertTrue($this->_acl->isAllowed(null, 'area'));
         $this->_acl->remove('area');
+
         try {
             $this->_acl->isAllowed(null, 'area');
             $this->fail('Expected Zend_Acl_Exception not thrown upon isAllowed() on non-existent Resource');
@@ -861,16 +766,15 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that removal of all Resources results in Resource-specific rules being removed
-     *
-     * @return void
+     * Ensures that removal of all Resources results in Resource-specific rules being removed.
      */
     public function testRulesResourceRemoveAll()
     {
         $this->_acl->add(new Zend_Acl_Resource('area'))
-                   ->allow(null, 'area');
+            ->allow(null, 'area');
         $this->assertTrue($this->_acl->isAllowed(null, 'area'));
         $this->_acl->removeAll();
+
         try {
             $this->_acl->isAllowed(null, 'area');
             $this->fail('Expected Zend_Acl_Exception not thrown upon isAllowed() on non-existent Resource');
@@ -882,17 +786,15 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that an example for a content management system is operable
-     *
-     * @return void
+     * Ensures that an example for a content management system is operable.
      */
     public function testCMSExample()
     {
         // Add some roles to the Role registry
         $this->_acl->addRole(new Zend_Acl_Role('guest'))
-                   ->addRole(new Zend_Acl_Role('staff'), 'guest')  // staff inherits permissions from guest
-                   ->addRole(new Zend_Acl_Role('editor'), 'staff') // editor inherits permissions from staff
-                   ->addRole(new Zend_Acl_Role('administrator'));
+            ->addRole(new Zend_Acl_Role('staff'), 'guest')  // staff inherits permissions from guest
+            ->addRole(new Zend_Acl_Role('editor'), 'staff') // editor inherits permissions from staff
+            ->addRole(new Zend_Acl_Role('administrator'));
 
         // Guest may only view content
         $this->_acl->allow('guest', null, 'view');
@@ -950,11 +852,11 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
         // Some checks on specific areas, which inherit access controls from the root ACL node
         $this->_acl->add(new Zend_Acl_Resource('newsletter'))
-                   ->add(new Zend_Acl_Resource('pending'), 'newsletter')
-                   ->add(new Zend_Acl_Resource('gallery'))
-                   ->add(new Zend_Acl_Resource('profiles', 'gallery'))
-                   ->add(new Zend_Acl_Resource('config'))
-                   ->add(new Zend_Acl_Resource('hosts'), 'config');
+            ->add(new Zend_Acl_Resource('pending'), 'newsletter')
+            ->add(new Zend_Acl_Resource('gallery'))
+            ->add(new Zend_Acl_Resource('profiles', 'gallery'))
+            ->add(new Zend_Acl_Resource('config'))
+            ->add(new Zend_Acl_Resource('hosts'), 'config');
         $this->assertTrue($this->_acl->isAllowed('guest', 'pending', 'view'));
         $this->assertTrue($this->_acl->isAllowed('staff', 'profiles', 'revise'));
         $this->assertTrue($this->_acl->isAllowed('staff', 'pending', 'view'));
@@ -974,7 +876,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
         // Allow marketing to publish and archive latest news
         $this->_acl->add(new Zend_Acl_Resource('news'))
-                   ->add(new Zend_Acl_Resource('latest'), 'news');
+            ->add(new Zend_Acl_Resource('latest'), 'news');
         $this->_acl->allow('marketing', 'latest', array('publish', 'archive'));
 
         // Deny staff (and marketing, by inheritance) rights to revise latest news
@@ -1045,27 +947,24 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->_acl->isAllowed('marketing', 'latest', 'publish'));
         $this->assertTrue($this->_acl->isAllowed('marketing', 'latest', 'edit'));
         $this->assertTrue($this->_acl->isAllowed('marketing', 'latest'));
-
     }
 
     /**
-     * Ensures that the $onlyParents argument to inheritsRole() works
+     * Ensures that the $onlyParents argument to inheritsRole() works.
      *
-     * @return void
      * @group ZF-2502
      */
     public function testRoleInheritanceSupportsCheckingOnlyParents()
     {
         $this->_acl->addRole(new Zend_Acl_Role('grandparent'))
-                   ->addRole(new Zend_Acl_Role('parent'), 'grandparent')
-                   ->addRole(new Zend_Acl_Role('child'), 'parent');
+            ->addRole(new Zend_Acl_Role('parent'), 'grandparent')
+            ->addRole(new Zend_Acl_Role('child'), 'parent');
         $this->assertFalse($this->_acl->inheritsRole('child', 'grandparent', true));
     }
 
     /**
-     * Ensures that the solution for ZF-2234 works as expected
+     * Ensures that the solution for ZF-2234 works as expected.
      *
-     * @return void
      * @group ZF-2234
      */
     public function testAclInternalDFSMethodsBehaveProperly()
@@ -1074,13 +973,13 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $acl = new Zend_Acl_ExtendedAclZF2234();
 
         $someResource = new Zend_Acl_Resource('someResource');
-        $someRole     = new Zend_Acl_Role('someRole');
+        $someRole = new Zend_Acl_Role('someRole');
 
         $acl->add($someResource)
             ->addRole($someRole);
 
-        $nullValue     = null;
-        $nullReference =& $nullValue;
+        $nullValue = null;
+        $nullReference = &$nullValue;
 
         try {
             $acl->roleDFSVisitAllPrivileges($someRole, $someResource, $nullReference);
@@ -1111,7 +1010,6 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-
     /**
      * @group ZF-1721
      */
@@ -1130,11 +1028,9 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($acl->isAllowed($user, $blogPost, 'modify'));
 
         $this->assertEquals('publisher', $assertion->lastAssertRole->getRoleId());
-
     }
 
     /**
-     *
      * @group ZF-1722
      */
     public function testAclAssertionsGetOriginalIsAllowedObjects()
@@ -1160,11 +1056,9 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         // check to see if the last assertion has the proper objets
         $this->assertTrue($assertion->lastAssertRole instanceof Zend_Acl_UseCase1_User, 'Assertion did not recieve proper role object');
         $this->assertTrue($assertion->lastAssertResource instanceof Zend_Acl_UseCase1_BlogPost, 'Assertion did not recieve proper resource object');
-
     }
 
     /**
-     *
      * @return Zend_Acl_UseCase1_Acl
      */
     protected function _loadUseCase1()
@@ -1175,11 +1069,13 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
             require_once __DIR__ . '/_files/UseCase1/UserIsBlogPostOwnerAssertion.php';
             require_once __DIR__ . '/_files/UseCase1/Acl.php';
         }
+
         return new Zend_Acl_UseCase1_Acl();
     }
 
     /**
-     * Returns an array of registered roles
+     * Returns an array of registered roles.
+     *
      * @expectedException \PHPUnit\Framework\Exception
      * @group ZF-5638
      */
@@ -1195,7 +1091,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Confirm that deleting a role after allowing access to all roles
-     * raise undefined index error
+     * raise undefined index error.
      *
      * @group ZF-5700
      */
@@ -1222,7 +1118,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      * Meant to test for the (in)existance of this notice:
      * "Notice: Undefined index: allPrivileges in lib/Zend/Acl.php on line 682"
      */
-    public function testMethodRemoveAllowDoesNotThrowNotice() {
+    public function testMethodRemoveAllowDoesNotThrowNotice()
+    {
         $acl = new Zend_Acl();
         $acl->addRole('admin');
         $acl->addResource('blog');
@@ -1231,20 +1128,23 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(true);
     }
 
-    public function testRoleObjectImplementsToString() {
+    public function testRoleObjectImplementsToString()
+    {
         $role = new Zend_Acl_Role('_fooBar_');
-        $this->assertEquals('_fooBar_',(string)$role);
+        $this->assertEquals('_fooBar_',(string) $role);
     }
 
-    public function testResourceObjectImplementsToString() {
+    public function testResourceObjectImplementsToString()
+    {
         $resource = new Zend_Acl_Resource('_fooBar_');
-        $this->assertEquals('_fooBar_',(string)$resource);
+        $this->assertEquals('_fooBar_',(string) $resource);
     }
 
     /**
      * @group ZF-7973
      */
-    public function testAclPassesPrivilegeToAssertClass() {
+    public function testAclPassesPrivilegeToAssertClass()
+    {
         require_once __DIR__ . '/_files/AssertionZF7973.php';
         $assertion = new Zend_Acl_AclTest_AssertionZF7973();
 
@@ -1260,12 +1160,14 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     /**
      * @group ZF-8468
      */
-    public function testGetRegisteredRolesIsDeprecated() {
+    public function testGetRegisteredRolesIsDeprecated()
+    {
         try {
             $this->_acl->getRegisteredRoles();
             $this->fail('getRegisteredRoles() did not throw an exception');
-        } catch(\PHPUnit\Framework\Exception $e) {
+        } catch (\PHPUnit\Framework\Exception $e) {
             self::assertTrue(true);
+
             return;
         }
 
@@ -1275,7 +1177,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     /**
      * @group ZF-8468
      */
-    public function testgetRoles() {
+    public function testgetRoles()
+    {
         $this->assertEquals(array(),$this->_acl->getRoles());
 
         $roleGuest = new Zend_Acl_Role('guest');
@@ -1291,7 +1194,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     /**
      * @group ZF-8468
      */
-    public function testgetResources() {
+    public function testgetResources()
+    {
         $this->assertEquals(array(),$this->_acl->getResources());
 
         $this->_acl->add(new Zend_Acl_Resource('someResource'));

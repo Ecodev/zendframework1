@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Request/Http.php';
 require_once 'Zend/Controller/Response/Cli.php';
@@ -32,10 +26,6 @@ require_once 'Zend/Session.php';
 require_once dirname(__FILE__, 3) . '/_files/HelperFlashMessengerController.php';
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
@@ -71,12 +61,11 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_FlashMessengerTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_FlashMessengerTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -96,15 +85,15 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
         }
         Zend_Session::start();
 
-        $this->front      = Zend_Controller_Front::getInstance();
+        $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
         $this->front->setControllerDirectory(dirname(__FILE__, 3) . DIRECTORY_SEPARATOR . '_files');
         $this->front->returnResponse(true);
-        $this->request    = new Zend_Controller_Request_Http();
+        $this->request = new Zend_Controller_Request_Http();
         $this->request->setControllerName('helper-flash-messenger');
-        $this->response   = new Zend_Controller_Response_Cli();
+        $this->response = new Zend_Controller_Response_Cli();
         $this->controller = new HelperFlashMessengerController($this->request, $this->response, array());
-        $this->helper     = new Zend_Controller_Action_Helper_FlashMessenger;
+        $this->helper = new Zend_Controller_Action_Helper_FlashMessenger();
     }
 
     public function testLoadFlashMessenger()
@@ -192,13 +181,13 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
      */
     public function testSimulateCrossRequestMessagePassing()
     {
-        $helper = new FlashMessengerControllerActionHelper;
+        $helper = new FlashMessengerControllerActionHelper();
         $helper->addMessage('testmessage', 'foobar');
         $helper->addMessage('defaultmessage');
 
         // Reset and recreate the helper, essentially faking a subsequent request
         $helper->reset();
-        $helper = new FlashMessengerControllerActionHelper;
+        $helper = new FlashMessengerControllerActionHelper();
 
         // Check the contents
         $this->assertFalse($helper->hasCurrentMessages('foobar'));
@@ -218,17 +207,19 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
 
 /**
  * Subclass of FlashMessenger action helper which exposes a reset method
- * to allow faking a second (fresh) request
+ * to allow faking a second (fresh) request.
  */
 class FlashMessengerControllerActionHelper extends Zend_Controller_Action_Helper_FlashMessenger
 {
-    public function getName() { return 'FlashMessenger'; }
+    public function getName()
+    {
+        return 'FlashMessenger';
+    }
 
     public function reset()
     {
         self::$_messages = array();
-        self::$_session = NULL;
+        self::$_session = null;
         self::$_messageAdded = false;
     }
 }
-

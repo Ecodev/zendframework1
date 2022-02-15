@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,37 +12,29 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
 require_once 'Zend/Validate/Sitemap/Lastmod.php';
 
 /**
- * Tests Zym_Validate_Sitemap_Lastmod
+ * Tests Zym_Validate_Sitemap_Lastmod.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Validator
+     * Validator.
      *
      * @var Zend_Validate_Sitemap_Lastmod
      */
     protected $_validator;
 
     /**
-     * Prepares the environment before running a test
+     * Prepares the environment before running a test.
      */
     protected function setUp()
     {
@@ -50,7 +42,7 @@ class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Cleans up the environment after running a test
+     * Cleans up the environment after running a test.
      */
     protected function tearDown()
     {
@@ -58,8 +50,7 @@ class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests valid change frequencies
-     *
+     * Tests valid change frequencies.
      */
     public function testValidChangefreqs()
     {
@@ -75,7 +66,7 @@ class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase
             '2005-01-01',
             '2006-03-19',
             '2007-08-31',
-            '2007-08-25'
+            '2007-08-25',
         );
 
         foreach ($values as $value) {
@@ -84,8 +75,7 @@ class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests strings that should be invalid
-     *
+     * Tests strings that should be invalid.
      */
     public function testInvalidStrings()
     {
@@ -94,7 +84,7 @@ class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase
             '1996-05-11T18:50:09+25:00',
             '2002-13-11',
             '2004-00-01',
-            '2006-01-01\n'
+            '2006-01-01\n',
         );
 
         foreach ($values as $value) {
@@ -105,13 +95,12 @@ class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Tests values that are not strings
-     *
+     * Tests values that are not strings.
      */
     public function testNotString()
     {
         $values = array(
-            1, 1.4, null, new stdClass(), true, false
+            1, 1.4, null, new stdClass(), true, false,
         );
 
         foreach ($values as $value) {

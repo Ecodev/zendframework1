@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @version    $Id$
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -27,17 +24,14 @@ require_once 'Zend/View/Helper/Partial.php';
  * Helper for rendering a template fragment in its own variable scope; iterates
  * over data provided and renders for each iteration.
  *
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_PartialLoop extends Zend_View_Helper_Partial
 {
-
     /**
-     * Marker to where the pointer is at in the loop
-     * @var integer
+     * Marker to where the pointer is at in the loop.
+     *
+     * @var int
      */
     protected $partialCounter = 0;
 
@@ -48,11 +42,12 @@ class Zend_View_Helper_PartialLoop extends Zend_View_Helper_Partial
      * If no arguments are provided, returns object instance.
      *
      * @param  string $name Name of view script
-     * @param  string|array $module If $model is empty, and $module is an array,
+     * @param  array|string $module If $model is empty, and $module is an array,
      *                              these are the variables to populate in the
      *                              view. Otherwise, the module in which the
      *                              partial resides
      * @param  array $model Variables to populate in the view
+     *
      * @return string
      */
     public function partialLoop($name = null, $module = null, $model = null)
@@ -62,7 +57,7 @@ class Zend_View_Helper_PartialLoop extends Zend_View_Helper_Partial
         }
 
         if ((null === $model) && (null !== $module)) {
-            $model  = $module;
+            $model = $module;
             $module = null;
         }
 
@@ -73,6 +68,7 @@ class Zend_View_Helper_PartialLoop extends Zend_View_Helper_Partial
             require_once 'Zend/View/Helper/Partial/Exception.php';
             $e = new Zend_View_Helper_Partial_Exception('PartialLoop helper requires iterable data');
             $e->setView($this->view);
+
             throw $e;
         }
 
@@ -85,12 +81,12 @@ class Zend_View_Helper_PartialLoop extends Zend_View_Helper_Partial
 
         $content = '';
         // reset the counter if it's call again
-        $this->partialCounter    = 0;
+        $this->partialCounter = 0;
         $this->partialTotalCount = $model === null ? 0 : count($model);
 
         foreach ($model as $item) {
             // increment the counter variable
-            $this->partialCounter++;
+            ++$this->partialCounter;
 
             $content .= $this->partial($name, $module, $item);
         }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,16 +23,14 @@
 require_once 'Zend/Controller/Response/Http.php';
 
 /**
- * Zend_Controller_Response_HttpTestCase
+ * Zend_Controller_Response_HttpTestCase.
  *
  * @uses Zend_Controller_Response_Http
- * @package Zend_Controller
- * @subpackage Response
  */
 class Zend_Controller_Response_HttpTestCase extends Zend_Controller_Response_Http
 {
     /**
-     * "send" headers by returning array of all headers that would be sent
+     * "send" headers by returning array of all headers that would be sent.
      *
      * @return array
      */
@@ -46,7 +42,7 @@ class Zend_Controller_Response_HttpTestCase extends Zend_Controller_Response_Htt
         }
         foreach ($this->_headers as $header) {
             $name = $header['name'];
-            $key  = strtolower($name);
+            $key = strtolower($name);
             if (array_key_exists($name, $headers)) {
                 if ($header['replace']) {
                     $headers[$key] = $header['name'] . ': ' . $header['value'];
@@ -55,6 +51,7 @@ class Zend_Controller_Response_HttpTestCase extends Zend_Controller_Response_Htt
                 $headers[$key] = $header['name'] . ': ' . $header['value'];
             }
         }
+
         return $headers;
     }
 
@@ -62,7 +59,6 @@ class Zend_Controller_Response_HttpTestCase extends Zend_Controller_Response_Htt
      * Can we send headers?
      *
      * @param  bool $throw
-     * @return void
      */
     public function canSendHeaders($throw = false)
     {
@@ -70,7 +66,7 @@ class Zend_Controller_Response_HttpTestCase extends Zend_Controller_Response_Htt
     }
 
     /**
-     * Return the concatenated body segments
+     * Return the concatenated body segments.
      *
      * @return string
      */
@@ -80,22 +76,26 @@ class Zend_Controller_Response_HttpTestCase extends Zend_Controller_Response_Htt
         foreach ($this->_body as $content) {
             $fullContent .= $content;
         }
+
         return $fullContent;
     }
 
     /**
-     * Get body and/or body segments
+     * Get body and/or body segments.
      *
      * @param  bool|string $spec
-     * @return string|array|null
+     *
+     * @return null|array|string
      */
     public function getBody($spec = false)
     {
         if (false === $spec) {
             return $this->outputBody();
-        } elseif (true === $spec) {
+        }
+        if (true === $spec) {
             return $this->_body;
-        } elseif (is_string($spec) && isset($this->_body[$spec])) {
+        }
+        if (is_string($spec) && isset($this->_body[$spec])) {
             return $this->_body[$spec];
         }
 
@@ -103,7 +103,7 @@ class Zend_Controller_Response_HttpTestCase extends Zend_Controller_Response_Htt
     }
 
     /**
-     * "send" Response
+     * "send" Response.
      *
      * Concats all response headers, and then final body (separated by two
      * newlines)

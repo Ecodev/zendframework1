@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,26 +23,20 @@
 require_once 'Zend/Validate/StringLength.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Default instance created for all test methods
+     * Default instance created for all test methods.
      *
      * @var Zend_Validate_StringLength
      */
     protected $_validator;
 
     /**
-     * Creates a new Zend_Validate_StringLength object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Validate_StringLength object for each test method.
      */
     public function setUp()
     {
@@ -53,9 +44,7 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -69,7 +58,7 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
          *      - minimum length
          *      - maximum length
          *      - expected validation result
-         *      - array of test input values
+         *      - array of test input values.
          */
         $valuesExpected = array(
             array(0, null, true, array('', 'a', 'ab')),
@@ -80,8 +69,8 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
             array(2, 3, true, array('ab', 'abc')),
             array(2, 3, false, array('a', 'abcd')),
             array(3, 3, true, array('äöü')),
-            array(6, 6, true, array('Müller'))
-            );
+            array(6, 6, true, array('Müller')),
+        );
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_StringLength($element[0], $element[1]);
             foreach ($element[3] as $input) {
@@ -91,9 +80,7 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -101,9 +88,7 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMin() returns expected default value
-     *
-     * @return void
+     * Ensures that getMin() returns expected default value.
      */
     public function testGetMin()
     {
@@ -111,9 +96,7 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMax() returns expected default value
-     *
-     * @return void
+     * Ensures that getMax() returns expected default value.
      */
     public function testGetMax()
     {
@@ -121,14 +104,13 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that setMin() throws an exception when given a value greater than the maximum
-     *
-     * @return void
+     * Ensures that setMin() throws an exception when given a value greater than the maximum.
      */
     public function testSetMinExceptionGreaterThanMax()
     {
         $max = 1;
         $min = 2;
+
         try {
             $this->_validator->setMax($max)->setMin($min);
             $this->fail('Expected Zend_Validate_Exception not thrown');
@@ -141,14 +123,13 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that setMax() throws an exception when given a value less than the minimum
-     *
-     * @return void
+     * Ensures that setMax() throws an exception when given a value less than the minimum.
      */
     public function testSetMaxExceptionLessThanMin()
     {
         $max = 1;
         $min = 2;
+
         try {
             $this->_validator->setMin($min)->setMax($max);
             $this->fail('Expected Zend_Validate_Exception not thrown');
@@ -160,9 +141,6 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testDifferentEncodingWithValidator()
     {
         if (PHP_VERSION_ID < 50600) {

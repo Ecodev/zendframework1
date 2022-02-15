@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,28 +22,21 @@
  */
 require_once 'Zend/Filter/StringToLower.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Filter
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
 class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Filter_StringToLower object
+     * Zend_Filter_StringToLower object.
      *
      * @var Zend_Filter_StringToLower
      */
     protected $_filter;
 
     /**
-     * Creates a new Zend_Filter_StringToLower object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Filter_StringToLower object for each test method.
      */
     public function setUp()
     {
@@ -54,16 +44,14 @@ class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the filter follows expected behavior
-     *
-     * @return void
+     * Ensures that the filter follows expected behavior.
      */
     public function testBasic()
     {
         $valuesExpected = array(
             'string' => 'string',
             'aBc1@3' => 'abc1@3',
-            'A b C'  => 'a b c'
+            'A b C' => 'a b c',
         );
 
         foreach ($valuesExpected as $input => $output) {
@@ -73,16 +61,14 @@ class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that the filter follows expected behavior with
-     * specified encoding
-     *
-     * @return void
+     * specified encoding.
      */
     public function testWithEncoding()
     {
         $valuesExpected = array(
-            'Ü'     => 'ü',
-            'Ñ'     => 'ñ',
-            'ÜÑ123' => 'üñ123'
+            'Ü' => 'ü',
+            'Ñ' => 'ñ',
+            'ÜÑ123' => 'üñ123',
         );
 
         try {
@@ -95,9 +81,6 @@ class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testFalseEncoding()
     {
         if (!function_exists('mb_strtolower')) {
@@ -118,9 +101,9 @@ class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
     public function testInitiationWithEncoding()
     {
         $valuesExpected = array(
-            'Ü'     => 'ü',
-            'Ñ'     => 'ñ',
-            'ÜÑ123' => 'üñ123'
+            'Ü' => 'ü',
+            'Ñ' => 'ñ',
+            'ÜÑ123' => 'üñ123',
         );
 
         try {
@@ -139,9 +122,9 @@ class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
     public function testCaseInsensitiveEncoding()
     {
         $valuesExpected = array(
-            'Ü'     => 'ü',
-            'Ñ'     => 'ñ',
-            'ÜÑ123' => 'üñ123'
+            'Ü' => 'ü',
+            'Ñ' => 'ñ',
+            'ÜÑ123' => 'üñ123',
         );
 
         try {

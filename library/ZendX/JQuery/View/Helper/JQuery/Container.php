@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright   Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
 
@@ -29,124 +26,119 @@ require_once 'ZendX/JQuery.php';
  * jQuery View Helper. Transports all jQuery stack and render information across all views.
  *
  * @uses       ZendX_JQuery_View_Helper_JQuery_Container
- * @package    ZendX_JQuery
- * @subpackage View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_JQuery_View_Helper_JQuery_Container
 {
     /**
-     * Path to local webserver jQuery library
+     * Path to local webserver jQuery library.
      *
-     * @var String
+     * @var string
      */
-    protected $_jqueryLibraryPath = null;
+    protected $_jqueryLibraryPath;
 
     /**
      * Additional javascript files that for jQuery Helper components.
      *
-     * @var Array
+     * @var array
      */
     protected $_javascriptSources = array();
 
     /**
      * Indicates wheater the jQuery View Helper is enabled.
      *
-     * @var Boolean
+     * @var bool
      */
     protected $_enabled = false;
 
     /**
      * Indicates if a capture start method for javascript or onLoad has been called.
      *
-     * @var Boolean
+     * @var bool
      */
     protected $_captureLock = false;
 
     /**
      * Additional javascript statements that need to be executed after jQuery lib.
      *
-     * @var Array
+     * @var array
      */
     protected $_javascriptStatements = array();
 
     /**
      * Additional stylesheet files for jQuery related components.
      *
-     * @var Array
+     * @var array
      */
     protected $_stylesheets = array();
 
     /**
-     * jQuery onLoad statements Stack
+     * jQuery onLoad statements Stack.
      *
-     * @var Array
+     * @var array
      */
     protected $_onLoadActions = array();
 
     /**
      * View is rendered in XHTML or not.
      *
-     * @var Boolean
+     * @var bool
      */
     protected $_isXhtml = false;
 
     /**
-     * Default CDN jQuery Library version
+     * Default CDN jQuery Library version.
      *
-     * @var String
+     * @var string
      */
     protected $_version = ZendX_JQuery::DEFAULT_JQUERY_VERSION;
 
     /**
-     * Default Render Mode (all parts)
+     * Default Render Mode (all parts).
      *
-     * @var Integer
+     * @var int
      */
     protected $_renderMode = ZendX_JQuery::RENDER_ALL;
 
     /**
-     * jQuery UI Library Enabled
+     * jQuery UI Library Enabled.
      *
-     * @var Boolean
+     * @var bool
      */
     protected $_uiEnabled = false;
 
     /**
      * Local jQuery UI Path. Use Google CDN if
-     * variable is null
+     * variable is null.
      *
-     * @var String
+     * @var string
      */
-    protected $_uiPath = null;
+    protected $_uiPath;
 
     /**
-     * jQuery UI Google CDN Version
+     * jQuery UI Google CDN Version.
      *
-     * @var String
+     * @var string
      */
     protected $_uiVersion = ZendX_JQuery::DEFAULT_UI_VERSION;
 
     /**
      * Load CDN Path from SSL or Non-SSL?
      *
-     * @var boolean
+     * @var bool
      */
     protected $_loadSslCdnPath = false;
 
     /**
-     * View Instance
+     * View Instance.
      *
      * @var Zend_View_Interface
      */
-    public $view = null;
+    public $view;
 
     /**
-     * Set view object
-     *
-     * @param  Zend_View_Interface $view
-     * @return void
+     * Set view object.
      */
     public function setView(Zend_View_Interface $view)
     {
@@ -154,18 +146,19 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Enable jQuery
+     * Enable jQuery.
      *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function enable()
     {
         $this->_enabled = true;
+
         return $this;
     }
 
     /**
-     * Disable jQuery
+     * Disable jQuery.
      *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
@@ -173,13 +166,14 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     {
         $this->uiDisable();
         $this->_enabled = false;
+
         return $this;
     }
 
     /**
      * Is jQuery enabled?
      *
-     * @return boolean
+     * @return bool
      */
     public function isEnabled()
     {
@@ -190,16 +184,18 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      * Set the version of the jQuery library used.
      *
      * @param string $version
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function setVersion($version)
     {
         $this->_version = $version;
+
         return $this;
     }
 
     /**
-     * Get the version used with the jQuery library
+     * Get the version used with the jQuery library.
      *
      * @return string
      */
@@ -210,10 +206,12 @@ class ZendX_JQuery_View_Helper_JQuery_Container
 
     /**
      * Use CDN, using version specified. Currently supported
-     * by Googles Ajax Library API are: 1.2.3, 1.2.6
+     * by Googles Ajax Library API are: 1.2.3, 1.2.6.
      *
      * @deprecated As of version 1.8, use {@link setVersion()} instead.
+     *
      * @param  string $version
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function setCdnVersion($version = null)
@@ -222,9 +220,10 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Get CDN version
+     * Get CDN version.
      *
      * @deprecated As of version 1.8, use {@link getVersion()} instead.
+     *
      * @return string
      */
     public function getCdnVersion()
@@ -233,21 +232,23 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Set Use SSL on CDN Flag
+     * Set Use SSL on CDN Flag.
      *
      * @param bool $flag
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function setCdnSsl($flag)
     {
         $this->_loadSslCdnPath = (boolean) $flag;
+
         return $this;
     }
 
     /**
-     * Get Flag of SSL on CDN
+     * Get Flag of SSL on CDN.
      *
-     * @return boolean True if SSL is used on CDN
+     * @return bool True if SSL is used on CDN
      */
     public function getCdnSsl()
     {
@@ -257,7 +258,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     /**
      * Are we using the CDN?
      *
-     * @return boolean
+     * @return bool
      */
     public function useCdn()
     {
@@ -265,19 +266,21 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Set path to local jQuery library
+     * Set path to local jQuery library.
      *
      * @param  string $path
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function setLocalPath($path)
     {
         $this->_jqueryLibraryPath = (string) $path;
+
         return $this;
     }
 
     /**
-     * Enable jQuery UI Library Rendering
+     * Enable jQuery UI Library Rendering.
      *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
@@ -285,39 +288,43 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     {
         $this->enable();
         $this->_uiEnabled = true;
+
         return $this;
     }
 
     /**
-     * Disable jQuery UI Library Rendering
+     * Disable jQuery UI Library Rendering.
      *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function uiDisable()
     {
         $this->_uiEnabled = false;
+
         return $this;
     }
 
     /**
      * Check wheater currently the jQuery UI library is enabled.
      *
-     * @return boolean
+     * @return bool
      */
     public function uiIsEnabled()
     {
-         return $this->_uiEnabled;
+        return $this->_uiEnabled;
     }
 
     /**
      * Set jQuery UI version used.
-     * 
+     *
      * @param  string $version
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function setUiVersion($version)
     {
         $this->_uiVersion = $version;
+
         return $this;
     }
 
@@ -332,11 +339,12 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Set jQuery UI CDN Version
+     * Set jQuery UI CDN Version.
      *
      * @deprecated As of 1.8 use {@link setUiVersion()}
      *
      * @param string $version
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function setUiCdnVersion($version = '1.5.2')
@@ -345,11 +353,11 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Return jQuery UI CDN Version
+     * Return jQuery UI CDN Version.
      *
      * @deprecated As of 1.8 use {@link getUiVersion()}
      *
-     * @return String
+     * @return string
      */
     public function getUiCdnVersion()
     {
@@ -357,14 +365,16 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Set local path to jQuery UI library
+     * Set local path to jQuery UI library.
      *
-     * @param String $path
+     * @param string $path
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function setUiLocalPath($path)
     {
         $this->_uiPath = (string) $path;
+
         return $this;
     }
 
@@ -391,7 +401,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     /**
      * Is the jQuery Ui loaded from local scope?
      *
-     * @return boolean
+     * @return bool
      */
     public function useUiLocal()
     {
@@ -409,7 +419,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Get local path to jQuery
+     * Get local path to jQuery.
      *
      * @return string
      */
@@ -421,7 +431,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     /**
      * Are we using a local path?
      *
-     * @return boolean
+     * @return bool
      */
     public function useLocalPath()
     {
@@ -429,64 +439,68 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Start capturing routines to run onLoad
+     * Start capturing routines to run onLoad.
      *
-     * @return boolean
-     * @throws Zend_Exception
+     * @return bool
      */
     public function onLoadCaptureStart()
     {
         if ($this->_captureLock) {
             require_once 'Zend/Exception.php';
+
             throw new Zend_Exception('Cannot nest onLoad captures');
         }
 
         $this->_captureLock = true;
+
         return ob_start();
     }
 
     /**
-     * Stop capturing routines to run onLoad
+     * Stop capturing routines to run onLoad.
      *
-     * @return boolean
+     * @return bool
      */
     public function onLoadCaptureEnd()
     {
-        $data               = ob_get_clean();
+        $data = ob_get_clean();
         $this->_captureLock = false;
 
         $this->addOnLoad($data);
+
         return true;
     }
 
     /**
-     * Capture arbitrary javascript to include in jQuery script
+     * Capture arbitrary javascript to include in jQuery script.
      *
-     * @return boolean
-     * @throws Zend_Exception
+     * @return bool
      */
     public function javascriptCaptureStart()
     {
         if ($this->_captureLock) {
             require_once 'Zend/Exception.php';
+
             throw new Zend_Exception('Cannot nest captures');
         }
 
         $this->_captureLock = true;
+
         return ob_start();
     }
 
     /**
-     * Finish capturing arbitrary javascript to include in jQuery script
+     * Finish capturing arbitrary javascript to include in jQuery script.
      *
-     * @return boolean
+     * @return bool
      */
     public function javascriptCaptureEnd()
     {
-        $data               = ob_get_clean();
+        $data = ob_get_clean();
         $this->_captureLock = false;
 
         $this->addJavascript($data);
+
         return true;
     }
 
@@ -494,6 +508,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      * Add a Javascript File to the include stack.
      *
      * @param string $path
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function addJavascriptFile($path)
@@ -502,6 +517,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
         if (!in_array($path, $this->_javascriptSources)) {
             $this->_javascriptSources[] = $path;
         }
+
         return $this;
     }
 
@@ -526,24 +542,27 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     public function clearJavascriptFiles()
     {
         $this->_javascriptSources = array();
+
         return $this;
     }
 
     /**
-     * Add arbitrary javascript to execute in jQuery JS container
+     * Add arbitrary javascript to execute in jQuery JS container.
      *
      * @param  string $js
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function addJavascript($js)
     {
         $this->_javascriptStatements[] = $js;
         $this->enable();
+
         return $this;
     }
 
     /**
-     * Return all registered javascript statements
+     * Return all registered javascript statements.
      *
      * @return array
      */
@@ -553,20 +572,22 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Clear arbitrary javascript stack
+     * Clear arbitrary javascript stack.
      *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function clearJavascript()
     {
         $this->_javascriptStatements = array();
+
         return $this;
     }
 
     /**
-     * Add a stylesheet
+     * Add a stylesheet.
      *
      * @param  string $path
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function addStylesheet($path)
@@ -575,11 +596,12 @@ class ZendX_JQuery_View_Helper_JQuery_Container
         if (!in_array($path, $this->_stylesheets)) {
             $this->_stylesheets[] = (string) $path;
         }
+
         return $this;
     }
 
     /**
-     * Retrieve registered stylesheets
+     * Retrieve registered stylesheets.
      *
      * @return array
      */
@@ -589,20 +611,22 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * Clear all currently registered stylesheets files
+     * Clear all currently registered stylesheets files.
      *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function clearStylesheets()
     {
         $this->_stylesheets = array();
+
         return $this;
     }
 
     /**
-     * Add a script to execute onLoad
+     * Add a script to execute onLoad.
      *
      * @param  string $callback Lambda
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function addOnLoad($callback)
@@ -611,11 +635,12 @@ class ZendX_JQuery_View_Helper_JQuery_Container
             $this->_onLoadActions[] = $callback;
         }
         $this->enable();
+
         return $this;
     }
 
     /**
-     * Retrieve all registered onLoad actions
+     * Retrieve all registered onLoad actions.
      *
      * @return array
      */
@@ -632,6 +657,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     public function clearOnLoadActions()
     {
         $this->_onLoadActions = array();
+
         return $this;
     }
 
@@ -643,18 +669,22 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      * constants. By default all parts of the enviroment are rendered.
      *
      * @see    ZendX_JQuery::RENDER_ALL
-     * @param  integer $mask
+     *
+     * @param  int $mask
+     *
      * @return ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function setRenderMode($mask)
     {
         $this->_renderMode = $mask;
+
         return $this;
     }
 
     /**
-     * Return bitmask of the current Render Mode
-     * @return integer
+     * Return bitmask of the current Render Mode.
+     *
+     * @return int
      */
     public function getRenderMode()
     {
@@ -662,7 +692,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     }
 
     /**
-     * String representation of jQuery environment
+     * String representation of jQuery environment.
      *
      * @return string
      */
@@ -674,20 +704,21 @@ class ZendX_JQuery_View_Helper_JQuery_Container
 
         $this->_isXhtml = $this->view->doctype()->isXhtml();
 
-        $html  = $this->_renderStylesheets() . PHP_EOL
+        $html = $this->_renderStylesheets() . PHP_EOL
                . $this->_renderScriptTags() . PHP_EOL
                . $this->_renderExtras();
+
         return $html;
     }
 
     /**
-     * Render jQuery stylesheets
+     * Render jQuery stylesheets.
      *
      * @return string
      */
     protected function _renderStylesheets()
     {
-        if(0 == ($this->getRenderMode() & ZendX_JQuery::RENDER_STYLESHEETS)) {
+        if (0 == ($this->getRenderMode() & ZendX_JQuery::RENDER_STYLESHEETS)) {
             return '';
         }
 
@@ -701,15 +732,15 @@ class ZendX_JQuery_View_Helper_JQuery_Container
 
         array_reverse($stylesheets);
         $style = '';
-        foreach($stylesheets AS $stylesheet) {
+        foreach ($stylesheets as $stylesheet) {
             if ($this->view instanceof Zend_View_Abstract) {
                 $closingBracket = ($this->view->doctype()->isXhtml()) ? ' />' : '>';
             } else {
                 $closingBracket = ' />';
             }
 
-            $style .= '<link rel="stylesheet" href="'.$stylesheet.'" '.
-                      'type="text/css" media="screen"' . $closingBracket . PHP_EOL;
+            $style .= '<link rel="stylesheet" href="' . $stylesheet . '" '
+                      . 'type="text/css" media="screen"' . $closingBracket . PHP_EOL;
         }
 
         return $style;
@@ -723,23 +754,23 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     protected function _renderScriptTags()
     {
         $scriptTags = '';
-        if( ($this->getRenderMode() & ZendX_JQuery::RENDER_LIBRARY) > 0) {
+        if (($this->getRenderMode() & ZendX_JQuery::RENDER_LIBRARY) > 0) {
             $source = $this->_getJQueryLibraryPath();
 
             $scriptTags .= '<script type="text/javascript" src="' . $source . '"></script>' . PHP_EOL;
 
-            if($this->uiIsEnabled()) {
+            if ($this->uiIsEnabled()) {
                 $uiPath = $this->_getJQueryUiLibraryPath();
-                $scriptTags .= '<script type="text/javascript" src="'.$uiPath.'"></script>' . PHP_EOL;
+                $scriptTags .= '<script type="text/javascript" src="' . $uiPath . '"></script>' . PHP_EOL;
             }
 
-            if(ZendX_JQuery_View_Helper_JQuery::getNoConflictMode() == true) {
+            if (ZendX_JQuery_View_Helper_JQuery::getNoConflictMode() == true) {
                 $scriptTags .= '<script type="text/javascript">var $j = jQuery.noConflict();</script>' . PHP_EOL;
             }
         }
 
-        if( ($this->getRenderMode() & ZendX_JQuery::RENDER_SOURCES) > 0) {
-            foreach($this->getJavascriptFiles() AS $javascriptFile) {
+        if (($this->getRenderMode() & ZendX_JQuery::RENDER_SOURCES) > 0) {
+            foreach ($this->getJavascriptFiles() as $javascriptFile) {
                 $scriptTags .= '<script type="text/javascript" src="' . $javascriptFile . '"></script>' . PHP_EOL;
             }
         }
@@ -755,27 +786,27 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     protected function _renderExtras()
     {
         $onLoadActions = array();
-        if( ($this->getRenderMode() & ZendX_JQuery::RENDER_JQUERY_ON_LOAD) > 0) {
+        if (($this->getRenderMode() & ZendX_JQuery::RENDER_JQUERY_ON_LOAD) > 0) {
             foreach ($this->getOnLoadActions() as $callback) {
                 $onLoadActions[] = $callback;
             }
         }
 
         $javascript = '';
-        if( ($this->getRenderMode() & ZendX_JQuery::RENDER_JAVASCRIPT) > 0) {
+        if (($this->getRenderMode() & ZendX_JQuery::RENDER_JAVASCRIPT) > 0) {
             $javascript = implode("\n    ", $this->getJavascript());
         }
 
         $content = '';
 
         if (!empty($onLoadActions)) {
-            if(true === ZendX_JQuery_View_Helper_JQuery::getNoConflictMode()) {
-                $content .= '$j(document).ready(function() {'."\n    ";
+            if (true === ZendX_JQuery_View_Helper_JQuery::getNoConflictMode()) {
+                $content .= '$j(document).ready(function() {' . "\n    ";
             } else {
-                $content .= '$(document).ready(function() {'."\n    ";
+                $content .= '$(document).ready(function() {' . "\n    ";
             }
             $content .= implode("\n    ", $onLoadActions) . "\n";
-            $content .= '});'."\n";
+            $content .= '});' . "\n";
         }
 
         if (!empty($javascript)) {
@@ -791,6 +822,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
               . $content
               . (($this->_isXhtml) ? '//]]>' : '//-->') . PHP_EOL
               . PHP_EOL . '</script>';
+
         return $html;
     }
 
@@ -799,11 +831,12 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     protected function _getJQueryLibraryBaseCdnUri()
     {
-        if($this->_loadSslCdnPath == true) {
+        if ($this->_loadSslCdnPath == true) {
             $baseUri = ZendX_JQuery::CDN_BASE_GOOGLE_SSL;
         } else {
             $baseUri = ZendX_JQuery::CDN_BASE_GOOGLE;
         }
+
         return $baseUri;
     }
 
@@ -812,11 +845,12 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     protected function _getJQueryUiLibraryBaseCdnUri()
     {
-        if($this->_loadSslCdnPath == true) {
+        if ($this->_loadSslCdnPath == true) {
             $baseUri = ZendX_JQuery::CDN_BASE_GOOGLE_SSL;
         } else {
             $baseUri = ZendX_JQuery::CDN_BASE_GOOGLE;
         }
+
         return $baseUri;
     }
 
@@ -827,11 +861,11 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     protected function _getJQueryLibraryPath()
     {
-        if($this->_jqueryLibraryPath != null) {
+        if ($this->_jqueryLibraryPath != null) {
             $source = $this->_jqueryLibraryPath;
         } else {
             $baseUri = $this->_getJQueryLibraryBaseCdnUri();
-            $source  = $baseUri
+            $source = $baseUri
                      . ZendX_JQuery::CDN_SUBFOLDER_JQUERY
                      . $this->getVersion()
                      . ZendX_JQuery::CDN_JQUERY_PATH_GOOGLE;
@@ -847,13 +881,13 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     protected function _getJQueryUiLibraryPath()
     {
-        if($this->useUiCdn()) {
+        if ($this->useUiCdn()) {
             $baseUri = $this->_getJQueryLibraryBaseCdnUri();
-            $uiPath  = $baseUri
+            $uiPath = $baseUri
                      . ZendX_JQuery::CDN_SUBFOLDER_JQUERYUI
                      . $this->getUiVersion()
                      . '/jquery-ui.min.js';
-        } else if($this->useUiLocal()) {
+        } elseif ($this->useUiLocal()) {
             $uiPath = $this->getUiPath();
         }
 

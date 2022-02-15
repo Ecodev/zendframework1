@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,29 +12,19 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/FormFile.php';
 require_once 'Zend/Registry.php';
 
 /**
- * Zend_View_Helper_FormFileTest
+ * Zend_View_Helper_FormFileTest.
  *
  * Tests formFile helper
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -54,20 +44,17 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormFileTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormFileTest');
         \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp()
     {
@@ -81,31 +68,30 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * ZF-1666
+     * ZF-1666.
      */
     public function testCanDisableElement()
     {
         $html = $this->helper->formFile(array(
-            'name'    => 'foo',
-            'attribs' => array('disable' => true)
+            'name' => 'foo',
+            'attribs' => array('disable' => true),
         ));
 
         $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html);
     }
 
     /**
-     * ZF-1666
+     * ZF-1666.
      */
     public function testDisablingElementDoesNotRenderHiddenElements()
     {
         $html = $this->helper->formFile(array(
-            'name'    => 'foo',
-            'attribs' => array('disable' => true)
+            'name' => 'foo',
+            'attribs' => array('disable' => true),
         ));
 
         $this->assertNotRegexp('/<input[^>]*?(type="hidden")/', $html);
     }
-
 
     public function testRendersAsHtmlByDefault()
     {
@@ -132,8 +118,8 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
         $test = $this->helper->formFile(
             'foo',
             array(
-                 'data-image-old' => 100,
-                 'data-image-new' => 200,
+                'data-image-old' => 100,
+                'data-image-new' => 200,
             )
         );
         $this->assertEquals(
@@ -142,4 +128,3 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
         );
     }
 }
-

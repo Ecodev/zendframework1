@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,46 +12,35 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
-
-
 /**
- * Zend_Translate_Adapter_Array
+ * Zend_Translate_Adapter_Array.
  */
 require_once 'Zend/Translate/Adapter/Array.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Translate
  */
 class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Error flag
+     * Error flag.
      *
-     * @var boolean
+     * @var bool
      */
     protected $_errorOccurred = false;
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Translate_Adapter_ArrayTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Translate_Adapter_ArrayTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -134,7 +123,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter->addTranslation(__DIR__ . '/_files/translation_en.php', 'xx');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('does not exist', $e->getMessage());
         }
@@ -149,17 +138,17 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
         $adapter->setOptions(array('testoption' => 'testkey'));
         $expected = array(
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => __DIR__ . '/_files/translation_en.php',
-            'scan'            => null,
-            'locale'          => 'en',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => __DIR__ . '/_files/translation_en.php',
+            'scan' => null,
+            'locale' => 'en',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false,
+            'reload' => false,
         );
 
         $options = $adapter->getOptions();
@@ -193,7 +182,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter->setLocale('nolocale');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('does not exist', $e->getMessage());
         }
@@ -290,12 +279,12 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(Zend_Translate_Adapter_Array::hasCache());
 
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        $cache   = Zend_Translate_Adapter_Array::getCache();
+        $cache = Zend_Translate_Adapter_Array::getCache();
         $this->assertTrue($cache instanceof Zend_Cache_Core);
-        unset ($adapter);
+        unset($adapter);
 
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        $cache   = Zend_Translate_Adapter_Array::getCache();
+        $cache = Zend_Translate_Adapter_Array::getCache();
         $this->assertTrue($cache instanceof Zend_Cache_Core);
 
         Zend_Translate_Adapter_Array::removeCache();
@@ -321,7 +310,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(Zend_Translate_Adapter_Array::hasCache());
 
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        $cache   = Zend_Translate_Adapter_Array::getCache();
+        $cache = Zend_Translate_Adapter_Array::getCache();
         $this->assertTrue($cache instanceof Zend_Cache_Core);
 
         $adapter->addTranslation(__DIR__ . '/_files/translation_en.php', 'ru', array('reload' => true));
@@ -330,18 +319,15 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
         $this->_errorOccurred = true;
     }
 }
-

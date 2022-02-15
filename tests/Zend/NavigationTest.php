@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Navigation
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id:$
  */
 
-
-
 /**
- * Zend_Navigation
+ * Zend_Navigation.
  */
 require_once 'Zend/Navigation.php';
 
 /**
- * @category   Zend
- * @package    Zend_Navigation
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Navigation
  */
@@ -50,19 +41,18 @@ class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
         $this->_navigation = null;
         parent::tearDown();
     }
+
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_NavigationTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_NavigationTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Testing that navigation order is done correctly
+     * Testing that navigation order is done correctly.
      *
      * @group   ZF-8337
      * @group   ZF-8313
@@ -86,5 +76,4 @@ class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('page1', $pages[1]['uri']);
         $this->assertEquals('page2', $pages[2]['uri']);
     }
-
 }

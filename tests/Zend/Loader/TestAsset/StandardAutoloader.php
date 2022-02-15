@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,27 +12,20 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * @category   Zend
- * @package    Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
 class Zend_Loader_TestAsset_StandardAutoloader extends Zend_Loader_StandardAutoloader
 {
     /**
-     * Get registered namespaces
-     * 
+     * Get registered namespaces.
+     *
      * @return array
      */
     public function getNamespaces()
@@ -41,8 +34,8 @@ class Zend_Loader_TestAsset_StandardAutoloader extends Zend_Loader_StandardAutol
     }
 
     /**
-     * Get registered prefixes
-     * 
+     * Get registered prefixes.
+     *
      * @return array
      */
     public function getPrefixes()

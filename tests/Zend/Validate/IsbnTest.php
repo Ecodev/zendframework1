@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -24,20 +22,13 @@
  */
 require_once 'Zend/Validate/Isbn.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -65,9 +56,7 @@ class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that setSeparator() works as expected
-     *
-     * @return void
+     * Ensures that setSeparator() works as expected.
      */
     public function testType()
     {
@@ -103,9 +92,7 @@ class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that setSeparator() works as expected
-     *
-     * @return void
+     * Ensures that setSeparator() works as expected.
      */
     public function testSeparator()
     {
@@ -129,7 +116,7 @@ class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
             $validator->setSeparator('');
             $this->assertTrue($validator->getSeparator() == '');
         } catch (Exception $e) {
-            $this->fail("Should accept empty separator");
+            $this->fail('Should accept empty separator');
         }
 
         try {
@@ -141,35 +128,31 @@ class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that __construct() works as expected
-     *
-     * @return void
+     * Ensures that __construct() works as expected.
      */
     public function testInitialization()
     {
-        $options = array('type'      => Zend_Validate_Isbn::AUTO,
-                         'separator' => ' ');
+        $options = array('type' => Zend_Validate_Isbn::AUTO,
+            'separator' => ' ', );
         $validator = new Zend_Validate_Isbn($options);
         $this->assertTrue($validator->getType() == Zend_Validate_Isbn::AUTO);
         $this->assertTrue($validator->getSeparator() == ' ');
 
-        $options = array('type'      => Zend_Validate_Isbn::ISBN10,
-                         'separator' => '-');
+        $options = array('type' => Zend_Validate_Isbn::ISBN10,
+            'separator' => '-', );
         $validator = new Zend_Validate_Isbn($options);
         $this->assertTrue($validator->getType() == Zend_Validate_Isbn::ISBN10);
         $this->assertTrue($validator->getSeparator() == '-');
 
-        $options = array('type'      => Zend_Validate_Isbn::ISBN13,
-                         'separator' => '');
+        $options = array('type' => Zend_Validate_Isbn::ISBN13,
+            'separator' => '', );
         $validator = new Zend_Validate_Isbn($options);
         $this->assertTrue($validator->getType() == Zend_Validate_Isbn::ISBN13);
         $this->assertTrue($validator->getSeparator() == '');
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testTypeAuto()
     {
@@ -205,9 +188,7 @@ class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testType10()
     {
@@ -229,9 +210,7 @@ class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testType13()
     {

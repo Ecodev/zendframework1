@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Validate_File_MimeType
@@ -28,12 +23,8 @@
 require_once 'Zend/Validate/File/MimeType.php';
 
 /**
- * MimeType testbed
+ * MimeType testbed.
  *
- * @category   Zend
- * @package    Zend_Validate_File
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
@@ -41,19 +32,15 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Validate_File_MimeTypeTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_File_MimeTypeTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -72,31 +59,29 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
 
         $filetest = __DIR__ . '/_files/picture.jpg';
         $files = array(
-            'name'     => 'picture.jpg',
-            'type'     => 'image/jpg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'type' => 'image/jpg',
+            'size' => 200,
             'tmp_name' => $filetest,
-            'error'    => 0
+            'error' => 0,
         );
 
         foreach ($valuesExpected as $element) {
-            $options   = array_shift($element);
-            $expected  = array_shift($element);
+            $options = array_shift($element);
+            $expected = array_shift($element);
             $validator = new Zend_Validate_File_MimeType($options);
             $validator->enableHeaderCheck();
             $this->assertEquals(
                 $expected,
                 $validator->isValid($filetest, $files),
-                "Test expected " . var_export($expected, 1) . " with " . var_export($options, 1)
+                'Test expected ' . var_export($expected, 1) . ' with ' . var_export($options, 1)
                 . "\nMessages: " . var_export($validator->getMessages(), 1)
             );
         }
     }
 
     /**
-     * Ensures that getMimeType() returns expected value
-     *
-     * @return void
+     * Ensures that getMimeType() returns expected value.
      */
     public function testGetMimeType()
     {
@@ -111,9 +96,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that setMimeType() returns expected value
-     *
-     * @return void
+     * Ensures that setMimeType() returns expected value.
      */
     public function testSetMimeType()
     {
@@ -132,9 +115,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that addMimeType() returns expected value
-     *
-     * @return void
+     * Ensures that addMimeType() returns expected value.
      */
     public function testAddMimeType()
     {
@@ -160,7 +141,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
     {
         $validator = new Zend_Validate_File_MimeType('image/gif');
         if (!empty($_ENV['MAGIC'])) {
-            $mimetype  = $validator->getMagicFile();
+            $mimetype = $validator->getMagicFile();
             $this->assertEquals($_ENV['MAGIC'], $mimetype);
         }
 
@@ -174,6 +155,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
     public function testSetMagicFileWithinConstructor()
     {
         require_once 'Zend/Validate/Exception.php';
+
         try {
             $validator = new Zend_Validate_File_MimeType(array('image/gif', 'magicfile' => __FILE__));
             $this->fail('Zend_Validate_File_MimeType should not accept invalid magic file.');
@@ -187,7 +169,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         $validator = new Zend_Validate_File_MimeType(array(
             'image/gif',
             'image/jpg',
-            'headerCheck' => true));
+            'headerCheck' => true, ));
 
         $this->assertTrue($validator->getHeaderCheck());
         $this->assertEquals('image/gif,image/jpg', $validator->getMimeType());
@@ -204,22 +186,22 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
 
         $filetest = __DIR__ . '/_files/picture.jpg';
         $files = array(
-            'name'     => 'picture.jpg',
-            'type'     => 'image/jpg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'type' => 'image/jpg',
+            'size' => 200,
             'tmp_name' => $filetest,
-            'error'    => 0
+            'error' => 0,
         );
 
         foreach ($valuesExpected as $element) {
-            $options   = array_shift($element);
-            $expected  = array_shift($element);
+            $options = array_shift($element);
+            $expected = array_shift($element);
             $validator = new Zend_Validate_File_MimeType($options);
             $validator->enableHeaderCheck();
             $this->assertEquals(
                 $expected,
                 $validator->isValid($filetest, $files),
-                "Test expected " . var_export($expected, 1) . " with " . var_export($options, 1)
+                'Test expected ' . var_export($expected, 1) . ' with ' . var_export($options, 1)
                 . "\nMessages: " . var_export($validator->getMessages(), 1)
             );
 
@@ -228,7 +210,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals(
                 $expected,
                 $validator->isValid($filetest, $files),
-                "Test expected " . var_export($expected, 1) . " with " . var_export($options, 1)
+                'Test expected ' . var_export($expected, 1) . ' with ' . var_export($options, 1)
                 . "\nMessages: " . var_export($validator->getMessages(), 1)
             );
         }
@@ -260,10 +242,10 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
 
         $filetest = __DIR__ . '/_files/picture.jpg';
         $files = array(
-            'name'     => 'picture.jpg',
-            'size'     => 200,
+            'name' => 'picture.jpg',
+            'size' => 200,
             'tmp_name' => $filetest,
-            'error'    => 0
+            'error' => 0,
         );
 
         $validator = new Zend_Validate_File_MimeType(array('image/jpeg', 'image/jpeg; charset=binary'));
@@ -271,7 +253,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         $goodEnvironment = $validator->isValid($filetest, $files);
 
         if ($goodEnvironment) {
-            /**
+            /*
              * The tester's environment has magic files that are properly read by PHP
              * This prevents the test from being relevant in the environment
              */
@@ -287,4 +269,3 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         }
     }
 }
-

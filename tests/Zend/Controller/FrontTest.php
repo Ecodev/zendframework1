@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Request/Http.php';
 require_once 'Zend/Controller/Response/Cli.php';
@@ -32,28 +26,22 @@ require_once 'Zend/Controller/Action/Helper/Url.php';
 require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Front
  */
 class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
 {
-    protected $_controller = null;
+    protected $_controller;
 
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_FrontTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_FrontTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -62,10 +50,10 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->_controller = Zend_Controller_Front::getInstance();
         $this->_controller->resetInstance();
         $this->_controller->setControllerDirectory(__DIR__ . DIRECTORY_SEPARATOR . '_files')
-                          ->setParam('noErrorHandler', true)
-                          ->setParam('noViewRenderer', true)
-                          ->returnResponse(true)
-                          ->throwExceptions(false);
+            ->setParam('noErrorHandler', true)
+            ->setParam('noViewRenderer', true)
+            ->returnResponse(true)
+            ->throwExceptions(false);
         Zend_Controller_Action_HelperBroker::resetHelpers();
     }
 
@@ -252,7 +240,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test default action on valid controller
+     * Test default action on valid controller.
      */
     public function testDispatch()
     {
@@ -264,7 +252,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test valid action on valid controller
+     * Test valid action on valid controller.
      */
     public function testDispatch1()
     {
@@ -276,7 +264,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test invalid action on valid controller
+     * Test invalid action on valid controller.
      */
     /*
     public function testDispatch2()
@@ -293,7 +281,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
      */
 
     /**
-     * Test invalid controller
+     * Test invalid controller.
      */
     /*
     public function testDispatch3()
@@ -310,7 +298,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
      */
 
     /**
-     * Test valid action on valid controller; test pre/postDispatch
+     * Test valid action on valid controller; test pre/postDispatch.
      */
     public function testDispatch4()
     {
@@ -325,7 +313,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that extra arguments get passed
+     * Test that extra arguments get passed.
      */
     public function testDispatch5()
     {
@@ -341,7 +329,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test using router
+     * Test using router.
      */
     public function testDispatch6()
     {
@@ -358,7 +346,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test without router, using GET params
+     * Test without router, using GET params.
      */
     public function testDispatch7()
     {
@@ -375,7 +363,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that run() throws exception when called from object instance
+     * Test that run() throws exception when called from object instance.
      */
     public function _testRunThrowsException()
     {
@@ -388,7 +376,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that set/getBaseUrl() functionality works
+     * Test that set/getBaseUrl() functionality works.
      */
     public function testSetGetBaseUrl()
     {
@@ -419,12 +407,12 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test that a set base URL is pushed to the request during the dispatch
-     * process
+     * process.
      */
     public function testBaseUrlPushedToRequest()
     {
         $this->_controller->setBaseUrl('/index.php');
-        $request  = new Zend_Controller_Request_Http('http://example.com/index');
+        $request = new Zend_Controller_Request_Http('http://example.com/index');
         $response = new Zend_Controller_Response_Cli();
         $response = $this->_controller->dispatch($request, $response);
 
@@ -432,7 +420,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that throwExceptions() sets and returns value properly
+     * Test that throwExceptions() sets and returns value properly.
      */
     public function testThrowExceptions()
     {
@@ -449,7 +437,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that with throwExceptions() set, an exception is thrown
+     * Test that with throwExceptions() set, an exception is thrown.
      */
     public function testThrowExceptionsThrows()
     {
@@ -468,7 +456,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that returnResponse() sets and returns value properly
+     * Test that returnResponse() sets and returns value properly.
      */
     public function testReturnResponse()
     {
@@ -485,7 +473,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test that with returnResponse set to false, output is echoed and equals that in the response
+     * Test that with returnResponse set to false, output is echoed and equals that in the response.
      */
     public function testReturnResponseReturnsResponse()
     {
@@ -576,10 +564,10 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->testAddModuleDirectory();
         $this->assertNull($this->_controller->getModuleDirectory('bogus-foo-bar'));
     }
-    /**#@-*/
+    // #@-
 
     /**
-     * ZF-2435
+     * ZF-2435.
      */
     public function testCanRemoveIndividualModuleDirectory()
     {
@@ -595,6 +583,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     public function testAddModuleDirectoryThrowsExceptionForInvalidDirectory()
     {
         $moduleDir = 'doesntexist';
+
         try {
             $this->_controller->addModuleDirectory($moduleDir);
             $this->fail('Exception expected but not thrown');
@@ -637,7 +626,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_controller->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
         $request = new Zend_Controller_Request_Http('http://example.com/index/index');
         $this->_controller->setParam('noErrorHandler', false)
-                          ->setResponse(new Zend_Controller_Response_Cli());
+            ->setResponse(new Zend_Controller_Response_Cli());
         $response = $this->_controller->dispatch($request);
 
         $this->assertTrue($this->_controller->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
@@ -648,7 +637,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_controller->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
         $request = new Zend_Controller_Request_Http('http://example.com/index/index');
         $this->_controller->setParam('noErrorHandler', true)
-                          ->setResponse(new Zend_Controller_Response_Cli());
+            ->setResponse(new Zend_Controller_Response_Cli());
         $response = $this->_controller->dispatch($request);
 
         $this->assertFalse($this->_controller->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
@@ -661,7 +650,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $response = new Zend_Controller_Response_Http();
         $responsePost = $this->_controller->dispatch($request, $response);
 
-        $requestPost  = $this->_controller->getRequest();
+        $requestPost = $this->_controller->getRequest();
 
         $this->assertNotSame($request, $requestPost);
         $this->assertNotSame($response, $responsePost);
@@ -694,4 +683,3 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(Zend_Controller_Action_HelperBroker::hasHelper('viewRenderer'));
     }
 }
-

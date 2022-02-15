@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,16 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View/Helper/FormErrors.php';
 require_once 'Zend/View.php';
 
 /**
- * Test class for Zend_View_Helper_FormErrors
+ * Test class for Zend_View_Helper_FormErrors.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -40,25 +30,20 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_FormErrorsTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormErrorsTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormErrors();
         $this->helper->setView($this->view);
         ob_start();
@@ -67,8 +52,6 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -125,8 +108,8 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
     public function testFormErrorsRendersWithSpecifiedStrings()
     {
         $this->helper->setElementStart('<dl><dt>')
-                     ->setElementSeparator('</dt><dt>')
-                     ->setElementEnd('</dt></dl>');
+            ->setElementSeparator('</dt><dt>')
+            ->setElementEnd('</dt></dl>');
         $errors = array('foo', 'bar', 'baz');
         $html = $this->helper->formErrors($errors);
         $this->assertContains('<dl>', $html);
@@ -150,7 +133,7 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
     {
         $errors = array(
             'foo' => '<b>Field is required</b>',
-            'bar' => '<a href="/help">Please click here for more information</a>'
+            'bar' => '<a href="/help">Please click here for more information</a>',
         );
         $html = $this->helper->formErrors($errors, array('escape' => false));
         $this->assertContains($errors['foo'], $html);
@@ -159,11 +142,12 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3477
-     * @link http://framework.zend.com/issues/browse/ZF-3477
+     *
+     * @see http://framework.zend.com/issues/browse/ZF-3477
      */
     public function testCanSetClassAttribute()
     {
-        $options    = array('class' => 'custom-class');
+        $options = array('class' => 'custom-class');
         $actualHtml = $this->helper->formErrors(array(), $options);
         $this->assertEquals(
             '<ul class="custom-class"><li></li></ul>',
@@ -179,13 +163,12 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
         $actual = $this->helper->formErrors(
             array('foo', 'bar', 'baz'),
             array(
-                 'elementStart'     => '<p>',
-                 'elementEnd'       => '</p>',
-                 'elementSeparator' => '<br>',
+                'elementStart' => '<p>',
+                'elementEnd' => '</p>',
+                'elementSeparator' => '<br>',
             )
         );
 
         $this->assertEquals('<p>foo<br>bar<br>baz</p>', $actual);
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Zend_Translate_Adapter_Gettext
+ * Zend_Translate_Adapter_Gettext.
  */
 require_once 'Zend/Translate/Adapter/Gettext.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Translate
  */
@@ -37,12 +30,10 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Translate_Adapter_GettextTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Translate_Adapter_GettextTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
         Zend_Translate_Adapter_Gettext::removeCache();
     }
@@ -61,14 +52,14 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter = new Zend_Translate_Adapter_Gettext(__DIR__ . '/_files/nofile.mo', 'en');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('Error opening translation file', $e->getMessage());
         }
 
         try {
             $adapter = new Zend_Translate_Adapter_Gettext(__DIR__ . '/_files/failed.mo', 'en');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('is not a gettext file', $e->getMessage());
         }
@@ -111,7 +102,7 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter->addTranslation(__DIR__ . '/_files/translation_en2.mo', 'xx');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('does not exist', $e->getMessage());
         }
@@ -126,17 +117,17 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
         $adapter = new Zend_Translate_Adapter_Gettext(__DIR__ . '/_files/translation_en.mo', 'en');
         $adapter->setOptions(array('testoption' => 'testkey'));
         $expected = array(
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => __DIR__ . '/_files/translation_en.mo',
-            'scan'            => null,
-            'locale'          => 'en',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => __DIR__ . '/_files/translation_en.mo',
+            'scan' => null,
+            'locale' => 'en',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false,
+            'reload' => false,
         );
         $options = $adapter->getOptions();
 
@@ -169,7 +160,7 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter->setLocale('nolocale');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('does not exist', $e->getMessage());
         }
@@ -232,7 +223,7 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
         $adapter->addTranslation(__DIR__ . '/_files/translation_otherencoding.mo', 'ru');
         // Original message is in KOI8-R.. as unit tests are done in UTF8 we have to convert
         // the returned KOI8-R string into UTF-8
-        $translation = iconv("KOI8-R", "UTF-8", $adapter->translate('Message 2', 'ru'));
+        $translation = iconv('KOI8-R', 'UTF-8', $adapter->translate('Message 2', 'ru'));
         $this->assertEquals('Сообщение 2 (ru)', $translation);
         $this->assertEquals('Message 5', $adapter->translate('Message 5'));
         $this->assertEquals('Message 5', $adapter->translate('Message 5', 'ru_RU'));
@@ -301,18 +292,15 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
         $this->_errorOccurred = true;
     }
 }
-

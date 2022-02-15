@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -13,25 +13,18 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-require_once "Zend/Application/Resource/ResourceAbstract.php";
-require_once "Zend/Application/Resource/Session.php";
-require_once "Zend/Session.php";
-require_once "Zend/Session/SaveHandler/Interface.php";
+require_once 'Zend/Application/Resource/ResourceAbstract.php';
+require_once 'Zend/Application/Resource/Session.php';
+require_once 'Zend/Session.php';
+require_once 'Zend/Session/SaveHandler/Interface.php';
 
 /**
- * @category   Zend
- * @package    Zend_Application
- * @subpackage UnitTests
  * @group      Zend_Application
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
@@ -82,8 +75,8 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
         ));
 
         $this->resource->setOptions(array(
-             'use_only_cookies' => true,
-             'remember_me_seconds' => 7200,
+            'use_only_cookies' => true,
+            'remember_me_seconds' => 7200,
         ));
 
         $this->resource->init();

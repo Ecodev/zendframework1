@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,17 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Controller/Action/Helper/ActionStack.php';
 require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Request/Simple.php';
@@ -30,10 +23,6 @@ require_once 'Zend/Controller/Request/Simple.php';
 /**
  * Test class for Zend_Controller_Action_Helper_ActionStack.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
@@ -41,7 +30,6 @@ require_once 'Zend/Controller/Request/Simple.php';
  */
 class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * @var Zend_Controller_Front
      */
@@ -55,21 +43,17 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_ActionStackTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ActionStackTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -83,8 +67,6 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -114,8 +96,8 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
 
         $request = new Zend_Controller_Request_Simple();
         $request->setModuleName('foo')
-                ->setControllerName('bar')
-                ->setActionName('baz');
+            ->setControllerName('bar')
+            ->setActionName('baz');
 
         $helper->pushStack($request);
 
@@ -148,8 +130,8 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
 
         $request = new Zend_Controller_Request_Simple();
         $request->setModuleName('foo')
-                ->setControllerName('bar')
-                ->setActionName('baz');
+            ->setControllerName('bar')
+            ->setActionName('baz');
 
         $helper->actionToStack($request);
 
@@ -164,8 +146,9 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     public function testDirectProxiesToActionToStack()
     {
         $helper = new Zend_Controller_Action_Helper_ActionStack();
-        /** FC should be reseted to test ActionStack with a really blank FC */
+        // FC should be reseted to test ActionStack with a really blank FC
         $this->front->resetInstance();
+
         try {
             $helper->direct('baz', 'bar', 'foo');
             $this->fail('Zend_Controller_Action_Exception should be thrown');
@@ -178,7 +161,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
         }
     }
 
-     public function testCannotStackActionIfNoRequestAvailable()
+    public function testCannotStackActionIfNoRequestAvailable()
     {
         $helper = new Zend_Controller_Action_Helper_ActionStack();
         $plugin = $this->front->getPlugin(\Zend_Controller_Plugin_ActionStack::class);
@@ -192,4 +175,3 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
         $this->assertFalse($next->isDispatched());
     }
 }
-

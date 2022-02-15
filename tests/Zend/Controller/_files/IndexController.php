@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,35 +12,21 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Controller/Action.php';
 
 /**
- * Mock file for testbed
+ * Mock file for testbed.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class IndexController extends Zend_Controller_Action
 {
-
     /**
-     * Test Function for indexAction
-     *
-     * @return void
+     * Test Function for indexAction.
      */
     public function indexAction()
     {
@@ -48,9 +34,7 @@ class IndexController extends Zend_Controller_Action
     }
 
     /**
-     * Test Function for prefixAction
-     *
-     * @return void
+     * Test Function for prefixAction.
      */
     public function prefixAction()
     {
@@ -58,9 +42,7 @@ class IndexController extends Zend_Controller_Action
     }
 
     /**
-     * Test Function for argsAction
-     *
-     * @return void
+     * Test Function for argsAction.
      */
     public function argsAction()
     {
@@ -73,30 +55,25 @@ class IndexController extends Zend_Controller_Action
     }
 
     /**
-     * Test Function for replaceAction
-     *
-     * @return void
+     * Test Function for replaceAction.
      */
     public function replaceAction()
     {
         $request = new Zend_Controller_Request_Http();
         $request->setControllerName('index')
-                ->setActionName('reset')
-                ->setDispatched(false);
+            ->setActionName('reset')
+            ->setDispatched(false);
         $response = new Zend_Controller_Response_Http();
-        $front    = Zend_Controller_Front::getInstance();
+        $front = Zend_Controller_Front::getInstance();
         $front->setRequest($request)
-              ->setResponse($response);
+            ->setResponse($response);
     }
 
     /**
-     * Test Function for resetAction
-     *
-     * @return void
+     * Test Function for resetAction.
      */
     public function resetAction()
     {
         $this->_response->appendBody('Reset action called');
     }
-
 }

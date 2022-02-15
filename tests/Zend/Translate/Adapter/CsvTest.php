@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Zend_Translate_Adapter_Csv
+ * Zend_Translate_Adapter_Csv.
  */
 require_once 'Zend/Translate/Adapter/Csv.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Translate
  */
@@ -37,12 +30,10 @@ class Zend_Translate_Adapter_CsvTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Translate_Adapter_CsvTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Translate_Adapter_CsvTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -60,7 +51,7 @@ class Zend_Translate_Adapter_CsvTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter = new Zend_Translate_Adapter_Csv(__DIR__ . '/_files/nofile.csv', 'en');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('Error opening translation file', $e->getMessage());
         }
@@ -107,7 +98,7 @@ class Zend_Translate_Adapter_CsvTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter->addTranslation(__DIR__ . '/_files/translation_en.csv', 'xx');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('does not exist', $e->getMessage());
         }
@@ -122,20 +113,20 @@ class Zend_Translate_Adapter_CsvTest extends \PHPUnit\Framework\TestCase
         $adapter = new Zend_Translate_Adapter_Csv(__DIR__ . '/_files/translation_en.csv', 'en');
         $adapter->setOptions(array('testoption' => 'testkey'));
         $expected = array(
-            'delimiter'       => ';',
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => __DIR__ . '/_files/translation_en.csv',
-            'scan'            => null,
-            'locale'          => 'en',
-            'length'          => 0,
-            'enclosure'       => '"',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'delimiter' => ';',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => __DIR__ . '/_files/translation_en.csv',
+            'scan' => null,
+            'locale' => 'en',
+            'length' => 0,
+            'enclosure' => '"',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false,
+            'reload' => false,
         );
         $options = $adapter->getOptions();
 
@@ -168,7 +159,7 @@ class Zend_Translate_Adapter_CsvTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter->setLocale('nolocale');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('does not exist', $e->getMessage());
         }
@@ -226,18 +217,15 @@ class Zend_Translate_Adapter_CsvTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
         $this->_errorOccurred = true;
     }
 }
-

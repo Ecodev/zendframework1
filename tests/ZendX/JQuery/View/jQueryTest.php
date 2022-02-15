@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,21 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright   Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
-
 require_once 'jQueryTestCase.php';
 
 class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 {
     public function testHelperSuccessfulCallForward()
     {
-        $jquery = new ZendX_JQuery_View_Helper_JQuery;
+        $jquery = new ZendX_JQuery_View_Helper_JQuery();
         $jquery->addJavascript('alert();');
     }
 
@@ -58,7 +54,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
     }
 
     /**
-     * Behaviour changed in 1.8
+     * Behaviour changed in 1.8.
      *
      * @group ZF-5667
      */
@@ -87,14 +83,14 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
     public function testUiDisabledDefault()
     {
-         $this->assertFalse($this->jquery->uiIsEnabled());
+        $this->assertFalse($this->jquery->uiIsEnabled());
     }
 
     public function testUiUsingCdnByDefault()
     {
-         $this->assertFalse($this->jquery->useUiLocal());
-         $this->assertTrue($this->jquery->useUiCdn());
-         $this->assertNull($this->jquery->getUiPath());
+        $this->assertFalse($this->jquery->useUiLocal());
+        $this->assertTrue($this->jquery->useUiCdn());
+        $this->assertNull($this->jquery->getUiPath());
     }
 
     public function testGetUiVersionReturnsDefaultSupportedVersionIfNotSpecifiedOtherwise()
@@ -114,17 +110,17 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
     public function testShouldAllowSetUiVersion()
     {
-         $this->jquery->setUiVersion('1.5.1');
-         $this->assertContains('1.5.1', $this->jquery->getUiVersion());
+        $this->jquery->setUiVersion('1.5.1');
+        $this->assertContains('1.5.1', $this->jquery->getUiVersion());
     }
 
     public function testShouldAllowSetLocalUiPath()
     {
-         $this->jquery->setUiLocalPath('/js/jquery-ui.min.js');
+        $this->jquery->setUiLocalPath('/js/jquery-ui.min.js');
 
-         $this->assertTrue($this->jquery->useUiLocal());
-         $this->assertFalse($this->jquery->useUiCdn());
-         $this->assertContains('/js/jquery-ui.min.js', $this->jquery->getUiPath());
+        $this->assertTrue($this->jquery->useUiLocal());
+        $this->assertFalse($this->jquery->useUiCdn());
+        $this->assertContains('/js/jquery-ui.min.js', $this->jquery->getUiPath());
     }
 
     public function testNoConflictShouldBeDisabledDefault()
@@ -381,7 +377,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
         ZendX_JQuery_View_Helper_JQuery::disableNoConflictMode();
 
-        $jQueryStack =  $this->jquery->__toString();
+        $jQueryStack = $this->jquery->__toString();
         $this->assertNotContains('$j(document).ready(function()', $jQueryStack);
     }
 
@@ -396,7 +392,6 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $assert = '<link rel="stylesheet" href="test.css" type="text/css" media="screen">';
         $this->jquery->enable();
         $this->assertContains($assert, $this->jquery->__toString());
-
     }
 
     /**

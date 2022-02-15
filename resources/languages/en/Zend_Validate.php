@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,20 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage Ressource
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id:$
  */
 
-/**
- * EN-Revision: 22668
- */
+// EN-Revision: 22668
 return array(
     // Zend_Validate_Alnum
-    "Invalid type given. String, integer or float expected" => "Invalid type given. String, integer or float expected",
+    'Invalid type given. String, integer or float expected' => 'Invalid type given. String, integer or float expected',
     "'%value%' contains characters which are non alphabetic and no digits" => "'%value%' contains characters which are non alphabetic and no digits",
     "'%value%' is an empty string" => "'%value%' is an empty string",
 
     // Zend_Validate_Alpha
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
     "'%value%' contains non alphabetic characters" => "'%value%' contains non alphabetic characters",
     "'%value%' is an empty string" => "'%value%' is an empty string",
 
@@ -38,7 +33,7 @@ return array(
     "'%value%' failed checksum validation" => "'%value%' failed checksum validation",
     "'%value%' contains invalid characters" => "'%value%' contains invalid characters",
     "'%value%' should have a length of %length% characters" => "'%value%' should have a length of %length% characters",
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
 
     // Zend_Validate_Between
     "'%value%' is not between '%min%' and '%max%', inclusively" => "'%value%' is not between '%min%' and '%max%', inclusively",
@@ -46,7 +41,7 @@ return array(
 
     // Zend_Validate_Callback
     "'%value%' is not valid" => "'%value%' is not valid",
-    "An exception has been raised within the callback" => "An exception has been raised within the callback",
+    'An exception has been raised within the callback' => 'An exception has been raised within the callback',
 
     // Zend_Validate_Ccnum
     "'%value%' must contain between 13 and 19 digits" => "'%value%' must contain between 13 and 19 digits",
@@ -55,14 +50,14 @@ return array(
     // Zend_Validate_CreditCard
     "'%value%' seems to contain an invalid checksum" => "'%value%' seems to contain an invalid checksum",
     "'%value%' must contain only digits" => "'%value%' must contain only digits",
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
     "'%value%' contains an invalid amount of digits" => "'%value%' contains an invalid amount of digits",
     "'%value%' is not from an allowed institute" => "'%value%' is not from an allowed institute",
     "'%value%' seems to be an invalid creditcard number" => "'%value%' seems to be an invalid creditcard number",
     "An exception has been raised while validating '%value%'" => "An exception has been raised while validating '%value%'",
 
     // Zend_Validate_Date
-    "Invalid type given. String, integer, array or Zend_Date expected" => "Invalid type given. String, integer, array or Zend_Date expected",
+    'Invalid type given. String, integer, array or Zend_Date expected' => 'Invalid type given. String, integer, array or Zend_Date expected',
     "'%value%' does not appear to be a valid date" => "'%value%' does not appear to be a valid date",
     "'%value%' does not fit the date format '%format%'" => "'%value%' does not fit the date format '%format%'",
 
@@ -71,12 +66,12 @@ return array(
     "A record matching '%value%' was found" => "A record matching '%value%' was found",
 
     // Zend_Validate_Digits
-    "Invalid type given. String, integer or float expected" => "Invalid type given. String, integer or float expected",
+    'Invalid type given. String, integer or float expected' => 'Invalid type given. String, integer or float expected',
     "'%value%' must contain only digits" => "'%value%' must contain only digits",
     "'%value%' is an empty string" => "'%value%' is an empty string",
 
     // Zend_Validate_EmailAddress
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
     "'%value%' is not a valid email address in the basic format local-part@hostname" => "'%value%' is not a valid email address in the basic format local-part@hostname",
     "'%hostname%' is not a valid hostname for email address '%value%'" => "'%hostname%' is not a valid hostname for email address '%value%'",
     "'%hostname%' does not appear to have a valid MX record for the email address '%value%'" => "'%hostname%' does not appear to have a valid MX record for the email address '%value%'",
@@ -92,7 +87,7 @@ return array(
 
     // Zend_Validate_File_Crc32
     "File '%value%' does not match the given crc32 hashes" => "File '%value%' does not match the given crc32 hashes",
-    "A crc32 hash could not be evaluated for the given file" => "A crc32 hash could not be evaluated for the given file",
+    'A crc32 hash could not be evaluated for the given file' => 'A crc32 hash could not be evaluated for the given file',
     "File '%value%' is not readable or does not exist" => "File '%value%' is not readable or does not exist",
 
     // Zend_Validate_File_ExcludeExtension
@@ -114,11 +109,11 @@ return array(
     // Zend_Validate_File_FilesSize
     "All files in sum should have a maximum size of '%max%' but '%size%' were detected" => "All files in sum should have a maximum size of '%max%' but '%size%' were detected",
     "All files in sum should have a minimum size of '%min%' but '%size%' were detected" => "All files in sum should have a minimum size of '%min%' but '%size%' were detected",
-    "One or more files can not be read" => "One or more files can not be read",
+    'One or more files can not be read' => 'One or more files can not be read',
 
     // Zend_Validate_File_Hash
     "File '%value%' does not match the given hashes" => "File '%value%' does not match the given hashes",
-    "A hash could not be evaluated for the given file" => "A hash could not be evaluated for the given file",
+    'A hash could not be evaluated for the given file' => 'A hash could not be evaluated for the given file',
     "File '%value%' is not readable or does not exist" => "File '%value%' is not readable or does not exist",
 
     // Zend_Validate_File_ImageSize
@@ -141,7 +136,7 @@ return array(
 
     // Zend_Validate_File_Md5
     "File '%value%' does not match the given md5 hashes" => "File '%value%' does not match the given md5 hashes",
-    "A md5 hash could not be evaluated for the given file" => "A md5 hash could not be evaluated for the given file",
+    'A md5 hash could not be evaluated for the given file' => 'A md5 hash could not be evaluated for the given file',
     "File '%value%' is not readable or does not exist" => "File '%value%' is not readable or does not exist",
 
     // Zend_Validate_File_MimeType
@@ -154,7 +149,7 @@ return array(
 
     // Zend_Validate_File_Sha1
     "File '%value%' does not match the given sha1 hashes" => "File '%value%' does not match the given sha1 hashes",
-    "A sha1 hash could not be evaluated for the given file" => "A sha1 hash could not be evaluated for the given file",
+    'A sha1 hash could not be evaluated for the given file' => 'A sha1 hash could not be evaluated for the given file',
     "File '%value%' is not readable or does not exist" => "File '%value%' is not readable or does not exist",
 
     // Zend_Validate_File_Size
@@ -180,18 +175,18 @@ return array(
     "File '%value%' is not readable or does not exist" => "File '%value%' is not readable or does not exist",
 
     // Zend_Validate_Float
-    "Invalid type given. String, integer or float expected" => "Invalid type given. String, integer or float expected",
+    'Invalid type given. String, integer or float expected' => 'Invalid type given. String, integer or float expected',
     "'%value%' does not appear to be a float" => "'%value%' does not appear to be a float",
 
     // Zend_Validate_GreaterThan
     "'%value%' is not greater than '%min%'" => "'%value%' is not greater than '%min%'",
 
     // Zend_Validate_Hex
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
     "'%value%' has not only hexadecimal digit characters" => "'%value%' has not only hexadecimal digit characters",
 
     // Zend_Validate_Hostname
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
     "'%value%' appears to be an IP address, but IP addresses are not allowed" => "'%value%' appears to be an IP address, but IP addresses are not allowed",
     "'%value%' appears to be a DNS hostname but cannot match TLD against known list" => "'%value%' appears to be a DNS hostname but cannot match TLD against known list",
     "'%value%' appears to be a DNS hostname but contains a dash in an invalid position" => "'%value%' appears to be a DNS hostname but contains a dash in an invalid position",
@@ -208,58 +203,58 @@ return array(
     "'%value%' has failed the IBAN check" => "'%value%' has failed the IBAN check",
 
     // Zend_Validate_Identical
-    "The two given tokens do not match" => "The two given tokens do not match",
-    "No token was provided to match against" => "No token was provided to match against",
+    'The two given tokens do not match' => 'The two given tokens do not match',
+    'No token was provided to match against' => 'No token was provided to match against',
 
     // Zend_Validate_InArray
     "'%value%' was not found in the haystack" => "'%value%' was not found in the haystack",
 
     // Zend_Validate_Int
-    "Invalid type given. String or integer expected" => "Invalid type given. String or integer expected",
+    'Invalid type given. String or integer expected' => 'Invalid type given. String or integer expected',
     "'%value%' does not appear to be an integer" => "'%value%' does not appear to be an integer",
 
     // Zend_Validate_Ip
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
     "'%value%' does not appear to be a valid IP address" => "'%value%' does not appear to be a valid IP address",
 
     // Zend_Validate_Isbn
-    "Invalid type given. String or integer expected" => "Invalid type given. String or integer expected",
+    'Invalid type given. String or integer expected' => 'Invalid type given. String or integer expected',
     "'%value%' is not a valid ISBN number" => "'%value%' is not a valid ISBN number",
 
     // Zend_Validate_LessThan
     "'%value%' is not less than '%max%'" => "'%value%' is not less than '%max%'",
 
     // Zend_Validate_NotEmpty
-    "Invalid type given. String, integer, float, boolean or array expected" => "Invalid type given. String, integer, float, boolean or array expected",
+    'Invalid type given. String, integer, float, boolean or array expected' => 'Invalid type given. String, integer, float, boolean or array expected',
     "Value is required and can't be empty" => "Value is required and can't be empty",
 
     // Zend_Validate_PostCode
-    "Invalid type given. String or integer expected" => "Invalid type given. String or integer expected",
+    'Invalid type given. String or integer expected' => 'Invalid type given. String or integer expected',
     "'%value%' does not appear to be a postal code" => "'%value%' does not appear to be a postal code",
 
     // Zend_Validate_Regex
-    "Invalid type given. String, integer or float expected" => "Invalid type given. String, integer or float expected",
+    'Invalid type given. String, integer or float expected' => 'Invalid type given. String, integer or float expected',
     "'%value%' does not match against pattern '%pattern%'" => "'%value%' does not match against pattern '%pattern%'",
     "There was an internal error while using the pattern '%pattern%'" => "There was an internal error while using the pattern '%pattern%'",
 
     // Zend_Validate_Sitemap_Changefreq
     "'%value%' is not a valid sitemap changefreq" => "'%value%' is not a valid sitemap changefreq",
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
 
     // Zend_Validate_Sitemap_Lastmod
     "'%value%' is not a valid sitemap lastmod" => "'%value%' is not a valid sitemap lastmod",
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
 
     // Zend_Validate_Sitemap_Loc
     "'%value%' is not a valid sitemap location" => "'%value%' is not a valid sitemap location",
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
 
     // Zend_Validate_Sitemap_Priority
     "'%value%' is not a valid sitemap priority" => "'%value%' is not a valid sitemap priority",
-    "Invalid type given. Numeric string, integer or float expected" => "Invalid type given. Numeric string, integer or float expected",
+    'Invalid type given. Numeric string, integer or float expected' => 'Invalid type given. Numeric string, integer or float expected',
 
     // Zend_Validate_StringLength
-    "Invalid type given. String expected" => "Invalid type given. String expected",
+    'Invalid type given. String expected' => 'Invalid type given. String expected',
     "'%value%' is less than %min% characters long" => "'%value%' is less than %min% characters long",
     "'%value%' is more than %max% characters long" => "'%value%' is more than %max% characters long",
 );

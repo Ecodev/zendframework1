@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,17 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Controller/Action/Helper/AjaxContext.php';
 
 require_once 'Zend/Controller/Action.php';
@@ -34,14 +27,9 @@ require_once 'Zend/Controller/Response/Cli.php';
 require_once 'Zend/Layout.php';
 require_once 'Zend/View.php';
 
-
 /**
  * Test class for Zend_Controller_Action_Helper_AjaxContext.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
@@ -52,21 +40,17 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Action_Helper_AjaxContextTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_AjaxContextTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -105,8 +89,6 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -134,7 +116,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
     public function testInitContextFailsOnNonXhrRequests()
     {
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->checkNothingIsDone();
     }
@@ -147,7 +129,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
         $this->controller->contexts = $this->controller->ajaxable;
         unset($this->controller->ajaxable);
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->checkNothingIsDone();
     }
@@ -159,13 +141,13 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
         $this->assertTrue($this->request->isXmlHttpRequest());
 
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
 
         $this->assertEquals('xml.phtml', $this->viewRenderer->getViewSuffix());
 
         $headers = $this->response->getHeaders();
-        $found   = false;
+        $found = false;
         foreach ($headers as $header) {
             if ('Content-Type' == $header['name']) {
                 $found = true;
@@ -186,20 +168,18 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
         $this->assertNull($this->helper->getCurrentContext());
 
         $this->request->setParam('format', 'xml')
-                      ->setActionName('foo');
+            ->setActionName('foo');
         $this->helper->initContext();
         $this->assertEquals('xml', $this->helper->getCurrentContext());
 
         unset($_SERVER['HTTP_X_REQUESTED_WITH']);
         $this->request->setParam('format', 'foo')
-                      ->setActionName('bogus');
+            ->setActionName('bogus');
         $this->helper->initContext();
         $this->assertNull($this->helper->getCurrentContext());
     }
 
     /**
-     * @author Fix sponsored by Enrise - www.enrise.com
-     *
      * @group ZF-8444
      */
     public function testAjaxContextIsRequestDependent()
@@ -218,8 +198,8 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
         try {
             $helper->initContext();
             $this->assertTrue(true);
-        } catch(Exception $e) {
-            if($e->getMessage() == 'test testAjaxContextIsRequestDependent failed' ) {
+        } catch (Exception $e) {
+            if ($e->getMessage() == 'test testAjaxContextIsRequestDependent failed') {
                 $this->fail();
             } else {
                 throw $e;
@@ -228,16 +208,16 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
     }
 }
 
-class ZendTest_Controller_Request_SimpleMock_AjaxTest
-    extends Zend_Controller_Request_Simple
+class ZendTest_Controller_Request_SimpleMock_AjaxTest extends Zend_Controller_Request_Simple
 {
-         public function __call($method, $args) {
-             if($method == 'isXmlHttpRequest') {
-                 throw new exception('test testAjaxContextIsRequestDependent failed');
-             }
+    public function __call($method, $args)
+    {
+        if ($method == 'isXmlHttpRequest') {
+            throw new exception('test testAjaxContextIsRequestDependent failed');
+        }
 
-             return parent::__call($method, $args);
-         }
+        return parent::__call($method, $args);
+    }
 }
 
 class Zend_Controller_Action_Helper_AjaxContextTestController extends Zend_Controller_Action
@@ -256,4 +236,3 @@ class Zend_Controller_Action_Helper_AjaxContextTest_LayoutOverride extends Zend_
         self::$_mvcInstance = null;
     }
 }
-

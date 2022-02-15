@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View.php';
 require_once 'Zend/Paginator.php';
 require_once 'Zend/View/Helper/PaginationControl.php';
 
 /**
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -44,21 +34,17 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_PaginationControlTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_PaginationControlTest');
         \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp()
     {
@@ -73,13 +59,13 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
 
     public function tearDown()
     {
-        unset($this->_viewHelper);
-        unset($this->_paginator);
+        unset($this->_viewHelper, $this->_paginator);
+
     }
 
     public function testGetsAndSetsView()
     {
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $helper = new Zend_View_Helper_PaginationControl();
         $this->assertNull($helper->view);
         $helper->setView($view);
@@ -184,7 +170,7 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
      */
     public function testUsesPaginatorFromViewOnlyIfNoneSupplied()
     {
-        $this->_viewHelper->view->paginator  = $this->_paginator;
+        $this->_viewHelper->view->paginator = $this->_paginator;
         $paginator = Zend_Paginator::factory(range(1, 30));
         Zend_View_Helper_PaginationControl::setDefaultViewPartial('testPagination.phtml');
 
@@ -209,4 +195,3 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('page count (11) equals pages in range (11)', $output, $output);
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Decorator/Image.php';
 
 require_once 'Zend/Form.php';
@@ -30,12 +24,8 @@ require_once 'Zend/Form/Element/Image.php';
 require_once 'Zend/View.php';
 
 /**
- * Test class for Zend_Form_Decorator_Image
+ * Test class for Zend_Form_Decorator_Image.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -43,21 +33,16 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_ImageTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_ImageTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -67,8 +52,6 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -78,6 +61,7 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+
         return $view;
     }
 
@@ -117,7 +101,7 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element_Image('foo');
         $element->setImage('foobar')
-                ->setView($this->getView());
+            ->setView($this->getView());
         $this->decorator->setElement($element);
 
         $image = $this->decorator->render('');
@@ -131,9 +115,9 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element_Image('foo');
         $element->setValue('foobar')
-                ->setView($this->getView());
+            ->setView($this->getView());
         $this->decorator->setElement($element)
-                        ->setOption('tag', 'div');
+            ->setOption('tag', 'div');
 
         $image = $this->decorator->render('');
         $this->assertRegexp('#<div>.*?<input[^>]*>.*?</div>#s', $image, $image);
@@ -143,9 +127,9 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element_Image('foo');
         $element->setValue('foobar')
-                ->setView($this->getView());
+            ->setView($this->getView());
         $this->decorator->setElement($element)
-                        ->setOption('placement', 'prepend');
+            ->setOption('placement', 'prepend');
 
         $image = $this->decorator->render('content');
         $this->assertRegexp('#<input[^>]*>.*?(content)#s', $image, $image);
@@ -158,11 +142,11 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element_Image('foo');
         $element->setValue('foobar')
-                ->setAttrib('onClick', 'foo()')
-                ->setAttrib('id', 'foo-element')
-                ->setView($this->getView());
+            ->setAttrib('onClick', 'foo()')
+            ->setAttrib('id', 'foo-element')
+            ->setView($this->getView());
         $this->decorator->setElement($element)
-                        ->setOption('class', 'imageclass');
+            ->setOption('class', 'imageclass');
 
         $image = $this->decorator->render('');
         $this->assertContains('class="imageclass"', $image);
@@ -170,4 +154,3 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('id="foo-element"', $image);
     }
 }
-

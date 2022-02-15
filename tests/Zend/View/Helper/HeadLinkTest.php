@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_HeadLink */
 require_once 'Zend/View/Helper/HeadLink.php';
@@ -37,10 +32,6 @@ require_once 'Zend/View.php';
 /**
  * Test class for Zend_View_Helper_HeadLink.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -59,21 +50,16 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HeadLinkTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadLinkTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -92,8 +78,6 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -161,13 +145,13 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
             'link3' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'baz'),
         );
         $this->helper->headLink($links['link1'])
-                     ->headLink($links['link2'], 'PREPEND')
-                     ->headLink($links['link3']);
+            ->headLink($links['link2'], 'PREPEND')
+            ->headLink($links['link3']);
 
         $string = $this->helper->toString();
-        $lines  = substr_count($string, PHP_EOL);
+        $lines = substr_count($string, PHP_EOL);
         $this->assertEquals(2, $lines);
-        $lines  = substr_count($string, '<link ');
+        $lines = substr_count($string, '<link ');
         $this->assertEquals(3, $lines, $string);
 
         foreach ($links as $link) {
@@ -197,13 +181,13 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
             'link3' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'baz'),
         );
         $this->helper->appendStylesheet($links['link1']['href'])
-                     ->prependStylesheet($links['link2']['href'])
-                     ->appendStylesheet($links['link3']['href']);
+            ->prependStylesheet($links['link2']['href'])
+            ->appendStylesheet($links['link3']['href']);
 
         $string = $this->helper->toString();
-        $lines  = substr_count($string, PHP_EOL);
+        $lines = substr_count($string, PHP_EOL);
         $this->assertEquals(2, $lines);
-        $lines  = substr_count($string, '<link ');
+        $lines = substr_count($string, '<link ');
         $this->assertEquals(3, $lines, $string);
 
         foreach ($links as $link) {
@@ -240,11 +224,11 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         }
 
         $string = $this->helper->toString();
-        $lines  = substr_count($string, PHP_EOL);
+        $lines = substr_count($string, PHP_EOL);
         $this->assertEquals(2, $lines);
-        $lines  = substr_count($string, '<link ');
+        $lines = substr_count($string, '<link ');
         $this->assertEquals(3, $lines, $string);
-        $lines  = substr_count($string, ' rel="alternate"');
+        $lines = substr_count($string, ' rel="alternate"');
         $this->assertEquals(3, $lines, $string);
 
         foreach ($links as $link) {
@@ -271,7 +255,8 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         try {
             $this->helper->appendStylesheet();
             $this->fail('Helper should expect at least one argument');
-        } catch (Zend_View_Exception $e) {}
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testOverloadingShouldAllowSingleArrayArgument()
@@ -286,7 +271,8 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         try {
             $this->helper->setStylesheet(array('bogus' => 'unused'));
             $this->fail('Invalid attribute values should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testOverloadingOffsetSetWorks()
@@ -303,7 +289,8 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         try {
             $this->helper->bogusMethod();
             $this->fail('Invalid method should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testStylesheetAttributesGetSet()
@@ -349,11 +336,14 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         try {
             $this->helper->setAlternate('foo');
             $this->fail('Setting alternate with fewer than 3 args should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
+
         try {
             $this->helper->setAlternate('foo', 'bar');
             $this->fail('Setting alternate with fewer than 3 args should raise exception');
-        } catch (Zend_View_Exception $e) { }
+        } catch (Zend_View_Exception $e) {
+        }
     }
 
     public function testIndentationIsHonored()
@@ -371,7 +361,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     {
         $this->view->doctype('HTML4_STRICT');
         $this->helper->headLink(array('rel' => 'icon', 'src' => '/foo/bar'))
-                     ->headLink(array('rel' => 'foo', 'href' => '/bar/baz'));
+            ->headLink(array('rel' => 'foo', 'href' => '/bar/baz'));
         $test = $this->helper->toString();
         $this->assertNotContains(' />', $test);
     }
@@ -384,7 +374,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * test for ZF-2889
+     * test for ZF-2889.
      */
     public function testBooleanStylesheet()
     {
@@ -394,8 +384,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * test for ZF-3271
-     *
+     * test for ZF-3271.
      */
     public function testBooleanTrueConditionalStylesheet()
     {
@@ -407,7 +396,8 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3928
-     * @link http://framework.zend.com/issues/browse/ZF-3928
+     *
+     * @see http://framework.zend.com/issues/browse/ZF-3928
      */
     public function testTurnOffAutoEscapeDoesNotEncodeAmpersand()
     {
@@ -471,7 +461,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     public function testHeadLinkAllowsOverrideOfRelAttribute()
     {
         $this->helper->appendStylesheet('/css/auth.less', 'all', null, array('rel' => 'stylesheet/less'));
-        $this->assertEquals(1, substr_count($this->helper->toString(), "rel=\""));
+        $this->assertEquals(1, substr_count($this->helper->toString(), 'rel="'));
         $this->assertContains('rel="stylesheet/less"', $this->helper->toString());
     }
 
@@ -482,10 +472,10 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     {
         $this->helper->headLink(
             array(
-                 'rel'   => 'icon',
-                 'href'  => 'favicon.png',
-                 'sizes' => '16x16',
-                 'type'  => 'image/png',
+                'rel' => 'icon',
+                'href' => 'favicon.png',
+                'sizes' => '16x16',
+                'type' => 'image/png',
             )
         );
 
@@ -524,4 +514,3 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('<!--<![endif]-->', $string);
     }
 }
-

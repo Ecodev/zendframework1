@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Json
- * @subpackage Expr
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -42,10 +39,6 @@
  * // {"integer":9,"string":"test string","function":function(){window.alert("javascript function encoded by Zend_Json")}}
  * </code>
  *
- * @category   Zend
- * @package    Zend_Json
- * @subpackage Expr
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Json_Expr
@@ -58,10 +51,9 @@ class Zend_Json_Expr
     protected $_expression;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param  string $expression the expression to hold.
-     * @return void
+     * @param  string $expression the expression to hold
      */
     public function __construct($expression)
     {
@@ -69,9 +61,9 @@ class Zend_Json_Expr
     }
 
     /**
-     * Cast to string
+     * Cast to string.
      *
-     * @return string holded javascript expression.
+     * @return string holded javascript expression
      */
     public function __toString()
     {

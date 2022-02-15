@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -23,42 +19,44 @@
 require_once 'Zend/Form/Element/Xhtml.php';
 
 /**
- * Password form element
+ * Password form element.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Element
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 class Zend_Form_Element_Password extends Zend_Form_Element_Xhtml
 {
     /**
-     * Use formPassword view helper by default
+     * Use formPassword view helper by default.
+     *
      * @var string
      */
     public $helper = 'formPassword';
 
     /**
-     * Whether or not to render the password
+     * Whether or not to render the password.
+     *
      * @var bool
      */
     public $renderPassword = false;
 
     /**
-     * Set flag indicating whether or not to render the password
+     * Set flag indicating whether or not to render the password.
+     *
      * @param  bool $flag
+     *
      * @return Zend_Form_Element_Password
      */
     public function setRenderPassword($flag)
     {
         $this->renderPassword = (bool) $flag;
+
         return $this;
     }
 
     /**
-     * Get value of renderPassword flag
+     * Get value of renderPassword flag.
      *
      * @return bool
      */
@@ -68,12 +66,13 @@ class Zend_Form_Element_Password extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Override isValid()
+     * Override isValid().
      *
      * Ensure that validation error messages mask password value.
      *
      * @param  string $value
      * @param  mixed $context
+     *
      * @return bool
      */
     public function isValid($value, $context = null)
@@ -83,6 +82,7 @@ class Zend_Form_Element_Password extends Zend_Form_Element_Xhtml
                 $validator->setObscureValue(true);
             }
         }
+
         return parent::isValid($value, $context);
     }
 }

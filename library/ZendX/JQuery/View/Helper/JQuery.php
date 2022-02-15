@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,18 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id$
  */
 
 /**
  * @see ZendX_JQuery
  */
-require_once "ZendX/JQuery.php";
+require_once 'ZendX/JQuery.php';
 
 /**
  * @see Zend_Registry
@@ -38,15 +35,13 @@ require_once 'Zend/View/Helper/Abstract.php';
 /**
  * @see ZendX_JQuery_View_Helper_JQuery_Container
  */
-require_once "ZendX/JQuery/View/Helper/JQuery/Container.php";
+require_once 'ZendX/JQuery/View/Helper/JQuery/Container.php';
 
 /**
  * jQuery Helper. Functions as a stack for code and loads all jQuery dependencies.
  *
  * @uses 	   Zend_Json
- * @package    ZendX_JQuery
- * @subpackage View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
@@ -56,16 +51,16 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
      */
     public $view;
 
-	/**
-	 * jQuery no Conflict Mode
-	 *
-	 * @see	      http://docs.jquery.com/Using_jQuery_with_Other_Libraries
-	 * @staticvar Boolean Status of noConflict Mode
-	 */
+    /**
+     * jQuery no Conflict Mode.
+     *
+     * @see	      http://docs.jquery.com/Using_jQuery_with_Other_Libraries
+     * @staticvar Boolean Status of noConflict Mode
+     */
     private static bool $noConflictMode = false;
 
     /**
-     * Initialize helper
+     * Initialize helper.
      *
      * Retrieve container from registry or create new container and store in
      * registry.
@@ -81,21 +76,18 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
         $this->_container = $registry[self::class];
     }
 
-	/**
-	 * Return jQuery View Helper class, to execute jQuery library related functions.
-	 *
-	 * @return ZendX_JQuery_View_Helper_JQuery_Container
-	 */
+    /**
+     * Return jQuery View Helper class, to execute jQuery library related functions.
+     *
+     * @return ZendX_JQuery_View_Helper_JQuery_Container
+     */
     public function jQuery()
     {
         return $this->_container;
     }
 
     /**
-     * Set view object
-     *
-     * @param  Zend_View_Interface $view
-     * @return void
+     * Set view object.
      */
     public function setView(Zend_View_Interface $view)
     {
@@ -104,62 +96,61 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Proxy to container methods
+     * Proxy to container methods.
      *
      * @param  string $method
      * @param  array  $args
+     *
      * @return mixed
-     * @throws Zend_View_Exception For invalid method calls
      */
     public function __call($method, $args)
     {
         if (!method_exists($this->_container, $method)) {
             require_once 'Zend/View/Exception.php';
+
             throw new Zend_View_Exception(sprintf('Invalid method "%s" called on jQuery view helper', $method));
         }
 
         return call_user_func_array(array($this->_container, $method), $args);
     }
 
-	/**
-	 * Enable the jQuery internal noConflict Mode to work with
-	 * other Javascript libraries. Will setup jQuery in the variable
-	 * $j instead of $ to overcome conflicts.
-	 *
-	 * @link http://docs.jquery.com/Using_jQuery_with_Other_Libraries
-	 */
+    /**
+     * Enable the jQuery internal noConflict Mode to work with
+     * other Javascript libraries. Will setup jQuery in the variable
+     * $j instead of $ to overcome conflicts.
+     *
+     * @see http://docs.jquery.com/Using_jQuery_with_Other_Libraries
+     */
     public static function enableNoConflictMode()
     {
-    	self::$noConflictMode = true;
+        self::$noConflictMode = true;
     }
 
-	/**
-	 * Disable noConflict Mode of jQuery if this was previously enabled.
-	 *
-	 * @return void
-	 */
+    /**
+     * Disable noConflict Mode of jQuery if this was previously enabled.
+     */
     public static function disableNoConflictMode()
     {
-    	self::$noConflictMode = false;
+        self::$noConflictMode = false;
     }
 
-	/**
-	 * Return current status of the jQuery no Conflict Mode
-	 *
-	 * @return Boolean
-	 */
+    /**
+     * Return current status of the jQuery no Conflict Mode.
+     *
+     * @return bool
+     */
     public static function getNoConflictMode()
     {
-    	return self::$noConflictMode;
+        return self::$noConflictMode;
     }
 
     /**
      * Return current jQuery handler based on noConflict mode settings.
      *
-     * @return String
+     * @return string
      */
     public static function getJQueryHandler()
     {
-        return ((self::getNoConflictMode()==true)?'$j':'$');
+        return (self::getNoConflictMode() == true) ? '$j' : '$';
     }
 }

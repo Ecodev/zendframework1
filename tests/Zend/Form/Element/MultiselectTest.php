@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,27 +12,16 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
-
 require_once 'Zend/Form/Element/Multiselect.php';
 require_once 'Zend/Translate.php';
 
 /**
- * Test class for Zend_Form_Element_Multiselect
+ * Test class for Zend_Form_Element_Multiselect.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -40,12 +29,10 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_MultiselectTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_MultiselectTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -57,8 +44,6 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -68,8 +53,6 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -80,6 +63,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper/');
+
         return $view;
     }
 
@@ -160,15 +144,15 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         $options = array(
             array(
                 'value' => '1',
-                'key'   => 'aa',
+                'key' => 'aa',
             ),
-            array (
-                'key'   => '2',
+            array(
+                'key' => '2',
                 'value' => 'xxxx',
             ),
-            array (
+            array(
                 'value' => '444',
-                'key'   => 'ssss',
+                'key' => 'ssss',
             ),
         );
         $this->element->addMultiOptions($options);
@@ -195,7 +179,6 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($config->options->first->value, $this->element->getMultiOption('aa'));
         $this->assertEquals($config->options->second->value, $this->element->getMultiOption(2));
         $this->assertEquals($config->options->third->value, $this->element->getMultiOption('ssss'));
-
     }
 
     public function testCanRemoveMultiOption()
@@ -211,7 +194,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
     {
         $options = array(
             'foovalue' => 'Foo',
-            'barvalue' => 'Bar'
+            'barvalue' => 'Bar',
         );
         $this->element->addMultiOptions($options);
         $html = $this->element->render($this->getView());
@@ -223,8 +206,8 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
     public function testTranslatedOptionsAreRenderedInFinalMarkupWhenTranslatorPresent()
     {
         $translations = array(
-            'ThisShouldNotShow'   => 'Foo Value',
-            'ThisShouldNeverShow' => 'Bar Value'
+            'ThisShouldNotShow' => 'Foo Value',
+            'ThisShouldNeverShow' => 'Bar Value',
         );
         require_once 'Zend/Translate.php';
         $translate = new Zend_Translate('array', $translations, 'en');
@@ -232,11 +215,11 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
 
         $options = array(
             'foovalue' => 'ThisShouldNotShow',
-            'barvalue' => 'ThisShouldNeverShow'
+            'barvalue' => 'ThisShouldNeverShow',
         );
 
         $this->element->setTranslator($translate)
-                      ->addMultiOptions($options);
+            ->addMultiOptions($options);
 
         $html = $this->element->render($this->getView());
         foreach ($options as $value => $label) {
@@ -248,15 +231,15 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
     public function testOptionLabelsAreTranslatedWhenTranslateAdapterIsPresent()
     {
         $translations = include __DIR__ . '/../_files/locale/array.php';
-        $translate    = new Zend_Translate('array', $translations, 'en');
+        $translate = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
 
         $options = array(
             'foovalue' => 'Foo',
-            'barvalue' => 'Bar'
+            'barvalue' => 'Bar',
         );
         $this->element->addMultiOptions($options)
-                      ->setTranslator($translate);
+            ->setTranslator($translate);
         $test = $this->element->getMultiOption('barvalue');
         $this->assertEquals($translations[$options['barvalue']], $test);
 
@@ -269,16 +252,16 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
     public function testOptionLabelsAreUntouchedIfTranslatonDoesNotExistInnTranslateAdapter()
     {
         $translations = include __DIR__ . '/../_files/locale/array.php';
-        $translate    = new Zend_Translate('array', $translations, 'en');
+        $translate = new Zend_Translate('array', $translations, 'en');
         $translate->setLocale('en');
 
         $options = array(
             'foovalue' => 'Foo',
             'barvalue' => 'Bar',
-            'testing'  => 'Test Value',
+            'testing' => 'Test Value',
         );
         $this->element->addMultiOptions($options)
-                      ->setTranslator($translate);
+            ->setTranslator($translate);
         $test = $this->element->getMultiOption('testing');
         $this->assertEquals($options['testing'], $test);
     }
@@ -294,9 +277,9 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
     public function testOptGroupTranslationsShouldWorkAfterPopulatingElement()
     {
         $translations = array(
-            'ThisIsTheLabel'      => 'Optgroup label',
-            'ThisShouldNotShow'   => 'Foo Value',
-            'ThisShouldNeverShow' => 'Bar Value'
+            'ThisIsTheLabel' => 'Optgroup label',
+            'ThisShouldNotShow' => 'Foo Value',
+            'ThisShouldNeverShow' => 'Bar Value',
         );
         require_once 'Zend/Translate.php';
         $translate = new Zend_Translate('array', $translations, 'en');
@@ -310,7 +293,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         );
 
         $this->element->setTranslator($translate)
-                      ->addMultiOptions($options);
+            ->addMultiOptions($options);
 
         $this->element->setValue('barValue');
 
@@ -327,16 +310,15 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
             'foovalue' => 'Foo',
         );
         $this->element->setDisableTranslator(true)
-                      ->addMultiOptions($options);
+            ->addMultiOptions($options);
         $test = $this->element->getMultiOption('foovalue');
         $this->assertEquals($options['foovalue'], $test);
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
+     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
      *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
+     * @see   http://framework.zend.com/issues/browse/ZF-2794
      */
     protected function _checkZf2794()
     {
@@ -359,7 +341,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
                 array('key' => 'b', 'value' => 'B'),
                 array('key' => 'c', 'value' => 'C'),
                 array('key' => 'd', 'value' => 'D'),
-            )
+            ),
         ));
 
         // check 3 of them
@@ -374,4 +356,3 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         );
     }
 }
-

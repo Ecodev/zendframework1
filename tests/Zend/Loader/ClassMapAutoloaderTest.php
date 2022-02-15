@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,23 +12,13 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Loader/ClassMapAutoloader.php';
 
 /**
- * @category   Zend
- * @package    Loader
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Loader
  */
@@ -36,7 +26,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -151,7 +141,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends \PHPUnit\Framework\TestCase
 
     public function testRegisterMapsThrowsExceptionForNonTraversableArguments()
     {
-        $tests = array(true, 'string', 1, 1.0, new stdClass);
+        $tests = array(true, 'string', 1, 1.0, new stdClass());
         foreach ($tests as $test) {
             try {
                 $this->loader->registerAutoloadMaps($test);
@@ -187,6 +177,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends \PHPUnit\Framework\TestCase
         foreach ($loaders as $loader) {
             if ($loader == array($this->loader, 'autoload')) {
                 $found = true;
+
                 break;
             }
         }
@@ -224,4 +215,3 @@ class Zend_Loader_ClassMapAutoloaderTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(class_exists('some\namespacedclass', false));
     }
 }
-

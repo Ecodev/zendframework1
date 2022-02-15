@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 // error_reporting(E_ALL);
 
@@ -28,10 +23,6 @@ require_once 'Zend/Form/SubForm.php';
 require_once 'Zend/View.php';
 
 /**
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -39,7 +30,7 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_SubFormTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_SubFormTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -97,8 +88,8 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
     public function testDisplayGroupsShouldInheritSubFormNamespace()
     {
         $this->form->addElement('text', 'foo')
-                   ->addElement('text', 'bar')
-                   ->addDisplayGroup(array('foo', 'bar'), 'foobar');
+            ->addElement('text', 'bar')
+            ->addDisplayGroup(array('foo', 'bar'), 'foobar');
 
         $form = new Zend_Form();
         $form->addSubForm($this->form, 'attributes');
@@ -121,21 +112,21 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
         ));
         $form = new Zend_Form();
         $form->addSubForm($subForm, 'foobar')
-             ->setView(new Zend_View);
+            ->setView(new Zend_View());
         $html = $form->render();
-        $this->assertContains('>&#160;</dt>', $html  );
+        $this->assertContains('>&#160;</dt>', $html);
     }
 
     /**
-     * Prove the fluent interface on Zend_Form_Subform::loadDefaultDecorators
+     * Prove the fluent interface on Zend_Form_Subform::loadDefaultDecorators.
      *
-     * @link http://framework.zend.com/issues/browse/ZF-9913
-     * @return void
+     * @see http://framework.zend.com/issues/browse/ZF-9913
      */
     public function testFluentInterfaceOnLoadDefaultDecorators()
     {
         $this->assertSame($this->form, $this->form->loadDefaultDecorators());
     }
+
     /**
      * @see ZF-11504
      */
@@ -163,4 +154,3 @@ class Zend_Form_SubFormTest_SubForm extends Zend_Form_SubForm
         $this->setDisableLoadDefaultDecorators(true);
     }
 }
-

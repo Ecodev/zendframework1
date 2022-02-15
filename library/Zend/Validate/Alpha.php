@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,47 +23,45 @@
 require_once 'Zend/Validate/Abstract.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Validate_Alpha extends Zend_Validate_Abstract
 {
-    public const INVALID      = 'alphaInvalid';
-    public const NOT_ALPHA    = 'notAlpha';
+    public const INVALID = 'alphaInvalid';
+    public const NOT_ALPHA = 'notAlpha';
     public const STRING_EMPTY = 'alphaStringEmpty';
 
     /**
-     * Whether to allow white space characters; off by default
+     * Whether to allow white space characters; off by default.
      *
-     * @var boolean
+     * @var bool
+     *
      * @deprecated
      */
     public $allowWhiteSpace;
 
     /**
-     * Alphabetic filter used for validation
+     * Alphabetic filter used for validation.
      *
      * @var Zend_Filter_Alpha
      */
-    protected static $_filter = null;
+    protected static $_filter;
 
     /**
-     * Validation failure message template definitions
+     * Validation failure message template definitions.
      *
      * @var array
      */
     protected $_messageTemplates = array(
-        self::INVALID      => "Invalid type given. String expected",
-        self::NOT_ALPHA    => "'%value%' contains non alphabetic characters",
-        self::STRING_EMPTY => "'%value%' is an empty string"
+        self::INVALID => 'Invalid type given. String expected',
+        self::NOT_ALPHA => "'%value%' contains non alphabetic characters",
+        self::STRING_EMPTY => "'%value%' is an empty string",
     );
 
     /**
-     * Sets default option values for this instance
+     * Sets default option values for this instance.
      *
-     * @param boolean|Zend_Config $allowWhiteSpace
+     * @param bool|Zend_Config $allowWhiteSpace
      */
     public function __construct($allowWhiteSpace = false)
     {
@@ -85,9 +81,9 @@ class Zend_Validate_Alpha extends Zend_Validate_Abstract
     }
 
     /**
-     * Returns the allowWhiteSpace option
+     * Returns the allowWhiteSpace option.
      *
-     * @return boolean
+     * @return bool
      */
     public function getAllowWhiteSpace()
     {
@@ -95,29 +91,33 @@ class Zend_Validate_Alpha extends Zend_Validate_Abstract
     }
 
     /**
-     * Sets the allowWhiteSpace option
+     * Sets the allowWhiteSpace option.
      *
-     * @param boolean $allowWhiteSpace
+     * @param bool $allowWhiteSpace
+     *
      * @return Zend_Filter_Alpha Provides a fluent interface
      */
     public function setAllowWhiteSpace($allowWhiteSpace)
     {
         $this->allowWhiteSpace = (boolean) $allowWhiteSpace;
+
         return $this;
     }
 
     /**
-     * Defined by Zend_Validate_Interface
+     * Defined by Zend_Validate_Interface.
      *
      * Returns true if and only if $value contains only alphabetic characters
      *
      * @param  string $value
-     * @return boolean
+     *
+     * @return bool
      */
     public function isValid($value)
     {
         if (!is_string($value)) {
             $this->_error(self::INVALID);
+
             return false;
         }
 
@@ -125,6 +125,7 @@ class Zend_Validate_Alpha extends Zend_Validate_Abstract
 
         if ('' === $value) {
             $this->_error(self::STRING_EMPTY);
+
             return false;
         }
 
@@ -140,10 +141,10 @@ class Zend_Validate_Alpha extends Zend_Validate_Abstract
 
         if ($value !== self::$_filter->filter($value)) {
             $this->_error(self::NOT_ALPHA);
+
             return false;
         }
 
         return true;
     }
-
 }

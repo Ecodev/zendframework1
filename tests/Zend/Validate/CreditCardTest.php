@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id:$
  */
 
@@ -26,30 +23,24 @@
 require_once 'Zend/Validate/CreditCard.php';
 
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
-        $validator      = new Zend_Validate_CreditCard();
+        $validator = new Zend_Validate_CreditCard();
         $valuesExpected = array(
             array('4111111111111111', true),
             array('5404000000000001', true),
             array('374200000000004',  true),
             array('4444555566667777', false),
-            array('ABCDEF',           false)
-            );
+            array('ABCDEF',           false),
+        );
         foreach ($valuesExpected as $test) {
             $input = $test[0];
             $result = $test[1];
@@ -58,9 +49,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -69,9 +58,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that get and setType works as expected
-     *
-     * @return void
+     * Ensures that get and setType works as expected.
      */
     public function testGetSetType()
     {
@@ -84,13 +71,13 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
         $validator->setType(
             array(
                 Zend_Validate_CreditCard::AMERICAN_EXPRESS,
-                Zend_Validate_CreditCard::MAESTRO
+                Zend_Validate_CreditCard::MAESTRO,
             )
         );
         $this->assertEquals(
             array(
                 Zend_Validate_CreditCard::AMERICAN_EXPRESS,
-                Zend_Validate_CreditCard::MAESTRO
+                Zend_Validate_CreditCard::MAESTRO,
             ),
             $validator->getType()
         );
@@ -102,27 +89,25 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
             array(
                 Zend_Validate_CreditCard::AMERICAN_EXPRESS,
                 Zend_Validate_CreditCard::MAESTRO,
-                Zend_Validate_CreditCard::MASTERCARD
+                Zend_Validate_CreditCard::MASTERCARD,
             ),
             $validator->getType()
         );
     }
 
     /**
-     * Test specific provider
-     *
-     * @return void
+     * Test specific provider.
      */
     public function testProvider()
     {
-        $validator      = new Zend_Validate_CreditCard(Zend_Validate_CreditCard::VISA);
+        $validator = new Zend_Validate_CreditCard(Zend_Validate_CreditCard::VISA);
         $valuesExpected = array(
             array('4111111111111111', true),
             array('5404000000000001', false),
             array('374200000000004',  false),
             array('4444555566667777', false),
-            array('ABCDEF',           false)
-            );
+            array('ABCDEF',           false),
+        );
         foreach ($valuesExpected as $test) {
             $input = $test[0];
             $result = $test[1];
@@ -131,9 +116,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test non string input
-     *
-     * @return void
+     * Test non string input.
      */
     public function testIsValidWithNonString()
     {
@@ -142,9 +125,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test service class with invalid validation
-     *
-     * @return void
+     * Test service class with invalid validation.
      */
     public function testServiceClass()
     {
@@ -154,62 +135,57 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
         $valuesExpected = array(
             '4111111111111111' => false,
             '5404000000000001' => false,
-            '374200000000004'  => false,
+            '374200000000004' => false,
             '4444555566667777' => false,
-            'ABCDEF'           => false
-            );
+            'ABCDEF' => false,
+        );
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $validator->isValid($input));
         }
     }
 
     /**
-     * Test non string input
-     *
-     * @return void
+     * Test non string input.
      */
     public function testConstructionWithOptions()
     {
         $validator = new Zend_Validate_CreditCard(
             array(
                 'type' => Zend_Validate_CreditCard::VISA,
-                'service' => array('Zend_Validate_CreditCardTest', 'staticCallback')
+                'service' => array('Zend_Validate_CreditCardTest', 'staticCallback'),
             )
         );
 
         $valuesExpected = array(
             '4111111111111111' => false,
             '5404000000000001' => false,
-            '374200000000004'  => false,
+            '374200000000004' => false,
             '4444555566667777' => false,
-            'ABCDEF'           => false
-            );
+            'ABCDEF' => false,
+        );
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $validator->isValid($input));
         }
     }
 
     /**
-     * Test a invalid service class
-     *
-     * @return void
+     * Test a invalid service class.
      */
     public function testInvalidServiceClass()
     {
         $validator = new Zend_Validate_CreditCard();
         $this->assertEquals(null, $validator->getService());
+
         try {
             $validator->setService(array('Zend_Validate_CreditCardTest', 'nocallback'));
             $this->fail('Exception expected');
-        } catch(Zend_Exception $e) {
+        } catch (Zend_Exception $e) {
             $this->assertContains('Invalid callback given', $e->getMessage());
         }
     }
 
     /**
-     * Test a config object
-     *
-     * @return void
+     * Test a config object.
      */
     public function testConfigObject()
     {
@@ -222,9 +198,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test optional parameters with config object
-     *
-     * @return void
+     * Test optional parameters with config object.
      */
     public function testOptionalConstructorParameterByConfigObject()
     {
@@ -237,9 +211,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test optional constructor parameters
-     *
-     * @return void
+     * Test optional constructor parameters.
      */
     public function testOptionalConstructorParameter()
     {
@@ -251,8 +223,9 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
     /**
      * @group ZF-9477
      */
-    public function testMultiInstitute() {
-        $validator      = new Zend_Validate_CreditCard(array('type' => Zend_Validate_CreditCard::MASTERCARD));
+    public function testMultiInstitute()
+    {
+        $validator = new Zend_Validate_CreditCard(array('type' => Zend_Validate_CreditCard::MASTERCARD));
         $this->assertFalse($validator->isValid('4111111111111111'));
         $message = $validator->getMessages();
         $this->assertContains('not from an allowed institute', current($message));

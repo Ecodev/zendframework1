@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_Placeholder_Container */
 require_once 'Zend/View/Helper/Placeholder/Container.php';
@@ -28,10 +23,6 @@ require_once 'Zend/View/Helper/Placeholder/Container.php';
 /**
  * Test class for Zend_View_Helper_Placeholder_Container.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -45,21 +36,16 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
 
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_Placeholder_ContainerTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_Placeholder_ContainerTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -69,17 +55,12 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
         unset($this->container);
     }
 
-    /**
-     * @return void
-     */
     public function testSetSetsASingleValue()
     {
         $this->container['foo'] = 'bar';
@@ -92,30 +73,21 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals('foo', $this->container[0]);
     }
 
-    /**
-     * @return void
-     */
     public function testGetValueReturnsScalarWhenOneElementRegistered()
     {
         $this->container->set('foo');
         $this->assertEquals('foo', $this->container->getValue());
     }
 
-    /**
-     * @return void
-     */
     public function testGetValueReturnsArrayWhenMultipleValuesPresent()
     {
         $this->container['foo'] = 'bar';
         $this->container['bar'] = 'baz';
         $expected = array('foo' => 'bar', 'bar' => 'baz');
-        $return   = $this->container->getValue();
+        $return = $this->container->getValue();
         $this->assertEquals($expected, $return);
     }
 
-    /**
-     * @return void
-     */
     public function testPrefixAccesorsWork()
     {
         $this->assertEquals('', $this->container->getPrefix());
@@ -123,18 +95,12 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals('<ul><li>', $this->container->getPrefix());
     }
 
-    /**
-     * @return void
-     */
     public function testSetPrefixImplementsFluentInterface()
     {
         $result = $this->container->setPrefix('<ul><li>');
         $this->assertSame($this->container, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testPostfixAccesorsWork()
     {
         $this->assertEquals('', $this->container->getPostfix());
@@ -142,18 +108,12 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals('</li></ul>', $this->container->getPostfix());
     }
 
-    /**
-     * @return void
-     */
     public function testSetPostfixImplementsFluentInterface()
     {
         $result = $this->container->setPostfix('</li></ul>');
         $this->assertSame($this->container, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testSeparatorAccesorsWork()
     {
         $this->assertEquals('', $this->container->getSeparator());
@@ -161,18 +121,12 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals('</li><li>', $this->container->getSeparator());
     }
 
-    /**
-     * @return void
-     */
     public function testSetSeparatorImplementsFluentInterface()
     {
         $result = $this->container->setSeparator('</li><li>');
         $this->assertSame($this->container, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testIndentAccesorsWork()
     {
         $this->assertEquals('', $this->container->getIndent());
@@ -182,18 +136,12 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals('     ', $this->container->getIndent());
     }
 
-    /**
-     * @return void
-     */
     public function testSetIndentImplementsFluentInterface()
     {
         $result = $this->container->setIndent('    ');
         $this->assertSame($this->container, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testCapturingToPlaceholderStoresContent()
     {
         $this->container->captureStart();
@@ -204,9 +152,6 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertContains('This is content intended for capture', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testCapturingToPlaceholderAppendsContent()
     {
         $this->container[] = 'foo';
@@ -218,16 +163,13 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
 
         $this->assertEquals($originalCount + 1, count($this->container));
 
-        $value     = $this->container->getValue();
-        $keys      = array_keys($value);
+        $value = $this->container->getValue();
+        $keys = array_keys($value);
         $lastIndex = array_pop($keys);
         $this->assertEquals('foo', $value[$lastIndex - 1]);
         $this->assertContains('This is content intended for capture', $value[$lastIndex]);
     }
 
-    /**
-     * @return void
-     */
     public function testCapturingToPlaceholderUsingPrependPrependsContent()
     {
         $this->container[] = 'foo';
@@ -239,16 +181,13 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
 
         $this->assertEquals($originalCount + 1, count($this->container));
 
-        $value     = $this->container->getValue();
-        $keys      = array_keys($value);
+        $value = $this->container->getValue();
+        $keys = array_keys($value);
         $lastIndex = array_pop($keys);
         $this->assertEquals('foo', $value[$lastIndex]);
         $this->assertContains('This is content intended for capture', $value[$lastIndex - 1]);
     }
 
-    /**
-     * @return void
-     */
     public function testCapturingToPlaceholderUsingSetOverwritesContent()
     {
         $this->container[] = 'foo';
@@ -262,9 +201,6 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertContains('This is content intended for capture', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testCapturingToPlaceholderKeyUsingSetCapturesContent()
     {
         $this->container->captureStart('SET', 'key');
@@ -277,9 +213,6 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertContains('This is content intended for capture', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testCapturingToPlaceholderKeyUsingSetReplacesContentAtKey()
     {
         $this->container['key'] = 'Foobar';
@@ -293,9 +226,6 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertContains('This is content intended for capture', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testCapturingToPlaceholderKeyUsingAppendAppendsContentAtKey()
     {
         $this->container['key'] = 'Foobar ';
@@ -309,17 +239,15 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertContains('Foobar This is content intended for capture', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testNestedCapturesThrowsException()
     {
         $this->container[] = 'foo';
         $caught = false;
+
         try {
             $this->container->captureStart('SET');
-                $this->container->captureStart('SET');
-                $this->container->captureEnd();
+            $this->container->captureStart('SET');
+            $this->container->captureEnd();
             $this->container->captureEnd();
         } catch (Exception $e) {
             $this->container->captureEnd();
@@ -329,9 +257,6 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertTrue($caught, 'Nested captures should throw exceptions');
     }
 
-    /**
-     * @return void
-     */
     public function testToStringWithNoModifiersAndSingleValueReturnsValue()
     {
         $this->container->set('foo');
@@ -339,21 +264,15 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals($this->container->getValue(), $value);
     }
 
-    /**
-     * @return void
-     */
     public function testToStringWithModifiersAndSingleValueReturnsFormattedValue()
     {
         $this->container->set('foo');
         $this->container->setPrefix('<li>')
-                        ->setPostfix('</li>');
+            ->setPostfix('</li>');
         $value = $this->container->toString();
         $this->assertEquals('<li>foo</li>', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testToStringWithNoModifiersAndCollectionReturnsImplodedString()
     {
         $this->container[] = 'foo';
@@ -363,56 +282,44 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals('foobarbaz', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testToStringWithModifiersAndCollectionReturnsFormattedString()
     {
         $this->container[] = 'foo';
         $this->container[] = 'bar';
         $this->container[] = 'baz';
         $this->container->setPrefix('<ul><li>')
-                        ->setSeparator('</li><li>')
-                        ->setPostfix('</li></ul>');
+            ->setSeparator('</li><li>')
+            ->setPostfix('</li></ul>');
         $value = $this->container->toString();
         $this->assertEquals('<ul><li>foo</li><li>bar</li><li>baz</li></ul>', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testToStringWithModifiersAndCollectionReturnsFormattedStringWithIndentation()
     {
         $this->container[] = 'foo';
         $this->container[] = 'bar';
         $this->container[] = 'baz';
         $this->container->setPrefix('<ul><li>')
-                        ->setSeparator('</li>' . PHP_EOL . '<li>')
-                        ->setPostfix('</li></ul>')
-                        ->setIndent('    ');
+            ->setSeparator('</li>' . PHP_EOL . '<li>')
+            ->setPostfix('</li></ul>')
+            ->setIndent('    ');
         $value = $this->container->toString();
         $expectedValue = '    <ul><li>foo</li>' . PHP_EOL . '    <li>bar</li>' . PHP_EOL . '    <li>baz</li></ul>';
         $this->assertEquals($expectedValue, $value);
     }
 
-    /**
-     * @return void
-     */
     public function test__toStringProxiesToToString()
     {
         $this->container[] = 'foo';
         $this->container[] = 'bar';
         $this->container[] = 'baz';
         $this->container->setPrefix('<ul><li>')
-                        ->setSeparator('</li><li>')
-                        ->setPostfix('</li></ul>');
+            ->setSeparator('</li><li>')
+            ->setPostfix('</li></ul>');
         $value = $this->container->__toString();
         $this->assertEquals('<ul><li>foo</li><li>bar</li><li>baz</li></ul>', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testPrependPushesValueToTopOfContainer()
     {
         $this->container['foo'] = 'bar';
@@ -426,9 +333,9 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
     public function testIndentationIsHonored()
     {
         $this->container->setIndent(4)
-                        ->setPrefix("<ul>\n    <li>")
-                        ->setSeparator("</li>\n    <li>")
-                        ->setPostfix("</li>\n</ul>");
+            ->setPrefix("<ul>\n    <li>")
+            ->setSeparator("</li>\n    <li>")
+            ->setPostfix("</li>\n</ul>");
         $this->container->append('foo');
         $this->container->append('bar');
         $this->container->append('baz');
@@ -460,4 +367,3 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals('', (string) $this->container);
     }
 }
-

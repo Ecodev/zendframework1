@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,21 +22,14 @@
  */
 require_once 'Zend/Validate/InArray.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -54,9 +44,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -65,9 +53,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getHaystack() returns expected value
-     *
-     * @return void
+     * Ensures that getHaystack() returns expected value.
      */
     public function testGetHaystack()
     {
@@ -76,9 +62,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getStrict() returns expected default value
-     *
-     * @return void
+     * Ensures that getStrict() returns expected default value.
      */
     public function testGetStrict()
     {
@@ -89,8 +73,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
     public function testGivingOptionsAsArrayAtInitiation()
     {
         $validator = new Zend_Validate_InArray(
-            array('haystack' =>
-                array(1, 'a', 2.3)
+            array('haystack' => array(1, 'a', 2.3),
             )
         );
         $this->assertTrue($validator->isValid(1));
@@ -105,8 +88,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
     public function testSettingANewHaystack()
     {
         $validator = new Zend_Validate_InArray(
-            array('haystack' =>
-                array('test', 0, 'A')
+            array('haystack' => array('test', 0, 'A'),
             )
         );
         $this->assertTrue($validator->isValid('A'));
@@ -139,7 +121,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
         $validator = new Zend_Validate_InArray(
             array(
                 'haystack' => array('test', 0, 'A'),
-                'strict'   => true
+                'strict' => true,
             )
         );
         $this->assertTrue($validator->getStrict());
@@ -158,8 +140,8 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
     {
         $validator = new Zend_Validate_InArray(
             array(
-                'haystack'  => array('test', 0, 'A'),
-                'recursive' => true
+                'haystack' => array('test', 0, 'A'),
+                'recursive' => true,
             )
         );
         $this->assertTrue($validator->getRecursive());
@@ -169,11 +151,10 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
     {
         $validator = new Zend_Validate_InArray(
             array(
-                'haystack'  =>
-                    array(
-                        'firstDimension' => array('test', 0, 'A'),
-                        'secondDimension' => array('value', 2, 'a')),
-                'recursive' => false
+                'haystack' => array(
+                    'firstDimension' => array('test', 0, 'A'),
+                    'secondDimension' => array('value', 2, 'a'), ),
+                'recursive' => false,
             )
         );
         $this->assertFalse($validator->isValid('A'));
@@ -187,7 +168,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
         $validator = new Zend_Validate_InArray(
             array(
                 'firstDimension' => array('test', 0, 'A'),
-                'secondDimension' => array('value', 2, 'a')
+                'secondDimension' => array('value', 2, 'a'),
             )
         );
         $this->assertFalse($validator->isValid('A'));
@@ -220,7 +201,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
         );
         $validator = new Zend_Validate_InArray(array('a'));
         $validator->isValid($input);
-        $messages  = $validator->getMessages();
+        $messages = $validator->getMessages();
         $this->assertEquals(
             "'x, y' was not found in the haystack",
             current($messages)

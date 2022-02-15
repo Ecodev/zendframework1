@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Layout
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Layout.php';
 require_once 'Zend/Layout/Controller/Plugin/Layout.php';
 require_once 'Zend/Layout/Controller/Action/Helper/Layout.php';
@@ -34,10 +28,6 @@ require_once 'Zend/View.php';
 /**
  * Test class for Zend_Layout.
  *
- * @category   Zend
- * @package    Zend_Layout
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Layout
  */
@@ -45,21 +35,16 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Layout_LayoutTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Layout_LayoutTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -77,8 +62,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -107,19 +90,16 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($layout->getMvcEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testSetConfigModifiesAttributes()
     {
         $layout = new Zend_Layout();
 
         require_once 'Zend/Config.php';
         $config = new Zend_Config(array(
-            'layout'           => 'foo',
-            'contentKey'       => 'foo',
-            'layoutPath'       => __DIR__,
-            'mvcEnabled'       => false,
+            'layout' => 'foo',
+            'contentKey' => 'foo',
+            'layoutPath' => __DIR__,
+            'mvcEnabled' => false,
         ));
         $layout->setConfig($config);
         $this->assertEquals('foo', $layout->getLayout());
@@ -128,19 +108,16 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($layout->getMvcEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testSetOptionsWithConfigObjectModifiesAttributes()
     {
         $layout = new Zend_Layout();
 
         require_once 'Zend/Config.php';
         $config = new Zend_Config(array(
-            'layout'           => 'foo',
-            'contentKey'       => 'foo',
-            'layoutPath'       => __DIR__,
-            'mvcEnabled'       => false,
+            'layout' => 'foo',
+            'contentKey' => 'foo',
+            'layoutPath' => __DIR__,
+            'mvcEnabled' => false,
         ));
         $layout->setOptions($config);
         $this->assertEquals('foo', $layout->getLayout());
@@ -149,9 +126,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($layout->getMvcEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testLayoutAccessorsModifyAndRetrieveLayoutValue()
     {
         $layout = new Zend_Layout();
@@ -159,9 +133,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('foo', $layout->getLayout());
     }
 
-    /**
-     * @return void
-     */
     public function testSetLayoutEnablesLayouts()
     {
         $layout = new Zend_Layout();
@@ -171,9 +142,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($layout->isEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testDisableLayoutDisablesLayouts()
     {
         $layout = new Zend_Layout();
@@ -182,9 +150,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($layout->isEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testEnableLayoutEnablesLayouts()
     {
         $layout = new Zend_Layout();
@@ -195,9 +160,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($layout->isEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testLayoutPathAccessorsWork()
     {
         $layout = new Zend_Layout();
@@ -205,9 +167,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(__DIR__, $layout->getLayoutPath());
     }
 
-    /**
-     * @return void
-     */
     public function testContentKeyAccessorsWork()
     {
         $layout = new Zend_Layout();
@@ -215,27 +174,18 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('foo', $layout->getContentKey());
     }
 
-    /**
-     * @return void
-     */
     public function testMvcEnabledFlagFalseAfterStandardInstantiation()
     {
         $layout = new Zend_Layout();
         $this->assertFalse($layout->getMvcEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testMvcEnabledFlagTrueWhenInstantiatedViaStartMvcMethod()
     {
         $layout = Zend_Layout::startMvc();
         $this->assertTrue($layout->getMvcEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testGetViewRetrievesViewWhenNoneSet()
     {
         $layout = new Zend_Layout();
@@ -243,9 +193,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($view instanceof Zend_View_Interface);
     }
 
-    /**
-     * @return void
-     */
     public function testGetViewRetrievesViewFromViewRenderer()
     {
         $layout = new Zend_Layout();
@@ -254,21 +201,15 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($vr->view, $view);
     }
 
-    /**
-     * @return void
-     */
     public function testViewAccessorsAllowSettingView()
     {
         $layout = new Zend_Layout();
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $layout->setView($view);
         $received = $layout->getView();
         $this->assertSame($view, $received);
     }
 
-    /**
-     * @return void
-     */
     public function testInflectorAccessorsWork()
     {
         $layout = new Zend_Layout();
@@ -277,9 +218,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($inflector, $layout->getInflector());
     }
 
-    /**
-     * @return void
-     */
     public function testPluginClassAccessorsSetState()
     {
         $layout = new Zend_Layout();
@@ -287,18 +225,12 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Foo_Bar', $layout->getPluginClass());
     }
 
-    /**
-     * @return void
-     */
     public function testPluginClassPassedToStartMvcIsUsed()
     {
         $layout = Zend_Layout::startMvc(array('pluginClass' => 'Zend_Layout_LayoutTest_Controller_Plugin_Layout'));
         $this->assertTrue(Zend_Controller_Front::getInstance()->hasPlugin('Zend_Layout_LayoutTest_Controller_Plugin_Layout'));
     }
 
-    /**
-     * @return void
-     */
     public function testHelperClassAccessorsSetState()
     {
         $layout = new Zend_Layout();
@@ -306,9 +238,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Foo_Bar', $layout->getHelperClass());
     }
 
-    /**
-     * @return void
-     */
     public function testHelperClassPassedToStartMvcIsUsed()
     {
         $layout = Zend_Layout::startMvc(array('helperClass' => 'Zend_Layout_LayoutTest_Controller_Action_Helper_Layout'));
@@ -317,9 +246,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($helper instanceof Zend_Layout_LayoutTest_Controller_Action_Helper_Layout);
     }
 
-    /**
-     * @return void
-     */
     public function testEnableInflector()
     {
         $layout = new Zend_Layout();
@@ -329,9 +255,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($layout->inflectorEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testDisableInflector()
     {
         $layout = new Zend_Layout();
@@ -339,9 +262,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($layout->inflectorEnabled());
     }
 
-    /**
-     * @return void
-     */
     public function testOverloadingAccessorsWork()
     {
         $layout = new Zend_Layout();
@@ -352,9 +272,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(isset($layout->foo));
     }
 
-    /**
-     * @return void
-     */
     public function testAssignWithKeyValuePairPopulatesPropertyAccessibleViaOverloading()
     {
         $layout = new Zend_Layout();
@@ -362,31 +279,25 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('bar', $layout->foo);
     }
 
-    /**
-     * @return void
-     */
     public function testAssignWithArrayPopulatesPropertiesAccessibleViaOverloading()
     {
         $layout = new Zend_Layout();
         $layout->assign(array(
             'foo' => 'bar',
-            'bar' => 'baz'
+            'bar' => 'baz',
         ));
         $this->assertEquals('bar', $layout->foo);
         $this->assertEquals('baz', $layout->bar);
     }
 
-    /**
-     * @return void
-     */
     public function testRenderWithNoInflection()
     {
         $layout = new Zend_Layout();
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $layout->setLayoutPath(__DIR__ . '/_files/layouts')
-               ->disableInflector()
-               ->setLayout('layout.phtml')
-               ->setView($view);
+            ->disableInflector()
+            ->setLayout('layout.phtml')
+            ->setView($view);
         $layout->message = 'Rendered layout';
         $received = $layout->render();
         $this->assertContains('Testing layouts:', $received);
@@ -396,9 +307,9 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     public function testRenderWithDefaultInflection()
     {
         $layout = new Zend_Layout();
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $layout->setLayoutPath(__DIR__ . '/_files/layouts')
-               ->setView($view);
+            ->setView($view);
         $layout->message = 'Rendered layout';
         $received = $layout->render();
         $this->assertContains('Testing layouts:', $received);
@@ -408,12 +319,12 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     public function testRenderWithCustomInflection()
     {
         $layout = new Zend_Layout();
-        $view   = new Zend_View();
+        $view = new Zend_View();
         $layout->setLayoutPath(__DIR__ . '/_files/layouts')
-               ->setView($view);
+            ->setView($view);
         $inflector = $layout->getInflector();
         $inflector->setTarget('test/:script.:suffix')
-                  ->setStaticRule('suffix', 'php');
+            ->setStaticRule('suffix', 'php');
         $layout->message = 'Rendered layout';
         $received = $layout->render();
         $this->assertContains('Testing layouts with custom inflection:', $received);
@@ -440,7 +351,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 
         Zend_Layout::startMvc(array(
             'mvcSuccessfulActionOnly' => false,
-            'contentKey'              => 'foobar'
+            'contentKey' => 'foobar',
         ));
         $this->assertFalse($layout->getMvcSuccessfulActionOnly());
         $this->assertEquals('foobar', $layout->getContentKey());
@@ -496,7 +407,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     public function testLayoutWithViewBasePath()
     {
         $layout = new Zend_Layout(array(
-            'viewBasePath' => __DIR__ . '/_files/layouts-basepath/')
+            'viewBasePath' => __DIR__ . '/_files/layouts-basepath/', )
             );
         $this->assertEquals('layout inside basePath', $layout->render());
         $layout->setLayout('layout2');
@@ -524,8 +435,8 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         require_once __DIR__ . '/_files/MinimalCustomView.php';
         $layout = new Zend_Layout(array(
             'view' => new Zend_Layout_Test_MinimalCustomView(),
-            'ViewScriptPath' => 'some/path'
-            ));
+            'ViewScriptPath' => 'some/path',
+        ));
         $layout->render();
     }
 
@@ -555,7 +466,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 }
 
 /**
- * Zend_Layout extension to allow resetting mvcInstance static member
+ * Zend_Layout extension to allow resetting mvcInstance static member.
  */
 class Zend_Layout_LayoutTest_Override extends Zend_Layout
 {
@@ -572,4 +483,3 @@ class Zend_Layout_LayoutTest_Controller_Plugin_Layout extends Zend_Layout_Contro
 class Zend_Layout_LayoutTest_Controller_Action_Helper_Layout extends Zend_Layout_Controller_Action_Helper_Layout
 {
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /** Zend_View_Helper_Action */
 require_once 'Zend/View/Helper/Action.php';
@@ -40,10 +35,6 @@ require_once 'Zend/View.php';
 /**
  * Test class for Zend_View_Helper_Action.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -52,40 +43,36 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_ActionTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_ActionTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
         $this->_origServer = $_SERVER;
         $_SERVER = array(
             'SCRIPT_FILENAME' => __FILE__,
-            'PHP_SELF'        => __FILE__,
+            'PHP_SELF' => __FILE__,
         );
 
         $front = Zend_Controller_Front::getInstance();
         $front->resetInstance();
 
-        $this->request  = new Zend_Controller_Request_Http('http://framework.zend.com/action-foo');
+        $this->request = new Zend_Controller_Request_Http('http://framework.zend.com/action-foo');
         $this->response = new Zend_Controller_Response_Http();
         $this->response->headersSentThrowsException = false;
         $front->setRequest($this->request)
-              ->setResponse($this->response)
-              ->addModuleDirectory(__DIR__ . '/_files/modules');
+            ->setResponse($this->response)
+            ->addModuleDirectory(__DIR__ . '/_files/modules');
 
-        $this->view   = new Zend_View();
+        $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_Action();
         $this->helper->setView($this->view);
     }
@@ -93,8 +80,6 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -102,9 +87,6 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $_SERVER = $this->_origServer;
     }
 
-    /**
-     * @return void
-     */
     public function testInitialStateHasClonedObjects()
     {
         $this->assertNotSame($this->request, $this->helper->request);
@@ -114,13 +96,10 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertNotSame($dispatcher, $this->helper->dispatcher);
     }
 
-    /**
-     * @return void
-     */
     public function testInitialStateHasDefaultModuleName()
     {
         $dispatcher = Zend_Controller_Front::getInstance()->getDispatcher();
-        $module     = $dispatcher->getDefaultModule();
+        $module = $dispatcher->getDefaultModule();
         $this->assertEquals($module, $this->helper->defaultModule);
 
         $dispatcher->setDefaultModule('foo');
@@ -128,9 +107,6 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('foo', $helper->defaultModule);
     }
 
-    /**
-     * @return void
-     */
     public function testResetObjectsClearsRequestVars()
     {
         $this->helper->request->setParam('foo', 'action-bar');
@@ -138,9 +114,6 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($this->helper->request->getParam('foo'));
     }
 
-    /**
-     * @return void
-     */
     public function testResetObjectsClearsResponseBody()
     {
         $this->helper->response->setBody('foobarbaz');
@@ -149,41 +122,29 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(empty($body));
     }
 
-    /**
-     * @return void
-     */
     public function testResetObjectsClearsResponseHeaders()
     {
         $this->helper->response->setHeader('X-Foo', 'Bar')
-                               ->setRawHeader('HTTP/1.1');
+            ->setRawHeader('HTTP/1.1');
         $this->helper->resetObjects();
-        $headers    = $this->helper->response->getHeaders();
+        $headers = $this->helper->response->getHeaders();
         $rawHeaders = $this->helper->response->getRawHeaders();
         $this->assertTrue(empty($headers));
         $this->assertTrue(empty($rawHeaders));
     }
 
-    /**
-     * @return void
-     */
     public function testActionReturnsContentFromDefaultModule()
     {
         $value = $this->helper->action('bar', 'action-foo');
         $this->assertContains('In default module, FooController::barAction()', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testActionReturnsContentFromSpecifiedModule()
     {
         $value = $this->helper->action('bar', 'foo', 'foo');
         $this->assertContains('In foo module, Foo_FooController::barAction()', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testActionReturnsContentReflectingPassedParams()
     {
         $value = $this->helper->action('baz', 'action-foo', null, array('bat' => 'This is my message'));
@@ -191,30 +152,22 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('This is my message', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testActionReturnsEmptyStringWhenForwardDetected()
     {
         $value = $this->helper->action('forward', 'action-foo');
         $this->assertEquals('', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testActionReturnsEmptyStringWhenRedirectDetected()
     {
         $value = $this->helper->action('redirect', 'action-foo');
         $this->assertEquals('', $value);
     }
 
-    /**
-     * @return void
-     */
     public function testConstructorThrowsExceptionWithNoControllerDirsInFrontController()
     {
         Zend_Controller_Front::getInstance()->resetInstance();
+
         try {
             $helper = new Zend_View_Helper_Action();
             $this->fail('Empty front controller should cause action helper to throw exception');
@@ -222,9 +175,6 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testConstructorThrowsExceptionWithNoRequestInFrontController()
     {
         $front = Zend_Controller_Front::getInstance();
@@ -233,7 +183,8 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $response = new Zend_Controller_Response_Http();
         $response->headersSentThrowsException = false;
         $front->setResponse($response)
-              ->addModuleDirectory(__DIR__ . '/_files/modules');
+            ->addModuleDirectory(__DIR__ . '/_files/modules');
+
         try {
             $helper = new Zend_View_Helper_Action();
             $this->fail('No request in front controller should cause action helper to throw exception');
@@ -241,9 +192,6 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @return void
-     */
     public function testConstructorThrowsExceptionWithNoResponseInFrontController()
     {
         $front = Zend_Controller_Front::getInstance();
@@ -251,7 +199,8 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
 
         $request = new Zend_Controller_Request_Http('http://framework.zend.com/foo');
         $front->setRequest($this->request)
-              ->addModuleDirectory(__DIR__ . '/_files/modules');
+            ->addModuleDirectory(__DIR__ . '/_files/modules');
+
         try {
             $helper = new Zend_View_Helper_Action();
             $this->fail('No response in front controller should cause action helper to throw exception');
@@ -290,7 +239,6 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $partial->partial('partialActionCall.phtml');
 
         $this->assertSame($this->view, Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer')->view);
-
     }
 
     /**
@@ -300,7 +248,7 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
      */
     public function testActionReturnsViewRendererToOriginalState()
     {
-        /* Setup the VR as if we were inside an action controller */
+        // Setup the VR as if we were inside an action controller
         $viewRenderer = new Zend_Controller_Action_Helper_ViewRenderer();
         $viewRenderer->init();
         Zend_Controller_Action_HelperBroker::addHelper($viewRenderer);
@@ -318,8 +266,7 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Multiple call state issue
-     *
+     * Multiple call state issue.
      *
      * @group ZF-3456
      */
@@ -329,4 +276,3 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertRegexp('/Baz-Three-View-Script\s+Baz-Two-View-Script\s+Baz-One-View-Script/s', $value);
     }
 }
-

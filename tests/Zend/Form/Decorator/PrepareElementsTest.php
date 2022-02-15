@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,28 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Decorator/PrepareElements.php';
 require_once 'Zend/Form.php';
 require_once 'Zend/Form/SubForm.php';
 
-
 /**
- * Test class for Zend_Form_Decorator_PrepareElements
+ * Test class for Zend_Form_Decorator_PrepareElements.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -41,20 +30,16 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_PrepareElementsTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_PrepareElementsTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -66,8 +51,6 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -77,6 +60,7 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
     {
         require_once 'Zend/View.php';
         $view = new Zend_View();
+
         return $view;
     }
 
@@ -84,16 +68,16 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
     {
         $sub1 = new Zend_Form_SubForm();
         $sub1->addElement('text', 'foo')
-             ->addElement('text', 'bar');
+            ->addElement('text', 'bar');
 
         $this->form->setElementsBelongTo('foo')
-                   ->addElement('text', 'foo')
-                   ->addElement('text', 'bar')
-                   ->addElement('text', 'baz')
-                   ->addElement('text', 'bat')
-                   ->addDisplayGroup(array('baz', 'bat'), 'bazbat')
-                   ->addSubForm($sub1, 'sub')
-                   ->setView($this->getView());
+            ->addElement('text', 'foo')
+            ->addElement('text', 'bar')
+            ->addElement('text', 'baz')
+            ->addElement('text', 'bat')
+            ->addDisplayGroup(array('baz', 'bat'), 'bazbat')
+            ->addSubForm($sub1, 'sub')
+            ->setView($this->getView());
     }
 
     public function testEachElementShouldHaveUpdatedBelongsToProperty()
@@ -145,4 +129,3 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
         }
     }
 }
-

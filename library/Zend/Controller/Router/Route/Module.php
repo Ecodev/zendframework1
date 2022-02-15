@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage Router
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @version    $Id$
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -24,40 +21,37 @@
 require_once 'Zend/Controller/Router/Route/Abstract.php';
 
 /**
- * Module Route
+ * Module Route.
  *
  * Default route for module functionality
  *
- * @package    Zend_Controller
- * @subpackage Router
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @see        http://manuals.rubyonrails.com/read/chapter/65
  */
 class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_Abstract
 {
-
     /**
-     * Default values for the route (ie. module, controller, action, params)
+     * Default values for the route (ie. module, controller, action, params).
      *
      * @var array
      */
     protected $_defaults;
 
     /**
-     * Default values for the route (ie. module, controller, action, params)
+     * Default values for the route (ie. module, controller, action, params).
      *
      * @var array
      */
     protected $_values = array();
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $_moduleValid = false;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $_keysSet = false;
 
@@ -66,10 +60,12 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
      *
      * @var string
      */
-    protected $_moduleKey     = 'module';
+    protected $_moduleKey = 'module';
+
     protected $_controllerKey = 'controller';
-    protected $_actionKey     = 'action';
-    /**#@-*/
+
+    protected $_actionKey = 'action';
+    // #@-
 
     /**
      * @var Zend_Controller_Dispatcher_Interface
@@ -82,7 +78,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
     protected $_request;
 
     /**
-     * Get the version of the route
+     * Get the version of the route.
      *
      * @return int
      */
@@ -92,24 +88,23 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Instantiates route based on passed Zend_Config structure
+     * Instantiates route based on passed Zend_Config structure.
      *
-     * @param Zend_Config $config
      * @return Zend_Controller_Router_Route_Module
      */
     public static function getInstance(Zend_Config $config)
     {
         $frontController = Zend_Controller_Front::getInstance();
 
-        $defs       = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : array();
+        $defs = ($config->defaults instanceof Zend_Config) ? $config->defaults->toArray() : array();
         $dispatcher = $frontController->getDispatcher();
-        $request    = $frontController->getRequest();
+        $request = $frontController->getRequest();
 
         return new self($defs, $dispatcher, $request);
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param array                                $defaults   Defaults for map variables with keys as variable names
      * @param Zend_Controller_Dispatcher_Interface $dispatcher Dispatcher object
@@ -117,10 +112,9 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
      */
     public function __construct(
         array $defaults = array(),
-        Zend_Controller_Dispatcher_Interface $dispatcher = null,
-        Zend_Controller_Request_Abstract $request = null
-    )
-    {
+        ?Zend_Controller_Dispatcher_Interface $dispatcher = null,
+        ?Zend_Controller_Request_Abstract $request = null
+    ) {
         $this->_defaults = $defaults;
 
         if (isset($request)) {
@@ -133,23 +127,21 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Set request keys based on values in request object
-     *
-     * @return void
+     * Set request keys based on values in request object.
      */
     protected function _setRequestKeys()
     {
         if (null !== $this->_request) {
-            $this->_moduleKey     = $this->_request->getModuleKey();
+            $this->_moduleKey = $this->_request->getModuleKey();
             $this->_controllerKey = $this->_request->getControllerKey();
-            $this->_actionKey     = $this->_request->getActionKey();
+            $this->_actionKey = $this->_request->getActionKey();
         }
 
         if (null !== $this->_dispatcher) {
             $this->_defaults += array(
                 $this->_controllerKey => $this->_dispatcher->getDefaultControllerName(),
-                $this->_actionKey     => $this->_dispatcher->getDefaultAction(),
-                $this->_moduleKey     => $this->_dispatcher->getDefaultModule()
+                $this->_actionKey => $this->_dispatcher->getDefaultAction(),
+                $this->_moduleKey => $this->_dispatcher->getDefaultModule(),
             );
         }
 
@@ -165,7 +157,8 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
      * Always returns the values as an array.
      *
      * @param string  $path Path used to match against this routing map
-     * @param boolean $partial
+     * @param bool $partial
+     *
      * @return array An array of assigned values or a false on a mismatch
      */
     public function match($path, $partial = false)
@@ -186,7 +179,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
 
             if ($this->_dispatcher && $this->_dispatcher->isValidModule($path[0])) {
                 $values[$this->_moduleKey] = array_shift($path);
-                $this->_moduleValid        = true;
+                $this->_moduleValid = true;
             }
 
             if (count($path) && !empty($path[0])) {
@@ -199,9 +192,9 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
 
             if ($numSegs = count($path)) {
                 for ($i = 0; $i < $numSegs; $i = $i + 2) {
-                    $key          = urldecode($path[$i]);
-                    $val          = isset($path[$i + 1]) ? urldecode($path[$i + 1]) : null;
-                    $params[$key] = (isset($params[$key]) ? (array_merge((array)$params[$key], array($val))) : $val);
+                    $key = urldecode($path[$i]);
+                    $val = isset($path[$i + 1]) ? urldecode($path[$i + 1]) : null;
+                    $params[$key] = (isset($params[$key]) ? (array_merge((array) $params[$key], array($val))) : $val);
                 }
             }
         }
@@ -216,12 +209,13 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Assembles user submitted parameters forming a URL path defined by this route
+     * Assembles user submitted parameters forming a URL path defined by this route.
      *
      * @param array   $data  An array of variable and value pairs used as parameters
-     * @param boolean $reset Weither to reset the current params
-     * @param boolean $encode
-     * @param boolean $partial
+     * @param bool $reset Weither to reset the current params
+     * @param bool $encode
+     * @param bool $partial
+     *
      * @return string Route path with user submitted parameters
      */
     public function assemble($data = array(), $reset = false, $encode = true, $partial = false)
@@ -299,9 +293,10 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Return a single parameter of route's defaults
+     * Return a single parameter of route's defaults.
      *
      * @param string $name Array key of the parameter
+     *
      * @return string Previously set default
      */
     public function getDefault($name)
@@ -312,7 +307,7 @@ class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_A
     }
 
     /**
-     * Return an array of defaults
+     * Return an array of defaults.
      *
      * @return array Route defaults
      */

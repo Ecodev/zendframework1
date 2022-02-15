@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,17 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Zend_Translate_Adapter_Tmx
+ * Zend_Translate_Adapter_Tmx.
  */
 require_once 'Zend/Translate/Adapter/Tmx.php';
 
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Translate
  */
@@ -37,12 +30,10 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Translate_Adapter_TmxTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Translate_Adapter_TmxTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -53,14 +44,14 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter = new Zend_Translate_Adapter_Tmx(__DIR__ . '/_files/nofile.tmx', 'en');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('is not readable', $e->getMessage());
         }
 
         try {
             $adapter = new Zend_Translate_Adapter_Tmx(__DIR__ . '/_files/failed.tmx', 'en');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('Mismatched tag at line', $e->getMessage());
         }
@@ -73,7 +64,7 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
     {
         try {
             $adapter = new Zend_Translate_Adapter_Tmx(__DIR__ . '/_files/nofile.tmx', 'en');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('nofile.tmx', $e->getMessage());
         }
@@ -116,7 +107,7 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter->addTranslation(__DIR__ . '/_files/translation_en.tmx', 'xx');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('does not exist', $e->getMessage());
         }
@@ -131,17 +122,17 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
         $adapter = new Zend_Translate_Adapter_Tmx(__DIR__ . '/_files/translation_en.tmx', 'en');
         $adapter->setOptions(array('testoption' => 'testkey'));
         $expected = array(
-            'testoption'      => 'testkey',
-            'clear'           => false,
-            'content'         => __DIR__ . '/_files/translation_en.tmx',
-            'scan'            => null,
-            'locale'          => 'en',
-            'ignore'          => '.',
-            'disableNotices'  => false,
-            'log'             => false,
-            'logMessage'      => 'Untranslated message within \'%locale%\': %message%',
+            'testoption' => 'testkey',
+            'clear' => false,
+            'content' => __DIR__ . '/_files/translation_en.tmx',
+            'scan' => null,
+            'locale' => 'en',
+            'ignore' => '.',
+            'disableNotices' => false,
+            'log' => false,
+            'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
-            'reload'          => false
+            'reload' => false,
         );
         $options = $adapter->getOptions();
 
@@ -174,7 +165,7 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
 
         try {
             $adapter->setLocale('nolocale');
-            $this->fail("exception expected");
+            $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
             $this->assertContains('does not exist', $e->getMessage());
         }
@@ -261,18 +252,15 @@ class Zend_Translate_Adapter_TmxTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred
+     * Ignores a raised PHP error when in effect, but throws a flag to indicate an error occurred.
      *
-     * @param  integer $errno
+     * @param  int $errno
      * @param  string  $errstr
      * @param  string  $errfile
-     * @param  integer $errline
-     * @param  array   $errcontext
-     * @return void
+     * @param  int $errline
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
     {
         $this->_errorOccurred = true;
     }
 }
-

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,26 +12,16 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Decorator/Callback.php';
 require_once 'Zend/Form/Element.php';
 
 /**
- * Test class for Zend_Form_Decorator_Callback
+ * Test class for Zend_Form_Decorator_Callback.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -39,21 +29,16 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_CallbackTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_CallbackTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -63,8 +48,6 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -98,7 +81,7 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
         }
 
         try {
-            $o = new stdClass;
+            $o = new stdClass();
             $this->decorator->setCallback($o);
             $this->fail('Only string or array callbacks should be allowed');
         } catch (Zend_Form_Exception $e) {
@@ -123,11 +106,11 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
     public function testRenderCallsFunctionCallback()
     {
         $callback = 'Zend_Form_Decorator_CallbackTest_TestCallback';
-        $element  = new Zend_Form_Element('foobar');
+        $element = new Zend_Form_Element('foobar');
         $element->setLabel('Label Me');
 
         $this->decorator->setOptions(array('callback' => $callback))
-                        ->setElement($element);
+            ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
         $this->assertContains('foo bar', $content);
@@ -138,11 +121,11 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
     public function testRenderCallsMethodCallback()
     {
         $callback = array('Zend_Form_Decorator_CallbackTest_TestCallbackClass', 'direct');
-        $element  = new Zend_Form_Element('foobar');
+        $element = new Zend_Form_Element('foobar');
         $element->setLabel('Label Me');
 
         $this->decorator->setOptions(array('callback' => $callback))
-                        ->setElement($element);
+            ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
         $this->assertContains('foo bar', $content);
@@ -154,11 +137,11 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
     public function testRenderCanPrepend()
     {
         $callback = 'Zend_Form_Decorator_CallbackTest_TestCallback';
-        $element  = new Zend_Form_Element('foobar');
+        $element = new Zend_Form_Element('foobar');
         $element->setLabel('Label Me');
 
         $this->decorator->setOptions(array('callback' => $callback, 'placement' => 'prepend'))
-                        ->setElement($element);
+            ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
         $this->assertContains('foo bar', $content);
@@ -170,11 +153,11 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
     public function testRenderCanReplaceContent()
     {
         $callback = 'Zend_Form_Decorator_CallbackTest_TestCallback';
-        $element  = new Zend_Form_Element('foobar');
+        $element = new Zend_Form_Element('foobar');
         $element->setLabel('Label Me');
 
         $this->decorator->setOptions(array('callback' => $callback, 'placement' => false))
-                        ->setElement($element);
+            ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
         $this->assertNotContains('foo bar', $content, $content);
@@ -185,15 +168,16 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
 
 function Zend_Form_Decorator_CallbackTest_TestCallback($content, $element, array $options)
 {
-    $name  = $element->getName();
+    $name = $element->getName();
     $label = '';
     if (method_exists($element, 'getLabel')) {
         $label = $element->getLabel();
     }
-    $html =<<<EOH
-$label: $name
+    $html = <<<EOH
+        $label: $name
 
-EOH;
+        EOH;
+
     return $html;
 }
 
@@ -201,16 +185,16 @@ class Zend_Form_Decorator_CallbackTest_TestCallbackClass
 {
     public static function direct($content, $element, array $options)
     {
-        $name  = $element->getName();
+        $name = $element->getName();
         $label = '';
         if (method_exists($element, 'getLabel')) {
             $label = $element->getLabel();
         }
-        $html =<<<EOH
-Item "$label": $name
+        $html = <<<EOH
+            Item "$label": $name
 
-EOH;
+            EOH;
+
         return $html;
     }
 }
-

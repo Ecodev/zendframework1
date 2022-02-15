@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -30,30 +27,25 @@ require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Request/HttpTestCase.php';
 
 /**
- * @category   Zend
- * @package    Zend_Rest
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Rest
  */
 class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
 {
-
     protected $_front;
+
     protected $_request;
+
     protected $_dispatcher;
 
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite = new \PHPUnit\Framework\TestSuite("Zend_Rest_RouteTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Rest_RouteTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -67,15 +59,15 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
         $this->_dispatcher = $this->_front->getDispatcher();
 
         $this->_dispatcher->setControllerDirectory([
-            'default' => __DIR__ . DIRECTORY_SEPARATOR .
-                '..' . DIRECTORY_SEPARATOR .
-                'Controller' . DIRECTORY_SEPARATOR .
-                '_files',
-            'mod' => __DIR__ . DIRECTORY_SEPARATOR .
-                '..' . DIRECTORY_SEPARATOR .
-                'Controller' . DIRECTORY_SEPARATOR .
-                '_files' . DIRECTORY_SEPARATOR .
-                'Admin',
+            'default' => __DIR__ . DIRECTORY_SEPARATOR
+                . '..' . DIRECTORY_SEPARATOR
+                . 'Controller' . DIRECTORY_SEPARATOR
+                . '_files',
+            'mod' => __DIR__ . DIRECTORY_SEPARATOR
+                . '..' . DIRECTORY_SEPARATOR
+                . 'Controller' . DIRECTORY_SEPARATOR
+                . '_files' . DIRECTORY_SEPARATOR
+                . 'Admin',
         ]);
     }
 
@@ -131,9 +123,7 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('index', $values['action']);
     }
 
-    /*
-     * @group ZF-7437
-     */
+    // @group ZF-7437
     public function test_RESTfulApp_GET_user_defaults()
     {
         $request = $this->_buildRequest('GET', '/user');
@@ -467,14 +457,14 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
 
         $nonRESTRoute = new Zend_Controller_Router_Route('api');
         $RESTRoute = new Zend_Rest_Route($this->_front);
-        $router->addRoute("api", $nonRESTRoute->chain($RESTRoute));
+        $router->addRoute('api', $nonRESTRoute->chain($RESTRoute));
 
         $routedRequest = $router->route($request);
 
-        $this->assertEquals("default", $routedRequest->getParam("module"));
-        $this->assertEquals("user", $routedRequest->getParam("controller"));
-        $this->assertEquals("get", $routedRequest->getParam("action"));
-        $this->assertEquals("lcrouch", $routedRequest->getParam("id"));
+        $this->assertEquals('default', $routedRequest->getParam('module'));
+        $this->assertEquals('user', $routedRequest->getParam('controller'));
+        $this->assertEquals('get', $routedRequest->getParam('action'));
+        $this->assertEquals('lcrouch', $routedRequest->getParam('id'));
     }
 
     /**
@@ -490,14 +480,14 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
 
         $nonRESTRoute = new Zend_Controller_Router_Route('api');
         $RESTRoute = new Zend_Rest_Route($this->_front);
-        $router->addRoute("api", $nonRESTRoute->chain($RESTRoute));
+        $router->addRoute('api', $nonRESTRoute->chain($RESTRoute));
 
         $routedRequest = $router->route($request);
 
-        $this->assertEquals("default", $routedRequest->getParam("module"));
-        $this->assertEquals("user", $routedRequest->getParam("controller"));
-        $this->assertEquals("get", $routedRequest->getParam("action"));
-        $this->assertEquals("email+test@example.com", $routedRequest->getParam("id"));
+        $this->assertEquals('default', $routedRequest->getParam('module'));
+        $this->assertEquals('user', $routedRequest->getParam('controller'));
+        $this->assertEquals('get', $routedRequest->getParam('action'));
+        $this->assertEquals('email+test@example.com', $routedRequest->getParam('id'));
     }
 
     public function test_RESTfulModule_GET_user_index()
@@ -945,8 +935,8 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
         $request->setParam('test', 5);
         $config = ['mod' => ['user']];
         $this->_invokeRouteMatch($request, $config);
-        $this->assertEquals(["test" => 5], $request->getUserParams());
-        $this->assertEquals(["test" => 5, "a" => '1', "b" => '2'], $request->getParams());
+        $this->assertEquals(['test' => 5], $request->getUserParams());
+        $this->assertEquals(['test' => 5, 'a' => '1', 'b' => '2'], $request->getParams());
     }
 
     private function _buildRequest($method, $uri)
@@ -968,4 +958,3 @@ class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
         return $values;
     }
 }
-

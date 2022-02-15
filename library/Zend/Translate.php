@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -29,50 +27,46 @@ require_once 'Zend/Loader.php';
  */
 require_once 'Zend/Translate/Adapter.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Translate
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Zend_Translate {
+class Zend_Translate
+{
     /**
-     * Adapter names constants
+     * Adapter names constants.
      */
-    public const AN_ARRAY   = 'Array';
-    public const AN_CSV     = 'Csv';
+    public const AN_ARRAY = 'Array';
+    public const AN_CSV = 'Csv';
     public const AN_GETTEXT = 'Gettext';
-    public const AN_INI     = 'Ini';
-    public const AN_QT      = 'Qt';
-    public const AN_TBX     = 'Tbx';
-    public const AN_TMX     = 'Tmx';
-    public const AN_XLIFF   = 'Xliff';
-    public const AN_XMLTM   = 'XmlTm';
+    public const AN_INI = 'Ini';
+    public const AN_QT = 'Qt';
+    public const AN_TBX = 'Tbx';
+    public const AN_TMX = 'Tmx';
+    public const AN_XLIFF = 'Xliff';
+    public const AN_XMLTM = 'XmlTm';
 
     public const LOCALE_DIRECTORY = 'directory';
-    public const LOCALE_FILENAME  = 'filename';
+    public const LOCALE_FILENAME = 'filename';
 
     /**
-     * Adapter
+     * Adapter.
      */
     private \Zend_Translate_Adapter $_adapter;
 
     /**
-     * Generates the standard translation object
+     * Generates the standard translation object.
      *
      * @param  array|Zend_Config|Zend_Translate_Adapter $options Options to use
-     * @param  string|array [$content] Path to content, or content itself
+     * @param  array|string [$content] Path to content, or content itself
      * @param  string|Zend_Locale [$locale]
-     * @throws Zend_Translate_Exception
      */
     public function __construct($options = array())
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
-        } else if (func_num_args() > 1) {
-            $args               = func_get_args();
-            $options            = array();
+        } elseif (func_num_args() > 1) {
+            $args = func_get_args();
+            $options = array();
             $options['adapter'] = array_shift($args);
             if (!empty($args)) {
                 $options['content'] = array_shift($args);
@@ -83,10 +77,10 @@ class Zend_Translate {
             }
 
             if (!empty($args)) {
-                $opt     = array_shift($args);
+                $opt = array_shift($args);
                 $options = array_merge($opt, $options);
             }
-        } else if (!is_array($options)) {
+        } elseif (!is_array($options)) {
             $options = array('adapter' => $options);
         }
 
@@ -94,20 +88,19 @@ class Zend_Translate {
     }
 
     /**
-     * Sets a new adapter
+     * Sets a new adapter.
      *
      * @param  array|Zend_Config|Zend_Translate_Adapter $options Options to use
-     * @param  string|array [$content] Path to content, or content itself
+     * @param  array|string [$content] Path to content, or content itself
      * @param  string|Zend_Locale [$locale]
-     * @throws Zend_Translate_Exception
      */
     public function setAdapter($options = array())
     {
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
-        } else if (func_num_args() > 1) {
-            $args               = func_get_args();
-            $options            = array();
+        } elseif (func_num_args() > 1) {
+            $args = func_get_args();
+            $options = array();
             $options['adapter'] = array_shift($args);
             if (!empty($args)) {
                 $options['content'] = array_shift($args);
@@ -118,14 +111,14 @@ class Zend_Translate {
             }
 
             if (!empty($args)) {
-                $opt     = array_shift($args);
+                $opt = array_shift($args);
                 $options = array_merge($opt, $options);
             }
-        } else if (!is_array($options)) {
+        } elseif (!is_array($options)) {
             $options = array('adapter' => $options);
         }
 
-        if (Zend_Loader::isReadable('Zend/Translate/Adapter/' . ucfirst($options['adapter']). '.php')) {
+        if (Zend_Loader::isReadable('Zend/Translate/Adapter/' . ucfirst($options['adapter']) . '.php')) {
             $options['adapter'] = 'Zend_Translate_Adapter_' . ucfirst($options['adapter']);
         }
 
@@ -142,12 +135,13 @@ class Zend_Translate {
         $this->_adapter = new $adapter($options);
         if (!$this->_adapter instanceof Zend_Translate_Adapter) {
             require_once 'Zend/Translate/Exception.php';
-            throw new Zend_Translate_Exception("Adapter " . $adapter . " does not extend Zend_Translate_Adapter");
+
+            throw new Zend_Translate_Exception('Adapter ' . $adapter . ' does not extend Zend_Translate_Adapter');
         }
     }
 
     /**
-     * Returns the adapters name and it's options
+     * Returns the adapters name and it's options.
      *
      * @return Zend_Translate_Adapter
      */
@@ -157,7 +151,7 @@ class Zend_Translate {
     }
 
     /**
-     * Returns the set cache
+     * Returns the set cache.
      *
      * @return Zend_Cache_Core The set cache
      */
@@ -167,10 +161,9 @@ class Zend_Translate {
     }
 
     /**
-     * Sets a cache for all instances of Zend_Translate
+     * Sets a cache for all instances of Zend_Translate.
      *
      * @param  Zend_Cache_Core $cache Cache to store to
-     * @return void
      */
     public static function setCache(Zend_Cache_Core $cache)
     {
@@ -178,9 +171,9 @@ class Zend_Translate {
     }
 
     /**
-     * Returns true when a cache is set
+     * Returns true when a cache is set.
      *
-     * @return boolean
+     * @return bool
      */
     public static function hasCache()
     {
@@ -188,9 +181,7 @@ class Zend_Translate {
     }
 
     /**
-     * Removes any set cache
-     *
-     * @return void
+     * Removes any set cache.
      */
     public static function removeCache()
     {
@@ -198,10 +189,9 @@ class Zend_Translate {
     }
 
     /**
-     * Clears all set cache data
+     * Clears all set cache data.
      *
      * @param string $tag Tag to clear when the default tag name is not used
-     * @return void
      */
     public static function clearCache($tag = null)
     {
@@ -209,7 +199,9 @@ class Zend_Translate {
     }
 
     /**
-     * Calls all methods from the adapter
+     * Calls all methods from the adapter.
+     *
+     * @param mixed $method
      */
     public function __call($method, array $options)
     {
@@ -217,6 +209,7 @@ class Zend_Translate {
             return call_user_func_array(array($this->_adapter, $method), $options);
         }
         require_once 'Zend/Translate/Exception.php';
+
         throw new Zend_Translate_Exception("Unknown method '" . $method . "' called!");
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,29 +23,26 @@
 require_once 'Zend/View/Helper/HtmlElement.php';
 
 /**
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_HtmlObject extends Zend_View_Helper_HtmlElement
 {
     /**
-     * Output an object set
+     * Output an object set.
      *
      * @param string $data The data file
      * @param string $type Data file type
      * @param array  $attribs Attribs for the object tag
      * @param array  $params Params for in the object tag
      * @param string $content Alternative content for object
+     *
      * @return string
      */
     public function htmlObject($data, $type, array $attribs = array(), array $params = array(), $content = null)
     {
         // Merge data and type
         $attribs = array_merge(array('data' => $data,
-                                     'type' => $type), $attribs);
+            'type' => $type, ), $attribs);
 
         // Params
         $paramHtml = array();

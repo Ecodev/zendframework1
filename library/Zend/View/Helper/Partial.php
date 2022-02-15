@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @version    $Id$
+ *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -26,15 +23,13 @@ require_once 'Zend/View/Helper/Abstract.php';
 /**
  * Helper for rendering a template fragment in its own variable scope.
  *
- * @package    Zend_View
- * @subpackage Helper
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_View_Helper_Partial extends Zend_View_Helper_Abstract
 {
     /**
-     * Variable to which object will be assigned
+     * Variable to which object will be assigned.
+     *
      * @var string
      */
     protected $_objectKey;
@@ -54,11 +49,12 @@ class Zend_View_Helper_Partial extends Zend_View_Helper_Abstract
      * get_object_vars() is passed.
      *
      * @param  string $name Name of view script
-     * @param  string|array $module If $model is empty, and $module is an array,
+     * @param  array|string $module If $model is empty, and $module is an array,
      *                              these are the variables to populate in the
      *                              view. Otherwise, the module in which the
      *                              partial resides
      * @param  array $model Variables to populate in the view
+     *
      * @return string|Zend_View_Helper_Partial
      */
     public function partial($name = null, $module = null, $model = null)
@@ -82,13 +78,13 @@ class Zend_View_Helper_Partial extends Zend_View_Helper_Abstract
                 require_once 'Zend/View/Helper/Partial/Exception.php';
                 $e = new Zend_View_Helper_Partial_Exception('Cannot render partial; module does not exist');
                 $e->setView($this->view);
+
                 throw $e;
             }
             $viewsDir = dirname($moduleDir) . '/views';
             $view->addBasePath($viewsDir);
         } elseif ((null == $model) && (null !== $module)
-            && (is_array($module) || is_object($module)))
-        {
+            && (is_array($module) || is_object($module))) {
             $model = $module;
         }
 
@@ -110,7 +106,7 @@ class Zend_View_Helper_Partial extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Clone the current View
+     * Clone the current View.
      *
      * @return Zend_View_Interface
      */
@@ -118,13 +114,15 @@ class Zend_View_Helper_Partial extends Zend_View_Helper_Abstract
     {
         $view = clone $this->view;
         $view->clearVars();
+
         return $view;
     }
 
     /**
-     * Set object key
+     * Set object key.
      *
      * @param  string $key
+     *
      * @return Zend_View_Helper_Partial
      */
     public function setObjectKey($key)
@@ -139,7 +137,7 @@ class Zend_View_Helper_Partial extends Zend_View_Helper_Abstract
     }
 
     /**
-     * Retrieve object key
+     * Retrieve object key.
      *
      * The objectKey is the variable to which an object in the iterator will be
      * assigned.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Decorator/ViewHelper.php';
 
 require_once 'Zend/Form/Element.php';
@@ -29,12 +23,8 @@ require_once 'Zend/Form/Element/Text.php';
 require_once 'Zend/View.php';
 
 /**
- * Test class for Zend_Form_Decorator_ViewHelper
+ * Test class for Zend_Form_Decorator_ViewHelper.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -42,21 +32,16 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_ViewHelperTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_ViewHelperTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -66,8 +51,6 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -77,6 +60,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+
         return $view;
     }
 
@@ -84,6 +68,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element_Text('foo');
         $this->decorator->setElement($element);
+
         return $element;
     }
 
@@ -132,6 +117,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
     {
         $element = $this->getElement();
         $content = 'test content';
+
         try {
             $test = $this->decorator->render($content);
             $this->fail('Render should raise exception without view');
@@ -201,7 +187,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
 
         $expected = '<p><label><input type="checkbox" name="foo[]" id="foo-foo" value="foo">Foo</label></p>'
                   . '<p><label><input type="checkbox" name="foo[]" id="foo-bar" value="bar">Bar</label></p>';
-        $actual   = $element->render($this->getView());
+        $actual = $element->render($this->getView());
 
         $this->assertEquals($expected, $actual);
     }
@@ -229,7 +215,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
 
         $expected = '<p><label><input type="radio" name="foo" id="foo-foo" value="foo">Foo</label></p>'
                   . '<p><label><input type="radio" name="foo" id="foo-bar" value="bar">Bar</label></p>';
-        $actual   = $element->render($this->getView());
+        $actual = $element->render($this->getView());
 
         $this->assertEquals($expected, $actual);
     }
@@ -247,7 +233,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $element->setLabel('baz');
         $element->setDecorators(
             array(
-                 'ViewHelper',
+                'ViewHelper',
             )
         );
 
@@ -271,7 +257,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $element->setAttrib('type', 'submit');
         $element->setDecorators(
             array(
-                 'ViewHelper',
+                'ViewHelper',
             )
         );
 
@@ -295,4 +281,3 @@ class Zend_Form_Decorator_ViewHelperTest_Textarea extends Zend_Form_Element
         $this->helper = null;
     }
 }
-

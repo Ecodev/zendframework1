@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -25,28 +22,21 @@
  */
 require_once 'Zend/Validate/Int.php';
 
-
 /**
- * @category   Zend
- * @package    Zend_Validate
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
 class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Zend_Validate_Int object
+     * Zend_Validate_Int object.
      *
      * @var Zend_Validate_Int
      */
     protected $_validator;
 
     /**
-     * Creates a new Zend_Validate_Int object for each test method
-     *
-     * @return void
+     * Creates a new Zend_Validate_Int object for each test method.
      */
     public function setUp()
     {
@@ -54,9 +44,7 @@ class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that the validator follows expected behavior
-     *
-     * @return void
+     * Ensures that the validator follows expected behavior.
      */
     public function testBasic()
     {
@@ -72,7 +60,7 @@ class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
             array('not an int', false),
             array(true, false),
             array(false, false),
-            );
+        );
 
         foreach ($valuesExpected as $element) {
             $this->assertEquals($element[1], $this->_validator->isValid($element[0]),
@@ -81,9 +69,7 @@ class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that getMessages() returns expected default value
-     *
-     * @return void
+     * Ensures that getMessages() returns expected default value.
      */
     public function testGetMessages()
     {
@@ -91,7 +77,7 @@ class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Ensures that set/getLocale() works
+     * Ensures that set/getLocale() works.
      */
     public function testSettingLocales()
     {

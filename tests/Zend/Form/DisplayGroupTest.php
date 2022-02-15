@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/DisplayGroup.php';
 
 require_once 'Zend/Config.php';
@@ -37,10 +31,6 @@ require_once 'Zend/Translate.php';
 require_once 'Zend/View.php';
 
 /**
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -48,7 +38,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite('Zend_Form_DisplayGroupTest');
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_DisplayGroupTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
@@ -80,6 +70,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         $libPath = __DIR__ . '/../../../library';
         $view->addHelperPath($libPath . '/Zend/View/Helper');
+
         return $view;
     }
 
@@ -133,7 +124,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     public function testCanSetDescription()
     {
         $this->testDescriptionInitiallyNull();
-        $description = "this is a description";
+        $description = 'this is a description';
         $this->group->setDescription($description);
         $this->assertEquals($description, $this->group->getDescription());
     }
@@ -143,6 +134,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     public function testPassingInvalidElementsToAddElementsThrowsException()
     {
         $elements = array('foo' => true);
+
         try {
             $this->group->addElements($elements);
             $this->fail('Invalid elements should raise exception');
@@ -262,7 +254,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->clearDecorators();
         $this->assertFalse($this->group->getDecorator('form'));
 
-        $decorator = new Zend_Form_Decorator_ViewHelper;
+        $decorator = new Zend_Form_Decorator_ViewHelper();
         $this->group->addDecorator($decorator);
         $test = $this->group->getDecorator(\Zend_Form_Decorator_ViewHelper::class);
         $this->assertSame($decorator, $test);
@@ -275,7 +267,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->clearDecorators();
         $this->assertFalse($this->group->getDecorator('form'));
 
-        $decorator = new Zend_Form_Decorator_Form;
+        $decorator = new Zend_Form_Decorator_Form();
         $this->group->addDecorator($decorator);
         $test = $this->group->getDecorator('form');
         $this->assertSame($decorator, $test);
@@ -288,10 +280,10 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->clearDecorators();
         $this->assertFalse($this->group->getDecorator('form'));
 
-        $testDecorator = new Zend_Form_Decorator_HtmlTag;
+        $testDecorator = new Zend_Form_Decorator_HtmlTag();
         $this->group->addDecorators(array(
             'ViewHelper',
-            $testDecorator
+            $testDecorator,
         ));
 
         $viewHelper = $this->group->getDecorator('viewHelper');
@@ -328,7 +320,6 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(array_key_exists('div', $decorators));
         $this->assertTrue(array_key_exists('div2', $decorators));
     }
-
 
     public function testCanClearAllDecorators()
     {
@@ -378,10 +369,10 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             array(array('fieldset' => 'HtmlTag'), array('tag' => 'fieldset')),
         ));
 
-        $decorator  = $this->group->getDecorator('div');
+        $decorator = $this->group->getDecorator('div');
         $decorators = $this->group->getDecorators();
-        $i          = 0;
-        $order      = array();
+        $i = 0;
+        $order = array();
 
         foreach (array_keys($decorators) as $name) {
             $order[$name] = $i;
@@ -392,8 +383,8 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 
     public function testRenderingRendersAllElementsWithinFieldsetByDefault()
     {
-        $foo  = new Zend_Form_Element_Text('foo');
-        $bar  = new Zend_Form_Element_Text('bar');
+        $foo = new Zend_Form_Element_Text('foo');
+        $bar = new Zend_Form_Element_Text('bar');
 
         $this->group->addElements(array($foo, $bar));
         $html = $this->group->render($this->getView());
@@ -405,11 +396,11 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 
     public function testToStringProxiesToRender()
     {
-        $foo  = new Zend_Form_Element_Text('foo');
-        $bar  = new Zend_Form_Element_Text('bar');
+        $foo = new Zend_Form_Element_Text('foo');
+        $bar = new Zend_Form_Element_Text('bar');
 
         $this->group->addElements(array($foo, $bar))
-                    ->setView($this->getView());
+            ->setView($this->getView());
         $html = $this->group->__toString();
         $this->assertRegexp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
         $this->assertContains('<input', $html);
@@ -432,7 +423,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->setDecorators(array(
             array(
                 'decorator' => 'Callback',
-                'options'   => array('callback' => array($this, 'raiseDecoratorException'))
+                'options' => array('callback' => array($this, 'raiseDecoratorException')),
             ),
         ));
         $origErrorHandler = set_error_handler(array($this, 'handleDecoratorErrors'), E_USER_WARNING);
@@ -512,13 +503,13 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 
     public function testDisplayGroupIteratesElementsInExpectedOrderWhenFirstElementHasNoOrderSpecified()
     {
-        $a = new Zend_Form_Element('a',array('label'=>'a'));
-        $b = new Zend_Form_Element('b',array('label'=>'b', 'order' => 0));
-        $c = new Zend_Form_Element('c',array('label'=>'c', 'order' => 1));
+        $a = new Zend_Form_Element('a',array('label' => 'a'));
+        $b = new Zend_Form_Element('b',array('label' => 'b', 'order' => 0));
+        $c = new Zend_Form_Element('c',array('label' => 'c', 'order' => 1));
         $this->group->addElement($a)
-                    ->addElement($b)
-                    ->addElement($c)
-                    ->setView($this->getView());
+            ->addElement($b)
+            ->addElement($c)
+            ->setView($this->getView());
         $test = $this->group->render();
         $this->assertContains('name="a"', $test);
         if (!preg_match_all('/(<input[^>]+>)/', $test, $matches)) {
@@ -540,8 +531,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->removeElement('bar');
 
         try {
-            foreach ($this->group as $item) {
-            }
+            foreach ($this->group as $item);
         } catch (Exception $e) {
             static::fail('Exceptions should not be raised by iterator when elements are removed; error message: ' . $e->getMessage());
         }
@@ -560,11 +550,12 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     public function getOptions()
     {
         $options = array(
-            'name'   => 'foo',
+            'name' => 'foo',
             'legend' => 'Display Group',
-            'order'  => 20,
-            'class'  => 'foobar'
+            'order' => 20,
+            'class' => 'foobar',
         );
+
         return $options;
     }
 
@@ -580,13 +571,13 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     public function testSetOptionsOmitsAccessorsRequiringObjectsOrMultipleParams()
     {
         $options = $this->getOptions();
-        $config  = new Zend_Config($options);
-        $options['config']       = $config;
-        $options['options']      = $config->toArray();
+        $config = new Zend_Config($options);
+        $options['config'] = $config;
+        $options['options'] = $config->toArray();
         $options['pluginLoader'] = true;
-        $options['view']         = true;
-        $options['translator']   = true;
-        $options['attrib']       = true;
+        $options['view'] = true;
+        $options['translator'] = true;
+        $options['attrib'] = true;
         $this->group->setOptions($options);
     }
 
@@ -635,11 +626,11 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $options = $this->getOptions();
         $options['decorators'] = array(
             array(
-                'options'   => array('id' => 'mylabel'),
+                'options' => array('id' => 'mylabel'),
                 'decorator' => 'label',
             ),
             array(
-                'options'   => array('id' => 'form'),
+                'options' => array('id' => 'form'),
                 'decorator' => 'form',
             ),
         );
@@ -670,7 +661,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     public function testPassingConfigObjectToConstructorSetsObjectState()
     {
         $config = new Zend_Config($this->getOptions());
-        $group  = new Zend_Form_DisplayGroup('foo', $this->loader, $config);
+        $group = new Zend_Form_DisplayGroup('foo', $this->loader, $config);
         $this->assertEquals('foo', $group->getName());
         $this->assertEquals('Display Group', $group->getLegend());
         $this->assertEquals(20, $group->getOrder());
@@ -687,7 +678,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $attribs = array(
             'foo' => 'fooval',
             'bar' => 'barval',
-            'baz' => 'bazval'
+            'baz' => 'bazval',
         );
         $this->group->addAttribs($attribs);
         $this->assertEquals($attribs, $this->group->getAttribs());
@@ -698,7 +689,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->testCanAddMultipleAttribsSimultaneously();
         $attribs = array(
             'foo' => 'valfoo',
-            'bat' => 'batval'
+            'bat' => 'batval',
         );
         $this->group->setAttribs($attribs);
         $this->assertEquals($attribs, $this->group->getAttribs());
@@ -735,8 +726,8 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
      */
     public function testGroupShouldOverloadToRenderDecorators()
     {
-        $foo  = new Zend_Form_Element_Text('foo');
-        $bar  = new Zend_Form_Element_Text('bar');
+        $foo = new Zend_Form_Element_Text('foo');
+        $bar = new Zend_Form_Element_Text('bar');
         $this->group->addElements(array($foo, $bar));
 
         $this->group->setView($this->getView());
@@ -763,10 +754,9 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
+     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
      *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
+     * @see   http://framework.zend.com/issues/browse/ZF-2794
      */
     protected function _checkZf2794()
     {
@@ -776,10 +766,9 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Prove the fluent interface on Zend_Form::loadDefaultDecorators
+     * Prove the fluent interface on Zend_Form::loadDefaultDecorators.
      *
-     * @link http://framework.zend.com/issues/browse/ZF-9913
-     * @return void
+     * @see http://framework.zend.com/issues/browse/ZF-9913
      */
     public function testFluentInterfaceOnLoadDefaultDecorators()
     {
@@ -791,11 +780,11 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
      */
     public function testAddDecoratorsKeepsNonNumericKeyNames()
     {
-        $this->group->addDecorators(array(array(array('td'  => 'HtmlTag'),
-                                               array('tag' => 'td')),
-                                         array(array('tr'  => 'HtmlTag'),
-                                               array('tag' => 'tr')),
-                                         array('HtmlTag', array('tag' => 'baz'))));
+        $this->group->addDecorators(array(array(array('td' => 'HtmlTag'),
+            array('tag' => 'td'), ),
+            array(array('tr' => 'HtmlTag'),
+                array('tag' => 'tr'), ),
+            array('HtmlTag', array('tag' => 'baz')), ));
         $t1 = $this->group->getDecorators();
         $this->group->setDecorators($t1);
         $t2 = $this->group->getDecorators();
@@ -836,4 +825,3 @@ class Zend_Form_DisplayGroupTest_DisplayGroup extends Zend_Form_DisplayGroup
         $this->setDisableLoadDefaultDecorators(true);
     }
 }
-

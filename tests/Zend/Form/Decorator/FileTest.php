@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,16 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Decorator/File.php';
 
 require_once 'Zend/Form/Element/File.php';
@@ -29,12 +23,8 @@ require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/FormElement.php';
 
 /**
- * Test class for Zend_Form_Decorator_Errors
+ * Test class for Zend_Form_Decorator_Errors.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -42,21 +32,16 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Decorator_FileTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_FileTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -66,8 +51,6 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -85,6 +68,7 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+
         return $view;
     }
 
@@ -92,7 +76,7 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element_File('foo');
         $element->addValidator('Count', 1)
-                ->setView($this->getView());
+            ->setView($this->getView());
         $this->element = $element;
         $this->decorator->setElement($element);
     }
@@ -101,8 +85,8 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element_File('foo');
         $element->addValidator('Count', 1)
-                ->setMultiFile(2)
-                ->setView($this->getView());
+            ->setMultiFile(2)
+            ->setView($this->getView());
         $this->element = $element;
         $this->decorator->setElement($element);
     }
@@ -127,8 +111,8 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
 
         $element = new Zend_Form_Element_File('foo');
         $element->addValidator('Count', 1)
-                ->setView($this->getView())
-                ->setMaxFileSize($max);
+            ->setView($this->getView())
+            ->setMaxFileSize($max);
         $this->element = $element;
         $this->decorator->setElement($element);
     }
@@ -160,9 +144,9 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
     {
         $element = new Zend_Form_Element_File('foo');
         $element->setValue('foobar')
-                ->setView($this->getView());
+            ->setView($this->getView());
         $this->decorator->setElement($element)
-                        ->setOption('placement', 'prepend');
+            ->setOption('placement', 'prepend');
 
         $file = $this->decorator->render('content');
         $this->assertRegexp('#<input[^>]*>.*?(content)#s', $file, $file);
@@ -180,7 +164,7 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
         $defaultOutput = $element->render();
 
         // Get output using mock view helper
-        $element->helper = "formFileMock";
+        $element->helper = 'formFileMock';
         $mockOutput = $element->render();
 
         // Ensure the view helper was changed
@@ -195,15 +179,17 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
             $setting = (integer) substr($setting, 0, -1);
 
             switch ($type) {
-                case 'M' :
+                case 'M':
                     $setting *= 1024;
+
                     break;
 
-                case 'G' :
+                case 'G':
                     $setting *= 1024 * 1024;
+
                     break;
 
-                default :
+                default:
                     break;
             }
         }
@@ -214,9 +200,8 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
 
 class Zend_View_Helper_FormFileMock extends Zend_View_Helper_FormElement
 {
-    public function formFileMock($name, $attribs=NULL)
+    public function formFileMock($name, $attribs = null)
     {
-        return "FormFileMock";
+        return 'FormFileMock';
     }
 }
-

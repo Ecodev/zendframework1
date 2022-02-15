@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,10 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Decorator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
@@ -23,7 +19,7 @@
 require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
- * Zend_Form_Decorator_ViewScript
+ * Zend_Form_Decorator_ViewScript.
  *
  * Render a view script as a decorator
  *
@@ -43,49 +39,51 @@ require_once 'Zend/Form/Decorator/Abstract.php';
  * Any options other than separator, placement, viewScript, and viewModule are passed to
  * the partial as local variables.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage Decorator
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 class Zend_Form_Decorator_ViewScript extends Zend_Form_Decorator_Abstract
 {
     /**
-     * Default placement: append
+     * Default placement: append.
+     *
      * @var string
      */
     protected $_placement = 'APPEND';
 
     /**
-     * View script to render
+     * View script to render.
+     *
      * @var string
      */
     protected $_viewScript;
 
     /**
-     * View script module
+     * View script module.
+     *
      * @var string
      */
     protected $_viewModule;
 
     /**
-     * Set view script
+     * Set view script.
      *
      * @param  string $script
+     *
      * @return Zend_Form_Decorator_ViewScript
      */
     public function setViewScript($script)
     {
         $this->_viewScript = (string) $script;
+
         return $this;
     }
 
     /**
-     * Get view script
+     * Get view script.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getViewScript()
     {
@@ -93,13 +91,14 @@ class Zend_Form_Decorator_ViewScript extends Zend_Form_Decorator_Abstract
             if (null !== ($element = $this->getElement())) {
                 if (null !== ($viewScript = $element->getAttrib('viewScript'))) {
                     $this->setViewScript($viewScript);
+
                     return $viewScript;
                 }
             }
 
             if (null !== ($viewScript = $this->getOption('viewScript'))) {
                 $this->setViewScript($viewScript)
-                     ->removeOption('viewScript');
+                    ->removeOption('viewScript');
             }
         }
 
@@ -107,21 +106,23 @@ class Zend_Form_Decorator_ViewScript extends Zend_Form_Decorator_Abstract
     }
 
     /**
-     * Set view script module
+     * Set view script module.
      *
-     * @param  string $module
+     * @param mixed $viewModule
+     *
      * @return Zend_Form_Decorator_ViewScript
      */
     public function setViewModule($viewModule)
     {
         $this->_viewModule = (string) $viewModule;
+
         return $this;
     }
 
     /**
-     * Get view script module
+     * Get view script module.
      *
-     * @return string|null
+     * @return null|string
      */
     public function getViewModule()
     {
@@ -129,13 +130,14 @@ class Zend_Form_Decorator_ViewScript extends Zend_Form_Decorator_Abstract
             if (null !== ($element = $this->getElement())) {
                 if (null !== ($viewModule = $element->getAttrib('viewModule'))) {
                     $this->setViewModule($viewModule);
+
                     return $viewModule;
                 }
             }
 
             if (null !== ($viewModule = $this->getOption('viewModule'))) {
                 $this->setViewModule($viewModule)
-                     ->removeOption('viewModule');
+                    ->removeOption('viewModule');
             }
         }
 
@@ -143,15 +145,16 @@ class Zend_Form_Decorator_ViewScript extends Zend_Form_Decorator_Abstract
     }
 
     /**
-     * Render a view script
+     * Render a view script.
      *
      * @param  string $content
+     *
      * @return string
      */
     public function render($content)
     {
         $element = $this->getElement();
-        $view    = $element->getView();
+        $view = $element->getView();
         if (null === $view) {
             return $content;
         }
@@ -159,15 +162,16 @@ class Zend_Form_Decorator_ViewScript extends Zend_Form_Decorator_Abstract
         $viewScript = $this->getViewScript();
         if (empty($viewScript)) {
             require_once 'Zend/Form/Exception.php';
+
             throw new Zend_Form_Exception('No view script registered with ViewScript decorator');
         }
 
         $separator = $this->getSeparator();
         $placement = $this->getPlacement();
 
-        $vars              = $this->getOptions();
-        $vars['element']   = $element;
-        $vars['content']   = $content;
+        $vars = $this->getOptions();
+        $vars['element'] = $element;
+        $vars['content'] = $content;
         $vars['decorator'] = $this;
 
         $viewModule = $this->getViewModule();

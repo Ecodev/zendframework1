@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,25 +12,15 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Form/Element/MultiCheckbox.php';
 
 /**
- * Test class for Zend_Form_Element_MultiCheckbox
+ * Test class for Zend_Form_Element_MultiCheckbox.
  *
- * @category   Zend
- * @package    Zend_Form
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
@@ -38,20 +28,16 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
-     *
-     * @return void
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Form_Element_MultiCheckboxTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_MultiCheckboxTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @return void
      */
     public function setUp()
     {
@@ -61,8 +47,6 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
     /**
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
-     *
-     * @return void
      */
     public function tearDown()
     {
@@ -73,6 +57,7 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
+
         return $view;
     }
 
@@ -115,12 +100,12 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
     public function testCanDisableIndividualMultiCheckboxOptions()
     {
         $this->element->setMultiOptions(array(
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
-                'bat'  => 'Bat',
-                'test' => 'Test',
-            ))
+            'foo' => 'Foo',
+            'bar' => 'Bar',
+            'baz' => 'Baz',
+            'bat' => 'Bat',
+            'test' => 'Test',
+        ))
             ->setAttrib('disable', array('baz', 'test'));
         $html = $this->element->render($this->getView());
         foreach (array('baz', 'test') as $test) {
@@ -140,12 +125,12 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
     public function testSpecifiedSeparatorIsUsedWhenRendering()
     {
         $this->element->setMultiOptions(array(
-                'foo'  => 'Foo',
-                'bar'  => 'Bar',
-                'baz'  => 'Baz',
-                'bat'  => 'Bat',
-                'test' => 'Test',
-            ))
+            'foo' => 'Foo',
+            'bar' => 'Bar',
+            'baz' => 'Baz',
+            'bat' => 'Bat',
+            'test' => 'Test',
+        ))
             ->setSeparator('--FooBarFunSep--');
         $html = $this->element->render($this->getView());
         $this->assertContains($this->element->getSeparator(), $html);
@@ -175,8 +160,8 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
             'elements' => array(
                 '100_1' => array('MultiCheckbox', array(
                     'multiOptions' => array(
-                        '100_1_1'  => 'Agriculture',
-                        '100_1_2'  => 'Automotive',
+                        '100_1_1' => 'Agriculture',
+                        '100_1_2' => 'Automotive',
                         '100_1_12' => 'Chemical',
                         '100_1_13' => 'Communications',
                     ),
@@ -189,7 +174,7 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
                 '100_1_1',
                 '100_1_2',
                 '100_1_12',
-                '100_1_13'
+                '100_1_13',
             ),
         );
         $form->populate($data);
@@ -203,10 +188,9 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete
+     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
      *
-     * @link   http://framework.zend.com/issues/browse/ZF-2794
-     * @return void
+     * @see   http://framework.zend.com/issues/browse/ZF-2794
      */
     protected function _checkZf2794()
     {
@@ -257,21 +241,21 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->getValidator('InArray'));
         $this->assertFalse($this->element->isValid('test'));
     }
-    /**#@-*/
+    // #@-
 
     /**
-     * No assertion; just making sure no error occurs
+     * No assertion; just making sure no error occurs.
      *
      * @group ZF-4915
      */
     public function testRetrievingErrorMessagesShouldNotResultInError()
     {
         $this->element->addMultiOptions(array(
-                          'foo' => 'Foo',
-                          'bar' => 'Bar',
-                          'baz' => 'Baz',
-                      ))
-                      ->addErrorMessage('%value% is invalid');
+            'foo' => 'Foo',
+            'bar' => 'Bar',
+            'baz' => 'Baz',
+        ))
+            ->addErrorMessage('%value% is invalid');
         $this->element->isValid(array('foo', 'bogus'));
         $html = $this->element->render($this->getView());
     }
@@ -343,4 +327,3 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $this->element->render($this->getView()));
     }
 }
-

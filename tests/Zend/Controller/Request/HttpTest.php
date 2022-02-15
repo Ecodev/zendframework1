@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,23 +12,13 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/Controller/Request/Http.php';
 
 /**
- * @category   Zend
- * @package    Zend_Controller
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
@@ -41,7 +31,8 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     protected $_request;
 
     /**
-     * Original $_SERVER
+     * Original $_SERVER.
+     *
      * @var array
      */
     protected $_origServer;
@@ -49,23 +40,22 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_Controller_Request_HttpTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Request_HttpTest');
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp()
     {
         $this->_origServer = $_SERVER;
-        $_GET  = array();
+        $_GET = array();
         $_POST = array();
         $_SERVER = array(
             'SCRIPT_FILENAME' => __FILE__,
-            'PHP_SELF'        => __FILE__,
+            'PHP_SELF' => __FILE__,
         );
         $this->_request = new Zend_Controller_Request_Http('http://framework.zend.com/news/3?var1=val1&var2=val2#anchor');
     }
@@ -115,13 +105,14 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function test__Get()
     {
         $expected = null;
-								$_POST['baz']   = 'boo';
+        $_POST['baz'] = 'boo';
         $_COOKIE['bal'] = 'peen';
         $this->_request->setParam('foo', 'bar');
 
         foreach ($_ENV as $envKey => $expected) {
             if (isset($_ENV[$envKey]) && !empty($_ENV[$envKey])) {
                 $expEnvKey = $envKey;
+
                 break;
             }
         }
@@ -156,13 +147,14 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function test__Isset()
     {
-        $_POST['baz']   = 'boo';
+        $_POST['baz'] = 'boo';
         $_COOKIE['bal'] = 'peen';
         $this->_request->setParam('foo', 'bar');
 
         foreach ($_ENV as $envKey => $expected) {
             if (isset($_ENV[$envKey]) && !empty($_ENV[$envKey])) {
                 $expEnvKey = $envKey;
+
                 break;
             }
         }
@@ -212,7 +204,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $params = array(
             'foo' => 'bar',
             'boo' => 'bah',
-            'fee' => 'fi'
+            'fee' => 'fi',
         );
         $this->_request->setParams($params);
         $received = $this->_request->getParams();
@@ -225,7 +217,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $params = array(
             'foo' => 'bar',
             'boo' => 'bah',
-            'fee' => 'fi'
+            'fee' => 'fi',
         );
         $this->_request->setParams($params);
         $received = $this->_request->getParams();
@@ -235,15 +227,15 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testGetParamsWithGetAndPost()
     {
         $_GET = array(
-            'get' => true
+            'get' => true,
         );
         $_POST = array(
-            'post' => true
+            'post' => true,
         );
         $params = array(
             'foo' => 'bar',
             'boo' => 'bah',
-            'fee' => 'fi'
+            'fee' => 'fi',
         );
         $this->_request->setParams($params);
 
@@ -258,10 +250,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testGetParamsWithGetOrPost()
     {
         $_GET = array(
-            'get' => true
+            'get' => true,
         );
         $_POST = array(
-            'post' => true
+            'post' => true,
         );
 
         $this->_request->setParamSources(array('_GET'));
@@ -359,9 +351,8 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('foo', $this->_request->getQuery('BAR', 'foo'));
 
         $expected = array('var1' => 'val1', 'var2' => 'val2');
-        $this->assertEquals( $expected, $this->_request->getQuery());
+        $this->assertEquals($expected, $this->_request->getQuery());
     }
-
 
     public function testGetPost()
     {
@@ -373,7 +364,6 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_POST['post2'] = 'val2';
         $expected = array('post1' => 'val1', 'post2' => 'val2');
         $this->assertEquals($expected, $this->_request->getPost());
-
     }
 
     public function testGetPathInfo()
@@ -395,8 +385,8 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('/test/index.php', $request->getBaseUrl());
 
         $requestUri = $request->getRequestUri();
-        $baseUrl    = $request->getBaseUrl();
-        $pathInfo   = substr($requestUri, strlen($baseUrl));
+        $baseUrl = $request->getBaseUrl();
+        $pathInfo = substr($requestUri, strlen($baseUrl));
         $this->assertTrue($pathInfo ? true : false);
 
         $this->assertEquals('/ctrl-name/act-name', $request->getPathInfo(), "Expected $pathInfo;");
@@ -433,42 +423,46 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('', $this->_request->getBaseUrl());
     }
 
-	/**
-     * Dataprovider for testing prefix paths in the base url
+    /**
+     * Dataprovider for testing prefix paths in the base url.
+     *
      * @group ZF-10040
      */
     public function prefixProvider()
     {
-        return array (
-            array (null),
-            array ('/public'),
-            array ('/publicite'),
-            array ('/foo'),
+        return array(
+            array(null),
+            array('/public'),
+            array('/publicite'),
+            array('/foo'),
         );
     }
+
     /**
      * @dataProvider prefixProvider
      * @group ZF-10040
+     *
+     * @param mixed $prefix
      */
-	public function testBaseUrlSetsProperLocation($prefix)
-	{
-	    $_SERVER['REQUEST_URI']     = $prefix . '/index.php/news/3?var1=val1&var2=val2';
-	    $_SERVER['QUERY_STRING']    = 'var1=val1&var2=val2';
-        $_SERVER['SCRIPT_NAME']     = $prefix . '/index.php';
-        $_SERVER['PHP_SELF']        = $prefix . '/index.php/news/3';
+    public function testBaseUrlSetsProperLocation($prefix)
+    {
+        $_SERVER['REQUEST_URI'] = $prefix . '/index.php/news/3?var1=val1&var2=val2';
+        $_SERVER['QUERY_STRING'] = 'var1=val1&var2=val2';
+        $_SERVER['SCRIPT_NAME'] = $prefix . '/index.php';
+        $_SERVER['PHP_SELF'] = $prefix . '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html' . $prefix . '/index.php';
         $_GET = array(
             'var1' => 'val1',
-            'var2' => 'val2'
+            'var2' => 'val2',
         );
-		$request = new Zend_Controller_Request_Http();
-		if (null !== $prefix) {
-		    $request->setBasePath($prefix);
-		}
-		$this->assertEquals($prefix, $request->getBasePath());
-		$this->assertEquals($prefix . '/index.php', $request->getBaseUrl());
-		unset ($request);
-	}
+        $request = new Zend_Controller_Request_Http();
+        if (null !== $prefix) {
+            $request->setBasePath($prefix);
+        }
+        $this->assertEquals($prefix, $request->getBasePath());
+        $this->assertEquals($prefix . '/index.php', $request->getBaseUrl());
+        unset($request);
+    }
 
     /*
      * Tests if an empty string gets returned when no basepath is set on the request.
@@ -489,13 +483,13 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testSetBaseUrlUsingPhpSelf()
     {
-        $_SERVER['REQUEST_URI']     = '/index.php/news/3?var1=val1&var2=val2';
-        $_SERVER['SCRIPT_NAME']     = '/home.php';
-        $_SERVER['PHP_SELF']        = '/index.php/news/3';
+        $_SERVER['REQUEST_URI'] = '/index.php/news/3?var1=val1&var2=val2';
+        $_SERVER['SCRIPT_NAME'] = '/home.php';
+        $_SERVER['PHP_SELF'] = '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
         $_GET = array(
             'var1' => 'val1',
-            'var2' => 'val2'
+            'var2' => 'val2',
         );
         $request = new Zend_Controller_Request_Http();
 
@@ -504,14 +498,14 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testSetBaseUrlUsingOrigScriptName()
     {
-        $_SERVER['REQUEST_URI']     = '/index.php/news/3?var1=val1&var2=val2';
-        $_SERVER['SCRIPT_NAME']     = '/home.php';
-        $_SERVER['PHP_SELF']        = '/home.php';
-        $_SERVER['ORIG_SCRIPT_NAME']= '/index.php';
+        $_SERVER['REQUEST_URI'] = '/index.php/news/3?var1=val1&var2=val2';
+        $_SERVER['SCRIPT_NAME'] = '/home.php';
+        $_SERVER['PHP_SELF'] = '/home.php';
+        $_SERVER['ORIG_SCRIPT_NAME'] = '/index.php';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
         $_GET = array(
             'var1' => 'val1',
-            'var2' => 'val2'
+            'var2' => 'val2',
         );
         $request = new Zend_Controller_Request_Http();
 
@@ -520,12 +514,12 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testSetBaseUrlAutoDiscoveryUsingRequestUri()
     {
-        $_SERVER['REQUEST_URI']     = '/index.php/news/3?var1=val1&var2=val2';
-        $_SERVER['PHP_SELF']        = '/index.php/news/3';
+        $_SERVER['REQUEST_URI'] = '/index.php/news/3?var1=val1&var2=val2';
+        $_SERVER['PHP_SELF'] = '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
         $_GET = array(
             'var1' => 'val1',
-            'var2' => 'val2'
+            'var2' => 'val2',
         );
         $request = new Zend_Controller_Request_Http();
 
@@ -536,11 +530,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     {
         unset($_SERVER['REQUEST_URI']);
         $_SERVER['HTTP_X_REWRITE_URL'] = '/index.php/news/3?var1=val1&var2=val2';
-        $_SERVER['PHP_SELF']           = '/index.php/news/3';
-        $_SERVER['SCRIPT_FILENAME']    = '/var/web/html/index.php';
+        $_SERVER['PHP_SELF'] = '/index.php/news/3';
+        $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
         $_GET = array(
             'var1' => 'val1',
-            'var2' => 'val2'
+            'var2' => 'val2',
         );
         $request = new Zend_Controller_Request_Http();
 
@@ -551,11 +545,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     {
         unset($_SERVER['REQUEST_URI']);
         $_SERVER['HTTP_X_ORIGINAL_URL'] = '/index.php/news/3?var1=val1&var2=val2';
-        $_SERVER['PHP_SELF']           = '/index.php/news/3';
-        $_SERVER['SCRIPT_FILENAME']    = '/var/web/html/index.php';
+        $_SERVER['PHP_SELF'] = '/index.php/news/3';
+        $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
         $_GET = array(
             'var1' => 'val1',
-            'var2' => 'val2'
+            'var2' => 'val2',
         );
         $request = new Zend_Controller_Request_Http();
 
@@ -565,27 +559,28 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testSetBaseUrlAutoDiscoveryUsingOrigPathInfo()
     {
         unset($_SERVER['REQUEST_URI']);
-        $_SERVER['ORIG_PATH_INFO']  = '/index.php/news/3';
-        $_SERVER['QUERY_STRING']    = 'var1=val1&var2=val2';
-        $_SERVER['PHP_SELF']        = '/index.php/news/3';
+        $_SERVER['ORIG_PATH_INFO'] = '/index.php/news/3';
+        $_SERVER['QUERY_STRING'] = 'var1=val1&var2=val2';
+        $_SERVER['PHP_SELF'] = '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
         $_GET = array(
             'var1' => 'val1',
-            'var2' => 'val2'
+            'var2' => 'val2',
         );
         $request = new Zend_Controller_Request_Http();
 
         $this->assertEquals('/index.php', $request->getBaseUrl());
     }
+
     /**
      * @group ZF-7824
      */
     public function testSetBaseUrlWithScriptNameAsGetParam()
     {
-        $request = new Zend_Controller_Request_Http;
+        $request = new Zend_Controller_Request_Http();
 
-        $_SERVER['REQUEST_URI']     = '/article/archive?foo=index.php';
-        $_SERVER['QUERY_STRING']    = 'foo=index.php';
+        $_SERVER['REQUEST_URI'] = '/article/archive?foo=index.php';
+        $_SERVER['QUERY_STRING'] = 'foo=index.php';
         $_SERVER['SCRIPT_FILENAME'] = '/var/www/zftests/index.php';
 
         $this->assertEquals('/article/archive', $request->getPathInfo());
@@ -599,12 +594,12 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testBasePathAutoDiscovery()
     {
-        $_SERVER['REQUEST_URI']     = '/html/index.php/news/3?var1=val1&var2=val2';
-        $_SERVER['PHP_SELF']        = '/html/index.php/news/3';
+        $_SERVER['REQUEST_URI'] = '/html/index.php/news/3?var1=val1&var2=val2';
+        $_SERVER['PHP_SELF'] = '/html/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
         $_GET = array(
             'var1' => 'val1',
-            'var2' => 'val2'
+            'var2' => 'val2',
         );
         $request = new Zend_Controller_Request_Http();
 
@@ -613,8 +608,8 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testBasePathAutoDiscoveryWithPhpFile()
     {
-        $_SERVER['REQUEST_URI']     = '/dir/action';
-        $_SERVER['PHP_SELF']        = '/dir/index.php';
+        $_SERVER['REQUEST_URI'] = '/dir/action';
+        $_SERVER['PHP_SELF'] = '/dir/index.php';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/dir/index.php';
         $request = new Zend_Controller_Request_Http();
 
@@ -650,7 +645,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testGetHeader()
     {
         $_SERVER['HTTP_ACCEPT_ENCODING'] = 'UTF-8';
-        $_SERVER['HTTP_CONTENT_TYPE']    = 'text/json';
+        $_SERVER['HTTP_CONTENT_TYPE'] = 'text/json';
 
         $this->assertEquals('UTF-8', $this->_request->getHeader('Accept-Encoding'));
         $this->assertEquals('text/json', $this->_request->getHeader('Content-Type'));
@@ -665,7 +660,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     {
         $_SERVER['REQUEST_METHOD'] = 'POST';
         $_SERVER['CONTENT_LENGTH'] = 100;
-        $_SERVER['CONTENT_TYPE']   = 'application/x-www-form-urlencoded';
+        $_SERVER['CONTENT_TYPE'] = 'application/x-www-form-urlencoded';
 
         $this->assertEquals(100, $this->_request->getHeader('Content-Length'));
         $this->assertEquals(
@@ -756,7 +751,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testParamSourcesHonoredByGetParam()
     {
-        $_GET  = array('foo' => 'bar');
+        $_GET = array('foo' => 'bar');
         $_POST = array('foo' => 'baz');
         $this->_request->setParamSources(array('_POST'));
         $this->assertEquals('baz', $this->_request->getParam('foo'));
@@ -770,13 +765,13 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testStrippingHttpProtocolAndHostFromRequestUriOnlyWhenPresentAtBeginningOfUri()
     {
         $_SERVER['REQUEST_URI'] = 'http://foo.example.com/foo/bar?r=http://foo.example.com/bar/baz';
-        $_SERVER['HTTP_HOST']   = 'foo.example.com';
+        $_SERVER['HTTP_HOST'] = 'foo.example.com';
         $request = new Zend_Controller_Request_Http();
         $test = $request->getRequestUri();
         $this->assertEquals('/foo/bar?r=http://foo.example.com/bar/baz', $test);
 
         $_SERVER['REQUEST_URI'] = '/foo/bar?r=http://foo.example.com/bar/baz';
-        $_SERVER['HTTP_HOST']   = 'foo.example.com';
+        $_SERVER['HTTP_HOST'] = 'foo.example.com';
         $request = new Zend_Controller_Request_Http();
         $test = $request->getRequestUri();
         $this->assertEquals('/foo/bar?r=http://foo.example.com/bar/baz', $test);
@@ -790,15 +785,15 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testStrippingHttpsProtocolAndHostFromRequestUriOnlyWhenPresentAtBeginningOfUri()
     {
         $_SERVER['REQUEST_URI'] = 'https://foo.example.com/foo/bar?r=https://foo.example.com/bar/baz';
-        $_SERVER['HTTP_HOST']   = 'foo.example.com';
-        $_SERVER['HTTPS']       = 'on';
+        $_SERVER['HTTP_HOST'] = 'foo.example.com';
+        $_SERVER['HTTPS'] = 'on';
         $request = new Zend_Controller_Request_Http();
         $test = $request->getRequestUri();
         $this->assertEquals('/foo/bar?r=https://foo.example.com/bar/baz', $test);
 
         $_SERVER['REQUEST_URI'] = '/foo/bar?r=https://foo.example.com/bar/baz';
-        $_SERVER['HTTP_HOST']   = 'foo.example.com';
-        $_SERVER['HTTPS']       = 'on';
+        $_SERVER['HTTP_HOST'] = 'foo.example.com';
+        $_SERVER['HTTPS'] = 'on';
         $request = new Zend_Controller_Request_Http();
         $test = $request->getRequestUri();
         $this->assertEquals('/foo/bar?r=https://foo.example.com/bar/baz', $test);
@@ -812,7 +807,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testStrippingHttpProtocolHostAndNonStandardPortFromRequestUriOnlyWhenPresentAtBeginningOfUri()
     {
         $_SERVER['REQUEST_URI'] = 'http://foo.example.com:8888/foo/bar?r=http://foo.example.com:8888/bar/baz';
-        $_SERVER['HTTP_HOST']   = '';
+        $_SERVER['HTTP_HOST'] = '';
         $_SERVER['SERVER_NAME'] = 'foo.example.com';
         $_SERVER['SERVER_PORT'] = '8888';
         $request = new Zend_Controller_Request_Http();
@@ -820,7 +815,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('/foo/bar?r=http://foo.example.com:8888/bar/baz', $test);
 
         $_SERVER['REQUEST_URI'] = '/foo/bar?r=https://foo.example.com:8888/bar/baz';
-        $_SERVER['HTTP_HOST']   = '';
+        $_SERVER['HTTP_HOST'] = '';
         $_SERVER['SERVER_NAME'] = 'foo.example.com';
         $_SERVER['SERVER_PORT'] = '8888';
         $request = new Zend_Controller_Request_Http();
@@ -886,7 +881,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetParamsShouldHonorParamSourcesSetting()
     {
-        $_GET  = array('foo' => 'bar');
+        $_GET = array('foo' => 'bar');
         $_POST = array('foo' => 'baz');
         $this->_request->setParamSources(array('_POST'));
         $params = $this->_request->getParams();
@@ -915,15 +910,14 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('', $this->_request->getHeader('X-Foo'));
     }
 
-
     /**
      * @group ZF-3527
      */
     public function testGetRequestUriShouldReturnDecodedUri()
     {
         $request = new Zend_Controller_Request_Http();
-        $request->setBaseUrl( '%7Euser' );
-        $this->assertEquals( '~user', $request->getBaseUrl() );
+        $request->setBaseUrl('%7Euser');
+        $this->assertEquals('~user', $request->getBaseUrl());
     }
 
     /**
@@ -932,11 +926,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testPathInfoShouldRespectEncodedBaseUrl()
     {
         $request = new Zend_Controller_Request_Http();
-        $request->setBaseUrl( '%7Euser' );
+        $request->setBaseUrl('%7Euser');
         $_SERVER['REQUEST_URI'] = '~user/module/controller/action';
         $pathInfo = $request->getPathInfo();
 
-        $this->assertEquals( '/module/controller/action', $pathInfo, $pathInfo);
+        $this->assertEquals('/module/controller/action', $pathInfo, $pathInfo);
     }
 
     /**
@@ -945,11 +939,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testPathInfoShouldRespectNonEncodedBaseUrl()
     {
         $request = new Zend_Controller_Request_Http();
-        $request->setBaseUrl( '~user' );
+        $request->setBaseUrl('~user');
         $_SERVER['REQUEST_URI'] = '~user/module/controller/action';
         $pathInfo = $request->getPathInfo();
 
-        $this->assertEquals( '/module/controller/action', $pathInfo, $pathInfo);
+        $this->assertEquals('/module/controller/action', $pathInfo, $pathInfo);
     }
 
     /**
@@ -958,11 +952,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testPathInfoShouldRespectEncodedRequestUri()
     {
         $request = new Zend_Controller_Request_Http();
-        $request->setBaseUrl( '~user' );
+        $request->setBaseUrl('~user');
         $_SERVER['REQUEST_URI'] = '%7Euser/module/controller/action';
         $pathInfo = $request->getPathInfo();
 
-        $this->assertEquals( '/module/controller/action', $pathInfo, $pathInfo);
+        $this->assertEquals('/module/controller/action', $pathInfo, $pathInfo);
     }
 
     /**
@@ -971,11 +965,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testPathInfoShouldRespectNonEncodedRequestUri()
     {
         $request = new Zend_Controller_Request_Http();
-        $request->setBaseUrl( '~user' );
+        $request->setBaseUrl('~user');
         $_SERVER['REQUEST_URI'] = '~user/module/controller/action';
         $pathInfo = $request->getPathInfo();
 
-        $this->assertEquals( '/module/controller/action', $pathInfo, $pathInfo);
+        $this->assertEquals('/module/controller/action', $pathInfo, $pathInfo);
     }
 
     /**
@@ -989,7 +983,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['REQUEST_URI'] = '/module/controller/action/param/escaped%2Fstring';
         $pathInfo = $request->getPathInfo();
 
-        $this->assertEquals( '/module/controller/action/param/escaped%2Fstring', $pathInfo, $pathInfo);
+        $this->assertEquals('/module/controller/action/param/escaped%2Fstring', $pathInfo, $pathInfo);
     }
 
     /**
@@ -1000,6 +994,4 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $request = new Zend_Controller_Request_Http();
         $this->assertEquals('', $request->getHttpHost(), 'HttpHost should be :');
     }
-
 }
-

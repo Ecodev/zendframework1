@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,32 +12,28 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Config
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Zend_Config_Xml
+ * Zend_Config_Xml.
  */
 require_once 'Zend/Config/Xml.php';
 
 /**
- * @category   Zend
- * @package    Zend_Config
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Config
  */
 class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
 {
     protected $_xmlFileConfig;
+
     protected $_xmlFileAllSectionsConfig;
+
     protected $_xmlFileCircularConfig;
+
     protected $_xmlFileInvalid;
 
     public function setUp()
@@ -175,7 +171,6 @@ class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('one', $config->one);
         $config = new Zend_Config_Xml($this->_xmlFileOneTopLevelStringConfig, 'one');
         $this->assertEquals('one', $config->one);
-
     }
 
     public function testZF2285_MultipleKeysOfTheSameName()
@@ -206,6 +201,7 @@ class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Config_Exception $expected) {
             $this->assertContains('failed to load', $expected->getMessage());
         }
+
         try {
             $config = new Zend_Config_Xml('I/dont/exist');
             $this->fail('An expected Zend_Config_Exception has not been raised');
@@ -241,14 +237,14 @@ class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
         }
 
         $string = <<<EOT
-<?xml version="1.0"?>
-<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
-    <all>
-        <foo>foo-<zf:const zf:name="ZEND_CONFIG_XML_TEST_CONSTANT"/>-bar-<zf:const zf:name="ZEND_CONFIG_XML_TEST_CONSTANT"/></foo>
-        <bar><const name="ZEND_CONFIG_XML_TEST_CONSTANT"/></bar>
-    </all>
-</config>
-EOT;
+            <?xml version="1.0"?>
+            <config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+                <all>
+                    <foo>foo-<zf:const zf:name="ZEND_CONFIG_XML_TEST_CONSTANT"/>-bar-<zf:const zf:name="ZEND_CONFIG_XML_TEST_CONSTANT"/></foo>
+                    <bar><const name="ZEND_CONFIG_XML_TEST_CONSTANT"/></bar>
+                </all>
+            </config>
+            EOT;
 
         $config = new Zend_Config_Xml($string, 'all');
 
@@ -259,13 +255,13 @@ EOT;
     public function testNonExistentConstant()
     {
         $string = <<<EOT
-<?xml version="1.0"?>
-<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
-    <all>
-        <foo>foo-<zf:const zf:name="ZEND_CONFIG_XML_TEST_NON_EXISTENT_CONSTANT"/></foo>
-    </all>
-</config>
-EOT;
+            <?xml version="1.0"?>
+            <config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+                <all>
+                    <foo>foo-<zf:const zf:name="ZEND_CONFIG_XML_TEST_NON_EXISTENT_CONSTANT"/></foo>
+                </all>
+            </config>
+            EOT;
 
         try {
             $config = new Zend_Config_Xml($string, 'all');
@@ -278,76 +274,69 @@ EOT;
     public function testNamespacedExtends()
     {
         $string = <<<EOT
-<?xml version="1.0"?>
-<config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
-    <all>
-        <foo>bar</foo>
-    </all>
-    <staging zf:extends="all"/>
-</config>
-EOT;
+            <?xml version="1.0"?>
+            <config xmlns:zf="http://framework.zend.com/xml/zend-config-xml/1.0/">
+                <all>
+                    <foo>bar</foo>
+                </all>
+                <staging zf:extends="all"/>
+            </config>
+            EOT;
 
         $config = new Zend_Config_Xml($string);
 
         $this->assertEquals('bar', $config->staging->foo);
     }
 
-    /*
-     * @group 3702
-     *
-     */
+    // @group 3702
     public function testLoadAnXMLString()
     {
         $string = <<<EOT
-<?xml version="1.0"?>
-<config>
-    <all>
-        <hostname>all</hostname>
-        <db>
-            <host>127.0.0.1</host>
-            <name>live</name>
-        </db>
-    </all>
+            <?xml version="1.0"?>
+            <config>
+                <all>
+                    <hostname>all</hostname>
+                    <db>
+                        <host>127.0.0.1</host>
+                        <name>live</name>
+                    </db>
+                </all>
 
-    <staging extends="all">
-        <hostname>staging</hostname>
-        <db>
-            <name>dbstaging</name>
-        </db>
-        <debug>false</debug>
-    </staging>
+                <staging extends="all">
+                    <hostname>staging</hostname>
+                    <db>
+                        <name>dbstaging</name>
+                    </db>
+                    <debug>false</debug>
+                </staging>
 
 
-</config>
-EOT;
+            </config>
+            EOT;
 
         $config = new Zend_Config_Xml($string, 'staging');
         $this->assertEquals('staging', $config->hostname);
-
     }
 
-    /*
-     * @group ZF-5800
-     *
-     */
+    // @group ZF-5800
     public function testArraysOfKeysCreatedUsingAttributesAndKeys()
     {
         $string = <<<EOT
-<?xml version="1.0"?>
-<config>
-<rec>
-        <receiver>
-                <mail>user1@company.com</mail>
-                <name>User Name</name>
-                <html>1</html>
-        </receiver>
-</rec>
-<dev extends="rec">
-        <receiver mail="nice.guy@company.com" name="Nice Guy" />
-        <receiver mail="fred@company.com" html="2" />
-</dev>
-</config>
-EOT;
+            <?xml version="1.0"?>
+            <config>
+            <rec>
+                    <receiver>
+                            <mail>user1@company.com</mail>
+                            <name>User Name</name>
+                            <html>1</html>
+                    </receiver>
+            </rec>
+            <dev extends="rec">
+                    <receiver mail="nice.guy@company.com" name="Nice Guy" />
+                    <receiver mail="fred@company.com" html="2" />
+            </dev>
+            </config>
+            EOT;
 
         $config = new Zend_Config_Xml($string, 'dev');
         $this->assertEquals('nice.guy@company.com', $config->receiver->{0}->mail);

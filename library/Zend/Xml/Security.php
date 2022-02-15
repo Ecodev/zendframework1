@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,18 +12,12 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Xml
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
- 
 /**
- * @category   Zend
- * @package    Zend_Xml_SecurityScan
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 class Zend_Xml_Security
@@ -31,10 +25,9 @@ class Zend_Xml_Security
     public const ENTITY_DETECT = 'Detected use of ENTITY in XML, disabled to prevent XXE/XEE attacks';
 
     /**
-     * Heuristic scan to detect entity in XML
+     * Heuristic scan to detect entity in XML.
      *
      * @param  string $xml
-     * @throws Zend_Xml_Exception If entity expansion or external entity declaration was discovered.
      */
     protected static function heuristicScan($xml)
     {
@@ -46,10 +39,11 @@ class Zend_Xml_Security
     }
 
     /**
-     * @param integer $errno
+     * @param int $errno
      * @param string $errstr
      * @param string $errfile
-     * @param integer $errline
+     * @param int $errline
+     *
      * @return bool
      */
     public static function loadXmlErrorHandler($errno, $errstr, $errfile, $errline)
@@ -57,18 +51,19 @@ class Zend_Xml_Security
         if (substr_count($errstr, 'DOMDocument::loadXML()') > 0) {
             return true;
         }
+
         return false;
     }
 
     /**
-     * Scan XML string for potential XXE and XEE attacks
+     * Scan XML string for potential XXE and XEE attacks.
      *
      * @param   string $xml
      * @param   DomDocument $dom
-     * @throws  Zend_Xml_Exception
-     * @return  SimpleXMLElement|DomDocument|boolean
+     *
+     * @return  bool|DomDocument|SimpleXMLElement
      */
-    public static function scan($xml, DOMDocument $dom = null)
+    public static function scan($xml, ?DOMDocument $dom = null)
     {
         $loadEntities = null;
         $useInternalXmlErrors = null;
@@ -102,6 +97,7 @@ class Zend_Xml_Security
                 libxml_disable_entity_loader($loadEntities);
                 libxml_use_internal_errors($useInternalXmlErrors);
             }
+
             return false;
         }
 
@@ -111,6 +107,7 @@ class Zend_Xml_Security
                 if ($child->nodeType === XML_DOCUMENT_TYPE_NODE) {
                     if ($child->entities->length > 0) {
                         require_once 'Exception.php';
+
                         throw new Zend_Xml_Exception(self::ENTITY_DETECT);
                     }
                 }
@@ -128,32 +125,36 @@ class Zend_Xml_Security
             if (!$result instanceof SimpleXMLElement) {
                 return false;
             }
+
             return $result;
         }
+
         return $dom;
     }
 
     /**
-     * Scan XML file for potential XXE/XEE attacks
+     * Scan XML file for potential XXE/XEE attacks.
      *
      * @param  string $file
      * @param  DOMDocument $dom
-     * @throws Zend_Xml_Exception
-     * @return SimpleXMLElement|DomDocument
+     *
+     * @return DomDocument|SimpleXMLElement
      */
-    public static function scanFile($file, DOMDocument $dom = null)
+    public static function scanFile($file, ?DOMDocument $dom = null)
     {
         if (!file_exists($file)) {
             require_once 'Exception.php';
+
             throw new Zend_Xml_Exception(
                 "The file $file specified doesn't exist"
             );
         }
+
         return self::scan(file_get_contents($file), $dom);
     }
 
     /**
-     * Return true if PHP is running with PHP-FPM
+     * Return true if PHP is running with PHP-FPM.
      *
      * This method is mainly used to determine whether or not heuristic checks
      * (vs libxml checks) should be made, due to threading issues in libxml;
@@ -164,7 +165,7 @@ class Zend_Xml_Security
      * versions, this method will return false to enforce those checks, which
      * are more strict and accurate than the heuristic checks.
      *
-     * @return boolean
+     * @return bool
      */
     public static function isPhpFpm()
     {
@@ -179,6 +180,7 @@ class Zend_Xml_Security
         if (substr(php_sapi_name(), 0, 3) === 'fpm' && $isVulnerableVersion) {
             return true;
         }
+
         return false;
     }
 
@@ -186,11 +188,13 @@ class Zend_Xml_Security
      * Determine and return the string(s) to use for the <!ENTITY comparison.
      *
      * @param string $xml
+     *
      * @return string[]
      */
     protected static function getEntityComparison($xml)
     {
         $encodingMap = self::getAsciiEncodingMap();
+
         return array_map(
             array(self::class, 'generateEntityComparison'),
             self::detectXmlEncoding($xml, self::detectStringEncoding($xml))
@@ -204,11 +208,13 @@ class Zend_Xml_Security
      * heuristic.
      *
      * @param string $xml
+     *
      * @return string File encoding
      */
     protected static function detectStringEncoding($xml)
     {
         $encoding = self::detectBom($xml);
+
         return $encoding ?: self::detectXmlStringEncoding($xml);
     }
 
@@ -220,7 +226,8 @@ class Zend_Xml_Security
      * it returns the encoding.
      *
      * @param string $string
-     * @return false|string Returns encoding on success.
+     *
+     * @return false|string returns encoding on success
      */
     protected static function detectBom($string)
     {
@@ -229,6 +236,7 @@ class Zend_Xml_Security
                 return $criteria['encoding'];
             }
         }
+
         return false;
     }
 
@@ -236,6 +244,7 @@ class Zend_Xml_Security
      * Attempt to detect the string encoding of an XML string.
      *
      * @param string $xml
+     *
      * @return string Encoding
      */
     protected static function detectXmlStringEncoding($xml)
@@ -263,17 +272,18 @@ class Zend_Xml_Security
      *
      * @param string $xml
      * @param string $fileEncoding
+     *
      * @return string[] Potential XML encodings
      */
     protected static function detectXmlEncoding($xml, $fileEncoding)
     {
         $encodingMap = self::getAsciiEncodingMap();
-        $generator   = $encodingMap[$fileEncoding];
-        $encAttr     = call_user_func($generator, 'encoding="');
-        $quote       = call_user_func($generator, '"');
-        $close       = call_user_func($generator, '>');
+        $generator = $encodingMap[$fileEncoding];
+        $encAttr = call_user_func($generator, 'encoding="');
+        $quote = call_user_func($generator, '"');
+        $close = call_user_func($generator, '>');
 
-        $closePos    = strpos($xml, (string) $close);
+        $closePos = strpos($xml, (string) $close);
         if (false === $closePos) {
             return array($fileEncoding);
         }
@@ -285,13 +295,14 @@ class Zend_Xml_Security
             return array($fileEncoding);
         }
 
-        $encPos   += strlen($encAttr);
+        $encPos += strlen($encAttr);
         $quotePos = strpos($xml, (string) $quote, $encPos);
         if (false === $quotePos) {
             return array($fileEncoding);
         }
 
         $encoding = self::substr($xml, $encPos, $quotePos);
+
         return array(
             // Following line works because we're only supporting 8-bit safe encodings at this time.
             str_replace('\0', '', $encoding), // detected encoding
@@ -305,7 +316,8 @@ class Zend_Xml_Security
      * Returns a list of common encoding -> BOM maps, along with the character
      * length to compare against.
      *
-     * @link https://en.wikipedia.org/wiki/Byte_order_mark
+     * @see https://en.wikipedia.org/wiki/Byte_order_mark
+     *
      * @return array
      */
     protected static function getBomMap()
@@ -313,33 +325,33 @@ class Zend_Xml_Security
         return array(
             array(
                 'encoding' => 'UTF-32BE',
-                'bom'      => pack('CCCC', 0x00, 0x00, 0xfe, 0xff),
-                'length'   => 4,
+                'bom' => pack('CCCC', 0x00, 0x00, 0xFE, 0xFF),
+                'length' => 4,
             ),
             array(
                 'encoding' => 'UTF-32LE',
-                'bom'      => pack('CCCC', 0xff, 0xfe, 0x00, 0x00),
-                'length'   => 4,
+                'bom' => pack('CCCC', 0xFF, 0xFE, 0x00, 0x00),
+                'length' => 4,
             ),
             array(
                 'encoding' => 'GB-18030',
-                'bom'      => pack('CCCC', 0x84, 0x31, 0x95, 0x33),
-                'length'   => 4,
+                'bom' => pack('CCCC', 0x84, 0x31, 0x95, 0x33),
+                'length' => 4,
             ),
             array(
                 'encoding' => 'UTF-16BE',
-                'bom'      => pack('CC', 0xfe, 0xff),
-                'length'   => 2,
+                'bom' => pack('CC', 0xFE, 0xFF),
+                'length' => 2,
             ),
             array(
                 'encoding' => 'UTF-16LE',
-                'bom'      => pack('CC', 0xff, 0xfe),
-                'length'   => 2,
+                'bom' => pack('CC', 0xFF, 0xFE),
+                'length' => 2,
             ),
             array(
                 'encoding' => 'UTF-8',
-                'bom'      => pack('CCC', 0xef, 0xbb, 0xbf),
-                'length'   => 3,
+                'bom' => pack('CCC', 0xEF, 0xBB, 0xBF),
+                'length' => 3,
             ),
         );
     }
@@ -356,14 +368,14 @@ class Zend_Xml_Security
     protected static function getAsciiEncodingMap()
     {
         return array(
-            'UTF-32BE'   => array(self::class, 'encodeToUTF32BE'),
-            'UTF-32LE'   => array(self::class, 'encodeToUTF32LE'),
+            'UTF-32BE' => array(self::class, 'encodeToUTF32BE'),
+            'UTF-32LE' => array(self::class, 'encodeToUTF32LE'),
             'UTF-32odd1' => array(self::class, 'encodeToUTF32odd1'),
             'UTF-32odd2' => array(self::class, 'encodeToUTF32odd2'),
-            'UTF-16BE'   => array(self::class, 'encodeToUTF16BE'),
-            'UTF-16LE'   => array(self::class, 'encodeToUTF16LE'),
-            'UTF-8'      => array(self::class, 'encodeToUTF8'),
-            'GB-18030'   => array(self::class, 'encodeToUTF8'),
+            'UTF-16BE' => array(self::class, 'encodeToUTF16BE'),
+            'UTF-16LE' => array(self::class, 'encodeToUTF16LE'),
+            'UTF-8' => array(self::class, 'encodeToUTF8'),
+            'GB-18030' => array(self::class, 'encodeToUTF8'),
         );
     }
 
@@ -376,14 +388,16 @@ class Zend_Xml_Security
      * @param string $string
      * @param int $start
      * @param int $end
+     *
      * @return string
      */
     protected static function substr($string, $start, $end)
     {
         $substr = '';
-        for ($i = $start; $i < $end; $i += 1) {
+        for ($i = $start; $i < $end; ++$i) {
             $substr .= $string[$i];
         }
+
         return $substr;
     }
 
@@ -394,21 +408,26 @@ class Zend_Xml_Security
      * callable to pass to array_map.
      *
      * @internal
+     *
      * @param string $encoding
+     *
      * @return string
      */
     public static function generateEntityComparison($encoding)
     {
         $encodingMap = self::getAsciiEncodingMap();
-        $generator   = $encodingMap[$encoding] ?? $encodingMap['UTF-8'];
+        $generator = $encodingMap[$encoding] ?? $encodingMap['UTF-8'];
+
         return call_user_func($generator, '<!ENTITY');
     }
 
     /**
-     * Encode an ASCII string to UTF-32BE
+     * Encode an ASCII string to UTF-32BE.
      *
      * @internal
+     *
      * @param string $ascii
+     *
      * @return string
      */
     public static function encodeToUTF32BE($ascii)
@@ -417,10 +436,12 @@ class Zend_Xml_Security
     }
 
     /**
-     * Encode an ASCII string to UTF-32LE
+     * Encode an ASCII string to UTF-32LE.
      *
      * @internal
+     *
      * @param string $ascii
+     *
      * @return string
      */
     public static function encodeToUTF32LE($ascii)
@@ -429,10 +450,12 @@ class Zend_Xml_Security
     }
 
     /**
-     * Encode an ASCII string to UTF-32odd1
+     * Encode an ASCII string to UTF-32odd1.
      *
      * @internal
+     *
      * @param string $ascii
+     *
      * @return string
      */
     public static function encodeToUTF32odd1($ascii)
@@ -441,10 +464,12 @@ class Zend_Xml_Security
     }
 
     /**
-     * Encode an ASCII string to UTF-32odd2
+     * Encode an ASCII string to UTF-32odd2.
      *
      * @internal
+     *
      * @param string $ascii
+     *
      * @return string
      */
     public static function encodeToUTF32odd2($ascii)
@@ -453,10 +478,12 @@ class Zend_Xml_Security
     }
 
     /**
-     * Encode an ASCII string to UTF-16BE
+     * Encode an ASCII string to UTF-16BE.
      *
      * @internal
+     *
      * @param string $ascii
+     *
      * @return string
      */
     public static function encodeToUTF16BE($ascii)
@@ -465,10 +492,12 @@ class Zend_Xml_Security
     }
 
     /**
-     * Encode an ASCII string to UTF-16LE
+     * Encode an ASCII string to UTF-16LE.
      *
      * @internal
+     *
      * @param string $ascii
+     *
      * @return string
      */
     public static function encodeToUTF16LE($ascii)
@@ -477,10 +506,12 @@ class Zend_Xml_Security
     }
 
     /**
-     * Encode an ASCII string to UTF-8
+     * Encode an ASCII string to UTF-8.
      *
      * @internal
+     *
      * @param string $ascii
+     *
      * @return string
      */
     public static function encodeToUTF8($ascii)

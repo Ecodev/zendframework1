@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,24 +12,14 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
-
 require_once 'Zend/View.php';
 require_once 'Zend/View/Helper/HtmlObject.php';
 
 /**
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
@@ -44,21 +34,17 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
     /**
      * Runs the test methods of this class.
      *
-     * @access public
      * @static
      */
     public static function main()
     {
-
-        $suite  = new \PHPUnit\Framework\TestSuite("Zend_View_Helper_HtmlObjectTest");
+        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HtmlObjectTest');
         \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
-     *
-     * @access protected
      */
     protected function setUp()
     {
@@ -88,7 +74,7 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
     public function testMakeHtmlObjectWithAttribsWithoutParams()
     {
         $attribs = array('attribkey1' => 'attribvalue1',
-                         'attribkey2' => 'attribvalue2');
+            'attribkey2' => 'attribvalue2', );
 
         $htmlObject = $this->helper->htmlObject('datastring', 'typestring', $attribs);
 
@@ -101,7 +87,7 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
         $this->view->doctype(Zend_View_Helper_Doctype::HTML4_STRICT);
 
         $params = array('paramname1' => 'paramvalue1',
-                        'paramname2' => 'paramvalue2');
+            'paramname2' => 'paramvalue2', );
 
         $htmlObject = $this->helper->htmlObject('datastring', 'typestring', array(), $params);
 
@@ -120,7 +106,7 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
         $this->view->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT);
 
         $params = array('paramname1' => 'paramvalue1',
-                        'paramname2' => 'paramvalue2');
+            'paramname2' => 'paramvalue2', );
 
         $htmlObject = $this->helper->htmlObject('datastring', 'typestring', array(), $params);
 
@@ -143,4 +129,3 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('</object>', $htmlObject);
     }
 }
-

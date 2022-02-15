@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,49 +12,41 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Bootstrap
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
 /**
- * Interface for bootstrap classes
+ * Interface for bootstrap classes.
  *
- * @category   Zend
- * @package    Zend_Application
- * @subpackage Bootstrap
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 interface Zend_Application_Bootstrap_Bootstrapper
 {
     /**
-     * Constructor
+     * Constructor.
      *
      * @param  Zend_Application $application
      */
     public function __construct($application);
 
     /**
-     * Set bootstrap options
+     * Set bootstrap options.
      *
-     * @param  array $options
      * @return Zend_Application_Bootstrap_Bootstrapper
      */
     public function setOptions(array $options);
 
     /**
-     * Retrieve application object
+     * Retrieve application object.
      *
      * @return Zend_Application|Zend_Application_Bootstrap_Bootstrapper
      */
     public function getApplication();
 
     /**
-     * Retrieve application environment
+     * Retrieve application environment.
      *
      * @return string
      */
@@ -70,24 +62,23 @@ interface Zend_Application_Bootstrap_Bootstrapper
 
     /**
      * Retrieve list of class resource initializer names (resource names only,
-     * no method names)
+     * no method names).
      *
      * @return array
      */
     public function getClassResourceNames();
 
     /**
-     * Bootstrap application or individual resource
+     * Bootstrap application or individual resource.
      *
      * @param  null|string $resource
+     *
      * @return mixed
      */
     public function bootstrap($resource = null);
 
     /**
-     * Run the application
-     *
-     * @return void
+     * Run the application.
      */
     public function run();
 }

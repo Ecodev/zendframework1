@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,11 +12,8 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Registry
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
 
@@ -26,10 +23,6 @@
 require_once 'Zend/Registry.php';
 
 /**
- * @category   Zend
- * @package    Zend_Registry
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Registry
  */
@@ -152,7 +145,6 @@ class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
      * Zend_Registry::setInstance() method. Type-hinting violations throw
      * an error, not an exception, so it cannot be caught in a unit test.
      */
-
     public function testRegistryExceptionNoEntry()
     {
         try {
@@ -173,6 +165,7 @@ class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Exception $e) {
             $this->assertContains('Registry is already initialized', $e->getMessage());
         }
+
         try {
             Zend_Registry::setInstance(new Zend_Registry());
             $this->fail('Expected exception, because we cannot initialize the registry if it is already initialized.');
@@ -194,7 +187,7 @@ class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
     public function testDefaultRegistryArrayAsPropsZF4654()
     {
         $registry = Zend_Registry::getInstance();
-        $registry->bar = "baz";
+        $registry->bar = 'baz';
         $this->assertEquals('baz', Zend_Registry::get('bar'));
     }
 }

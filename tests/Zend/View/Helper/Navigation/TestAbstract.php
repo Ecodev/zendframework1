@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,14 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
 require_once 'Zend/Acl.php';
 require_once 'Zend/Acl/Resource.php';
 require_once 'Zend/Acl/Role.php';
@@ -31,58 +27,53 @@ require_once 'Zend/View.php';
 require_once 'Zend/Navigation.php';
 
 /**
- * Base class for navigation view helper tests
+ * Base class for navigation view helper tests.
  *
- * @category   Zend
- * @package    Zend_View
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
-abstract class Zend_View_Helper_Navigation_TestAbstract
-    extends \PHPUnit\Framework\TestCase
+abstract class Zend_View_Helper_Navigation_TestAbstract extends \PHPUnit\Framework\TestCase
 {
     public const REGISTRY_KEY = 'Zend_Navigation';
 
     /**
-     * Path to files needed for test
+     * Path to files needed for test.
      *
      * @var string
      */
     protected $_files;
 
     /**
-     * Class name for view helper to test
+     * Class name for view helper to test.
      *
      * @var string
      */
     protected $_helperName;
 
     /**
-     * View helper
+     * View helper.
      *
      * @var Zend_View_Helper_Navigation_HelperAbstract
      */
     protected $_helper;
 
     /**
-     * The first container in the config file (_files/navigation.xml)
+     * The first container in the config file (_files/navigation.xml).
      *
      * @var Zend_Navigation
      */
     protected $_nav1;
 
     /**
-     * The second container in the config file (_files/navigation.xml)
+     * The second container in the config file (_files/navigation.xml).
      *
      * @var Zend_Navigation
      */
     protected $_nav2;
 
     /**
-     * The third container in the config file (_files/navigation.xml)
+     * The third container in the config file (_files/navigation.xml).
      *
      * @var Zend_Navigation
      */
@@ -91,8 +82,7 @@ abstract class Zend_View_Helper_Navigation_TestAbstract
     private $_oldControllerDir;
 
     /**
-     * Prepares the environment before running a test
-     *
+     * Prepares the environment before running a test.
      */
     protected function setUp()
     {
@@ -125,8 +115,7 @@ abstract class Zend_View_Helper_Navigation_TestAbstract
     }
 
     /**
-     * Cleans up the environment after running a test
-     *
+     * Cleans up the environment after running a test.
      */
     protected function tearDown()
     {
@@ -140,8 +129,10 @@ abstract class Zend_View_Helper_Navigation_TestAbstract
     }
 
     /**
-     * Returns the contens of the exepcted $file
+     * Returns the contens of the exepcted $file.
+     *
      * @param  string $file
+     *
      * @return string
      */
     protected function _getExpected($file)
@@ -150,7 +141,7 @@ abstract class Zend_View_Helper_Navigation_TestAbstract
     }
 
     /**
-     * Sets up ACL
+     * Sets up ACL.
      *
      * @return Zend_Acl
      */
@@ -178,20 +169,20 @@ abstract class Zend_View_Helper_Navigation_TestAbstract
     }
 
     /**
-     * Returns translator
+     * Returns translator.
      *
      * @return Zend_Translate
      */
     protected function _getTranslator()
     {
         $data = array(
-            'Page 1'       => 'Side 1',
-            'Page 1.1'     => 'Side 1.1',
-            'Page 2'       => 'Side 2',
-            'Page 2.3'     => 'Side 2.3',
+            'Page 1' => 'Side 1',
+            'Page 1.1' => 'Side 1.1',
+            'Page 2' => 'Side 2',
+            'Page 2.3' => 'Side 2.3',
             'Page 2.3.3.1' => 'Side 2.3.3.1',
-            'Home'         => 'Hjem',
-            'Go home'      => 'Gå hjem'
+            'Home' => 'Hjem',
+            'Go home' => 'Gå hjem',
         );
 
         return new Zend_Translate('array', $data, 'nb_NO');

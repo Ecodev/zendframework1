@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,15 +12,10 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category   Zend
- * @package    Zend_Xml_Security
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version    $Id$
  */
-
-
 
 /**
  * @see Zend_Xml_Security
@@ -30,10 +25,6 @@ require_once 'Zend/Xml/Security.php';
 require_once 'Zend/Xml/Exception.php';
 
 /**
- * @category   Zend
- * @package    Zend_Xml_Security
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Xml
  */
@@ -41,19 +32,19 @@ class Zend_Xml_SecurityTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite  = new \PHPUnit\Framework\TestSuite(self::class);
+        $suite = new \PHPUnit\Framework\TestSuite(self::class);
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testScanForXEE()
     {
         $xml = <<<XML
-<?xml version="1.0"?>
-<!DOCTYPE results [<!ENTITY harmless "completely harmless">]>
-<results>
-    <result>This result is &harmless;</result>
-</results>
-XML;
+            <?xml version="1.0"?>
+            <!DOCTYPE results [<!ENTITY harmless "completely harmless">]>
+            <results>
+                <result>This result is &harmless;</result>
+            </results>
+            XML;
 
         $this->expectException(\Zend_Xml_Exception::class);
         $result = Zend_Xml_Security::scan($xml);
@@ -64,20 +55,21 @@ XML;
         $file = tempnam(sys_get_temp_dir(), 'Zend_XML_Security');
         file_put_contents($file, 'This is a remote content!');
         $xml = <<<XML
-<?xml version="1.0"?>
-<!DOCTYPE root
-[
-<!ENTITY foo SYSTEM "file://$file">
-]>
-<results>
-    <result>&foo;</result>
-</results>
-XML;
+            <?xml version="1.0"?>
+            <!DOCTYPE root
+            [
+            <!ENTITY foo SYSTEM "file://$file">
+            ]>
+            <results>
+                <result>&foo;</result>
+            </results>
+            XML;
 
         try {
             $result = Zend_Xml_Security::scan($xml);
         } catch (Zend_Xml_Exception $e) {
             unlink($file);
+
             return;
         }
 
@@ -103,8 +95,8 @@ XML;
     public function testScanInvalidXml()
     {
         $xml = <<<XML
-<foo>test</bar>
-XML;
+            <foo>test</bar>
+            XML;
 
         $result = Zend_XML_Security::scan($xml);
         $this->assertFalse($result);
@@ -113,8 +105,8 @@ XML;
     public function testScanInvalidXmlDom()
     {
         $xml = <<<XML
-<foo>test</bar>
-XML;
+            <foo>test</bar>
+            XML;
 
         $dom = new DOMDocument('1.0');
         $result = Zend_XML_Security::scan($xml, $dom);
@@ -135,15 +127,15 @@ XML;
     public function testScanXmlWithDTD()
     {
         $xml = <<<XML
-<?xml version="1.0"?>
-<!DOCTYPE results [
-<!ELEMENT results (result+)>
-<!ELEMENT result (#PCDATA)>
-]>
-<results>
-    <result>test</result>
-</results>
-XML;
+            <?xml version="1.0"?>
+            <!DOCTYPE results [
+            <!ELEMENT results (result+)>
+            <!ELEMENT result (#PCDATA)>
+            ]>
+            <results>
+                <result>test</result>
+            </results>
+            XML;
 
         $dom = new DOMDocument('1.0');
         $result = Zend_Xml_Security::scan($xml, $dom);
@@ -154,12 +146,10 @@ XML;
     protected function _getXml()
     {
         return <<<XML
-<?xml version="1.0"?>
-<results>
-    <result>test</result>
-</results>
-XML;
-
+            <?xml version="1.0"?>
+            <results>
+                <result>test</result>
+            </results>
+            XML;
     }
 }
-

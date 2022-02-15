@@ -1,6 +1,6 @@
 <?php
 /**
- * Zend Framework
+ * Zend Framework.
  *
  * LICENSE
  *
@@ -12,35 +12,29 @@
  * obtain it through the world-wide-web, please send an email
  * to license@zend.com so we can send you a copy immediately.
  *
- * @category    ZendX
- * @package     ZendX_JQuery
- * @subpackage  View
- * @copyright  Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license     http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @version     $Id: AllTests.php 11232 2008-09-05 08:16:33Z beberlei $
  */
+require_once __DIR__ . '/../../../TestHelper.php';
 
-require_once __DIR__."/../../../TestHelper.php";
+require_once 'Zend/Registry.php';
+require_once 'Zend/View.php';
+require_once 'Zend/Form/Element.php';
+require_once 'Zend/Form/SubForm.php';
+require_once 'Zend/Form/Decorator/Description.php';
+require_once 'Zend/Json.php';
+require_once 'ZendX/JQuery.php';
+require_once 'ZendX/JQuery/Form.php';
+require_once 'ZendX/JQuery/View/Helper/JQuery.php';
 
+require_once 'ZendX/JQuery/Form/Element/Spinner.php';
+require_once 'ZendX/JQuery/Form/Element/Slider.php';
+require_once 'ZendX/JQuery/Form/Element/DatePicker.php';
+require_once 'ZendX/JQuery/Form/Element/AutoComplete.php';
 
-require_once "Zend/Registry.php";
-require_once "Zend/View.php";
-require_once "Zend/Form/Element.php";
-require_once "Zend/Form/SubForm.php";
-require_once "Zend/Form/Decorator/Description.php";
-require_once "Zend/Json.php";
-require_once "ZendX/JQuery.php";
-require_once "ZendX/JQuery/Form.php";
-require_once "ZendX/JQuery/View/Helper/JQuery.php";
-
-require_once "ZendX/JQuery/Form/Element/Spinner.php";
-require_once "ZendX/JQuery/Form/Element/Slider.php";
-require_once "ZendX/JQuery/Form/Element/DatePicker.php";
-require_once "ZendX/JQuery/Form/Element/AutoComplete.php";
-
-require_once "Zend/Form/Decorator/ViewHelper.php";
-require_once "ZendX/JQuery/Form/Decorator/UiWidgetElement.php";
-
+require_once 'Zend/Form/Decorator/ViewHelper.php';
+require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElement.php';
 
 class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
 {
@@ -52,24 +46,24 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
     public function testElementSetGetJQueryParam()
     {
         $spinner = new ZendX_JQuery_Form_Element_Spinner('spinnerElem');
-        $spinner->setJQueryParam("foo", "baz");
-        $this->assertEquals("baz", $spinner->getJQueryParam("foo"));
+        $spinner->setJQueryParam('foo', 'baz');
+        $this->assertEquals('baz', $spinner->getJQueryParam('foo'));
 
-        $spinner->setJQueryParam("foo", "bar");
-        $spinner->setJQueryParam("bar", array());
-        $this->assertEquals("bar", $spinner->getJQueryParam("foo"));
-        $this->assertEquals(array(), $spinner->getJQueryParam("bar"));
+        $spinner->setJQueryParam('foo', 'bar');
+        $spinner->setJQueryParam('bar', array());
+        $this->assertEquals('bar', $spinner->getJQueryParam('foo'));
+        $this->assertEquals(array(), $spinner->getJQueryParam('bar'));
     }
 
     public function testElementSetGetMassJQueryParams()
     {
         $spinner = new ZendX_JQuery_Form_Element_Spinner('spinnerElem');
 
-        $spinner->setJQueryParams(array("foo" => "baz", "bar" => "baz"));
-        $this->assertEquals(array("foo" => "baz", "bar" => "baz"), $spinner->getJQueryParams());
+        $spinner->setJQueryParams(array('foo' => 'baz', 'bar' => 'baz'));
+        $this->assertEquals(array('foo' => 'baz', 'bar' => 'baz'), $spinner->getJQueryParams());
 
-        $spinner->setJQueryParams(array("foo" => "bar"));
-        $this->assertEquals(array("foo" => "bar", "bar" => "baz"), $spinner->getJQueryParams());
+        $spinner->setJQueryParams(array('foo' => 'bar'));
+        $this->assertEquals(array('foo' => 'bar', 'bar' => 'baz'), $spinner->getJQueryParams());
     }
 
     public function testElementsHaveUiWidgetDecorator()
@@ -90,11 +84,11 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
     public function testElementsEnableJQueryViewPath()
     {
         $view = new Zend_View();
-        $spinner = new ZendX_JQuery_Form_Element_Spinner("spinner1");
+        $spinner = new ZendX_JQuery_Form_Element_Spinner('spinner1');
 
-        $this->assertFalse( false !== $view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper'));
+        $this->assertFalse(false !== $view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper'));
         $spinner->setView($view);
-        $this->assertTrue( false !== $view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper'));
+        $this->assertTrue(false !== $view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper'));
     }
 
     /**
@@ -104,16 +98,16 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
 
-        $spinner = new ZendX_JQuery_Form_Element_Spinner("spinner1");
+        $spinner = new ZendX_JQuery_Form_Element_Spinner('spinner1');
         $spinner->setDecorators(array('ViewHelper'));
         $spinner->setView($view);
 
         try {
             $spinner->render();
             $this->fail();
-        } catch(ZendX_JQuery_Form_Exception $e) {
+        } catch (ZendX_JQuery_Form_Exception $e) {
             // success here
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->fail();
         }
     }
@@ -125,22 +119,23 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
 
-        $spinner = new ZendX_JQuery_Form_Element_Spinner("spinner1");
+        $spinner = new ZendX_JQuery_Form_Element_Spinner('spinner1');
         $spinner->setDecorators(array('ViewHelper'));
         $spinner->setView($view);
 
         try {
             $spinner->render();
             $this->fail();
-        } catch(ZendX_JQuery_Form_Exception $e) {
+        } catch (ZendX_JQuery_Form_Exception $e) {
             // success here
         }
 
         $spinner->setDecorators(array('UiWidgetElement'));
+
         try {
             $spinner->render();
             // success here
-        } catch(ZendX_JQuery_Form_Exception $e) {
+        } catch (ZendX_JQuery_Form_Exception $e) {
             $this->fail();
         }
     }
@@ -151,11 +146,11 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
     public function testAutocompleteDoesNotDoubleArrayEncodeDataJsonField()
     {
         $view = new Zend_View();
-        $form = new  ZendX_JQuery_Form();
+        $form = new ZendX_JQuery_Form();
 
         $dataSource = array(0 => 'John Doe');
 
-        $lastname = new ZendX_JQuery_Form_Element_AutoComplete("Lastname", array('label' => 'Lastname'));
+        $lastname = new ZendX_JQuery_Form_Element_AutoComplete('Lastname', array('label' => 'Lastname'));
         $form->addElement($lastname);
         $form->Lastname->setJQueryParam('source', $dataSource);
 
@@ -183,15 +178,15 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         $form = new ZendX_JQuery_Form();
 
-        $datePicker = new ZendX_JQuery_Form_Element_DatePicker("dp1");
+        $datePicker = new ZendX_JQuery_Form_Element_DatePicker('dp1');
 
         $subform = new Zend_Form_SubForm();
         $subform->addElement($datePicker);
 
-        $form->addSubForm($subform, "sf1");
+        $form->addSubForm($subform, 'sf1');
         $form->setIsArray(true);
 
-        $form   = $form->render($view);
+        $form = $form->render($view);
         $jquery = $view->jQuery()->__toString();
         $this->assertContains('sf1[dp1]', $form);
         $this->assertNotContains('$("#sf1[dp1]")', $jquery);
@@ -204,9 +199,9 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
 
-        $datePicker = new ZendX_JQuery_Form_Element_DatePicker("dp1");
+        $datePicker = new ZendX_JQuery_Form_Element_DatePicker('dp1');
         $datePicker->addDecorator(new Zend_Form_Decorator_Description());
-        $datePicker->setDescription("foo");
+        $datePicker->setDescription('foo');
 
         $html = $datePicker->render($view);
 
@@ -215,29 +210,24 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
 
     public function testGetDefaultDecorators()
     {
-        $widget = new ZendX_JQuery_Form_Element_DatePicker("dp1");;
+        $widget = new ZendX_JQuery_Form_Element_DatePicker('dp1');
         $decorators = $widget->getDecorators();
         $this->assertEquals(5, is_countable($decorators) ? count($decorators) : 0);
 
         $this->assertTrue(
-            $decorators['ZendX_JQuery_Form_Decorator_UiWidgetElement'] instanceof
-            ZendX_JQuery_Form_Decorator_UiWidgetElement
+            $decorators['ZendX_JQuery_Form_Decorator_UiWidgetElement'] instanceof ZendX_JQuery_Form_Decorator_UiWidgetElement
         );
         $this->assertTrue(
-            $decorators[\Zend_Form_Decorator_Errors::class] instanceof
-            Zend_Form_Decorator_Errors
+            $decorators[\Zend_Form_Decorator_Errors::class] instanceof Zend_Form_Decorator_Errors
         );
         $this->assertTrue(
-            $decorators[\Zend_Form_Decorator_Description::class] instanceof
-            Zend_Form_Decorator_Description
+            $decorators[\Zend_Form_Decorator_Description::class] instanceof Zend_Form_Decorator_Description
         );
         $this->assertTrue(
-            $decorators[\Zend_Form_Decorator_HtmlTag::class] instanceof
-            Zend_Form_Decorator_HtmlTag
+            $decorators[\Zend_Form_Decorator_HtmlTag::class] instanceof Zend_Form_Decorator_HtmlTag
         );
         $this->assertTrue(
-            $decorators[\Zend_Form_Decorator_Label::class] instanceof
-            Zend_Form_Decorator_Label
+            $decorators[\Zend_Form_Decorator_Label::class] instanceof Zend_Form_Decorator_Label
         );
     }
 }
