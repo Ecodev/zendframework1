@@ -228,7 +228,6 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(Zend_Locale_Format::isFloat('1e-20', array('locale' => 'de_AT')));
         $this->assertFalse(Zend_Locale_Format::isFloat('1-e20', array('locale' => 'de_AT')));
         $this->assertFalse(Zend_Locale_Format::isFloat('1-20', array('locale' => 'de_AT')));
-        $this->assertTrue(Zend_Locale_Format::isFloat('123.345'));
     }
 
 
@@ -635,7 +634,6 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
 
         $this->assertFalse(Zend_Locale_Format::checkDateFormat('20.April',      array('date_format' => 'dd.MMMM.YYYY')));
         $this->assertTrue(Zend_Locale_Format::checkDateFormat('20.April',      array('date_format' => 'MMMM.YYYY'   )));
-        $this->assertTrue( Zend_Locale_Format::checkDateFormat('April.2007',    array('date_format' => 'MMMM.YYYY'   )));
         $this->assertTrue( Zend_Locale_Format::checkDateFormat('20.April.2007', array('date_format' => 'dd.YYYY'     )));
 
         $this->assertFalse(Zend_Locale_Format::checkDateFormat('2006.04',          array('date_format' => 'yyyy.MMMM.dd'         )));
