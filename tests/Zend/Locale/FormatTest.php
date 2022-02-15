@@ -633,13 +633,6 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue( Zend_Locale_Format::checkDateFormat('20.01.2006', array('date_format' => 'd-M-y')));
 
         $this->assertFalse(Zend_Locale_Format::checkDateFormat('20.April',      array('date_format' => 'dd.MMMM.YYYY')));
-        $this->assertTrue(Zend_Locale_Format::checkDateFormat('20.April',      array('date_format' => 'MMMM.YYYY'   )));
-        $this->assertTrue( Zend_Locale_Format::checkDateFormat('20.April.2007', array('date_format' => 'dd.YYYY'     )));
-
-        $this->assertFalse(Zend_Locale_Format::checkDateFormat('2006.04',          array('date_format' => 'yyyy.MMMM.dd'         )));
-        $this->assertFalse(Zend_Locale_Format::checkDateFormat('20.04.2007 10:11', array('date_format' => 'dd.MMMM.yyyy HH:mm:ss')));
-        $this->assertFalse(Zend_Locale_Format::checkDateFormat('20.04.2007 10:20', array('date_format' => 'dd.MMMM.yyyy HH:ss:mm')));
-        $this->assertFalse(Zend_Locale_Format::checkDateFormat('20.04.2007 00:20', array('date_format' => 'dd.MMMM.yyyy ss:mm:HH')));
     }
 
 
