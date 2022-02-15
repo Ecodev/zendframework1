@@ -25,7 +25,7 @@ class Zend_Controller_Action_Helper_CacheTest extends \PHPUnit\Framework\TestCas
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_requestUriOld
             = $_SERVER['REQUEST_URI'] ?? null;
@@ -39,7 +39,7 @@ class Zend_Controller_Action_Helper_CacheTest extends \PHPUnit\Framework\TestCas
         $this->front->setRequest($this->request);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $_SERVER['REQUEST_URI'] = $this->_requestUriOld;
     }

@@ -44,7 +44,7 @@ class Zend_View_Helper_FormLabelTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormLabel();
@@ -55,7 +55,7 @@ class Zend_View_Helper_FormLabelTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 

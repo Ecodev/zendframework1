@@ -59,7 +59,7 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new Zend_Filter_Alnum object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_filter = new Zend_Filter_Alnum();
         if (null === self::$_unicodeEnabled) {

@@ -38,7 +38,7 @@ class Zend_Validate_HexTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new Zend_Validate_Hex object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_validator = new Zend_Validate_Hex();
     }

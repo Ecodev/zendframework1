@@ -46,7 +46,7 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
     /**
      * Setup test.
      */
-    public function setUp()
+    public function setUp(): void
     {
         // Backup server array
         $this->_server = $_SERVER;
@@ -66,7 +66,7 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
     /**
      * Clean.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         // Restore server array
         $_SERVER = $this->_server;

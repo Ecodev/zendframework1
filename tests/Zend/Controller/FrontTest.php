@@ -45,7 +45,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_controller = Zend_Controller_Front::getInstance();
         $this->_controller->resetInstance();
@@ -57,7 +57,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         Zend_Controller_Action_HelperBroker::resetHelpers();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_controller);
     }

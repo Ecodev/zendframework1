@@ -48,7 +48,7 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->removeRegistryEntry();
         $this->registry = Zend_Registry::getInstance();
@@ -58,7 +58,7 @@ class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->removeRegistryEntry();
     }

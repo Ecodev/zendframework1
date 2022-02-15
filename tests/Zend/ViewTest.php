@@ -44,14 +44,14 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->notices = array();
         $this->errorReporting = error_reporting();
         $this->displayErrors = ini_get('display_errors');
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         error_reporting($this->errorReporting);
         ini_set('display_errors', $this->displayErrors);

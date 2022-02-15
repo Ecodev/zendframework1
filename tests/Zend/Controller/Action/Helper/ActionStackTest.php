@@ -55,7 +55,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->front = Zend_Controller_Front::getInstance();
         $this->front->resetInstance();
@@ -68,7 +68,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

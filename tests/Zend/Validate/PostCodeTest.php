@@ -47,7 +47,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new Zend_Validate_PostCode object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_validator = new Zend_Validate_PostCode('de_AT');
     }

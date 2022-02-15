@@ -35,7 +35,7 @@ class Zend_Session_Validator_HttpUserAgent extends Zend_Session_Validator_Abstra
      * Setup() - this method will get the current user agent and store it in the session
      * as 'valid data'.
      */
-    public function setup()
+    public function setUp(): void
     {
         $this->setValidData(($_SERVER['HTTP_USER_AGENT'] ?? null));
     }

@@ -38,7 +38,7 @@ class Zend_Filter_Compress_TarTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!class_exists('Archive_Tar')) {
             require_once 'Zend/Loader.php';
@@ -81,7 +81,7 @@ class Zend_Filter_Compress_TarTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $files = array(
             __DIR__ . '/../_files/zipextracted.txt',

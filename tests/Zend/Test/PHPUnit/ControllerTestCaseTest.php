@@ -51,7 +51,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $_SESSION = array();
         $this->testCase = new Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete();
@@ -63,7 +63,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $registry = Zend_Registry::getInstance();
         if (isset($registry['router'])) {

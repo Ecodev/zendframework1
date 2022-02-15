@@ -38,7 +38,7 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new Zend_Validate_StringLength object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_validator = new Zend_Validate_StringLength();
     }

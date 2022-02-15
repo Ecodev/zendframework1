@@ -45,7 +45,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->element = new Zend_Form_Element_Multiselect('foo');
     }
@@ -54,7 +54,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 

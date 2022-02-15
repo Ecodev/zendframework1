@@ -45,7 +45,7 @@ class Zend_Validate_DateTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new Zend_Validate_Date object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_validator = new Zend_Validate_Date();
     }

@@ -52,7 +52,7 @@ class Zend_Filter_File_UpperCaseTest extends \PHPUnit\Framework\TestCase
     /**
      * Sets the path to test files.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_filesPath = __DIR__ . DIRECTORY_SEPARATOR
             . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR;
@@ -67,7 +67,7 @@ class Zend_Filter_File_UpperCaseTest extends \PHPUnit\Framework\TestCase
     /**
      * Sets the path to test files.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         if (file_exists($this->_newFile)) {
             unlink($this->_newFile);

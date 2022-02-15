@@ -30,7 +30,7 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
 {
     private $_cache;
 
-    public function setUp()
+    public function setUp(): void
     {
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
@@ -39,7 +39,7 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
         Zend_Locale_Data::setCache($this->_cache);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->_cache->clean(Zend_Cache::CLEANING_MODE_ALL);
     }

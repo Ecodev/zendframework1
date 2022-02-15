@@ -38,7 +38,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new Zend_Validate_Hostname object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_origEncoding = PHP_VERSION_ID < 50600
                     ? iconv_get_encoding('internal_encoding')
@@ -49,7 +49,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     /**
      * Reset iconv.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         if (PHP_VERSION_ID < 50600) {
             iconv_set_encoding('internal_encoding', $this->_origEncoding);

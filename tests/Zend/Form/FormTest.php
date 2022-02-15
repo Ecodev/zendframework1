@@ -56,7 +56,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->clearRegistry();
         Zend_Form::setDefaultTranslator(null);
@@ -69,7 +69,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->form = new Zend_Form();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->clearRegistry();
     }

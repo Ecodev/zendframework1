@@ -50,7 +50,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->inflector = new Zend_Filter_Inflector();
         $this->loader = $this->inflector->getPluginLoader();
@@ -60,7 +60,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->loader->clearPaths();
     }

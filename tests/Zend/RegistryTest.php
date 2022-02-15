@@ -28,12 +28,12 @@ require_once 'Zend/Registry.php';
  */
 class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Zend_Registry::_unsetInstance();
     }

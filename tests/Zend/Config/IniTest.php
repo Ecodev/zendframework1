@@ -34,7 +34,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
 
     protected $_iniFileCircularConfig;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->_iniFileConfig = __DIR__ . '/_files/config.ini';
         $this->_iniFileAllSectionsConfig = __DIR__ . '/_files/allsections.ini';

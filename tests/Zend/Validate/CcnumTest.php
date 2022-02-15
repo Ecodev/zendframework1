@@ -38,7 +38,7 @@ class Zend_Validate_CcnumTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new Zend_Validate_Ccnum object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         set_error_handler(array($this, 'errorHandlerIgnore'));
         $this->_validator = new Zend_Validate_Ccnum();

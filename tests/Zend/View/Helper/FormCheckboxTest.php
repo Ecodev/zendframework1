@@ -42,7 +42,7 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class)) {
             $registry = Zend_Registry::getInstance();

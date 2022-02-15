@@ -35,7 +35,7 @@ abstract class ZendX_JQuery_View_jQueryTestCase extends \PHPUnit\Framework\TestC
      */
     protected $jquery;
 
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
         $this->view = $this->getView();
@@ -44,7 +44,7 @@ abstract class ZendX_JQuery_View_jQueryTestCase extends \PHPUnit\Framework\TestC
         Zend_Registry::set('ZendX_JQuery_View_Helper_JQuery', $this->jquery);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         ZendX_JQuery_View_Helper_JQuery::disableNoConflictMode();
     }

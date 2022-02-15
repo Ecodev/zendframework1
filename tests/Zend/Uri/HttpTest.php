@@ -33,7 +33,7 @@ require_once 'Zend/Uri/Http.php';
  */
 class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
 {
-    public function setup()
+    public function setUp(): void
     {
         Zend_Uri::setConfig(array('allow_unwise' => false));
     }

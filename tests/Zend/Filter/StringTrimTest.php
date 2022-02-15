@@ -38,7 +38,7 @@ class Zend_Filter_StringTrimTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new Zend_Filter_StringTrim object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_filter = new Zend_Filter_StringTrim();
     }

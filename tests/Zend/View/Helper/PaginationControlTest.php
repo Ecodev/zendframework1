@@ -46,7 +46,7 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $view = new Zend_View();
         $view->addBasePath(__DIR__ . '/_files');
@@ -57,7 +57,7 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
         $this->_paginator = Zend_Paginator::factory(range(1, 101));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->_viewHelper, $this->_paginator);
 

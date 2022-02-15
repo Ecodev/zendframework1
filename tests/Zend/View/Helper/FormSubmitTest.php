@@ -42,7 +42,7 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp()
+    public function setUp(): void
     {
         if (Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class)) {
             $registry = Zend_Registry::getInstance();
@@ -57,7 +57,7 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, close a network connection.
      * This method is called after a test is executed.
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->helper, $this->view);
     }

@@ -33,7 +33,7 @@ class Zend_Controller_Action_HelperBroker_PriorityStackTest extends \PHPUnit\Fra
      */
     public $stack;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->stack = new Zend_Controller_Action_HelperBroker_PriorityStack();
     }

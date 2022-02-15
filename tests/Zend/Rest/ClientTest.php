@@ -32,7 +32,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  */
 class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         $this->path = __DIR__ . '/responses/';
 

@@ -38,7 +38,7 @@ class Zend_Translate_Adapter_GettextTest extends \PHPUnit\Framework\TestCase
         Zend_Translate_Adapter_Gettext::removeCache();
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (Zend_Translate_Adapter_Gettext::hasCache()) {
             Zend_Translate_Adapter_Gettext::removeCache();

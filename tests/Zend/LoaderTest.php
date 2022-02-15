@@ -44,7 +44,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -62,7 +62,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         Zend_Loader_Autoloader::resetInstance();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($this->errorHandler !== null) {
             restore_error_handler();

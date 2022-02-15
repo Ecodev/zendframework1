@@ -42,7 +42,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (Zend_Translate::hasCache()) {
             Zend_Translate::removeCache();

@@ -44,7 +44,7 @@ class Zend_Paginator_ScrollingStyle_AllTest extends \PHPUnit\Framework\TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_scrollingStyle = new Zend_Paginator_ScrollingStyle_All();
@@ -55,7 +55,7 @@ class Zend_Paginator_ScrollingStyle_AllTest extends \PHPUnit\Framework\TestCase
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->_scrollingStyle = null;
         $this->_paginator = null;

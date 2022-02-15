@@ -38,7 +38,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     /**
      * Instantiates a new ACL object and creates internal reference to it for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_acl = new Zend_Acl();
     }

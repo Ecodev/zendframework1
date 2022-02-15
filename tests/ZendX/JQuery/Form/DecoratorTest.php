@@ -32,7 +32,7 @@ require_once 'ZendX/JQuery/Form/Decorator/TabPane.php';
 
 class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
     }

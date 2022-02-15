@@ -37,7 +37,7 @@ class Zend_Paginator_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
     /**
      * Prepares the environment before running a test.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->_adapter = new Zend_Paginator_Adapter_Array(range(1, 101));
@@ -46,7 +46,7 @@ class Zend_Paginator_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
     /**
      * Cleans up the environment after running a test.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->_adapter = null;
         parent::tearDown();

@@ -38,7 +38,7 @@ class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!extension_loaded('zip')) {
             $this->markTestSkipped('This adapter needs the zip extension');
@@ -76,7 +76,7 @@ class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $files = array(
             __DIR__ . '/../_files/compressed.zip',

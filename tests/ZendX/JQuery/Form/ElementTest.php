@@ -38,7 +38,7 @@ require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElement.php';
 
 class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
     }

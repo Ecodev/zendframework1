@@ -25,7 +25,7 @@ require_once 'Zend/Loader/TestAsset/StandardAutoloader.php';
  */
 class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         // Store original autoloaders
         $this->loaders = spl_autoload_functions();
@@ -39,7 +39,7 @@ class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
         $this->includePath = get_include_path();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         // Restore original autoloaders
         $loaders = spl_autoload_functions();

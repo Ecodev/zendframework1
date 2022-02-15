@@ -46,14 +46,14 @@ class Zend_View_Helper_HtmlQuicktimeTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_HtmlQuicktime();
         $this->helper->setView($this->view);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->helper);
     }

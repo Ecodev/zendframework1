@@ -52,14 +52,14 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
     /**
      * Creates a new validation object for each test method.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->clearRegistry();
         Zend_Validate_Abstract::setDefaultTranslator(null);
         $this->validator = new Zend_Validate_AbstractTest_Concrete();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->clearRegistry();
         Zend_Validate_Abstract::setDefaultTranslator(null);
