@@ -34,8 +34,8 @@ class ZendX_JQuery_View_DialogContainerTest extends ZendX_JQuery_View_jQueryTest
         $element = $this->view->dialogContainer('elem1', '', array('option' => 'true'));
 
         $jquery = $this->jquery->__toString();
-        $this->assertContains('dialog(', $jquery);
-        $this->assertContains('"option":"true"', $jquery);
+        $this->assertStringContainsString('dialog(', $jquery);
+        $this->assertStringContainsString('"option":"true"', $jquery);
     }
 
     public function testShouldCreateDivContainer()
@@ -43,9 +43,9 @@ class ZendX_JQuery_View_DialogContainerTest extends ZendX_JQuery_View_jQueryTest
         $element = $this->view->dialogContainer('elem1', '', array(), array());
 
         $this->assertEquals(array('$("#elem1").dialog({});'), $this->jquery->getOnLoadActions());
-        $this->assertContains('<div', $element);
-        $this->assertContains('id="elem1"', $element);
-        $this->assertContains('</div>', $element);
+        $this->assertStringContainsString('<div', $element);
+        $this->assertStringContainsString('id="elem1"', $element);
+        $this->assertStringContainsString('</div>', $element);
     }
 
     /**

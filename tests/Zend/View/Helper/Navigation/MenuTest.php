@@ -333,6 +333,7 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
             $this->fail('invalid $partial should throw Zend_View_Exception');
         } catch (Zend_View_Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testSetMaxDepth()
@@ -652,7 +653,7 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
     {
         $this->_helper->setUlId('foo');
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<ul class="navigation" id="foo">',
             $this->_helper->renderMenu()
         );
@@ -663,7 +664,7 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
      */
     public function testRenderingWithUlIdPerOptions()
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<ul class="navigation" id="foo">',
             $this->_helper->renderMenu(null, array('ulId' => 'foo'))
         );
@@ -678,7 +679,7 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
             ->setOnlyActiveBranch()
             ->setRenderParents();
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<ul class="navigation" id="foo">',
             $this->_helper->renderMenu()
         );
@@ -689,7 +690,7 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
      */
     public function testRenderingSubMenuWithUlId()
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<ul class="navigation" id="foo">',
             $this->_helper->renderSubMenu(null, null, null, 'foo')
         );
@@ -700,7 +701,7 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
      */
     public function testRenderingDeepestMenuWithUlId()
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<ul class="navigation" id="foo">',
             $this->_helper->renderMenu(null, array('ulId' => 'foo'))
         );
@@ -727,11 +728,11 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
         $container->findBy('href', 'page1')->setClass('foo');
 
         // Tests
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<li class="foo">',
             $this->_helper->renderMenu()
         );
-        $this->assertNotContains(
+        $this->assertStringNotContainsString(
             '<a class="foo" href="page1">Page 1</a>',
             $this->_helper->renderMenu()
         );
@@ -753,11 +754,11 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
             'addPageClassToLi' => true,
         );
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<li class="active foo">',
             $this->_helper->renderMenu(null, $options)
         );
-        $this->assertNotContains(
+        $this->assertStringNotContainsString(
             '<a class="foo" href="page1">Page 1</a>',
             $this->_helper->renderMenu(null, $options)
         );
@@ -792,8 +793,8 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
 
         $html = $this->_helper->renderMenu(null, $options);
 
-        $this->assertContains('<li class="current">', $html);
-        $this->assertNotContains('<li class="active">', $html);
+        $this->assertStringContainsString('<li class="current">', $html);
+        $this->assertStringNotContainsString('<li class="active">', $html);
     }
 
     /**

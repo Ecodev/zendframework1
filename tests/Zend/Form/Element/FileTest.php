@@ -118,11 +118,9 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($adapter, $test);
     }
 
-    /**
-     * @expectedException Zend_Form_Element_Exception
-     */
     public function testElementShouldThrowExceptionWhenAddingAdapterOfInvalidType()
     {
+        $this->expectException(\Zend_Form_Element_Exception::class);
         $this->element->setTransferAdapter(new stdClass());
     }
 
@@ -227,8 +225,8 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 
         $form->setView(new Zend_View());
         $output = (string) $form;
-        $this->assertContains('name="file1"', $output);
-        $this->assertContains('name="file2"', $output);
+        $this->assertStringContainsString('name="file1"', $output);
+        $this->assertStringContainsString('name="file2"', $output);
     }
 
     public function testMultiFileInSubSubSubform()
@@ -249,7 +247,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 
         $form->setView(new Zend_View());
         $output = (string) $form;
-        $this->assertContains('name="file[]"', $output);
+        $this->assertStringContainsString('name="file[]"', $output);
         $this->assertEquals(2, substr_count($output, 'file[]'));
     }
 
@@ -271,7 +269,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 
         $form->setView(new Zend_View());
         $output = (string) $form;
-        $this->assertNotContains('name="file[]"', $output);
+        $this->assertStringNotContainsString('name="file[]"', $output);
     }
 
     public function testSettingMaxFileSize()
@@ -377,7 +375,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
             $content = $this->element->render(new Zend_View());
             $this->fail();
         } catch (Zend_Form_Element_Exception $e) {
-            $this->assertContains('No file decorator found', $e->getMessage());
+            $this->assertStringContainsString('No file decorator found', $e->getMessage());
         }
     }
 

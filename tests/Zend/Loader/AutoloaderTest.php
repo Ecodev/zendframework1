@@ -118,11 +118,9 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(array($this, 'autoload'), $this->autoloader->getDefaultAutoloader());
     }
 
-    /**
-     * @expectedException Zend_Loader_Exception
-     */
     public function testSpecifyingInvalidDefaultAutoloaderShouldRaiseException()
     {
+        $this->expectException(\Zend_Loader_Exception::class);
         $this->autoloader->setDefaultAutoloader(uniqid());
     }
 
@@ -148,11 +146,9 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
         $this->assertContains('Solar_', $namespaces);
     }
 
-    /**
-     * @expectedException Zend_Loader_Exception
-     */
     public function testRegisteringInvalidNamespaceSpecShouldRaiseException()
     {
+        $this->expectException(\Zend_Loader_Exception::class);
         $o = new stdClass();
         $this->autoloader->registerNamespace($o);
     }
@@ -172,11 +168,9 @@ class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
         $this->assertNotContains('ZendX', $namespaces);
     }
 
-    /**
-     * @expectedException Zend_Loader_Exception
-     */
     public function testUnregisteringInvalidNamespaceSpecShouldRaiseException()
     {
+        $this->expectException(\Zend_Loader_Exception::class);
         $o = new stdClass();
         $this->autoloader->unregisterNamespace($o);
     }

@@ -252,7 +252,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
             $view->nonexistantHelper();
             // @todo  fail if no exception?
         } catch (Zend_Exception $e) {
-            $this->assertContains('not found', $e->getMessage());
+            $this->assertStringContainsString('not found', $e->getMessage());
         }
     }
 
@@ -272,7 +272,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
             $view->stubEmpty();
             // @todo  fail if no exception?
         } catch (Zend_Exception $e) {
-            $this->assertContains('not found', $e->getMessage());
+            $this->assertStringContainsString('not found', $e->getMessage());
         }
     }
 
@@ -381,8 +381,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
             $view->render('somefootemplate.phtml');
             $this->fail('Rendering a template when no script path is set should raise an exception');
         } catch (Exception $e) {
-            // success...
-            // @todo  assert something?
+            self::assertTrue(true);
         }
     }
 
@@ -517,7 +516,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
         unset($view->_path);
-        // @todo  assert something?
+        self::assertTrue(true);
     }
 
     public function testSetProtectedThrowsException()
@@ -528,8 +527,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
             $view->_path = 'bar';
             $this->fail('Should not be able to set protected properties');
         } catch (Exception $e) {
-            // success
-            // @todo  assert something?
+            self::assertTrue(true);
         }
     }
 
@@ -602,6 +600,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
             // success
             // @todo  assert something?
         }
+        self::assertTrue(true);
     }
 
     public function testEscape()
@@ -840,7 +839,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         $view->declareVars();
         $helperPath = $view->getHelperPath('declareVars');
-        $this->assertContains($expected, $helperPath);
+        $this->assertStringContainsString($expected, $helperPath);
     }
 
     public function testGetFilter()
@@ -893,7 +892,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
             $view->render('bazbatNotExists.php.tpl');
             $this->fail('Non-existent view script should cause an exception');
         } catch (Exception $e) {
-            $this->assertContains($base . '_templates', $e->getMessage());
+            $this->assertStringContainsString($base . '_templates', $e->getMessage());
         }
     }
 
@@ -901,7 +900,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
     {
         $view = new Zend_View();
         $hidden = $view->formHidden('foo', 'bar');
-        $this->assertContains('<input type="hidden"', $hidden);
+        $this->assertStringContainsString('<input type="hidden"', $hidden);
 
         $hidden = $view->getHelper('formHidden')->formHidden('foo', 'bar');
         $this->assertContains('<input type="hidden"', $hidden);
@@ -932,20 +931,20 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
             $view->setHelperPath(__DIR__ . '/View/_stubs/HelperDir1', null);
             $this->fail('Exception for empty prefix was expected.');
         } catch (Exception $e) {
-            $this->assertContains('only takes strings', $e->getMessage());
+            $this->assertStringContainsString('only takes strings', $e->getMessage());
         }
 
         try {
             $view->setHelperPath(__DIR__ . '/View/_stubs/HelperDir1', null);
             $this->fail('Exception for empty prefix was expected.');
         } catch (Exception $e) {
-            $this->assertContains('only takes strings', $e->getMessage());
+            $this->assertStringContainsString('only takes strings', $e->getMessage());
         }
 
         try {
             $helper = $view->getHelper('Datetime');
         } catch (Exception $e) {
-            $this->assertContains('not found', $e->getMessage());
+            $this->assertStringContainsString('not found', $e->getMessage());
         }
     }
 
@@ -975,21 +974,21 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
             $view->render('../foobar.html');
             $this->fail('Should not allow parent directory traversal');
         } catch (Zend_View_Exception $e) {
-            $this->assertContains('parent directory traversal', $e->getMessage());
+            $this->assertStringContainsString('parent directory traversal', $e->getMessage());
         }
 
         try {
             $view->render('foo/../foobar.html');
             $this->fail('Should not allow parent directory traversal');
         } catch (Zend_View_Exception $e) {
-            $this->assertContains('parent directory traversal', $e->getMessage());
+            $this->assertStringContainsString('parent directory traversal', $e->getMessage());
         }
 
         try {
             $view->render('foo/..\foobar.html');
             $this->fail('Should not allow parent directory traversal');
         } catch (Zend_View_Exception $e) {
-            $this->assertContains('parent directory traversal', $e->getMessage());
+            $this->assertStringContainsString('parent directory traversal', $e->getMessage());
         }
     }
 
@@ -1033,7 +1032,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 
         try {
             $test = $view->render('../_stubs/scripts/LfiProtectionCheck.phtml');
-            $this->assertContains('LFI', $test);
+            $this->assertStringContainsString('LFI', $test);
         } catch (Zend_View_Exception $e) {
             $this->fail('LFI attack failed: ' . $e->getMessage());
         }
@@ -1084,20 +1083,20 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8177
-     * @expectedException Zend_View_Exception
      */
     public function testRegisterHelperShouldThrowExceptionIfNotProvidedAnObject()
     {
+        $this->expectException(\Zend_View_Exception::class);
         $view = new Zend_View();
         $view->registerHelper('Foo', 'foo');
     }
 
     /**
      * @group ZF-8177
-     * @expectedException Zend_View_Exception
      */
     public function testRegisterHelperShouldThrowExceptionIfProvidedANonHelperObject()
     {
+        $this->expectException(\Zend_View_Exception::class);
         $view = new Zend_View();
         $helper = new stdClass();
         $view->registerHelper($helper, 'foo');

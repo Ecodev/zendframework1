@@ -226,6 +226,7 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest extends Zend_View_Helper_Navig
                 '$partial was invalid, but no Zend_View_Exception was thrown');
         } catch (Zend_View_Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testLastBreadcrumbShouldBeEscaped()

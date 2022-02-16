@@ -88,20 +88,20 @@ class Zend_View_Helper_FormPasswordTest extends \PHPUnit\Framework\TestCase
     public function testShouldRenderAsHtmlByDefault()
     {
         $test = $this->helper->formPassword('foo', 'bar');
-        $this->assertNotContains(' />', $test);
+        $this->assertStringNotContainsString(' />', $test);
     }
 
     public function testShouldAllowRenderingAsXhtml()
     {
         $this->view->doctype('XHTML1_STRICT');
         $test = $this->helper->formPassword('foo', 'bar');
-        $this->assertContains(' />', $test);
+        $this->assertStringContainsString(' />', $test);
     }
 
     public function testShouldNotRenderValueByDefault()
     {
         $test = $this->helper->formPassword('foo', 'bar');
-        $this->assertNotContains('bar', $test);
+        $this->assertStringNotContainsString('bar', $test);
     }
 
     /**
@@ -110,7 +110,7 @@ class Zend_View_Helper_FormPasswordTest extends \PHPUnit\Framework\TestCase
     public function testShouldRenderValueWhenRenderPasswordFlagPresentAndTrue()
     {
         $test = $this->helper->formPassword('foo', 'bar', array('renderPassword' => true));
-        $this->assertContains('value="bar"', $test);
+        $this->assertStringContainsString('value="bar"', $test);
     }
 
     /**
@@ -119,8 +119,8 @@ class Zend_View_Helper_FormPasswordTest extends \PHPUnit\Framework\TestCase
     public function testRenderPasswordAttribShouldNeverBeRendered()
     {
         $test = $this->helper->formPassword('foo', 'bar', array('renderPassword' => true));
-        $this->assertNotContains('renderPassword', $test);
+        $this->assertStringNotContainsString('renderPassword', $test);
         $test = $this->helper->formPassword('foo', 'bar', array('renderPassword' => false));
-        $this->assertNotContains('renderPassword', $test);
+        $this->assertStringNotContainsString('renderPassword', $test);
     }
 }

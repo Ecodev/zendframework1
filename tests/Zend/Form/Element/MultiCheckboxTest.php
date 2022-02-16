@@ -146,7 +146,7 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
         $this->element->addMultiOption(1, 'A');
         $this->element->addMultiOption(2, 'B');
         $html = $this->element->render($this->getView());
-        $this->assertContains('name="foo[]"', $html, $html);
+        $this->assertStringContainsString('name="foo[]"', $html, $html);
         $count = substr_count($html, 'name="foo[]"');
         $this->assertEquals(2, $count);
     }
@@ -258,6 +258,7 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
             ->addErrorMessage('%value% is invalid');
         $this->element->isValid(array('foo', 'bogus'));
         $html = $this->element->render($this->getView());
+        self::assertTrue(true);
     }
 
     /**

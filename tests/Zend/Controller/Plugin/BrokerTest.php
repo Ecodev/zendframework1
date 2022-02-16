@@ -60,7 +60,7 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
             $broker->registerPlugin($plugin);
             $this->fail('Duplicate registry of plugin object should be disallowed');
         } catch (Exception $expected) {
-            $this->assertContains('already', $expected->getMessage());
+            $this->assertStringContainsString('already', $expected->getMessage());
         }
     }
 
@@ -210,6 +210,7 @@ class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
             $broker->registerPlugin($plugin2, 5);
             $this->fail('Registering plugins with same stack index should raise exception');
         } catch (Exception $e) {
+            self::assertTrue(true);
         }
     }
 

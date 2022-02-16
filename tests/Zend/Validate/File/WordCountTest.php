@@ -71,7 +71,7 @@ class Zend_Validate_File_WordCountTest extends \PHPUnit\Framework\TestCase
             $validator = new Zend_Validate_File_WordCount(array('min' => 5, 'max' => 1));
             $this->fail('Missing exception');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('greater than or equal', $e->getMessage());
+            $this->assertStringContainsString('greater than or equal', $e->getMessage());
         }
 
         $validator = new Zend_Validate_File_WordCount(array('min' => 1, 'max' => 5));
@@ -81,7 +81,7 @@ class Zend_Validate_File_WordCountTest extends \PHPUnit\Framework\TestCase
             $validator = new Zend_Validate_File_WordCount(array('min' => 5, 'max' => 1));
             $this->fail('Missing exception');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('greater than or equal', $e->getMessage());
+            $this->assertStringContainsString('greater than or equal', $e->getMessage());
         }
     }
 
@@ -98,7 +98,7 @@ class Zend_Validate_File_WordCountTest extends \PHPUnit\Framework\TestCase
             $validator->setMin(20000);
             $this->fail('Missing exception');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('less than or equal', $e->getMessage());
+            $this->assertStringContainsString('less than or equal', $e->getMessage());
         }
     }
 
@@ -114,7 +114,7 @@ class Zend_Validate_File_WordCountTest extends \PHPUnit\Framework\TestCase
             $validator = new Zend_Validate_File_WordCount(array('min' => 5, 'max' => 1));
             $this->fail('Missing exception');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('greater than or equal', $e->getMessage());
+            $this->assertStringContainsString('greater than or equal', $e->getMessage());
         }
     }
 

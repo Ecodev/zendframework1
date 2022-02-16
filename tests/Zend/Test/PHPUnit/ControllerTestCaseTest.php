@@ -143,21 +143,21 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
             $this->testCase->request = new Zend_Controller_Request_Http();
             $this->fail('Setting request object as public property should raise exception');
         } catch (Exception $e) {
-            $this->assertContains('not allow', $e->getMessage());
+            $this->assertStringContainsString('not allow', $e->getMessage());
         }
 
         try {
             $this->testCase->response = new Zend_Controller_Response_Http();
             $this->fail('Setting response object as public property should raise exception');
         } catch (Exception $e) {
-            $this->assertContains('not allow', $e->getMessage());
+            $this->assertStringContainsString('not allow', $e->getMessage());
         }
 
         try {
             $this->testCase->frontController = Zend_Controller_Front::getInstance();
             $this->fail('Setting front controller as public property should raise exception');
         } catch (Exception $e) {
-            $this->assertContains('not allow', $e->getMessage());
+            $this->assertStringContainsString('not allow', $e->getMessage());
         }
     }
 
@@ -265,6 +265,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
         $this->testCase->assertModule('default');
         $this->testCase->assertNotModule('zend-test-php-unit-foo');
+        self::assertTrue(true);
     }
 
     public function testModuleAssertionShouldThrowExceptionForInvalidComparison()
@@ -282,6 +283,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
         $this->testCase->assertController('zend-test-php-unit-foo');
         $this->testCase->assertNotController('baz');
+        self::assertTrue(true);
     }
 
     public function testControllerAssertionShouldThrowExceptionForInvalidComparison()
@@ -299,6 +301,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
         $this->testCase->assertAction('baz');
         $this->testCase->assertNotAction('zend-test-php-unit-foo');
+        self::assertTrue(true);
     }
 
     public function testActionAssertionShouldThrowExceptionForInvalidComparison()
@@ -316,6 +319,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
         $this->testCase->assertRoute('default');
         $this->testCase->assertNotRoute('zend-test-php-unit-foo');
+        self::assertTrue(true);
     }
 
     public function testRouteAssertionShouldThrowExceptionForInvalidComparison()

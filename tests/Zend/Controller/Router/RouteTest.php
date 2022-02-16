@@ -320,6 +320,8 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
         try {
             $url = $route->assemble();
         } catch (Exception $e) {
+            self::assertTrue(true);
+
             return true;
         }
 

@@ -77,7 +77,7 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
             $this->decorator->setCallback(true);
             $this->fail('Only string or array callbacks should be allowed');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
 
         try {
@@ -85,21 +85,21 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
             $this->decorator->setCallback($o);
             $this->fail('Only string or array callbacks should be allowed');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
 
         try {
             $this->decorator->setCallback(array('foo', 'bar', 'baz'));
             $this->fail('Only arrays of two elements should be allowed as callbacks');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
 
         try {
             $this->decorator->setCallback(array('foo'));
             $this->fail('Only arrays of two elements should be allowed as callbacks');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid', $e->getMessage());
+            $this->assertStringContainsString('Invalid', $e->getMessage());
         }
     }
 
@@ -113,9 +113,9 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
             ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
-        $this->assertContains('foo bar', $content);
-        $this->assertContains($element->getName(), $content);
-        $this->assertContains($element->getLabel(), $content);
+        $this->assertStringContainsString('foo bar', $content);
+        $this->assertStringContainsString($element->getName(), $content);
+        $this->assertStringContainsString($element->getLabel(), $content);
     }
 
     public function testRenderCallsMethodCallback()
@@ -128,10 +128,10 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
             ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
-        $this->assertContains('foo bar', $content);
-        $this->assertContains($element->getName(), $content);
-        $this->assertContains($element->getLabel(), $content);
-        $this->assertContains('Item ', $content);
+        $this->assertStringContainsString('foo bar', $content);
+        $this->assertStringContainsString($element->getName(), $content);
+        $this->assertStringContainsString($element->getLabel(), $content);
+        $this->assertStringContainsString('Item ', $content);
     }
 
     public function testRenderCanPrepend()
@@ -144,9 +144,9 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
             ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
-        $this->assertContains('foo bar', $content);
-        $this->assertContains($element->getName(), $content);
-        $this->assertContains($element->getLabel(), $content);
+        $this->assertStringContainsString('foo bar', $content);
+        $this->assertStringContainsString($element->getName(), $content);
+        $this->assertStringContainsString($element->getLabel(), $content);
         $this->assertRegexp('/foo bar$/s', $content);
     }
 
@@ -160,9 +160,9 @@ class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
             ->setElement($element);
 
         $content = $this->decorator->render('foo bar');
-        $this->assertNotContains('foo bar', $content, $content);
-        $this->assertContains($element->getName(), $content);
-        $this->assertContains($element->getLabel(), $content);
+        $this->assertStringNotContainsString('foo bar', $content, $content);
+        $this->assertStringContainsString($element->getName(), $content);
+        $this->assertStringContainsString($element->getLabel(), $content);
     }
 }
 

@@ -122,7 +122,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
             $test = $this->decorator->render($content);
             $this->fail('Render should raise exception without view');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('ViewHelper decorator cannot render', $e->getMessage());
+            $this->assertStringContainsString('ViewHelper decorator cannot render', $e->getMessage());
         }
     }
 
@@ -132,7 +132,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $element->setView($this->getView());
         $content = 'test content';
         $test = $this->decorator->render($content);
-        $this->assertContains($content, $test);
+        $this->assertStringContainsString($content, $test);
         $this->assertRegexp('#<input.*?name="foo"#s', $test);
     }
 
@@ -159,8 +159,8 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $element->setTranslator($translate);
         $test = $element->render($this->getView());
         foreach ($options as $key => $value) {
-            $this->assertNotContains($value, $test);
-            $this->assertContains($translations[$value], $test);
+            $this->assertStringNotContainsString($value, $test);
+            $this->assertStringContainsString($translations[$value], $test);
         }
     }
 

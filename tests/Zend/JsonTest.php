@@ -407,7 +407,7 @@ class Zend_JsonTest extends \PHPUnit\Framework\TestCase
             $encoded = Zend_Json_Encoder::encode($everything, true);
             $this->fail('Object cycling not allowed when cycleCheck parameter is true');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -453,21 +453,21 @@ class Zend_JsonTest extends \PHPUnit\Framework\TestCase
     {
         $encoded = Zend_Json_Encoder::encodeClass('Zend_JsonTest_Object');
 
-        $this->assertContains("Class.create('Zend_JsonTest_Object'", $encoded);
-        $this->assertContains("ZAjaxEngine.invokeRemoteMethod(this, 'foo'", $encoded);
-        $this->assertContains("ZAjaxEngine.invokeRemoteMethod(this, 'bar'", $encoded);
-        $this->assertNotContains("ZAjaxEngine.invokeRemoteMethod(this, 'baz'", $encoded);
+        $this->assertStringContainsString("Class.create('Zend_JsonTest_Object'", $encoded);
+        $this->assertStringContainsString("ZAjaxEngine.invokeRemoteMethod(this, 'foo'", $encoded);
+        $this->assertStringContainsString("ZAjaxEngine.invokeRemoteMethod(this, 'bar'", $encoded);
+        $this->assertStringNotContainsString("ZAjaxEngine.invokeRemoteMethod(this, 'baz'", $encoded);
 
-        $this->assertContains('variables:{foo:"bar",bar:"baz"}', $encoded);
-        $this->assertContains('constants : {FOO: "bar"}', $encoded);
+        $this->assertStringContainsString('variables:{foo:"bar",bar:"baz"}', $encoded);
+        $this->assertStringContainsString('constants : {FOO: "bar"}', $encoded);
     }
 
     public function testEncodeClasses()
     {
         $encoded = Zend_Json_Encoder::encodeClasses(array('Zend_JsonTest_Object', 'Zend_JsonTest'));
 
-        $this->assertContains("Class.create('Zend_JsonTest_Object'", $encoded);
-        $this->assertContains("Class.create('Zend_JsonTest'", $encoded);
+        $this->assertStringContainsString("Class.create('Zend_JsonTest_Object'", $encoded);
+        $this->assertStringContainsString("Class.create('Zend_JsonTest'", $encoded);
     }
 
     public function testToJsonSerialization()
@@ -799,10 +799,10 @@ class Zend_JsonTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-8918
-     * @expectedException Zend_Json_Exception
      */
     public function testDecodingInvalidJsonShouldRaiseAnException()
     {
+        $this->expectException(\Zend_Json_Exception::class);
         Zend_Json::decode(' some string ');
     }
 

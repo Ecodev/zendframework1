@@ -272,7 +272,6 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
             'unknown' => array('val' => 1),
         );
         $this->_object->gravatar()->setOptions($options);
+        self::assertTrue(true);
     }
 }
-
-// Call Zend_View_Helper_BaseUrlTest::main() if this source file is executed directly.

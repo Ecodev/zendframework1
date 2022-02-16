@@ -147,7 +147,7 @@ class Zend_Loader_ClassMapAutoloaderTest extends \PHPUnit\Framework\TestCase
                 $this->loader->registerAutoloadMaps($test);
                 $this->fail('Should not register non-traversable arguments');
             } catch (Zend_Loader_Exception_InvalidArgumentException $e) {
-                $this->assertContains('array or implement Traversable', $e->getMessage());
+                $this->assertStringContainsString('array or implement Traversable', $e->getMessage());
             }
         }
     }

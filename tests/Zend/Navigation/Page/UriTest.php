@@ -54,6 +54,7 @@ class Zend_Navigation_Page_UriTest extends \PHPUnit\Framework\TestCase
                         . 'a Zend_Navigation_Exception was not thrown');
         } catch (Zend_Navigation_Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testUriOptionAsObject()
@@ -67,6 +68,7 @@ class Zend_Navigation_Page_UriTest extends \PHPUnit\Framework\TestCase
                         . 'a Zend_Navigation_Exception was not thrown');
         } catch (Zend_Navigation_Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testSetAndGetUri()

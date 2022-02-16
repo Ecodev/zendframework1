@@ -107,6 +107,7 @@ class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
         } catch (OutOfBoundsException $e) {
             static::fail('Empty iterator caused in an OutOfBoundsException');
         }
+        self::assertTrue(true);
     }
 
     /**

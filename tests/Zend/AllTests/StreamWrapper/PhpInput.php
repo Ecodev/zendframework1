@@ -104,7 +104,7 @@ class Zend_AllTests_StreamWrapper_PhpInput
             return self::$_returnValues[__FUNCTION__];
         }
 
-        return 0 == strlen(self::$_data);
+        return 0 == strlen((string) self::$_data);
     }
 
     public function stream_read($count)
@@ -117,7 +117,7 @@ class Zend_AllTests_StreamWrapper_PhpInput
 
         // To match the behavior of php://input, we need to clear out the data
         // as it is read
-        if ($count > strlen(self::$_data)) {
+        if ($count > strlen((string) self::$_data)) {
             $data = self::$_data;
             self::$_data = '';
         } else {

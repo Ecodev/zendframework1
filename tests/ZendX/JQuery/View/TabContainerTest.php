@@ -35,8 +35,8 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
         $element = $this->view->tabContainer('elem1', array('option' => 'true'), array());
 
         $jquery = $this->view->jQuery()->__toString();
-        $this->assertContains('tabs(', $jquery);
-        $this->assertContains('"option":"true"', $jquery);
+        $this->assertStringContainsString('tabs(', $jquery);
+        $this->assertStringContainsString('"option":"true"', $jquery);
     }
 
     public function testShouldAllowAddingTabs()
@@ -46,12 +46,12 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
             ->tabContainer('container1', array(), array());
 
         $this->assertEquals(array('$("#container1").tabs({});'), $this->jquery->getOnLoadActions());
-        $this->assertContains('elem1', $tabs);
-        $this->assertContains('Text1', $tabs);
-        $this->assertContains('elem2', $tabs);
-        $this->assertContains('Text2', $tabs);
-        $this->assertContains('href="#container1-frag-1"', $tabs);
-        $this->assertContains('href="#container1-frag-2"', $tabs);
+        $this->assertStringContainsString('elem1', $tabs);
+        $this->assertStringContainsString('Text1', $tabs);
+        $this->assertStringContainsString('elem2', $tabs);
+        $this->assertStringContainsString('Text2', $tabs);
+        $this->assertStringContainsString('href="#container1-frag-1"', $tabs);
+        $this->assertStringContainsString('href="#container1-frag-2"', $tabs);
     }
 
     public function testShoudAllowAddingTabsFromUrls()
@@ -61,10 +61,10 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
             ->tabContainer('container1', array(), array());
 
         $this->assertEquals(array('$("#container1").tabs({});'), $this->jquery->getOnLoadActions());
-        $this->assertContains('elem1', $tabs);
-        $this->assertContains('elem2', $tabs);
-        $this->assertContains('href="blub.html"', $tabs);
-        $this->assertContains('href="cookie.html"', $tabs);
+        $this->assertStringContainsString('elem1', $tabs);
+        $this->assertStringContainsString('elem2', $tabs);
+        $this->assertStringContainsString('href="blub.html"', $tabs);
+        $this->assertStringContainsString('href="cookie.html"', $tabs);
     }
 
     public function testShouldAllowCaptureTabContent()
@@ -80,10 +80,10 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
         $tabs = $this->view->tabContainer('container1', array(), array());
 
         $this->assertEquals(array('$("#container1").tabs({});'), $this->jquery->getOnLoadActions());
-        $this->assertContains('elem1', $tabs);
-        $this->assertContains('elem2', $tabs);
-        $this->assertContains('Lorem Ipsum!', $tabs);
-        $this->assertContains('href="foo.html"', $tabs);
+        $this->assertStringContainsString('elem1', $tabs);
+        $this->assertStringContainsString('elem2', $tabs);
+        $this->assertStringContainsString('Lorem Ipsum!', $tabs);
+        $this->assertStringContainsString('href="foo.html"', $tabs);
         $this->assertNotContains('This is captured, but not displayed: contentUrl overrides this output.', $tabs);
     }
 
@@ -95,10 +95,10 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
         $tabs = $this->view->tabContainer('container1', array(), array());
 
         $this->assertEquals(array('$("#container1").tabs({});'), $this->jquery->getOnLoadActions());
-        $this->assertContains('elem1', $tabs);
-        $this->assertContains('elem2', $tabs);
-        $this->assertContains('Lorem Ipsum!', $tabs);
-        $this->assertContains('href="foo.html"', $tabs);
+        $this->assertStringContainsString('elem1', $tabs);
+        $this->assertStringContainsString('elem2', $tabs);
+        $this->assertStringContainsString('Lorem Ipsum!', $tabs);
+        $this->assertStringContainsString('href="foo.html"', $tabs);
         $this->assertNotContains('This is captured, but not displayed: contentUrl overrides this output.', $tabs);
     }
 
@@ -120,5 +120,6 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
             $this->fail();
         } catch (ZendX_JQuery_View_Exception $e) {
         }
+        self::assertTrue(true);
     }
 }

@@ -69,6 +69,7 @@ class Zend_Xml_SecurityTest extends \PHPUnit\Framework\TestCase
             $result = Zend_Xml_Security::scan($xml);
         } catch (Zend_Xml_Exception $e) {
             unlink($file);
+            self::assertTrue(true);
 
             return;
         }

@@ -35,15 +35,13 @@ class ZendX_JQuery_View_AutoCompleteTest extends ZendX_JQuery_View_jQueryTestCas
         $element = $this->view->autoComplete('elem1', 'Default', array('option' => 'true', 'data' => array('test')), array());
 
         $jquery = $this->view->jQuery()->__toString();
-        $this->assertContains('autocomplete(', $jquery);
-        $this->assertContains('"option":"true"', $jquery);
+        $this->assertStringContainsString('autocomplete(', $jquery);
+        $this->assertStringContainsString('"option":"true"', $jquery);
     }
 
-    /**
-     * @expectedException ZendX_JQuery_Exception
-     */
     public function testShouldAllowAutoCompleteOnlyWithSourceOption()
     {
+        $this->expectException(\ZendX_JQuery_Exception::class);
         $element = $this->view->autoComplete('elem1');
     }
 
@@ -52,8 +50,8 @@ class ZendX_JQuery_View_AutoCompleteTest extends ZendX_JQuery_View_jQueryTestCas
         $element = $this->view->autoComplete('elem1', 'Default', array('source' => array('Test')));
 
         $this->assertEquals(array('$("#elem1").autocomplete({"source":["Test"]});'), $this->view->jQuery()->getOnLoadActions());
-        $this->assertContains('<input', $element);
-        $this->assertContains('id="elem1"', $element);
-        $this->assertContains('value="Default"', $element);
+        $this->assertStringContainsString('<input', $element);
+        $this->assertStringContainsString('id="elem1"', $element);
+        $this->assertStringContainsString('value="Default"', $element);
     }
 }

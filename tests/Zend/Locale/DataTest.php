@@ -89,7 +89,7 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
             $value = Zend_Locale_Data::getContent('de','xxxxxxx');
             $this->fail('content should throw an exception');
         } catch (Zend_Locale_Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -7214,6 +7214,7 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Cache_Exception $e) {
             static::fail($e->getMessage());
         }
+        self::assertTrue(true);
     }
 
     /**
@@ -7226,6 +7227,7 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Cache_Exception $e) {
             static::fail($e->getMessage());
         }
+        self::assertTrue(true);
     }
 
     /**

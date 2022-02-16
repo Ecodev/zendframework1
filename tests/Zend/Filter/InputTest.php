@@ -1448,6 +1448,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $loader = new Zend_Loader_PluginLoader();
 
         $input->setPluginLoader($loader, Zend_Filter_Input::VALIDATE);
+        self::assertTrue(true);
     }
 
     public function testSetPluginLoaderInvalidType()
@@ -1484,7 +1485,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Exception $e) {
             $this->assertTrue($e instanceof Zend_Loader_PluginLoader_Exception,
                 'Expected object of type Zend_Filter_Exception, got ' . get_class($e));
-            $this->assertContains('not found in the registry', $e->getMessage());
+            $this->assertStringContainsString('not found in the registry', $e->getMessage());
         }
     }
 
@@ -2286,6 +2287,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
 
         $validate = new Zend_Filter_Input(null, $validators);
         $validate->isValid();
+        self::assertTrue(true);
     }
 }
 

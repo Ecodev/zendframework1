@@ -100,7 +100,7 @@ class Zend_Validate_File_FilesSizeTest extends \PHPUnit\Framework\TestCase
             $validator = new Zend_Validate_File_FilesSize(array('min' => 100, 'max' => 1));
             $this->fail('Missing exception');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('greater than or equal', $e->getMessage());
+            $this->assertStringContainsString('greater than or equal', $e->getMessage());
         }
 
         $validator = new Zend_Validate_File_FilesSize(array('min' => 1, 'max' => 100));
@@ -120,7 +120,7 @@ class Zend_Validate_File_FilesSizeTest extends \PHPUnit\Framework\TestCase
             $validator->setMin(20000);
             $this->fail('Missing exception');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('less than or equal', $e->getMessage());
+            $this->assertStringContainsString('less than or equal', $e->getMessage());
         }
     }
 
@@ -136,7 +136,7 @@ class Zend_Validate_File_FilesSizeTest extends \PHPUnit\Framework\TestCase
             $validator = new Zend_Validate_File_FilesSize(array('min' => 100, 'max' => 1));
             $this->fail('Missing exception');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('greater than or equal', $e->getMessage());
+            $this->assertStringContainsString('greater than or equal', $e->getMessage());
         }
 
         $validator = new Zend_Validate_File_FilesSize(array('min' => 1, 'max' => 100000));
@@ -166,6 +166,7 @@ class Zend_Validate_File_FilesSizeTest extends \PHPUnit\Framework\TestCase
         $handler = set_error_handler(array($this, 'errorHandler'), E_USER_NOTICE);
         $validator = new Zend_Validate_File_FilesSize(1000, 10000);
         restore_error_handler();
+        self::assertTrue(true);
     }
 
     /**

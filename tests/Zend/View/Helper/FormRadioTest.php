@@ -148,7 +148,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'listsep' => '--FunkySep--',
         ));
 
-        $this->assertContains('--FunkySep--', $html);
+        $this->assertStringContainsString('--FunkySep--', $html);
         $count = substr_count($html, '--FunkySep--');
         $this->assertEquals(2, $count);
     }
@@ -232,8 +232,8 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'options' => $options,
         ));
 
-        $this->assertNotContains($options['bar'], $html);
-        $this->assertContains('&lt;b&gt;Bar&lt;/b&gt;', $html);
+        $this->assertStringNotContainsString($options['bar'], $html);
+        $this->assertStringContainsString('&lt;b&gt;Bar&lt;/b&gt;', $html);
     }
 
     public function testXhtmlLabelsAreAllowed()
@@ -247,7 +247,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'attribs' => array('escape' => false),
         ));
 
-        $this->assertContains($options['bar'], $html);
+        $this->assertStringContainsString($options['bar'], $html);
     }
 
     /**
@@ -366,7 +366,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'value' => 'bar',
             'options' => $options,
         ));
-        $this->assertNotContains('style="white-space: nowrap;"', $html);
+        $this->assertStringNotContainsString('style="white-space: nowrap;"', $html);
     }
 
     /**
@@ -430,9 +430,9 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'options' => $options,
         ));
 
-        $this->assertContains('value="foo">', $html);
-        $this->assertContains('value="bar">', $html);
-        $this->assertContains('value="baz">', $html);
+        $this->assertStringContainsString('value="foo">', $html);
+        $this->assertStringContainsString('value="bar">', $html);
+        $this->assertStringContainsString('value="baz">', $html);
     }
 
     /**
@@ -450,9 +450,9 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'name' => 'foo',
             'options' => $options,
         ));
-        $this->assertContains('value="foo" />', $html);
-        $this->assertContains('value="bar" />', $html);
-        $this->assertContains('value="baz" />', $html);
+        $this->assertStringContainsString('value="foo" />', $html);
+        $this->assertStringContainsString('value="bar" />', $html);
+        $this->assertStringContainsString('value="baz" />', $html);
     }
 
     /**
@@ -472,7 +472,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'options' => $options,
         ));
 
-        $this->assertContains('<br />', $html);
+        $this->assertStringContainsString('<br />', $html);
         $count = substr_count($html, '<br />');
         $this->assertEquals(2, $count);
     }
@@ -494,7 +494,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
             'options' => $options,
         ));
 
-        $this->assertContains('<br>', $html);
+        $this->assertStringContainsString('<br>', $html);
         $count = substr_count($html, '<br>');
         $this->assertEquals(2, $count);
     }

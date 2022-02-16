@@ -223,7 +223,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
 
         $html = $this->element->render($this->getView());
         foreach ($options as $value => $label) {
-            $this->assertNotContains($label, $html, $html);
+            $this->assertStringNotContainsString($label, $html, $html);
             $this->assertRegexp('/<option.*value="' . $value . '"[^>]*>' . $translations[$label] . '/s', $html, $html);
         }
     }
@@ -298,7 +298,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         $this->element->setValue('barValue');
 
         $html = $this->element->render($this->getView());
-        $this->assertContains($translations['ThisIsTheLabel'], $html, $html);
+        $this->assertStringContainsString($translations['ThisIsTheLabel'], $html, $html);
     }
 
     /**

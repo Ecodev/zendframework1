@@ -157,11 +157,11 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @expectedException Zend_Validate_Exception
      * @group GH-634
      */
     public function testWrongEncoding()
     {
+        $this->expectException(\Zend_Validate_Exception::class);
         $this->_validator->setEncoding('');
     }
 

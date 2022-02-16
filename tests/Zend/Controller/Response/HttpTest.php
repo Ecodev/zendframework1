@@ -289,7 +289,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         ob_start();
         $this->_response->sendResponse();
         $string = ob_get_clean();
-        $this->assertContains('Test exception rendering', $string);
+        $this->assertStringContainsString('Test exception rendering', $string);
     }
 
     public function testSetResponseCodeThrowsExceptionWithBadCode()

@@ -179,7 +179,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
         ))
             ->setLabel('Foo');
         $html = $this->element->render($this->getView());
-        $this->assertNotContains('for="foo"', $html);
+        $this->assertStringNotContainsString('for="foo"', $html);
     }
 
     /**
@@ -218,7 +218,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
         ));
 
         $html = $element->render($this->getView());
-        $this->assertNotContains('<dt id="foo-label">&#160;</dt>', $html);
+        $this->assertStringNotContainsString('<dt id="foo-label">&#160;</dt>', $html);
     }
 
     /**

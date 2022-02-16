@@ -31,7 +31,7 @@ class Zend_Application_Resource_NavigationTest extends \PHPUnit\Framework\TestCa
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -159,7 +159,7 @@ class Zend_Application_Resource_NavigationTest extends \PHPUnit\Framework\TestCa
         try {
             $resource->setBootstrap($this->bootstrap)->init();
             $this->fail('An exception should have been thrown but wasn\'t');
-        } catch (Zend_Exception $e) {
+        } catch (Zend_Exception) {
             $this->assertTrue(true);
         }
 

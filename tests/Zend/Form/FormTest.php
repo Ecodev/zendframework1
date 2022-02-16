@@ -120,6 +120,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $options['config'] = $config;
         $options['options'] = $config->toArray();
         $this->form->setOptions($options);
+        self::assertTrue(true);
     }
 
     public function testSetOptionsSkipsSettingAccessorsRequiringObjectsWhenNonObjectPassed()
@@ -131,6 +132,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $options['default'] = true;
         $options['attrib'] = true;
         $this->form->setOptions($options);
+        self::assertTrue(true);
     }
 
     public function testSetOptionsWithAttribsDoesNotOverwriteActionOrMethodOrName()
@@ -379,6 +381,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $config = new Zend_Config_Xml(__DIR__ . '/_files/config/zf3250.xml', 'sitearea', true);
         $form = new Zend_Form($config->test);
         // no assertions needed; throws error if order matters
+        self::assertTrue(true);
     }
 
     /**
@@ -548,7 +551,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->setName('%\^&*)\(%$#@!.}{;-,');
             $this->fail('Empty names should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid name provided', $e->getMessage());
+            $this->assertStringContainsString('Invalid name provided', $e->getMessage());
         }
     }
 
@@ -574,7 +577,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->setView(new Zend_View());
         $html = $this->form->render();
 
-        $this->assertContains('action="/foo.php?bar"', $html);
+        $this->assertStringContainsString('action="/foo.php?bar"', $html);
         $this->assertEquals('/foo.php?bar', $this->form->getAction());
     }
 
@@ -601,7 +604,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->setMethod('bogus');
             $this->fail('Invalid method type should throw exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('invalid', $e->getMessage());
+            $this->assertStringContainsString('invalid', $e->getMessage());
         }
     }
 
@@ -664,7 +667,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->setPluginLoader($loader, 'foo');
             $this->fail('Invalid plugin loader type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid type', $e->getMessage());
+            $this->assertStringContainsString('Invalid type', $e->getMessage());
         }
     }
 
@@ -674,7 +677,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->getPluginLoader('foo');
             $this->fail('Invalid plugin loader type should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid type', $e->getMessage());
+            $this->assertStringContainsString('Invalid type', $e->getMessage());
         }
     }
 
@@ -692,7 +695,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->addPrefixPath('Zend_Foo', 'Zend/Foo/', 'foo');
             $this->fail('Passing invalid loader type to addPrefixPath() should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid type', $e->getMessage());
+            $this->assertStringContainsString('Invalid type', $e->getMessage());
         }
     }
 
@@ -821,7 +824,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->addElement('text');
             $this->fail('Should not be able to specify string element type without name');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('must have', $e->getMessage());
+            $this->assertStringContainsString('must have', $e->getMessage());
         }
     }
 
@@ -1026,15 +1029,15 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->foo = true;
             $this->fail('Overloading should not allow scalars');
         } catch (Zend_Form_Exception $e) {
-            static::assertContains('Only form elements and groups may be overloaded', $e->getMessage());
+            static::assertStringContainsString('Only form elements and groups may be overloaded', $e->getMessage());
         }
 
         try {
             $this->form->foo = new Zend_Config(array());
             $this->fail('Overloading should not allow arbitrary object types');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Only form elements and groups may be overloaded', $e->getMessage());
-            $this->assertContains(\Zend_Config::class, $e->getMessage());
+            $this->assertStringContainsString('Only form elements and groups may be overloaded', $e->getMessage());
+            $this->assertStringContainsString(\Zend_Config::class, $e->getMessage());
         }
     }
 
@@ -1152,8 +1155,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->setView(new Zend_View());
         $html = $this->form->render();
         foreach (array('foo', 'bar', 'baz', 'bat') as $test) {
-            $this->assertContains('id="myform-sub-' . $test . '"', $html);
-            $this->assertContains('name="myform[sub][' . $test . ']"', $html);
+            $this->assertStringContainsString('id="myform-sub-' . $test . '"', $html);
+            $this->assertStringContainsString('name="myform[sub][' . $test . ']"', $html);
         }
     }
 
@@ -1803,7 +1806,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->addDisplayGroup(array(), 'foo');
             $this->fail('Empty display group should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('No valid elements', $e->getMessage());
+            $this->assertStringContainsString('No valid elements', $e->getMessage());
         }
     }
 
@@ -1962,7 +1965,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->form->isValid(true);
             $this->fail('isValid() should raise exception with non-array argument');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('expects an array', $e->getMessage());
+            $this->assertStringContainsString('expects an array', $e->getMessage());
         }
     }
 
@@ -3089,7 +3092,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         foreach ($this->form->getElements() as $key => $element) {
             $this->assertFalse(empty($key));
             $this->assertFalse(is_numeric($key));
-            $this->assertContains('<input', $html);
+            $this->assertStringContainsString('<input', $html);
             $this->assertRegexp('/<input type="text" name="' . $key . '"/', $html);
         }
     }
@@ -3101,11 +3104,11 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->form->setView($this->getView());
         $html = $this->form->render();
         $this->assertRegexp('/<fieldset/', $html);
-        $this->assertContains('</fieldset>', $html);
+        $this->assertStringContainsString('</fieldset>', $html);
         foreach ($this->form->sub as $key => $item) {
             $this->assertFalse(empty($key));
             $this->assertFalse(is_numeric($key));
-            $this->assertContains('<input', $html);
+            $this->assertStringContainsString('<input', $html);
             $pattern = '/<input type="text" name="sub\[' . $key . '\]"/';
             $this->assertRegexp($pattern, $html, 'Pattern: ' . $pattern . "\nHTML:\n" . $html);
         }
@@ -3118,7 +3121,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->form->setView($this->getView());
         $html = $this->html = $this->form->render();
         $this->assertRegexp('/<fieldset/', $html);
-        $this->assertContains('</fieldset>', $html);
+        $this->assertStringContainsString('</fieldset>', $html);
         $this->assertRegexp('#<legend>Display Group</legend>#', $html, $html);
         $dom = new DOMDocument();
         $dom->loadHTML($html);
@@ -3164,12 +3167,12 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->setupElements();
         $this->form->setElementsBelongTo('anArray');
         $html = $this->form->render($this->getView());
-        $this->assertContains('name="anArray[foo]"', $html);
-        $this->assertContains('name="anArray[bar]"', $html);
-        $this->assertContains('name="anArray[baz]"', $html);
-        $this->assertContains('id="anArray-foo"', $html);
-        $this->assertContains('id="anArray-bar"', $html);
-        $this->assertContains('id="anArray-baz"', $html);
+        $this->assertStringContainsString('name="anArray[foo]"', $html);
+        $this->assertStringContainsString('name="anArray[bar]"', $html);
+        $this->assertStringContainsString('name="anArray[baz]"', $html);
+        $this->assertStringContainsString('id="anArray-foo"', $html);
+        $this->assertStringContainsString('id="anArray-bar"', $html);
+        $this->assertStringContainsString('id="anArray-baz"', $html);
     }
 
     public function testElementsRenderAsSubArrayMembersWhenElementsBelongToASubArray()
@@ -3177,12 +3180,12 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->setupElements();
         $this->form->setElementsBelongTo('data[foo]');
         $html = $this->form->render($this->getView());
-        $this->assertContains('name="data[foo][foo]"', $html);
-        $this->assertContains('name="data[foo][bar]"', $html);
-        $this->assertContains('name="data[foo][baz]"', $html);
-        $this->assertContains('id="data-foo-foo"', $html);
-        $this->assertContains('id="data-foo-bar"', $html);
-        $this->assertContains('id="data-foo-baz"', $html);
+        $this->assertStringContainsString('name="data[foo][foo]"', $html);
+        $this->assertStringContainsString('name="data[foo][bar]"', $html);
+        $this->assertStringContainsString('name="data[foo][baz]"', $html);
+        $this->assertStringContainsString('id="data-foo-foo"', $html);
+        $this->assertStringContainsString('id="data-foo-bar"', $html);
+        $this->assertStringContainsString('id="data-foo-baz"', $html);
     }
 
     public function testElementsRenderAsArrayMembersWhenRenderAsArrayToggled()
@@ -3191,12 +3194,12 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->form->setName('data')
             ->setIsArray(true);
         $html = $this->form->render($this->getView());
-        $this->assertContains('name="data[foo]"', $html);
-        $this->assertContains('name="data[bar]"', $html);
-        $this->assertContains('name="data[baz]"', $html);
-        $this->assertContains('id="data-foo"', $html);
-        $this->assertContains('id="data-bar"', $html);
-        $this->assertContains('id="data-baz"', $html);
+        $this->assertStringContainsString('name="data[foo]"', $html);
+        $this->assertStringContainsString('name="data[bar]"', $html);
+        $this->assertStringContainsString('name="data[baz]"', $html);
+        $this->assertStringContainsString('id="data-foo"', $html);
+        $this->assertStringContainsString('id="data-bar"', $html);
+        $this->assertStringContainsString('id="data-baz"', $html);
     }
 
     public function testElementsRenderAsMembersOfSubFormsWithElementsBelongTo()
@@ -3210,10 +3213,10 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->form->addSubForm($subForm, 'sub');
 
         $html = $this->form->render($this->getView());
-        $this->assertContains('name="data[billing][info][name]', $html);
-        $this->assertContains('name="data[billing][info][number]', $html);
-        $this->assertContains('id="data-billing-info-name"', $html);
-        $this->assertContains('id="data-billing-info-number"', $html);
+        $this->assertStringContainsString('name="data[billing][info][name]', $html);
+        $this->assertStringContainsString('name="data[billing][info][number]', $html);
+        $this->assertStringContainsString('id="data-billing-info-name"', $html);
+        $this->assertStringContainsString('id="data-billing-info-number"', $html);
     }
 
     public function testToStringProxiesToRender()
@@ -3398,7 +3401,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->addElement(new Zend_Form_Element('c',array('label' => 'c', 'order' => 1)))
             ->setView($this->getView());
         $test = $this->form->render();
-        $this->assertContains('name="a"', $test);
+        $this->assertStringContainsString('name="a"', $test);
         if (!preg_match_all('/(<input[^>]+>)/', $test, $matches)) {
             $this->fail('Expected markup not found');
         }
@@ -3471,6 +3474,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         } catch (Exception $e) {
             static::fail('Exceptions should not be raised by iterator when elements are removed; error message: ' . $e->getMessage());
         }
+        self::assertTrue(true);
     }
 
     public function testClearingAttachedItemsShouldNotCauseIterationToRaiseExceptions()
@@ -3516,6 +3520,7 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
                      . $e->getMessage();
             static::fail($message);
         }
+        self::assertTrue(true);
     }
 
     // Countable
@@ -3961,10 +3966,10 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3217
-     * @expectedException Zend_Form_Exception
      */
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
+        $this->expectException(\Zend_Form_Exception::class);
         $html = $this->form->bogusMethodCall();
     }
 
@@ -3983,8 +3988,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
 
         $html = $form->render();
 
-        $this->assertContains('<dt id="foo-label">', $html);
-        $this->assertContains('<dd id="foo-element">', $html);
+        $this->assertStringContainsString('<dt id="foo-label">', $html);
+        $this->assertStringContainsString('<dd id="foo-element">', $html);
     }
 
     /**
@@ -3998,8 +4003,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
 
         $html = $form->render();
 
-        $this->assertContains('<dt id="foo-label">&#160;</dt>', $html);
-        $this->assertContains('<dd id="foo-element">', $html);
+        $this->assertStringContainsString('<dt id="foo-label">&#160;</dt>', $html);
+        $this->assertStringContainsString('<dd id="foo-element">', $html);
     }
 
     /**
@@ -4014,8 +4019,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
 
         $html = $form->render();
 
-        $this->assertContains('<dt id="testform-label">&#160;</dt>', $html);
-        $this->assertContains('<dd id="testform-element">', $html);
+        $this->assertStringContainsString('<dt id="testform-label">&#160;</dt>', $html);
+        $this->assertStringContainsString('<dd id="testform-element">', $html);
     }
 
     /**
@@ -4042,8 +4047,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->setView(new Zend_View());
         $html = $this->form->render();
 
-        $this->assertContains('id="txt"', $html);
-        $this->assertContains('name="txt"', $html);
+        $this->assertStringContainsString('id="txt"', $html);
+        $this->assertStringContainsString('name="txt"', $html);
         $this->assertRegexp('#<form[^>]+enctype="multipart/form-data"#', $html, $html);
     }
 
@@ -4057,8 +4062,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->setView(new Zend_View());
         $html = $this->form->render();
 
-        $this->assertContains('id="txt"', $html);
-        $this->assertContains('name="txt"', $html);
+        $this->assertStringContainsString('id="txt"', $html);
+        $this->assertStringContainsString('name="txt"', $html);
         $this->assertRegexp('#<form[^>]+enctype="multipart/form-data"#', $html, $html);
     }
 
@@ -4564,10 +4569,10 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-10865
-     * @expectedException Zend_Form_Exception
      */
     public function testExceptionThrownWhenAddElementsIsGivenNullValue()
     {
+        $this->expectException(\Zend_Form_Exception::class);
         $form = new Zend_Form();
         $form->addElement(null);
     }

@@ -136,20 +136,20 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
     public function testActionReturnsContentFromDefaultModule()
     {
         $value = $this->helper->action('bar', 'action-foo');
-        $this->assertContains('In default module, FooController::barAction()', $value);
+        $this->assertStringContainsString('In default module, FooController::barAction()', $value);
     }
 
     public function testActionReturnsContentFromSpecifiedModule()
     {
         $value = $this->helper->action('bar', 'foo', 'foo');
-        $this->assertContains('In foo module, Foo_FooController::barAction()', $value);
+        $this->assertStringContainsString('In foo module, Foo_FooController::barAction()', $value);
     }
 
     public function testActionReturnsContentReflectingPassedParams()
     {
         $value = $this->helper->action('baz', 'action-foo', null, array('bat' => 'This is my message'));
-        $this->assertNotContains('BOGUS', $value, var_export($this->helper->request->getUserParams(), 1));
-        $this->assertContains('This is my message', $value);
+        $this->assertStringNotContainsString('BOGUS', $value, var_export($this->helper->request->getUserParams(), 1));
+        $this->assertStringContainsString('This is my message', $value);
     }
 
     public function testActionReturnsEmptyStringWhenForwardDetected()
@@ -173,6 +173,7 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
             $this->fail('Empty front controller should cause action helper to throw exception');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testConstructorThrowsExceptionWithNoRequestInFrontController()
@@ -190,6 +191,7 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
             $this->fail('No request in front controller should cause action helper to throw exception');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testConstructorThrowsExceptionWithNoResponseInFrontController()
@@ -206,12 +208,13 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
             $this->fail('No response in front controller should cause action helper to throw exception');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testViewObjectRemainsUnchangedAfterAction()
     {
         $value = $this->helper->action('bar', 'foo', 'foo');
-        $this->assertContains('In foo module, Foo_FooController::barAction()', $value);
+        $this->assertStringContainsString('In foo module, Foo_FooController::barAction()', $value);
         $this->assertNull($this->view->bar);
     }
 
@@ -219,9 +222,9 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
     {
         $html = $this->helper->action('nest', 'foo', 'foo');
         $title = $this->view->headTitle()->toString();
-        $this->assertContains(' - ', $title, $title);
-        $this->assertContains('Foo Nest', $title);
-        $this->assertContains('Nested Stuff', $title);
+        $this->assertStringContainsString(' - ', $title, $title);
+        $this->assertStringContainsString('Foo Nest', $title);
+        $this->assertStringContainsString('Nested Stuff', $title);
     }
 
     /**

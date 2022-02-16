@@ -198,7 +198,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
             $lang = new Zend_Translate(\Zend_Locale::class, __DIR__ . '/Translate/_files/test2', null, array('scan' => Zend_Translate::LOCALE_FILENAME));
             $this->fail('Exception due to false adapter class expected');
         } catch (Throwable $e) {
-            $this->assertContains('Cannot assign Zend_Locale to property Zend_Translate::$_adapter of type Zend_Translate_Adapter', $e->getMessage());
+            $this->assertStringContainsString('Cannot assign Zend_Locale to property Zend_Translate::$_adapter of type Zend_Translate_Adapter', $e->getMessage());
         }
     }
 

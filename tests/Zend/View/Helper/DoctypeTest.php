@@ -190,6 +190,7 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
             $this->fail('Malformed doctype should raise exception');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testStringificationReturnsDoctypeString()

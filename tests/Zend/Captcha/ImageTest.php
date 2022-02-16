@@ -33,7 +33,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite('Zend_Captcha_ImageTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     /**
@@ -130,7 +130,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     public function testCaptchaIsRendered()
     {
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getName(), $html);
+        $this->assertStringContainsString($this->element->getName(), $html);
     }
 
     public function testCaptchaHasIdAndInput()
@@ -162,14 +162,14 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $this->captcha->setSuffix('.jpeg');
         $html = $this->element->render($this->getView());
-        $this->assertContains('.jpeg', $html, $html);
+        $this->assertStringContainsString('.jpeg', $html, $html);
     }
 
     public function testCaptchaSetImgURL()
     {
         $this->captcha->setImgURL('/some/other/URL/');
         $html = $this->element->render($this->getView());
-        $this->assertContains('/some/other/URL/', $html, $html);
+        $this->assertStringContainsString('/some/other/URL/', $html, $html);
     }
 
     public function testCaptchaCreatesImage()
@@ -199,7 +199,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
         $word = $this->captcha->getWord();
         $this->assertFalse(empty($word));
         $this->assertTrue(is_string($word));
-        $this->assertTrue(strlen($word) == 8);
+        $this->assertTrue(strlen((string) $word) == 8);
         $this->word = $word;
     }
 
@@ -209,7 +209,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
         $this->captcha->generate();
         $word = $this->captcha->getWord();
         $this->assertTrue(is_string($word));
-        $this->assertTrue(strlen($word) == 4);
+        $this->assertTrue(strlen((string) $word) == 4);
         $this->word = $word;
     }
 
@@ -344,13 +344,8 @@ class Zend_Captcha_ImageTest_SessionContainer
 
     public function __call($method, $args)
     {
-        switch ($method) {
-            case 'setExpirationHops':
-            case 'setExpirationSeconds':
-                $this->$method = array_shift($args);
-
-                break;
-            default:
-        }
+        $this->$method = match ($method) {
+            'setExpirationHops', 'setExpirationSeconds' => array_shift($args),
+        };
     }
 }

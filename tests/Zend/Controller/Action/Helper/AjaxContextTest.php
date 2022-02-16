@@ -45,7 +45,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_AjaxContextTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     /**

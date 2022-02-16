@@ -70,7 +70,7 @@ class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestC
         $this->response->setHeader('X-Foo-Bar', 'baz')
             ->setBody('Body to emit');
         $test = $this->response->sendResponse();
-        $this->assertContains("X-Foo-Bar: baz\n\nBody to emit", $test);
+        $this->assertStringContainsString("X-Foo-Bar: baz\n\nBody to emit", $test);
     }
 
     public function testOutputBodyShouldReturnStringInsteadOfEchoingOutput()
@@ -83,7 +83,7 @@ class Zend_Controller_Response_HttpTestCaseTest extends \PHPUnit\Framework\TestC
         $test = ob_get_clean();
         $this->assertTrue(empty($test));
         $this->assertFalse(empty($content));
-        $this->assertContains("Baz Content\nFoo Content\nBar Content\n", $content, $content);
+        $this->assertStringContainsString("Baz Content\nFoo Content\nBar Content\n", $content, $content);
     }
 
     public function testSendHeadersShouldReturnArrayOfHeadersInsteadOfSendingHeaders()

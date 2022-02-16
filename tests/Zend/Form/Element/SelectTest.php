@@ -139,6 +139,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
             ->setTranslator($translate)
             ->setView(new Zend_View());
         $html = $this->element->render();
+        self::assertTrue(true);
     }
 
     /**
@@ -173,8 +174,8 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
         ));
         $this->element->setView($this->getView());
         $html = $this->element->render();
-        $this->assertNotContains('unused', $html, $html);
-        $this->assertContains('bar', $html, $html);
+        $this->assertStringNotContainsString('unused', $html, $html);
+        $this->assertStringContainsString('bar', $html, $html);
     }
 
     /**
@@ -227,7 +228,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
     {
         $this->element->addMultiOption('1', '£' . number_format(1));
         $html = $this->element->render($this->getView());
-        $this->assertContains('>£', $html);
+        $this->assertStringContainsString('>£', $html);
     }
 
     /**

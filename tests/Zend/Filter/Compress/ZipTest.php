@@ -177,7 +177,7 @@ class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
             $filter->setTarget('/unknown/path/to/file.txt');
             $this->fails('Exception expected');
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('does not exist', $e->getMessage());
+            $this->assertStringContainsString('does not exist', $e->getMessage());
         }
     }
 
@@ -271,10 +271,10 @@ class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group
-     * @expectedException Zend_Filter_Exception
      */
     public function testDecompressWillThrowExceptionWhenDecompressingWithNoTarget()
     {
+        $this->expectException(\Zend_Filter_Exception::class);
         $filter = new Zend_Filter_Compress_Zip(
             array(
                 'archive' => __DIR__ . '/../_files/compressed.zip',
@@ -299,10 +299,10 @@ class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group RS
-     * @expectedException Zend_Filter_Exception
      */
     public function testDecompressWillThrowExceptionWhenDetectingUpwardDirectoryTraversal()
     {
+        $this->expectException(\Zend_Filter_Exception::class);
         if (version_compare(PHP_VERSION, '5.2.8', '>=')) {
             $this->markTestSkipped('This test is to run on PHP less than 5.2.8');
 

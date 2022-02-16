@@ -36,7 +36,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -359,7 +359,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
 
         $this->assertEquals(count($expected), count($plugins));
         foreach ($expected as $index => $class) {
-            $this->assertEquals($class, get_class($plugins[$index]));
+            $this->assertEquals($class, $plugins[$index]::class);
         }
     }
 
@@ -393,7 +393,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
         ));
         $resource->init();
         $front = $resource->getFrontController();
-        $this->assertEquals('ZF9724_Dispatcher', get_class($front->getDispatcher()));
+        $this->assertEquals('ZF9724_Dispatcher', $front->getDispatcher()::class);
         $this->assertEquals('baz', $front->getDispatcher()->getParam('bar'));
     }
 }

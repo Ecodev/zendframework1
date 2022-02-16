@@ -71,7 +71,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         $ac->setView($view);
         $output = $ac->render();
 
-        $this->assertContains('ac1', $output);
+        $this->assertStringContainsString('ac1', $output);
     }
 
     public function testUiWidgetElementJQueryParams()
@@ -141,6 +141,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Zend_Form_Decorator_Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testUiWidgetPaneRenderingThrowsExceptionWithoutTitleOption()
@@ -212,9 +213,9 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         $form->addSubForm($subForm1, 'form1');
 
         $output = $form->render($view);
-        $this->assertContains('id="tabContainer"', $output);
-        $this->assertContains('href="#tabContainer-frag-1"', $output);
-        $this->assertContains('id="tabContainer-frag-1"', $output);
+        $this->assertStringContainsString('id="tabContainer"', $output);
+        $this->assertStringContainsString('href="#tabContainer-frag-1"', $output);
+        $this->assertStringContainsString('id="tabContainer-frag-1"', $output);
     }
 
     /**
@@ -356,7 +357,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
 
         $output = $form->render($view);
 
-        $this->assertContains('<div id="tabContainer" style="width: 600px;"><form', $output);
+        $this->assertStringContainsString('<div id="tabContainer" style="width: 600px;"><form', $output);
     }
 
     public function testRenderWidgetElementShouldEnableJQueryHelper()
@@ -384,10 +385,10 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
 
         $widget->getDecorator('UiWidgetElement')->setOption('placement', 'APPEND');
         $html = $widget->render();
-        $this->assertContains('[SEP]<input type="text" name="spinner1" id="spinner1" value="">', $html);
+        $this->assertStringContainsString('[SEP]<input type="text" name="spinner1" id="spinner1" value="">', $html);
 
         $widget->getDecorator('UiWidgetElement')->setOption('placement', 'PREPEND');
         $html = $widget->render();
-        $this->assertContains('<input type="text" name="spinner1" id="spinner1" value="">[SEP]', $html);
+        $this->assertStringContainsString('<input type="text" name="spinner1" id="spinner1" value="">[SEP]', $html);
     }
 }

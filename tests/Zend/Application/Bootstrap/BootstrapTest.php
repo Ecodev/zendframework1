@@ -31,7 +31,7 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -84,11 +84,9 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
         $this->assertTrue($this->bootstrap->hasPluginResource('FrontController'));
     }
 
-    /**
-     * @expectedException Zend_Application_Bootstrap_Exception
-     */
     public function testRunShouldRaiseExceptionIfNoControllerDirectoryRegisteredWithFrontController()
     {
+        $this->expectException(\Zend_Application_Bootstrap_Exception::class);
         $this->bootstrap->bootstrap();
         $this->bootstrap->run();
     }

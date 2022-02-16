@@ -118,6 +118,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
             $this->fail('Invalid container classes should not be accepted');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testDeletingContainerRemovesFromRegistry()

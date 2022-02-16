@@ -288,7 +288,7 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
             $result = $date->setTimestamp('notimestamp');
             $this->Fail('exception expected');
         } catch (Zend_Date_Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -324,7 +324,7 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
             $result = $date->addTimestamp('notimestamp');
             $this->fail('exception expected');
         } catch (Zend_Date_Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -350,7 +350,7 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
             $result = $date->subTimestamp('notimestamp');
             $this->fail('exception expected');
         } catch (Zend_Date_Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 

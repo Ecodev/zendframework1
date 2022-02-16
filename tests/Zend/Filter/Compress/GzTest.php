@@ -113,7 +113,7 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
             $filter->setLevel(15);
             $this->fail('Exception expected');
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('must be between', $e->getMessage());
+            $this->assertStringContainsString('must be between', $e->getMessage());
         }
     }
 
@@ -131,7 +131,7 @@ class Zend_Filter_Compress_GzTest extends \PHPUnit\Framework\TestCase
             $filter->setMode('unknown');
             $this->fail('Exception expected');
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('mode not supported', $e->getMessage());
+            $this->assertStringContainsString('mode not supported', $e->getMessage());
         }
     }
 

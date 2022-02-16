@@ -66,14 +66,14 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_FlashMessengerTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
     {
         $savePath = ini_get('session.save_path');
         if (strpos($savePath, ';')) {
-            $savePath = explode(';', $savePath);
+            $savePath = explode(';', (string) $savePath);
             $savePath = array_pop($savePath);
         }
         if (empty($savePath)) {
@@ -96,32 +96,32 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
         $this->helper = new Zend_Controller_Action_Helper_FlashMessenger();
     }
 
-    public function testLoadFlashMessenger()
+    public function testLoadFlashMessenger(): never
     {
         $this->markTestSkipped();
         $response = $this->front->dispatch($this->request);
-        $this->assertEquals('Zend_Controller_Action_Helper_FlashMessenger123456', $response->getBody());
+        static::assertEquals('Zend_Controller_Action_Helper_FlashMessenger123456', $response->getBody());
     }
 
-    public function testClearMessages()
+    public function testClearMessages(): never
     {
         $this->markTestSkipped();
         $this->helper->addMessage('foo');
         $this->helper->addMessage('bar');
-        $this->assertTrue($this->helper->hasMessages());
-        $this->assertEquals(2, count($this->helper));
+        static::assertTrue($this->helper->hasMessages());
+        static::assertEquals(2, count($this->helper));
 
         $this->helper->clearMessages();
-        $this->assertFalse($this->helper->hasMessages());
-        $this->assertEquals(0, count($this->helper));
+        static::assertFalse($this->helper->hasMessages());
+        static::assertEquals(0, count($this->helper));
     }
 
-    public function testDirectProxiesToAddMessage()
+    public function testDirectProxiesToAddMessage(): never
     {
         $this->markTestSkipped();
         $this->helper->direct('foo');
-        $this->assertTrue($this->helper->hasMessages());
-        $this->assertEquals(1, count($this->helper));
+        static::assertTrue($this->helper->hasMessages());
+        static::assertEquals(1, count($this->helper));
     }
 
     /**

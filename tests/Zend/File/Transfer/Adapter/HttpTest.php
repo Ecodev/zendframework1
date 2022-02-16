@@ -82,19 +82,15 @@ class Zend_File_Transfer_Adapter_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($test instanceof Zend_Validate_File_Upload);
     }
 
-    /**
-     * @expectedException Zend_File_Transfer_Exception
-     */
     public function testSendingFiles()
     {
+        $this->expectException(\Zend_File_Transfer_Exception::class);
         $this->adapter->send();
     }
 
-    /**
-     * @expectedException Zend_File_Transfer_Exception
-     */
     public function testFileIsSent()
     {
+        $this->expectException(\Zend_File_Transfer_Exception::class);
         $this->adapter->isSent();
     }
 
@@ -125,7 +121,7 @@ class Zend_File_Transfer_Adapter_HttpTest extends \PHPUnit\Framework\TestCase
         try {
             $this->assertFalse($this->adapter->receive('unknownFile'));
         } catch (Zend_File_Transfer_Exception $e) {
-            $this->assertContains('not find', $e->getMessage());
+            $this->assertStringContainsString('not find', $e->getMessage());
         }
     }
 

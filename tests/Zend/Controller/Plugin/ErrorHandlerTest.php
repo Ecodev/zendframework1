@@ -208,6 +208,7 @@ class Zend_Controller_Plugin_ErrorHandlerTest extends \PHPUnit\Framework\TestCas
         } catch (Exception $e) {
             $this->fail('Repeated calls with no new exceptions should not throw exceptions');
         }
+        self::assertTrue(true);
     }
 
     public function testPostDispatchWithoutException()

@@ -246,7 +246,7 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
             $this->fail('An invalid server URL was given, but a '
                         . 'Zend_Uri_Exception was not thrown');
         } catch (Zend_Uri_Exception $e) {
-            $this->assertContains('Illegal scheme', $e->getMessage());
+            $this->assertStringContainsString('Illegal scheme', $e->getMessage());
         }
     }
 

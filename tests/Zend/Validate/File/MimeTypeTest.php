@@ -148,7 +148,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         try {
             $validator->setMagicFile('/unknown/magic/file');
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('can not be', $e->getMessage());
+            $this->assertStringContainsString('can not be', $e->getMessage());
         }
     }
 
@@ -162,6 +162,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Validate_Exception $e) {
             // @ZF-9320: False Magic File is not allowed to be set
         }
+        self::assertTrue(true);
     }
 
     public function testOptionsAtConstructor()

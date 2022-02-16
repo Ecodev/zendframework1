@@ -31,7 +31,7 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite('Zend_Captcha_DumbTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     /**
@@ -69,7 +69,7 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
         $id = $this->captcha->generate('test');
         $word = $this->captcha->getWord();
         $html = $this->captcha->render(new Zend_View());
-        $this->assertContains(strrev($word), $html);
+        $this->assertStringContainsString(strrev($word), $html);
         $this->assertNotContains($word, $html);
     }
 
@@ -99,7 +99,7 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
 
         $id = $this->captcha->generate('test');
         $html = $this->captcha->render(new Zend_View());
-        $this->assertContains('Testing 123', $html);
+        $this->assertStringContainsString('Testing 123', $html);
     }
 }
 
@@ -136,13 +136,8 @@ class Zend_Captcha_DumbTest_SessionContainer
 
     public function __call($method, $args)
     {
-        switch ($method) {
-            case 'setExpirationHops':
-            case 'setExpirationSeconds':
-                $this->$method = array_shift($args);
-
-                break;
-            default:
-        }
+        $this->$method = match ($method) {
+            'setExpirationHops', 'setExpirationSeconds' => array_shift($args),
+        };
     }
 }

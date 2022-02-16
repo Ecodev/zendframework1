@@ -108,7 +108,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
             $this->_controller->setRequest(\Zend_Controller_Response_Cli::class);
             $this->fail('Should not be able to set invalid request class');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -130,7 +130,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
             $this->_controller->setResponse(\Zend_Controller_Request_Http::class);
             $this->fail('Should not be able to set invalid response class');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -152,7 +152,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
             $this->_controller->setRouter(\Zend_Controller_Request_Http::class);
             $this->fail('Should not be able to set invalid router class');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -401,7 +401,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
             $this->_controller->setBaseUrl(array());
             $this->fail('Should not be able to set non-string base URL');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -416,7 +416,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $response = new Zend_Controller_Response_Cli();
         $response = $this->_controller->dispatch($request, $response);
 
-        $this->assertContains('index.php', $request->getBaseUrl());
+        $this->assertStringContainsString('index.php', $request->getBaseUrl());
     }
 
     /**
@@ -451,7 +451,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
             $response = $this->_controller->dispatch($request);
             $this->fail('Invalid controller should throw exception');
         } catch (Exception $e) {
-            // success
+            self::assertTrue(true);
         }
     }
 
@@ -487,7 +487,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $body = ob_get_clean();
 
         $actual = $this->_controller->getResponse()->getBody();
-        $this->assertContains($actual, $body);
+        $this->assertStringContainsString($actual, $body);
     }
 
     public function testRunStatically()
@@ -495,6 +495,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $request = new Zend_Controller_Request_Http('http://example.com/index/index');
         $this->_controller->setRequest($request);
         Zend_Controller_Front::run(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        self::assertTrue(true);
     }
 
     public function testRunDynamically()
@@ -502,6 +503,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $request = new Zend_Controller_Request_Http('http://example.com/index/index');
         $this->_controller->setRequest($request);
         $this->_controller->run(__DIR__ . DIRECTORY_SEPARATOR . '_files');
+        self::assertTrue(true);
     }
 
     public function testModulePathDispatched()
@@ -656,7 +658,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertNotSame($response, $responsePost);
 
         $this->assertContains('Reset action called', $responsePost->getBody());
-        $this->assertNotContains('Reset action called', $response->getBody());
+        $this->assertStringNotContainsString('Reset action called', $response->getBody());
     }
 
     public function testViewRendererHelperRegisteredWhenDispatched()

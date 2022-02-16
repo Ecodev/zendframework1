@@ -98,7 +98,7 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
         $test = $this->helper->formFile(array(
             'name' => 'foo',
         ));
-        $this->assertNotContains(' />', $test);
+        $this->assertStringNotContainsString(' />', $test);
     }
 
     public function testCanRendersAsXHtml()
@@ -107,7 +107,7 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
         $test = $this->helper->formFile(array(
             'name' => 'foo',
         ));
-        $this->assertContains(' />', $test);
+        $this->assertStringContainsString(' />', $test);
     }
 
     /**

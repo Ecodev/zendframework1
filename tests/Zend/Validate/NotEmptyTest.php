@@ -463,7 +463,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
             $this->_validator->setType(true);
             $this->fail();
         } catch (Zend_Exception $e) {
-            $this->assertContains('Unknown', $e->getMessage());
+            $this->assertStringContainsString('Unknown', $e->getMessage());
         }
     }
 

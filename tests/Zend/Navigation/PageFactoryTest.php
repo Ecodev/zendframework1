@@ -125,6 +125,8 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
                 'label' => 'My Invalid Page',
             ));
         } catch (Zend_Navigation_Exception $e) {
+            self::assertTrue(true);
+
             return;
         }
 

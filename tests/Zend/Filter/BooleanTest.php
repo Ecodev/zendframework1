@@ -694,7 +694,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
             $this->_filter->setType(true);
             $this->fail();
         } catch (Zend_Exception $e) {
-            $this->assertContains('Unknown', $e->getMessage());
+            $this->assertStringContainsString('Unknown', $e->getMessage());
         }
     }
 
@@ -715,7 +715,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
             $this->_filter->setLocale(true);
             $this->fail();
         } catch (Zend_Exception $e) {
-            $this->assertContains('Locale has to be', $e->getMessage());
+            $this->assertStringContainsString('Locale has to be', $e->getMessage());
         }
     }
 
@@ -728,7 +728,7 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
             $this->_filter->setLocale('yy');
             $this->fail();
         } catch (Zend_Exception $e) {
-            $this->assertContains('Unknown locale', $e->getMessage());
+            $this->assertStringContainsString('Unknown locale', $e->getMessage());
         }
     }
 }

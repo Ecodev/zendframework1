@@ -93,6 +93,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     public function testSetConfigWithArray()
     {
         Zend_Uri::setConfig(array('allow_unwise' => true));
+        self::assertTrue(true);
     }
 
     /**
@@ -103,6 +104,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     public function testSetConfigWithZendConfig()
     {
         Zend_Uri::setConfig(new Zend_Config(array('allow_unwise' => true)));
+        self::assertTrue(true);
     }
 
     /**
@@ -110,10 +112,10 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
      * nor Zend_Config is given as first parameter.
      *
      * @group ZF-5578
-     * @expectedException Zend_Uri_Exception
      */
     public function testSetConfigInvalid()
     {
+        $this->expectException(\Zend_Uri_Exception::class);
         Zend_Uri::setConfig('This should cause an exception');
     }
 

@@ -125,6 +125,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
             $this->fail('addPrefixPath() should throw exception with non-string prefix');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testAddPrefixPathThrowsExceptionWithNonStringPath()
@@ -136,6 +137,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
             $this->fail('addPrefixPath() should throw exception with non-string path');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testRemoveAllPathsForGivenPrefixNonStatically()
@@ -172,6 +174,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
             $this->fail('Removing non-existent prefix should throw an exception');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testRemovePrefixPathThrowsExceptionIfPrefixPathPairNotRegistered()
@@ -302,6 +305,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
             $this->fail('Invalid prefix for a path should throw an exception');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testLoadThrowsExceptionIfNoHelperClassLoaded()
@@ -314,6 +318,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
             $this->fail('Not finding a helper should throw an exception');
         } catch (Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testGetClassAfterNonStaticLoadReturnsResolvedClassName()
@@ -406,10 +411,10 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-4670
-     * @expectedException Zend_Loader_PluginLoader_Exception
      */
     public function testPluginLoaderShouldThrowExceptionWhenPathDoesNotExist()
     {
+        $this->expectException(\Zend_Loader_PluginLoader_Exception::class);
         $cacheFile = __DIR__ . '/_filesDoNotExist/includeCache.inc.php';
         $this->testIncludeCacheShouldBeNullByDefault();
         Zend_Loader_PluginLoader::setIncludeFileCache($cacheFile);
@@ -452,7 +457,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
         }
 
         $classPath = $loader->getClassPath('DeclareVars');
-        $this->assertContains($expected, $classPath);
+        $this->assertStringContainsString($expected, $classPath);
     }
 
     /**
@@ -492,7 +497,7 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
             $this->fail();
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Loader_PluginLoader_Exception);
-            $this->assertContains('Prefix My_Namespace_ / Path ZF9721', $e->getMessage());
+            $this->assertStringContainsString('Prefix My_Namespace_ / Path ZF9721', $e->getMessage());
         }
         $this->assertEquals(1, is_countable($loader->getPaths('My_Namespace_')) ? count($loader->getPaths('My_Namespace_')) : 0);
     }

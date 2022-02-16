@@ -223,7 +223,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals(1, count($this->container));
         $this->assertTrue(isset($this->container['key']));
         $value = $this->container['key'];
-        $this->assertContains('This is content intended for capture', $value);
+        $this->assertStringContainsString('This is content intended for capture', $value);
     }
 
     public function testCapturingToPlaceholderKeyUsingAppendAppendsContentAtKey()
@@ -236,7 +236,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals(1, count($this->container));
         $this->assertTrue(isset($this->container['key']));
         $value = $this->container['key'];
-        $this->assertContains('Foobar This is content intended for capture', $value);
+        $this->assertStringContainsString('Foobar This is content intended for capture', $value);
     }
 
     public function testNestedCapturesThrowsException()

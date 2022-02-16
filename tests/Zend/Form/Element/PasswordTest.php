@@ -146,10 +146,10 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
         $this->element->setValue('foobar')
             ->setView(new Zend_View());
         $test = $this->element->render();
-        $this->assertContains('value=""', $test);
+        $this->assertStringContainsString('value=""', $test);
 
         $this->element->setRenderPassword(true);
         $test = $this->element->render();
-        $this->assertContains('value="foobar"', $test);
+        $this->assertStringContainsString('value="foobar"', $test);
     }
 }

@@ -76,10 +76,10 @@ class Zend_Filter_File_LowerCaseTest extends \PHPUnit\Framework\TestCase
 
     public function testInstanceCreationAndNormalWorkflow()
     {
-        $this->assertContains('This is a File', file_get_contents($this->_newFile));
+        $this->assertStringContainsString('This is a File', file_get_contents($this->_newFile));
         $filter = new Zend_Filter_File_LowerCase();
         $filter->filter($this->_newFile);
-        $this->assertContains('this is a file', file_get_contents($this->_newFile));
+        $this->assertStringContainsString('this is a file', file_get_contents($this->_newFile));
     }
 
     public function testFileNotFoundException()
@@ -89,34 +89,34 @@ class Zend_Filter_File_LowerCaseTest extends \PHPUnit\Framework\TestCase
             $filter->filter($this->_newFile . 'unknown');
             $this->fail('Unknown file exception expected');
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('not found', $e->getMessage());
+            $this->assertStringContainsString('not found', $e->getMessage());
         }
     }
 
     public function testCheckSettingOfEncodingInIstance()
     {
-        $this->assertContains('This is a File', file_get_contents($this->_newFile));
+        $this->assertStringContainsString('This is a File', file_get_contents($this->_newFile));
 
         try {
             $filter = new Zend_Filter_File_LowerCase('ISO-8859-1');
             $filter->filter($this->_newFile);
-            $this->assertContains('this is a file', file_get_contents($this->_newFile));
+            $this->assertStringContainsString('this is a file', file_get_contents($this->_newFile));
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('mbstring is required', $e->getMessage());
+            $this->assertStringContainsString('mbstring is required', $e->getMessage());
         }
     }
 
     public function testCheckSettingOfEncodingWithMethod()
     {
-        $this->assertContains('This is a File', file_get_contents($this->_newFile));
+        $this->assertStringContainsString('This is a File', file_get_contents($this->_newFile));
 
         try {
             $filter = new Zend_Filter_File_LowerCase();
             $filter->setEncoding('ISO-8859-1');
             $filter->filter($this->_newFile);
-            $this->assertContains('this is a file', file_get_contents($this->_newFile));
+            $this->assertStringContainsString('this is a file', file_get_contents($this->_newFile));
         } catch (Zend_Filter_Exception $e) {
-            $this->assertContains('mbstring is required', $e->getMessage());
+            $this->assertStringContainsString('mbstring is required', $e->getMessage());
         }
     }
 }

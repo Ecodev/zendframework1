@@ -70,11 +70,10 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
      * non-HTTP scheme.
      *
      * @group ZF-4395
-     *
-     * @expectedException Zend_Uri_Exception
      */
     public function testFromStringInvalidScheme()
     {
+        $this->expectException(\Zend_Uri_Exception::class);
         Zend_Uri_Http::fromString('ftp://example.com/file');
     }
 
@@ -136,6 +135,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     public function testUsernameInvalidCharacter()
     {
         $this->_testInvalidUri('http://an`di:password@www.zend.com');
+        self::assertTrue(true);
     }
 
     public function testNoUsernamePassword()
@@ -292,6 +292,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
             $this->fail('Zend_Uri_Exception was expected but not thrown');
         } catch (Zend_Uri_Exception $e) {
         }
+        self::assertTrue(true);
     }
 
     public function testSetGetUsername()

@@ -124,7 +124,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         try {
             $config->hostname = 'test';
         } catch (Zend_Config_Exception $expected) {
-            static::assertContains('is read only', $expected->getMessage());
+            static::assertStringContainsString('is read only', $expected->getMessage());
 
             return;
         }
@@ -138,7 +138,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         try {
             $config->db->host = 'test';
         } catch (Zend_Config_Exception $expected) {
-            static::assertContains('is read only', $expected->getMessage());
+            static::assertStringContainsString('is read only', $expected->getMessage());
 
             return;
         }
@@ -168,14 +168,14 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
                 $var .= "\nkey = $key, value = $value";
             }
         }
-        $this->assertContains('key = name, value = thisname', $var);
+        $this->assertStringContainsString('key = name, value = thisname', $var);
 
         // 1 nest
         $var = '';
         foreach ($config->db as $key => $value) {
             $var .= "\nkey = $key, value = $value";
         }
-        $this->assertContains('key = host, value = 127.0.0.1', $var);
+        $this->assertStringContainsString('key = host, value = 127.0.0.1', $var);
 
         // 2 nests
         $config = new Zend_Config($this->_menuData1);
@@ -183,7 +183,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         foreach ($config->button->b1 as $key => $value) {
             $var .= "\nkey = $key, value = $value";
         }
-        $this->assertContains('key = L1, value = button1-1', $var);
+        $this->assertStringContainsString('key = L1, value = button1-1', $var);
     }
 
     public function testArray()
@@ -194,9 +194,9 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         print_r($config->toArray());
         $contents = ob_get_clean();
 
-        $this->assertContains('Array', $contents);
-        $this->assertContains('[hostname] => all', $contents);
-        $this->assertContains('[user] => username', $contents);
+        $this->assertStringContainsString('Array', $contents);
+        $this->assertStringContainsString('[hostname] => all', $contents);
+        $this->assertStringContainsString('[user] => username', $contents);
     }
 
     public function testErrorWriteToReadOnly()
@@ -206,7 +206,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         try {
             $config->test = '32';
         } catch (Zend_Config_Exception $expected) {
-            static::assertContains('read only', $expected->getMessage());
+            static::assertStringContainsString('read only', $expected->getMessage());
 
             return;
         }
@@ -284,7 +284,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         try {
             unset($config->hostname);
         } catch (Zend_Config_Exception $expected) {
-            static::assertContains('is read only', $expected->getMessage());
+            static::assertStringContainsString('is read only', $expected->getMessage());
 
             return;
         }
@@ -371,7 +371,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         try {
             $config->c = 'c';
         } catch (Zend_Config_Exception $expected) {
-            static::assertContains('is read only', $expected->getMessage());
+            static::assertStringContainsString('is read only', $expected->getMessage());
 
             return;
         }

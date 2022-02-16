@@ -90,7 +90,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             $this->group->setName('%\^&*)\(%$#@!.}{;-,');
             $this->fail('Empty names should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid name provided', $e->getMessage());
+            $this->assertStringContainsString('Invalid name provided', $e->getMessage());
         }
     }
 
@@ -139,7 +139,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             $this->group->addElements($elements);
             $this->fail('Invalid elements should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('must be Zend_Form_Elements only', $e->getMessage());
+            $this->assertStringContainsString('must be Zend_Form_Elements only', $e->getMessage());
         }
     }
 
@@ -228,7 +228,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             $this->group->addDecorator(123);
             $this->fail('Invalid decorator should raise exception');
         } catch (Zend_Form_Exception $e) {
-            $this->assertContains('Invalid decorator', $e->getMessage());
+            $this->assertStringContainsString('Invalid decorator', $e->getMessage());
         }
     }
 
@@ -389,9 +389,9 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->addElements(array($foo, $bar));
         $html = $this->group->render($this->getView());
         $this->assertRegexp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
-        $this->assertContains('<input', $html, $html);
-        $this->assertContains('"foo"', $html);
-        $this->assertContains('"bar"', $html);
+        $this->assertStringContainsString('<input', $html, $html);
+        $this->assertStringContainsString('"foo"', $html);
+        $this->assertStringContainsString('"bar"', $html);
     }
 
     public function testToStringProxiesToRender()
@@ -403,9 +403,9 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             ->setView($this->getView());
         $html = $this->group->__toString();
         $this->assertRegexp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
-        $this->assertContains('<input', $html);
-        $this->assertContains('"foo"', $html);
-        $this->assertContains('"bar"', $html);
+        $this->assertStringContainsString('<input', $html);
+        $this->assertStringContainsString('"foo"', $html);
+        $this->assertStringContainsString('"bar"', $html);
     }
 
     public function raiseDecoratorException($content, $element, $options)
@@ -511,7 +511,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
             ->addElement($c)
             ->setView($this->getView());
         $test = $this->group->render();
-        $this->assertContains('name="a"', $test);
+        $this->assertStringContainsString('name="a"', $test);
         if (!preg_match_all('/(<input[^>]+>)/', $test, $matches)) {
             $this->fail('Expected markup not found');
         }
@@ -535,6 +535,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         } catch (Exception $e) {
             static::fail('Exceptions should not be raised by iterator when elements are removed; error message: ' . $e->getMessage());
         }
+        self::assertTrue(true);
     }
 
     // Countable
@@ -579,6 +580,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $options['translator'] = true;
         $options['attrib'] = true;
         $this->group->setOptions($options);
+        self::assertTrue(true);
     }
 
     public function testSetOptionsSetsArrayOfStringDecorators()
@@ -746,10 +748,10 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-3217
-     * @expectedException Zend_Form_Exception
      */
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
+        $this->expectException(\Zend_Form_Exception::class);
         $html = $this->group->bogusMethodCall();
     }
 

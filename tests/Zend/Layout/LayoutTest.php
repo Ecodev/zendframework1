@@ -438,6 +438,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
             'ViewScriptPath' => 'some/path',
         ));
         $layout->render();
+        self::assertTrue(true);
     }
 
     /**

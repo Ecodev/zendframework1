@@ -108,6 +108,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         $dir = implode(DIRECTORY_SEPARATOR, array(__DIR__, '_files', '_testDir1'));
 
         Zend_Loader::loadClass('Class1', $dir);
+        self::assertTrue(true);
     }
 
     public function testLoaderInterfaceViaLoadClass()
@@ -117,6 +118,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Exception $e) {
             $this->fail('Loading interfaces should not fail');
         }
+        self::assertTrue(true);
     }
 
     public function testLoaderLoadClassWithDotDir()
@@ -128,6 +130,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Exception $e) {
             $this->fail('Loading from dot should not fail');
         }
+        self::assertTrue(true);
     }
 
     /**
@@ -173,6 +176,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
         // throws exception on failure
         Zend_Loader::loadClass('Class1', $dirs);
         Zend_Loader::loadClass('Class2', $dirs);
+        self::assertTrue(true);
     }
 
     /**
@@ -187,6 +191,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
         // throws exception on failure
         Zend_Loader::loadClass('Class1_Subclass2', $dirs);
+        self::assertTrue(true);
     }
 
     /**
@@ -456,6 +461,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
             $this->markTestSkipped('PHP < 5.3.0 does not support namespaces');
         }
         Zend_Loader::loadClass('\Zfns\Foo', array(__DIR__ . '/Loader/_files'));
+        self::assertTrue(true);
     }
 
     /**

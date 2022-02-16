@@ -24,13 +24,12 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
     {
         $jquery = new ZendX_JQuery_View_Helper_JQuery();
         $jquery->addJavascript('alert();');
+        self::assertTrue(true);
     }
 
-    /**
-     * @expectedException Zend_View_Exception
-     */
     public function testHelperFailingCallForward()
     {
+        $this->expectException(\Zend_View_Exception::class);
         $jquery = new ZendX_JQuery_View_Helper_JQuery();
         $jquery->addAsdf();
     }
@@ -75,10 +74,10 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertFalse($this->jquery->useCDN());
         $this->assertFalse($this->jquery->isEnabled());
         $this->assertTrue($this->jquery->useLocalPath());
-        $this->assertContains('/js/jquery.min.js', $this->jquery->getLocalPath());
+        $this->assertStringContainsString('/js/jquery.min.js', $this->jquery->getLocalPath());
 
         $render = $this->jquery->__toString();
-        $this->assertNotContains('/js/jquery.min.js', $render);
+        $this->assertStringNotContainsString('/js/jquery.min.js', $render);
     }
 
     public function testUiDisabledDefault()
@@ -104,14 +103,14 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->uiEnable();
 
         $render = $this->jquery->__toString();
-        $this->assertContains('jquery-ui', $render);
-        $this->assertContains($this->jquery->getUiVersion(), $render);
+        $this->assertStringContainsString('jquery-ui', $render);
+        $this->assertStringContainsString($this->jquery->getUiVersion(), $render);
     }
 
     public function testShouldAllowSetUiVersion()
     {
         $this->jquery->setUiVersion('1.5.1');
-        $this->assertContains('1.5.1', $this->jquery->getUiVersion());
+        $this->assertStringContainsString('1.5.1', $this->jquery->getUiVersion());
     }
 
     public function testShouldAllowSetLocalUiPath()
@@ -120,7 +119,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
         $this->assertTrue($this->jquery->useUiLocal());
         $this->assertFalse($this->jquery->useUiCdn());
-        $this->assertContains('/js/jquery-ui.min.js', $this->jquery->getUiPath());
+        $this->assertStringContainsString('/js/jquery-ui.min.js', $this->jquery->getUiPath());
     }
 
     public function testNoConflictShouldBeDisabledDefault()
@@ -135,7 +134,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->enable();
         $render = $this->jquery->__toString();
 
-        $this->assertContains('var $j = jQuery.noConflict();', $render);
+        $this->assertStringContainsString('var $j = jQuery.noConflict();', $render);
     }
 
     public function testDefaultRenderModeShouldIncludeAllBlocks()
@@ -192,20 +191,16 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertEquals(array(), $this->jquery->getJavascript());
     }
 
-    /**
-     * @expectedException Zend_Exception
-     */
     public function testShouldDisallowNestingCapturesWithException()
     {
+        $this->expectException(\Zend_Exception::class);
         $this->jquery->javascriptCaptureStart();
         $this->jquery->javascriptCaptureStart();
     }
 
-    /**
-     * @expectedException Zend_Exception
-     */
     public function testShouldDisallowNestingCapturesWithException2()
     {
+        $this->expectException(\Zend_Exception::class);
         $this->jquery->onLoadCaptureStart();
         $this->jquery->onLoadCaptureStart();
 
@@ -240,9 +235,9 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->enable();
 
         $render = $this->jquery->__toString();
-        $this->assertContains('src="/js/test.js"', $render);
-        $this->assertContains('src="/js/test2.js"', $render);
-        $this->assertContains('src="http://example.com/test3.js', $render);
+        $this->assertStringContainsString('src="/js/test.js"', $render);
+        $this->assertStringContainsString('src="/js/test2.js"', $render);
+        $this->assertStringContainsString('src="http://example.com/test3.js', $render);
     }
 
     public function testAddStylesheet()
@@ -270,10 +265,10 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $render = $this->jquery->__toString();
 
         $this->assertTrue($this->jquery->useCDN());
-        $this->assertContains('jquery.min.js', $render);
-        $this->assertContains('1.2.3', $render);
-        $this->assertContains('test.js', $render);
-        $this->assertContains('<script type="text/javascript"', $render);
+        $this->assertStringContainsString('jquery.min.js', $render);
+        $this->assertStringContainsString('1.2.3', $render);
+        $this->assertStringContainsString('test.js', $render);
+        $this->assertStringContainsString('<script type="text/javascript"', $render);
     }
 
     public function testShouldAllowUseRenderMode()
@@ -295,56 +290,56 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         // Test Render Only Library
         $this->jquery->setRenderMode(ZendX_JQuery::RENDER_LIBRARY);
         $render = $this->jquery->__toString();
-        $this->assertContains('1.2.3/jquery.min.js', $render);
-        $this->assertNotContains('test.css', $render);
-        $this->assertNotContains('test.js', $render);
-        $this->assertNotContains('alert();', $render);
-        $this->assertNotContains('helloWorld();', $render);
+        $this->assertStringContainsString('1.2.3/jquery.min.js', $render);
+        $this->assertStringNotContainsString('test.css', $render);
+        $this->assertStringNotContainsString('test.js', $render);
+        $this->assertStringNotContainsString('alert();', $render);
+        $this->assertStringNotContainsString('helloWorld();', $render);
 
         // Test Render Only AddOnLoad
         $this->jquery->setRenderMode(ZendX_JQuery::RENDER_JQUERY_ON_LOAD);
         $render = $this->jquery->__toString();
-        $this->assertNotContains('1.2.3/jquery.min.js', $render);
-        $this->assertNotContains('test.css', $render);
-        $this->assertNotContains('test.js', $render);
-        $this->assertContains('alert();', $render);
-        $this->assertNotContains('helloWorld();', $render);
+        $this->assertStringNotContainsString('1.2.3/jquery.min.js', $render);
+        $this->assertStringNotContainsString('test.css', $render);
+        $this->assertStringNotContainsString('test.js', $render);
+        $this->assertStringContainsString('alert();', $render);
+        $this->assertStringNotContainsString('helloWorld();', $render);
 
         // Test Render Only Javascript
         $this->jquery->setRenderMode(ZendX_JQuery::RENDER_SOURCES);
         $render = $this->jquery->__toString();
-        $this->assertNotContains('1.2.3/jquery.min.js', $render);
-        $this->assertNotContains('test.css', $render);
-        $this->assertContains('test.js', $render);
-        $this->assertNotContains('alert();', $render);
-        $this->assertNotContains('helloWorld();', $render);
+        $this->assertStringNotContainsString('1.2.3/jquery.min.js', $render);
+        $this->assertStringNotContainsString('test.css', $render);
+        $this->assertStringContainsString('test.js', $render);
+        $this->assertStringNotContainsString('alert();', $render);
+        $this->assertStringNotContainsString('helloWorld();', $render);
 
         // Test Render Only Javascript
         $this->jquery->setRenderMode(ZendX_JQuery::RENDER_STYLESHEETS);
         $render = $this->jquery->__toString();
-        $this->assertNotContains('1.2.3/jquery.min.js', $render);
-        $this->assertContains('test.css', $render);
-        $this->assertNotContains('test.js', $render);
-        $this->assertNotContains('alert();', $render);
-        $this->assertNotContains('helloWorld();', $render);
+        $this->assertStringNotContainsString('1.2.3/jquery.min.js', $render);
+        $this->assertStringContainsString('test.css', $render);
+        $this->assertStringNotContainsString('test.js', $render);
+        $this->assertStringNotContainsString('alert();', $render);
+        $this->assertStringNotContainsString('helloWorld();', $render);
 
         // Test Render Library and AddOnLoad
         $this->jquery->setRenderMode(ZendX_JQuery::RENDER_LIBRARY | ZendX_JQuery::RENDER_JQUERY_ON_LOAD);
         $render = $this->jquery->__toString();
-        $this->assertContains('1.2.3/jquery.min.js', $render);
-        $this->assertNotContains('test.css', $render);
-        $this->assertNotContains('test.js', $render);
-        $this->assertContains('alert();', $render);
-        $this->assertNotContains('helloWorld();', $render);
+        $this->assertStringContainsString('1.2.3/jquery.min.js', $render);
+        $this->assertStringNotContainsString('test.css', $render);
+        $this->assertStringNotContainsString('test.js', $render);
+        $this->assertStringContainsString('alert();', $render);
+        $this->assertStringNotContainsString('helloWorld();', $render);
 
         // Test Render All
         $this->jquery->setRenderMode(ZendX_JQuery::RENDER_ALL);
         $render = $this->jquery->__toString();
-        $this->assertContains('1.2.3/jquery.min.js', $render);
-        $this->assertContains('test.css', $render);
-        $this->assertContains('test.js', $render);
-        $this->assertContains('alert();', $render);
-        $this->assertContains('helloWorld();', $render);
+        $this->assertStringContainsString('1.2.3/jquery.min.js', $render);
+        $this->assertStringContainsString('test.css', $render);
+        $this->assertStringContainsString('test.js', $render);
+        $this->assertStringContainsString('alert();', $render);
+        $this->assertStringContainsString('helloWorld();', $render);
     }
 
     /**
@@ -373,12 +368,12 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->enable();
 
         $jQueryStack = $this->jquery->__toString();
-        $this->assertContains('$j(document).ready(function()', $jQueryStack);
+        $this->assertStringContainsString('$j(document).ready(function()', $jQueryStack);
 
         ZendX_JQuery_View_Helper_JQuery::disableNoConflictMode();
 
         $jQueryStack = $this->jquery->__toString();
-        $this->assertNotContains('$j(document).ready(function()', $jQueryStack);
+        $this->assertStringNotContainsString('$j(document).ready(function()', $jQueryStack);
     }
 
     /**
@@ -391,7 +386,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
         $assert = '<link rel="stylesheet" href="test.css" type="text/css" media="screen">';
         $this->jquery->enable();
-        $this->assertContains($assert, $this->jquery->__toString());
+        $this->assertStringContainsString($assert, $this->jquery->__toString());
     }
 
     /**
@@ -404,7 +399,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
         $assert = '<link rel="stylesheet" href="test.css" type="text/css" media="screen" />';
         $this->jquery->enable();
-        $this->assertContains($assert, $this->jquery->__toString());
+        $this->assertStringContainsString($assert, $this->jquery->__toString());
     }
 
     /**
@@ -428,7 +423,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->setCdnSsl(true);
         $this->jquery->enable();
 
-        $this->assertContains(ZendX_JQuery::CDN_BASE_GOOGLE_SSL, $this->jquery->__toString());
+        $this->assertStringContainsString(ZendX_JQuery::CDN_BASE_GOOGLE_SSL, $this->jquery->__toString());
     }
 
     /**
@@ -440,7 +435,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->setVersion('1.3.1');
         $this->jquery->enable();
 
-        $this->assertContains($jQueryCdnPath, $this->jquery->__toString());
+        $this->assertStringContainsString($jQueryCdnPath, $this->jquery->__toString());
     }
 
     /**
@@ -454,7 +449,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->setUiVersion('1.7.1');
         $this->jquery->uiEnable();
 
-        $this->assertContains($jQueryCdnPath, $this->jquery->__toString());
+        $this->assertStringContainsString($jQueryCdnPath, $this->jquery->__toString());
     }
 
     /**
@@ -467,7 +462,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->setVersion('1.3.1');
         $this->jquery->enable();
 
-        $this->assertContains($jQueryCdnPath, $this->jquery->__toString());
+        $this->assertStringContainsString($jQueryCdnPath, $this->jquery->__toString());
     }
 
     /**
@@ -482,6 +477,6 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->setUiVersion('1.7.1');
         $this->jquery->uiEnable();
 
-        $this->assertContains($jQueryCdnPath, $this->jquery->__toString());
+        $this->assertStringContainsString($jQueryCdnPath, $this->jquery->__toString());
     }
 }

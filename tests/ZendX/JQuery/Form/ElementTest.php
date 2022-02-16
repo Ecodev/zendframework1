@@ -110,6 +110,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         } catch (Exception $e) {
             $this->fail();
         }
+        self::assertTrue(true);
     }
 
     /**
@@ -138,6 +139,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         } catch (ZendX_JQuery_Form_Exception $e) {
             $this->fail();
         }
+        self::assertTrue(true);
     }
 
     /**
@@ -188,8 +190,8 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
 
         $form = $form->render($view);
         $jquery = $view->jQuery()->__toString();
-        $this->assertContains('sf1[dp1]', $form);
-        $this->assertNotContains('$("#sf1[dp1]")', $jquery);
+        $this->assertStringContainsString('sf1[dp1]', $form);
+        $this->assertStringNotContainsString('$("#sf1[dp1]")', $jquery);
     }
 
     /**
@@ -205,7 +207,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
 
         $html = $datePicker->render($view);
 
-        $this->assertContains('<p class="description">foo</p>', $html);
+        $this->assertStringContainsString('<p class="description">foo</p>', $html);
     }
 
     public function testGetDefaultDecorators()

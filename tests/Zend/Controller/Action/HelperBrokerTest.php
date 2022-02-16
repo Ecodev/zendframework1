@@ -173,7 +173,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
 
         $this->front->returnResponse(true);
         $response = $this->front->dispatch($request);
-        $this->assertContains('not found', $response->getBody());
+        $this->assertStringContainsString('not found', $response->getBody());
     }
 
     public function testCustomHelperRegistered()

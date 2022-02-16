@@ -31,7 +31,7 @@ class Zend_Application_Resource_RouterTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void

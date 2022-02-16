@@ -71,14 +71,14 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
             $adapter = new Zend_Translate_Adapter_Array('hastofail', 'en');
             $this->fail('Exception expected');
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('Error including array or file', $e->getMessage());
+            $this->assertStringContainsString('Error including array or file', $e->getMessage());
         }
 
         try {
             $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/failed.php', 'en');
             $this->fail('Exception expected');
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('Error including array or file', $e->getMessage());
+            $this->assertStringContainsString('Error including array or file', $e->getMessage());
         }
     }
 
@@ -125,7 +125,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
             $adapter->addTranslation(__DIR__ . '/_files/translation_en.php', 'xx');
             $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('does not exist', $e->getMessage());
+            $this->assertStringContainsString('does not exist', $e->getMessage());
         }
 
         $adapter->addTranslation(__DIR__ . '/_files/translation_en2.php', 'de', array('clear' => true));
@@ -184,7 +184,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
             $adapter->setLocale('nolocale');
             $this->fail('exception expected');
         } catch (Zend_Translate_Exception $e) {
-            $this->assertContains('does not exist', $e->getMessage());
+            $this->assertStringContainsString('does not exist', $e->getMessage());
         }
 
         set_error_handler(array($this, 'errorHandlerIgnore'));

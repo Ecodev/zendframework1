@@ -48,7 +48,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ActionStackTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     /**
@@ -155,7 +155,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
         } catch (Zend_Exception $e) {
             $this->assertTrue(
                 $e instanceof Zend_Controller_Action_Exception,
-                'Zend_Controller_Action_Exception expected, ' . get_class($e)
+                'Zend_Controller_Action_Exception expected, ' . $e::class
                     . ' caught'
             );
         }

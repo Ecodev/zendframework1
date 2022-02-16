@@ -94,7 +94,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
             $this->_validator->setLocale('de');
             $this->fail();
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('Unable to detect a region', $e->getMessage());
+            $this->assertStringContainsString('Unable to detect a region', $e->getMessage());
         }
     }
 
@@ -107,7 +107,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
             $this->_validator->setLocale('nus_SD');
             $this->fail();
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('Unable to detect a postcode format', $e->getMessage());
+            $this->assertStringContainsString('Unable to detect a postcode format', $e->getMessage());
         }
     }
 
@@ -140,14 +140,14 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
             $this->_validator->setFormat(null);
             $this->fail();
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('A postcode-format string has to be given', $e->getMessage());
+            $this->assertStringContainsString('A postcode-format string has to be given', $e->getMessage());
         }
 
         try {
             $this->_validator->setFormat('');
             $this->fail();
         } catch (Zend_Validate_Exception $e) {
-            $this->assertContains('A postcode-format string has to be given', $e->getMessage());
+            $this->assertStringContainsString('A postcode-format string has to be given', $e->getMessage());
         }
     }
 

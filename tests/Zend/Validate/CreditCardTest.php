@@ -180,7 +180,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
             $validator->setService(array('Zend_Validate_CreditCardTest', 'nocallback'));
             $this->fail('Exception expected');
         } catch (Zend_Exception $e) {
-            $this->assertContains('Invalid callback given', $e->getMessage());
+            $this->assertStringContainsString('Invalid callback given', $e->getMessage());
         }
     }
 

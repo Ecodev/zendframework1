@@ -101,7 +101,7 @@ class Zend_Form_Decorator_FormTest extends \PHPUnit\Framework\TestCase
             ->setAttrib('id', 'bazbat')
             ->setView($this->getView());
         $html = $form->render();
-        $this->assertContains('id="bazbat"', $html, $html);
+        $this->assertStringContainsString('id="bazbat"', $html, $html);
     }
 
     public function testEmptyFormNameShouldNotRenderEmptyFormId()
@@ -111,6 +111,6 @@ class Zend_Form_Decorator_FormTest extends \PHPUnit\Framework\TestCase
             ->setAction('/foo/bar')
             ->setView($this->getView());
         $html = $form->render();
-        $this->assertNotContains('id=""', $html, $html);
+        $this->assertStringNotContainsString('id=""', $html, $html);
     }
 }

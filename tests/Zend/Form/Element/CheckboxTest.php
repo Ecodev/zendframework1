@@ -90,7 +90,7 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/View.php';
         $view = new Zend_View();
         $html = $this->element->render($view);
-        $this->assertNotContains('checked="checked"', $html);
+        $this->assertStringNotContainsString('checked="checked"', $html);
     }
 
     public function testCheckedAttributeRenderedWhenCheckedFlagTrue()
@@ -99,7 +99,7 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         $this->element->checked = true;
         $html = $this->element->render($view);
-        $this->assertContains('checked="checked"', $html);
+        $this->assertStringContainsString('checked="checked"', $html);
     }
 
     public function testCheckedValueDefaultsToOne()
