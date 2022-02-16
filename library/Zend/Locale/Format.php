@@ -540,7 +540,7 @@ class Zend_Locale_Format
             $input = 0 . $input;
         }
         foreach ($regexs as $regex) {
-            preg_match($regex, $input, $found);
+            preg_match($regex, $input ?? '', $found);
             if (isset($found[0])) {
                 return true;
             }
@@ -883,7 +883,7 @@ class Zend_Locale_Format
                 // erase day string
                 $daylist = Zend_Locale_Data::getList($options['locale'], 'day');
                 foreach ($daylist as $key => $name) {
-                    if (iconv_strpos($number, $name) !== false) {
+                    if (iconv_strpos((string) $number, $name) !== false) {
                         $number = str_replace($name, 'EEEE', $number);
 
                         break;
@@ -939,7 +939,7 @@ class Zend_Locale_Format
 
         // split number parts
         $split = false;
-        preg_match_all('/\d+/u', $number, $splitted);
+        preg_match_all('/\d+/u', (string) $number, $splitted);
 
         if ((is_countable($splitted[0]) ? count($splitted[0]) : 0) == 0) {
             self::_setEncoding($oenc);
@@ -1155,7 +1155,7 @@ class Zend_Locale_Format
         $position = false;
         if ($monthlist && $monthlist[1] != 1) {
             foreach ($monthlist as $key => $name) {
-                if (($position = iconv_strpos($number, $name, 0, 'UTF-8')) !== false) {
+                if (($position = iconv_strpos((string) $number, $name, 0, 'UTF-8')) !== false) {
                     $number = str_ireplace($name, $key, $number);
 
                     return $position;

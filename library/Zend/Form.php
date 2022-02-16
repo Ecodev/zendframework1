@@ -429,6 +429,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function setPluginLoader(Zend_Loader_PluginLoader_Interface $loader, $type = null)
     {
+        $type ??= '';
+
         $type = strtoupper($type);
         switch ($type) {
             case self::DECORATOR:
@@ -459,6 +461,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function getPluginLoader($type = null)
     {
+        $type ??= '';
+
         $type = strtoupper($type);
         if (!isset($this->_loaders[$type])) {
             switch ($type) {
@@ -512,6 +516,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
+        $type ??= '';
         $type = strtoupper($type);
         switch ($type) {
             case self::DECORATOR:
@@ -951,7 +956,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         $id = $this->getFullyQualifiedName();
 
         // Bail early if no array notation detected
-        if (!strstr($id, '[')) {
+        if (!strstr($id ?? '', '[')) {
             return $id;
         }
 
@@ -2215,6 +2220,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     protected function _dissolveArrayValue($value, $arrayPath)
     {
+        $arrayPath ??= '';
         // As long as we have more levels
         while ($arrayPos = strpos($arrayPath, '[')) {
             // Get the next key in the path
@@ -3409,7 +3415,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      *
      * @return Zend_Form|Zend_Form_DisplayGroup|Zend_Form_Element
      */
-    public function current()
+    public function current(): mixed
     {
         $this->_sort();
         current($this->_order);
@@ -3434,7 +3440,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      *
      * @return string
      */
-    public function key()
+    public function key(): mixed
     {
         $this->_sort();
 
@@ -3444,7 +3450,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     /**
      * Move pointer to next element/subform/display group.
      */
-    public function next()
+    public function next(): void
     {
         $this->_sort();
         next($this->_order);
@@ -3453,7 +3459,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     /**
      * Move pointer to beginning of element/subform/display group loop.
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_sort();
         reset($this->_order);
@@ -3461,10 +3467,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
 
     /**
      * Determine if current element/subform/display group is valid.
-     *
-     * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         $this->_sort();
 
@@ -3473,10 +3477,8 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
 
     /**
      * Count of elements/subforms that are iterable.
-     *
-     * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_order);
     }

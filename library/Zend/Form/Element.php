@@ -612,7 +612,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      * @param  string $value
      * @param  string $key
      */
-    protected function _filterValue(&$value, &$key)
+    protected function _filterValue(&$value, $key)
     {
         foreach ($this->getFilters() as $filter) {
             $value = $filter->filter($value);
@@ -1146,6 +1146,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function addPrefixPath($prefix, $path, $type = null)
     {
+        $type ??= '';
         $type = strtoupper($type);
         switch ($type) {
             case self::DECORATOR:
@@ -2405,7 +2406,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
                     }
                 }
             } else {
-                $messages[$key] = str_replace('%value%', $value, $message);
+                $messages[$key] = str_replace('%value%', $value ?? '', $message);
             }
         }
 

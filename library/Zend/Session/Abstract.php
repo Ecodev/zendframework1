@@ -81,10 +81,10 @@ abstract class Zend_Session_Abstract
         }
 
         if ($name === null) {
-            return  isset($_SESSION[$namespace]) || isset(self::$_expiringData[$namespace]);
+            return isset($_SESSION[$namespace]) || isset(self::$_expiringData[$namespace]);
         }
 
-        return  isset($_SESSION[$namespace][$name]) || isset(self::$_expiringData[$namespace][$name]);
+        return isset($_SESSION[$namespace][$name]) || isset(self::$_expiringData[$namespace][$name]);
     }
 
     /**
@@ -109,10 +109,8 @@ abstract class Zend_Session_Abstract
         // check to see if the api wanted to remove a var from a namespace or a namespace
         if ($name === '') {
             unset($_SESSION[$namespace], self::$_expiringData[$namespace]);
-
         } else {
             unset($_SESSION[$namespace][$name], self::$_expiringData[$namespace][$name]);
-
         }
 
         // if we remove the last value, remove namespace.

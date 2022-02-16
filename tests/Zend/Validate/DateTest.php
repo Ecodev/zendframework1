@@ -231,7 +231,7 @@ class Zend_Validate_DateTest extends \PHPUnit\Framework\TestCase
      * @param  int $errline
      * @group ZF-2789
      */
-    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
+    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline)
     {
         $this->_errorOccurred = true;
     }

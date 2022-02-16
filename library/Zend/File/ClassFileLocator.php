@@ -52,24 +52,12 @@ class Zend_File_ClassFileLocator extends FilterIterator
 
         parent::__construct($iterator);
         $this->setInfoClass(\Zend_File_PhpClassFile::class);
-
-        // Forward-compat with PHP 5.3
-        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-            if (!defined('T_NAMESPACE')) {
-                define('T_NAMESPACE', 'namespace');
-            }
-            if (!defined('T_NS_SEPARATOR')) {
-                define('T_NS_SEPARATOR', '\\');
-            }
-        }
     }
 
     /**
      * Filter for files containing PHP classes, interfaces, or abstracts.
-     *
-     * @return bool
      */
-    public function accept()
+    public function accept(): bool
     {
         $saveNamespace = null;
         $file = $this->getInnerIterator()->current();
@@ -92,7 +80,6 @@ class Zend_File_ClassFileLocator extends FilterIterator
         $contents = file_get_contents($file->getRealPath());
         $tokens = token_get_all($contents);
         $count = count($tokens);
-        $t_trait = defined('T_TRAIT') ? T_TRAIT : -1; // For preserve PHP 5.3 compatibility
         for ($i = 0; $i < $count; ++$i) {
             $token = $tokens[$i];
             if (!is_array($token)) {
@@ -122,12 +109,10 @@ class Zend_File_ClassFileLocator extends FilterIterator
                             continue;
                         }
                         [$type, $content, $line] = $token;
-                        switch ($type) {
-                            case T_STRING:
-                            case T_NS_SEPARATOR:
-                                $namespace .= $content;
+                        if ($type === T_NAME_QUALIFIED) {
+                            $namespace .= $content;
 
-                                break;
+                            break;
                         }
                     }
                     if ($saveNamespace) {
@@ -135,7 +120,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
                     }
 
                     break;
-                case $t_trait:
+                case T_TRAIT:
                 case T_CLASS:
                 case T_INTERFACE:
                     // Abstract class, class, interface or trait found
@@ -159,7 +144,6 @@ class Zend_File_ClassFileLocator extends FilterIterator
                             }
                             $class = (null === $namespace) ? $content : $namespace . '\\' . $content;
                             $file->addClass($class);
-                            $namespace = null;
 
                             break;
                         }

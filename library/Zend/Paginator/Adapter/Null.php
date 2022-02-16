@@ -66,10 +66,8 @@ class Zend_Paginator_Adapter_Null implements Zend_Paginator_Adapter_Interface
 
     /**
      * Returns the total number of rows in the array.
-     *
-     * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->_count;
     }

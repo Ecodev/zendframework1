@@ -412,7 +412,6 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
         if ($this->hasResourceType($type)) {
             $namespace = $this->_resourceTypes[$type]['namespace'];
             unset($this->_components[$namespace], $this->_resourceTypes[$type]);
-
         }
 
         return $this;

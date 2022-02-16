@@ -520,7 +520,6 @@ break;
                 // Expire Namespace by Time (ENT)
                 if (isset($namespace_metadata['ENT']) && ($namespace_metadata['ENT'] > 0) && (time() > $namespace_metadata['ENT'])) {
                     unset($_SESSION[$namespace], $_SESSION['__ZF'][$namespace]);
-
                 }
 
                 // Expire Namespace by Global Hop (ENGH) if it wasnt expired above
@@ -541,7 +540,6 @@ break;
                     foreach ($namespace_metadata['ENVT'] as $variable => $time) {
                         if (time() > $time) {
                             unset($_SESSION[$namespace][$variable], $_SESSION['__ZF'][$namespace]['ENVT'][$variable]);
-
                         }
                     }
                     if (empty($_SESSION['__ZF'][$namespace]['ENVT'])) {
@@ -596,7 +594,7 @@ break;
      */
     public static function isRegenerated()
     {
-        return  (self::$_regenerateIdState > 0) ? true : false;
+        return (self::$_regenerateIdState > 0) ? true : false;
     }
 
     /**

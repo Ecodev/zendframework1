@@ -226,7 +226,6 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
             foreach ((array) $resetKeys as $resetKey) {
                 if (isset($matchedValuesMapped[$resetKey])) {
                     unset($matchedValuesMapped[$resetKey], $dataValuesMapped[$resetKey]);
-
                 }
             }
         }
@@ -244,7 +243,7 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
 
         ksort($mergedData);
 
-        $return = @vsprintf($this->_reverse, $mergedData);
+        $return = $mergedData ? @vsprintf($this->_reverse, $mergedData) : $this->_reverse;
 
         if ($return === false) {
             require_once 'Zend/Controller/Router/Exception.php';

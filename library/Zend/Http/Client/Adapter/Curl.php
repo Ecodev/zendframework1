@@ -420,7 +420,6 @@ class Zend_Http_Client_Adapter_Curl implements Zend_Http_Client_Adapter_Interfac
             curl_setopt($this->_curl, CURLOPT_INFILE, $this->_config['curloptions'][CURLOPT_INFILE]);
             curl_setopt($this->_curl, CURLOPT_INFILESIZE, $this->_config['curloptions'][CURLOPT_INFILESIZE]);
             unset($this->_config['curloptions'][CURLOPT_INFILE], $this->_config['curloptions'][CURLOPT_INFILESIZE]);
-
         } elseif ($method == Zend_Http_Client::PUT) {
             // This is a PUT by a setRawData string, not by file-handle
             curl_setopt($this->_curl, CURLOPT_POSTFIELDS, $body);

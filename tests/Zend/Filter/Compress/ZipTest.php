@@ -69,7 +69,7 @@ class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
         }
 
         if (!file_exists(__DIR__ . '/../_files/Compress/First/Second')) {
-            mkdir(__DIR__ . '/../_files/Compress/First/Second', 0777, true);
+            mkdir(__DIR__ . '/../_files/Compress/First/Second', 0o777, true);
             file_put_contents(__DIR__ . '/../_files/Compress/First/Second/zipextracted.txt', 'compress me');
             file_put_contents(__DIR__ . '/../_files/Compress/First/zipextracted.txt', 'compress me');
             file_put_contents(__DIR__ . '/../_files/Compress/zipextracted.txt', 'compress me');
@@ -103,7 +103,7 @@ class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
         }
 
         if (!file_exists(__DIR__ . '/../_files/Compress/First/Second')) {
-            mkdir(__DIR__ . '/../_files/Compress/First/Second', 0777, true);
+            mkdir(__DIR__ . '/../_files/Compress/First/Second', 0o777, true);
             file_put_contents(__DIR__ . '/../_files/Compress/First/Second/zipextracted.txt', 'compress me');
             file_put_contents(__DIR__ . '/../_files/Compress/First/zipextracted.txt', 'compress me');
             file_put_contents(__DIR__ . '/../_files/Compress/zipextracted.txt', 'compress me');

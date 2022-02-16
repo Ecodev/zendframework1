@@ -326,7 +326,7 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
 
     private $_errorMessage;
 
-    public function toStringErrorHandler($code, $msg, $file, $line, array $c)
+    public function toStringErrorHandler($code, $msg, $file, $line)
     {
         $this->_errorMessage = $msg;
     }

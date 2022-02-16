@@ -133,7 +133,8 @@ class Zend_Locale_Math
             }
 
             return self::Sub($op1, $roundUp, $precision);
-        } elseif ($precision >= 0) {
+        }
+        if ($precision >= 0) {
             return substr($op1, 0, $decPos + ($precision ? $precision + 1 : 0));
         }
 

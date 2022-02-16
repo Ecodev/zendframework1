@@ -227,22 +227,6 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
     }
 
-    public function testDisablingNotices()
-    {
-        set_error_handler(array($this, 'errorHandlerIgnore'));
-        $adapter = new Zend_Translate_Adapter_Array(array());
-        $this->assertTrue($this->_errorOccurred);
-        restore_error_handler();
-        $this->_errorOccurred = false;
-        $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
-
-        set_error_handler(array($this, 'errorHandlerIgnore'));
-        $adapter = new Zend_Translate_Adapter_Array(array(), 'en', array('disableNotices' => true));
-        $this->assertFalse($this->_errorOccurred);
-        restore_error_handler();
-        $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
-    }
-
     public function testGettingAllMessageIds()
     {
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
@@ -326,7 +310,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
      * @param  string  $errfile
      * @param  int $errline
      */
-    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
+    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline)
     {
         $this->_errorOccurred = true;
     }

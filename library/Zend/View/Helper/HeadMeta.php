@@ -38,7 +38,6 @@ require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
  * @method $this prependHttpEquiv($keyValue, $content, $conditionalHttpEquiv)
  * @method $this prependName($keyValue, $content, $conditionalName)
  * @method $this prependProperty($property, $content, $modifiers)
- * @method $this setCharset($charset)
  * @method $this setHttpEquiv($keyValue, $content, $modifiers)
  * @method $this setName($keyValue, $content, $modifiers)
  * @method $this setProperty($property, $content, $modifiers)
@@ -262,7 +261,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
      * @param  int|string $index
      * @param  string $value
      */
-    public function offsetSet($index, $value)
+    public function offsetSet($index, $value): void
     {
         if (!$this->_isValid($value)) {
             require_once 'Zend/View/Exception.php';
@@ -272,7 +271,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
             throw $e;
         }
 
-        return $this->getContainer()->offsetSet($index, $value);
+        $this->getContainer()->offsetSet($index, $value);
     }
 
     /**
@@ -280,7 +279,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
      *
      * @param  int|string $index
      */
-    public function offsetUnset($index)
+    public function offsetUnset($index): void
     {
         if (!in_array($index, $this->getContainer()->getKeys())) {
             require_once 'Zend/View/Exception.php';
@@ -290,7 +289,7 @@ class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_S
             throw $e;
         }
 
-        return $this->getContainer()->offsetUnset($index);
+        $this->getContainer()->offsetUnset($index);
     }
 
     /**

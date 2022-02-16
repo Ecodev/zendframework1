@@ -269,7 +269,7 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
      * @param  string  $errfile
      * @param  int $errline
      */
-    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
+    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline)
     {
         $this->_errorOccurred = true;
     }

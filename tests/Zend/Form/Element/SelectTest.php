@@ -80,8 +80,6 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
 
     public function testSelectElementUsesSelectHelperInViewHelperDecoratorByDefault()
     {
-        $this->_checkZf2794();
-
         $decorator = $this->element->getDecorator('viewHelper');
         $this->assertTrue($decorator instanceof Zend_Form_Decorator_ViewHelper);
         $decorator->setElement($this->element);
@@ -250,17 +248,5 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
                   . '</select>';
 
         $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * Used by test methods susceptible to ZF-2794, marks a test as incomplete.
-     *
-     * @see   http://framework.zend.com/issues/browse/ZF-2794
-     */
-    protected function _checkZf2794()
-    {
-        if (strtolower(substr(PHP_OS, 0, 3)) == 'win' && version_compare(PHP_VERSION, '5.1.4', '=')) {
-            $this->markTestIncomplete('Error occurs for PHP 5.1.4 on Windows');
-        }
     }
 }

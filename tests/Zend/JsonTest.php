@@ -376,7 +376,7 @@ class Zend_JsonTest extends \PHPUnit\Framework\TestCase
         }
 
         try {
-            $expected = 010;
+            $expected = 0o10;
             $test = Zend_Json_Decoder::decode('010');
             $this->fail('Octal values are not supported in JSON notation');
         } catch (Exception $e) {
@@ -1041,7 +1041,7 @@ class ZF12347_IteratorAggregate implements IteratorAggregate
         'baz' => 5,
     );
 
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ArrayIterator($this->array);
     }

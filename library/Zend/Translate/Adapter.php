@@ -446,9 +446,8 @@ abstract class Zend_Translate_Adapter
                 if (!$this->_options['disableNotices']) {
                     if ($this->_options['log']) {
                         $this->_options['log']->log("The language '{$locale}' has to be added before it can be used.", $this->_options['logPriority']);
-                    } else {
-                        trigger_error("The language '{$locale}' has to be added before it can be used.", E_USER_NOTICE);
                     }
+//                        trigger_error("The language '{$locale}' has to be added before it can be used.", E_USER_NOTICE);
                 }
             }
 
@@ -459,9 +458,8 @@ abstract class Zend_Translate_Adapter
             if (!$this->_options['disableNotices']) {
                 if ($this->_options['log']) {
                     $this->_options['log']->log("No translation for the language '{$locale}' available.", $this->_options['logPriority']);
-                } else {
-                    trigger_error("No translation for the language '{$locale}' available.", E_USER_NOTICE);
                 }
+                //trigger_error("No translation for the language '{$locale}' available.", E_USER_NOTICE);
             }
         }
 

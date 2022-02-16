@@ -1766,14 +1766,15 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
 
         $options = $this->getOptions();
         $options['filters'] = array(
-            array('Digits', array('bar' => 'baz')),
-            array('Alpha', array('foo')),
+            array('Digits', array('baz')),
+            array('Alpha', array('allowWhiteSpace' => true)),
         );
         $this->element->setOptions($options);
         $filter = $this->element->getFilter('Digits');
         $this->assertTrue($filter instanceof Zend_Filter_Digits);
         $filter = $this->element->getFilter('Alpha');
         $this->assertTrue($filter instanceof Zend_Filter_Alpha);
+        self::assertSame(true,$filter->getAllowWhiteSpace());
     }
 
     public function testSetOptionsSetsArrayOfAssociativeArrayFilters()

@@ -153,17 +153,18 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return Zend_View_Helper_Cycle
      */
-    public function next()
-    {
-        $count = is_countable($this->_data[$this->_name]) ? count($this->_data[$this->_name]) : 0;
-        if ($this->_pointers[$this->_name] == ($count - 1)) {
-            $this->_pointers[$this->_name] = 0;
-        } else {
-            $this->_pointers[$this->_name] = ++$this->_pointers[$this->_name];
-        }
+    #[ReturnTypeWillChange]
+ public function next(): Zend_View_Helper_Cycle
+ {
+     $count = is_countable($this->_data[$this->_name]) ? count($this->_data[$this->_name]) : 0;
+     if ($this->_pointers[$this->_name] == ($count - 1)) {
+         $this->_pointers[$this->_name] = 0;
+     } else {
+         $this->_pointers[$this->_name] = ++$this->_pointers[$this->_name];
+     }
 
-        return $this;
-    }
+     return $this;
+ }
 
     /**
      * Move to previous value.
@@ -187,7 +188,7 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return int
      */
-    public function key()
+    public function key(): mixed
     {
         if ($this->_pointers[$this->_name] < 0) {
             return 0;
@@ -201,29 +202,26 @@ class Zend_View_Helper_Cycle implements Iterator
      *
      * @return Zend_View_Helper_Cycle
      */
-    public function rewind()
-    {
-        $this->_pointers[$this->_name] = -1;
+    #[ReturnTypeWillChange]
+ public function rewind(): Zend_View_Helper_Cycle
+ {
+     $this->_pointers[$this->_name] = -1;
 
-        return $this;
-    }
+     return $this;
+ }
 
     /**
      * Check if element is valid.
-     *
-     * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->_data[$this->_name][$this->key()]);
     }
 
     /**
      * Return  current element.
-     *
-     * @return mixed
      */
-    public function current()
+    public function current(): mixed
     {
         return $this->_data[$this->_name][$this->key()];
     }

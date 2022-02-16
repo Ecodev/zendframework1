@@ -26,13 +26,11 @@ class Zend_Form_Element_FileTest_Adapter_Foo extends Zend_File_Transfer_Adapter_
 
     public function send($options = null)
     {
-
     }
 
     public function receive($options = null)
     {
         $this->received = true;
-
     }
 
     public function isSent($file = null)
@@ -57,6 +55,5 @@ class Zend_Form_Element_FileTest_Adapter_Foo extends Zend_File_Transfer_Adapter_
 
     public static function getProgress()
     {
-
     }
 }

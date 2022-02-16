@@ -282,7 +282,7 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
      *
      * @return ArrayObject
      */
-    public function getIterator($namespace = null)
+    public function getIterator($namespace = null): Traversable
     {
         if (!is_string($namespace) || $namespace == '') {
             $namespace = $this->getNamespace();
@@ -299,10 +299,8 @@ class Zend_Controller_Action_Helper_FlashMessenger extends Zend_Controller_Actio
      * count() - Complete the countable interface.
      *
      * @param null|mixed $namespace
-     *
-     * @return int
      */
-    public function count($namespace = null)
+    public function count($namespace = null): int
     {
         if (!is_string($namespace) || $namespace == '') {
             $namespace = $this->getNamespace();

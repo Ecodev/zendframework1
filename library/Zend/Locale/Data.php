@@ -320,14 +320,14 @@ class Zend_Locale_Data
             $val = implode('_' , $value);
         }
 
-        $val = urlencode($val);
+        $val = urlencode($val ?? '');
         $id = self::_filterCacheId('Zend_LocaleL_' . $locale . '_' . $path . '_' . $val);
         if (!self::$_cacheDisabled && ($result = self::$_cache->load($id))) {
             return unserialize($result);
         }
 
         $temp = array();
-        switch (strtolower($path)) {
+        switch (strtolower($path ?? '')) {
             case 'language':
                 $temp = self::_getFile($locale, '/ldml/localeDisplayNames/languages/language', 'type');
 
@@ -1037,7 +1037,7 @@ class Zend_Locale_Data
             return unserialize($result);
         }
 
-        switch (strtolower($path)) {
+        switch (strtolower($path ?? '')) {
             case 'language':
                 $temp = self::_getFile($locale, '/ldml/localeDisplayNames/languages/language[@type=\'' . $value . '\']', 'type');
 

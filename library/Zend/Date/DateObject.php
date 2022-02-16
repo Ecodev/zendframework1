@@ -157,8 +157,8 @@ abstract class Zend_Date_DateObject
             if (($this->_timezone != $oldzone) and ($gmt === false)) {
                 date_default_timezone_set($this->_timezone);
             }
-            $result = ($gmt) ? @gmmktime($hour, $minute, $second, $month, $day, $year)
-                             : @mktime($hour, $minute, $second, $month, $day, $year);
+            $result = ($gmt) ? @gmmktime($hour, $minute, $second, (int) $month, $day, $year)
+                             : @mktime($hour, $minute, $second,(int) $month, $day, $year);
             date_default_timezone_set($oldzone);
 
             return $result;
@@ -269,6 +269,7 @@ abstract class Zend_Date_DateObject
      */
     protected static function isYearLeapYear($year)
     {
+        $year = (int) $year;
         // all leapyears can be divided through 4
         if (($year % 4) != 0) {
             return false;

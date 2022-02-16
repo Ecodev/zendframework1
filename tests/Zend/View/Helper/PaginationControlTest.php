@@ -60,7 +60,6 @@ class Zend_View_Helper_PaginationControlTest extends \PHPUnit\Framework\TestCase
     public function tearDown(): void
     {
         unset($this->_viewHelper, $this->_paginator);
-
     }
 
     public function testGetsAndSetsView()

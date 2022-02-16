@@ -30,13 +30,11 @@ class Bar extends Zend_File_Transfer_Adapter_Abstract
 
     public function send($options = null)
     {
-
     }
 
     public function receive($options = null)
     {
         $this->received = true;
-
     }
 
     public function isSent($file = null)
@@ -61,6 +59,5 @@ class Bar extends Zend_File_Transfer_Adapter_Abstract
 
     public static function getProgress()
     {
-
     }
 }

@@ -464,7 +464,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
      * @param  string  $errfile
      * @param  int $errline
      */
-    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline, array $errcontext)
+    public function errorHandlerIgnore($errno, $errstr, $errfile, $errline)
     {
         $this->_errorOccurred = true;
     }
@@ -628,13 +628,11 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
 
     public function send($options = null)
     {
-
     }
 
     public function receive($options = null)
     {
         $this->received = true;
-
     }
 
     public function isSent($file = null)
@@ -659,6 +657,5 @@ class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_
 
     public static function getProgress()
     {
-
     }
 }

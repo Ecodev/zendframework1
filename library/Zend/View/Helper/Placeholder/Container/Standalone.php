@@ -89,7 +89,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * Set whether or not auto escaping should be used.
      *
-     * @param  bool $autoEscape whether or not to auto escape output
+     * @param bool $autoEscape whether or not to auto escape output
      *
      * @return Zend_View_Helper_Placeholder_Container_Standalone
      */
@@ -113,7 +113,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * Escape a string.
      *
-     * @param  string $string
+     * @param string $string
      *
      * @return string
      */
@@ -154,8 +154,8 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * Overloading: set property value.
      *
-     * @param  string $key
-     * @param  mixed $value
+     * @param string $key
+     * @param mixed $value
      */
     public function __set($key, $value)
     {
@@ -166,7 +166,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * Overloading: retrieve property.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @return mixed
      */
@@ -183,7 +183,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * Overloading: check if property is set.
      *
-     * @param  string $key
+     * @param string $key
      *
      * @return bool
      */
@@ -197,7 +197,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * Overloading: unset property.
      *
-     * @param  string $key
+     * @param string $key
      */
     public function __unset($key)
     {
@@ -212,8 +212,8 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
      *
      * Proxy to container methods
      *
-     * @param  string $method
-     * @param  array $args
+     * @param string $method
+     * @param array $args
      *
      * @return mixed
      */
@@ -221,7 +221,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     {
         $container = $this->getContainer();
         if (method_exists($container, $method)) {
-            $return = call_user_func_array(array($container, $method), $args);
+            $return = call_user_func_array([$container, $method], $args);
             if ($return === $container) {
                 // If the container is returned, we really want the current object
                 return $this;
@@ -259,10 +259,8 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
 
     /**
      * Countable.
-     *
-     * @return int
      */
-    public function count()
+    public function count(): int
     {
         $container = $this->getContainer();
 
@@ -272,11 +270,9 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * ArrayAccess: offsetExists.
      *
-     * @param  int|string $offset
-     *
-     * @return bool
+     * @param int|string $offset
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->getContainer()->offsetExists($offset);
     }
@@ -284,11 +280,9 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * ArrayAccess: offsetGet.
      *
-     * @param  int|string $offset
-     *
-     * @return mixed
+     * @param int|string $offset
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->getContainer()->offsetGet($offset);
     }
@@ -296,22 +290,22 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     /**
      * ArrayAccess: offsetSet.
      *
-     * @param  int|string $offset
-     * @param  mixed $value
+     * @param int|string $offset
+     * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
-        return $this->getContainer()->offsetSet($offset, $value);
+        $this->getContainer()->offsetSet($offset, $value);
     }
 
     /**
      * ArrayAccess: offsetUnset.
      *
-     * @param  int|string $offset
+     * @param int|string $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
-        return $this->getContainer()->offsetUnset($offset);
+        $this->getContainer()->offsetUnset($offset);
     }
 
     /**
@@ -319,7 +313,7 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
      *
      * @return Iterator
      */
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return $this->getContainer()->getIterator();
     }

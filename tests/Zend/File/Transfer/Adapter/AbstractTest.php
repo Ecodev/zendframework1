@@ -854,7 +854,7 @@ class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCas
         if (!is_dir($directory)) {
             @mkdir($directory);
         }
-        chmod($directory, 0655);
+        chmod($directory, 0o655);
 
         // Test
         try {
@@ -941,13 +941,11 @@ class Zend_File_Transfer_Adapter_AbstractTest_MockAdapter extends Zend_File_Tran
 
     public function send($options = null)
     {
-
     }
 
     public function receive($options = null)
     {
         $this->received = true;
-
     }
 
     public function isSent($file = null)
@@ -972,7 +970,6 @@ class Zend_File_Transfer_Adapter_AbstractTest_MockAdapter extends Zend_File_Tran
 
     public static function getProgress()
     {
-
     }
 
     public function getTmpDir()

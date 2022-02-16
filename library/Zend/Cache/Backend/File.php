@@ -94,9 +94,9 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         'read_control' => true,
         'read_control_type' => 'crc32',
         'hashed_directory_level' => 0,
-        'hashed_directory_perm' => 0700,
+        'hashed_directory_perm' => 0o700,
         'file_name_prefix' => 'zend_cache',
-        'cache_file_perm' => 0600,
+        'cache_file_perm' => 0o600,
         'metadatas_array_max_size' => 100,
     );
 

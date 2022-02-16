@@ -339,7 +339,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
 
             // Use regex?
             if (true === $useRegex) {
-                if (preg_match($value, $pageProperty)) {
+                if (preg_match($value, $pageProperty ?? '')) {
                     return $page;
                 }
             } else {
@@ -374,7 +374,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
         );
 
         foreach ($iterator as $page) {
-            $pageProperty = $page->get($property);
+            $pageProperty = $page->get($property) ?? '';
 
             // Rel and rev
             if (is_array($pageProperty)) {
@@ -513,7 +513,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *
      * @return Zend_Navigation_Page       current page or null
      */
-    public function current()
+    public function current(): mixed
     {
         $this->_sort();
         current($this->_index);
@@ -536,7 +536,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *
      * @return string  hash code of current page
      */
-    public function key()
+    public function key(): mixed
     {
         $this->_sort();
 
@@ -548,7 +548,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *
      * Implements RecursiveIterator interface.
      */
-    public function next()
+    public function next(): void
     {
         $this->_sort();
         next($this->_index);
@@ -559,7 +559,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *
      * Implements RecursiveIterator interface.
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_sort();
         reset($this->_index);
@@ -569,10 +569,8 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      * Checks if container index is valid.
      *
      * Implements RecursiveIterator interface.
-     *
-     * @return bool
      */
-    public function valid()
+    public function valid(): bool
     {
         $this->_sort();
 
@@ -586,7 +584,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *
      * @return bool  whether container has any pages
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return $this->hasPages();
     }
@@ -598,7 +596,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *
      * @return null|Zend_Navigation_Page
      */
-    public function getChildren()
+    public function getChildren(): ?RecursiveIterator
     {
         $hash = key($this->_index);
 
@@ -618,7 +616,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
      *
      * @return int  number of pages in the container
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_index);
     }

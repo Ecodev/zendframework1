@@ -51,7 +51,7 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
     public static function main()
     {
         $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_PartialLoopTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     /**
@@ -158,7 +158,7 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
         try {
             $result = $this->helper->partialLoop('partialLoop.phtml', $o);
             $this->fail('PartialLoop should only work with arrays and iterators');
-        } catch (Exception $e) {
+        } catch (Exception) {
         }
     }
 
@@ -273,13 +273,13 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
 
         try {
             $result = $this->helper->partialLoop('partialLoop.phtml', []);
-        } catch (Exception $e) {
+        } catch (Exception) {
             $this->fail('Empty array should not cause partialLoop to throw exception');
         }
 
         try {
             $result = $this->helper->partialLoop('partialLoop.phtml', null, []);
-        } catch (Exception $e) {
+        } catch (Exception) {
             $this->fail('Empty array should not cause partialLoop to throw exception');
         }
     }
@@ -371,34 +371,31 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
 
 class Zend_View_Helper_PartialLoop_IteratorTest implements Iterator, Countable
 {
-    public $items;
-
-    public function __construct(array $array)
+    public function __construct(public array $items)
     {
-        $this->items = $array;
     }
 
-    public function current()
+    public function current(): mixed
     {
         return current($this->items);
     }
 
-    public function key()
+    public function key(): mixed
     {
         return key($this->items);
     }
 
-    public function next()
+    public function next(): void
     {
-        return next($this->items);
+        next($this->items);
     }
 
-    public function rewind()
+    public function rewind(): void
     {
-        return reset($this->items);
+        reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return current($this->items) !== false;
     }
@@ -408,9 +405,9 @@ class Zend_View_Helper_PartialLoop_IteratorTest implements Iterator, Countable
         return $this->items;
     }
 
-    public function count()
+    public function count(): int
     {
-        return count($this->items);
+        return is_countable($this->items) ? count($this->items) : 0;
     }
 }
 
@@ -430,34 +427,34 @@ class Zend_View_Helper_PartialLoop_RecursiveIteratorTest implements Iterator, Co
         return $this;
     }
 
-    public function current()
+    public function current(): mixed
     {
         return current($this->items);
     }
 
-    public function key()
+    public function key(): mixed
     {
         return key($this->items);
     }
 
-    public function next()
+    public function next(): void
     {
-        return next($this->items);
+        next($this->items);
     }
 
-    public function rewind()
+    public function rewind(): void
     {
-        return reset($this->items);
+        reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return current($this->items) !== false;
     }
 
-    public function count()
+    public function count(): int
     {
-        return count($this->items);
+        return is_countable($this->items) ? count($this->items) : 0;
     }
 }
 
@@ -480,11 +477,8 @@ class Zend_View_Helper_PartialLoop_ToArrayTest
 
 class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator, Countable
 {
-    public $items;
-
-    public function __construct(array $array)
+    public function __construct(public array $items)
     {
-        $this->items = $array;
     }
 
     public function toArray()
@@ -492,34 +486,34 @@ class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator, 
         return $this->items;
     }
 
-    public function current()
+    public function current(): mixed
     {
         return current($this->items);
     }
 
-    public function key()
+    public function key(): mixed
     {
         return key($this->items);
     }
 
-    public function next()
+    public function next(): void
     {
-        return next($this->items);
+        next($this->items);
     }
 
-    public function rewind()
+    public function rewind(): void
     {
-        return reset($this->items);
+        reset($this->items);
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return current($this->items) !== false;
     }
 
-    public function count()
+    public function count(): int
     {
-        return count($this->items);
+        return is_countable($this->items) ? count($this->items) : 0;
     }
 }
 
