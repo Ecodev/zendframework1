@@ -280,7 +280,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
                     }
                 }
 
-                if (substr($part, 0, 2) === '@@') {
+                if (substr($part ?? '', 0, 2) === '@@') {
                     $part = substr($part, 1);
                 }
 
