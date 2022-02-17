@@ -20,7 +20,7 @@
  */
 require_once 'Zend/Loader/Autoloader.php';
 require_once 'Zend/Application/Resource/ResourceAbstract.php';
-require_once 'Zend/Application/Resource/Useragent.php';
+require_once 'Zend/Application/Resource/UserAgent.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
