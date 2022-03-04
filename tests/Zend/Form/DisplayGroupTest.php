@@ -413,7 +413,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         throw new Exception('Raising exception in decorator callback');
     }
 
-    public function handleDecoratorErrors($errno, $errstr, $errfile = '', $errline = 0, array $errcontext = array())
+    public function handleDecoratorErrors($errno, $errstr, $errfile = '', $errline = 0)
     {
         $this->error = $errstr;
     }

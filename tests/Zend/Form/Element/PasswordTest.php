@@ -95,7 +95,7 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function handleErrors($errno, $errmsg, $errfile, $errline, $errcontext)
+    public function handleErrors($errno, $errmsg, $errfile, $errline)
     {
         if (!isset($this->errors)) {
             $this->errors = array();

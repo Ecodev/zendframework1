@@ -151,7 +151,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
      * @param mixed $errfile
      * @param mixed $errline
      */
-    public function handleErrors($errno, $errstr, $errfile = '', $errline = 0, array $errcontext = array())
+    public function handleErrors($errno, $errstr, $errfile = '', $errline = 0)
     {
         $this->error = $errstr;
     }

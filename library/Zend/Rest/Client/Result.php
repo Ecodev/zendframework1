@@ -65,11 +65,10 @@ class Zend_Rest_Client_Result implements IteratorAggregate
      * @param string $errstr
      * @param string $errfile
      * @param string $errline
-     * @param array  $errcontext
      *
      * @return true
      */
-    public function handleXmlErrors($errno, $errstr, $errfile = null, $errline = null, ?array $errcontext = null)
+    public function handleXmlErrors($errno, $errstr, $errfile = null, $errline = null)
     {
         $this->_errstr = $errstr;
 
