@@ -89,7 +89,7 @@ class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
     {
         Zend_Registry::set('foo', 'bar');
         $registry1 = Zend_Registry::getInstance();
-        $registry2 = new Zend_Registry(array('foo' => 'bar'));
+        $registry2 = new Zend_Registry(['foo' => 'bar']);
         $this->assertEquals($registry1, $registry2);
         $this->assertNotSame($registry1, $registry2);
     }
@@ -97,7 +97,7 @@ class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
     public function testRegistryUnequalContents()
     {
         $registry1 = Zend_Registry::getInstance();
-        $registry2 = new Zend_Registry(array('foo' => 'bar'));
+        $registry2 = new Zend_Registry(['foo' => 'bar']);
         $this->assertNotEquals($registry1, $registry2);
         $this->assertNotSame($registry1, $registry2);
     }
@@ -123,7 +123,7 @@ class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
 
     public function testRegistryArrayAsProps()
     {
-        $registry = new Zend_Registry(array(), ArrayObject::ARRAY_AS_PROPS);
+        $registry = new Zend_Registry([], ArrayObject::ARRAY_AS_PROPS);
         $registry->foo = 'bar';
         $this->assertTrue(isset($registry->foo));
         $this->assertEquals('bar', $registry->foo);

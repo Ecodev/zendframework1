@@ -34,14 +34,14 @@ class Zend_Filter_Null implements Zend_Filter_Interface
     public const ZERO = 16;
     public const ALL = 31;
 
-    protected $_constants = array(
+    protected $_constants = [
         self::BOOLEAN => 'boolean',
         self::INTEGER => 'integer',
         self::EMPTY_ARRAY => 'array',
         self::STRING => 'string',
         self::ZERO => 'zero',
         self::ALL => 'all',
-    );
+    ];
 
     /**
      * Internal type to detect.
@@ -61,7 +61,7 @@ class Zend_Filter_Null implements Zend_Filter_Interface
             $options = $options->toArray();
         } elseif (!is_array($options)) {
             $options = func_get_args();
-            $temp = array();
+            $temp = [];
             if (!empty($options)) {
                 $temp = array_shift($options);
             }
@@ -155,7 +155,7 @@ class Zend_Filter_Null implements Zend_Filter_Interface
         // EMPTY_ARRAY (array())
         if ($type >= self::EMPTY_ARRAY) {
             $type -= self::EMPTY_ARRAY;
-            if (is_array($value) && ($value == array())) {
+            if (is_array($value) && ($value == [])) {
                 return null;
             }
         }

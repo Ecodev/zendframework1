@@ -155,7 +155,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
     public function testShouldAllowUsingAddOnLoadStack()
     {
         $this->jquery->addOnLoad('$(document).alert();');
-        $this->assertEquals(array('$(document).alert();'), $this->jquery->getOnLoadActions());
+        $this->assertEquals(['$(document).alert();'], $this->jquery->getOnLoadActions());
     }
 
     public function testShouldAllowStackingMultipleOnLoad()
@@ -177,7 +177,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->onLoadCaptureStart();
         echo '$(document).alert();';
         $this->jquery->onLoadCaptureEnd();
-        $this->assertEquals(array('$(document).alert();'), $this->jquery->getOnLoadActions());
+        $this->assertEquals(['$(document).alert();'], $this->jquery->getOnLoadActions());
     }
 
     public function testShouldAllowCaptureJavascript()
@@ -185,10 +185,10 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->javascriptCaptureStart();
         echo '$(document).alert();';
         $this->jquery->javascriptCaptureEnd();
-        $this->assertEquals(array('$(document).alert();'), $this->jquery->getJavascript());
+        $this->assertEquals(['$(document).alert();'], $this->jquery->getJavascript());
 
         $this->jquery->clearJavascript();
-        $this->assertEquals(array(), $this->jquery->getJavascript());
+        $this->assertEquals([], $this->jquery->getJavascript());
     }
 
     public function testShouldDisallowNestingCapturesWithException()
@@ -213,7 +213,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->addJavascriptFile('/js/test2.js');
         $this->jquery->addJavascriptFile('http://example.com/test3.js');
 
-        $this->assertEquals(array('/js/test.js', '/js/test2.js', 'http://example.com/test3.js'), $this->jquery->getJavascriptFiles());
+        $this->assertEquals(['/js/test.js', '/js/test2.js', 'http://example.com/test3.js'], $this->jquery->getJavascriptFiles());
     }
 
     public function testAddedJavascriptFilesCanBeCleared()
@@ -223,7 +223,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->addJavascriptFile('http://example.com/test3.js');
 
         $this->jquery->clearJavascriptFiles();
-        $this->assertEquals(array(), $this->jquery->getJavascriptFiles());
+        $this->assertEquals([], $this->jquery->getJavascriptFiles());
     }
 
     public function testAddedJavascriptFilesRender()
@@ -245,7 +245,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->addStylesheet('test.css');
         $this->jquery->addStylesheet('test2.css');
 
-        $this->assertEquals(array('test.css', 'test2.css'), $this->jquery->getStylesheets());
+        $this->assertEquals(['test.css', 'test2.css'], $this->jquery->getStylesheets());
     }
 
     public function testShouldRenderNothingOnDisable()
@@ -351,10 +351,10 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->jquery->addOnLoad('bar');
         $this->jquery->addOnLoad('baz');
 
-        $this->assertEquals(array('foo', 'bar', 'baz'), $this->jquery->getOnLoadActions());
+        $this->assertEquals(['foo', 'bar', 'baz'], $this->jquery->getOnLoadActions());
 
         $this->jquery->clearOnLoadActions();
-        $this->assertEquals(array(), $this->jquery->getOnLoadActions());
+        $this->assertEquals([], $this->jquery->getOnLoadActions());
     }
 
     /**
@@ -412,7 +412,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
         $this->jquery->clearStylesheets();
 
-        $this->assertSame(array(), $this->jquery->getStylesheets());
+        $this->assertSame([], $this->jquery->getStylesheets());
     }
 
     /**

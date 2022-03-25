@@ -34,14 +34,14 @@ class Zend_Form_Decorator_Fieldset extends Zend_Form_Decorator_Abstract
      *
      * @var array
      */
-    public $stripAttribs = array(
+    public $stripAttribs = [
         'action',
         'enctype',
         'helper',
         'method',
         'name',
         'accept-charset',
-    );
+    ];
 
     /**
      * Fieldset legend.

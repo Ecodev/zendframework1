@@ -30,7 +30,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
     /**
      * Internal array of array(source, target, overwrite).
      */
-    protected $_files = array();
+    protected $_files = [];
 
     /**
      * Class constructor.
@@ -48,7 +48,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (is_string($options)) {
-            $options = array('target' => $options);
+            $options = ['target' => $options];
         } elseif (!is_array($options)) {
             require_once 'Zend/Filter/Exception.php';
 
@@ -94,7 +94,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
      */
     public function setFile($options)
     {
-        $this->_files = array();
+        $this->_files = [];
         $this->addFile($options);
 
         return $this;
@@ -115,7 +115,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
     public function addFile($options)
     {
         if (is_string($options)) {
-            $options = array('target' => $options);
+            $options = ['target' => $options];
         } elseif (!is_array($options)) {
             require_once 'Zend/Filter/Exception.php';
 
@@ -207,7 +207,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
      */
     protected function _convertOptions($options)
     {
-        $files = array();
+        $files = [];
         foreach ($options as $key => $value) {
             if (is_array($value)) {
                 $this->_convertOptions($value);
@@ -278,7 +278,7 @@ class Zend_Filter_File_Rename implements Zend_Filter_Interface
      */
     protected function _getFileName($file)
     {
-        $rename = array();
+        $rename = [];
         foreach ($this->_files as $value) {
             if ($value['source'] == '*') {
                 if (!isset($rename['source'])) {

@@ -54,7 +54,7 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
     {
         //restore locale
         if (is_string($this->_locale) && strpos($this->_locale, ';')) {
-            $locales = array();
+            $locales = [];
             foreach (explode(';', $this->_locale) as $l) {
                 $tmp = explode('=', $l);
                 $locales[$tmp[0]] = $tmp[1];
@@ -71,13 +71,13 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasic()
     {
-        $valuesExpected = array(
-            array(1.00, true),
-            array(0.01, true),
-            array(-0.1, true),
-            array(1, true),
-            array('not a float', false),
-        );
+        $valuesExpected = [
+            [1.00, true],
+            [0.01, true],
+            [-0.1, true],
+            [1, true],
+            ['not a float', false],
+        ];
         foreach ($valuesExpected as $element) {
             $this->assertEquals($element[1], $this->_validator->isValid($element[0]));
         }
@@ -88,7 +88,7 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetMessages()
     {
-        $this->assertEquals(array(), $this->_validator->getMessages());
+        $this->assertEquals([], $this->_validator->getMessages());
     }
 
     /**
@@ -106,7 +106,7 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
      */
     public function testNonStringValidation()
     {
-        $this->assertFalse($this->_validator->isValid(array(1 => 1)));
+        $this->assertFalse($this->_validator->isValid([1 => 1]));
     }
 
     /**

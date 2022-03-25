@@ -111,7 +111,7 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
             throw new Zend_View_Exception(sprintf('Invalid method "%s" called on jQuery view helper', $method));
         }
 
-        return call_user_func_array(array($this->_container, $method), $args);
+        return call_user_func_array([$this->_container, $method], $args);
     }
 
     /**

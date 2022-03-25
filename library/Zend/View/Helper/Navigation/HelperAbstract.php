@@ -622,10 +622,10 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
      *
      * @return mixed                      returns what the container returns
      */
-    public function __call($method, array $arguments = array())
+    public function __call($method, array $arguments = [])
     {
         return call_user_func_array(
-                array($this->getContainer(), $method),
+                [$this->getContainer(), $method],
                 $arguments);
     }
 
@@ -724,10 +724,10 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
         }
 
         if ($found) {
-            return array('page' => $found, 'depth' => $foundDepth);
+            return ['page' => $found, 'depth' => $foundDepth];
         }
 
-        return array();
+        return [];
     }
 
     /**
@@ -802,13 +802,13 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
 
         // get attribs for anchor element
         $attribs = array_merge(
-            array(
+            [
                 'id' => $page->getId(),
                 'title' => $title,
                 'class' => $page->getClass(),
                 'href' => $page->getHref(),
                 'target' => $page->getTarget(),
-            ),
+            ],
             $page->getCustomHtmlAttribs()
         );
 

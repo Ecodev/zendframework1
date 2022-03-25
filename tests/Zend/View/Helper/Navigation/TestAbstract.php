@@ -165,7 +165,7 @@ abstract class Zend_View_Helper_Navigation_TestAbstract extends \PHPUnit\Framewo
         $acl->allow('special', 'special_foo');
         $acl->allow('special', 'admin_foo', 'read');
 
-        return array('acl' => $acl, 'role' => 'special');
+        return ['acl' => $acl, 'role' => 'special'];
     }
 
     /**
@@ -175,7 +175,7 @@ abstract class Zend_View_Helper_Navigation_TestAbstract extends \PHPUnit\Framewo
      */
     protected function _getTranslator()
     {
-        $data = array(
+        $data = [
             'Page 1' => 'Side 1',
             'Page 1.1' => 'Side 1.1',
             'Page 2' => 'Side 2',
@@ -183,7 +183,7 @@ abstract class Zend_View_Helper_Navigation_TestAbstract extends \PHPUnit\Framewo
             'Page 2.3.3.1' => 'Side 2.3.3.1',
             'Home' => 'Hjem',
             'Go home' => 'Gå hjem',
-        );
+        ];
 
         return new Zend_Translate('array', $data, 'nb_NO');
     }

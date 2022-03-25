@@ -89,7 +89,7 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
     {
         $this->form->addElement('text', 'foo')
             ->addElement('text', 'bar')
-            ->addDisplayGroup(array('foo', 'bar'), 'foobar');
+            ->addDisplayGroup(['foo', 'bar'], 'foobar');
 
         $form = new Zend_Form();
         $form->addSubForm($this->form, 'attributes');
@@ -104,12 +104,12 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
      */
     public function testRenderedSubFormDtShouldContainNoBreakSpace()
     {
-        $subForm = new Zend_Form_SubForm(array(
-            'elements' => array(
+        $subForm = new Zend_Form_SubForm([
+            'elements' => [
                 'foo' => 'text',
                 'bar' => 'text',
-            ),
-        ));
+            ],
+        ]);
         $form = new Zend_Form();
         $form->addSubForm($subForm, 'foobar')
             ->setView(new Zend_View());
@@ -132,12 +132,12 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
      */
     public function testSubFormWithNumericName()
     {
-        $subForm = new Zend_Form_SubForm(array(
-            'elements' => array(
+        $subForm = new Zend_Form_SubForm([
+            'elements' => [
                 'foo' => 'text',
                 'bar' => 'text',
-            ),
-        ));
+            ],
+        ]);
         $form = new Zend_Form();
         $form->addSubForm($subForm, 0);
         $form->addSubForm($subForm, 234);

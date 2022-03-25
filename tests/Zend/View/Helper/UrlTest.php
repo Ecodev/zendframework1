@@ -68,7 +68,7 @@ class Zend_View_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 
     public function testDefault()
     {
-        $url = $this->helper->url(array('controller' => 'ctrl', 'action' => 'act'));
+        $url = $this->helper->url(['controller' => 'ctrl', 'action' => 'act']);
         $this->assertEquals('/ctrl/act', $url);
     }
 }

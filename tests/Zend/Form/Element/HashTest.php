@@ -48,9 +48,9 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
         $session = new Zend_Form_Element_HashTest_SessionContainer();
         $session->hash = null;
 
-        $this->element = new Zend_Form_Element_Hash('foo', array(
+        $this->element = new Zend_Form_Element_Hash('foo', [
             'session' => $session,
-        ));
+        ]);
     }
 
     /**
@@ -148,7 +148,7 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
 
         $session = $this->element->getSession();
         $session->hash = $this->element->getHash();
-        $element = new Zend_Form_Element_Hash('foo', array('session' => $session));
+        $element = new Zend_Form_Element_Hash('foo', ['session' => $session]);
         $validator = $element->getValidator('Identical');
         $this->assertEquals($session->hash, $validator->getToken());
     }

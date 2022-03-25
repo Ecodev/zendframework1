@@ -277,7 +277,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * @param  string $controller
      * @param  string $module
      */
-    public function setGotoSimple($action, $controller = null, $module = null, array $params = array())
+    public function setGotoSimple($action, $controller = null, $module = null, array $params = [])
     {
         $dispatcher = $this->getFrontController()->getDispatcher();
         $request = $this->getRequest();
@@ -320,7 +320,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * @param  bool $reset
      * @param  bool $encode
      */
-    public function setGotoRoute(array $urlOptions = array(), $name = null, $reset = false, $encode = true)
+    public function setGotoRoute(array $urlOptions = [], $name = null, $reset = false, $encode = true)
     {
         $router = $this->getFrontController()->getRouter();
         $url = $router->assemble($urlOptions, $name, $reset, $encode);
@@ -350,10 +350,10 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      *
      * @param  string $url
      */
-    public function setGotoUrl($url, array $options = array())
+    public function setGotoUrl($url, array $options = [])
     {
         // prevent header injections
-        $url = str_replace(array("\n", "\r"), '', $url);
+        $url = str_replace(["\n", "\r"], '', $url);
 
         if (null !== $options) {
             if (isset($options['exit'])) {
@@ -382,7 +382,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * @param  string $controller
      * @param  string $module
      */
-    public function gotoSimple($action, $controller = null, $module = null, array $params = array())
+    public function gotoSimple($action, $controller = null, $module = null, array $params = [])
     {
         $this->setGotoSimple($action, $controller, $module, $params);
 
@@ -398,7 +398,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * @param  mixed $controller
      * @param  mixed $module
      */
-    public function gotoSimpleAndExit($action, $controller = null, $module = null, array $params = array())
+    public function gotoSimpleAndExit($action, $controller = null, $module = null, array $params = [])
     {
         $this->setGotoSimple($action, $controller, $module, $params);
         $this->redirectAndExit();
@@ -415,7 +415,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * @param  bool $reset
      * @param  bool $encode
      */
-    public function gotoRoute(array $urlOptions = array(), $name = null, $reset = false, $encode = true)
+    public function gotoRoute(array $urlOptions = [], $name = null, $reset = false, $encode = true)
     {
         $this->setGotoRoute($urlOptions, $name, $reset, $encode);
 
@@ -434,7 +434,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * @param  string  $name
      * @param  bool $reset
      */
-    public function gotoRouteAndExit(array $urlOptions = array(), $name = null, $reset = false)
+    public function gotoRouteAndExit(array $urlOptions = [], $name = null, $reset = false)
     {
         $this->setGotoRoute($urlOptions, $name, $reset);
         $this->redirectAndExit();
@@ -445,7 +445,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      *
      * @param  string $url
      */
-    public function gotoUrl($url, array $options = array())
+    public function gotoUrl($url, array $options = [])
     {
         $this->setGotoUrl($url, $options);
 
@@ -459,7 +459,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      *
      * @param  string $url
      */
-    public function gotoUrlAndExit($url, array $options = array())
+    public function gotoUrlAndExit($url, array $options = [])
     {
         $this->setGotoUrl($url, $options);
         $this->redirectAndExit();
@@ -491,7 +491,7 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
      * @param  string $controller
      * @param  string $module
      */
-    public function direct($action, $controller = null, $module = null, array $params = array())
+    public function direct($action, $controller = null, $module = null, array $params = [])
     {
         $this->gotoSimple($action, $controller, $module, $params);
     }
@@ -510,13 +510,13 @@ class Zend_Controller_Action_Helper_Redirector extends Zend_Controller_Action_He
     {
         $method = strtolower($method);
         if ('goto' == $method) {
-            return call_user_func_array(array($this, 'gotoSimple'), $args);
+            return call_user_func_array([$this, 'gotoSimple'], $args);
         }
         if ('setgoto' == $method) {
-            return call_user_func_array(array($this, 'setGotoSimple'), $args);
+            return call_user_func_array([$this, 'setGotoSimple'], $args);
         }
         if ('gotoandexit' == $method) {
-            return call_user_func_array(array($this, 'gotoSimpleAndExit'), $args);
+            return call_user_func_array([$this, 'gotoSimpleAndExit'], $args);
         }
 
         require_once 'Zend/Controller/Action/Exception.php';

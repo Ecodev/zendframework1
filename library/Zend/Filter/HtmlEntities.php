@@ -53,7 +53,7 @@ class Zend_Filter_HtmlEntities implements Zend_Filter_Interface
      *
      * @param mixed $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $temp = [];
         if ($options instanceof Zend_Config) {

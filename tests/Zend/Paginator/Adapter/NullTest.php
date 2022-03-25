@@ -99,7 +99,7 @@ class Zend_Paginator_Adapter_NullTest extends \PHPUnit\Framework\TestCase
     {
         $this->_adapter = new Zend_Paginator_Adapter_Null(0);
         $actual = $this->_adapter->getItems(0, 10);
-        $this->assertEquals(array(), $actual);
+        $this->assertEquals([], $actual);
     }
 
     /**

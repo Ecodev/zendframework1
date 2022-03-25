@@ -95,12 +95,12 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $layout = new Zend_Layout();
 
         require_once 'Zend/Config.php';
-        $config = new Zend_Config(array(
+        $config = new Zend_Config([
             'layout' => 'foo',
             'contentKey' => 'foo',
             'layoutPath' => __DIR__,
             'mvcEnabled' => false,
-        ));
+        ]);
         $layout->setConfig($config);
         $this->assertEquals('foo', $layout->getLayout());
         $this->assertEquals('foo', $layout->getContentKey());
@@ -113,12 +113,12 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $layout = new Zend_Layout();
 
         require_once 'Zend/Config.php';
-        $config = new Zend_Config(array(
+        $config = new Zend_Config([
             'layout' => 'foo',
             'contentKey' => 'foo',
             'layoutPath' => __DIR__,
             'mvcEnabled' => false,
-        ));
+        ]);
         $layout->setOptions($config);
         $this->assertEquals('foo', $layout->getLayout());
         $this->assertEquals('foo', $layout->getContentKey());
@@ -227,7 +227,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 
     public function testPluginClassPassedToStartMvcIsUsed()
     {
-        $layout = Zend_Layout::startMvc(array('pluginClass' => 'Zend_Layout_LayoutTest_Controller_Plugin_Layout'));
+        $layout = Zend_Layout::startMvc(['pluginClass' => 'Zend_Layout_LayoutTest_Controller_Plugin_Layout']);
         $this->assertTrue(Zend_Controller_Front::getInstance()->hasPlugin('Zend_Layout_LayoutTest_Controller_Plugin_Layout'));
     }
 
@@ -240,7 +240,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 
     public function testHelperClassPassedToStartMvcIsUsed()
     {
-        $layout = Zend_Layout::startMvc(array('helperClass' => 'Zend_Layout_LayoutTest_Controller_Action_Helper_Layout'));
+        $layout = Zend_Layout::startMvc(['helperClass' => 'Zend_Layout_LayoutTest_Controller_Action_Helper_Layout']);
         $this->assertTrue(Zend_Controller_Action_HelperBroker::hasHelper('layout'));
         $helper = Zend_Controller_Action_HelperBroker::getStaticHelper('layout');
         $this->assertTrue($helper instanceof Zend_Layout_LayoutTest_Controller_Action_Helper_Layout);
@@ -282,10 +282,10 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     public function testAssignWithArrayPopulatesPropertiesAccessibleViaOverloading()
     {
         $layout = new Zend_Layout();
-        $layout->assign(array(
+        $layout->assign([
             'foo' => 'bar',
             'bar' => 'baz',
-        ));
+        ]);
         $this->assertEquals('bar', $layout->foo);
         $this->assertEquals('baz', $layout->bar);
     }
@@ -349,10 +349,10 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($layout->getMvcSuccessfulActionOnly());
         $this->assertEquals('content', $layout->getContentKey());
 
-        Zend_Layout::startMvc(array(
+        Zend_Layout::startMvc([
             'mvcSuccessfulActionOnly' => false,
             'contentKey' => 'foobar',
-        ));
+        ]);
         $this->assertFalse($layout->getMvcSuccessfulActionOnly());
         $this->assertEquals('foobar', $layout->getContentKey());
     }
@@ -406,8 +406,8 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 
     public function testLayoutWithViewBasePath()
     {
-        $layout = new Zend_Layout(array(
-            'viewBasePath' => __DIR__ . '/_files/layouts-basepath/', )
+        $layout = new Zend_Layout([
+            'viewBasePath' => __DIR__ . '/_files/layouts-basepath/', ]
             );
         $this->assertEquals('layout inside basePath', $layout->render());
         $layout->setLayout('layout2');
@@ -433,10 +433,10 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     public function testMinimalViewObjectWorks()
     {
         require_once __DIR__ . '/_files/MinimalCustomView.php';
-        $layout = new Zend_Layout(array(
+        $layout = new Zend_Layout([
             'view' => new Zend_Layout_Test_MinimalCustomView(),
             'ViewScriptPath' => 'some/path',
-        ));
+        ]);
         $layout->render();
         self::assertTrue(true);
     }

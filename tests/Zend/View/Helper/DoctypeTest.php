@@ -98,14 +98,14 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
 
     public function testIsXhtmlReturnsTrueForXhtmlDoctypes()
     {
-        $types = array(
+        $types = [
             'XHTML1_STRICT',
             'XHTML1_TRANSITIONAL',
             'XHTML1_FRAMESET',
             'XHTML1_RDFA',
             'XHTML1_RDFA11',
             'XHTML5',
-        );
+        ];
 
         foreach ($types as $type) {
             $doctype = $this->helper->doctype($type);
@@ -120,7 +120,7 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
 
     public function testIsXhtmlReturnsFalseForNonXhtmlDoctypes()
     {
-        foreach (array('HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET') as $type) {
+        foreach (['HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET'] as $type) {
             $doctype = $this->helper->doctype($type);
             $this->assertEquals($type, $doctype->getDoctype());
             $this->assertFalse($doctype->isXhtml());
@@ -133,13 +133,13 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
 
     public function testIsHtml5()
     {
-        foreach (array('HTML5', 'XHTML5') as $type) {
+        foreach (['HTML5', 'XHTML5'] as $type) {
             $doctype = $this->helper->doctype($type);
             $this->assertEquals($type, $doctype->getDoctype());
             $this->assertTrue($doctype->isHtml5());
         }
 
-        foreach (array('HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET', 'XHTML1_STRICT', 'XHTML1_TRANSITIONAL', 'XHTML1_FRAMESET') as $type) {
+        foreach (['HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET', 'XHTML1_STRICT', 'XHTML1_TRANSITIONAL', 'XHTML1_FRAMESET'] as $type) {
             $doctype = $this->helper->doctype($type);
             $this->assertEquals($type, $doctype->getDoctype());
             $this->assertFalse($doctype->isHtml5());
@@ -152,7 +152,7 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->helper->doctype('XHTML1_RDFA11')->isRdfa());
 
         // built-in doctypes
-        foreach (array('HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET', 'XHTML1_STRICT', 'XHTML1_TRANSITIONAL', 'XHTML1_FRAMESET') as $type) {
+        foreach (['HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET', 'XHTML1_STRICT', 'XHTML1_TRANSITIONAL', 'XHTML1_FRAMESET'] as $type) {
             $doctype = $this->helper->doctype($type);
             $this->assertFalse($doctype->isRdfa());
         }

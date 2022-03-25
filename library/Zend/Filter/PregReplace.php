@@ -86,7 +86,7 @@ class Zend_Filter_PregReplace implements Zend_Filter_Interface
             $options = $options->toArray();
         } elseif (!is_array($options)) {
             $options = func_get_args();
-            $temp = array();
+            $temp = [];
             if (!empty($options)) {
                 $temp['match'] = array_shift($options);
             }

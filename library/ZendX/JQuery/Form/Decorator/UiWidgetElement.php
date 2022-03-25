@@ -53,7 +53,7 @@ class ZendX_JQuery_Form_Decorator_UiWidgetElement extends Zend_Form_Decorator_Vi
      *
      * @var array
      */
-    protected $_jQueryParams = array();
+    protected $_jQueryParams = [];
 
     /**
      * Get element attributes.

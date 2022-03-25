@@ -48,11 +48,11 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasic()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             'STRING' => 'STRING',
             'ABC1@3' => 'ABC1@3',
             'A b C' => 'A B C',
-        );
+        ];
 
         foreach ($valuesExpected as $input => $output) {
             $this->assertEquals($output, $this->_filter->filter($input));
@@ -65,11 +65,11 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
      */
     public function testWithEncoding()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             'ü' => 'Ü',
             'ñ' => 'Ñ',
             'üñ123' => 'ÜÑ123',
-        );
+        ];
 
         try {
             $this->_filter->setEncoding('UTF-8');
@@ -100,14 +100,14 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
      */
     public function testInitiationWithEncoding()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             'ü' => 'Ü',
             'ñ' => 'Ñ',
             'üñ123' => 'ÜÑ123',
-        );
+        ];
 
         try {
-            $filter = new Zend_Filter_StringToUpper(array('encoding' => 'UTF-8'));
+            $filter = new Zend_Filter_StringToUpper(['encoding' => 'UTF-8']);
             foreach ($valuesExpected as $input => $output) {
                 $this->assertEquals($output, $filter->filter($input));
             }
@@ -121,11 +121,11 @@ class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
      */
     public function testCaseInsensitiveEncoding()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             'ü' => 'Ü',
             'ñ' => 'Ñ',
             'üñ123' => 'ÜÑ123',
-        );
+        ];
 
         try {
             $this->_filter->setEncoding('UTF-8');

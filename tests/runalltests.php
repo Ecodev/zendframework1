@@ -18,8 +18,8 @@
  */
 $zf = realpath('../vendor/zendframework/zendframework1/library');
 include '../vendor/autoload.php';
-spl_autoload_unregister(array('Zend_Loader_Autoloader','autoload'));
-set_include_path(implode(PATH_SEPARATOR, array($zf, get_include_path())));
+spl_autoload_unregister(['Zend_Loader_Autoloader','autoload']);
+set_include_path(implode(PATH_SEPARATOR, [$zf, get_include_path()]));
 
 $PHPUNIT = null;
 if (!$PHPUNIT) {

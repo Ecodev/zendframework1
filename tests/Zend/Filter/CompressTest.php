@@ -72,16 +72,16 @@ class Zend_Filter_CompressTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetSetAdapterOptionsInConstructor()
     {
-        $filter = new Zend_Filter_Compress(array(
+        $filter = new Zend_Filter_Compress([
             'adapter' => 'bz2',
-            'options' => array(
+            'options' => [
                 'blocksize' => 6,
                 'archive' => 'test.txt',
-            ),
-        ));
+            ],
+        ]);
 
         $this->assertEquals(
-            array('blocksize' => 6, 'archive' => 'test.txt'),
+            ['blocksize' => 6, 'archive' => 'test.txt'],
             $filter->getAdapterOptions()
         );
 
@@ -96,12 +96,12 @@ class Zend_Filter_CompressTest extends \PHPUnit\Framework\TestCase
     public function testGetSetAdapterOptions()
     {
         $filter = new Zend_Filter_Compress('bz2');
-        $filter->setAdapterOptions(array(
+        $filter->setAdapterOptions([
             'blocksize' => 6,
             'archive' => 'test.txt',
-        ));
+        ]);
         $this->assertEquals(
-            array('blocksize' => 6, 'archive' => 'test.txt'),
+            ['blocksize' => 6, 'archive' => 'test.txt'],
             $filter->getAdapterOptions()
         );
         $adapter = $filter->getAdapter();

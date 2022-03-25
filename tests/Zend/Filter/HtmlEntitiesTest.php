@@ -48,14 +48,14 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasic()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             'string' => 'string',
             '<' => '&lt;',
             '>' => '&gt;',
             '\'' => '\'',
             '"' => '&quot;',
             '&' => '&amp;',
-        );
+        ];
         foreach ($valuesExpected as $input => $output) {
             $this->assertEquals($output, $this->_filter->filter($input));
         }
@@ -131,7 +131,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
     public function testConfigObject()
     {
         require_once 'Zend/Config.php';
-        $options = array('quotestyle' => 5, 'encoding' => 'ISO-8859-1');
+        $options = ['quotestyle' => 5, 'encoding' => 'ISO-8859-1'];
         $config = new Zend_Config($options);
 
         $filter = new Zend_Filter_HtmlEntities(
@@ -197,7 +197,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 
         // restore_error_handler can emit an E_WARNING; let's ignore that, as
         // we want to test the returned value
-        set_error_handler(array($this, 'errorHandler'), E_NOTICE | E_WARNING);
+        set_error_handler([$this, 'errorHandler'], E_NOTICE | E_WARNING);
         $result = $this->_filter->filter($string);
         restore_error_handler();
 
@@ -217,7 +217,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 
         // restore_error_handler can emit an E_WARNING; let's ignore that, as
         // we want to test the returned value
-        set_error_handler(array($this, 'errorHandler'), E_NOTICE | E_WARNING);
+        set_error_handler([$this, 'errorHandler'], E_NOTICE | E_WARNING);
         $result = $this->_filter->filter($string);
         restore_error_handler();
 
@@ -234,7 +234,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
         // restore_error_handler can emit an E_WARNING; let's ignore that, as
         // we want to test the returned value
         // Also, explicit try, so that we don't mess up PHPUnit error handlers
-        set_error_handler(array($this, 'errorHandler'), E_NOTICE | E_WARNING);
+        set_error_handler([$this, 'errorHandler'], E_NOTICE | E_WARNING);
 
         try {
             $result = $this->_filter->filter($string);

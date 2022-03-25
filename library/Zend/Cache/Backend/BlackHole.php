@@ -70,7 +70,7 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      *
      * @return bool true if no problem
      */
-    public function save($data, $id, $tags = array(), $specificLifetime = false)
+    public function save($data, $id, $tags = [], $specificLifetime = false)
     {
         return true;
     }
@@ -105,7 +105,7 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      *
      * @return bool true if no problem
      */
-    public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array())
+    public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = [])
     {
         return true;
     }
@@ -117,7 +117,7 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getIds()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -127,7 +127,7 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getTags()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -139,9 +139,9 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      *
      * @return array array of matching cache ids (string)
      */
-    public function getIdsMatchingTags($tags = array())
+    public function getIdsMatchingTags($tags = [])
     {
-        return array();
+        return [];
     }
 
     /**
@@ -153,9 +153,9 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      *
      * @return array array of not matching cache ids (string)
      */
-    public function getIdsNotMatchingTags($tags = array())
+    public function getIdsNotMatchingTags($tags = [])
     {
-        return array();
+        return [];
     }
 
     /**
@@ -167,9 +167,9 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      *
      * @return array array of any matching cache ids (string)
      */
-    public function getIdsMatchingAnyTags($tags = array())
+    public function getIdsMatchingAnyTags($tags = [])
     {
-        return array();
+        return [];
     }
 
     /**
@@ -228,14 +228,14 @@ class Zend_Cache_Backend_BlackHole extends Zend_Cache_Backend implements Zend_Ca
      */
     public function getCapabilities()
     {
-        return array(
+        return [
             'automatic_cleaning' => true,
             'tags' => true,
             'expired_read' => true,
             'priority' => true,
             'infinite_lifetime' => true,
             'get_list' => true,
-        );
+        ];
     }
 
     /**

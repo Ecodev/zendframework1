@@ -48,7 +48,7 @@ class Zend_Filter_IntTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasic()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             'string' => 0,
             '1' => 1,
             '-1' => -1,
@@ -56,7 +56,7 @@ class Zend_Filter_IntTest extends \PHPUnit\Framework\TestCase
             '-1.1' => -1,
             '0.9' => 0,
             '-0.9' => 0,
-        );
+        ];
         foreach ($valuesExpected as $input => $output) {
             $this->assertEquals($output, $this->_filter->filter($input));
         }

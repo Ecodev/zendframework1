@@ -64,10 +64,10 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
 
     public function testRendersSubmitInput()
     {
-        $html = $this->helper->formSubmit(array(
+        $html = $this->helper->formSubmit([
             'name' => 'foo',
             'value' => 'Submit!',
-        ));
+        ]);
         $this->assertRegexp('/<input[^>]*?(type="submit")/', $html);
     }
 
@@ -76,11 +76,11 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
      */
     public function testCanDisableSubmitButton()
     {
-        $html = $this->helper->formSubmit(array(
+        $html = $this->helper->formSubmit([
             'name' => 'foo',
             'value' => 'Submit!',
-            'attribs' => array('disable' => true),
-        ));
+            'attribs' => ['disable' => true],
+        ]);
         $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html);
     }
 
@@ -89,10 +89,10 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
      */
     public function testValueAttributeIsAlwaysRendered()
     {
-        $html = $this->helper->formSubmit(array(
+        $html = $this->helper->formSubmit([
             'name' => 'foo',
             'value' => '',
-        ));
+        ]);
         $this->assertRegexp('/<input[^>]*?(value="")/', $html);
     }
 

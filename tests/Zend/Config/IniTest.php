@@ -114,7 +114,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
 
     public function testInvalidKeys()
     {
-        $sections = array('leadingdot', 'onedot', 'twodots', 'threedots', 'trailingdot');
+        $sections = ['leadingdot', 'onedot', 'twodots', 'threedots', 'trailingdot'];
         foreach ($sections as $section) {
             try {
                 $config = new Zend_Config_Ini($this->_iniFileConfig, $section);
@@ -137,7 +137,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
 
     public function testZF413_MultiSections()
     {
-        $config = new Zend_Config_Ini($this->_iniFileAllSectionsConfig, array('staging','other_staging'));
+        $config = new Zend_Config_Ini($this->_iniFileAllSectionsConfig, ['staging','other_staging']);
 
         $this->assertEquals('otherStaging', $config->only_in);
         $this->assertEquals('staging', $config->hostname);
@@ -160,8 +160,8 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('all', $config->getSectionName());
         $this->assertEquals(false, $config->areAllSectionsLoaded());
 
-        $config = new Zend_Config_Ini($this->_iniFileAllSectionsConfig, array('staging','other_staging'));
-        $this->assertEquals(array('staging','other_staging'), $config->getSectionName());
+        $config = new Zend_Config_Ini($this->_iniFileAllSectionsConfig, ['staging','other_staging']);
+        $this->assertEquals(['staging','other_staging'], $config->getSectionName());
         $this->assertEquals(false, $config->areAllSectionsLoaded());
     }
 
@@ -199,7 +199,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
     public function testErrorNoSectionFound()
     {
         try {
-            $config = new Zend_Config_Ini($this->_iniFileConfig,array('all', 'notthere'));
+            $config = new Zend_Config_Ini($this->_iniFileConfig,['all', 'notthere']);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertStringContainsString('cannot be found', $expected->getMessage());
@@ -221,7 +221,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
             return;
         }
 
-        $config = new Zend_Config_Ini($this->_iniFileSeparatorConfig, 'all', array('nestSeparator' => ':'));
+        $config = new Zend_Config_Ini($this->_iniFileSeparatorConfig, 'all', ['nestSeparator' => ':']);
 
         $this->assertEquals('all', $config->hostname);
         $this->assertEquals('live', $config->db->name);
@@ -241,7 +241,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
     public function testZF2843NoSectionNoTree()
     {
         $filename = __DIR__ . '/_files/zf2843.ini';
-        $config = new Zend_Config_Ini($filename, null, array('nestSeparator' => '.'));
+        $config = new Zend_Config_Ini($filename, null, ['nestSeparator' => '.']);
 
         $this->assertEquals('123', $config->abc);
         $this->assertEquals('jkl', $config->ghi);
@@ -264,7 +264,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
     {
         $config = new Zend_Config_Ini(
             __DIR__ . '/_files/zf8159.ini',
-            array('first', 'second')
+            ['first', 'second']
         );
 
         $this->assertTrue(isset(

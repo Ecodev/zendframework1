@@ -99,22 +99,22 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
 
     public function testCanDisableIndividualMultiCheckboxOptions()
     {
-        $this->element->setMultiOptions(array(
+        $this->element->setMultiOptions([
             'foo' => 'Foo',
             'bar' => 'Bar',
             'baz' => 'Baz',
             'bat' => 'Bat',
             'test' => 'Test',
-        ))
-            ->setAttrib('disable', array('baz', 'test'));
+        ])
+            ->setAttrib('disable', ['baz', 'test']);
         $html = $this->element->render($this->getView());
-        foreach (array('baz', 'test') as $test) {
+        foreach (['baz', 'test'] as $test) {
             if (!preg_match('/(<input[^>]*?(value="' . $test . '")[^>]*>)/', $html, $m)) {
                 $this->fail('Unable to find matching disabled option for ' . $test);
             }
             $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $m[1]);
         }
-        foreach (array('foo', 'bar', 'bat') as $test) {
+        foreach (['foo', 'bar', 'bat'] as $test) {
             if (!preg_match('/(<input[^>]*?(value="' . $test . '")[^>]*>)/', $html, $m)) {
                 $this->fail('Unable to find matching option for ' . $test);
             }
@@ -124,13 +124,13 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
 
     public function testSpecifiedSeparatorIsUsedWhenRendering()
     {
-        $this->element->setMultiOptions(array(
+        $this->element->setMultiOptions([
             'foo' => 'Foo',
             'bar' => 'Bar',
             'baz' => 'Baz',
             'bat' => 'Bat',
             'test' => 'Test',
-        ))
+        ])
             ->setSeparator('--FooBarFunSep--');
         $html = $this->element->render($this->getView());
         $this->assertContains($this->element->getSeparator(), $html);
@@ -156,27 +156,27 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
      */
     public function testCanPopulateCheckboxOptionsFromPostedData()
     {
-        $form = new Zend_Form(array(
-            'elements' => array(
-                '100_1' => array('MultiCheckbox', array(
-                    'multiOptions' => array(
+        $form = new Zend_Form([
+            'elements' => [
+                '100_1' => ['MultiCheckbox', [
+                    'multiOptions' => [
                         '100_1_1' => 'Agriculture',
                         '100_1_2' => 'Automotive',
                         '100_1_12' => 'Chemical',
                         '100_1_13' => 'Communications',
-                    ),
+                    ],
                     'required' => true,
-                )),
-            ),
-        ));
-        $data = array(
-            '100_1' => array(
+                ]],
+            ],
+        ]);
+        $data = [
+            '100_1' => [
                 '100_1_1',
                 '100_1_2',
                 '100_1_12',
                 '100_1_13',
-            ),
-        );
+            ],
+        ];
         $form->populate($data);
         $html = $form->render($this->getView());
         foreach ($form->getElement('100_1')->getMultiOptions() as $key => $value) {
@@ -218,11 +218,11 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
 
     public function testInArrayValidatorShouldBeRegisteredAfterValidation()
     {
-        $options = array(
+        $options = [
             'foo' => 'Foo Value',
             'bar' => 'Bar Value',
             'baz' => 'Baz Value',
-        );
+        ];
         $this->element->setMultiOptions($options);
         $this->assertFalse($this->element->getValidator('InArray'));
         $this->element->isValid('test');
@@ -232,11 +232,11 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
 
     public function testShouldNotValidateIfValueIsNotInArray()
     {
-        $options = array(
+        $options = [
             'foo' => 'Foo Value',
             'bar' => 'Bar Value',
             'baz' => 'Baz Value',
-        );
+        ];
         $this->element->setMultiOptions($options);
         $this->assertFalse($this->element->getValidator('InArray'));
         $this->assertFalse($this->element->isValid('test'));
@@ -250,13 +250,13 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
      */
     public function testRetrievingErrorMessagesShouldNotResultInError()
     {
-        $this->element->addMultiOptions(array(
+        $this->element->addMultiOptions([
             'foo' => 'Foo',
             'bar' => 'Bar',
             'baz' => 'Baz',
-        ))
+        ])
             ->addErrorMessage('%value% is invalid');
-        $this->element->isValid(array('foo', 'bogus'));
+        $this->element->isValid(['foo', 'bogus']);
         $html = $this->element->render($this->getView());
         self::assertTrue(true);
     }
@@ -266,25 +266,25 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
      */
     public function testValidateShouldNotAcceptEmptyArray()
     {
-        $this->element->addMultiOptions(array(
+        $this->element->addMultiOptions([
             'foo' => 'Foo',
             'bar' => 'Bar',
             'baz' => 'Baz',
-        ));
+        ]);
         $this->element->setRegisterInArrayValidator(true);
 
-        $this->assertTrue($this->element->isValid(array('foo')));
-        $this->assertTrue($this->element->isValid(array('foo','baz')));
+        $this->assertTrue($this->element->isValid(['foo']));
+        $this->assertTrue($this->element->isValid(['foo','baz']));
 
         $this->element->setAllowEmpty(true);
-        $this->assertTrue($this->element->isValid(array()));
+        $this->assertTrue($this->element->isValid([]));
 
         // Empty value + AllowEmpty=true = no error messages
         $messages = $this->element->getMessages();
         $this->assertEquals(0, is_countable($messages) ? count($messages) : 0, 'Received unexpected error message(s)');
 
         $this->element->setAllowEmpty(false);
-        $this->assertFalse($this->element->isValid(array()));
+        $this->assertFalse($this->element->isValid([]));
 
         // Empty value + AllowEmpty=false = notInArray error message
         $messages = $this->element->getMessages();
@@ -292,7 +292,7 @@ class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('notInArray', $messages, 'Expected \'notInArray\' error message');
 
         $this->element->setRequired(true)->setAllowEmpty(false);
-        $this->assertFalse($this->element->isValid(array()));
+        $this->assertFalse($this->element->isValid([]));
 
         // Empty value + Required=true + AllowEmpty=false = isEmpty error message
         $messages = $this->element->getMessages();

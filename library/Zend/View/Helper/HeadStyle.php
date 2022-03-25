@@ -46,17 +46,17 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
      *
      * @var array
      */
-    protected $_optionalAttributes = array('lang', 'title', 'media', 'dir');
+    protected $_optionalAttributes = ['lang', 'title', 'media', 'dir'];
 
     /**
      * Allowed media types.
      *
      * @var array
      */
-    protected $_mediaTypes = array(
+    protected $_mediaTypes = [
         'all', 'aural', 'braille', 'handheld', 'print',
         'projection', 'screen', 'tty', 'tv',
-    );
+    ];
 
     /**
      * Capture type and/or attributes (used for hinting during capture).
@@ -101,7 +101,7 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
      *
      * @return Zend_View_Helper_HeadStyle
      */
-    public function headStyle($content = null, $placement = 'APPEND', $attributes = array())
+    public function headStyle($content = null, $placement = 'APPEND', $attributes = [])
     {
         if ((null !== $content) && is_string($content)) {
             switch (strtoupper($placement)) {
@@ -160,7 +160,7 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
             }
 
             $content = $args[0];
-            $attrs = array();
+            $attrs = [];
             if (isset($args[1])) {
                 $attrs = (array) $args[1];
             }
@@ -400,7 +400,7 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
                 ? $this->getWhitespace($indent)
                 : $this->getIndent();
 
-        $items = array();
+        $items = [];
         $this->getContainer()->ksort();
         foreach ($this as $item) {
             if (!$this->_isValid($item)) {

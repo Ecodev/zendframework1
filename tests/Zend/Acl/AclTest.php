@@ -180,7 +180,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $roleRegistry = new Zend_Acl_Role_Registry();
         $roleRegistry->add($roleParent1)
             ->add($roleParent2)
-            ->add($roleChild, array($roleParent1, $roleParent2));
+            ->add($roleChild, [$roleParent1, $roleParent2]);
         $roleChildParents = $roleRegistry->getParents($roleChild);
         $this->assertTrue(2 === count($roleChildParents));
         $i = 1;
@@ -486,14 +486,14 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      */
     public function testPrivileges()
     {
-        $this->_acl->allow(null, null, array('p1', 'p2', 'p3'));
+        $this->_acl->allow(null, null, ['p1', 'p2', 'p3']);
         $this->assertTrue($this->_acl->isAllowed(null, null, 'p1'));
         $this->assertTrue($this->_acl->isAllowed(null, null, 'p2'));
         $this->assertTrue($this->_acl->isAllowed(null, null, 'p3'));
         $this->assertFalse($this->_acl->isAllowed(null, null, 'p4'));
         $this->_acl->deny(null, null, 'p1');
         $this->assertFalse($this->_acl->isAllowed(null, null, 'p1'));
-        $this->_acl->deny(null, null, array('p2', 'p3'));
+        $this->_acl->deny(null, null, ['p2', 'p3']);
         $this->assertFalse($this->_acl->isAllowed(null, null, 'p2'));
         $this->assertFalse($this->_acl->isAllowed(null, null, 'p3'));
     }
@@ -585,14 +585,14 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     {
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest)
-            ->allow($roleGuest, null, array('p1', 'p2', 'p3'));
+            ->allow($roleGuest, null, ['p1', 'p2', 'p3']);
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'p1'));
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'p2'));
         $this->assertTrue($this->_acl->isAllowed($roleGuest, null, 'p3'));
         $this->assertFalse($this->_acl->isAllowed($roleGuest, null, 'p4'));
         $this->_acl->deny($roleGuest, null, 'p1');
         $this->assertFalse($this->_acl->isAllowed($roleGuest, null, 'p1'));
-        $this->_acl->deny($roleGuest, null, array('p2', 'p3'));
+        $this->_acl->deny($roleGuest, null, ['p2', 'p3']);
         $this->assertFalse($this->_acl->isAllowed($roleGuest, null, 'p2'));
         $this->assertFalse($this->_acl->isAllowed($roleGuest, null, 'p3'));
     }
@@ -673,7 +673,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
             ->add(new Zend_Acl_Resource('area2'))
             ->deny()
             ->allow('staff')
-            ->deny('staff', array('area1', 'area2'));
+            ->deny('staff', ['area1', 'area2']);
         $this->assertFalse($this->_acl->isAllowed('staff', 'area1'));
     }
 
@@ -687,7 +687,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
             ->addRole(new Zend_Acl_Role('staff'), 'guest')
             ->deny()
             ->allow('staff')
-            ->deny('staff', null, array('privilege1', 'privilege2'));
+            ->deny('staff', null, ['privilege1', 'privilege2']);
         $this->assertFalse($this->_acl->isAllowed('staff', null, 'privilege1'));
     }
 
@@ -696,7 +696,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      */
     public function testRulesRemove()
     {
-        $this->_acl->allow(null, null, array('privilege1', 'privilege2'));
+        $this->_acl->allow(null, null, ['privilege1', 'privilege2']);
         $this->assertFalse($this->_acl->isAllowed());
         $this->assertTrue($this->_acl->isAllowed(null, null, 'privilege1'));
         $this->assertTrue($this->_acl->isAllowed(null, null, 'privilege2'));
@@ -800,10 +800,10 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->_acl->allow('guest', null, 'view');
 
         // Staff inherits view privilege from guest, but also needs additional privileges
-        $this->_acl->allow('staff', null, array('edit', 'submit', 'revise'));
+        $this->_acl->allow('staff', null, ['edit', 'submit', 'revise']);
 
         // Editor inherits view, edit, submit, and revise privileges, but also needs additional privileges
-        $this->_acl->allow('editor', null, array('publish', 'archive', 'delete'));
+        $this->_acl->allow('editor', null, ['publish', 'archive', 'delete']);
 
         // Administrator inherits nothing but is allowed all privileges
         $this->_acl->allow('administrator');
@@ -872,12 +872,12 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         // Refine the privilege sets for more specific needs
 
         // Allow marketing to publish and archive newsletters
-        $this->_acl->allow('marketing', 'newsletter', array('publish', 'archive'));
+        $this->_acl->allow('marketing', 'newsletter', ['publish', 'archive']);
 
         // Allow marketing to publish and archive latest news
         $this->_acl->add(new Zend_Acl_Resource('news'))
             ->add(new Zend_Acl_Resource('latest'), 'news');
-        $this->_acl->allow('marketing', 'latest', array('publish', 'archive'));
+        $this->_acl->allow('marketing', 'latest', ['publish', 'archive']);
 
         // Deny staff (and marketing, by inheritance) rights to revise latest news
         $this->_acl->deny('staff', 'latest', 'revise');
@@ -921,7 +921,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         // Remove some previous permission specifications
 
         // Marketing can no longer publish and archive newsletters
-        $this->_acl->removeAllow('marketing', 'newsletter', array('publish', 'archive'));
+        $this->_acl->removeAllow('marketing', 'newsletter', ['publish', 'archive']);
 
         // Marketing can no longer archive the latest news
         $this->_acl->removeAllow('marketing', 'latest', 'archive');
@@ -1124,7 +1124,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $acl->addRole('admin');
         $acl->addResource('blog');
         $acl->allow('admin', 'blog', 'read');
-        $acl->removeAllow(array('admin'), array('blog'), null);
+        $acl->removeAllow(['admin'], ['blog'], null);
         self::assertTrue(true);
     }
 
@@ -1179,7 +1179,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      */
     public function testgetRoles()
     {
-        $this->assertEquals(array(),$this->_acl->getRoles());
+        $this->assertEquals([],$this->_acl->getRoles());
 
         $roleGuest = new Zend_Acl_Role('guest');
         $this->_acl->addRole($roleGuest);
@@ -1187,7 +1187,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->_acl->addRole(new Zend_Acl_Role('editor'), 'staff');
         $this->_acl->addRole(new Zend_Acl_Role('administrator'));
 
-        $expected = array('guest', 'staff','editor','administrator');
+        $expected = ['guest', 'staff','editor','administrator'];
         $this->assertEquals($expected, $this->_acl->getRoles());
     }
 
@@ -1196,12 +1196,12 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
      */
     public function testgetResources()
     {
-        $this->assertEquals(array(),$this->_acl->getResources());
+        $this->assertEquals([],$this->_acl->getResources());
 
         $this->_acl->add(new Zend_Acl_Resource('someResource'));
         $this->_acl->add(new Zend_Acl_Resource('someOtherResource'));
 
-        $expected = array('someResource', 'someOtherResource');
+        $expected = ['someResource', 'someOtherResource'];
         $this->assertEquals($expected, $this->_acl->getResources());
     }
 

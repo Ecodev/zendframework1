@@ -99,7 +99,7 @@ class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
      */
     public function testDoesNotThrowOutOfBoundsExceptionIfIteratorIsEmpty()
     {
-        $this->_paginator = Zend_Paginator::factory(new ArrayIterator(array()));
+        $this->_paginator = Zend_Paginator::factory(new ArrayIterator([]));
         $items = $this->_paginator->getCurrentItems();
 
         try {
@@ -126,9 +126,9 @@ class Zend_Paginator_Adapter_IteratorTest extends \PHPUnit\Framework\TestCase
      */
     public function testEmptySet()
     {
-        $iterator = new ArrayIterator(array());
+        $iterator = new ArrayIterator([]);
         $this->_adapter = new Zend_Paginator_Adapter_Iterator($iterator);
         $actual = $this->_adapter->getItems(0, 10);
-        $this->assertEquals(array(), $actual);
+        $this->assertEquals([], $actual);
     }
 }

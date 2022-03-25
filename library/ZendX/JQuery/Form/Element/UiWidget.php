@@ -30,14 +30,14 @@ class ZendX_JQuery_Form_Element_UiWidget extends Zend_Form_Element
      *
      * @var array
      */
-    public $jQueryParams = array();
+    public $jQueryParams = [];
 
     /**
      * Just here to prevent errors.
      *
      * @var array
      */
-    public $options = array();
+    public $options = [];
 
     /**
      * Constructor.
@@ -118,9 +118,9 @@ class ZendX_JQuery_Form_Element_UiWidget extends Zend_Form_Element
         if (empty($decorators)) {
             $this->addDecorator('UiWidgetElement')
                 ->addDecorator('Errors')
-                ->addDecorator('Description', array('tag' => 'p', 'class' => 'description'))
-                ->addDecorator('HtmlTag', array('tag' => 'dd'))
-                ->addDecorator('Label', array('tag' => 'dt'));
+                ->addDecorator('Description', ['tag' => 'p', 'class' => 'description'])
+                ->addDecorator('HtmlTag', ['tag' => 'dd'])
+                ->addDecorator('Label', ['tag' => 'dt']);
         }
     }
 

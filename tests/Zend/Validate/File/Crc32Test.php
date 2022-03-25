@@ -44,12 +44,12 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
      */
     public function testBasic()
     {
-        $valuesExpected = array(
-            array('3f8d07e2', true),
-            array('9f8d07e2', false),
-            array(array('9f8d07e2', '3f8d07e2'), true),
-            array(array('9f8d07e2', '7f8d07e2'), false),
-        );
+        $valuesExpected = [
+            ['3f8d07e2', true],
+            ['9f8d07e2', false],
+            [['9f8d07e2', '3f8d07e2'], true],
+            [['9f8d07e2', '7f8d07e2'], false],
+        ];
 
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_File_Crc32($element[0]);
@@ -64,34 +64,34 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
         $this->assertFalse($validator->isValid(__DIR__ . '/_files/nofile.mo'));
         $this->assertTrue(array_key_exists('fileCrc32NotFound', $validator->getMessages()));
 
-        $files = array(
+        $files = [
             'name' => 'test1',
             'type' => 'text',
             'size' => 200,
             'tmp_name' => 'tmp_test1',
             'error' => 0,
-        );
+        ];
         $validator = new Zend_Validate_File_Crc32('3f8d07e2');
         $this->assertFalse($validator->isValid(__DIR__ . '/_files/nofile.mo', $files));
         $this->assertTrue(array_key_exists('fileCrc32NotFound', $validator->getMessages()));
 
-        $files = array(
+        $files = [
             'name' => 'testsize.mo',
             'type' => 'text',
             'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
             'error' => 0,
-        );
+        ];
         $validator = new Zend_Validate_File_Crc32('3f8d07e2');
         $this->assertTrue($validator->isValid(__DIR__ . '/_files/picture.jpg', $files));
 
-        $files = array(
+        $files = [
             'name' => 'testsize.mo',
             'type' => 'text',
             'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
             'error' => 0,
-        );
+        ];
         $validator = new Zend_Validate_File_Crc32('9f8d07e2');
         $this->assertFalse($validator->isValid(__DIR__ . '/_files/picture.jpg', $files));
         $this->assertTrue(array_key_exists('fileCrc32DoesNotMatch', $validator->getMessages()));
@@ -103,10 +103,10 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
     public function testgetCrc32()
     {
         $validator = new Zend_Validate_File_Crc32('12345');
-        $this->assertEquals(array('12345' => 'crc32'), $validator->getCrc32());
+        $this->assertEquals(['12345' => 'crc32'], $validator->getCrc32());
 
-        $validator = new Zend_Validate_File_Crc32(array('12345', '12333', '12344'));
-        $this->assertEquals(array('12345' => 'crc32', '12333' => 'crc32', '12344' => 'crc32'), $validator->getCrc32());
+        $validator = new Zend_Validate_File_Crc32(['12345', '12333', '12344']);
+        $this->assertEquals(['12345' => 'crc32', '12333' => 'crc32', '12344' => 'crc32'], $validator->getCrc32());
     }
 
     /**
@@ -115,10 +115,10 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
     public function testgetHash()
     {
         $validator = new Zend_Validate_File_Crc32('12345');
-        $this->assertEquals(array('12345' => 'crc32'), $validator->getHash());
+        $this->assertEquals(['12345' => 'crc32'], $validator->getHash());
 
-        $validator = new Zend_Validate_File_Crc32(array('12345', '12333', '12344'));
-        $this->assertEquals(array('12345' => 'crc32', '12333' => 'crc32', '12344' => 'crc32'), $validator->getHash());
+        $validator = new Zend_Validate_File_Crc32(['12345', '12333', '12344']);
+        $this->assertEquals(['12345' => 'crc32', '12333' => 'crc32', '12344' => 'crc32'], $validator->getHash());
     }
 
     /**
@@ -128,10 +128,10 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
     {
         $validator = new Zend_Validate_File_Crc32('12345');
         $validator->setCrc32('12333');
-        $this->assertEquals(array('12333' => 'crc32'), $validator->getCrc32());
+        $this->assertEquals(['12333' => 'crc32'], $validator->getCrc32());
 
-        $validator->setCrc32(array('12321', '12121'));
-        $this->assertEquals(array('12321' => 'crc32', '12121' => 'crc32'), $validator->getCrc32());
+        $validator->setCrc32(['12321', '12121']);
+        $this->assertEquals(['12321' => 'crc32', '12121' => 'crc32'], $validator->getCrc32());
     }
 
     /**
@@ -141,10 +141,10 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
     {
         $validator = new Zend_Validate_File_Crc32('12345');
         $validator->setHash('12333');
-        $this->assertEquals(array('12333' => 'crc32'), $validator->getCrc32());
+        $this->assertEquals(['12333' => 'crc32'], $validator->getCrc32());
 
-        $validator->setHash(array('12321', '12121'));
-        $this->assertEquals(array('12321' => 'crc32', '12121' => 'crc32'), $validator->getCrc32());
+        $validator->setHash(['12321', '12121']);
+        $this->assertEquals(['12321' => 'crc32', '12121' => 'crc32'], $validator->getCrc32());
     }
 
     /**
@@ -154,10 +154,10 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
     {
         $validator = new Zend_Validate_File_Crc32('12345');
         $validator->addCrc32('12344');
-        $this->assertEquals(array('12345' => 'crc32', '12344' => 'crc32'), $validator->getCrc32());
+        $this->assertEquals(['12345' => 'crc32', '12344' => 'crc32'], $validator->getCrc32());
 
-        $validator->addCrc32(array('12321', '12121'));
-        $this->assertEquals(array('12345' => 'crc32', '12344' => 'crc32', '12321' => 'crc32', '12121' => 'crc32'), $validator->getCrc32());
+        $validator->addCrc32(['12321', '12121']);
+        $this->assertEquals(['12345' => 'crc32', '12344' => 'crc32', '12321' => 'crc32', '12121' => 'crc32'], $validator->getCrc32());
     }
 
     /**
@@ -167,9 +167,9 @@ class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
     {
         $validator = new Zend_Validate_File_Crc32('12345');
         $validator->addHash('12344');
-        $this->assertEquals(array('12345' => 'crc32', '12344' => 'crc32'), $validator->getCrc32());
+        $this->assertEquals(['12345' => 'crc32', '12344' => 'crc32'], $validator->getCrc32());
 
-        $validator->addHash(array('12321', '12121'));
-        $this->assertEquals(array('12345' => 'crc32', '12344' => 'crc32', '12321' => 'crc32', '12121' => 'crc32'), $validator->getCrc32());
+        $validator->addHash(['12321', '12121']);
+        $this->assertEquals(['12345' => 'crc32', '12344' => 'crc32', '12321' => 'crc32', '12121' => 'crc32'], $validator->getCrc32());
     }
 }

@@ -49,21 +49,21 @@ class Zend_Controller_Action_Helper_Cache extends Zend_Controller_Action_Helper_
      *
      * @var array
      */
-    protected $_caching = array();
+    protected $_caching = [];
 
     /**
      * Indexed map of Tags by Controller and Action.
      *
      * @var array
      */
-    protected $_tags = array();
+    protected $_tags = [];
 
     /**
      * Indexed map of Extensions by Controller and Action.
      *
      * @var array
      */
-    protected $_extensions = array();
+    protected $_extensions = [];
 
     /**
      * Track output buffering condition.
@@ -76,23 +76,23 @@ class Zend_Controller_Action_Helper_Cache extends Zend_Controller_Action_Helper_
      *
      * @param null|mixed $extension
      */
-    public function direct(array $actions, array $tags = array(), $extension = null)
+    public function direct(array $actions, array $tags = [], $extension = null)
     {
         $controller = $this->getRequest()->getControllerName();
         $actions = array_unique($actions);
         if (!isset($this->_caching[$controller])) {
-            $this->_caching[$controller] = array();
+            $this->_caching[$controller] = [];
         }
         if (!empty($tags)) {
             $tags = array_unique($tags);
             if (!isset($this->_tags[$controller])) {
-                $this->_tags[$controller] = array();
+                $this->_tags[$controller] = [];
             }
         }
         foreach ($actions as $action) {
             $this->_caching[$controller][] = $action;
             if (!empty($tags)) {
-                $this->_tags[$controller][$action] = array();
+                $this->_tags[$controller][$action] = [];
                 foreach ($tags as $tag) {
                     $this->_tags[$controller][$action][] = $tag;
                 }
@@ -100,7 +100,7 @@ class Zend_Controller_Action_Helper_Cache extends Zend_Controller_Action_Helper_
         }
         if ($extension) {
             if (!isset($this->_extensions[$controller])) {
-                $this->_extensions[$controller] = array();
+                $this->_extensions[$controller] = [];
             }
             foreach ($actions as $action) {
                 $this->_extensions[$controller][$action] = $extension;
@@ -177,7 +177,7 @@ class Zend_Controller_Action_Helper_Cache extends Zend_Controller_Action_Helper_
         if (!isset($obStarted) && isset($this->_caching[$controller])
         && in_array($action, $this->_caching[$controller])) {
             $reqUri = $this->getRequest()->getRequestUri();
-            $tags = array();
+            $tags = [];
             if (isset($this->_tags[$controller][$action])
             && !empty($this->_tags[$controller][$action])) {
                 $tags = array_unique($this->_tags[$controller][$action]);
@@ -271,7 +271,7 @@ class Zend_Controller_Action_Helper_Cache extends Zend_Controller_Action_Helper_
     {
         if (method_exists($this->getManager(), $method)) {
             return call_user_func_array(
-                array($this->getManager(), $method), $args
+                [$this->getManager(), $method], $args
             );
         }
 

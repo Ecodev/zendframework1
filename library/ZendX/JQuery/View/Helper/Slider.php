@@ -41,7 +41,7 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
      *
      * @return string
      */
-    public function slider($id, $value = null, array $params = array(), array $attribs = array())
+    public function slider($id, $value = null, array $params = [], array $attribs = [])
     {
         if (!isset($attribs['id'])) {
             $attribs['id'] = $id;
@@ -67,7 +67,7 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
 
                 // Hidden Fields
                 $startValue = $this->getHandleValue($i, $params);
-                $hiddenAttribs = array('type' => 'hidden', 'id' => $sliderHiddenId, 'name' => $sliderHiddenId, 'value' => $startValue);
+                $hiddenAttribs = ['type' => 'hidden', 'id' => $sliderHiddenId, 'name' => $sliderHiddenId, 'value' => $startValue];
                 $hidden .= '<input' . $this->_htmlAttribs($hiddenAttribs) . $this->getClosingBracket() . PHP_EOL;
             }
             $sliderUpdateFn .= '}' . PHP_EOL;
@@ -127,7 +127,7 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
 
     protected function initializeStartingValues($value, $params)
     {
-        $values = array();
+        $values = [];
         if (isset($params['value'])) {
             $values[] = $params['value'];
             unset($params['value']);
@@ -149,7 +149,7 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
         if (version_compare($this->jquery->getUiVersion(), '1.7.0') >= 0) {
             $params['values'] = $values;
         } else {
-            $params['handles'] = array();
+            $params['handles'] = [];
             for ($i = 0; $i < (is_countable($values) ? count($values) : 0); ++$i) {
                 $params['handles'][$i]['start'] = $values[$i];
             }

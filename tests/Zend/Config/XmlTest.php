@@ -92,7 +92,7 @@ class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
         }
 
         try {
-            $config = @new Zend_Config_Xml($this->_xmlFileConfig, array('notthere', 'all'));
+            $config = @new Zend_Config_Xml($this->_xmlFileConfig, ['notthere', 'all']);
             $this->fail('An expected Zend_Config_Exception has not been raised');
         } catch (Zend_Config_Exception $expected) {
             $this->assertStringContainsString('cannot be found in', $expected->getMessage());
@@ -111,7 +111,7 @@ class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
 
     public function testZF413_MultiSections()
     {
-        $config = new Zend_Config_Xml($this->_xmlFileAllSectionsConfig, array('staging','other_staging'));
+        $config = new Zend_Config_Xml($this->_xmlFileAllSectionsConfig, ['staging','other_staging']);
 
         $this->assertEquals('otherStaging', $config->only_in);
         $this->assertEquals('staging', $config->hostname);
@@ -134,8 +134,8 @@ class Zend_Config_XmlTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('all', $config->getSectionName());
         $this->assertEquals(false, $config->areAllSectionsLoaded());
 
-        $config = new Zend_Config_Xml($this->_xmlFileAllSectionsConfig, array('staging','other_staging'));
-        $this->assertEquals(array('staging','other_staging'), $config->getSectionName());
+        $config = new Zend_Config_Xml($this->_xmlFileAllSectionsConfig, ['staging','other_staging']);
+        $this->assertEquals(['staging','other_staging'], $config->getSectionName());
         $this->assertEquals(false, $config->areAllSectionsLoaded());
     }
 

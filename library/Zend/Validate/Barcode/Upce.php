@@ -32,7 +32,7 @@ class Zend_Validate_Barcode_Upce extends Zend_Validate_Barcode_AdapterAbstract
      *
      * @var int
      */
-    protected $_length = array(6, 7, 8);
+    protected $_length = [6, 7, 8];
 
     /**
      * Allowed barcode characters.

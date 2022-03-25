@@ -63,7 +63,7 @@ class Zend_Controller_Action_Helper_Url extends Zend_Controller_Action_Helper_Ab
         }
 
         if (null !== $params) {
-            $paramPairs = array();
+            $paramPairs = [];
             foreach ($params as $key => $value) {
                 $paramPairs[] = urlencode($key) . '/' . urlencode($value);
             }
@@ -89,7 +89,7 @@ class Zend_Controller_Action_Helper_Url extends Zend_Controller_Action_Helper_Ab
      *
      * @return string url for the link href attribute
      */
-    public function url($urlOptions = array(), $name = null, $reset = false, $encode = true)
+    public function url($urlOptions = [], $name = null, $reset = false, $encode = true)
     {
         $router = $this->getFrontController()->getRouter();
 

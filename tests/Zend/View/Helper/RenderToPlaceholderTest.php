@@ -30,7 +30,7 @@ class Zend_View_Helper_RenderToPlaceholderTest extends \PHPUnit\Framework\TestCa
 
     public function setUp(): void
     {
-        $this->_view = new Zend_View(array('scriptPath' => __DIR__ . '/_files/scripts/'));
+        $this->_view = new Zend_View(['scriptPath' => __DIR__ . '/_files/scripts/']);
     }
 
     public function testDefaultEmpty()

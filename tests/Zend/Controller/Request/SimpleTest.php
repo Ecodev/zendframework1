@@ -46,7 +46,7 @@ class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
 
     public function testSimpleReqestRetainsValuesPassedFromConstructor()
     {
-        $request = new Zend_Controller_Request_Simple('test1', 'test2', 'test3', array('test4' => 'test5'));
+        $request = new Zend_Controller_Request_Simple('test1', 'test2', 'test3', ['test4' => 'test5']);
         $this->assertEquals($request->getActionName(), 'test1');
         $this->assertEquals($request->getControllerName(), 'test2');
         $this->assertEquals($request->getModuleName(), 'test3');
@@ -60,9 +60,9 @@ class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
     {
         $request = new Zend_Controller_Request_Simple();
         $request->setParam('key', 'value');
-        $request->setParams(array(
+        $request->setParams([
             'key' => null,
-        ));
+        ]);
         $this->assertNull($request->getParam('key'));
     }
 }

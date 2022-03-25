@@ -37,7 +37,7 @@ class Zend_View_Helper_Url extends Zend_View_Helper_Abstract
      *
      * @return string url for the link href attribute
      */
-    public function url(array $urlOptions = array(), $name = null, $reset = false, $encode = true)
+    public function url(array $urlOptions = [], $name = null, $reset = false, $encode = true)
     {
         $router = Zend_Controller_Front::getInstance()->getRouter();
 

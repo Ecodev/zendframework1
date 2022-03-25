@@ -27,22 +27,22 @@ abstract class Zend_Cache
      *
      * @var array
      */
-    public static $standardFrontends = array('Core', 'Output', 'Class', 'File', 'Function', 'Page');
+    public static $standardFrontends = ['Core', 'Output', 'Class', 'File', 'Function', 'Page'];
 
     /**
      * Standard backends.
      *
      * @var array
      */
-    public static $standardBackends = array('File', 'Sqlite', 'Memcached', 'Libmemcached', 'Apc', 'ZendPlatform',
-        'Xcache', 'TwoLevels', 'WinCache', 'ZendServer_Disk', 'ZendServer_ShMem', );
+    public static $standardBackends = ['File', 'Sqlite', 'Memcached', 'Libmemcached', 'Apc', 'ZendPlatform',
+        'Xcache', 'TwoLevels', 'WinCache', 'ZendServer_Disk', 'ZendServer_ShMem', ];
 
     /**
      * Standard backends which implement the ExtendedInterface.
      *
      * @var array
      */
-    public static $standardExtendedBackends = array('File', 'Apc', 'TwoLevels', 'Memcached', 'Libmemcached', 'Sqlite', 'WinCache');
+    public static $standardExtendedBackends = ['File', 'Apc', 'TwoLevels', 'Memcached', 'Libmemcached', 'Sqlite', 'WinCache'];
 
     /**
      * Only for backward compatibility (may be removed in next major release).
@@ -51,7 +51,7 @@ abstract class Zend_Cache
      *
      * @deprecated
      */
-    public static $availableFrontends = array('Core', 'Output', 'Class', 'File', 'Function', 'Page');
+    public static $availableFrontends = ['Core', 'Output', 'Class', 'File', 'Function', 'Page'];
 
     /**
      * Only for backward compatibility (may be removed in next major release).
@@ -60,7 +60,7 @@ abstract class Zend_Cache
      *
      * @deprecated
      */
-    public static $availableBackends = array('File', 'Sqlite', 'Memcached', 'Libmemcached', 'Apc', 'ZendPlatform', 'Xcache', 'WinCache', 'TwoLevels');
+    public static $availableBackends = ['File', 'Sqlite', 'Memcached', 'Libmemcached', 'Apc', 'ZendPlatform', 'Xcache', 'WinCache', 'TwoLevels'];
 
     /**
      * Consts for clean() method.
@@ -84,7 +84,7 @@ abstract class Zend_Cache
      *
      * @return Zend_Cache_Core|Zend_Cache_Frontend
      */
-    public static function factory($frontend, $backend, $frontendOptions = array(), $backendOptions = array(), $customFrontendNaming = false, $customBackendNaming = false, $autoload = false)
+    public static function factory($frontend, $backend, $frontendOptions = [], $backendOptions = [], $customFrontendNaming = false, $customBackendNaming = false, $autoload = false)
     {
         $frontendObject = null;
         $backendObject = null;
@@ -164,7 +164,7 @@ abstract class Zend_Cache
      *
      * @return Zend_Cache_Core|Zend_Cache_Frontend
      */
-    public static function _makeFrontend($frontend, $frontendOptions = array(), $customFrontendNaming = false, $autoload = false)
+    public static function _makeFrontend($frontend, $frontendOptions = [], $customFrontendNaming = false, $autoload = false)
     {
         if (!$customFrontendNaming) {
             $frontend = self::_normalizeName($frontend);
@@ -223,7 +223,7 @@ abstract class Zend_Cache
     protected static function _normalizeName($name)
     {
         $name = ucfirst(strtolower($name));
-        $name = str_replace(array('-', '_', '.'), ' ', $name);
+        $name = str_replace(['-', '_', '.'], ' ', $name);
         $name = ucwords($name);
         $name = str_replace(' ', '', $name);
         if (stripos($name, 'ZendServer') === 0) {

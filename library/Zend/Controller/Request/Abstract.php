@@ -76,7 +76,7 @@ abstract class Zend_Controller_Request_Abstract
      *
      * @var array
      */
-    protected $_params = array();
+    protected $_params = [];
 
     /**
      * Retrieve the module name.
@@ -343,7 +343,7 @@ abstract class Zend_Controller_Request_Abstract
      */
     public function clearParams()
     {
-        $this->_params = array();
+        $this->_params = [];
 
         return $this;
     }

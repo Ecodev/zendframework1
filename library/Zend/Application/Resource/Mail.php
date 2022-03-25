@@ -82,7 +82,7 @@ class Zend_Application_Resource_Mail extends Zend_Application_Resource_ResourceA
         if (isset($options[$key]['email'])
             && !is_numeric($options[$key]['email'])
         ) {
-            $method = array(\Zend_Mail::class, 'setDefault' . ucfirst($type));
+            $method = [\Zend_Mail::class, 'setDefault' . ucfirst($type)];
             if (isset($options[$key]['name'])
                 && !is_numeric(
                     $options[$key]['name']

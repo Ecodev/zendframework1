@@ -70,7 +70,7 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
      *
      * @var array
      */
-    protected $_params = array();
+    protected $_params = [];
 
     /**
      * Route name to use when assembling URL.
@@ -163,7 +163,7 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
         if (null === $this->_active) {
             $front = Zend_Controller_Front::getInstance();
             $request = $front->getRequest();
-            $reqParams = array();
+            $reqParams = [];
             if ($request) {
                 $reqParams = $request->getParams();
                 if (!array_key_exists('module', $reqParams)) {
@@ -489,7 +489,7 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
      */
     public function clearParams()
     {
-        $this->_params = array();
+        $this->_params = [];
 
         $this->_hrefCache = null;
 
@@ -695,7 +695,7 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
     {
         return array_merge(
             parent::toArray(),
-            array(
+            [
                 'action' => $this->getAction(),
                 'controller' => $this->getController(),
                 'module' => $this->getModule(),
@@ -704,7 +704,7 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
                 'reset_params' => $this->getResetParams(),
                 'encodeUrl' => $this->getEncodeUrl(),
                 'scheme' => $this->getScheme(),
-            )
+            ]
         );
     }
 }

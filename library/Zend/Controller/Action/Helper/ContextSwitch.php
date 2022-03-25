@@ -42,7 +42,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
      *
      * @var array
      */
-    protected $_contexts = array();
+    protected $_contexts = [];
 
     /**
      * JSON auto-serialization flag.
@@ -91,18 +91,18 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
      *
      * @var array
      */
-    protected $_specialConfig = array(
+    protected $_specialConfig = [
         'setSuffix',
         'setHeaders',
         'setCallbacks',
-    );
+    ];
 
     /**
      * Methods that are not configurable via setOptions and setConfig.
      *
      * @var array
      */
-    protected $_unconfigurable = array(
+    protected $_unconfigurable = [
         'setOptions',
         'setConfig',
         'setHeader',
@@ -110,7 +110,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         'setContext',
         'setActionContext',
         'setActionContexts',
-    );
+    ];
 
     /**
      * @var Zend_Controller_Action_Helper_ViewRenderer
@@ -138,20 +138,20 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         }
 
         if (empty($this->_contexts)) {
-            $this->addContexts(array(
-                'json' => array(
+            $this->addContexts([
+                'json' => [
                     'suffix' => 'json',
-                    'headers' => array('Content-Type' => 'application/json'),
-                    'callbacks' => array(
+                    'headers' => ['Content-Type' => 'application/json'],
+                    'callbacks' => [
                         'init' => 'initJsonContext',
                         'post' => 'postJsonContext',
-                    ),
-                ),
-                'xml' => array(
+                    ],
+                ],
+                'xml' => [
                     'suffix' => 'xml',
-                    'headers' => array('Content-Type' => 'application/xml'),
-                ),
-            ));
+                    'headers' => ['Content-Type' => 'application/xml'],
+                ],
+            ]);
         }
 
         $this->init();
@@ -723,7 +723,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
     {
         $this->hasContext($context, true);
         $context = (string) $context;
-        $this->_contexts[$context]['headers'] = array();
+        $this->_contexts[$context]['headers'] = [];
 
         return $this;
     }
@@ -742,7 +742,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
             $trigger = 'TRIGGER_' . $trigger;
         }
 
-        if (!in_array($trigger, array(self::TRIGGER_INIT, self::TRIGGER_POST))) {
+        if (!in_array($trigger, [self::TRIGGER_INIT, self::TRIGGER_POST])) {
             /**
              * @see Zend_Controller_Action_Exception
              */
@@ -816,7 +816,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $this->hasContext($context, true);
         $context = (string) $context;
         if (!isset($this->_contexts[$context]['callbacks'])) {
-            $this->_contexts[$context]['callbacks'] = array();
+            $this->_contexts[$context]['callbacks'] = [];
         }
 
         foreach ($callbacks as $trigger => $callback) {
@@ -890,7 +890,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
     public function clearCallbacks($context)
     {
         $this->hasContext($context, true);
-        $this->_contexts[$context]['callbacks'] = array();
+        $this->_contexts[$context]['callbacks'] = [];
 
         return $this;
     }
@@ -996,11 +996,11 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         }
         $context = (string) $context;
 
-        $this->_contexts[$context] = array();
+        $this->_contexts[$context] = [];
 
         $this->setSuffix($context,    ($spec['suffix'] ?? ''))
-            ->setHeaders($context,   ($spec['headers'] ?? array()))
-            ->setCallbacks($context, ($spec['callbacks'] ?? array()));
+            ->setHeaders($context,   ($spec['headers'] ?? []))
+            ->setCallbacks($context, ($spec['callbacks'] ?? []));
 
         return $this;
     }
@@ -1100,7 +1100,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
      */
     public function clearContexts()
     {
-        $this->_contexts = array();
+        $this->_contexts = [];
 
         return $this;
     }
@@ -1189,7 +1189,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $contextKey = $this->_contextKey;
 
         if (!isset($controller->$contextKey)) {
-            $controller->$contextKey = array();
+            $controller->$contextKey = [];
         }
 
         if (true === $context) {
@@ -1231,7 +1231,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $contextKey = $this->_contextKey;
 
         if (!isset($controller->$contextKey)) {
-            $controller->$contextKey = array();
+            $controller->$contextKey = [];
         }
 
         if (true === $context) {
@@ -1354,12 +1354,12 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
     {
         $controller = $this->getActionController();
         if (null === $controller) {
-            return array();
+            return [];
         }
         $contextKey = $this->_contextKey;
 
         if (!isset($controller->$contextKey)) {
-            return array();
+            return [];
         }
 
         if (null !== $action) {
@@ -1368,7 +1368,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
                 return $controller->{$contextKey}[$action];
             }
 
-            return array();
+            return [];
         }
 
         return $controller->$contextKey;
@@ -1421,7 +1421,7 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         }
 
         if (null === $action) {
-            $controller->$contextKey = array();
+            $controller->$contextKey = [];
 
             return $this;
         }

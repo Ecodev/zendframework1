@@ -48,12 +48,12 @@ abstract class Zend_Date_DateObject
     /**
      * Table of Monthdays.
      */
-    private static array $_monthTable = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+    private static array $_monthTable = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     /**
      * Table of Years.
      */
-    private static array $_yearTable = array(
+    private static array $_yearTable = [
         1970 => 0,            1960 => -315_619_200,   1950 => -631_152_000,
         1940 => -946_771_200,   1930 => -1_262_304_000,  1920 => -1_577_923_200,
         1910 => -1_893_456_000,  1900 => -2_208_988_800,  1890 => -2_524_521_600,
@@ -66,7 +66,7 @@ abstract class Zend_Date_DateObject
         1700 => -8_520_336_000,  1690 => -8_835_868_800,  1680 => -9_151_488_000,
         1670 => -9_467_020_800,  1660 => -9_782_640_000,  1650 => -10_098_172_800,
         1640 => -10_413_792_000, 1630 => -10_729_324_800, 1620 => -11_044_944_000,
-        1610 => -11_360_476_800, 1600 => -11_676_096_000, );
+        1610 => -11_360_476_800, 1600 => -11_676_096_000, ];
 
     /**
      * Set this object to have a new UNIX timestamp.
@@ -251,7 +251,7 @@ abstract class Zend_Date_DateObject
 
         if (isset(self::$_cache)) {
             if (self::$_cacheTags) {
-                self::$_cache->save(serialize($date), $id, array(\Zend_Date::class));
+                self::$_cache->save(serialize($date), $id, [\Zend_Date::class]);
             } else {
                 self::$_cache->save(serialize($date), $id);
             }
@@ -355,7 +355,7 @@ abstract class Zend_Date_DateObject
 
             if (isset(self::$_cache)) {
                 if (self::$_cacheTags) {
-                    self::$_cache->save(serialize($timestamp), $idstamp, array(\Zend_Date::class));
+                    self::$_cache->save(serialize($timestamp), $idstamp, [\Zend_Date::class]);
                 } else {
                     self::$_cache->save(serialize($timestamp), $idstamp);
                 }
@@ -857,7 +857,7 @@ abstract class Zend_Date_DateObject
         $seconds = $timestamp - $minutes * 60;
 
         if ($fast === true) {
-            $array = array(
+            $array = [
                 'seconds' => $seconds,
                 'minutes' => $minutes,
                 'hours' => $hours,
@@ -865,10 +865,10 @@ abstract class Zend_Date_DateObject
                 'mon' => $month,
                 'year' => $year,
                 'yday' => floor($secondsPerYear / 86400),
-            );
+            ];
         } else {
             $dayofweek = self::dayOfWeek($year, $month, $numberdays);
-            $array = array(
+            $array = [
                 'seconds' => $seconds,
                 'minutes' => $minutes,
                 'hours' => $hours,
@@ -880,12 +880,12 @@ abstract class Zend_Date_DateObject
                 'weekday' => gmdate('l', 86400 * (3 + $dayofweek)),
                 'month' => gmdate('F', mktime(0, 0, 0, $month, 1, 1971)),
                 0 => $otimestamp,
-            );
+            ];
         }
 
         if (isset(self::$_cache)) {
             if (self::$_cacheTags) {
-                self::$_cache->save(serialize($array), $id, array(\Zend_Date::class));
+                self::$_cache->save(serialize($array), $id, [\Zend_Date::class]);
             } else {
                 self::$_cache->save(serialize($array), $id);
             }

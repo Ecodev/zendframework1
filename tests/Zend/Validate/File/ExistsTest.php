@@ -45,18 +45,18 @@ class Zend_Validate_File_ExistsTest extends \PHPUnit\Framework\TestCase
     public function testBasic()
     {
         $baseDir = __DIR__;
-        $valuesExpected = array(
-            array($baseDir, 'testsize.mo', false),
-            array($baseDir . '/_files', 'testsize.mo', true),
-        );
+        $valuesExpected = [
+            [$baseDir, 'testsize.mo', false],
+            [$baseDir . '/_files', 'testsize.mo', true],
+        ];
 
-        $files = array(
+        $files = [
             'name' => 'testsize.mo',
             'type' => 'text',
             'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
             'error' => 0,
-        );
+        ];
 
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_File_Exists($element[0]);
@@ -72,19 +72,19 @@ class Zend_Validate_File_ExistsTest extends \PHPUnit\Framework\TestCase
             );
         }
 
-        $valuesExpected = array(
-            array($baseDir, 'testsize.mo', false),
-            array($baseDir . '/_files', 'testsize.mo', true),
-        );
+        $valuesExpected = [
+            [$baseDir, 'testsize.mo', false],
+            [$baseDir . '/_files', 'testsize.mo', true],
+        ];
 
-        $files = array(
+        $files = [
             'name' => 'testsize.mo',
             'type' => 'text',
             'size' => 200,
             'tmp_name' => __DIR__ . '/_files/testsize.mo',
             'error' => 0,
             'destination' => __DIR__ . '/_files',
-        );
+        ];
 
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_File_Exists($element[0]);
@@ -100,10 +100,10 @@ class Zend_Validate_File_ExistsTest extends \PHPUnit\Framework\TestCase
             );
         }
 
-        $valuesExpected = array(
-            array($baseDir, 'testsize.mo', false, true),
-            array($baseDir . '/_files', 'testsize.mo', false, true),
-        );
+        $valuesExpected = [
+            [$baseDir, 'testsize.mo', false, true],
+            [$baseDir . '/_files', 'testsize.mo', false, true],
+        ];
 
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_File_Exists();
@@ -128,11 +128,11 @@ class Zend_Validate_File_ExistsTest extends \PHPUnit\Framework\TestCase
         $validator = new Zend_Validate_File_Exists('C:/temp');
         $this->assertEquals('C:/temp', $validator->getDirectory());
 
-        $validator = new Zend_Validate_File_Exists(array('temp', 'dir', 'jpg'));
+        $validator = new Zend_Validate_File_Exists(['temp', 'dir', 'jpg']);
         $this->assertEquals('temp,dir,jpg', $validator->getDirectory());
 
-        $validator = new Zend_Validate_File_Exists(array('temp', 'dir', 'jpg'));
-        $this->assertEquals(array('temp', 'dir', 'jpg'), $validator->getDirectory(true));
+        $validator = new Zend_Validate_File_Exists(['temp', 'dir', 'jpg']);
+        $this->assertEquals(['temp', 'dir', 'jpg'], $validator->getDirectory(true));
     }
 
     /**
@@ -143,15 +143,15 @@ class Zend_Validate_File_ExistsTest extends \PHPUnit\Framework\TestCase
         $validator = new Zend_Validate_File_Exists('temp');
         $validator->setDirectory('gif');
         $this->assertEquals('gif', $validator->getDirectory());
-        $this->assertEquals(array('gif'), $validator->getDirectory(true));
+        $this->assertEquals(['gif'], $validator->getDirectory(true));
 
         $validator->setDirectory('jpg, temp');
         $this->assertEquals('jpg,temp', $validator->getDirectory());
-        $this->assertEquals(array('jpg', 'temp'), $validator->getDirectory(true));
+        $this->assertEquals(['jpg', 'temp'], $validator->getDirectory(true));
 
-        $validator->setDirectory(array('zip', 'ti'));
+        $validator->setDirectory(['zip', 'ti']);
         $this->assertEquals('zip,ti', $validator->getDirectory());
-        $this->assertEquals(array('zip', 'ti'), $validator->getDirectory(true));
+        $this->assertEquals(['zip', 'ti'], $validator->getDirectory(true));
     }
 
     /**
@@ -162,18 +162,18 @@ class Zend_Validate_File_ExistsTest extends \PHPUnit\Framework\TestCase
         $validator = new Zend_Validate_File_Exists('temp');
         $validator->addDirectory('gif');
         $this->assertEquals('temp,gif', $validator->getDirectory());
-        $this->assertEquals(array('temp', 'gif'), $validator->getDirectory(true));
+        $this->assertEquals(['temp', 'gif'], $validator->getDirectory(true));
 
         $validator->addDirectory('jpg, to');
         $this->assertEquals('temp,gif,jpg,to', $validator->getDirectory());
-        $this->assertEquals(array('temp', 'gif', 'jpg', 'to'), $validator->getDirectory(true));
+        $this->assertEquals(['temp', 'gif', 'jpg', 'to'], $validator->getDirectory(true));
 
-        $validator->addDirectory(array('zip', 'ti'));
+        $validator->addDirectory(['zip', 'ti']);
         $this->assertEquals('temp,gif,jpg,to,zip,ti', $validator->getDirectory());
-        $this->assertEquals(array('temp', 'gif', 'jpg', 'to', 'zip', 'ti'), $validator->getDirectory(true));
+        $this->assertEquals(['temp', 'gif', 'jpg', 'to', 'zip', 'ti'], $validator->getDirectory(true));
 
         $validator->addDirectory('');
         $this->assertEquals('temp,gif,jpg,to,zip,ti', $validator->getDirectory());
-        $this->assertEquals(array('temp', 'gif', 'jpg', 'to', 'zip', 'ti'), $validator->getDirectory(true));
+        $this->assertEquals(['temp', 'gif', 'jpg', 'to', 'zip', 'ti'], $validator->getDirectory(true));
     }
 }

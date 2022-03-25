@@ -63,7 +63,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 
     public function testSimpleWithAllParamsProducesAppropriateUrl()
     {
-        $url = $this->helper->simple('baz', 'bar', 'foo', array('bat' => 'foo', 'ho' => 'hum'));
+        $url = $this->helper->simple('baz', 'bar', 'foo', ['bat' => 'foo', 'ho' => 'hum']);
         $this->assertEquals('/foo/bar/baz', substr($url, 0, 12));
         $this->assertStringContainsString('/bat/foo', $url);
         $this->assertStringContainsString('/ho/hum', $url);
@@ -74,7 +74,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
         $request = $this->front->getRequest();
         $request->setModuleName('foo')
             ->setControllerName('bar');
-        $url = $this->helper->simple('baz', null, null, array('bat' => 'foo', 'ho' => 'hum'));
+        $url = $this->helper->simple('baz', null, null, ['bat' => 'foo', 'ho' => 'hum']);
         $this->assertEquals('/foo/bar/baz', substr($url, 0, 12));
         $this->assertStringContainsString('/bat/foo', $url);
         $this->assertStringContainsString('/ho/hum', $url);
@@ -82,7 +82,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 
     public function testSimpleWithDefaultModuleProducesUrlWithoutModuleSegment()
     {
-        $url = $this->helper->simple('baz', 'bar', 'default', array('bat' => 'foo', 'ho' => 'hum'));
+        $url = $this->helper->simple('baz', 'bar', 'default', ['bat' => 'foo', 'ho' => 'hum']);
         $this->assertEquals('/bar/baz', substr($url, 0, 8));
     }
 
@@ -91,15 +91,15 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
         $router = $this->front->getRouter();
         $route = new Zend_Controller_Router_Route(
             'foo/:action/:page',
-            array(
+            [
                 'module' => 'default',
                 'controller' => 'foobar',
                 'action' => 'bazbat',
                 'page' => 1,
-            )
+            ]
         );
         $router->addRoute('foo', $route);
-        $url = $this->helper->url(array('action' => 'bar', 'page' => 3), 'foo');
+        $url = $this->helper->url(['action' => 'bar', 'page' => 3], 'foo');
         $this->assertEquals('/foo/bar/3', $url);
     }
 
@@ -108,15 +108,15 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
         $router = $this->front->getRouter();
         $route = new Zend_Controller_Router_Route(
             'foo/:action/:page',
-            array(
+            [
                 'module' => 'default',
                 'controller' => 'foobar',
                 'action' => 'bazbat',
                 'page' => 1,
-            )
+            ]
         );
         $router->addRoute('foo', $route);
-        $url = $this->helper->url(array(), 'foo');
+        $url = $this->helper->url([], 'foo');
         $this->assertEquals('/foo', $url);
     }
 
@@ -124,13 +124,13 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
     {
         $this->front->getRouter()->addDefaultRoutes();
         $this->front->addModuleDirectory(__DIR__ . '/../../_files/modules');
-        $url = $this->helper->url(array(
+        $url = $this->helper->url([
             'module' => 'foo',
             'controller' => 'bar',
             'action' => 'baz',
             'bat' => 'foo',
             'ho' => 'hum',
-        ));
+        ]);
         $this->assertEquals('/foo/bar/baz', substr($url, 0, 12));
         $this->assertStringContainsString('/bat/foo', $url);
         $this->assertStringContainsString('/ho/hum', $url);
@@ -138,7 +138,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 
     public function testDirectProxiesToSimple()
     {
-        $url = $this->helper->direct('baz', 'bar', 'foo', array('bat' => 'foo', 'ho' => 'hum'));
+        $url = $this->helper->direct('baz', 'bar', 'foo', ['bat' => 'foo', 'ho' => 'hum']);
         $this->assertEquals('/foo/bar/baz', substr($url, 0, 12));
         $this->assertStringContainsString('/bat/foo', $url);
         $this->assertStringContainsString('/ho/hum', $url);
@@ -155,7 +155,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
         $request->setModuleName('module')
             ->setControllerName('controller');
 
-        $url = $this->helper->simple('action', null, null, array('foo' => 'bar'));
+        $url = $this->helper->simple('action', null, null, ['foo' => 'bar']);
         $this->assertEquals('/baseurl/module/controller/action/foo/bar', $url);
     }
 }

@@ -119,10 +119,10 @@ class Zend_Config_Ini extends Zend_Config
 
         if (null === $section) {
             // Load entire file
-            $dataArray = array();
+            $dataArray = [];
             foreach ($iniArray as $sectionName => $sectionData) {
                 if (!is_array($sectionData)) {
-                    $dataArray = $this->_arrayMergeRecursive($dataArray, $this->_processKey(array(), $sectionName, $sectionData));
+                    $dataArray = $this->_arrayMergeRecursive($dataArray, $this->_processKey([], $sectionName, $sectionData));
                 } else {
                     $dataArray[$sectionName] = $this->_processSection($iniArray, $sectionName);
                 }
@@ -131,9 +131,9 @@ class Zend_Config_Ini extends Zend_Config
         } else {
             // Load one or more sections
             if (!is_array($section)) {
-                $section = array($section);
+                $section = [$section];
             }
-            $dataArray = array();
+            $dataArray = [];
             foreach ($section as $sectionName) {
                 if (!isset($iniArray[$sectionName])) {
                     /**
@@ -161,7 +161,7 @@ class Zend_Config_Ini extends Zend_Config
      */
     protected function _parseIniFile($filename)
     {
-        set_error_handler(array($this, '_loadFileErrorHandler'));
+        set_error_handler([$this, '_loadFileErrorHandler']);
         $iniArray = parse_ini_file($filename, true); // Warnings and errors are suppressed
         restore_error_handler();
 
@@ -193,7 +193,7 @@ class Zend_Config_Ini extends Zend_Config
     protected function _loadIniFile($filename)
     {
         $loaded = $this->_parseIniFile($filename);
-        $iniArray = array();
+        $iniArray = [];
         foreach ($loaded as $key => $data) {
             $pieces = explode($this->_sectionSeparator, $key);
             $thisSection = trim($pieces[0]);
@@ -205,7 +205,7 @@ class Zend_Config_Ini extends Zend_Config
 
                 case 2:
                     $extendedSection = trim($pieces[1]);
-                    $iniArray[$thisSection] = array_merge(array(';extends' => $extendedSection), $data);
+                    $iniArray[$thisSection] = array_merge([';extends' => $extendedSection], $data);
 
                     break;
 
@@ -233,7 +233,7 @@ class Zend_Config_Ini extends Zend_Config
      *
      * @return array
      */
-    protected function _processSection($iniArray, $section, $config = array())
+    protected function _processSection($iniArray, $section, $config = [])
     {
         $thisSection = $iniArray[$section];
 
@@ -279,9 +279,9 @@ class Zend_Config_Ini extends Zend_Config
                 if (!isset($config[$pieces[0]])) {
                     if ($pieces[0] === '0' && !empty($config)) {
                         // convert the current values in $config into an array
-                        $config = array($pieces[0] => $config);
+                        $config = [$pieces[0] => $config];
                     } else {
-                        $config[$pieces[0]] = array();
+                        $config[$pieces[0]] = [];
                     }
                 } elseif (!is_array($config[$pieces[0]])) {
                     /**

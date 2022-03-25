@@ -73,7 +73,7 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
     public function testRendersOptionsAsHtmlAttribsByDefault()
     {
         $element = new Zend_Form_Element('foo');
-        $options = array('tag' => 'div', 'class' => 'foobar', 'id' => 'foo');
+        $options = ['tag' => 'div', 'class' => 'foobar', 'id' => 'foo'];
         $this->decorator->setElement($element)
             ->setOptions($options);
         $html = $this->decorator->render('');
@@ -90,7 +90,7 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
     public function testDoesNotRenderAttribsWhenNoAttribsOptionSet()
     {
         $element = new Zend_Form_Element('foo');
-        $options = array('tag' => 'div', 'class' => 'foobar', 'id' => 'foo', 'noAttribs' => true);
+        $options = ['tag' => 'div', 'class' => 'foobar', 'id' => 'foo', 'noAttribs' => true];
         $this->decorator->setElement($element)
             ->setOptions($options);
         $html = $this->decorator->render('');
@@ -107,7 +107,7 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
     public function testCanRenderOnlyOpeningTag()
     {
         $element = new Zend_Form_Element('foo');
-        $options = array('tag' => 'div', 'class' => 'foobar', 'id' => 'foo', 'openOnly' => true);
+        $options = ['tag' => 'div', 'class' => 'foobar', 'id' => 'foo', 'openOnly' => true];
         $this->decorator->setElement($element)
             ->setOptions($options);
         $html = $this->decorator->render('');
@@ -126,7 +126,7 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
     public function testCanRenderOnlyClosingTag()
     {
         $element = new Zend_Form_Element('foo');
-        $options = array('tag' => 'div', 'class' => 'foobar', 'id' => 'foo', 'closeOnly' => true);
+        $options = ['tag' => 'div', 'class' => 'foobar', 'id' => 'foo', 'closeOnly' => true];
         $this->decorator->setElement($element)
             ->setOptions($options);
         $html = $this->decorator->render('');
@@ -143,7 +143,7 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
     public function testArrayAttributesAreRenderedAsSpaceSeparatedLists()
     {
         $element = new Zend_Form_Element('foo');
-        $options = array('tag' => 'div', 'class' => array('foobar', 'bazbat'), 'id' => 'foo');
+        $options = ['tag' => 'div', 'class' => ['foobar', 'bazbat'], 'id' => 'foo'];
         $this->decorator->setElement($element)
             ->setOptions($options);
         $html = $this->decorator->render('');
@@ -152,11 +152,11 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
 
     public function testAppendPlacementWithCloseOnlyRendersClosingTagFollowingContent()
     {
-        $options = array(
+        $options = [
             'closeOnly' => true,
             'tag' => 'div',
             'placement' => 'append',
-        );
+        ];
         $this->decorator->setOptions($options);
         $html = $this->decorator->render('content');
         $this->assertRegexp('#(content).*?(</div>)#', $html, $html);
@@ -164,11 +164,11 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
 
     public function testAppendPlacementWithOpenOnlyRendersOpeningTagFollowingContent()
     {
-        $options = array(
+        $options = [
             'openOnly' => true,
             'tag' => 'div',
             'placement' => 'append',
-        );
+        ];
         $this->decorator->setOptions($options);
         $html = $this->decorator->render('content');
         $this->assertRegexp('#(content).*?(<div>)#', $html, $html);
@@ -176,11 +176,11 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
 
     public function testPrependPlacementWithCloseOnlyRendersClosingTagBeforeContent()
     {
-        $options = array(
+        $options = [
             'closeOnly' => true,
             'tag' => 'div',
             'placement' => 'prepend',
-        );
+        ];
         $this->decorator->setOptions($options);
         $html = $this->decorator->render('content');
         $this->assertRegexp('#(</div>).*?(content)#', $html, $html);
@@ -188,11 +188,11 @@ class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
 
     public function testPrependPlacementWithOpenOnlyRendersOpeningTagBeforeContent()
     {
-        $options = array(
+        $options = [
             'openOnly' => true,
             'tag' => 'div',
             'placement' => 'prepend',
-        );
+        ];
         $this->decorator->setOptions($options);
         $html = $this->decorator->render('content');
         $this->assertRegexp('#(<div>).*?(content)#', $html, $html);

@@ -36,7 +36,7 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
 
     protected $_oldRouter;
 
-    protected $_oldServer = array();
+    protected $_oldServer = [];
 
     /**
      * Class name for view helper to test.
@@ -143,16 +143,16 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
         $rendered1 = $this->_getExpected('sitemap/default1.xml');
         $rendered2 = $this->_getExpected('sitemap/default2.xml');
 
-        $expected = array(
+        $expected = [
             'registered' => $rendered1,
             'supplied' => $rendered2,
             'registered_again' => $rendered1,
-        );
-        $actual = array(
+        ];
+        $actual = [
             'registered' => $this->_helper->render(),
             'supplied' => $this->_helper->render($this->_nav2),
             'registered_again' => $this->_helper->render(),
-        );
+        ];
 
         $this->assertEquals($expected, $actual);
     }
@@ -212,7 +212,7 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
     public function testThrowExceptionOnInvalidLoc()
     {
         $nav = clone $this->_nav2;
-        $nav->addPage(array('label' => 'Invalid', 'uri' => 'http://w..'));
+        $nav->addPage(['label' => 'Invalid', 'uri' => 'http://w..']);
 
         try {
             $this->_helper->render($nav);
@@ -232,7 +232,7 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
     public function testDisablingValidators()
     {
         $nav = clone $this->_nav2;
-        $nav->addPage(array('label' => 'Invalid', 'uri' => 'http://w.'));
+        $nav->addPage(['label' => 'Invalid', 'uri' => 'http://w.']);
         $this->_helper->setUseSitemapValidators(false);
 
         $expected = $this->_getExpected('sitemap/invalid.xml');
@@ -282,7 +282,7 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
         $nav = clone $this->_nav2;
         $this->_helper->setUseSitemapValidators(false);
         $this->_helper->setUseSchemaValidation(true);
-        $nav->addPage(array('label' => 'Invalid', 'uri' => 'http://w.'));
+        $nav->addPage(['label' => 'Invalid', 'uri' => 'http://w.']);
 
         try {
             $this->_helper->render($nav);

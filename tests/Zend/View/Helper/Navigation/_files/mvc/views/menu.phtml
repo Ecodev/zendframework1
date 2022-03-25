@@ -3,7 +3,7 @@ $isContainer = $this->container instanceof Zend_Navigation_Container
              ? 'yes'
              : 'no';
 
-$pages = array();
+$pages = [];
 foreach ($this->container as $page) {
     $pages[] = $page->getLabel();
 }

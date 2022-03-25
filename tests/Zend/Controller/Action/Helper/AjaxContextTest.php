@@ -81,7 +81,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
         $this->controller = new Zend_Controller_Action_Helper_AjaxContextTestController(
             $this->request,
             $this->response,
-            array()
+            []
         );
         $this->helper->setActionController($this->controller);
     }
@@ -191,7 +191,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
                     new Zend_Controller_Action_Helper_AjaxContextTestController(
                         $request,
                         $this->response,
-                        array()
+                        []
                     )
         );
 
@@ -222,11 +222,11 @@ class ZendTest_Controller_Request_SimpleMock_AjaxTest extends Zend_Controller_Re
 
 class Zend_Controller_Action_Helper_AjaxContextTestController extends Zend_Controller_Action
 {
-    public $ajaxable = array(
-        'foo' => array('xml'),
-        'bar' => array('xml', 'json'),
-        'baz' => array(),
-    );
+    public $ajaxable = [
+        'foo' => ['xml'],
+        'bar' => ['xml', 'json'],
+        'baz' => [],
+    ];
 }
 
 class Zend_Controller_Action_Helper_AjaxContextTest_LayoutOverride extends Zend_Layout

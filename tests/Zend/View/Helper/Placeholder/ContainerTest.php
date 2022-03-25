@@ -49,7 +49,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
      */
     public function setUp(): void
     {
-        $this->container = new Zend_View_Helper_Placeholder_Container(array());
+        $this->container = new Zend_View_Helper_Placeholder_Container([]);
     }
 
     /**
@@ -83,7 +83,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
     {
         $this->container['foo'] = 'bar';
         $this->container['bar'] = 'baz';
-        $expected = array('foo' => 'bar', 'bar' => 'baz');
+        $expected = ['foo' => 'bar', 'bar' => 'baz'];
         $return = $this->container->getValue();
         $this->assertEquals($expected, $return);
     }
@@ -325,7 +325,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->container['foo'] = 'bar';
         $this->container->prepend('baz');
 
-        $expected = array('baz', 'foo' => 'bar');
+        $expected = ['baz', 'foo' => 'bar'];
         $array = $this->container->getArrayCopy();
         $this->assertSame($expected, $array);
     }

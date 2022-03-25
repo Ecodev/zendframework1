@@ -32,7 +32,7 @@ class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
 
     public function testConstructorThrowsInvalidArgumentExceptionForNonDirectoryIteratorArgument()
     {
-        $iterator = new ArrayIterator(array());
+        $iterator = new ArrayIterator([]);
         $this->expectException(\InvalidArgumentException::class);
         $locator = new Zend_File_ClassFileLocator($iterator);
     }

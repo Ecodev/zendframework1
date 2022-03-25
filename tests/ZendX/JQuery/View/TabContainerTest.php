@@ -32,7 +32,7 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
     public function testShouldAppendToJqueryHelper()
     {
         $this->view->tabContainer()->addPane('elem1', 'test1', 'test1');
-        $element = $this->view->tabContainer('elem1', array('option' => 'true'), array());
+        $element = $this->view->tabContainer('elem1', ['option' => 'true'], []);
 
         $jquery = $this->view->jQuery()->__toString();
         $this->assertStringContainsString('tabs(', $jquery);
@@ -43,9 +43,9 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
     {
         $tabs = $this->view->tabContainer()->addPane('container1', 'elem1', 'Text1')
             ->addPane('container1', 'elem2', 'Text2')
-            ->tabContainer('container1', array(), array());
+            ->tabContainer('container1', [], []);
 
-        $this->assertEquals(array('$("#container1").tabs({});'), $this->jquery->getOnLoadActions());
+        $this->assertEquals(['$("#container1").tabs({});'], $this->jquery->getOnLoadActions());
         $this->assertStringContainsString('elem1', $tabs);
         $this->assertStringContainsString('Text1', $tabs);
         $this->assertStringContainsString('elem2', $tabs);
@@ -56,11 +56,11 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
 
     public function testShoudAllowAddingTabsFromUrls()
     {
-        $tabs = $this->view->tabContainer()->addPane('container1', 'elem1', '', array('contentUrl' => 'blub.html'))
-            ->addPane('container1', 'elem2', '', array('contentUrl' => 'cookie.html'))
-            ->tabContainer('container1', array(), array());
+        $tabs = $this->view->tabContainer()->addPane('container1', 'elem1', '', ['contentUrl' => 'blub.html'])
+            ->addPane('container1', 'elem2', '', ['contentUrl' => 'cookie.html'])
+            ->tabContainer('container1', [], []);
 
-        $this->assertEquals(array('$("#container1").tabs({});'), $this->jquery->getOnLoadActions());
+        $this->assertEquals(['$("#container1").tabs({});'], $this->jquery->getOnLoadActions());
         $this->assertStringContainsString('elem1', $tabs);
         $this->assertStringContainsString('elem2', $tabs);
         $this->assertStringContainsString('href="blub.html"', $tabs);
@@ -73,13 +73,13 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
         echo 'Lorem Ipsum!';
         $this->view->tabPane()->captureEnd('container1');
 
-        $this->view->tabPane()->captureStart('container1', 'elem2', array('contentUrl' => 'foo.html'));
+        $this->view->tabPane()->captureStart('container1', 'elem2', ['contentUrl' => 'foo.html']);
         echo 'This is captured, but not displayed: contentUrl overrides this output.';
         $this->view->tabPane()->captureEnd('container1');
 
-        $tabs = $this->view->tabContainer('container1', array(), array());
+        $tabs = $this->view->tabContainer('container1', [], []);
 
-        $this->assertEquals(array('$("#container1").tabs({});'), $this->jquery->getOnLoadActions());
+        $this->assertEquals(['$("#container1").tabs({});'], $this->jquery->getOnLoadActions());
         $this->assertStringContainsString('elem1', $tabs);
         $this->assertStringContainsString('elem2', $tabs);
         $this->assertStringContainsString('Lorem Ipsum!', $tabs);
@@ -89,12 +89,12 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
 
     public function testShouldAllowUsingTabPane()
     {
-        $this->view->tabPane('container1', 'Lorem Ipsum!', array('title' => 'elem1'));
-        $this->view->tabPane('container1', '', array('title' => 'elem2', 'contentUrl' => 'foo.html'));
+        $this->view->tabPane('container1', 'Lorem Ipsum!', ['title' => 'elem1']);
+        $this->view->tabPane('container1', '', ['title' => 'elem2', 'contentUrl' => 'foo.html']);
 
-        $tabs = $this->view->tabContainer('container1', array(), array());
+        $tabs = $this->view->tabContainer('container1', [], []);
 
-        $this->assertEquals(array('$("#container1").tabs({});'), $this->jquery->getOnLoadActions());
+        $this->assertEquals(['$("#container1").tabs({});'], $this->jquery->getOnLoadActions());
         $this->assertStringContainsString('elem1', $tabs);
         $this->assertStringContainsString('elem2', $tabs);
         $this->assertStringContainsString('Lorem Ipsum!', $tabs);

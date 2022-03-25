@@ -51,12 +51,12 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         $this->_origServer = $_SERVER;
-        $_GET = array();
-        $_POST = array();
-        $_SERVER = array(
+        $_GET = [];
+        $_POST = [];
+        $_SERVER = [
             'SCRIPT_FILENAME' => __FILE__,
             'PHP_SELF' => __FILE__,
-        );
+        ];
         $this->_request = new Zend_Controller_Request_Http('http://framework.zend.com/news/3?var1=val1&var2=val2#anchor');
     }
 
@@ -201,11 +201,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testSetGetParams()
     {
-        $params = array(
+        $params = [
             'foo' => 'bar',
             'boo' => 'bah',
             'fee' => 'fi',
-        );
+        ];
         $this->_request->setParams($params);
         $received = $this->_request->getParams();
         $this->assertSame($params, array_intersect_assoc($params, $received));
@@ -214,11 +214,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testGetParamsWithNoGetOrPost()
     {
         unset($_GET, $_POST);
-        $params = array(
+        $params = [
             'foo' => 'bar',
             'boo' => 'bah',
             'fee' => 'fi',
-        );
+        ];
         $this->_request->setParams($params);
         $received = $this->_request->getParams();
         $this->assertSame($params, array_intersect_assoc($params, $received));
@@ -226,17 +226,17 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testGetParamsWithGetAndPost()
     {
-        $_GET = array(
+        $_GET = [
             'get' => true,
-        );
-        $_POST = array(
+        ];
+        $_POST = [
             'post' => true,
-        );
-        $params = array(
+        ];
+        $params = [
             'foo' => 'bar',
             'boo' => 'bah',
             'fee' => 'fi',
-        );
+        ];
         $this->_request->setParams($params);
 
         $expected = $params + $_GET + $_POST;
@@ -249,19 +249,19 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetParamsWithGetOrPost()
     {
-        $_GET = array(
+        $_GET = [
             'get' => true,
-        );
-        $_POST = array(
+        ];
+        $_POST = [
             'post' => true,
-        );
+        ];
 
-        $this->_request->setParamSources(array('_GET'));
+        $this->_request->setParamSources(['_GET']);
         $params = $this->_request->getParams();
         $this->assertArrayHasKey('get', $params);
         $this->assertArrayNotHasKey('post', $params);
 
-        $this->_request->setParamSources(array('_POST'));
+        $this->_request->setParamSources(['_POST']);
         $params = $this->_request->getParams();
         $this->assertArrayHasKey('post', $params);
         $this->assertArrayNotHasKey('get', $params);
@@ -350,7 +350,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('foo', $this->_request->getQuery('BAR', 'foo'));
 
-        $expected = array('var1' => 'val1', 'var2' => 'val2');
+        $expected = ['var1' => 'val1', 'var2' => 'val2'];
         $this->assertEquals($expected, $this->_request->getQuery());
     }
 
@@ -362,7 +362,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('foo', $this->_request->getPost('BAR', 'foo'));
 
         $_POST['post2'] = 'val2';
-        $expected = array('post1' => 'val1', 'post2' => 'val2');
+        $expected = ['post1' => 'val1', 'post2' => 'val2'];
         $this->assertEquals($expected, $this->_request->getPost());
     }
 
@@ -402,7 +402,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     {
         $this->_request->setAlias('controller', 'var1');
         $this->_request->setAlias('action', 'var2');
-        $this->assertSame(array('controller' => 'var1', 'action' => 'var2'), $this->_request->getAliases());
+        $this->assertSame(['controller' => 'var1', 'action' => 'var2'], $this->_request->getAliases());
     }
 
     public function testGetRequestUri()
@@ -430,12 +430,12 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function prefixProvider()
     {
-        return array(
-            array(null),
-            array('/public'),
-            array('/publicite'),
-            array('/foo'),
-        );
+        return [
+            [null],
+            ['/public'],
+            ['/publicite'],
+            ['/foo'],
+        ];
     }
 
     /**
@@ -451,10 +451,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['SCRIPT_NAME'] = $prefix . '/index.php';
         $_SERVER['PHP_SELF'] = $prefix . '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html' . $prefix . '/index.php';
-        $_GET = array(
+        $_GET = [
             'var1' => 'val1',
             'var2' => 'val2',
-        );
+        ];
         $request = new Zend_Controller_Request_Http();
         if (null !== $prefix) {
             $request->setBasePath($prefix);
@@ -487,10 +487,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['SCRIPT_NAME'] = '/home.php';
         $_SERVER['PHP_SELF'] = '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
-        $_GET = array(
+        $_GET = [
             'var1' => 'val1',
             'var2' => 'val2',
-        );
+        ];
         $request = new Zend_Controller_Request_Http();
 
         $this->assertEquals('/index.php', $request->getBaseUrl());
@@ -503,10 +503,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['PHP_SELF'] = '/home.php';
         $_SERVER['ORIG_SCRIPT_NAME'] = '/index.php';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
-        $_GET = array(
+        $_GET = [
             'var1' => 'val1',
             'var2' => 'val2',
-        );
+        ];
         $request = new Zend_Controller_Request_Http();
 
         $this->assertEquals('/index.php', $request->getBaseUrl());
@@ -517,10 +517,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['REQUEST_URI'] = '/index.php/news/3?var1=val1&var2=val2';
         $_SERVER['PHP_SELF'] = '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
-        $_GET = array(
+        $_GET = [
             'var1' => 'val1',
             'var2' => 'val2',
-        );
+        ];
         $request = new Zend_Controller_Request_Http();
 
         $this->assertEquals('/index.php', $request->getBaseUrl());
@@ -532,10 +532,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['HTTP_X_REWRITE_URL'] = '/index.php/news/3?var1=val1&var2=val2';
         $_SERVER['PHP_SELF'] = '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
-        $_GET = array(
+        $_GET = [
             'var1' => 'val1',
             'var2' => 'val2',
-        );
+        ];
         $request = new Zend_Controller_Request_Http();
 
         $this->assertEquals('/index.php', $request->getBaseUrl());
@@ -547,10 +547,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['HTTP_X_ORIGINAL_URL'] = '/index.php/news/3?var1=val1&var2=val2';
         $_SERVER['PHP_SELF'] = '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
-        $_GET = array(
+        $_GET = [
             'var1' => 'val1',
             'var2' => 'val2',
-        );
+        ];
         $request = new Zend_Controller_Request_Http();
 
         $this->assertEquals('/index.php', $request->getBaseUrl());
@@ -563,10 +563,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['QUERY_STRING'] = 'var1=val1&var2=val2';
         $_SERVER['PHP_SELF'] = '/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
-        $_GET = array(
+        $_GET = [
             'var1' => 'val1',
             'var2' => 'val2',
-        );
+        ];
         $request = new Zend_Controller_Request_Http();
 
         $this->assertEquals('/index.php', $request->getBaseUrl());
@@ -597,10 +597,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
         $_SERVER['REQUEST_URI'] = '/html/index.php/news/3?var1=val1&var2=val2';
         $_SERVER['PHP_SELF'] = '/html/index.php/news/3';
         $_SERVER['SCRIPT_FILENAME'] = '/var/web/html/index.php';
-        $_GET = array(
+        $_GET = [
             'var1' => 'val1',
             'var2' => 'val2',
-        );
+        ];
         $request = new Zend_Controller_Request_Http();
 
         $this->assertEquals('/html', $request->getBasePath(), $request->getBaseUrl());
@@ -698,10 +698,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testSetNullParamsUnsetsKeys()
     {
-        $this->_request->setParams(array('foo' => 'bar', 'bar' => 'baz'));
+        $this->_request->setParams(['foo' => 'bar', 'bar' => 'baz']);
         $this->assertEquals('bar', $this->_request->getParam('foo'));
         $this->assertEquals('baz', $this->_request->getParam('bar'));
-        $this->_request->setParams(array('foo' => null));
+        $this->_request->setParams(['foo' => null]);
         $params = $this->_request->getParams();
         $this->assertFalse(isset($params['foo']));
         $this->assertTrue(isset($params['bar']));
@@ -731,7 +731,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetAndPostBothInDefaultParamSources()
     {
-        $this->assertEquals(array('_GET', '_POST'), $this->_request->getParamSources());
+        $this->assertEquals(['_GET', '_POST'], $this->_request->getParamSources());
     }
 
     /**
@@ -740,10 +740,10 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
     public function testCanSetParamSources()
     {
         $this->testGetAndPostBothInDefaultParamSources();
-        $this->_request->setParamSources(array());
-        $this->assertSame(array(), $this->_request->getParamSources());
-        $this->_request->setParamSources(array('_GET'));
-        $this->assertSame(array('_GET'), $this->_request->getParamSources());
+        $this->_request->setParamSources([]);
+        $this->assertSame([], $this->_request->getParamSources());
+        $this->_request->setParamSources(['_GET']);
+        $this->assertSame(['_GET'], $this->_request->getParamSources());
     }
 
     /**
@@ -751,9 +751,9 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testParamSourcesHonoredByGetParam()
     {
-        $_GET = array('foo' => 'bar');
-        $_POST = array('foo' => 'baz');
-        $this->_request->setParamSources(array('_POST'));
+        $_GET = ['foo' => 'bar'];
+        $_POST = ['foo' => 'baz'];
+        $this->_request->setParamSources(['_POST']);
         $this->assertEquals('baz', $this->_request->getParam('foo'));
     }
 
@@ -881,11 +881,11 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetParamsShouldHonorParamSourcesSetting()
     {
-        $_GET = array('foo' => 'bar');
-        $_POST = array('foo' => 'baz');
-        $this->_request->setParamSources(array('_POST'));
+        $_GET = ['foo' => 'bar'];
+        $_POST = ['foo' => 'baz'];
+        $this->_request->setParamSources(['_POST']);
         $params = $this->_request->getParams();
-        $this->assertEquals(array('foo' => 'baz'), $params);
+        $this->assertEquals(['foo' => 'baz'], $params);
     }
 
     /**

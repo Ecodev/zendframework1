@@ -83,7 +83,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->controller = new Zend_Controller_Action_Helper_Redirector_TestController(
             $this->request,
             $this->response,
-            array()
+            []
         );
 
         // Add default routes
@@ -226,7 +226,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
             ->setControllerName('list')
             ->setActionName('all');
 
-        $this->redirector->setGoto('item', 'view', 'news', array('id' => 42));
+        $this->redirector->setGoto('item', 'view', 'news', ['id' => 42]);
         $this->assertEquals('/news/view/item/id/42', $this->redirector->getRedirectUrl());
     }
 
@@ -249,13 +249,13 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $router = Zend_Controller_Front::getInstance()->getRouter();
         $route = new Zend_Controller_Router_Route(
             'blog/archive/:id',
-            array('controller' => 'blog', 'action' => 'view', 'id' => false),
-            array('id' => '\d+')
+            ['controller' => 'blog', 'action' => 'view', 'id' => false],
+            ['id' => '\d+']
         );
         $router->addRoute('blogArchive', $route);
 
         $this->redirector->setGotoRoute(
-            array('id' => 281),
+            ['id' => 281],
             'blogArchive'
         );
 
@@ -279,7 +279,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testSetGotoUrlWithBaseUrlUsingPrependBaseOption()
     {
         $this->request->setBaseUrl('/my');
-        $this->redirector->setGotoUrl('/foo/bar', array('prependBase' => true));
+        $this->redirector->setGotoUrl('/foo/bar', ['prependBase' => true]);
         $this->assertEquals('/my/foo/bar', $this->redirector->getRedirectUrl());
     }
 
@@ -293,7 +293,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
 
     public function testSetGotoUrlWithHttpCodeUsingCodeOption()
     {
-        $this->redirector->setGotoUrl('/foo/bar', array('code' => 301));
+        $this->redirector->setGotoUrl('/foo/bar', ['code' => 301]);
         $this->assertEquals('/foo/bar', $this->redirector->getRedirectUrl());
         $this->assertEquals(301, $this->response->getHttpResponseCode());
     }
@@ -327,13 +327,13 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $router = Zend_Controller_Front::getInstance()->getRouter();
         $route = new Zend_Controller_Router_Route(
             'blog/archive/:id',
-            array('controller' => 'blog', 'action' => 'view', 'id' => false),
-            array('id' => '\d+')
+            ['controller' => 'blog', 'action' => 'view', 'id' => false],
+            ['id' => '\d+']
         );
         $router->addRoute('blogArchive', $route);
 
         $this->redirector->gotoRoute(
-            array('id' => 281),
+            ['id' => 281],
             'blogArchive'
         );
 
@@ -529,14 +529,14 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
 
         $this->router->removeRoute('default');
         $this->router->addRoute('default', new Zend_Controller_Router_Route(
-            ':baz/:foo/:bar/*', array(
+            ':baz/:foo/:bar/*', [
                 'baz' => 'default',
                 'foo' => 'index',
                 'bar' => 'index',
-            )
+            ]
         ));
 
-        $this->redirector->gotoSimple('babar', 'barbapapa', 'barbazoo', array('asd' => 1));
+        $this->redirector->gotoSimple('babar', 'barbapapa', 'barbazoo', ['asd' => 1]);
         $result = $this->redirector->getRedirectUrl();
         $expected = '/barbazoo/barbapapa/babar/asd/1';
         $this->assertEquals($expected, $result);

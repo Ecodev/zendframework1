@@ -59,7 +59,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      *
      * @var array
      */
-    protected $_invokeParams = array();
+    protected $_invokeParams = [];
 
     /**
      * Path delimiter character.
@@ -80,12 +80,12 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
      *
      * @var array
      */
-    protected $_wordDelimiter = array('-', '.');
+    protected $_wordDelimiter = ['-', '.'];
 
     /**
      * Constructor.
      */
-    public function __construct(array $params = array())
+    public function __construct(array $params = [])
     {
         $this->setParams($params);
     }
@@ -351,7 +351,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     public function clearParams($name = null)
     {
         if (null === $name) {
-            $this->_invokeParams = array();
+            $this->_invokeParams = [];
         } elseif (is_string($name) && isset($this->_invokeParams[$name])) {
             unset($this->_invokeParams[$name]);
         } elseif (is_array($name)) {

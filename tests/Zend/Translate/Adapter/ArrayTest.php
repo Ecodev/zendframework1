@@ -62,8 +62,8 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 
     public function testCreate()
     {
-        set_error_handler(array($this, 'errorHandlerIgnore'));
-        $adapter = new Zend_Translate_Adapter_Array(array());
+        set_error_handler([$this, 'errorHandlerIgnore']);
+        $adapter = new Zend_Translate_Adapter_Array([]);
         restore_error_handler();
         $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
 
@@ -84,7 +84,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 
     public function testToString()
     {
-        $adapter = new Zend_Translate_Adapter_Array(array('msg1' => 'Message 1 (en)', 'msg2' => 'Message 2 (en)', 'msg3' => 'Message 3 (en)'), 'en');
+        $adapter = new Zend_Translate_Adapter_Array(['msg1' => 'Message 1 (en)', 'msg2' => 'Message 2 (en)', 'msg3' => 'Message 3 (en)'], 'en');
         $this->assertEquals('Array', $adapter->toString());
     }
 
@@ -128,7 +128,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
             $this->assertStringContainsString('does not exist', $e->getMessage());
         }
 
-        $adapter->addTranslation(__DIR__ . '/_files/translation_en2.php', 'de', array('clear' => true));
+        $adapter->addTranslation(__DIR__ . '/_files/translation_en2.php', 'de', ['clear' => true]);
         $this->assertEquals('Nachricht 1', $adapter->translate('Message 1'));
         $this->assertEquals('Nachricht 8', $adapter->translate('Message 8'));
     }
@@ -136,8 +136,8 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
     public function testOptions()
     {
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        $adapter->setOptions(array('testoption' => 'testkey'));
-        $expected = array(
+        $adapter->setOptions(['testoption' => 'testkey']);
+        $expected = [
             'testoption' => 'testkey',
             'clear' => false,
             'content' => __DIR__ . '/_files/translation_en.php',
@@ -149,7 +149,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
             'logMessage' => 'Untranslated message within \'%locale%\': %message%',
             'logUntranslated' => false,
             'reload' => false,
-        );
+        ];
 
         $options = $adapter->getOptions();
 
@@ -167,7 +167,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
         $this->assertEquals('Message 1 (en)', $adapter->translate('Message 1'));
         $this->assertEquals('Message 6', $adapter->translate('Message 6'));
-        $adapter->addTranslation(__DIR__ . '/_files/translation_en2.php', 'de', array('clear' => true));
+        $adapter->addTranslation(__DIR__ . '/_files/translation_en2.php', 'de', ['clear' => true]);
         $this->assertEquals('Nachricht 1', $adapter->translate('Message 1'));
         $this->assertEquals('Message 4', $adapter->translate('Message 4'));
     }
@@ -187,7 +187,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
             $this->assertStringContainsString('does not exist', $e->getMessage());
         }
 
-        set_error_handler(array($this, 'errorHandlerIgnore'));
+        set_error_handler([$this, 'errorHandlerIgnore']);
         $adapter->setLocale('de');
         restore_error_handler();
         $this->assertEquals('de', $adapter->getLocale());
@@ -196,9 +196,9 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
     public function testList()
     {
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        $this->assertEquals(array('en' => 'en'), $adapter->getList());
-        $adapter->addTranslation(array('msg1'), 'de');
-        $this->assertEquals(array('en' => 'en', 'de' => 'de'), $adapter->getList());
+        $this->assertEquals(['en' => 'en'], $adapter->getList());
+        $adapter->addTranslation(['msg1'], 'de');
+        $this->assertEquals(['en' => 'en', 'de' => 'de'], $adapter->getList());
         $this->assertTrue($adapter->isAvailable('de'));
         $locale = new Zend_Locale('en');
         $this->assertTrue($adapter->isAvailable($locale));
@@ -208,16 +208,16 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
     public function testOptionLocaleDirectory()
     {
         require_once 'Zend/Translate.php';
-        $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/testarray', 'de_AT', array('scan' => Zend_Translate::LOCALE_DIRECTORY));
-        $this->assertEquals(array('de_AT' => 'de_AT', 'en_GB' => 'en_GB', 'ja' => 'ja'), $adapter->getList());
+        $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/testarray', 'de_AT', ['scan' => Zend_Translate::LOCALE_DIRECTORY]);
+        $this->assertEquals(['de_AT' => 'de_AT', 'en_GB' => 'en_GB', 'ja' => 'ja'], $adapter->getList());
         $this->assertEquals('Nachricht 8', $adapter->translate('Message 8'));
     }
 
     public function testOptionLocaleFilename()
     {
         require_once 'Zend/Translate.php';
-        $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/testarray', 'de_DE', array('scan' => Zend_Translate::LOCALE_FILENAME));
-        $this->assertEquals(array('de_DE' => 'de_DE', 'en_US' => 'en_US', 'ja' => 'ja'), $adapter->getList());
+        $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/testarray', 'de_DE', ['scan' => Zend_Translate::LOCALE_FILENAME]);
+        $this->assertEquals(['de_DE' => 'de_DE', 'en_US' => 'en_US', 'ja' => 'ja'], $adapter->getList());
         $this->assertEquals('Nachricht 8', $adapter->translate('Message 8'));
     }
 
@@ -255,8 +255,8 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
     {
         require_once 'Zend/Cache.php';
         $cache = Zend_Cache::factory('Core', 'File',
-            array('lifetime' => 120, 'automatic_serialization' => true),
-            array('cache_dir' => __DIR__ . '/_files/'));
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => __DIR__ . '/_files/']);
 
         $this->assertFalse(Zend_Translate_Adapter_Array::hasCache());
         Zend_Translate_Adapter_Array::setCache($cache);
@@ -286,8 +286,8 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
     {
         require_once 'Zend/Cache.php';
         $cache = Zend_Cache::factory('Core', 'File',
-            array('lifetime' => 120, 'automatic_serialization' => true),
-            array('cache_dir' => __DIR__ . '/_files/'));
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => __DIR__ . '/_files/']);
 
         $this->assertFalse(Zend_Translate_Adapter_Array::hasCache());
         Zend_Translate_Adapter_Array::setCache($cache);
@@ -297,7 +297,7 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $cache = Zend_Translate_Adapter_Array::getCache();
         $this->assertTrue($cache instanceof Zend_Cache_Core);
 
-        $adapter->addTranslation(__DIR__ . '/_files/translation_en.php', 'ru', array('reload' => true));
+        $adapter->addTranslation(__DIR__ . '/_files/translation_en.php', 'ru', ['reload' => true]);
         $test = $adapter->getMessages('all');
         $this->assertEquals(6, is_countable($test['ru']) ? count($test['ru']) : 0);
     }

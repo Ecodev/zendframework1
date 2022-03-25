@@ -41,7 +41,7 @@ class ZendX_JQuery_View_Helper_DialogContainer extends ZendX_JQuery_View_Helper_
      *
      * @return string
      */
-    public function dialogContainer($id, $content, $params = array(), $attribs = array())
+    public function dialogContainer($id, $content, $params = [], $attribs = [])
     {
         if (!array_key_exists('id', $attribs)) {
             $attribs['id'] = $id;

@@ -77,7 +77,7 @@ class Zend_Controller_Action_Helper_ActionStack extends Zend_Controller_Action_H
      *
      * @return Zend_Controller_Action_Helper_ActionStack
      */
-    public function actionToStack($action, $controller = null, $module = null, array $params = array())
+    public function actionToStack($action, $controller = null, $module = null, array $params = [])
     {
         if ($action instanceof Zend_Controller_Request_Abstract) {
             return $this->pushStack($action);
@@ -125,7 +125,7 @@ class Zend_Controller_Action_Helper_ActionStack extends Zend_Controller_Action_H
      *
      * @return bool
      */
-    public function direct($action, $controller = null, $module = null, array $params = array())
+    public function direct($action, $controller = null, $module = null, array $params = [])
     {
         return $this->actionToStack($action, $controller, $module, $params);
     }

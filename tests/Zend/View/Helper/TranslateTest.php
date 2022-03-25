@@ -86,7 +86,7 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testTranslationObjectPassedToConstructorUsedForTranslation()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1\$s' => 'zwei %1\$s'), 'de');
+        $trans = new Zend_Translate('array', ['one' => 'eins', 'two %1\$s' => 'zwei %1\$s'], 'de');
 
         $helper = new Zend_View_Helper_Translate($trans);
         $this->assertEquals('eins', $helper->translate('one'));
@@ -95,7 +95,7 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testLocalTranslationObjectUsedForTranslationsWhenPresent()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1\$s' => 'zwei %1\$s'), 'de');
+        $trans = new Zend_Translate('array', ['one' => 'eins', 'two %1\$s' => 'zwei %1\$s'], 'de');
 
         $this->helper->setTranslator($trans);
         $this->assertEquals('eins', $this->helper->translate('one'));
@@ -104,7 +104,7 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testTranslationObjectInRegistryUsedForTranslationsInAbsenceOfLocalTranslationObject()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1\$s' => 'zwei %1\$s'), 'de');
+        $trans = new Zend_Translate('array', ['one' => 'eins', 'two %1\$s' => 'zwei %1\$s'], 'de');
         Zend_Registry::set(\Zend_Translate::class, $trans);
         $this->assertEquals('eins', $this->helper->translate('one'));
     }
@@ -153,8 +153,8 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testCanSetLocale()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1\$s' => 'zwei %1\$s'), 'de');
-        $trans->addTranslation(array('one' => 'uno', 'two %1\$s' => 'duo %2\$s'), 'it');
+        $trans = new Zend_Translate('array', ['one' => 'eins', 'two %1\$s' => 'zwei %1\$s'], 'de');
+        $trans->addTranslation(['one' => 'uno', 'two %1\$s' => 'duo %2\$s'], 'it');
         $trans->setLocale('de');
 
         $this->helper->setTranslator($trans);
@@ -167,8 +167,8 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testHelperImplementsFluentInterface()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1\$s' => 'zwei %1\$s'), 'de');
-        $trans->addTranslation(array('one' => 'uno', 'two %1\$s' => 'duo %2\$s'), 'it');
+        $trans = new Zend_Translate('array', ['one' => 'eins', 'two %1\$s' => 'zwei %1\$s'], 'de');
+        $trans->addTranslation(['one' => 'uno', 'two %1\$s' => 'duo %2\$s'], 'it');
         $trans->setLocale('de');
 
         $locale = $this->helper->translate()->setTranslator($trans)->getLocale();
@@ -178,17 +178,17 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testCanTranslateWithOptions()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1$s' => 'zwei %1$s',
-            'three %1$s %2$s' => 'drei %1$s %2$s', ), 'de');
-        $trans->addTranslation(array('one' => 'uno', 'two %1$s' => 'duo %2$s',
-            'three %1$s %2$s' => 'tre %1$s %2$s', ), 'it');
+        $trans = new Zend_Translate('array', ['one' => 'eins', 'two %1$s' => 'zwei %1$s',
+            'three %1$s %2$s' => 'drei %1$s %2$s', ], 'de');
+        $trans->addTranslation(['one' => 'uno', 'two %1$s' => 'duo %2$s',
+            'three %1$s %2$s' => 'tre %1$s %2$s', ], 'it');
         $trans->setLocale('de');
 
         $this->helper->setTranslator($trans);
         $this->assertEquals('drei 100 200', $this->helper->translate('three %1$s %2$s', '100', '200'));
         $this->assertEquals('tre 100 200', $this->helper->translate('three %1$s %2$s', '100', '200', 'it'));
-        $this->assertEquals('drei 100 200', $this->helper->translate('three %1$s %2$s', array('100', '200')));
-        $this->assertEquals('tre 100 200', $this->helper->translate('three %1$s %2$s', array('100', '200'), 'it'));
+        $this->assertEquals('drei 100 200', $this->helper->translate('three %1$s %2$s', ['100', '200']));
+        $this->assertEquals('tre 100 200', $this->helper->translate('three %1$s %2$s', ['100', '200'], 'it'));
     }
 
     public function testTranslationObjectNullByDefault()
@@ -198,12 +198,12 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testLocalTranslationObjectIsPreferredOverRegistry()
     {
-        $transReg = new Zend_Translate('array', array('one' => 'eins'));
+        $transReg = new Zend_Translate('array', ['one' => 'eins']);
         Zend_Registry::set(\Zend_Translate::class, $transReg);
 
         $this->assertSame($transReg->getAdapter(), $this->helper->getTranslator());
 
-        $transLoc = new Zend_Translate('array', array('one' => 'uno'));
+        $transLoc = new Zend_Translate('array', ['one' => 'uno']);
         $this->helper->setTranslator($transLoc);
         $this->assertSame($transLoc->getAdapter(), $this->helper->getTranslator());
         $this->assertNotSame($transLoc->getAdapter(), $transReg->getAdapter());
@@ -214,7 +214,7 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
         $helper = $this->helper->translate();
         $this->assertSame($this->helper, $helper);
 
-        $transLoc = new Zend_Translate('array', array('one' => 'eins'));
+        $transLoc = new Zend_Translate('array', ['one' => 'eins']);
         $this->helper->setTranslator($transLoc);
         $helper = $this->helper->translate();
         $this->assertSame($this->helper, $helper);
@@ -225,8 +225,8 @@ class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
      */
     public function testTranslationWithPercent()
     {
-        $trans = new Zend_Translate('array', array('one' => 'eins', 'two %1$s' => 'zwei %1$s',
-            'three %1$s %2$s' => 'drei %1$s %2$s', 'vier%ig' => 'four%', ), 'de');
+        $trans = new Zend_Translate('array', ['one' => 'eins', 'two %1$s' => 'zwei %1$s',
+            'three %1$s %2$s' => 'drei %1$s %2$s', 'vier%ig' => 'four%', ], 'de');
         $trans->setLocale('de');
 
         $this->helper->setTranslator($trans);

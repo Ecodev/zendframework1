@@ -638,6 +638,6 @@ class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
             </response>
             EOT;
 
-        return array(array($xmlStringContents));
+        return [[$xmlStringContents]];
     }
 } // End of class Zend_Json_JsonXMLTest

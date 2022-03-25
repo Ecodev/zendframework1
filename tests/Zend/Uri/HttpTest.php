@@ -35,7 +35,7 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp(): void
     {
-        Zend_Uri::setConfig(array('allow_unwise' => false));
+        Zend_Uri::setConfig(['allow_unwise' => false]);
     }
 
     /**
@@ -51,12 +51,12 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testSimpleFromString()
     {
-        $tests = array(
+        $tests = [
             'http://www.zend.com',
             'https://www.zend.com',
             'http://www.zend.com/path',
             'http://www.zend.com/path?query=value',
-        );
+        ];
 
         foreach ($tests as $uri) {
             $obj = Zend_Uri_Http::fromString($uri);
@@ -214,14 +214,14 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testExceptionUnwiseQueryString()
     {
-        $unwise = array(
+        $unwise = [
             'http://example.com/?q={',
             'http://example.com/?q=}',
             'http://example.com/?q=|',
             'http://example.com/?q=\\',
             'http://example.com/?q=^',
             'http://example.com/?q=`',
-        );
+        ];
 
         foreach ($unwise as $uri) {
             $this->assertFalse(Zend_Uri::check($uri), "failed for URI $uri");
@@ -234,22 +234,22 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public function testAllowUnwiseQueryString()
     {
-        $unwise = array(
+        $unwise = [
             'http://example.com/?q={',
             'http://example.com/?q=}',
             'http://example.com/?q=|',
             'http://example.com/?q=\\',
             'http://example.com/?q=^',
             'http://example.com/?q=`',
-        );
+        ];
 
-        Zend_Uri::setConfig(array('allow_unwise' => true));
+        Zend_Uri::setConfig(['allow_unwise' => true]);
 
         foreach ($unwise as $uri) {
             $this->assertTrue(Zend_Uri::check($uri), "failed for URI $uri");
         }
 
-        Zend_Uri::setConfig(array('allow_unwise' => false));
+        Zend_Uri::setConfig(['allow_unwise' => false]);
     }
 
     /**
@@ -381,11 +381,11 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     public function testGetQueryAsArrayReturnsCorrectArray()
     {
         $uri = Zend_Uri_Http::fromString('http://example.com/foo/?test=a&var[]=1&var[]=2&some[thing]=3');
-        $this->assertEquals(array(
+        $this->assertEquals([
             'test' => 'a',
-            'var' => array(1, 2),
-            'some' => array('thing' => 3),
-        ), $uri->getQueryAsArray());
+            'var' => [1, 2],
+            'some' => ['thing' => 3],
+        ], $uri->getQueryAsArray());
     }
 
     /**
@@ -394,16 +394,16 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     public function testAddReplaceQueryParametersModifiesQueryAndReturnsOldQuery()
     {
         $uri = Zend_Uri_Http::fromString('http://example.com/foo/?a=1&b=2&c=3');
-        $this->assertEquals('a=1&b=2&c=3', $uri->addReplaceQueryParameters(array(
+        $this->assertEquals('a=1&b=2&c=3', $uri->addReplaceQueryParameters([
             'b' => 4,
             'd' => -1,
-        )));
-        $this->assertEquals(array(
+        ]));
+        $this->assertEquals([
             'a' => 1,
             'b' => 4,
             'c' => 3,
             'd' => -1,
-        ), $uri->getQueryAsArray());
+        ], $uri->getQueryAsArray());
         $this->assertEquals('a=1&b=4&c=3&d=-1', $uri->getQuery());
     }
 
@@ -413,11 +413,11 @@ class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
     public function testRemoveQueryParametersModifiesQueryAndReturnsOldQuery()
     {
         $uri = Zend_Uri_Http::fromString('http://example.com/foo/?a=1&b=2&c=3&d=4');
-        $this->assertEquals('a=1&b=2&c=3&d=4', $uri->removeQueryParameters(array('b', 'd', 'e')));
-        $this->assertEquals(array(
+        $this->assertEquals('a=1&b=2&c=3&d=4', $uri->removeQueryParameters(['b', 'd', 'e']));
+        $this->assertEquals([
             'a' => 1,
             'c' => 3,
-        ), $uri->getQueryAsArray());
+        ], $uri->getQueryAsArray());
         $this->assertEquals('a=1&c=3', $uri->getQuery());
     }
 

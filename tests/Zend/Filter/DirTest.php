@@ -48,11 +48,11 @@ class Zend_Filter_DirTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasic()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             'filename' => '.',
             '/path/to/filename' => '/path/to',
             '/path/to/filename.ext' => '/path/to',
-        );
+        ];
         foreach ($valuesExpected as $input => $output) {
             $this->assertEquals($output, $this->_filter->filter($input));
         }

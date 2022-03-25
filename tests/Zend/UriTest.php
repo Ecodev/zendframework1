@@ -41,7 +41,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 
     public function setUp(): void
     {
-        $this->notices = array();
+        $this->notices = [];
         $this->errorReporting = error_reporting();
         $this->displayErrors = ini_get('display_errors');
     }
@@ -92,7 +92,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetConfigWithArray()
     {
-        Zend_Uri::setConfig(array('allow_unwise' => true));
+        Zend_Uri::setConfig(['allow_unwise' => true]);
         self::assertTrue(true);
     }
 
@@ -103,7 +103,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetConfigWithZendConfig()
     {
-        Zend_Uri::setConfig(new Zend_Config(array('allow_unwise' => true)));
+        Zend_Uri::setConfig(new Zend_Config(['allow_unwise' => true]));
         self::assertTrue(true);
     }
 
@@ -130,7 +130,7 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     {
         $uri = Zend_Uri::factory('http://example.com', 'Zend_Uri_ExceptionCausing');
 
-        set_error_handler(array($this, 'handleErrors'), E_USER_WARNING);
+        set_error_handler([$this, 'handleErrors'], E_USER_WARNING);
 
         $text = sprintf('%s', $uri);
 

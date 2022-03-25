@@ -45,7 +45,7 @@ class Zend_Filter_StringToUpper implements Zend_Filter_Interface
             $options = $options->toArray();
         } elseif (!is_array($options)) {
             $options = func_get_args();
-            $temp = array();
+            $temp = [];
             if (!empty($options)) {
                 $temp['encoding'] = array_shift($options);
             }

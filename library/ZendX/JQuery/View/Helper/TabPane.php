@@ -35,7 +35,7 @@ class ZendX_JQuery_View_Helper_TabPane extends ZendX_JQuery_View_Helper_UiWidget
      *
      * @return string always empty
      */
-    public function tabPane($id = null, $content = '', array $options = array())
+    public function tabPane($id = null, $content = '', array $options = [])
     {
         if (0 === func_num_args()) {
             return $this;
@@ -61,7 +61,7 @@ class ZendX_JQuery_View_Helper_TabPane extends ZendX_JQuery_View_Helper_UiWidget
      * @param  string $name
      * @param  string $content
      */
-    protected function _addPane($id, $name, $content, array $options = array())
+    protected function _addPane($id, $name, $content, array $options = [])
     {
         $this->view->tabContainer()->addPane($id, $name, $content, $options);
     }

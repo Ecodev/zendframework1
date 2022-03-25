@@ -91,7 +91,7 @@ class Zend_Paginator_ScrollingStyle_JumpingTest extends \PHPUnit\Framework\TestC
     {
         $this->_paginator->setCurrentPageNumber(11);
         $actual = $this->_scrollingStyle->getPages($this->_paginator);
-        $expected = array(11 => 11);
+        $expected = [11 => 11];
         $this->assertEquals($expected, $actual);
     }
 

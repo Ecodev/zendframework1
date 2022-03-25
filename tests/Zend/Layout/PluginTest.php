@@ -69,7 +69,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
 
     public function testConstructorWithLayoutObject()
     {
-        $layout = new Zend_Layout(array('mvcEnabled' => false));
+        $layout = new Zend_Layout(['mvcEnabled' => false]);
         $plugin = new Zend_Layout_Controller_Plugin_Layout($layout);
         $this->assertSame($layout, $plugin->getLayout());
     }
@@ -85,7 +85,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
         $plugin = new Zend_Layout_Controller_Plugin_Layout();
         $this->assertNull($plugin->getLayout());
 
-        $layout = new Zend_Layout(array('mvcEnabled' => false));
+        $layout = new Zend_Layout(['mvcEnabled' => false]);
         $plugin->setlayout($layout);
         $this->assertSame($layout, $plugin->getLayout());
     }

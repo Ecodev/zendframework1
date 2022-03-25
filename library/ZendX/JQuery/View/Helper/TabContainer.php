@@ -36,7 +36,7 @@ class ZendX_JQuery_View_Helper_TabContainer extends ZendX_JQuery_View_Helper_UiW
      *
      * @var array
      */
-    protected $_tabs = array();
+    protected $_tabs = [];
 
     /**
      * Add Tab to TabsContainer.
@@ -47,16 +47,16 @@ class ZendX_JQuery_View_Helper_TabContainer extends ZendX_JQuery_View_Helper_UiW
      *
      * @return ZendX_JQuery_View_Helper_TabsContainer
      */
-    public function addPane($id, $name, $content, array $options = array())
+    public function addPane($id, $name, $content, array $options = [])
     {
         if (!isset($this->_tabs[$id])) {
-            $this->_tabs[$id] = array();
+            $this->_tabs[$id] = [];
         }
         if (strlen($name) == 0 && isset($options['title'])) {
             $name = $options['title'];
         }
 
-        $this->_tabs[$id][] = array('name' => $name, 'content' => $content, 'options' => $options);
+        $this->_tabs[$id][] = ['name' => $name, 'content' => $content, 'options' => $options];
 
         return $this;
     }
@@ -76,7 +76,7 @@ class ZendX_JQuery_View_Helper_TabContainer extends ZendX_JQuery_View_Helper_UiW
      *
      * @return string|ZendX_JQuery_View_Helper_TabsContainer
      */
-    public function tabContainer($id = null, $params = array(), $attribs = array())
+    public function tabContainer($id = null, $params = [], $attribs = [])
     {
         if (func_num_args() === 0) {
             return $this;

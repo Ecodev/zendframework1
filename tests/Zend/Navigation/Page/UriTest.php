@@ -28,20 +28,20 @@ class Zend_Navigation_Page_UriTest extends \PHPUnit\Framework\TestCase
 {
     public function testUriOptionAsString()
     {
-        $page = new Zend_Navigation_Page_Uri(array(
+        $page = new Zend_Navigation_Page_Uri([
             'label' => 'foo',
             'uri' => '#',
-        ));
+        ]);
 
         $this->assertEquals('#', $page->getUri());
     }
 
     public function testUriOptionAsNull()
     {
-        $page = new Zend_Navigation_Page_Uri(array(
+        $page = new Zend_Navigation_Page_Uri([
             'label' => 'foo',
             'uri' => null,
-        ));
+        ]);
 
         $this->assertNull($page->getUri(), 'getUri() should return null');
     }
@@ -49,7 +49,7 @@ class Zend_Navigation_Page_UriTest extends \PHPUnit\Framework\TestCase
     public function testUriOptionAsInteger()
     {
         try {
-            $page = new Zend_Navigation_Page_Uri(array('uri' => 1337));
+            $page = new Zend_Navigation_Page_Uri(['uri' => 1337]);
             $this->fail('An invalid \'uri\' was given, but '
                         . 'a Zend_Navigation_Exception was not thrown');
         } catch (Zend_Navigation_Exception $e) {
@@ -63,7 +63,7 @@ class Zend_Navigation_Page_UriTest extends \PHPUnit\Framework\TestCase
             $uri = new stdClass();
             $uri->foo = 'bar';
 
-            $page = new Zend_Navigation_Page_Uri(array('uri' => $uri));
+            $page = new Zend_Navigation_Page_Uri(['uri' => $uri]);
             $this->fail('An invalid \'uri\' was given, but '
                         . 'a Zend_Navigation_Exception was not thrown');
         } catch (Zend_Navigation_Exception $e) {
@@ -73,10 +73,10 @@ class Zend_Navigation_Page_UriTest extends \PHPUnit\Framework\TestCase
 
     public function testSetAndGetUri()
     {
-        $page = new Zend_Navigation_Page_Uri(array(
+        $page = new Zend_Navigation_Page_Uri([
             'label' => 'foo',
             'uri' => '#',
-        ));
+        ]);
 
         $page->setUri('http://www.example.com/')->setUri('about:blank');
 

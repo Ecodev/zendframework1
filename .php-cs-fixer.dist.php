@@ -15,6 +15,7 @@ return (new PhpCsFixer\Config())
         'align_multiline_comment' => true,
         'array_indentation' => true,
         'array_push' => false, // Because risk
+        'array_syntax' => true,
         'assign_null_coalescing_to_coalesce_equal' => true,
         'backtick_to_shell_exec' => false, // Backticks are a very concise way to execute shell
         'binary_operator_spaces' => true,

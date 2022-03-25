@@ -30,7 +30,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
      *
      * @var array
      */
-    protected $_plugins = array();
+    protected $_plugins = [];
 
     /**
      * Register a plugin.
@@ -137,7 +137,7 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
      */
     public function getPlugin($class)
     {
-        $found = array();
+        $found = [];
         foreach ($this->_plugins as $plugin) {
             $type = get_class($plugin);
             if ($class == $type) {

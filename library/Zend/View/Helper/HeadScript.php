@@ -78,16 +78,16 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      *
      * @var array
      */
-    protected $_optionalAttributes = array(
+    protected $_optionalAttributes = [
         'charset', 'defer', 'language', 'src',
-    );
+    ];
 
     /**
      * Required attributes for script tag.
      *
      * @var string
      */
-    protected $_requiredAttributes = array('type');
+    protected $_requiredAttributes = ['type'];
 
     /**
      * Whether or not to format scripts using CDATA; used only if doctype
@@ -122,7 +122,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      *
      * @return Zend_View_Helper_HeadScript
      */
-    public function headScript($mode = Zend_View_Helper_HeadScript::FILE, $spec = null, $placement = 'APPEND', array $attrs = array(), $type = 'text/javascript')
+    public function headScript($mode = Zend_View_Helper_HeadScript::FILE, $spec = null, $placement = 'APPEND', array $attrs = [], $type = 'text/javascript')
     {
         if ((null !== $spec) && is_string($spec)) {
             $action = ucfirst(strtolower($mode));
@@ -152,7 +152,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      * @param mixed $type
      * @param mixed $attrs
      */
-    public function captureStart($captureType = Zend_View_Helper_Placeholder_Container_Abstract::APPEND, $type = 'text/javascript', $attrs = array())
+    public function captureStart($captureType = Zend_View_Helper_Placeholder_Container_Abstract::APPEND, $type = 'text/javascript', $attrs = [])
     {
         if ($this->_captureLock) {
             require_once 'Zend/View/Helper/Placeholder/Container/Exception.php';
@@ -229,7 +229,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
             $action = $matches['action'];
             $mode = strtolower($matches['mode']);
             $type = 'text/javascript';
-            $attrs = array();
+            $attrs = [];
 
             if ('offsetSet' == $action) {
                 $index = array_shift($args);
@@ -433,7 +433,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
         if (!empty($item->attributes)) {
             foreach ($item->attributes as $key => $value) {
                 if ((!$this->arbitraryAttributesAllowed() && !in_array($key, $this->_optionalAttributes))
-                    || in_array($key, array('conditional', 'noescape'))) {
+                    || in_array($key, ['conditional', 'noescape'])) {
                     continue;
                 }
                 if ('defer' == $key) {
@@ -500,7 +500,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
         $escapeStart = ($useCdata) ? '//<![CDATA[' : '//<!--';
         $escapeEnd = ($useCdata) ? '//]]>' : '//-->';
 
-        $items = array();
+        $items = [];
         $this->getContainer()->ksort();
         foreach ($this as $item) {
             if (!$this->_isValid($item)) {

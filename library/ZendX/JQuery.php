@@ -145,6 +145,6 @@ class ZendX_JQuery
             require_once 'Zend/Json.php';
         }
 
-        return Zend_Json::encode($value, false, array('enableJsonExprFinder' => true));
+        return Zend_Json::encode($value, false, ['enableJsonExprFinder' => true]);
     }
 }

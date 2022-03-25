@@ -41,7 +41,7 @@ class ZendX_JQuery_View_Helper_Spinner extends ZendX_JQuery_View_Helper_UiWidget
      *
      * @return string
      */
-    public function spinner($id, $value = '', array $params = array(), array $attribs = array())
+    public function spinner($id, $value = '', array $params = [], array $attribs = [])
     {
         $attribs = $this->_prepareAttributes($id, $value, $attribs);
 

@@ -73,12 +73,12 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
      *
      * @var array options
      */
-    protected $_specificOptions = array(
+    protected $_specificOptions = [
         'http_conditional' => false,
         'debug_header' => false,
         'content_type_memorization' => false,
-        'memorize_headers' => array(),
-        'default_options' => array(
+        'memorize_headers' => [],
+        'default_options' => [
             'cache_with_get_variables' => false,
             'cache_with_post_variables' => false,
             'cache_with_session_variables' => false,
@@ -91,18 +91,18 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             'make_id_with_cookie_variables' => true,
             'cache' => true,
             'specific_lifetime' => false,
-            'tags' => array(),
+            'tags' => [],
             'priority' => null,
-        ),
-        'regexps' => array(),
-    );
+        ],
+        'regexps' => [],
+    ];
 
     /**
      * Internal array to store some options.
      *
      * @var array associative array of options
      */
-    protected $_activeOptions = array();
+    protected $_activeOptions = [];
 
     /**
      * If true, the page won't be cached.
@@ -116,7 +116,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
      *
      * @param  array   $options                Associative array of options
      */
-    public function __construct(array $options = array())
+    public function __construct(array $options = [])
     {
         foreach ($options as $name => $value) {
             $name = strtolower($name);
@@ -275,7 +275,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             }
             die();
         }
-        ob_start(array($this, '_flush'));
+        ob_start([$this, '_flush']);
         ob_implicit_flush(false);
 
         return false;
@@ -303,7 +303,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
             return $data;
         }
         $contentType = null;
-        $storedHeaders = array();
+        $storedHeaders = [];
         $headersList = headers_list();
         foreach ($this->_specificOptions['memorize_headers'] as $key => $headerName) {
             foreach ($headersList as $headerSent) {
@@ -311,14 +311,14 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
                 $headerSentName = trim(array_shift($tmp));
                 if (strtolower($headerName) == strtolower($headerSentName)) {
                     $headerSentValue = trim(implode(':', $tmp));
-                    $storedHeaders[] = array($headerSentName, $headerSentValue);
+                    $storedHeaders[] = [$headerSentName, $headerSentValue];
                 }
             }
         }
-        $array = array(
+        $array = [
             'data' => $data,
             'headers' => $storedHeaders,
-        );
+        ];
         $this->save($array, null, $this->_activeOptions['tags'], $this->_activeOptions['specific_lifetime'], $this->_activeOptions['priority']);
 
         return $data;
@@ -334,7 +334,7 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
         $tmp = $_SERVER['REQUEST_URI'];
         $array = explode('?', $tmp, 2);
         $tmp = $array[0];
-        foreach (array('Get', 'Post', 'Session', 'Files', 'Cookie') as $arrayName) {
+        foreach (['Get', 'Post', 'Session', 'Files', 'Cookie'] as $arrayName) {
             $tmp2 = $this->_makePartialId($arrayName, $this->_activeOptions['cache_with_' . strtolower($arrayName) . '_variables'], $this->_activeOptions['make_id_with_' . strtolower($arrayName) . '_variables']);
             if ($tmp2 === false) {
                 return false;

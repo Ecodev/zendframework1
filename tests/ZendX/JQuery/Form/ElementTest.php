@@ -50,20 +50,20 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('baz', $spinner->getJQueryParam('foo'));
 
         $spinner->setJQueryParam('foo', 'bar');
-        $spinner->setJQueryParam('bar', array());
+        $spinner->setJQueryParam('bar', []);
         $this->assertEquals('bar', $spinner->getJQueryParam('foo'));
-        $this->assertEquals(array(), $spinner->getJQueryParam('bar'));
+        $this->assertEquals([], $spinner->getJQueryParam('bar'));
     }
 
     public function testElementSetGetMassJQueryParams()
     {
         $spinner = new ZendX_JQuery_Form_Element_Spinner('spinnerElem');
 
-        $spinner->setJQueryParams(array('foo' => 'baz', 'bar' => 'baz'));
-        $this->assertEquals(array('foo' => 'baz', 'bar' => 'baz'), $spinner->getJQueryParams());
+        $spinner->setJQueryParams(['foo' => 'baz', 'bar' => 'baz']);
+        $this->assertEquals(['foo' => 'baz', 'bar' => 'baz'], $spinner->getJQueryParams());
 
-        $spinner->setJQueryParams(array('foo' => 'bar'));
-        $this->assertEquals(array('foo' => 'bar', 'bar' => 'baz'), $spinner->getJQueryParams());
+        $spinner->setJQueryParams(['foo' => 'bar']);
+        $this->assertEquals(['foo' => 'bar', 'bar' => 'baz'], $spinner->getJQueryParams());
     }
 
     public function testElementsHaveUiWidgetDecorator()
@@ -99,7 +99,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
 
         $spinner = new ZendX_JQuery_Form_Element_Spinner('spinner1');
-        $spinner->setDecorators(array('ViewHelper'));
+        $spinner->setDecorators(['ViewHelper']);
         $spinner->setView($view);
 
         try {
@@ -121,7 +121,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
 
         $spinner = new ZendX_JQuery_Form_Element_Spinner('spinner1');
-        $spinner->setDecorators(array('ViewHelper'));
+        $spinner->setDecorators(['ViewHelper']);
         $spinner->setView($view);
 
         try {
@@ -131,7 +131,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
             // success here
         }
 
-        $spinner->setDecorators(array('UiWidgetElement'));
+        $spinner->setDecorators(['UiWidgetElement']);
 
         try {
             $spinner->render();
@@ -150,9 +150,9 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $view = new Zend_View();
         $form = new ZendX_JQuery_Form();
 
-        $dataSource = array(0 => 'John Doe');
+        $dataSource = [0 => 'John Doe'];
 
-        $lastname = new ZendX_JQuery_Form_Element_AutoComplete('Lastname', array('label' => 'Lastname'));
+        $lastname = new ZendX_JQuery_Form_Element_AutoComplete('Lastname', ['label' => 'Lastname']);
         $form->addElement($lastname);
         $form->Lastname->setJQueryParam('source', $dataSource);
 
@@ -160,14 +160,14 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $output = $form->render($view);
 
         $this->assertEquals(
-            array('$("#Lastname").autocomplete({"source":["John Doe"]});'),
+            ['$("#Lastname").autocomplete({"source":["John Doe"]});'],
             $view->jQuery()->getOnLoadActions()
         );
 
         Zend_Json::$useBuiltinEncoderDecoder = false;
         $output = $form->render($view);
         $this->assertEquals(
-            array('$("#Lastname").autocomplete({"source":["John Doe"]});'),
+            ['$("#Lastname").autocomplete({"source":["John Doe"]});'],
             $view->jQuery()->getOnLoadActions()
         );
     }

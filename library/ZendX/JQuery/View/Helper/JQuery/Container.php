@@ -43,7 +43,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      *
      * @var array
      */
-    protected $_javascriptSources = array();
+    protected $_javascriptSources = [];
 
     /**
      * Indicates wheater the jQuery View Helper is enabled.
@@ -64,21 +64,21 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      *
      * @var array
      */
-    protected $_javascriptStatements = array();
+    protected $_javascriptStatements = [];
 
     /**
      * Additional stylesheet files for jQuery related components.
      *
      * @var array
      */
-    protected $_stylesheets = array();
+    protected $_stylesheets = [];
 
     /**
      * jQuery onLoad statements Stack.
      *
      * @var array
      */
-    protected $_onLoadActions = array();
+    protected $_onLoadActions = [];
 
     /**
      * View is rendered in XHTML or not.
@@ -541,7 +541,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function clearJavascriptFiles()
     {
-        $this->_javascriptSources = array();
+        $this->_javascriptSources = [];
 
         return $this;
     }
@@ -578,7 +578,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function clearJavascript()
     {
-        $this->_javascriptStatements = array();
+        $this->_javascriptStatements = [];
 
         return $this;
     }
@@ -617,7 +617,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function clearStylesheets()
     {
-        $this->_stylesheets = array();
+        $this->_stylesheets = [];
 
         return $this;
     }
@@ -656,7 +656,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     public function clearOnLoadActions()
     {
-        $this->_onLoadActions = array();
+        $this->_onLoadActions = [];
 
         return $this;
     }
@@ -785,7 +785,7 @@ class ZendX_JQuery_View_Helper_JQuery_Container
      */
     protected function _renderExtras()
     {
-        $onLoadActions = array();
+        $onLoadActions = [];
         if (($this->getRenderMode() & ZendX_JQuery::RENDER_JQUERY_ON_LOAD) > 0) {
             foreach ($this->getOnLoadActions() as $callback) {
                 $onLoadActions[] = $callback;

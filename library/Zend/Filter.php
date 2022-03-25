@@ -35,14 +35,14 @@ class Zend_Filter implements Zend_Filter_Interface
      *
      * @var array
      */
-    protected $_filters = array();
+    protected $_filters = [];
 
     /**
      * Default Namespaces.
      *
      * @var array
      */
-    protected static $_defaultNamespaces = array();
+    protected static $_defaultNamespaces = [];
 
     /**
      * Adds a filter to the chain.
@@ -129,7 +129,7 @@ class Zend_Filter implements Zend_Filter_Interface
     public static function setDefaultNamespaces($namespace)
     {
         if (!is_array($namespace)) {
-            $namespace = array((string) $namespace);
+            $namespace = [(string) $namespace];
         }
 
         self::$_defaultNamespaces = $namespace;
@@ -143,7 +143,7 @@ class Zend_Filter implements Zend_Filter_Interface
     public static function addDefaultNamespaces($namespace)
     {
         if (!is_array($namespace)) {
-            $namespace = array((string) $namespace);
+            $namespace = [(string) $namespace];
         }
 
         self::$_defaultNamespaces = array_unique(array_merge(self::$_defaultNamespaces, $namespace));
@@ -170,7 +170,7 @@ class Zend_Filter implements Zend_Filter_Interface
      *
      * @return mixed
      */
-    public static function get($value, $classBaseName, array $args = array(), $namespaces = array())
+    public static function get($value, $classBaseName, array $args = [], $namespaces = [])
     {
         trigger_error(
             'Zend_Filter::get() is deprecated as of 1.9.0; please update your code to utilize Zend_Filter::filterStatic()',
@@ -197,10 +197,10 @@ class Zend_Filter implements Zend_Filter_Interface
      *
      * @return mixed
      */
-    public static function filterStatic($value, $classBaseName, array $args = array(), $namespaces = array())
+    public static function filterStatic($value, $classBaseName, array $args = [], $namespaces = [])
     {
         require_once 'Zend/Loader.php';
-        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, array(\Zend_Filter::class));
+        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, [\Zend_Filter::class]);
         foreach ($namespaces as $namespace) {
             $className = $namespace . '_' . ucfirst($classBaseName);
             if (!class_exists($className, false)) {

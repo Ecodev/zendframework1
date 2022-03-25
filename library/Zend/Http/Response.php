@@ -38,7 +38,7 @@ class Zend_Http_Response
      *
      * @var array
      */
-    protected static $messages = array(
+    protected static $messages = [
         // Informational 1xx
         100 => 'Continue',
         101 => 'Switching Protocols',
@@ -90,7 +90,7 @@ class Zend_Http_Response
         504 => 'Gateway Timeout',
         505 => 'HTTP Version Not Supported',
         509 => 'Bandwidth Limit Exceeded',
-    );
+    ];
 
     /**
      * The HTTP version (1.0, 1.1).
@@ -119,7 +119,7 @@ class Zend_Http_Response
      *
      * @var array
      */
-    protected $headers = array();
+    protected $headers = [];
 
     /**
      * The HTTP response body.
@@ -510,7 +510,7 @@ class Zend_Http_Response
      */
     public static function extractHeaders($response_str)
     {
-        $headers = array();
+        $headers = [];
 
         // First, split body and headers. Headers are separated from the
         // message at exactly the sequence "\r\n\r\n"
@@ -544,7 +544,7 @@ class Zend_Http_Response
 
                 if (isset($headers[$h_name])) {
                     if (!is_array($headers[$h_name])) {
-                        $headers[$h_name] = array($headers[$h_name]);
+                        $headers[$h_name] = [$headers[$h_name]];
                     }
 
                     $headers[$h_name][] = ltrim($h_value);
@@ -699,7 +699,7 @@ class Zend_Http_Response
          * @see http://framework.zend.com/issues/browse/ZF-6040
          */
         $zlibHeader = unpack('n', substr($body, 0, 2));
-        if ($zlibHeader[1] % 31 == 0 && ord($body[0]) == 0x78 && in_array(ord($body[1]), array(0x01, 0x5E, 0x9C, 0xDA))) {
+        if ($zlibHeader[1] % 31 == 0 && ord($body[0]) == 0x78 && in_array(ord($body[1]), [0x01, 0x5E, 0x9C, 0xDA])) {
             return gzuncompress($body);
         }
 

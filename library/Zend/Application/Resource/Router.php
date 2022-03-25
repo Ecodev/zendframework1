@@ -60,7 +60,7 @@ class Zend_Application_Resource_Router extends Zend_Application_Resource_Resourc
 
             $options = $this->getOptions();
             if (!isset($options['routes'])) {
-                $options['routes'] = array();
+                $options['routes'] = [];
             }
 
             if (isset($options['chainNameSeparator'])) {

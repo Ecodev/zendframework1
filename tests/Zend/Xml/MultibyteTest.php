@@ -42,12 +42,12 @@ class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
 
     public function multibyteEncodings()
     {
-        return array(
-            'UTF-16LE' => array('UTF-16LE', pack('CC', 0xFF, 0xFE), 3),
-            'UTF-16BE' => array('UTF-16BE', pack('CC', 0xFE, 0xFF), 3),
-            'UTF-32LE' => array('UTF-32LE', pack('CCCC', 0xFF, 0xFE, 0x00, 0x00), 4),
-            'UTF-32BE' => array('UTF-32BE', pack('CCCC', 0x00, 0x00, 0xFE, 0xFF), 4),
-        );
+        return [
+            'UTF-16LE' => ['UTF-16LE', pack('CC', 0xFF, 0xFE), 3],
+            'UTF-16BE' => ['UTF-16BE', pack('CC', 0xFE, 0xFF), 3],
+            'UTF-32LE' => ['UTF-32LE', pack('CCCC', 0xFF, 0xFE, 0x00, 0x00), 4],
+            'UTF-32BE' => ['UTF-32BE', pack('CCCC', 0x00, 0x00, 0xFE, 0xFF), 4],
+        ];
     }
 
     public function getXmlWithXXE()

@@ -85,7 +85,7 @@ class Zend_Xml_Security
 
         // Load XML with network access disabled (LIBXML_NONET)
         // error disabled with @ for PHP-FPM scenario
-        set_error_handler(array(\Zend_Xml_Security::class, 'loadXmlErrorHandler'), E_WARNING);
+        set_error_handler([\Zend_Xml_Security::class, 'loadXmlErrorHandler'], E_WARNING);
 
         $result = $dom->loadXml($xml, LIBXML_NONET);
         restore_error_handler();
@@ -181,7 +181,7 @@ class Zend_Xml_Security
         $encodingMap = self::getAsciiEncodingMap();
 
         return array_map(
-            array(self::class, 'generateEntityComparison'),
+            [self::class, 'generateEntityComparison'],
             self::detectXmlEncoding($xml, self::detectStringEncoding($xml))
         );
     }
@@ -270,29 +270,29 @@ class Zend_Xml_Security
 
         $closePos = strpos($xml, (string) $close);
         if (false === $closePos) {
-            return array($fileEncoding);
+            return [$fileEncoding];
         }
 
         $encPos = strpos($xml, (string) $encAttr);
         if (false === $encPos
             || $encPos > $closePos
         ) {
-            return array($fileEncoding);
+            return [$fileEncoding];
         }
 
         $encPos += strlen($encAttr);
         $quotePos = strpos($xml, (string) $quote, $encPos);
         if (false === $quotePos) {
-            return array($fileEncoding);
+            return [$fileEncoding];
         }
 
         $encoding = self::substr($xml, $encPos, $quotePos);
 
-        return array(
+        return [
             // Following line works because we're only supporting 8-bit safe encodings at this time.
             str_replace('\0', '', $encoding), // detected encoding
             $fileEncoding,                    // file encoding
-        );
+        ];
     }
 
     /**
@@ -307,38 +307,38 @@ class Zend_Xml_Security
      */
     protected static function getBomMap()
     {
-        return array(
-            array(
+        return [
+            [
                 'encoding' => 'UTF-32BE',
                 'bom' => pack('CCCC', 0x00, 0x00, 0xFE, 0xFF),
                 'length' => 4,
-            ),
-            array(
+            ],
+            [
                 'encoding' => 'UTF-32LE',
                 'bom' => pack('CCCC', 0xFF, 0xFE, 0x00, 0x00),
                 'length' => 4,
-            ),
-            array(
+            ],
+            [
                 'encoding' => 'GB-18030',
                 'bom' => pack('CCCC', 0x84, 0x31, 0x95, 0x33),
                 'length' => 4,
-            ),
-            array(
+            ],
+            [
                 'encoding' => 'UTF-16BE',
                 'bom' => pack('CC', 0xFE, 0xFF),
                 'length' => 2,
-            ),
-            array(
+            ],
+            [
                 'encoding' => 'UTF-16LE',
                 'bom' => pack('CC', 0xFF, 0xFE),
                 'length' => 2,
-            ),
-            array(
+            ],
+            [
                 'encoding' => 'UTF-8',
                 'bom' => pack('CCC', 0xEF, 0xBB, 0xBF),
                 'length' => 3,
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -352,16 +352,16 @@ class Zend_Xml_Security
      */
     protected static function getAsciiEncodingMap()
     {
-        return array(
-            'UTF-32BE' => array(self::class, 'encodeToUTF32BE'),
-            'UTF-32LE' => array(self::class, 'encodeToUTF32LE'),
-            'UTF-32odd1' => array(self::class, 'encodeToUTF32odd1'),
-            'UTF-32odd2' => array(self::class, 'encodeToUTF32odd2'),
-            'UTF-16BE' => array(self::class, 'encodeToUTF16BE'),
-            'UTF-16LE' => array(self::class, 'encodeToUTF16LE'),
-            'UTF-8' => array(self::class, 'encodeToUTF8'),
-            'GB-18030' => array(self::class, 'encodeToUTF8'),
-        );
+        return [
+            'UTF-32BE' => [self::class, 'encodeToUTF32BE'],
+            'UTF-32LE' => [self::class, 'encodeToUTF32LE'],
+            'UTF-32odd1' => [self::class, 'encodeToUTF32odd1'],
+            'UTF-32odd2' => [self::class, 'encodeToUTF32odd2'],
+            'UTF-16BE' => [self::class, 'encodeToUTF16BE'],
+            'UTF-16LE' => [self::class, 'encodeToUTF16LE'],
+            'UTF-8' => [self::class, 'encodeToUTF8'],
+            'GB-18030' => [self::class, 'encodeToUTF8'],
+        ];
     }
 
     /**

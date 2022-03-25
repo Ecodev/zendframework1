@@ -32,14 +32,14 @@ class Zend_Cache_Frontend_Capture extends Zend_Cache_Core
      *
      * @var array
      */
-    protected $_idStack = array();
+    protected $_idStack = [];
 
     /**
      * Tags.
      *
      * @var array
      */
-    protected $_tags = array();
+    protected $_tags = [];
 
     protected $_extension;
 
@@ -55,7 +55,7 @@ class Zend_Cache_Frontend_Capture extends Zend_Cache_Core
     {
         $this->_tags = $tags;
         $this->_extension = $extension;
-        ob_start(array($this, '_flush'));
+        ob_start([$this, '_flush']);
         ob_implicit_flush(false);
         $this->_idStack[] = $id;
 
@@ -77,7 +77,7 @@ class Zend_Cache_Frontend_Capture extends Zend_Cache_Core
             Zend_Cache::throwException('use of _flush() without a start()');
         }
         if ($this->_extension) {
-            $this->save(serialize(array($data, $this->_extension)), $id, $this->_tags);
+            $this->save(serialize([$data, $this->_extension]), $id, $this->_tags);
         } else {
             $this->save($data, $id, $this->_tags);
         }

@@ -103,7 +103,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
         $helper = new Zend_Controller_Action_HelperBroker_TestHelper();
         Zend_Controller_Action_HelperBroker::addHelper($helper);
 
-        $controller = new Zend_Controller_Action_HelperBrokerController($request, $response, array());
+        $controller = new Zend_Controller_Action_HelperBrokerController($request, $response, []);
         $controller->test();
         $received = $controller->getHelper('testHelper');
         $this->assertSame($helper, $received);
@@ -240,7 +240,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
             ->setControllerName('zend_controller_action_helper-broker')
             ->setActionName('index');
         $aResponse = new Zend_Controller_Response_Cli();
-        $controller = new Zend_Controller_Action_HelperBrokerController($aRequest, $aResponse, array());
+        $controller = new Zend_Controller_Action_HelperBrokerController($aRequest, $aResponse, []);
 
         $fRequest = new Zend_Controller_Request_Http();
         $fRequest->setModuleName('foo')

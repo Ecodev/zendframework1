@@ -73,7 +73,7 @@ class Zend_Config implements Countable, Iterator
      *
      * @var array
      */
-    protected $_extends = array();
+    protected $_extends = [];
 
     /**
      * Load file error string.
@@ -99,7 +99,7 @@ class Zend_Config implements Countable, Iterator
         $this->_allowModifications = (boolean) $allowModifications;
         $this->_loadedSection = null;
         $this->_index = 0;
-        $this->_data = array();
+        $this->_data = [];
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 $this->_data[$key] = new self($value, $this->_allowModifications);
@@ -170,7 +170,7 @@ class Zend_Config implements Countable, Iterator
      */
     public function __clone()
     {
-        $array = array();
+        $array = [];
         foreach ($this->_data as $key => $value) {
             if ($value instanceof Zend_Config) {
                 $array[$key] = clone $value;
@@ -188,7 +188,7 @@ class Zend_Config implements Countable, Iterator
      */
     public function toArray()
     {
-        $array = array();
+        $array = [];
         $data = $this->_data;
         foreach ($data as $key => $value) {
             if ($value instanceof Zend_Config) {
@@ -450,7 +450,7 @@ class Zend_Config implements Countable, Iterator
                     $firstArray[$key] = $this->_arrayMergeRecursive($firstArray[$key], $value);
                 } else {
                     if ($key === 0) {
-                        $firstArray = array(0 => $this->_arrayMergeRecursive($firstArray, $value));
+                        $firstArray = [0 => $this->_arrayMergeRecursive($firstArray, $value)];
                     } else {
                         $firstArray[$key] = $value;
                     }

@@ -48,7 +48,7 @@ class ZendX_JQuery_View_Helper_AutoComplete extends ZendX_JQuery_View_Helper_UiW
      *
      * @return string
      */
-    public function autoComplete($id, $value = null, array $params = array(), array $attribs = array())
+    public function autoComplete($id, $value = null, array $params = [], array $attribs = [])
     {
         $attribs = $this->_prepareAttributes($id, $value, $attribs);
 

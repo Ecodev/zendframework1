@@ -46,7 +46,7 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
     public function testStaticMatchWithDefaults()
     {
         $route = new Zend_Controller_Router_Route_Static('users/all',
-                    array('controller' => 'ctrl', 'action' => 'act'));
+                    ['controller' => 'ctrl', 'action' => 'act']);
         $values = $route->match('users/all');
 
         $this->assertTrue(is_array($values));
@@ -67,7 +67,7 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
         $route = new Zend_Controller_Router_Route_Static('/');
         $values = $route->match('');
 
-        $this->assertSame(array(), $values);
+        $this->assertSame([], $values);
     }
 
     public function testAssemble()
@@ -81,7 +81,7 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
     public function testGetDefaults()
     {
         $route = new Zend_Controller_Router_Route_Static('users/all',
-                    array('controller' => 'ctrl', 'action' => 'act'));
+                    ['controller' => 'ctrl', 'action' => 'act']);
 
         $values = $route->getDefaults();
 
@@ -93,7 +93,7 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
     public function testGetDefault()
     {
         $route = new Zend_Controller_Router_Route_Static('users/all',
-                    array('controller' => 'ctrl', 'action' => 'act'));
+                    ['controller' => 'ctrl', 'action' => 'act']);
 
         $this->assertSame('ctrl', $route->getDefault('controller'));
         $this->assertSame(null, $route->getDefault('bogus'));
@@ -103,12 +103,12 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
     {
         require_once 'Zend/Config.php';
 
-        $routeConf = array(
+        $routeConf = [
             'route' => 'users/all',
-            'defaults' => array(
+            'defaults' => [
                 'controller' => 'ctrl',
-            ),
-        );
+            ],
+        ];
 
         $config = new Zend_Config($routeConf);
         $route = Zend_Controller_Router_Route_Static::getInstance($config);

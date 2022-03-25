@@ -88,11 +88,11 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
     {
         // setup
         $this->_helper->setContainer($this->_nav2);
-        $expected = array(
+        $expected = [
             'menu' => $this->_getExpected('menu/default2.html'),
             'breadcrumbs' => $this->_getExpected('bc/default.html'),
-        );
-        $actual = array();
+        ];
+        $actual = [];
 
         // result
         $actual['menu'] = $this->_helper->render();
@@ -111,14 +111,14 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
         $this->_helper->setContainer($this->_nav2);
 
         // result
-        $expected = array(
+        $expected = [
             'menu' => '',
             'breadcrumbs' => '',
-        );
-        $actual = array(
+        ];
+        $actual = [
             'menu' => $this->_helper->render(),
             'breadcrumbs' => $this->_helper->breadcrumbs()->render(),
-        );
+        ];
 
         $this->assertEquals($expected, $actual);
     }
@@ -173,11 +173,11 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
 
     public function testSpecifyingDefaultProxy()
     {
-        $expected = array(
+        $expected = [
             'breadcrumbs' => $this->_getExpected('bc/default.html'),
             'menu' => $this->_getExpected('menu/default1.html'),
-        );
-        $actual = array();
+        ];
+        $actual = [];
 
         // result
         $this->_helper->setDefaultProxy('breadcrumbs');
@@ -333,8 +333,8 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
 
     public function testMagicToStringShouldNotThrowException()
     {
-        set_error_handler(array($this, 'toStringErrorHandler'));
-        $this->_helper->menu()->setPartial(array(1337));
+        set_error_handler([$this, 'toStringErrorHandler']);
+        $this->_helper->menu()->setPartial([1337]);
         $this->_helper->__toString();
         restore_error_handler();
 
@@ -345,18 +345,18 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
     {
         $nl = Zend_View_Helper_Navigation::EOL;
 
-        $container = new Zend_Navigation(array(
-            array(
+        $container = new Zend_Navigation([
+            [
                 'label' => 'Page 1',
                 'id' => 'p1',
                 'uri' => 'p1',
-            ),
-            array(
+            ],
+            [
                 'label' => 'Page 2',
                 'id' => 'p2',
                 'uri' => 'p2',
-            ),
-        ));
+            ],
+        ]);
 
         $expected = '<ul class="navigation">' . $nl
                   . '    <li>' . $nl
@@ -397,14 +397,14 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
             'My_View_Helper_Navigation'
         );
 
-        $expected = array(
-            'Zend_View_Helper_' => array(
+        $expected = [
+            'Zend_View_Helper_' => [
                 'Zend/View/Helper/',
-            ),
-            'My_View_Helper_Navigation_' => array(
+            ],
+            'My_View_Helper_Navigation_' => [
                 $this->_files . '/helpers/',
-            ),
-        );
+            ],
+        ];
 
         $this->assertSame($expected, $this->_helper->view->getHelperPaths());
     }
@@ -427,19 +427,19 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
      */
     public function testRenderInvisibleItem()
     {
-        $container = new Zend_Navigation(array(
-            array(
+        $container = new Zend_Navigation([
+            [
                 'label' => 'Page 1',
                 'id' => 'p1',
                 'uri' => 'p1',
-            ),
-            array(
+            ],
+            [
                 'label' => 'Page 2',
                 'id' => 'p2',
                 'uri' => 'p2',
                 'visible' => false,
-            ),
-        ));
+            ],
+        ]);
 
         $render = $this->_helper->menu()->render($container);
 

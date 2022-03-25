@@ -52,7 +52,7 @@ class Zend_View_Helper_Placeholder_Registry
      *
      * @var array
      */
-    protected $_items = array();
+    protected $_items = [];
 
     /**
      * Retrieve or create registry instnace.
@@ -76,7 +76,7 @@ class Zend_View_Helper_Placeholder_Registry
      *
      * @return Zend_View_Helper_Placeholder_Container_Abstract
      */
-    public function createContainer($key, array $value = array())
+    public function createContainer($key, array $value = [])
     {
         $key = (string) $key;
 

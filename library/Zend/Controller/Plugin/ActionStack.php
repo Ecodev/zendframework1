@@ -49,12 +49,12 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
      *
      * @var array
      */
-    protected $_validKeys = array(
+    protected $_validKeys = [
         'module',
         'controller',
         'action',
         'params',
-    );
+    ];
 
     /**
      * Flag to determine whether request parameters are cleared between actions, or whether new parameters
@@ -83,7 +83,7 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
             $key = $this->getRegistryKey();
         }
 
-        $registry[$key] = array();
+        $registry[$key] = [];
     }
 
     /**

@@ -54,7 +54,7 @@ class Zend_Application_Resource_Navigation extends Zend_Application_Resource_Res
                 );
             }
 
-            $pages = $options['pages'] ?? array();
+            $pages = $options['pages'] ?? [];
             $this->_container = new Zend_Navigation($pages);
         }
 

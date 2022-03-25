@@ -40,7 +40,7 @@ class Zend_Validate_CcnumTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp(): void
     {
-        set_error_handler(array($this, 'errorHandlerIgnore'));
+        set_error_handler([$this, 'errorHandlerIgnore']);
         $this->_validator = new Zend_Validate_Ccnum();
     }
 
@@ -49,13 +49,13 @@ class Zend_Validate_CcnumTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasic()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             '4929000000006' => true,
             '5404000000000001' => true,
             '374200000000004' => true,
             '4444555566667777' => false,
             'ABCDEF' => false,
-        );
+        ];
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $this->_validator->isValid($input));
         }
@@ -67,7 +67,7 @@ class Zend_Validate_CcnumTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetMessages()
     {
-        $this->assertEquals(array(), $this->_validator->getMessages());
+        $this->assertEquals([], $this->_validator->getMessages());
         restore_error_handler();
     }
 

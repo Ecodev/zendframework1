@@ -59,7 +59,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
         $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
         $saveHandlerClassName = $saveHandler::class;
 
-        $this->resource->setSaveHandler(array('class' => $saveHandlerClassName));
+        $this->resource->setSaveHandler(['class' => $saveHandlerClassName]);
 
         $this->assertTrue($this->resource->getSaveHandler() instanceof $saveHandlerClassName);
     }
@@ -69,15 +69,15 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetOptions()
     {
-        Zend_Session::setOptions(array(
+        Zend_Session::setOptions([
             'use_only_cookies' => false,
             'remember_me_seconds' => 3600,
-        ));
+        ]);
 
-        $this->resource->setOptions(array(
+        $this->resource->setOptions([
             'use_only_cookies' => true,
             'remember_me_seconds' => 7200,
-        ));
+        ]);
 
         $this->resource->init();
 

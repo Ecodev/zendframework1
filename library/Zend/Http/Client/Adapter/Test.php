@@ -47,7 +47,7 @@ class Zend_Http_Client_Adapter_Test implements Zend_Http_Client_Adapter_Interfac
      *
      * @var array
      */
-    protected $config = array();
+    protected $config = [];
 
     /**
      * Buffer of responses to be returned by the read() method.  Can be
@@ -55,7 +55,7 @@ class Zend_Http_Client_Adapter_Test implements Zend_Http_Client_Adapter_Interfac
      *
      * @var array
      */
-    protected $responses = array("HTTP/1.1 400 Bad Request\r\n\r\n");
+    protected $responses = ["HTTP/1.1 400 Bad Request\r\n\r\n"];
 
     /**
      * Current position in the response buffer.
@@ -97,7 +97,7 @@ class Zend_Http_Client_Adapter_Test implements Zend_Http_Client_Adapter_Interfac
      *
      * @param array|Zend_Config $config
      */
-    public function setConfig($config = array())
+    public function setConfig($config = [])
     {
         if ($config instanceof Zend_Config) {
             $config = $config->toArray();
@@ -142,7 +142,7 @@ class Zend_Http_Client_Adapter_Test implements Zend_Http_Client_Adapter_Interfac
      *
      * @return string Request as string
      */
-    public function write($method, $uri, $http_ver = '1.1', $headers = array(), $body = '')
+    public function write($method, $uri, $http_ver = '1.1', $headers = [], $body = '')
     {
         $host = $uri->getHost();
         $host = (strtolower($uri->getScheme()) == 'https' ? 'sslv2://' . $host : $host);

@@ -110,11 +110,11 @@ class Zend_Layout_HelperTest extends \PHPUnit\Framework\TestCase
         $layout = Zend_Layout::startMvc();
         $helper = new Zend_Layout_Controller_Action_Helper_Layout();
 
-        $helper->setOptions(array(
+        $helper->setOptions([
             'layout' => 'foo.phtml',
             'layoutPath' => __DIR__ . '/_files/layouts',
             'contentKey' => 'foo',
-        ));
+        ]);
         $this->assertEquals('foo.phtml', $helper->getLayout());
         $this->assertEquals(__DIR__ . '/_files/layouts', $helper->getLayoutPath());
         $this->assertEquals('foo', $helper->getContentKey());

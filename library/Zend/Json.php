@@ -128,7 +128,7 @@ class Zend_Json
      *
      * @return string JSON encoded object
      */
-    public static function encode($valueToEncode, $cycleCheck = false, $options = array())
+    public static function encode($valueToEncode, $cycleCheck = false, $options = [])
     {
         if (is_object($valueToEncode)) {
             if (method_exists($valueToEncode, 'toJson')) {
@@ -140,7 +140,7 @@ class Zend_Json
         }
 
         // Pre-encoding look for Zend_Json_Expr objects and replacing by tmp ids
-        $javascriptExpressions = array();
+        $javascriptExpressions = [];
         if (isset($options['enableJsonExprFinder'])
            && ($options['enableJsonExprFinder'] == true)
         ) {
@@ -200,12 +200,12 @@ class Zend_Json
         if ($value instanceof Zend_Json_Expr) {
             // TODO: Optimize with ascii keys, if performance is bad
             $magicKey = '____' . $currentKey . '_' . (count($javascriptExpressions));
-            $javascriptExpressions[] = array(
+            $javascriptExpressions[] = [
 
                 //if currentKey is integer, encodeUnicodeString call is not required.
                 'magicKey' => (is_int($currentKey)) ? $magicKey : Zend_Json_Encoder::encodeUnicodeString($magicKey),
                 'value' => $value->__toString(),
-            );
+            ];
             $value = $magicKey;
         } elseif (is_array($value)) {
             foreach ($value as $k => $v) {
@@ -235,7 +235,7 @@ class Zend_Json
     protected static function _getXmlValue($simpleXmlElementObject)
     {
         $pattern = '/^[\s]*new Zend_Json_Expr[\s]*\([\s]*[\"\']{1}(.*)[\"\']{1}[\s]*\)[\s]*$/';
-        $matchings = array();
+        $matchings = [];
         $match = preg_match($pattern, $simpleXmlElementObject, $matchings);
         if ($match) {
             return new Zend_Json_Expr($matchings[1]);
@@ -292,18 +292,18 @@ class Zend_Json
                     $attributes['@text'] = $value;
                 }
 
-                return array($name => $attributes);
+                return [$name => $attributes];
             }
 
-            return array($name => $value);
+            return [$name => $value];
         }
-        $childArray = array();
+        $childArray = [];
         foreach ($children as $child) {
             $childname = $child->getName();
             $element = self::_processXml($child,$ignoreXmlAttributes,$recursionDepth + 1);
             if (array_key_exists($childname, $childArray)) {
                 if (empty($subChild[$childname])) {
-                    $childArray[$childname] = array($childArray[$childname]);
+                    $childArray[$childname] = [$childArray[$childname]];
                     $subChild[$childname] = true;
                 }
                 $childArray[$childname][] = $element[$childname];
@@ -321,7 +321,7 @@ class Zend_Json
             $childArray['@text'] = $value;
         }
 
-        return array($name => $childArray);
+        return [$name => $childArray];
     }
 
     /**
@@ -385,7 +385,7 @@ class Zend_Json
      *
      * @return string
      */
-    public static function prettyPrint($json, $options = array())
+    public static function prettyPrint($json, $options = [])
     {
         $tokens = preg_split('|([\{\}\]\[,])|', $json, -1, PREG_SPLIT_DELIM_CAPTURE);
         $result = '';

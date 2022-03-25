@@ -46,12 +46,12 @@ abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router
      *
      * @var array
      */
-    protected $_invokeParams = array();
+    protected $_invokeParams = [];
 
     /**
      * Constructor.
      */
-    public function __construct(array $params = array())
+    public function __construct(array $params = [])
     {
         $this->setParams($params);
     }
@@ -125,7 +125,7 @@ abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router
     public function clearParams($name = null)
     {
         if (null === $name) {
-            $this->_invokeParams = array();
+            $this->_invokeParams = [];
         } elseif (is_string($name) && isset($this->_invokeParams[$name])) {
             unset($this->_invokeParams[$name]);
         } elseif (is_array($name)) {

@@ -89,7 +89,7 @@ abstract class ZendX_JQuery_Form_Decorator_UiWidgetContainer extends Zend_Form_D
     public function getJQueryParams()
     {
         if (null === $this->_jQueryParams) {
-            $this->_jQueryParams = array();
+            $this->_jQueryParams = [];
             if ($attribs = $this->getElement()->getAttribs()) {
                 if (array_key_exists('jQueryParams', $attribs)) {
                     $this->_jQueryParams = $attribs['jQueryParams'];

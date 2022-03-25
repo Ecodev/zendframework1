@@ -36,14 +36,14 @@ abstract class ZendX_JQuery_View_Helper_UiWidgetPane extends ZendX_JQuery_View_H
      *
      * @var array
      */
-    protected $_captureLock = array();
+    protected $_captureLock = [];
 
     /**
      * Current capture additional information.
      *
      * @var array
      */
-    protected $_captureInfo = array();
+    protected $_captureInfo = [];
 
     /**
      * Begin capturing content for layout container.
@@ -53,7 +53,7 @@ abstract class ZendX_JQuery_View_Helper_UiWidgetPane extends ZendX_JQuery_View_H
      *
      * @return bool
      */
-    public function captureStart($id, $name, array $options = array())
+    public function captureStart($id, $name, array $options = [])
     {
         if (array_key_exists($id, $this->_captureLock)) {
             require_once 'ZendX/JQuery/View/Exception.php';
@@ -62,10 +62,10 @@ abstract class ZendX_JQuery_View_Helper_UiWidgetPane extends ZendX_JQuery_View_H
         }
 
         $this->_captureLock[$id] = true;
-        $this->_captureInfo[$id] = array(
+        $this->_captureInfo[$id] = [
             'name' => $name,
             'options' => $options,
-        );
+        ];
 
         return ob_start();
     }
@@ -101,5 +101,5 @@ abstract class ZendX_JQuery_View_Helper_UiWidgetPane extends ZendX_JQuery_View_H
      * @param string $name
      * @param string $content
      */
-    abstract protected function _addPane($id, $name, $content, array $options = array());
+    abstract protected function _addPane($id, $name, $content, array $options = []);
 }

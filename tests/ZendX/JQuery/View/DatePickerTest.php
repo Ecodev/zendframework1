@@ -33,7 +33,7 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
 
     public function testShouldAppendToJqueryHelper()
     {
-        $element = $this->view->datePicker('elem1', '', array('option' => 'true'));
+        $element = $this->view->datePicker('elem1', '', ['option' => 'true']);
 
         $jquery = $this->view->jQuery()->__toString();
         $this->assertContains('datepicker(', $jquery);
@@ -44,7 +44,7 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
     {
         $element = $this->view->datePicker('elem1', '01.01.2007');
 
-        $this->assertEquals(array('$("#elem1").datepicker({});'), $this->view->jQuery()->getOnLoadActions());
+        $this->assertEquals(['$("#elem1").datepicker({});'], $this->view->jQuery()->getOnLoadActions());
         $this->assertContains('<input', $element);
         $this->assertContains('id="elem1"', $element);
         $this->assertContains('value="01.01.2007"', $element);
@@ -57,9 +57,9 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
         Zend_Registry::set(\Zend_Locale::class, $locale);
         $view->datePicker('dp1');
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             '$("#dp1").datepicker({"dateFormat":"dd.mm.yy"});',
-        ), $view->jQuery()->getOnLoadActions());
+        ], $view->jQuery()->getOnLoadActions());
     }
 
     public function testDatePickerSupportsLocaleEn()
@@ -70,9 +70,9 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
         Zend_Registry::set(\Zend_Locale::class, $locale);
         $view->datePicker('dp2');
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             '$("#dp2").datepicker({"dateFormat":"M d, yy"});',
-        ), $view->jQuery()->getOnLoadActions());
+        ], $view->jQuery()->getOnLoadActions());
     }
 
     public function testDatePickerSupportsLocaleFr()
@@ -83,9 +83,9 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
         Zend_Registry::set(\Zend_Locale::class, $locale);
         $view->datePicker('dp3');
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             '$("#dp3").datepicker({"dateFormat":"d M yy"});',
-        ), $view->jQuery()->getOnLoadActions());
+        ], $view->jQuery()->getOnLoadActions());
     }
 
     /**

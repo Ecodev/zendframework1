@@ -133,7 +133,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     public function testLabelIsTranslatedWhenTranslationAvailable()
     {
         require_once 'Zend/Translate.php';
-        $translations = array('Label' => 'This is the Submit Label');
+        $translations = ['Label' => 'This is the Submit Label'];
         $translate = new Zend_Translate('array', $translations);
         $submit = new Zend_Form_Element_Submit('foo', 'Label');
         $submit->setTranslator($translate);
@@ -143,7 +143,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     public function testLabelWhichIsSetToNameIsTranslatedWhenTranslationAvailable()
     {
         require_once 'Zend/Translate.php';
-        $translations = array('foo' => 'This is the Submit Label');
+        $translations = ['foo' => 'This is the Submit Label'];
         $translate = new Zend_Translate('array', $translations);
         $submit = new Zend_Form_Element_Submit('foo');
         $submit->setTranslator($translate);
@@ -156,8 +156,8 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     public function testLabelIsNotTranslatedTwice()
     {
         require_once 'Zend/Translate.php';
-        $translations = array('firstLabel' => 'secondLabel',
-            'secondLabel' => 'thirdLabel', );
+        $translations = ['firstLabel' => 'secondLabel',
+            'secondLabel' => 'thirdLabel', ];
         $translate = new Zend_Translate('array', $translations);
         $submit = new Zend_Form_Element_Submit('foo', 'firstLabel');
         $submit->setTranslator($translate);
@@ -190,7 +190,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
      */
     public function testIsCheckedReturnsExpectedValueWhenUsingTranslator()
     {
-        $translations = array('label' => 'translation');
+        $translations = ['label' => 'translation'];
         $translate = new Zend_Translate('array', $translations);
 
         $submit = new Zend_Form_Element_Submit('foo', 'label');
@@ -211,7 +211,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     public function testTitleAttributeGetsTranslated()
     {
         $this->element->setAttrib('title', 'bar');
-        $translator = new Zend_Translate_Adapter_Array(array('bar' => 'baz'), 'de');
+        $translator = new Zend_Translate_Adapter_Array(['bar' => 'baz'], 'de');
         $this->element->setTranslator($translator);
         $html = $this->element->render(new Zend_View());
         $this->assertStringContainsString('title', $html);
@@ -222,7 +222,7 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     public function testTitleAttributeDoesNotGetTranslatedIfTranslatorIsDisabled()
     {
         $this->element->setAttrib('title', 'bar');
-        $translator = new Zend_Translate_Adapter_Array(array('bar' => 'baz'), 'de');
+        $translator = new Zend_Translate_Adapter_Array(['bar' => 'baz'], 'de');
         $this->element->setTranslator($translator);
         // now disable translator and see if that works
         $this->element->setDisableTranslator(true);

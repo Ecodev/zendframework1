@@ -24,7 +24,7 @@ class ZendX_JQuery_View_AutoCompleteTest extends ZendX_JQuery_View_jQueryTestCas
 {
     public function testCallingInViewEnablesJQueryHelper()
     {
-        $element = $this->view->autoComplete('element', '', array('data' => array('test')));
+        $element = $this->view->autoComplete('element', '', ['data' => ['test']]);
 
         $this->assertTrue($this->jquery->isEnabled());
         $this->assertTrue($this->jquery->uiIsEnabled());
@@ -32,7 +32,7 @@ class ZendX_JQuery_View_AutoCompleteTest extends ZendX_JQuery_View_jQueryTestCas
 
     public function testShouldAppendToJqueryHelper()
     {
-        $element = $this->view->autoComplete('elem1', 'Default', array('option' => 'true', 'data' => array('test')), array());
+        $element = $this->view->autoComplete('elem1', 'Default', ['option' => 'true', 'data' => ['test']], []);
 
         $jquery = $this->view->jQuery()->__toString();
         $this->assertStringContainsString('autocomplete(', $jquery);
@@ -47,9 +47,9 @@ class ZendX_JQuery_View_AutoCompleteTest extends ZendX_JQuery_View_jQueryTestCas
 
     public function testShouldCreateInputField()
     {
-        $element = $this->view->autoComplete('elem1', 'Default', array('source' => array('Test')));
+        $element = $this->view->autoComplete('elem1', 'Default', ['source' => ['Test']]);
 
-        $this->assertEquals(array('$("#elem1").autocomplete({"source":["Test"]});'), $this->view->jQuery()->getOnLoadActions());
+        $this->assertEquals(['$("#elem1").autocomplete({"source":["Test"]});'], $this->view->jQuery()->getOnLoadActions());
         $this->assertStringContainsString('<input', $element);
         $this->assertStringContainsString('id="elem1"', $element);
         $this->assertStringContainsString('value="Default"', $element);

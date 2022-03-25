@@ -41,7 +41,7 @@ class Zend_Application_Resource_LayoutTest extends \PHPUnit\Framework\TestCase
         if (!is_array($this->loaders)) {
             // spl_autoload_functions does not return empty array when no
             // autoloaders registered...
-            $this->loaders = array();
+            $this->loaders = [];
         }
 
         Zend_Loader_Autoloader::resetInstance();
@@ -72,7 +72,7 @@ class Zend_Application_Resource_LayoutTest extends \PHPUnit\Framework\TestCase
 
     public function testInitializationInitializesLayoutObject()
     {
-        $resource = new Zend_Application_Resource_Layout(array());
+        $resource = new Zend_Application_Resource_Layout([]);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
         $this->assertTrue($resource->getLayout() instanceof Zend_Layout);
@@ -80,7 +80,7 @@ class Zend_Application_Resource_LayoutTest extends \PHPUnit\Framework\TestCase
 
     public function testInitializationReturnsLayoutObject()
     {
-        $resource = new Zend_Application_Resource_Layout(array());
+        $resource = new Zend_Application_Resource_Layout([]);
         $resource->setBootstrap($this->bootstrap);
         $test = $resource->init();
         $this->assertTrue($test instanceof Zend_Layout);
@@ -88,19 +88,19 @@ class Zend_Application_Resource_LayoutTest extends \PHPUnit\Framework\TestCase
 
     public function testOptionsPassedToResourceAreUsedToSetLayoutState()
     {
-        $options = array(
+        $options = [
             'layout' => 'foo.phtml',
             'layoutPath' => __DIR__,
-        );
+        ];
 
         $resource = new Zend_Application_Resource_Layout($options);
         $resource->setBootstrap($this->bootstrap);
         $resource->init();
         $layout = $resource->getLayout();
-        $test = array(
+        $test = [
             'layout' => $layout->getLayout(),
             'layoutPath' => $layout->getLayoutPath(),
-        );
+        ];
         $this->assertEquals($options, $test);
     }
 }

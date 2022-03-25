@@ -53,7 +53,7 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
      *
      * @var array
      */
-    protected $_helpers = array();
+    protected $_helpers = [];
 
     /**
      * Whether container should be injected when proxying.
@@ -115,11 +115,11 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
      *
      * @return mixed                      returns what the proxied call returns
      */
-    public function __call($method, array $arguments = array())
+    public function __call($method, array $arguments = [])
     {
         // check if call should proxy to another helper
         if ($helper = $this->findHelper($method, false)) {
-            return call_user_func_array(array($helper, $method), $arguments);
+            return call_user_func_array([$helper, $method], $arguments);
         }
 
         // default behaviour: proxy call to container

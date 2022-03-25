@@ -41,7 +41,7 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
         if (!is_array($this->loaders)) {
             // spl_autoload_functions does not return empty array when no
             // autoloaders registered...
-            $this->loaders = array();
+            $this->loaders = [];
         }
 
         // Store original include_path

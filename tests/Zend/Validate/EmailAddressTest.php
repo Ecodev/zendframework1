@@ -84,10 +84,10 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
     public function testIPAllowed()
     {
         $validator = new Zend_Validate_EmailAddress(Zend_Validate_Hostname::ALLOW_DNS | Zend_Validate_Hostname::ALLOW_IP);
-        $valuesExpected = array(
-            array(Zend_Validate_Hostname::ALLOW_DNS, true, array('bob@212.212.20.4')),
-            array(Zend_Validate_Hostname::ALLOW_DNS, false, array('bob@localhost')),
-        );
+        $valuesExpected = [
+            [Zend_Validate_Hostname::ALLOW_DNS, true, ['bob@212.212.20.4']],
+            [Zend_Validate_Hostname::ALLOW_DNS, false, ['bob@localhost']],
+        ];
         foreach ($valuesExpected as $element) {
             foreach ($element[2] as $input) {
                 $this->assertEquals($element[1], $validator->isValid($input), implode("\n", $validator->getMessages()));
@@ -156,7 +156,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testQuotedString()
     {
-        $emailAddresses = array(
+        $emailAddresses = [
             '""@domain.com', // Optional
             '" "@domain.com', // x20
             '"!"@domain.com', // x21
@@ -176,7 +176,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
             '"bob@jones"@domain.com',
             '"[[ bob ]]"@domain.com',
             '"jones"@domain.com',
-        );
+        ];
         foreach ($emailAddresses as $input) {
             $this->assertTrue($this->_validator->isValid($input), "$input failed to pass validation:\n"
                             . implode("\n", $this->_validator->getMessages()));
@@ -188,7 +188,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testInvalidQuotedString()
     {
-        $emailAddresses = array(
+        $emailAddresses = [
             "\"\x00\"@example.com",
             "\"\x01\"@example.com",
             "\"\x1E\"@example.com",
@@ -196,7 +196,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
             '"""@example.com', // x22 (not escaped)
             '"\"@example.com', // x5C (not escaped)
             "\"\x7F\"@example.com",
-        );
+        ];
         foreach ($emailAddresses as $input) {
             $this->assertFalse($this->_validator->isValid($input), "$input failed to pass validation:\n"
                 . implode("\n", $this->_validator->getMessages()));
@@ -222,7 +222,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasicValid()
     {
-        $emailAddresses = array(
+        $emailAddresses = [
             'bob@domain.com',
             'bob.jones@domain.co.uk',
             'bob.jones.smythe@domain.co.uk',
@@ -233,7 +233,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
             'bob+jones@domain.co.uk',
             'bob@some.domain.uk.com',
             'bob@verylongdomainsupercalifragilisticexpialidociousspoonfulofsugar.com',
-        );
+        ];
         foreach ($emailAddresses as $input) {
             $this->assertTrue($this->_validator->isValid($input), "$input failed to pass validation:\n"
                             . implode("\n", $this->_validator->getMessages()));
@@ -245,7 +245,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasicInvalid()
     {
-        $emailAddresses = array(
+        $emailAddresses = [
             '',
             'bob
 
@@ -262,7 +262,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
             'bob@ domain.com',
             'bob @ domain.com',
             'Abc..123@example.com',
-        );
+        ];
         foreach ($emailAddresses as $input) {
             $this->assertFalse($this->_validator->isValid($input), implode("\n", $this->_validator->getMessages()) . $input);
         }
@@ -273,7 +273,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testComplexLocalValid()
     {
-        $emailAddresses = array(
+        $emailAddresses = [
             'Bob.Jones@domain.com',
             'Bob.Jones!@domain.com',
             'Bob&Jones@domain.com',
@@ -281,7 +281,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
             '#Bob.Jones@domain.com',
             'Bob.Jones?@domain.com',
             'Bob~Jones@domain.com',
-        );
+        ];
         foreach ($emailAddresses as $input) {
             $this->assertTrue($this->_validator->isValid($input));
         }
@@ -309,10 +309,10 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
             return;
         }
 
-        $valuesExpected = array(
-            array(true, array('Bob.Jones@zend.com', 'Bob.Jones@php.net')),
-            array(false, array('Bob.Jones@bad.example.com', 'Bob.Jones@anotherbad.example.com')),
-        );
+        $valuesExpected = [
+            [true, ['Bob.Jones@zend.com', 'Bob.Jones@php.net']],
+            [false, ['Bob.Jones@bad.example.com', 'Bob.Jones@anotherbad.example.com']],
+        ];
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()));
@@ -339,9 +339,9 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
 
         // Check no IDN matching
         $validator->getHostnameValidator()->setValidateIdn(false);
-        $valuesExpected = array(
-            array(false, array('name@b�rger.de', 'name@h�llo.de', 'name@h�llo.se')),
-        );
+        $valuesExpected = [
+            [false, ['name@b�rger.de', 'name@h�llo.de', 'name@h�llo.se']],
+        ];
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()));
@@ -350,9 +350,9 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
 
         // Check no TLD matching
         $validator->getHostnameValidator()->setValidateTld(false);
-        $valuesExpected = array(
-            array(true, array('name@domain.xx', 'name@domain.zz', 'name@domain.madeup')),
-        );
+        $valuesExpected = [
+            [true, ['name@domain.xx', 'name@domain.zz', 'name@domain.madeup']],
+        ];
         foreach ($valuesExpected as $element) {
             foreach ($element[1] as $input) {
                 $this->assertEquals($element[0], $validator->isValid($input), implode("\n", $validator->getMessages()));
@@ -365,7 +365,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetMessages()
     {
-        $this->assertEquals(array(), $this->_validator->getMessages());
+        $this->assertEquals([], $this->_validator->getMessages());
     }
 
     /**
@@ -376,7 +376,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
         require_once 'Zend/Validate/Hostname.php';
         $hostnameValidator = new Zend_Validate_Hostname();
         require_once 'Zend/Translate.php';
-        $translations = array(
+        $translations = [
             'hostnameIpAddressNotAllowed' => 'hostnameIpAddressNotAllowed translation',
             'hostnameUnknownTld' => 'hostnameUnknownTld translation',
             'hostnameDashCharacter' => 'hostnameDashCharacter translation',
@@ -385,7 +385,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
             'hostnameInvalidHostname' => 'hostnameInvalidHostname translation',
             'hostnameInvalidLocalName' => 'hostnameInvalidLocalName translation',
             'hostnameLocalNameNotAllowed' => 'hostnameLocalNameNotAllowed translation',
-        );
+        ];
         $translator = new Zend_Translate('array', $translations);
         $this->_validator->setTranslator($translator)->setHostnameValidator($hostnameValidator);
 
@@ -408,10 +408,10 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testEmailsExceedingLength()
     {
-        $emailAddresses = array(
+        $emailAddresses = [
             'thislocalpathoftheemailadressislongerthantheallowedsizeof64characters@domain.com',
             'bob@verylongdomainsupercalifragilisticexpialidociousspoonfulofsugarverylongdomainsupercalifragilisticexpialidociousspoonfulofsugarverylongdomainsupercalifragilisticexpialidociousspoonfulofsugarverylongdomainsupercalifragilisticexpialidociousspoonfulofsugarexpialidociousspoonfulofsugar.com',
-        );
+        ];
         foreach ($emailAddresses as $input) {
             $this->assertFalse($this->_validator->isValid($input));
         }
@@ -422,7 +422,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testNonStringValidation()
     {
-        $this->assertFalse($this->_validator->isValid(array(1 => 1)));
+        $this->assertFalse($this->_validator->isValid([1 => 1]));
     }
 
     /**
@@ -430,7 +430,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testSettingHostnameMessagesThroughEmailValidator()
     {
-        $translations = array(
+        $translations = [
             'hostnameIpAddressNotAllowed' => 'hostnameIpAddressNotAllowed translation',
             'hostnameUnknownTld' => 'hostnameUnknownTld translation',
             'hostnameDashCharacter' => 'hostnameDashCharacter translation',
@@ -439,7 +439,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
             'hostnameInvalidHostname' => 'hostnameInvalidHostname translation',
             'hostnameInvalidLocalName' => 'hostnameInvalidLocalName translation',
             'hostnameLocalNameNotAllowed' => 'hostnameLocalNameNotAllowed translation',
-        );
+        ];
 
         $this->_validator->setMessages($translations);
         $this->_validator->isValid('_XX.!!3xx@0.239,512.777');
@@ -462,7 +462,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testInstanceWithOldOptions()
     {
-        $handler = set_error_handler(array($this, 'errorHandler'), E_USER_NOTICE);
+        $handler = set_error_handler([$this, 'errorHandler'], E_USER_NOTICE);
         $validator = new Zend_Validate_EmailAddress();
         $options = $validator->getOptions();
 
@@ -486,12 +486,12 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetOptions()
     {
-        $this->_validator->setOptions(array('messages' => array(Zend_Validate_EmailAddress::INVALID => 'TestMessage')));
+        $this->_validator->setOptions(['messages' => [Zend_Validate_EmailAddress::INVALID => 'TestMessage']]);
         $messages = $this->_validator->getMessageTemplates();
         $this->assertEquals('TestMessage', $messages[Zend_Validate_EmailAddress::INVALID]);
 
         $oldHostname = $this->_validator->getHostnameValidator();
-        $this->_validator->setOptions(array('hostname' => new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_ALL)));
+        $this->_validator->setOptions(['hostname' => new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_ALL)]);
         $hostname = $this->_validator->getHostnameValidator();
         $this->assertNotEquals($oldHostname, $hostname);
     }

@@ -34,9 +34,9 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
         date_default_timezone_set('Europe/Paris');
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
-                 array('lifetime' => 120, 'automatic_serialization' => true),
-                 array('cache_dir' => __DIR__ . '/../_files/'));
-        Zend_Date_DateObjectTestHelper::setOptions(array('cache' => $this->_cache));
+                 ['lifetime' => 120, 'automatic_serialization' => true],
+                 ['cache_dir' => __DIR__ . '/../_files/']);
+        Zend_Date_DateObjectTestHelper::setOptions(['cache' => $this->_cache]);
     }
 
     public function tearDown(): void
@@ -271,12 +271,12 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
     public function testCalcSunInternal()
     {
         $date = new Zend_Date_DateObjectTestHelper(10_000_000);
-        $this->assertSame(9961716, $date->calcSun(array('latitude' => 38.4, 'longitude' => -29), -0.0145439, true));
-        $this->assertSame(10010341, $date->calcSun(array('latitude' => 38.4, 'longitude' => -29), -0.0145439, false));
+        $this->assertSame(9961716, $date->calcSun(['latitude' => 38.4, 'longitude' => -29], -0.0145439, true));
+        $this->assertSame(10010341, $date->calcSun(['latitude' => 38.4, 'longitude' => -29], -0.0145439, false));
 
         $date = new Zend_Date_DateObjectTestHelper(-148_309_884);
-        $this->assertSame(-148322626, $date->calcSun(array('latitude' => 38.4, 'longitude' => -29), -0.0145439, true));
-        $this->assertSame(-148274784, $date->calcSun(array('latitude' => 38.4, 'longitude' => -29), -0.0145439, false));
+        $this->assertSame(-148322626, $date->calcSun(['latitude' => 38.4, 'longitude' => -29], -0.0145439, true));
+        $this->assertSame(-148274784, $date->calcSun(['latitude' => 38.4, 'longitude' => -29], -0.0145439, false));
     }
 
     public function testGetDate()
@@ -285,10 +285,10 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_array($date->getDateParts()));
         $this->assertTrue(is_array($date->getDateParts(1_000_000)));
 
-        $test = array('seconds' => 40,      'minutes' => 46,
+        $test = ['seconds' => 40,      'minutes' => 46,
             'hours' => 14,       'mday' => 12,      'wday' => 1,
             'mon' => 1,       'year' => 1970,      'yday' => 11,
-            'weekday' => 'Monday', 'month' => 'January', 0 => 1_000_000, );
+            'weekday' => 'Monday', 'month' => 'January', 0 => 1_000_000, ];
         $result = $date->getDateParts(1_000_000);
 
         $this->assertSame((int) $test['seconds'], (int) $result['seconds']);
@@ -303,10 +303,10 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($test['month'],         $result['month']);
         $this->assertSame($test[0],               $result[0]);
 
-        $test = array('seconds' => 20,      'minutes' => 33,
+        $test = ['seconds' => 20,      'minutes' => 33,
             'hours' => 11,          'mday' => 6,      'wday' => 3,
             'mon' => 3,          'year' => 1748,      'yday' => 65,
-            'weekday' => 'Wednesday', 'month' => 'February', 0 => -7_000_000_000, );
+            'weekday' => 'Wednesday', 'month' => 'February', 0 => -7_000_000_000, ];
         $result = $date->getDateParts(-7_000_000_000);
 
         $this->assertSame((int) $test['seconds'], (int) $result['seconds']);
@@ -321,10 +321,10 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($test['month'],         $result['month']);
         $this->assertSame($test[0],               $result[0]);
 
-        $test = array('seconds' => 0,        'minutes' => 40,
+        $test = ['seconds' => 0,        'minutes' => 40,
             'hours' => 2,          'mday' => 26,       'wday' => 2,
             'mon' => 8,          'year' => 2188,     'yday' => 238,
-            'weekday' => 'Tuesday', 'month' => 'July', 0 => 6_900_000_000, );
+            'weekday' => 'Tuesday', 'month' => 'July', 0 => 6_900_000_000, ];
         $result = $date->getDateParts(6_900_000_000);
 
         $this->assertSame((int) $test['seconds'], (int) $result['seconds']);
@@ -339,10 +339,10 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($test['month'],         $result['month']);
         $this->assertSame($test[0],               $result[0]);
 
-        $test = array('seconds' => 0,        'minutes' => 40,
+        $test = ['seconds' => 0,        'minutes' => 40,
             'hours' => 2,          'mday' => 26,       'wday' => 3,
             'mon' => 8,          'year' => 2188,     'yday' => 238,
-            'weekday' => 'Wednesday', 'month' => 'July', 0 => 6_900_000_000, );
+            'weekday' => 'Wednesday', 'month' => 'July', 0 => 6_900_000_000, ];
         $result = $date->getDateParts(6_900_000_000, true);
 
         $this->assertSame((int) $test['seconds'], (int) $result['seconds']);

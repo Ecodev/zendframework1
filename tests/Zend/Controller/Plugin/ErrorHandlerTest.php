@@ -92,11 +92,11 @@ class Zend_Controller_Plugin_ErrorHandlerTest extends \PHPUnit\Framework\TestCas
 
     public function testSetErrorHandler()
     {
-        $this->plugin->setErrorHandler(array(
+        $this->plugin->setErrorHandler([
             'module' => 'myfoo',
             'controller' => 'bar',
             'action' => 'boobaz',
-        ));
+        ]);
 
         $this->assertEquals('myfoo', $this->plugin->getErrorHandlerModule());
         $this->assertEquals('bar', $this->plugin->getErrorHandlerController());

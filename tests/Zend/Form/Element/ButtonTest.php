@@ -153,13 +153,13 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
     {
         // Set element options
         $this->element->setOptions(
-            array(
+            [
                 'label' => 'Foo',
                 'value' => 'bar',
-                'decorators' => array(
+                'decorators' => [
                     'ViewHelper',
-                ),
-            )
+                ],
+            ]
         );
 
         // Validate

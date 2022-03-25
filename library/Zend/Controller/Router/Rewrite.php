@@ -44,7 +44,7 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
      *
      * @var array
      */
-    protected $_routes = array();
+    protected $_routes = [];
 
     /**
      * Currently matched route.
@@ -58,7 +58,7 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
      *
      * @var array
      */
-    protected $_globalParams = array();
+    protected $_globalParams = [];
 
     /**
      * Separator to use with chain names.
@@ -87,9 +87,9 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
             $request = $this->getFrontController()->getRequest();
 
             require_once 'Zend/Controller/Router/Route/Module.php';
-            $compat = new Zend_Controller_Router_Route_Module(array(), $dispatcher, $request);
+            $compat = new Zend_Controller_Router_Route_Module([], $dispatcher, $request);
 
-            $this->_routes = array('default' => $compat) + $this->_routes;
+            $this->_routes = ['default' => $compat] + $this->_routes;
         }
 
         return $this;
@@ -214,10 +214,10 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
         }
 
         $route = call_user_func(
-            array(
+            [
                 $class,
                 'getInstance',
-            ), $info
+            ], $info
         );
 
         if (isset($info->abstract) && $info->abstract && method_exists($route, 'isAbstract')) {

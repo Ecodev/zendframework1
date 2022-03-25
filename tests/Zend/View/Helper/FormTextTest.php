@@ -66,7 +66,7 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
 
     public function testSetIdFromAttribs()
     {
-        $element = $this->helper->formText('foo', null, array('id' => 'bar'));
+        $element = $this->helper->formText('foo', null, ['id' => 'bar']);
         $this->assertStringContainsString('name="foo"', $element);
         $this->assertStringContainsString('id="bar"', $element);
     }
@@ -80,7 +80,7 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
 
     public function testReadOnlyAttribute()
     {
-        $element = $this->helper->formText('foo', null, array('readonly' => 'readonly'));
+        $element = $this->helper->formText('foo', null, ['readonly' => 'readonly']);
         $this->assertStringContainsString('readonly="readonly"', $element);
     }
 
@@ -89,11 +89,11 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
      */
     public function testCanDisableElement()
     {
-        $html = $this->helper->formText(array(
+        $html = $this->helper->formText([
             'name' => 'foo',
             'value' => 'bar',
-            'attribs' => array('disable' => true),
-        ));
+            'attribs' => ['disable' => true],
+        ]);
 
         $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html);
     }
@@ -103,11 +103,11 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
      */
     public function testDisablingElementDoesNotRenderHiddenElements()
     {
-        $html = $this->helper->formText(array(
+        $html = $this->helper->formText([
             'name' => 'foo',
             'value' => 'bar',
-            'attribs' => array('disable' => true),
-        ));
+            'attribs' => ['disable' => true],
+        ]);
 
         $this->assertNotRegexp('/<input[^>]*?(type="hidden")/', $html);
     }

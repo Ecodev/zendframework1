@@ -358,14 +358,14 @@ document.write(bar.strlen());');
 
     public function testRenderingDoesNotRenderArbitraryAttributesByDefault()
     {
-        $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', array('bogus' => 'deferred'));
+        $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', ['bogus' => 'deferred']);
         $test = $this->helper->headScript()->toString();
         $this->assertStringNotContainsString('bogus="deferred"', $test);
     }
 
     public function testCanRenderArbitraryAttributesOnRequest()
     {
-        $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', array('bogus' => 'deferred'))
+        $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', ['bogus' => 'deferred'])
             ->setAllowArbitraryAttributes(true);
         $test = $this->helper->headScript()->toString();
         $this->assertStringContainsString('bogus="deferred"', $test);
@@ -415,14 +415,14 @@ document.write(bar.strlen());');
 
     public function testConditionalScript()
     {
-        $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', array('conditional' => 'lt IE 7'));
+        $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', ['conditional' => 'lt IE 7']);
         $test = $this->helper->headScript()->toString();
         $this->assertStringContainsString('<!--[if lt IE 7]>', $test);
     }
 
     public function testConditionalScriptWidthIndentation()
     {
-        $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', array('conditional' => 'lt IE 7'));
+        $this->helper->headScript()->appendFile('/js/foo.js', 'text/javascript', ['conditional' => 'lt IE 7']);
         $this->helper->headScript()->setIndent(4);
         $test = $this->helper->headScript()->toString();
         $this->assertStringContainsString('    <!--[if lt IE 7]>', $test);
@@ -469,7 +469,7 @@ document.write(bar.strlen());');
     {
         $this->helper->setAllowArbitraryAttributes(true);
         $this->helper->appendFile(
-            '/js/foo.js', 'text/javascript', array('conditional' => 'lt IE 7')
+            '/js/foo.js', 'text/javascript', ['conditional' => 'lt IE 7']
         );
         $test = $this->helper->toString();
 
@@ -483,7 +483,7 @@ document.write(bar.strlen());');
     {
         $this->helper->setAllowArbitraryAttributes(true);
         $this->helper->appendScript(
-            '// some script', 'text/javascript', array('noescape' => true)
+            '// some script', 'text/javascript', ['noescape' => true]
         );
         $test = $this->helper->toString();
 
@@ -496,7 +496,7 @@ document.write(bar.strlen());');
     public function testNoEscapeDefaultsToFalse()
     {
         $this->helper->appendScript(
-            '// some script' . PHP_EOL, 'text/javascript', array()
+            '// some script' . PHP_EOL, 'text/javascript', []
         );
         $test = $this->helper->toString();
 
@@ -510,7 +510,7 @@ document.write(bar.strlen());');
     public function testNoEscapeTrue()
     {
         $this->helper->appendScript(
-            '// some script' . PHP_EOL, 'text/javascript', array('noescape' => true)
+            '// some script' . PHP_EOL, 'text/javascript', ['noescape' => true]
         );
         $test = $this->helper->toString();
 
@@ -525,7 +525,7 @@ document.write(bar.strlen());');
     {
         $this->helper->setAllowArbitraryAttributes(true);
         $this->helper->appendFile(
-            '/js/foo.js', 'text/javascript', array('conditional' => '!IE')
+            '/js/foo.js', 'text/javascript', ['conditional' => '!IE']
         );
         $test = $this->helper->toString();
         $this->assertStringContainsString('<!--[if !IE]><!--><', $test);

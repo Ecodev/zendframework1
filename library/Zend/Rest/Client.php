@@ -36,7 +36,7 @@ class Zend_Rest_Client extends Zend_Service_Abstract
      *
      * @var array
      */
-    protected $_data = array();
+    protected $_data = [];
 
     /**
      * Zend_Uri of this web service.
@@ -255,7 +255,7 @@ class Zend_Rest_Client extends Zend_Service_Abstract
      */
     public function __call($method, $args)
     {
-        $methods = array('post', 'get', 'delete', 'put');
+        $methods = ['post', 'get', 'delete', 'put'];
 
         if (in_array(strtolower($method), $methods)) {
             if (!isset($args[0])) {
@@ -264,7 +264,7 @@ class Zend_Rest_Client extends Zend_Service_Abstract
             $this->_data['rest'] = 1;
             $data = array_slice($args, 1) + $this->_data;
             $response = $this->{'rest' . $method}($args[0], $data);
-            $this->_data = array(); //Initializes for next Rest method.
+            $this->_data = []; //Initializes for next Rest method.
 
             return new Zend_Rest_Client_Result($response->getBody());
         }

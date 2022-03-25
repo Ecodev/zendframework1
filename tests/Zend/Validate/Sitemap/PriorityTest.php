@@ -54,11 +54,11 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
      */
     public function testValidPriorities()
     {
-        $values = array(
+        $values = [
             '0.0', '0.1', '0.2', '0.3', '0.4', '0.5',
             '0.6', '0.7', '0.8', '0.9', '1.0', '0.99',
             0.1, 0.6667, 0.0001, 0.4, 0, 1, .35,
-        );
+        ];
 
         foreach ($values as $value) {
             $this->assertSame(true, $this->_validator->isValid($value));
@@ -70,9 +70,9 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
      */
     public function testInvalidPriorities()
     {
-        $values = array(
+        $values = [
             -1, -0.1, 1.1, 100, 10, 2, '3', '-4',
-        );
+        ];
 
         foreach ($values as $value) {
             $this->assertSame(false, $this->_validator->isValid($value));
@@ -86,9 +86,9 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
      */
     public function testNotNumbers()
     {
-        $values = array(
+        $values = [
             null, new stdClass(), true, false, 'abcd',
-        );
+        ];
 
         foreach ($values as $value) {
             $this->assertSame(false, $this->_validator->isValid($value));

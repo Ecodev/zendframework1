@@ -58,15 +58,15 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testSetHeader()
     {
-        $expected = array(array('name' => 'Content-Type', 'value' => 'text/xml', 'replace' => false));
+        $expected = [['name' => 'Content-Type', 'value' => 'text/xml', 'replace' => false]];
         $this->_response->setHeader('Content-Type', 'text/xml');
         $this->assertSame($expected, $this->_response->getHeaders());
 
-        $expected[] = array('name' => 'Content-Type', 'value' => 'text/html', 'replace' => false);
+        $expected[] = ['name' => 'Content-Type', 'value' => 'text/html', 'replace' => false];
         $this->_response->setHeader('Content-Type', 'text/html');
         $this->assertSame($expected, $this->_response->getHeaders());
 
-        $expected = array(array('name' => 'Content-Type', 'value' => 'text/plain', 'replace' => true));
+        $expected = [['name' => 'Content-Type', 'value' => 'text/plain', 'replace' => true]];
         $this->_response->setHeader('Content-Type', 'text/plain', true);
         $count = 0;
         foreach ($this->_response->getHeaders() as $header) {
@@ -345,10 +345,10 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'some' => "some content\n",
             'more' => "more content\n",
-        );
+        ];
         $this->assertEquals($expected, $content);
     }
 
@@ -359,9 +359,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'some' => "more content\n",
-        );
+        ];
         $this->assertEquals($expected, $content);
     }
 
@@ -372,10 +372,10 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'more' => "more content\n",
             'some' => "some content\n",
-        );
+        ];
         $this->assertEquals($expected, $content);
     }
 
@@ -386,9 +386,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'some' => "more content\n",
-        );
+        ];
         $this->assertEquals($expected, $content);
     }
 
@@ -400,11 +400,11 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'some' => "some content\n",
             'foobar' => "foobar content\n",
             'more' => "more content\n",
-        );
+        ];
         $this->assertSame($expected, $content);
     }
 
@@ -416,11 +416,11 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'foobar' => "foobar content\n",
             'some' => "some content\n",
             'more' => "more content\n",
-        );
+        ];
         $this->assertSame($expected, $content);
     }
 
@@ -432,11 +432,11 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'some' => "some content\n",
             'more' => "more content\n",
             'foobar' => "foobar content\n",
-        );
+        ];
         $this->assertSame($expected, $content);
     }
 
@@ -447,9 +447,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'some' => "more content\n",
-        );
+        ];
         $this->assertEquals($expected, $content);
     }
 
@@ -460,9 +460,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'default' => "more content\n",
-        );
+        ];
         $this->assertEquals($expected, $content);
     }
 
@@ -473,9 +473,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'default' => "some content\nmore content\n",
-        );
+        ];
         $this->assertEquals($expected, $content);
     }
 
@@ -486,9 +486,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
         $content = $this->_response->getBody(true);
         $this->assertTrue(is_array($content));
-        $expected = array(
+        $expected = [
             'some' => "some content\nmore content\n",
-        );
+        ];
         $this->assertEquals($expected, $content);
     }
 
@@ -510,11 +510,11 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->appendBody($string2, 'string2');
         $this->_response->appendBody($string3, 'string3');
 
-        $expected = array(
+        $expected = [
             'string1' => $string1,
             'string2' => $string2,
             'string3' => $string3,
-        );
+        ];
 
         $this->assertEquals($expected, $this->_response->getBody(true));
     }
@@ -627,7 +627,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->_response->setHeader('X-FOO_bar-bAz', 'bat');
 
         $headers = $this->_response->getHeaders();
-        $names = array();
+        $names = [];
         foreach ($headers as $header) {
             $names[] = $header['name'];
         }

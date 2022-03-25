@@ -44,7 +44,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
             $this->markTestSkipped('This adapter needs the rar extension');
         }
 
-        $files = array(
+        $files = [
             __DIR__ . '/../_files/zipextracted.txt',
             __DIR__ . '/../_files/_compress/Compress/First/Second/zipextracted.txt',
             __DIR__ . '/../_files/_compress/Compress/First/Second',
@@ -54,7 +54,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
             __DIR__ . '/../_files/_compress/Compress',
             __DIR__ . '/../_files/_compress/zipextracted.txt',
             __DIR__ . '/../_files/_compress',
-        );
+        ];
 
         foreach ($files as $file) {
             if (file_exists($file)) {
@@ -76,7 +76,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
 
     public function tearDown(): void
     {
-        $files = array(
+        $files = [
             __DIR__ . '/../_files/zipextracted.txt',
             __DIR__ . '/../_files/_compress/Compress/First/Second/zipextracted.txt',
             __DIR__ . '/../_files/_compress/Compress/First/Second',
@@ -86,7 +86,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
             __DIR__ . '/../_files/_compress/Compress',
             __DIR__ . '/../_files/_compress/zipextracted.txt',
             __DIR__ . '/../_files/_compress',
-        );
+        ];
 
         foreach ($files as $file) {
             if (file_exists($file)) {
@@ -112,11 +112,11 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
     public function testBasicUsage()
     {
         $filter = new Zend_Filter_Compress_Rar(
-            array(
+            [
                 'archive' => __DIR__ . '/../_files/compressed.rar',
                 'target' => __DIR__ . '/../_files/zipextracted.txt',
-                'callback' => array('Zend_Filter_Compress_RarTest', 'rarCompress'),
-            )
+                'callback' => ['Zend_Filter_Compress_RarTest', 'rarCompress'],
+            ]
         );
 
         $content = $filter->compress('compress me');
@@ -136,22 +136,22 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
     {
         $filter = new Zend_Filter_Compress_Rar();
         $this->assertEquals(
-            array(
+            [
                 'archive' => null,
                 'callback' => null,
                 'password' => null,
                 'target' => '.',
-            ),
+            ],
             $filter->getOptions()
         );
 
         $this->assertEquals(null, $filter->getOptions('archive'));
 
         $this->assertNull($filter->getOptions('nooption'));
-        $filter->setOptions(array('nooption' => 'foo'));
+        $filter->setOptions(['nooption' => 'foo']);
         $this->assertNull($filter->getOptions('nooption'));
 
-        $filter->setOptions(array('archive' => 'temp.txt'));
+        $filter->setOptions(['archive' => 'temp.txt']);
         $this->assertEquals('temp.txt', $filter->getOptions('archive'));
     }
 
@@ -177,7 +177,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
         $filter->setPassword('test');
         $this->assertEquals('test', $filter->getPassword());
         $this->assertEquals('test', $filter->getOptions('password'));
-        $filter->setOptions(array('password' => 'test2'));
+        $filter->setOptions(['password' => 'test2']);
         $this->assertEquals('test2', $filter->getPassword());
         $this->assertEquals('test2', $filter->getOptions('password'));
     }
@@ -222,7 +222,7 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
             $this->assertStringContainsString('Callback can not be accessed', $e->getMessage());
         }
 
-        $callback = array('Zend_Filter_Compress_RarTest', 'rarCompress');
+        $callback = ['Zend_Filter_Compress_RarTest', 'rarCompress'];
         $filter->setCallback($callback);
         $this->assertEquals($callback, $filter->getCallback());
     }
@@ -233,11 +233,11 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
     public function testRarCompressFile()
     {
         $filter = new Zend_Filter_Compress_Rar(
-            array(
+            [
                 'archive' => __DIR__ . '/../_files/compressed.rar',
                 'target' => __DIR__ . '/../_files/zipextracted.txt',
-                'callback' => array('Zend_Filter_Compress_RarTest', 'rarCompress'),
-            )
+                'callback' => ['Zend_Filter_Compress_RarTest', 'rarCompress'],
+            ]
         );
         file_put_contents(__DIR__ . '/../_files/zipextracted.txt', 'compress me');
 
@@ -258,11 +258,11 @@ class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
     public function testRarCompressDirectory()
     {
         $filter = new Zend_Filter_Compress_Rar(
-            array(
+            [
                 'archive' => __DIR__ . '/../_files/compressed.rar',
                 'target' => __DIR__ . '/../_files/_compress',
-                'callback' => array('Zend_Filter_Compress_RarTest', 'rarCompress'),
-            )
+                'callback' => ['Zend_Filter_Compress_RarTest', 'rarCompress'],
+            ]
         );
         $content = $filter->compress(__DIR__ . '/../_files/Compress');
         $this->assertEquals(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files'

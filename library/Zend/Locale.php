@@ -28,7 +28,7 @@ class Zend_Locale
      * List of locales that are no longer part of CLDR along with a
      * mapping to an appropriate alternative.
      */
-    private static array $_localeAliases = array(
+    private static array $_localeAliases = [
         'az_AZ' => 'az_Latn_AZ',
         'bs_BA' => 'bs_Latn_BA',
         'ha_GH' => 'ha_Latn_GH',
@@ -57,14 +57,14 @@ class Zend_Locale
         'zh_MO' => 'zh_Hans_MO',
         'zh_SG' => 'zh_Hans_SG',
         'zh_TW' => 'zh_Hant_TW',
-    );
+    ];
 
     /**
      * Class wide Locale Constants.
      *
      * @var array
      */
-    private static $_localeData = array(
+    private static $_localeData = [
         'root' => true,
         'aa' => true,
         'aa_DJ' => true,
@@ -778,12 +778,12 @@ class Zend_Locale
         'zh_Hant_TW' => true,
         'zu' => true,
         'zu_ZA' => true,
-    );
+    ];
 
     /**
      * Class wide Locale Constants.
      */
-    private static array $_territoryData = array(
+    private static array $_territoryData = [
         'AD' => 'ca_AD',
         'AE' => 'ar_AE',
         'AF' => 'fa_AF',
@@ -1030,7 +1030,7 @@ class Zend_Locale
         'ZA' => 'en_ZA',
         'ZM' => 'en_ZM',
         'ZW' => 'sn_ZW',
-    );
+    ];
 
     /**
      * Autosearch constants.
@@ -1085,7 +1085,7 @@ class Zend_Locale
      *
      * @var string Locales
      */
-    protected static $_default = array('en' => true);
+    protected static $_default = ['en' => true];
 
     /**
      * Generates a locale object
@@ -1191,11 +1191,11 @@ class Zend_Locale
 
         $locale = self::_prepareLocale($locale);
         if (isset(self::$_localeData[(string) $locale]) === true) {
-            self::$_default = array((string) $locale => $quality);
+            self::$_default = [(string) $locale => $quality];
         } else {
             $elocale = explode('_', (string) $locale);
             if (isset(self::$_localeData[$elocale[0]]) === true) {
-                self::$_default = array($elocale[0] => $quality);
+                self::$_default = [$elocale[0] => $quality];
             } else {
                 require_once 'Zend/Locale/Exception.php';
 
@@ -1225,7 +1225,7 @@ class Zend_Locale
 
         $language = setlocale(LC_ALL, 0);
         $languages = explode(';', $language);
-        $languagearray = array();
+        $languagearray = [];
 
         foreach ($languages as $locale) {
             if (strpos($locale, '=') !== false) {
@@ -1286,7 +1286,7 @@ class Zend_Locale
             $httplanguages = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
         }
 
-        $languages = array();
+        $languages = [];
         if (empty($httplanguages)) {
             return $languages;
         }
@@ -1402,7 +1402,7 @@ class Zend_Locale
     {
         $httpcharsets = getenv('HTTP_ACCEPT_CHARSET');
 
-        $charsets = array();
+        $charsets = [];
         if ($httpcharsets === false) {
             return $charsets;
         }

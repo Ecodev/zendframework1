@@ -34,7 +34,7 @@ class Zend_File_Transfer
      *
      * @var array
      */
-    protected $_adapter = array();
+    protected $_adapter = [];
 
     /**
      * Creates a file processing handler.
@@ -43,7 +43,7 @@ class Zend_File_Transfer
      * @param  bool $direction OPTIONAL False means Download, true means upload
      * @param  array   $options   OPTIONAL Options to set for this adapter
      */
-    public function __construct($adapter = 'Http', $direction = false, $options = array())
+    public function __construct($adapter = 'Http', $direction = false, $options = [])
     {
         $this->setAdapter($adapter, $direction, $options);
     }
@@ -55,7 +55,7 @@ class Zend_File_Transfer
      * @param  bool $direction OPTIONAL False means Download, true means upload
      * @param  array   $options   OPTIONAL Options to set for this adapter
      */
-    public function setAdapter($adapter, $direction = false, $options = array())
+    public function setAdapter($adapter, $direction = false, $options = [])
     {
         if (Zend_Loader::isReadable('Zend/File/Transfer/Adapter/' . ucfirst($adapter) . '.php')) {
             $adapter = 'Zend_File_Transfer_Adapter_' . ucfirst($adapter);
@@ -113,7 +113,7 @@ class Zend_File_Transfer
         }
 
         if (method_exists($this->_adapter[$direction], $method)) {
-            return call_user_func_array(array($this->_adapter[$direction], $method), $options);
+            return call_user_func_array([$this->_adapter[$direction], $method], $options);
         }
 
         require_once 'Zend/File/Transfer/Exception.php';

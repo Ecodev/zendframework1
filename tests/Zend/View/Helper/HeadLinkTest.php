@@ -63,7 +63,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp(): void
     {
-        foreach (array(Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, \Zend_View_Helper_Doctype::class) as $key) {
+        foreach ([Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, \Zend_View_Helper_Doctype::class] as $key) {
             if (Zend_Registry::isRegistered($key)) {
                 $registry = Zend_Registry::getInstance();
                 unset($registry[$key]);
@@ -143,11 +143,11 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
 
     public function testCreatingLinkStackViaHeadScriptCreatesAppropriateOutput()
     {
-        $links = array(
-            'link1' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'foo'),
-            'link2' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'bar'),
-            'link3' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'baz'),
-        );
+        $links = [
+            'link1' => ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'foo'],
+            'link2' => ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'bar'],
+            'link3' => ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'baz'],
+        ];
         $this->helper->headLink($links['link1'])
             ->headLink($links['link2'], 'PREPEND')
             ->headLink($links['link3']);
@@ -167,23 +167,23 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
             $this->assertStringContainsString($substr, $string);
         }
 
-        $order = array();
+        $order = [];
         foreach ($this->helper as $key => $value) {
             if (isset($value->href)) {
                 $order[$key] = $value->href;
             }
         }
-        $expected = array('bar', 'foo', 'baz');
+        $expected = ['bar', 'foo', 'baz'];
         $this->assertSame($expected, $order);
     }
 
     public function testCreatingLinkStackViaStyleSheetMethodsCreatesAppropriateOutput()
     {
-        $links = array(
-            'link1' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'foo'),
-            'link2' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'bar'),
-            'link3' => array('rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'baz'),
-        );
+        $links = [
+            'link1' => ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'foo'],
+            'link2' => ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'bar'],
+            'link3' => ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => 'baz'],
+        ];
         $this->helper->appendStylesheet($links['link1']['href'])
             ->prependStylesheet($links['link2']['href'])
             ->appendStylesheet($links['link3']['href']);
@@ -203,23 +203,23 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
             $this->assertStringContainsString($substr, $string);
         }
 
-        $order = array();
+        $order = [];
         foreach ($this->helper as $key => $value) {
             if (isset($value->href)) {
                 $order[$key] = $value->href;
             }
         }
-        $expected = array('bar', 'foo', 'baz');
+        $expected = ['bar', 'foo', 'baz'];
         $this->assertSame($expected, $order);
     }
 
     public function testCreatingLinkStackViaAlternateMethodsCreatesAppropriateOutput()
     {
-        $links = array(
-            'link1' => array('title' => 'stylesheet', 'type' => 'text/css', 'href' => 'foo'),
-            'link2' => array('title' => 'stylesheet', 'type' => 'text/css', 'href' => 'bar'),
-            'link3' => array('title' => 'stylesheet', 'type' => 'text/css', 'href' => 'baz'),
-        );
+        $links = [
+            'link1' => ['title' => 'stylesheet', 'type' => 'text/css', 'href' => 'foo'],
+            'link2' => ['title' => 'stylesheet', 'type' => 'text/css', 'href' => 'bar'],
+            'link3' => ['title' => 'stylesheet', 'type' => 'text/css', 'href' => 'baz'],
+        ];
         $where = 'append';
         foreach ($links as $link) {
             $method = $where . 'Alternate';
@@ -244,13 +244,13 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
             $this->assertStringContainsString($substr, $string);
         }
 
-        $order = array();
+        $order = [];
         foreach ($this->helper as $key => $value) {
             if (isset($value->href)) {
                 $order[$key] = $value->href;
             }
         }
-        $expected = array('bar', 'foo', 'baz');
+        $expected = ['bar', 'foo', 'baz'];
         $this->assertSame($expected, $order);
     }
 
@@ -266,7 +266,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
 
     public function testOverloadingShouldAllowSingleArrayArgument()
     {
-        $this->helper->setStylesheet(array('href' => '/styles.css'));
+        $this->helper->setStylesheet(['href' => '/styles.css']);
         $link = $this->helper->getValue();
         $this->assertEquals('/styles.css', $link->href);
     }
@@ -274,7 +274,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     public function testOverloadingUsingSingleArrayArgumentWithInvalidValuesThrowsException()
     {
         try {
-            $this->helper->setStylesheet(array('bogus' => 'unused'));
+            $this->helper->setStylesheet(['bogus' => 'unused']);
             $this->fail('Invalid attribute values should raise exception');
         } catch (Zend_View_Exception $e) {
         }
@@ -368,8 +368,8 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     public function testLinkRendersAsPlainHtmlIfDoctypeNotXhtml()
     {
         $this->view->doctype('HTML4_STRICT');
-        $this->helper->headLink(array('rel' => 'icon', 'src' => '/foo/bar'))
-            ->headLink(array('rel' => 'foo', 'href' => '/bar/baz'));
+        $this->helper->headLink(['rel' => 'icon', 'src' => '/foo/bar'])
+            ->headLink(['rel' => 'foo', 'href' => '/bar/baz']);
         $test = $this->helper->toString();
         $this->assertStringNotContainsString(' />', $test);
     }
@@ -386,7 +386,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
      */
     public function testBooleanStylesheet()
     {
-        $this->helper->appendStylesheet(array('href' => '/bar/baz', 'conditionalStylesheet' => false));
+        $this->helper->appendStylesheet(['href' => '/bar/baz', 'conditionalStylesheet' => false]);
         $test = $this->helper->toString();
         $this->assertStringNotContainsString('[if false]', $test);
     }
@@ -396,7 +396,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
      */
     public function testBooleanTrueConditionalStylesheet()
     {
-        $this->helper->appendStylesheet(array('href' => '/bar/baz', 'conditionalStylesheet' => true));
+        $this->helper->appendStylesheet(['href' => '/bar/baz', 'conditionalStylesheet' => true]);
         $test = $this->helper->toString();
         $this->assertStringNotContainsString('[if 1]', $test);
         $this->assertStringNotContainsString('[if true]', $test);
@@ -415,21 +415,21 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
 
     public function testSetAlternateWithExtras()
     {
-        $this->helper->setAlternate('/mydocument.pdf', 'application/pdf', 'foo', array('media' => array('print','screen')));
+        $this->helper->setAlternate('/mydocument.pdf', 'application/pdf', 'foo', ['media' => ['print','screen']]);
         $test = $this->helper->toString();
         $this->assertStringContainsString('media="print,screen"', $test);
     }
 
     public function testAppendStylesheetWithExtras()
     {
-        $this->helper->appendStylesheet(array('href' => '/bar/baz', 'conditionalStylesheet' => false, 'extras' => array('id' => 'my_link_tag')));
+        $this->helper->appendStylesheet(['href' => '/bar/baz', 'conditionalStylesheet' => false, 'extras' => ['id' => 'my_link_tag']]);
         $test = $this->helper->toString();
         $this->assertStringContainsString('id="my_link_tag"', $test);
     }
 
     public function testSetStylesheetWithMediaAsArray()
     {
-        $this->helper->appendStylesheet('/bar/baz', array('screen','print'));
+        $this->helper->appendStylesheet('/bar/baz', ['screen','print']);
         $test = $this->helper->toString();
         $this->assertStringContainsString(' media="screen,print"', $test);
     }
@@ -459,7 +459,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
      */
     public function testIdAttributeIsSupported()
     {
-        $this->helper->appendStylesheet(array('href' => '/bar/baz', 'id' => 'foo'));
+        $this->helper->appendStylesheet(['href' => '/bar/baz', 'id' => 'foo']);
         $this->assertStringContainsString('id="foo"', $this->helper->toString());
     }
 
@@ -468,7 +468,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
      */
     public function testHeadLinkAllowsOverrideOfRelAttribute()
     {
-        $this->helper->appendStylesheet('/css/auth.less', 'all', null, array('rel' => 'stylesheet/less'));
+        $this->helper->appendStylesheet('/css/auth.less', 'all', null, ['rel' => 'stylesheet/less']);
         $this->assertEquals(1, substr_count($this->helper->toString(), 'rel="'));
         $this->assertStringContainsString('rel="stylesheet/less"', $this->helper->toString());
     }
@@ -479,12 +479,12 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     public function testSizesAttributeIsSupported()
     {
         $this->helper->headLink(
-            array(
+            [
                 'rel' => 'icon',
                 'href' => 'favicon.png',
                 'sizes' => '16x16',
                 'type' => 'image/png',
-            )
+            ]
         );
 
         $expected = '<link href="favicon.png" rel="icon" type="image/png" sizes="16x16" >';

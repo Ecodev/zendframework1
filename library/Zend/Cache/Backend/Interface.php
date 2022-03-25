@@ -63,7 +63,7 @@ interface Zend_Cache_Backend_Interface
      *
      * @return bool true if no problem
      */
-    public function save($data, $id, $tags = array(), $specificLifetime = false);
+    public function save($data, $id, $tags = [], $specificLifetime = false);
 
     /**
      * Remove a cache record.
@@ -92,5 +92,5 @@ interface Zend_Cache_Backend_Interface
      *
      * @return bool true if no problem
      */
-    public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = array());
+    public function clean($mode = Zend_Cache::CLEANING_MODE_ALL, $tags = []);
 }

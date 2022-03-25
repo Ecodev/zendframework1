@@ -39,10 +39,10 @@ class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
          *      - expected validation result
          *      - array of test input values.
          */
-        $valuesExpected = array(
-            array('/[a-z]/', true, array('abc123', 'foo', 'a', 'z')),
-            array('/[a-z]/', false, array('123', 'A')),
-        );
+        $valuesExpected = [
+            ['/[a-z]/', true, ['abc123', 'foo', 'a', 'z']],
+            ['/[a-z]/', false, ['123', 'A']],
+        ];
         foreach ($valuesExpected as $element) {
             $validator = new Zend_Validate_Regex($element[0]);
             foreach ($element[2] as $input) {
@@ -57,7 +57,7 @@ class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
     public function testGetMessages()
     {
         $validator = new Zend_Validate_Regex('/./');
-        $this->assertEquals(array(), $validator->getMessages());
+        $this->assertEquals([], $validator->getMessages());
     }
 
     /**
@@ -89,6 +89,6 @@ class Zend_Validate_RegexTest extends \PHPUnit\Framework\TestCase
     public function testNonStringValidation()
     {
         $validator = new Zend_Validate_Regex('/./');
-        $this->assertFalse($validator->isValid(array(1 => 1)));
+        $this->assertFalse($validator->isValid([1 => 1]));
     }
 }

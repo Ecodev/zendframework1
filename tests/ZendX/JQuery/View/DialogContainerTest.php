@@ -31,7 +31,7 @@ class ZendX_JQuery_View_DialogContainerTest extends ZendX_JQuery_View_jQueryTest
 
     public function testShouldAppendToJqueryHelper()
     {
-        $element = $this->view->dialogContainer('elem1', '', array('option' => 'true'));
+        $element = $this->view->dialogContainer('elem1', '', ['option' => 'true']);
 
         $jquery = $this->jquery->__toString();
         $this->assertStringContainsString('dialog(', $jquery);
@@ -40,9 +40,9 @@ class ZendX_JQuery_View_DialogContainerTest extends ZendX_JQuery_View_jQueryTest
 
     public function testShouldCreateDivContainer()
     {
-        $element = $this->view->dialogContainer('elem1', '', array(), array());
+        $element = $this->view->dialogContainer('elem1', '', [], []);
 
-        $this->assertEquals(array('$("#elem1").dialog({});'), $this->jquery->getOnLoadActions());
+        $this->assertEquals(['$("#elem1").dialog({});'], $this->jquery->getOnLoadActions());
         $this->assertStringContainsString('<div', $element);
         $this->assertStringContainsString('id="elem1"', $element);
         $this->assertStringContainsString('</div>', $element);
@@ -53,13 +53,13 @@ class ZendX_JQuery_View_DialogContainerTest extends ZendX_JQuery_View_jQueryTest
      */
     public function testUsingJsonExprForResizeShouldBeValidJsCallbackRegression()
     {
-        $params = array(
+        $params = [
             'resize' => new Zend_Json_Expr('doMyThingAtResize'),
-        );
+        ];
 
         $this->view->dialogContainer('dialog1', 'Some text', $params);
 
         $actions = $this->jquery->getOnLoadActions();
-        $this->assertEquals(array('$("#dialog1").dialog({"resize":doMyThingAtResize});'), $actions);
+        $this->assertEquals(['$("#dialog1").dialog({"resize":doMyThingAtResize});'], $actions);
     }
 }

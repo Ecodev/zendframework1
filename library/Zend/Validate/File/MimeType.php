@@ -39,18 +39,18 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
     /**
      * @var array Error message templates
      */
-    protected $_messageTemplates = array(
+    protected $_messageTemplates = [
         self::FALSE_TYPE => "File '%value%' has a false mimetype of '%type%'",
         self::NOT_DETECTED => "The mimetype of file '%value%' could not be detected",
         self::NOT_READABLE => "File '%value%' is not readable or does not exist",
-    );
+    ];
 
     /**
      * @var array
      */
-    protected $_messageVariables = array(
+    protected $_messageVariables = [
         'type' => '_type',
-    );
+    ];
 
     /**
      * @var string
@@ -85,7 +85,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
      *
      * @var array
      */
-    protected $_magicFiles = array(
+    protected $_magicFiles = [
         '/usr/share/misc/magic',
         '/usr/share/misc/magic.mime',
         '/usr/share/misc/magic.mgc',
@@ -95,7 +95,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
         '/usr/share/file/magic',
         '/usr/share/file/magic.mime',
         '/usr/share/file/magic.mgc',
-    );
+    ];
 
     /**
      * Indicates whether use of $_magicFiles should be attempted.
@@ -215,7 +215,7 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             throw new Zend_Validate_Exception('The given magicfile can not be read');
         } else {
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
-            set_error_handler(array($this, '_errorHandler'), E_NOTICE | E_WARNING);
+            set_error_handler([$this, '_errorHandler'], E_NOTICE | E_WARNING);
             $this->_finfo = finfo_open($const, $file);
             restore_error_handler();
             if (empty($this->_finfo)) {
@@ -379,10 +379,10 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
     public function isValid($value, $file = null)
     {
         if ($file === null) {
-            $file = array(
+            $file = [
                 'type' => null,
                 'name' => $value,
-            );
+            ];
         }
 
         // Is file readable ?
@@ -450,13 +450,13 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
 
             if (!empty($mimefile) && empty($this->_finfo)) {
-                set_error_handler(array($this, '_errorHandler'), E_NOTICE | E_WARNING);
+                set_error_handler([$this, '_errorHandler'], E_NOTICE | E_WARNING);
                 $this->_finfo = finfo_open($const, $mimefile);
                 restore_error_handler();
             }
 
             if (empty($this->_finfo)) {
-                set_error_handler(array($this, '_errorHandler'), E_NOTICE | E_WARNING);
+                set_error_handler([$this, '_errorHandler'], E_NOTICE | E_WARNING);
                 $this->_finfo = finfo_open($const);
                 restore_error_handler();
             }

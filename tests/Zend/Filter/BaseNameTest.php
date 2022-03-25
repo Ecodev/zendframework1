@@ -48,10 +48,10 @@ class Zend_Filter_BaseNameTest extends \PHPUnit\Framework\TestCase
      */
     public function testBasic()
     {
-        $valuesExpected = array(
+        $valuesExpected = [
             '/path/to/filename' => 'filename',
             '/path/to/filename.ext' => 'filename.ext',
-        );
+        ];
         foreach ($valuesExpected as $input => $output) {
             $this->assertEquals($output, $this->_filter->filter($input));
         }

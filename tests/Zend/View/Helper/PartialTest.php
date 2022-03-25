@@ -76,9 +76,9 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
 
     public function testPartialRendersScript()
     {
-        $view = new Zend_View(array(
+        $view = new Zend_View([
             'scriptPath' => $this->basePath . '/default/views/scripts',
-        ));
+        ]);
         $this->helper->setView($view);
         $return = $this->helper->partial('partialOne.phtml');
         $this->assertStringContainsString('This is the first test partial', $return);
@@ -86,12 +86,12 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
 
     public function testPartialRendersScriptWithVars()
     {
-        $view = new Zend_View(array(
+        $view = new Zend_View([
             'scriptPath' => $this->basePath . '/default/views/scripts',
-        ));
+        ]);
         $view->message = 'This should never be read';
         $this->helper->setView($view);
-        $return = $this->helper->partial('partialThree.phtml', array('message' => 'This message should be read'));
+        $return = $this->helper->partial('partialThree.phtml', ['message' => 'This message should be read']);
         $this->assertStringNotContainsString($view->message, $return);
         $this->assertStringContainsString('This message should be read', $return, $return);
     }
@@ -99,9 +99,9 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
     public function testPartialRendersScriptInDifferentModuleWhenRequested()
     {
         Zend_Controller_Front::getInstance()->addModuleDirectory($this->basePath);
-        $view = new Zend_View(array(
+        $view = new Zend_View([
             'scriptPath' => $this->basePath . '/default/views/scripts',
-        ));
+        ]);
         $this->helper->setView($view);
         $return = $this->helper->partial('partialTwo.phtml', 'foo');
         $this->assertStringContainsString('This is the second partial', $return, $return);
@@ -110,9 +110,9 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
     public function testPartialThrowsExceptionWithInvalidModule()
     {
         Zend_Controller_Front::getInstance()->addModuleDirectory($this->basePath);
-        $view = new Zend_View(array(
+        $view = new Zend_View([
             'scriptPath' => $this->basePath . '/default/views/scripts',
-        ));
+        ]);
         $this->helper->setView($view);
 
         try {
@@ -158,9 +158,9 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         $model->foo = 'bar';
         $model->bar = 'baz';
 
-        $view = new Zend_View(array(
+        $view = new Zend_View([
             'scriptPath' => $this->basePath . '/default/views/scripts',
-        ));
+        ]);
         $this->helper->setView($view);
         $return = $this->helper->partial('partialVars.phtml', $model);
 
@@ -174,9 +174,9 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
     {
         $model = new Zend_View_Helper_PartialTest_Aggregate();
 
-        $view = new Zend_View(array(
+        $view = new Zend_View([
             'scriptPath' => $this->basePath . '/default/views/scripts',
-        ));
+        ]);
         $this->helper->setView($view);
         $return = $this->helper->partial('partialVars.phtml', $model);
 
@@ -193,9 +193,9 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
         $model->footest = 'bar';
         $model->bartest = 'baz';
 
-        $view = new Zend_View(array(
+        $view = new Zend_View([
             'scriptPath' => $this->basePath . '/default/views/scripts',
-        ));
+        ]);
         $this->helper->setView($view);
         $return = $this->helper->partial('partialObj.phtml', $model);
 
@@ -241,10 +241,10 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
 
 class Zend_View_Helper_PartialTest_Aggregate
 {
-    public $vars = array(
+    public $vars = [
         'foo' => 'bar',
         'bar' => 'baz',
-    );
+    ];
 
     public function toArray()
     {

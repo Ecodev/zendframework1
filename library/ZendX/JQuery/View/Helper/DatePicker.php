@@ -48,7 +48,7 @@ class ZendX_JQuery_View_Helper_DatePicker extends ZendX_JQuery_View_Helper_UiWid
      *
      * @return string
      */
-    public function datePicker($id, $value = null, array $params = array(), array $attribs = array())
+    public function datePicker($id, $value = null, array $params = [], array $attribs = [])
     {
         $attribs = $this->_prepareAttributes($id, $value, $attribs);
 
@@ -97,14 +97,14 @@ class ZendX_JQuery_View_Helper_DatePicker extends ZendX_JQuery_View_Helper_UiWid
             $format = Zend_Locale_Format::getDateFormat($locale);
         }
 
-        $dateFormat = array(
+        $dateFormat = [
             'EEEEE' => 'D', 'EEEE' => 'DD', 'EEE' => 'D', 'EE' => 'D', 'E' => 'D',
             'MMMM' => 'MM', 'MMM' => 'M', 'MM' => 'mm', 'M' => 'm',
             'YYYYY' => 'yy', 'YYYY' => 'yy', 'YYY' => 'yy', 'YY' => 'y', 'Y' => 'yy',
             'yyyyy' => 'yy', 'yyyy' => 'yy', 'yyy' => 'yy', 'yy' => 'y', 'y' => 'yy',
             'G' => '', 'e' => '', 'a' => '', 'h' => '', 'H' => '', 'm' => '',
             's' => '', 'S' => '', 'z' => '', 'Z' => '', 'A' => '',
-        );
+        ];
 
         $newFormat = '';
         $isText = false;
