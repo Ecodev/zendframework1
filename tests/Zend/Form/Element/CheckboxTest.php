@@ -217,9 +217,9 @@ class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(2, is_countable($matches[1]) ? count($matches[1]) : 0);
         foreach ($matches[1] as $element) {
             if (strstr($element, 'hidden')) {
-                $this->assertContains($this->element->getUncheckedValue(), $element);
+                $this->assertStringContainsString($this->element->getUncheckedValue(), $element);
             } else {
-                $this->assertContains($this->element->getCheckedValue(), $element);
+                $this->assertStringContainsString($this->element->getCheckedValue(), $element);
             }
         }
     }

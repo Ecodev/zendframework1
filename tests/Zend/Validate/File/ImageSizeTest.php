@@ -66,18 +66,18 @@ class Zend_Validate_File_ImageSizeTest extends \PHPUnit\Framework\TestCase
         $validator = new Zend_Validate_File_ImageSize(['minwidth' => 0, 'minheight' => 10, 'maxwidth' => 1000, 'maxheight' => 2000]);
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/nofile.jpg'));
         $failures = $validator->getMessages();
-        $this->assertContains('is not readable', $failures['fileImageSizeNotReadable']);
+        $this->assertStringContainsString('is not readable', $failures['fileImageSizeNotReadable']);
 
         $file['name'] = 'TestName';
         $validator = new Zend_Validate_File_ImageSize(['minwidth' => 0, 'minheight' => 10, 'maxwidth' => 1000, 'maxheight' => 2000]);
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/nofile.jpg', $file));
         $failures = $validator->getMessages();
-        $this->assertContains('TestName', $failures['fileImageSizeNotReadable']);
+        $this->assertStringContainsString('TestName', $failures['fileImageSizeNotReadable']);
 
         $validator = new Zend_Validate_File_ImageSize(['minwidth' => 0, 'minheight' => 10, 'maxwidth' => 1000, 'maxheight' => 2000]);
         $this->assertEquals(false, $validator->isValid(__DIR__ . '/_files/badpicture.jpg'));
         $failures = $validator->getMessages();
-        $this->assertContains('could not be detected', $failures['fileImageSizeNotDetected']);
+        $this->assertStringContainsString('could not be detected', $failures['fileImageSizeNotDetected']);
     }
 
     /**

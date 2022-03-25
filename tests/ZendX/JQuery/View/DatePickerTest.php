@@ -36,8 +36,8 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
         $element = $this->view->datePicker('elem1', '', ['option' => 'true']);
 
         $jquery = $this->view->jQuery()->__toString();
-        $this->assertContains('datepicker(', $jquery);
-        $this->assertContains('"option":"true"', $jquery);
+        $this->assertStringContainsString('datepicker(', $jquery);
+        $this->assertStringContainsString('"option":"true"', $jquery);
     }
 
     public function testShouldCreateInputField()
@@ -45,9 +45,9 @@ class ZendX_JQuery_View_DatePickerTest extends ZendX_JQuery_View_jQueryTestCase
         $element = $this->view->datePicker('elem1', '01.01.2007');
 
         $this->assertEquals(['$("#elem1").datepicker({});'], $this->view->jQuery()->getOnLoadActions());
-        $this->assertContains('<input', $element);
-        $this->assertContains('id="elem1"', $element);
-        $this->assertContains('value="01.01.2007"', $element);
+        $this->assertStringContainsString('<input', $element);
+        $this->assertStringContainsString('id="elem1"', $element);
+        $this->assertStringContainsString('value="01.01.2007"', $element);
     }
 
     public function testDatePickerSupportsLocaleDe()

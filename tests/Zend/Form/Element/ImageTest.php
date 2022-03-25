@@ -121,7 +121,7 @@ class Zend_Form_Element_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $this->element->setLabel('Foo Bar');
         $html = $this->element->render(new Zend_View());
-        $this->assertRegexp('#<input[^>]*alt="Foo Bar"#', $html);
+        $this->assertMatchesRegularExpression('#<input[^>]*alt="Foo Bar"#', $html);
     }
 
     public function testImageValueRenderedAsElementValue()
@@ -129,7 +129,7 @@ class Zend_Form_Element_ImageTest extends \PHPUnit\Framework\TestCase
         $this->element->setImageValue('foo')
             ->setImage('foo.gif');
         $html = $this->element->render(new Zend_View());
-        $this->assertRegexp('#<input[^>]*value="foo"#', $html, $html);
+        $this->assertMatchesRegularExpression('#<input[^>]*value="foo"#', $html, $html);
     }
 
     public function testIsCheckedReturnsSetValueMatchesImageValue()

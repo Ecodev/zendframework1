@@ -68,7 +68,7 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
             'name' => 'foo',
             'value' => 'Submit!',
         ]);
-        $this->assertRegexp('/<input[^>]*?(type="submit")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(type="submit")/', $html);
     }
 
     /**
@@ -81,7 +81,7 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
             'value' => 'Submit!',
             'attribs' => ['disable' => true],
         ]);
-        $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(disabled="disabled")/', $html);
     }
 
     /**
@@ -93,7 +93,7 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
             'name' => 'foo',
             'value' => '',
         ]);
-        $this->assertRegexp('/<input[^>]*?(value="")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(value="")/', $html);
     }
 
     public function testRendersAsHtmlByDefault()

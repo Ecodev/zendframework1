@@ -211,7 +211,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
 
     public function checkFilterValues($item, $key)
     {
-        $this->assertRegexp('/^[A-Z]+$/', $item);
+        $this->assertMatchesRegularExpression('/^[A-Z]+$/', $item);
     }
 
     public function testRetrievingArrayValueFiltersAllArrayValues()
@@ -1417,7 +1417,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
                 $decorator,
             ]);
         $html = $this->element->render($this->getView());
-        $this->assertRegexp('#<tr><td>Foo</td><td>.*?<input[^>]+>.*?</td><td>sample description</td></tr>#s', $html, $html);
+        $this->assertMatchesRegularExpression('#<tr><td>Foo</td><td>.*?<input[^>]+>.*?</td><td>sample description</td></tr>#s', $html, $html);
     }
 
     public function testCanRetrieveSingleDecoratorRegisteredAsDecoratorObjectUsingShortName()
@@ -1600,7 +1600,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_string($html));
         $this->assertFalse(empty($html));
         $this->assertStringContainsString('error', $html);
-        $this->assertRegexp('/empty/i', $html);
+        $this->assertMatchesRegularExpression('/empty/i', $html);
     }
 
     public function testToStringProxiesToRender()
@@ -1988,13 +1988,13 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $html = $this->element->renderViewHelper();
         $this->assertStringContainsString('<input', $html);
         $this->assertStringContainsString('id="' . $this->element->getFullyQualifiedName() . '"', $html, 'Received: ' . $html);
-        $this->assertNotContains('<dd', $html);
-        $this->assertNotContains('<label', $html);
+        $this->assertStringNotContainsString('<dd', $html);
+        $this->assertStringNotContainsString('<label', $html);
 
         $html = $this->element->renderLabel('this is the content');
-        $this->assertRegexp('#<label[^>]*for="' . $this->element->getFullyQualifiedName() . '"[^>]*>Foo Label</label>#', $html);
+        $this->assertMatchesRegularExpression('#<label[^>]*for="' . $this->element->getFullyQualifiedName() . '"[^>]*>Foo Label</label>#', $html);
         $this->assertStringContainsString('this is the content', $html);
-        $this->assertNotContains('<input', $html);
+        $this->assertStringNotContainsString('<input', $html);
     }
 
     /**

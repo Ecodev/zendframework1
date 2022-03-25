@@ -70,7 +70,7 @@ class Zend_Captcha_DumbTest extends \PHPUnit\Framework\TestCase
         $word = $this->captcha->getWord();
         $html = $this->captcha->render(new Zend_View());
         $this->assertStringContainsString(strrev($word), $html);
-        $this->assertNotContains($word, $html);
+        $this->assertStringNotContainsString($word, $html);
     }
 
     /**

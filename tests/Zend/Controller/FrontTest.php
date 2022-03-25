@@ -248,7 +248,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->_controller->setResponse(new Zend_Controller_Response_Cli());
         $response = $this->_controller->dispatch($request);
 
-        $this->assertContains('Index action called', $response->getBody());
+        $this->assertStringContainsString('Index action called', $response->getBody());
     }
 
     /**
@@ -260,7 +260,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->_controller->setResponse(new Zend_Controller_Response_Cli());
         $response = $this->_controller->dispatch($request);
 
-        $this->assertContains('Index action called', $response->getBody());
+        $this->assertStringContainsString('Index action called', $response->getBody());
     }
 
     /**
@@ -307,9 +307,9 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $response = $this->_controller->dispatch($request);
 
         $body = $response->getBody();
-        $this->assertContains('Bar action called', $body, $body);
-        $this->assertContains('preDispatch called', $body, $body);
-        $this->assertContains('postDispatch called', $body, $body);
+        $this->assertStringContainsString('Bar action called', $body, $body);
+        $this->assertStringContainsString('preDispatch called', $body, $body);
+        $this->assertStringContainsString('postDispatch called', $body, $body);
     }
 
     /**
@@ -324,8 +324,8 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $response = $this->_controller->dispatch($request);
 
         $body = $response->getBody();
-        $this->assertContains('foo: bar', $body, $body);
-        $this->assertContains('baz: bat', $body);
+        $this->assertStringContainsString('foo: bar', $body, $body);
+        $this->assertStringContainsString('baz: bat', $body);
     }
 
     /**
@@ -339,7 +339,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $response = $this->_controller->dispatch($request);
 
         $body = $response->getBody();
-        $this->assertContains('Bar action called', $body);
+        $this->assertStringContainsString('Bar action called', $body);
         $params = $request->getParams();
         $this->assertTrue(isset($params['var1']));
         $this->assertEquals('baz', $params['var1']);
@@ -359,7 +359,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $response = $this->_controller->dispatch($request, $response);
 
         $body = $response->getBody();
-        $this->assertContains('Bar action called', $body);
+        $this->assertStringContainsString('Bar action called', $body);
     }
 
     /**
@@ -514,7 +514,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $response = $this->_controller->dispatch($request);
 
         $body = $response->getBody();
-        $this->assertContains('Admin_Foo::bar action called', $body, $body);
+        $this->assertStringContainsString('Admin_Foo::bar action called', $body, $body);
     }
 
     public function testModuleControllerDirectoryName()
@@ -534,9 +534,9 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(isset($controllerDirs['default']));
         $this->assertFalse(isset($controllerDirs['.svn']));
 
-        $this->assertContains('modules' . DIRECTORY_SEPARATOR . 'foo', $controllerDirs['foo']);
-        $this->assertContains('modules' . DIRECTORY_SEPARATOR . 'bar', $controllerDirs['bar']);
-        $this->assertContains('modules' . DIRECTORY_SEPARATOR . 'default', $controllerDirs['default']);
+        $this->assertStringContainsString('modules' . DIRECTORY_SEPARATOR . 'foo', $controllerDirs['foo']);
+        $this->assertStringContainsString('modules' . DIRECTORY_SEPARATOR . 'bar', $controllerDirs['bar']);
+        $this->assertStringContainsString('modules' . DIRECTORY_SEPARATOR . 'default', $controllerDirs['default']);
     }
 
     /**#@+
@@ -549,16 +549,16 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $request->setModuleName('bar');
         $this->_controller->setRequest($request);
         $dir = $this->_controller->getModuleDirectory();
-        $this->assertContains('modules' . DIRECTORY_SEPARATOR . 'bar', $dir);
-        $this->assertNotContains('controllers', $dir);
+        $this->assertStringContainsString('modules' . DIRECTORY_SEPARATOR . 'bar', $dir);
+        $this->assertStringNotContainsString('controllers', $dir);
     }
 
     public function testShouldAllowRetrievingSpecifiedModuleDirectory()
     {
         $this->testAddModuleDirectory();
         $dir = $this->_controller->getModuleDirectory('foo');
-        $this->assertContains('modules' . DIRECTORY_SEPARATOR . 'foo', $dir);
-        $this->assertNotContains('controllers', $dir);
+        $this->assertStringContainsString('modules' . DIRECTORY_SEPARATOR . 'foo', $dir);
+        $this->assertStringNotContainsString('controllers', $dir);
     }
 
     public function testShouldReturnNullWhenRetrievingNonexistentModuleDirectory()
@@ -591,7 +591,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
             $this->fail('Exception expected but not thrown');
         } catch (Exception $e) {
             $this->assertTrue($e instanceof Zend_Exception);
-            $this->assertRegExp(
+            $this->assertMatchesRegularExpression(
                 '/Directory \w+ not readable/', $e->getMessage()
             );
         }
@@ -603,7 +603,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->_controller->addModuleDirectory($moduleDir);
         $barDir = $this->_controller->getControllerDirectory('bar');
         $this->assertNotNull($barDir);
-        $this->assertContains('modules' . DIRECTORY_SEPARATOR . 'bar', $barDir);
+        $this->assertStringContainsString('modules' . DIRECTORY_SEPARATOR . 'bar', $barDir);
     }
 
     public function testGetControllerDirectoryByModuleNameReturnsNullOnBadModule()
@@ -657,7 +657,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertNotSame($request, $requestPost);
         $this->assertNotSame($response, $responsePost);
 
-        $this->assertContains('Reset action called', $responsePost->getBody());
+        $this->assertStringContainsString('Reset action called', $responsePost->getBody());
         $this->assertStringNotContainsString('Reset action called', $response->getBody());
     }
 

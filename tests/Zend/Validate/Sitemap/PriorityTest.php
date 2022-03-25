@@ -77,7 +77,7 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
         foreach ($values as $value) {
             $this->assertSame(false, $this->_validator->isValid($value));
             $messages = $this->_validator->getMessages();
-            $this->assertContains('is not a valid', current($messages));
+            $this->assertStringContainsString('is not a valid', current($messages));
         }
     }
 
@@ -93,7 +93,7 @@ class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
         foreach ($values as $value) {
             $this->assertSame(false, $this->_validator->isValid($value));
             $messages = $this->_validator->getMessages();
-            $this->assertContains('integer or float expected', current($messages));
+            $this->assertStringContainsString('integer or float expected', current($messages));
         }
     }
 }

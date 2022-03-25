@@ -146,7 +146,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
                     $this->assertStringContainsString($message, $test, var_export($messages, 1));
                 } else {
                     foreach ($message as $m) {
-                        $this->assertContains($m, $test, var_export($messages, 1));
+                        $this->assertStringContainsString($m, $test, var_export($messages, 1));
                     }
                 }
             }
@@ -158,7 +158,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
         $this->setupForm();
         $content = 'test content';
         $test = $this->decorator->render($content);
-        $this->assertRegexp('#' . $content . '.*?<ul#s', $test, $test);
+        $this->assertMatchesRegularExpression('#' . $content . '.*?<ul#s', $test, $test);
     }
 
     public function testRenderPrependsMessagesToContentWhenRequested()
@@ -167,7 +167,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
         $this->setupForm();
         $content = 'test content';
         $test = $this->decorator->render($content);
-        $this->assertRegexp('#</ul>.*?' . $content . '#s', $test);
+        $this->assertMatchesRegularExpression('#</ul>.*?' . $content . '#s', $test);
     }
 
     public function testRenderSeparatesContentAndErrorsWithPhpEolByDefault()
@@ -243,7 +243,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
             if ($key == 'ignoreSubForms') {
                 $this->assertStringNotContainsString('Sub ', $markup);
             } else {
-                $this->assertContains($value, $markup);
+                $this->assertStringContainsString($value, $markup);
             }
         }
     }
@@ -259,7 +259,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
         foreach ($this->form->getMessages() as $name => $messages) {
             while (($message = current($messages))) {
                 if (is_string($message)) {
-                    $this->assertStringContainsString($message, $test, var_export($messages, 1));
+                    $this->assertContains($message, $test, var_export($messages, 1));
                 }
                 if (false === next($messages) && is_array(prev($messages))) {
                     $messages = current($messages);
@@ -278,7 +278,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
 
         $this->decorator->setOnlyCustomFormErrors(true);
         $html = $this->form->render();
-        $this->assertNotRegexp('/form-errors.*?Master Foo/', $html);
+        $this->assertDoesNotMatchRegularExpression('/form-errors.*?Master Foo/', $html);
 
         $this->decorator->setShowCustomFormErrors(false);
         $html = $this->form->render();

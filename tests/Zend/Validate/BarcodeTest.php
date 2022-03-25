@@ -47,7 +47,7 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
             $barcode = new Zend_Validate_Barcode('Zend_Validate_BarcodeTest_NonExistentClassName');
             $this->fail("'Zend_Validate_BarcodeTest_NonExistentClassName' is not a valid barcode type'");
         } catch (Exception $e) {
-            $this->assertRegExp('#not found|No such file#', $e->getMessage());
+            $this->assertMatchesRegularExpression('#not found|No such file#', $e->getMessage());
         }
     }
 
@@ -432,6 +432,6 @@ class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($barcode->isValid('123'));
         $message = $barcode->getMessages();
         $this->assertTrue(array_key_exists('barcodeInvalidLength', $message));
-        $this->assertContains('length of 7/8 characters', $message['barcodeInvalidLength']);
+        $this->assertStringContainsString('length of 7/8 characters', $message['barcodeInvalidLength']);
     }
 }

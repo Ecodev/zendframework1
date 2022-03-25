@@ -555,7 +555,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($view, $status);
         $helperPaths = $view->getHelperPaths();
         $this->assertTrue(array_key_exists('My_View_Helper_', $helperPaths));
-        $this->assertContains($this->_filterPath('Zend/View/_stubs/HelperDir1/'), $this->_filterPath(current($helperPaths['My_View_Helper_'])));
+        $this->assertStringContainsString($this->_filterPath('Zend/View/_stubs/HelperDir1/'), $this->_filterPath(current($helperPaths['My_View_Helper_'])));
     }
 
     public function testFilterPathWithPrefix()
@@ -903,10 +903,10 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<input type="hidden"', $hidden);
 
         $hidden = $view->getHelper('formHidden')->formHidden('foo', 'bar');
-        $this->assertContains('<input type="hidden"', $hidden);
+        $this->assertStringContainsString('<input type="hidden"', $hidden);
 
         $hidden = $view->getHelper('FormHidden')->formHidden('foo', 'bar');
-        $this->assertContains('<input type="hidden"', $hidden);
+        $this->assertStringContainsString('<input type="hidden"', $hidden);
     }
 
     public function testGetHelperUsingDifferentCasesReturnsSameInstance()

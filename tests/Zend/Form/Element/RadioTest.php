@@ -112,13 +112,13 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
             if (!preg_match('/(<input[^>]*?(value="' . $test . '")[^>]*>)/', $html, $m)) {
                 $this->fail('Unable to find matching disabled option for ' . $test);
             }
-            $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $m[1]);
+            $this->assertMatchesRegularExpression('/<input[^>]*?(disabled="disabled")/', $m[1]);
         }
         foreach (['foo', 'bar', 'bat'] as $test) {
             if (!preg_match('/(<input[^>]*?(value="' . $test . '")[^>]*>)/', $html, $m)) {
                 $this->fail('Unable to find matching option for ' . $test);
             }
-            $this->assertNotRegexp('/<input[^>]*?(disabled="disabled")/', $m[1], var_export($m, 1));
+            $this->assertDoesNotMatchRegularExpression('/<input[^>]*?(disabled="disabled")/', $m[1], var_export($m, 1));
         }
     }
 
@@ -133,7 +133,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
         ])
             ->setSeparator('--FooBarFunSep--');
         $html = $this->element->render($this->getView());
-        $this->assertContains($this->element->getSeparator(), $html);
+        $this->assertStringContainsString($this->element->getSeparator(), $html);
         $count = substr_count($html, $this->element->getSeparator());
         $this->assertEquals(4, $count);
     }
@@ -148,7 +148,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
             'test' => 'Test',
         ]);
         $html = $this->element->render($this->getView());
-        $this->assertRegexp('#<dt[^>]*>&\#160;</dt>.*?<dd#s', $html, $html);
+        $this->assertMatchesRegularExpression('#<dt[^>]*>&\#160;</dt>.*?<dd#s', $html, $html);
     }
 
     /**

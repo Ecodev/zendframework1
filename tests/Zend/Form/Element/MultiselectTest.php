@@ -199,7 +199,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         $this->element->addMultiOptions($options);
         $html = $this->element->render($this->getView());
         foreach ($options as $value => $label) {
-            $this->assertRegexp('/<option.*value="' . $value . '"[^>]*>' . $label . '/s', $html, $html);
+            $this->assertMatchesRegularExpression('/<option.*value="' . $value . '"[^>]*>' . $label . '/s', $html, $html);
         }
     }
 
@@ -224,7 +224,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         $html = $this->element->render($this->getView());
         foreach ($options as $value => $label) {
             $this->assertStringNotContainsString($label, $html, $html);
-            $this->assertRegexp('/<option.*value="' . $value . '"[^>]*>' . $translations[$label] . '/s', $html, $html);
+            $this->assertMatchesRegularExpression('/<option.*value="' . $value . '"[^>]*>' . $translations[$label] . '/s', $html, $html);
         }
     }
 

@@ -220,7 +220,7 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $this->helper->setStyle('a {}', [
         ]);
         $value = $this->helper->toString();
-        $this->assertRegexp('#<style [^>]*?media="screen"#', $value, $value);
+        $this->assertMatchesRegularExpression('#<style [^>]*?media="screen"#', $value, $value);
     }
 
     /**
@@ -280,7 +280,7 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $values = $this->helper->getArrayCopy();
         $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         $item = array_shift($values);
-        $this->assertContains('foobar', $item->content);
+        $this->assertStringContainsString('foobar', $item->content);
     }
 
     public function testOverloadingOffsetSetWritesToSpecifiedIndex()
@@ -290,7 +290,7 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(1, is_countable($values) ? count($values) : 0);
         $this->assertTrue(isset($values[100]));
         $item = $values[100];
-        $this->assertContains('foobar', $item->content);
+        $this->assertStringContainsString('foobar', $item->content);
     }
 
     public function testInvalidMethodRaisesException()

@@ -90,8 +90,8 @@ class Zend_Form_Element_PasswordTest extends \PHPUnit\Framework\TestCase
         $expect = '*******';
         $this->assertFalse($this->element->isValid($value));
         foreach ($this->element->getMessages() as $message) {
-            $this->assertNotContains($value, $message);
-            $this->assertContains($expect, $message, $message);
+            $this->assertStringNotContainsString($value, $message);
+            $this->assertStringContainsString($expect, $message, $message);
         }
     }
 

@@ -338,7 +338,7 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
         $this->_helper->__toString();
         restore_error_handler();
 
-        $this->assertContains('array must contain two values', $this->_errorMessage);
+        $this->assertStringContainsString('array must contain two values', $this->_errorMessage);
     }
 
     public function testPageIdShouldBeNormalized()

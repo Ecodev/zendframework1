@@ -84,7 +84,7 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
         $this->assertStringContainsString('elem2', $tabs);
         $this->assertStringContainsString('Lorem Ipsum!', $tabs);
         $this->assertStringContainsString('href="foo.html"', $tabs);
-        $this->assertNotContains('This is captured, but not displayed: contentUrl overrides this output.', $tabs);
+        $this->assertStringNotContainsString('This is captured, but not displayed: contentUrl overrides this output.', $tabs);
     }
 
     public function testShouldAllowUsingTabPane()
@@ -99,7 +99,7 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
         $this->assertStringContainsString('elem2', $tabs);
         $this->assertStringContainsString('Lorem Ipsum!', $tabs);
         $this->assertStringContainsString('href="foo.html"', $tabs);
-        $this->assertNotContains('This is captured, but not displayed: contentUrl overrides this output.', $tabs);
+        $this->assertStringNotContainsString('This is captured, but not displayed: contentUrl overrides this output.', $tabs);
     }
 
     public function testPaneCaptureLockExceptionNoNestingAllowed()

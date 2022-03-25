@@ -77,7 +77,7 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
             'value' => 'bar',
             'attribs' => ['disable' => true],
         ]);
-        $this->assertRegexp('/<input[^>]*?(disabled="disabled")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(disabled="disabled")/', $html);
     }
 
     /**
@@ -100,7 +100,7 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
             'value' => 'bar',
             'attribs' => ['checked' => true],
         ]);
-        $this->assertRegexp('/<input[^>]*?(checked="checked")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(checked="checked")/', $html);
         $count = substr_count($html, 'checked');
         $this->assertEquals(2, $count);
     }
@@ -114,19 +114,19 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
             'name' => 'foo[]',
             'value' => 'bar',
         ]);
-        $this->assertRegexp('/<input[^>]*?(id="foo")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(id="foo")/', $html);
 
         $html = $this->helper->formCheckbox([
             'name' => 'foo[bar]',
             'value' => 'bar',
         ]);
-        $this->assertRegexp('/<input[^>]*?(id="foo-bar")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(id="foo-bar")/', $html);
 
         $html = $this->helper->formCheckbox([
             'name' => 'foo[bar][baz]',
             'value' => 'bar',
         ]);
-        $this->assertRegexp('/<input[^>]*?(id="foo-bar-baz")/', $html);
+        $this->assertMatchesRegularExpression('/<input[^>]*?(id="foo-bar-baz")/', $html);
     }
 
     /**
@@ -138,7 +138,7 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
             'name' => 'foo[]',
             'value' => 'bar',
         ]);
-        $this->assertNotRegexp('/<input[^>]*?(type="hidden")/', $html);
+        $this->assertDoesNotMatchRegularExpression('/<input[^>]*?(type="hidden")/', $html);
     }
 
     /**
@@ -189,10 +189,10 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
             $this->assertEquals(2, is_countable($matches[1]) ? count($matches[1]) : 0);
             foreach ($matches[1] as $element) {
                 if (strstr($element, 'hidden')) {
-                    $this->assertContains('baz', $element, 'Failed using ' . $html);
+                    $this->assertStringContainsString('baz', $element, 'Failed using ' . $html);
                 } else {
-                    $this->assertContains('bar', $element, 'Failed using ' . $html);
-                    $this->assertContains('checked', $element, 'Failed using ' . $html);
+                    $this->assertStringContainsString('bar', $element, 'Failed using ' . $html);
+                    $this->assertStringContainsString('checked', $element, 'Failed using ' . $html);
                 }
             }
         }

@@ -388,7 +388,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 
         $this->group->addElements([$foo, $bar]);
         $html = $this->group->render($this->getView());
-        $this->assertRegexp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
+        $this->assertMatchesRegularExpression('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
         $this->assertStringContainsString('<input', $html, $html);
         $this->assertStringContainsString('"foo"', $html);
         $this->assertStringContainsString('"bar"', $html);
@@ -402,7 +402,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->addElements([$foo, $bar])
             ->setView($this->getView());
         $html = $this->group->__toString();
-        $this->assertRegexp('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
+        $this->assertMatchesRegularExpression('#^<dt[^>]*>&\#160;</dt><dd[^>]*><fieldset.*?</fieldset></dd>$#s', $html, $html);
         $this->assertStringContainsString('<input', $html);
         $this->assertStringContainsString('"foo"', $html);
         $this->assertStringContainsString('"bar"', $html);
@@ -735,15 +735,15 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->setView($this->getView());
         $html = $this->group->renderFormElements();
         foreach ($this->group->getElements() as $element) {
-            $this->assertContains('id="' . $element->getFullyQualifiedName() . '"', $html, 'Received: ' . $html);
+            $this->assertStringContainsString('id="' . $element->getFullyQualifiedName() . '"', $html, 'Received: ' . $html);
         }
-        $this->assertNotContains('<dl', $html);
-        $this->assertNotContains('<form', $html);
+        $this->assertStringNotContainsString('<dl', $html);
+        $this->assertStringNotContainsString('<form', $html);
 
         $html = $this->group->renderFieldset('this is the content');
-        $this->assertContains('<fieldset', $html);
-        $this->assertContains('</fieldset>', $html);
-        $this->assertContains('this is the content', $html);
+        $this->assertStringContainsString('<fieldset', $html);
+        $this->assertStringContainsString('</fieldset>', $html);
+        $this->assertStringContainsString('this is the content', $html);
     }
 
     /**

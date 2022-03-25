@@ -152,7 +152,7 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
         $resources = $this->loader->getResourceTypes();
         $this->assertTrue(array_key_exists('models', $resources));
         $this->assertEquals($this->loader->getNamespace() . '_Model', $resources['models']['namespace']);
-        $this->assertContains('/models', $resources['models']['path']);
+        $this->assertStringContainsString('/models', $resources['models']['path']);
     }
 
     public function testAutoloaderShouldAllowAddingResettingResourcePaths()
@@ -160,8 +160,8 @@ class Zend_Loader_Autoloader_ResourceTest extends \PHPUnit\Framework\TestCase
         $this->loader->addResourceType('models', 'models', 'Model');
         $this->loader->addResourceType('models', 'apis');
         $resources = $this->loader->getResourceTypes();
-        $this->assertNotContains('/models', $resources['models']['path']);
-        $this->assertContains('/apis', $resources['models']['path']);
+        $this->assertStringNotContainsString('/models', $resources['models']['path']);
+        $this->assertStringContainsString('/apis', $resources['models']['path']);
     }
 
     public function testAutoloaderShouldSupportAddingMultipleResourceTypesAtOnce()

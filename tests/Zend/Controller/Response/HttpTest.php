@@ -334,7 +334,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
             static::fail('canSendHeaders() should throw exception');
         } catch (Exception $e) {
             var_dump($e->getMessage());
-            static::assertRegExp('/headers already sent in .+, line \d+$/', $e->getMessage());
+            static::assertMatchesRegularExpression('/headers already sent in .+, line \d+$/', $e->getMessage());
         }
     }
 

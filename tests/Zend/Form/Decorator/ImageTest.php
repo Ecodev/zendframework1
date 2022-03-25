@@ -120,7 +120,7 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
             ->setOption('tag', 'div');
 
         $image = $this->decorator->render('');
-        $this->assertRegexp('#<div>.*?<input[^>]*>.*?</div>#s', $image, $image);
+        $this->assertMatchesRegularExpression('#<div>.*?<input[^>]*>.*?</div>#s', $image, $image);
     }
 
     public function testCanPrependImageToContent()
@@ -132,7 +132,7 @@ class Zend_Form_Decorator_ImageTest extends \PHPUnit\Framework\TestCase
             ->setOption('placement', 'prepend');
 
         $image = $this->decorator->render('content');
-        $this->assertRegexp('#<input[^>]*>.*?(content)#s', $image, $image);
+        $this->assertMatchesRegularExpression('#<input[^>]*>.*?(content)#s', $image, $image);
     }
 
     /**

@@ -1,13 +1,7 @@
-<phpunit bootstrap="./tests/TestHelper.php">
+<phpunit bootstrap="./tests/TestHelper.php"
+ cacheResultFile="/tmp/.zf1.phpunit.result.cache"
+>
     <testsuite name="Zend Framework - Testsuite">
         <directory>./tests/</directory>
     </testsuite>
-
-    <!-- Enable this for proper unit testing code coverage reports
-    <filter>
-        <whitelist>
-            <directory suffix=".php">../library/Zend</directory>
-        </whitelist>
-    </filter>
-    -->
 </phpunit>

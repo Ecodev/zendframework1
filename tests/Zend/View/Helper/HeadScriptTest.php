@@ -327,7 +327,7 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
         $values = $this->helper->getArrayCopy();
         $this->assertEquals(1, is_countable($values) ? count($values) : 0, var_export($values, 1));
         $item = array_shift($values);
-        $this->assertContains('foobar', $item->source);
+        $this->assertStringContainsString('foobar', $item->source);
     }
 
     public function testIndentationIsHonored()

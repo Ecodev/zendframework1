@@ -145,7 +145,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
             Zend_Loader::loadClass('ClassNonexistent', $dir);
             $this->fail('Zend_Exception was expected but never thrown.');
         } catch (Zend_Exception $e) {
-            $this->assertRegExp('/file(.*)does not exist or class(.*)not found/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/file(.*)does not exist or class(.*)not found/i', $e->getMessage());
         }
     }
 
@@ -203,7 +203,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
             Zend_Loader::loadClass('/path/:to/@danger');
             $this->fail('Zend_Exception was expected but never thrown.');
         } catch (Zend_Exception $e) {
-            $this->assertRegExp('/security(.*)filename/i', $e->getMessage());
+            $this->assertMatchesRegularExpression('/security(.*)filename/i', $e->getMessage());
         }
     }
 
@@ -253,10 +253,10 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     {
         $this->setErrorHandler();
         $this->assertEquals(\Zend_Application_Exception::class, Zend_Loader::autoload(\Zend_Application_Exception::class));
-        $this->assertContains('deprecated', $this->error);
+        $this->assertStringContainsString('deprecated', $this->error);
         $this->error = null;
         $this->assertEquals(\Zend_Acl_Assert_Interface::class, Zend_Loader::autoload(\Zend_Acl_Assert_Interface::class));
-        $this->assertContains('deprecated', $this->error);
+        $this->assertStringContainsString('deprecated', $this->error);
     }
 
     /**
@@ -266,7 +266,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
     {
         $this->setErrorHandler();
         $this->assertFalse(Zend_Loader::autoload('Zend_FooBar_Magic_Abstract'));
-        $this->assertContains('deprecated', $this->error);
+        $this->assertStringContainsString('deprecated', $this->error);
     }
 
     public function testLoaderRegisterAutoloadRegisters()
@@ -277,7 +277,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
         $this->setErrorHandler();
         Zend_Loader::registerAutoload();
-        $this->assertContains('deprecated', $this->error);
+        $this->assertStringContainsString('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
         $found = false;
@@ -303,7 +303,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
         $this->setErrorHandler();
         Zend_Loader::registerAutoload('Zend_Loader_MyLoader');
-        $this->assertContains('deprecated', $this->error);
+        $this->assertStringContainsString('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
         $expected = ['Zend_Loader_MyLoader', 'autoload'];
@@ -329,7 +329,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
         $this->setErrorHandler();
         Zend_Loader::registerAutoload('Zend_Loader_MyOverloader');
-        $this->assertContains('deprecated', $this->error);
+        $this->assertStringContainsString('deprecated', $this->error);
 
         $autoloaders = spl_autoload_functions();
         $found = false;
@@ -390,7 +390,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
             $this->fail('registerAutoload should fail without spl_autoload');
         } catch (Zend_Exception $e) {
             $this->assertEquals('The class "stdClass" does not have an autoload() method', $e->getMessage());
-            $this->assertContains('deprecated', $this->error);
+            $this->assertStringContainsString('deprecated', $this->error);
         }
     }
 
@@ -402,7 +402,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
         $this->setErrorHandler();
         Zend_Loader::registerAutoload('Zend_Loader_MyOverloader');
-        $this->assertContains('deprecated', $this->error);
+        $this->assertStringContainsString('deprecated', $this->error);
 
         $expected = ['Zend_Loader_MyOverloader', 'autoload'];
         $autoloaders = Zend_Loader_Autoloader::getInstance()->getAutoloaders();
@@ -435,7 +435,7 @@ class Zend_LoaderTest extends \PHPUnit\Framework\TestCase
 
         $this->setErrorHandler();
         Zend_Loader::registerAutoload();
-        $this->assertContains('deprecated', $this->error);
+        $this->assertStringContainsString('deprecated', $this->error);
 
         $autoloader = Zend_Loader_Autoloader::getInstance();
         $this->assertTrue($autoloader->isFallbackAutoloader());

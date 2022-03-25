@@ -149,7 +149,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->container->captureEnd();
 
         $value = $this->container->getValue();
-        $this->assertContains('This is content intended for capture', $value);
+        $this->assertStringContainsString('This is content intended for capture', $value);
     }
 
     public function testCapturingToPlaceholderAppendsContent()
@@ -167,7 +167,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $keys = array_keys($value);
         $lastIndex = array_pop($keys);
         $this->assertEquals('foo', $value[$lastIndex - 1]);
-        $this->assertContains('This is content intended for capture', $value[$lastIndex]);
+        $this->assertStringContainsString('This is content intended for capture', $value[$lastIndex]);
     }
 
     public function testCapturingToPlaceholderUsingPrependPrependsContent()
@@ -185,7 +185,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $keys = array_keys($value);
         $lastIndex = array_pop($keys);
         $this->assertEquals('foo', $value[$lastIndex]);
-        $this->assertContains('This is content intended for capture', $value[$lastIndex - 1]);
+        $this->assertStringContainsString('This is content intended for capture', $value[$lastIndex - 1]);
     }
 
     public function testCapturingToPlaceholderUsingSetOverwritesContent()
@@ -198,7 +198,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals(1, count($this->container));
 
         $value = $this->container->getValue();
-        $this->assertContains('This is content intended for capture', $value);
+        $this->assertStringContainsString('This is content intended for capture', $value);
     }
 
     public function testCapturingToPlaceholderKeyUsingSetCapturesContent()
@@ -210,7 +210,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertEquals(1, count($this->container));
         $this->assertTrue(isset($this->container['key']));
         $value = $this->container['key'];
-        $this->assertContains('This is content intended for capture', $value);
+        $this->assertStringContainsString('This is content intended for capture', $value);
     }
 
     public function testCapturingToPlaceholderKeyUsingSetReplacesContentAtKey()
