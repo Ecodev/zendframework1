@@ -481,8 +481,6 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
 
     /**
      * Set a default translator.
-     *
-     * @param  Zend_Translate $translator
      */
     public static function setDefaultTranslator(?Zend_Translate $translator = null)
     {

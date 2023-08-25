@@ -43,6 +43,7 @@ require_once 'Zend/Uri/Http.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
@@ -724,7 +725,9 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
      * Test that it is possible to generate a URL with a numerical key.
      *
      * @since  2010-06-11
+     *
      * @group  ZF-8914
+     *
      * @covers Zend_Controller_Router_Rewrite::assemble
      */
     public function testCanGenerateNumericKeyUri()
@@ -735,7 +738,7 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
                 ':controller/:action/*',
                 ['controller' => 'index', 'action' => 'index']
             )
-       );
+        );
 
         $params = [
             'controller' => 'index',

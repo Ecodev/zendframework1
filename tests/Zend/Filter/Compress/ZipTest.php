@@ -314,7 +314,7 @@ class Zend_Filter_Compress_ZipTest extends \PHPUnit\Framework\TestCase
                 'archive' => __DIR__ . '/../_files/compressed.zip',
                 'target' => __DIR__ . '/../_files/evil.zip',
             ]
-            );
+        );
 
         $filter->decompress(__DIR__ . '/../_files/evil.zip');
     }

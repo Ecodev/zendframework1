@@ -26,6 +26,7 @@ require_once 'Zend/Validate/File/NotExists.php';
  * NotExists testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_File_NotExistsTest extends \PHPUnit\Framework\TestCase
@@ -69,7 +70,7 @@ class Zend_Validate_File_NotExistsTest extends \PHPUnit\Framework\TestCase
                 $element[2],
                 $validator->isValid($element[1], $files),
                 'Tested with ' . var_export($element, 1)
-                );
+            );
         }
 
         $valuesExpected = [

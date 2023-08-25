@@ -26,6 +26,7 @@ require_once 'Zend/Controller/Router/Route/Chain.php';
  * Tests the class Zend_Navigation_Page_Mvc.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Navigation
  */
 class Zend_Navigation_Page_MvcTest extends \PHPUnit\Framework\TestCase

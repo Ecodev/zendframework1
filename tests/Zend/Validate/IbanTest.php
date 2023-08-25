@@ -24,6 +24,7 @@ require_once 'Zend/Validate/Iban.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_IbanTest extends \PHPUnit\Framework\TestCase
@@ -42,7 +43,7 @@ class Zend_Validate_IbanTest extends \PHPUnit\Framework\TestCase
         ];
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $validator->isValid($input),
-                                "'$input' expected to be " . ($result ? '' : 'in') . 'valid');
+                "'$input' expected to be " . ($result ? '' : 'in') . 'valid');
         }
     }
 

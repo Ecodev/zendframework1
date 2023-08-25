@@ -103,8 +103,8 @@ class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
         }
 
         return sprintf('    %s("#%s").attr("value", %s("#%s-slider").slider("value", %d));' . PHP_EOL,
-                $jqh, $sliderHiddenId, $jqh, $elementId, $handlerNum
-            );
+            $jqh, $sliderHiddenId, $jqh, $elementId, $handlerNum
+        );
     }
 
     protected function getHandleCount($params)

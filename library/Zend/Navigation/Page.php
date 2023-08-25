@@ -235,9 +235,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
                     require_once 'Zend/Navigation/Exception.php';
 
                     throw new Zend_Navigation_Exception(sprintf(
-                            'Invalid argument: Detected type "%s", which '
-                            . 'is not an instance of Zend_Navigation_Page',
-                            $type));
+                        'Invalid argument: Detected type "%s", which '
+                        . 'is not an instance of Zend_Navigation_Page',
+                        $type));
                 }
 
                 return $page;
@@ -342,7 +342,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $label must be a string or null');
+                'Invalid argument: $label must be a string or null');
         }
 
         $this->_label = $label;
@@ -373,7 +373,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $fragment must be a string or null');
+                'Invalid argument: $fragment must be a string or null');
         }
 
         $this->_fragment = $fragment;
@@ -405,7 +405,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $id must be a string, number or null');
+                'Invalid argument: $id must be a string, number or null');
         }
 
         $this->_id = null === $id ? $id : (string) $id;
@@ -437,7 +437,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $class must be a string or null');
+                'Invalid argument: $class must be a string or null');
         }
 
         $this->_class = $class;
@@ -469,7 +469,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $title must be a non-empty string');
+                'Invalid argument: $title must be a non-empty string');
         }
 
         $this->_title = $title;
@@ -501,7 +501,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $target must be a string or null');
+                'Invalid argument: $target must be a string or null');
         }
 
         $this->_target = $target;
@@ -579,8 +579,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
                 require_once 'Zend/Navigation/Exception.php';
 
                 throw new Zend_Navigation_Exception(
-                        'Invalid argument: $relations must be an '
-                        . 'array or an instance of Zend_Config');
+                    'Invalid argument: $relations must be an '
+                    . 'array or an instance of Zend_Config');
             }
 
             foreach ($relations as $name => $relation) {
@@ -643,8 +643,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
                 require_once 'Zend/Navigation/Exception.php';
 
                 throw new Zend_Navigation_Exception(
-                        'Invalid argument: $relations must be an '
-                        . 'array or an instance of Zend_Config');
+                    'Invalid argument: $relations must be an '
+                    . 'array or an instance of Zend_Config');
             }
 
             foreach ($relations as $name => $relation) {
@@ -822,8 +822,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $order must be an integer or null, '
-                    . 'or a string that casts to an integer');
+                'Invalid argument: $order must be an integer or null, '
+                . 'or a string that casts to an integer');
         }
 
         $this->_order = $order;
@@ -867,8 +867,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $resource must be null, a string, '
-                    . ' or an instance of Zend_Acl_Resource_Interface');
+                'Invalid argument: $resource must be null, a string, '
+                . ' or an instance of Zend_Acl_Resource_Interface');
         }
 
         return $this;
@@ -1084,7 +1084,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $property must be a non-empty string');
+                'Invalid argument: $property must be a non-empty string');
         }
 
         $method = 'set' . self::_normalizePropertyName($property);
@@ -1116,7 +1116,7 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $property must be a non-empty string');
+                'Invalid argument: $property must be a non-empty string');
         }
 
         $method = 'get' . self::_normalizePropertyName($property);
@@ -1197,8 +1197,8 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(sprintf(
-                    'Unsetting native property "%s" is not allowed',
-                    $name));
+                'Unsetting native property "%s" is not allowed',
+                $name));
         }
 
         if (isset($this->_properties[$name])) {

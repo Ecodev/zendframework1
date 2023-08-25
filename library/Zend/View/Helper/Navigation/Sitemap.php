@@ -197,8 +197,8 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
         } else {
             require_once 'Zend/Uri/Exception.php';
             $e = new Zend_Uri_Exception(sprintf(
-                    'Invalid server URL: "%s"',
-                    $serverUrl));
+                'Invalid server URL: "%s"',
+                $serverUrl));
             $e->setView($this->view);
 
             throw $e;
@@ -349,8 +349,8 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
                 && !$locValidator->isValid($url)) {
                 require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception(sprintf(
-                        'Encountered an invalid URL for Sitemap XML: "%s"',
-                        $url));
+                    'Encountered an invalid URL for Sitemap XML: "%s"',
+                    $url));
                 $e->setView($this->view);
 
                 throw $e;
@@ -358,7 +358,7 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
 
             // put url in 'loc' element
             $urlNode->appendChild($dom->createElementNS(self::SITEMAP_NS,
-                                                        'loc', $url));
+                'loc', $url));
 
             // add 'lastmod' element if a valid lastmod is set in page
             if (isset($page->lastmod)) {
@@ -373,7 +373,7 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
                     || $lastmodValidator->isValid($lastmod)) {
                     $urlNode->appendChild(
                         $dom->createElementNS(self::SITEMAP_NS, 'lastmod',
-                                              $lastmod)
+                            $lastmod)
                     );
                 }
             }
@@ -385,7 +385,7 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
                     || $changefreqValidator->isValid($changefreq)) {
                     $urlNode->appendChild(
                         $dom->createElementNS(self::SITEMAP_NS, 'changefreq',
-                                              $changefreq)
+                            $changefreq)
                     );
                 }
             }
@@ -397,7 +397,7 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
                     || $priorityValidator->isValid($priority)) {
                     $urlNode->appendChild(
                         $dom->createElementNS(self::SITEMAP_NS, 'priority',
-                                              $priority)
+                            $priority)
                     );
                 }
             }
@@ -408,8 +408,8 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
             if (!@$dom->schemaValidate(self::SITEMAP_XSD)) {
                 require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception(sprintf(
-                        'Sitemap is invalid according to XML Schema at "%s"',
-                        self::SITEMAP_XSD));
+                    'Sitemap is invalid according to XML Schema at "%s"',
+                    self::SITEMAP_XSD));
                 $e->setView($this->view);
 
                 throw $e;

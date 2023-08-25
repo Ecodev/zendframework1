@@ -44,8 +44,6 @@ interface Zend_Acl_Assert_Interface
      * $role, $resource, or $privilege parameters are null, it means that the query applies to all Roles, Resources, or
      * privileges, respectively.
      *
-     * @param  Zend_Acl_Role_Interface     $role
-     * @param  Zend_Acl_Resource_Interface $resource
      * @param  string                      $privilege
      *
      * @return bool

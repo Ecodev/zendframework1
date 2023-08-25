@@ -600,8 +600,6 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
      *
      * @see getHref()
      *
-     * @param $encodeUrl
-     *
      * @return Zend_Navigation_Page_Mvc fluent interface, returns self
      */
     public function setEncodeUrl($encodeUrl)

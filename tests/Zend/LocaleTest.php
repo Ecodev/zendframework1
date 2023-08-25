@@ -27,6 +27,7 @@ require_once 'Zend/Cache.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Locale
  */
 #[AllowDynamicProperties]
@@ -51,8 +52,8 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
         setlocale(LC_ALL, 'de');
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
-                 ['lifetime' => 120, 'automatic_serialization' => true],
-                 ['cache_dir' => __DIR__ . '/_files/']);
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => __DIR__ . '/_files/']);
         Zend_LocaleTestHelper::resetObject();
         Zend_LocaleTestHelper::setCache($this->_cache);
 

@@ -27,6 +27,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * Test cases for Zend_Rest_Client.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Rest
  * @group      Zend_Rest_Client
  */

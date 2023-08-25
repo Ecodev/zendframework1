@@ -29,6 +29,7 @@ require_once 'Zend/View.php';
  * Test class for Zend_Layout.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Layout
  */
 class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
@@ -408,7 +409,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     {
         $layout = new Zend_Layout([
             'viewBasePath' => __DIR__ . '/_files/layouts-basepath/', ]
-            );
+        );
         $this->assertEquals('layout inside basePath', $layout->render());
         $layout->setLayout('layout2');
         $this->assertEquals('foobar-helper-output', $layout->render());

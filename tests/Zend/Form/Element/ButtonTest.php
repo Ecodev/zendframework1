@@ -23,6 +23,7 @@ require_once 'Zend/Translate.php';
  * Test class for Zend_Form_Element_Button.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]

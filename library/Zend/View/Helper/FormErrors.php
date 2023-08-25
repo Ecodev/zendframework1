@@ -49,7 +49,6 @@ class Zend_View_Helper_FormErrors extends Zend_View_Helper_FormElement
      * Render form errors.
      *
      * @param  array|string $errors Error(s) to render
-     * @param  array $options
      *
      * @return string
      */

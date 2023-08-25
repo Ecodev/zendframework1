@@ -23,6 +23,7 @@ require_once 'Zend/View/Helper/Navigation/Menu.php';
  * Tests Zend_View_Helper_Navigation_Menu.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

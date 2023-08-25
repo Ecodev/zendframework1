@@ -136,8 +136,8 @@ class Zend_View_Helper_Navigation_Links extends Zend_View_Helper_Navigation_Help
     {
         if (@preg_match('/find(Rel|Rev)(.+)/', $method, $match)) {
             return $this->findRelation($arguments[0],
-                                       strtolower($match[1]),
-                                       strtolower($match[2]));
+                strtolower($match[1]),
+                strtolower($match[2]));
         }
 
         return parent::__call($method, $arguments);
@@ -386,7 +386,7 @@ class Zend_View_Helper_Navigation_Links extends Zend_View_Helper_Navigation_Help
         $found = null;
         $break = false;
         $iterator = new RecursiveIteratorIterator($this->_findRoot($page),
-                RecursiveIteratorIterator::SELF_FIRST);
+            RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $intermediate) {
             if ($intermediate === $page) {
                 // current page; break at next accepted page
@@ -422,8 +422,8 @@ class Zend_View_Helper_Navigation_Links extends Zend_View_Helper_Navigation_Help
         $found = null;
         $prev = null;
         $iterator = new RecursiveIteratorIterator(
-                $this->_findRoot($page),
-                RecursiveIteratorIterator::SELF_FIRST);
+            $this->_findRoot($page),
+            RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $intermediate) {
             if (!$this->accept($intermediate)) {
                 continue;
@@ -695,6 +695,7 @@ class Zend_View_Helper_Navigation_Links extends Zend_View_Helper_Navigation_Help
 
                 return $pages;
             }
+
             // pass array to factory directly
             try {
                 $page = Zend_Navigation_Page::factory($mixed);
@@ -730,8 +731,8 @@ class Zend_View_Helper_Navigation_Links extends Zend_View_Helper_Navigation_Help
         if (!in_array($attrib, ['rel', 'rev'])) {
             require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception(sprintf(
-                    'Invalid relation attribute "%s", must be "rel" or "rev"',
-                    $attrib));
+                'Invalid relation attribute "%s", must be "rel" or "rev"',
+                $attrib));
             $e->setView($this->view);
 
             throw $e;

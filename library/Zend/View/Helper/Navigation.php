@@ -153,8 +153,8 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
             $this->view->setHelperPath(null);
 
             $this->view->addHelperPath(
-                    str_replace('_', '/', self::NS),
-                    self::NS);
+                str_replace('_', '/', self::NS),
+                self::NS);
 
             foreach ($paths as $ns => $path) {
                 $this->view->addHelperPath($path, $ns);
@@ -175,9 +175,9 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
             if ($strict) {
                 require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception(sprintf(
-                        'Proxy helper "%s" is not an instance of '
-                        . \Zend_View_Helper_Navigation_Helper::class,
-                        get_class($helper)));
+                    'Proxy helper "%s" is not an instance of '
+                    . \Zend_View_Helper_Navigation_Helper::class,
+                    get_class($helper)));
                 $e->setView($this->view);
 
                 throw $e;

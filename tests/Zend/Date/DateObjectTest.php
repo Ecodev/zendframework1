@@ -24,6 +24,7 @@ require_once 'Zend/Date.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Date
  */
 class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
@@ -34,8 +35,8 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
         date_default_timezone_set('Europe/Paris');
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
-                 ['lifetime' => 120, 'automatic_serialization' => true],
-                 ['cache_dir' => __DIR__ . '/../_files/']);
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => __DIR__ . '/../_files/']);
         Zend_Date_DateObjectTestHelper::setOptions(['cache' => $this->_cache]);
     }
 

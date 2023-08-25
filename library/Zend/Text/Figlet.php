@@ -572,8 +572,8 @@ class Zend_Text_Figlet
 
             if ($this->_justification > 0) {
                 for ($i = 1;
-                     ((3 - $this->_justification) * $i + $length + $this->_justification - 2) < $this->_outputWidth;
-                     ++$i) {
+                    ((3 - $this->_justification) * $i + $length + $this->_justification - 2) < $this->_outputWidth;
+                    ++$i) {
                     $this->_output .= ' ';
                 }
             }
@@ -882,6 +882,7 @@ class Zend_Text_Figlet
             if ($this->_rightToLeft === 1) {
                 return $leftChar;
             }
+
             // Occurs in the absence of above exceptions
             return $rightChar;
         }
@@ -1027,14 +1028,14 @@ class Zend_Text_Figlet
 
         // Get the header
         $numsRead = sscanf(fgets($fp, 1000),
-                           '%*c%c %d %*d %d %d %d %d %d',
-                           $this->_hardBlank,
-                           $this->_charHeight,
-                           $this->_maxLength,
-                           $smush,
-                           $cmtLines,
-                           $rightToLeft,
-                           $this->_fontSmush);
+            '%*c%c %d %*d %d %d %d %d %d',
+            $this->_hardBlank,
+            $this->_charHeight,
+            $this->_maxLength,
+            $smush,
+            $cmtLines,
+            $rightToLeft,
+            $this->_fontSmush);
 
         if ($magic !== self::FONTFILE_MAGIC_NUMBER || $numsRead < 5) {
             require_once 'Zend/Text/Figlet/Exception.php';

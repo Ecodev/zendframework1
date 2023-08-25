@@ -20,6 +20,7 @@ require_once 'Zend/Controller/Request/Http.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */
@@ -440,6 +441,7 @@ class Zend_Controller_Request_HttpTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider prefixProvider
+     *
      * @group ZF-10040
      *
      * @param mixed $prefix

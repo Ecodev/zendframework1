@@ -28,6 +28,7 @@ require_once 'Zend/Controller/Request/HttpTestCase.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Rest
  */
 class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase

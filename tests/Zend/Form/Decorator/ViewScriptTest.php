@@ -26,6 +26,7 @@ require_once 'Zend/View.php';
  * Test class for Zend_Form_Decorator_ViewScript.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]

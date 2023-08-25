@@ -710,8 +710,8 @@ class Zend_Http_Client
                 $this->cookiejar->addCookie($cookie);
             } elseif (is_string($cookie) && $value !== null) {
                 $cookie = Zend_Http_Cookie::fromString("{$cookie}={$value}",
-                                                       $this->uri,
-                                                       $this->config['encodecookies']);
+                    $this->uri,
+                    $this->config['encodecookies']);
                 $this->cookiejar->addCookie($cookie);
             }
         } else {
@@ -1011,7 +1011,7 @@ class Zend_Http_Client
         if (!is_string($this->_stream_name)) {
             // If name is not given, create temp name
             $this->_stream_name = tempnam($this->config['stream_tmp_dir'] ?? sys_get_temp_dir(),
-                 \Zend_Http_Client::class);
+                \Zend_Http_Client::class);
         }
 
         if (false === ($fp = @fopen($this->_stream_name, 'w+b'))) {
@@ -1146,7 +1146,6 @@ class Zend_Http_Client
 
             // If we got redirected, look for the Location header
             if ($response->isRedirect() && ($location = $response->getHeader('location'))) {
-
                 // Avoid problems with buggy servers that add whitespace at the
                 // end of some headers (See ZF-11283)
                 $location = trim($location);
@@ -1165,7 +1164,6 @@ class Zend_Http_Client
                     $this->setHeaders('host', null);
                     $this->setUri($location);
                 } else {
-
                     // Split into path and query and set the query
                     if (strpos($location, '?') !== false) {
                         [$location, $query] = explode('?', $location, 2);
@@ -1178,7 +1176,7 @@ class Zend_Http_Client
                     if (strpos($location, '/') === 0) {
                         $this->uri->setPath($location);
 
-                    // Else, assume we have a relative path
+                        // Else, assume we have a relative path
                     } else {
                         // Get the current path directory, removing any trailing slashes
                         $path = $this->uri->getPath();
@@ -1544,7 +1542,7 @@ class Zend_Http_Client
 
                 break;
 
-            //case self::AUTH_DIGEST:
+                //case self::AUTH_DIGEST:
                 // @todo Implement digest authentication
             //    break;
 
@@ -1582,7 +1580,6 @@ class Zend_Http_Client
         $parameters = [];
 
         foreach ($parray as $name => $value) {
-
             // Calculate array key
             if ($prefix) {
                 if (is_int($name)) {

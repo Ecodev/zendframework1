@@ -24,6 +24,7 @@ require_once 'Zend/Validate/Alpha.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
@@ -98,7 +99,7 @@ class Zend_Validate_AlphaTest extends \PHPUnit\Framework\TestCase
                 $result,
                 $this->_validator->isValid($input),
                 "Expected '$input' to be considered " . ($result ? '' : 'in') . 'valid'
-                );
+            );
         }
     }
 

@@ -24,6 +24,7 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Loader
  */
 #[AllowDynamicProperties]

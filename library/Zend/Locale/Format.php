@@ -181,7 +181,6 @@ class Zend_Locale_Format
                     throw new Zend_Locale_Exception("Unknown option: '$name' = '$value'");
 
                     break;
-
             }
         }
 
@@ -346,7 +345,7 @@ class Zend_Locale_Format
                         $options['precision'] = null;
                     } else {
                         $options['precision'] = iconv_strlen(iconv_substr($format, iconv_strpos($format, '.') + 1,
-                                                             iconv_strrpos($format, '0') - iconv_strpos($format, '.')));
+                            iconv_strrpos($format, '0') - iconv_strpos($format, '.')));
                         $format = iconv_substr($format, 0, iconv_strpos($format, '.') + 1) . '###'
                                 . iconv_substr($format, iconv_strrpos($format, '0') + 1);
                     }
@@ -459,7 +458,6 @@ class Zend_Locale_Format
             }
             $format = iconv_substr($format, 0, iconv_strpos($format, '#')) . $number . iconv_substr($format, $point);
         } else {
-
             // 2 seperations
             if (iconv_strlen($number) > ($point - $group)) {
                 $seperation = ($point - $group);
@@ -900,7 +898,7 @@ class Zend_Locale_Format
                 // prepare to convert month name to their numeric equivalents, if requested,
                 // and we have a $options['locale']
                 $position = self::_replaceMonth($number, Zend_Locale_Data::getList($options['locale'],
-                        'month'));
+                    'month'));
                 if ($position === false) {
                     $position = self::_replaceMonth($number, Zend_Locale_Data::getList($options['locale'],
                         'month', ['gregorian', 'format', 'abbreviated']));

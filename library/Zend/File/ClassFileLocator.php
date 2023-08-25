@@ -158,6 +158,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
         if (!empty($classes)) {
             return true;
         }
+
         // No class-type tokens found; return false
         return false;
     }

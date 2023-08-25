@@ -23,6 +23,7 @@ require_once 'Zend/Config.php';
  * Tests the class Zend_Navigation_Page.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Navigation
  */
 class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase

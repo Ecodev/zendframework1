@@ -24,6 +24,7 @@ require_once 'Zend/Validate/Hex.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_HexTest extends \PHPUnit\Framework\TestCase

@@ -24,6 +24,7 @@ require_once 'Zend/Validate/Date.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_DateTest extends \PHPUnit\Framework\TestCase
@@ -71,7 +72,7 @@ class Zend_Validate_DateTest extends \PHPUnit\Framework\TestCase
         ];
         foreach ($valuesExpected as $input => $result) {
             $this->assertEquals($result, $this->_validator->isValid($input),
-                                "'$input' expected to be " . ($result ? '' : 'in') . 'valid');
+                "'$input' expected to be " . ($result ? '' : 'in') . 'valid');
         }
     }
 
@@ -229,6 +230,7 @@ class Zend_Validate_DateTest extends \PHPUnit\Framework\TestCase
      * @param  string  $errstr
      * @param  string  $errfile
      * @param  int $errline
+     *
      * @group ZF-2789
      */
     public function errorHandlerIgnore($errno, $errstr, $errfile, $errline)

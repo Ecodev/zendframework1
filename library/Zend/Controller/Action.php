@@ -716,7 +716,6 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
      * @param string $action
      * @param string $controller
      * @param string $module
-     * @param array $params
      *
      * @deprecated Deprecated as of Zend Framework 1.7. Use
      *             forward() instead.
@@ -749,7 +748,6 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
      * @param string $action
      * @param string $controller
      * @param string $module
-     * @param array $params
      */
     final public function forward($action, $controller = null, $module = null, ?array $params = null)
     {

@@ -59,7 +59,6 @@ class Zend_Xml_Security
      * Scan XML string for potential XXE and XEE attacks.
      *
      * @param   string $xml
-     * @param   DomDocument $dom
      *
      * @return  bool|DomDocument|SimpleXMLElement
      */
@@ -133,7 +132,6 @@ class Zend_Xml_Security
      * Scan XML file for potential XXE/XEE attacks.
      *
      * @param  string $file
-     * @param  DOMDocument $dom
      *
      * @return DomDocument|SimpleXMLElement
      */

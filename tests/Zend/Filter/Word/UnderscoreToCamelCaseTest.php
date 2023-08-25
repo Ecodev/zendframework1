@@ -22,6 +22,7 @@ require_once 'Zend/Filter/Word/UnderscoreToCamelCase.php';
  * Test class for Zend_Filter_Word_UnderscoreToCamelCase.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_Word_UnderscoreToCamelCaseTest extends \PHPUnit\Framework\TestCase

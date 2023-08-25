@@ -129,8 +129,6 @@ class ZendX_JQuery_Form_Element_UiWidget extends Zend_Form_Element
      *
      * Ensures that the view object has the jQuery view helper path set.
      *
-     * @param  Zend_View_Interface $view
-     *
      * @return ZendX_JQuery_Form_Element_UiWidget
      */
     public function setView(?Zend_View_Interface $view = null)

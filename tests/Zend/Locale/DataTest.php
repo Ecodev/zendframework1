@@ -24,6 +24,7 @@ require_once 'Zend/Locale/Data.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Locale
  */
 class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
@@ -34,8 +35,8 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
     {
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
-                 ['lifetime' => 1, 'automatic_serialization' => true],
-                 ['cache_dir' => __DIR__ . '/../_files/']);
+            ['lifetime' => 1, 'automatic_serialization' => true],
+            ['cache_dir' => __DIR__ . '/../_files/']);
         Zend_Locale_Data::setCache($this->_cache);
     }
 

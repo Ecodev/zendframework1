@@ -151,21 +151,19 @@ class Zend_View_Helper_Cycle implements Iterator
 
     /**
      * Move to next value.
-     *
-     * @return Zend_View_Helper_Cycle
      */
     #[ReturnTypeWillChange]
- public function next(): Zend_View_Helper_Cycle
- {
-     $count = is_countable($this->_data[$this->_name]) ? count($this->_data[$this->_name]) : 0;
-     if ($this->_pointers[$this->_name] == ($count - 1)) {
-         $this->_pointers[$this->_name] = 0;
-     } else {
-         $this->_pointers[$this->_name] = ++$this->_pointers[$this->_name];
-     }
+    public function next(): Zend_View_Helper_Cycle
+    {
+        $count = is_countable($this->_data[$this->_name]) ? count($this->_data[$this->_name]) : 0;
+        if ($this->_pointers[$this->_name] == ($count - 1)) {
+            $this->_pointers[$this->_name] = 0;
+        } else {
+            $this->_pointers[$this->_name] = ++$this->_pointers[$this->_name];
+        }
 
-     return $this;
- }
+        return $this;
+    }
 
     /**
      * Move to previous value.
@@ -200,16 +198,14 @@ class Zend_View_Helper_Cycle implements Iterator
 
     /**
      * Rewind pointer.
-     *
-     * @return Zend_View_Helper_Cycle
      */
     #[ReturnTypeWillChange]
- public function rewind(): Zend_View_Helper_Cycle
- {
-     $this->_pointers[$this->_name] = -1;
+    public function rewind(): Zend_View_Helper_Cycle
+    {
+        $this->_pointers[$this->_name] = -1;
 
-     return $this;
- }
+        return $this;
+    }
 
     /**
      * Check if element is valid.

@@ -24,6 +24,7 @@ require_once 'Zend/Filter/Callback.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_CallbackTest extends \PHPUnit\Framework\TestCase

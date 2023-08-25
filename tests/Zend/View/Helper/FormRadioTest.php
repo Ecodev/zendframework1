@@ -25,6 +25,7 @@ require_once 'Zend/View.php';
  * Tests formRadio helper
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

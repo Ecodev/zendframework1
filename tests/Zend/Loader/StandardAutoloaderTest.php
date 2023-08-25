@@ -21,6 +21,7 @@ require_once 'Zend/Loader/TestAsset/StandardAutoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Loader
  */
 #[AllowDynamicProperties]

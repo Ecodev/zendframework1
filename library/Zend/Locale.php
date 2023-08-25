@@ -1296,7 +1296,7 @@ class Zend_Locale
         foreach ($accepted as $accept) {
             $match = null;
             $result = preg_match('/^([a-z]{1,8}(?:[-_][a-z]{1,8})*)(?:;\s*q=(0(?:\.[0-9]{1,3})?|1(?:\.0{1,3})?))?$/i',
-                                 $accept, $match);
+                $accept, $match);
 
             if ($result < 1) {
                 continue;

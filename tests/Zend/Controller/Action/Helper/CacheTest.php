@@ -145,6 +145,7 @@ class Zend_Controller_Action_Helper_CacheTest extends \PHPUnit\Framework\TestCas
 
     /**
      * @group ZF-11885
+     *
      * @dataProvider dataprovider_testEncodedCacheIdsAreUsedConsistently
      *
      * @param mixed $recursive
@@ -168,6 +169,7 @@ class Zend_Controller_Action_Helper_CacheTest extends \PHPUnit\Framework\TestCas
 
     /**
      * @group ZF-11885
+     *
      * @dataProvider dataprovider_testEncodedCacheIdsAreUsedConsistently
      *
      * @param mixed $recursive

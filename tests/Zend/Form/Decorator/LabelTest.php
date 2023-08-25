@@ -26,6 +26,7 @@ require_once 'Zend/View.php';
  * Test class for Zend_Form_Decorator_Label.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]
@@ -315,11 +316,11 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
 
         $this->decorator->setElement($element)
             ->setOptions(
-                            [
-                                'placement' => 'IMPLICIT',
-                                'separator' => ' ',
-                            ]
-                        );
+                [
+                    'placement' => 'IMPLICIT',
+                    'separator' => ' ',
+                ]
+            );
 
         $content = 'test content';
         $actual = $this->decorator->render($content);
@@ -340,11 +341,11 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
 
         $this->decorator->setElement($element)
             ->setOptions(
-                            [
-                                'placement' => 'IMPLICIT_PREPEND',
-                                'separator' => ' ',
-                            ]
-                        );
+                [
+                    'placement' => 'IMPLICIT_PREPEND',
+                    'separator' => ' ',
+                ]
+            );
 
         $content = 'test content';
         $actual = $this->decorator->render($content);
@@ -365,11 +366,11 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
 
         $this->decorator->setElement($element)
             ->setOptions(
-                            [
-                                'placement' => 'IMPLICIT_APPEND',
-                                'separator' => ' ',
-                            ]
-                        );
+                [
+                    'placement' => 'IMPLICIT_APPEND',
+                    'separator' => ' ',
+                ]
+            );
 
         $content = 'test content';
         $actual = $this->decorator->render($content);

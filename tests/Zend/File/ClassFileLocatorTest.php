@@ -20,6 +20,7 @@ require_once 'Zend/File/ClassFileLocator.php';
  * Test class for Zend_File_ClassFileLocator.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_File
  */
 class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase

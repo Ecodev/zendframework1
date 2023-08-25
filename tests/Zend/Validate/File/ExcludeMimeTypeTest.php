@@ -26,6 +26,7 @@ require_once 'Zend/Validate/File/ExcludeMimeType.php';
  * ExcludeMimeType testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_File_ExcludeMimeTypeTest extends \PHPUnit\Framework\TestCase

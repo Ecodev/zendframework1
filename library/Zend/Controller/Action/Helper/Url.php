@@ -37,7 +37,6 @@ class Zend_Controller_Action_Helper_Url extends Zend_Controller_Action_Helper_Ab
      * @param  string $action
      * @param  string $controller
      * @param  string $module
-     * @param  array  $params
      *
      * @return string
      */
@@ -104,7 +103,6 @@ class Zend_Controller_Action_Helper_Url extends Zend_Controller_Action_Helper_Ab
      * @param  string $action
      * @param  string $controller
      * @param  string $module
-     * @param  array  $params
      *
      * @return string
      */

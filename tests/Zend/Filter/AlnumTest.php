@@ -24,6 +24,7 @@ require_once 'Zend/Filter/Alnum.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
@@ -68,8 +69,8 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
         if (null === self::$_meansEnglishAlphabet) {
             $this->_locale = new Zend_Locale('auto');
             self::$_meansEnglishAlphabet = in_array($this->_locale->getLanguage(),
-                                                    ['ja']
-                                                    );
+                ['ja']
+            );
         }
     }
 
@@ -119,7 +120,7 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
                 $output,
                 $result = $this->_filter->filter($input),
                 "Expected '$input' to filter to '$output', but received '$result' instead"
-                );
+            );
         }
     }
 
@@ -165,7 +166,7 @@ class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
                 $output,
                 $result = $this->_filter->filter($input),
                 "Expected '$input' to filter to '$output', but received '$result' instead"
-                );
+            );
         }
     }
 }

@@ -25,6 +25,7 @@ require_once 'Zend/Controller/Response/Cli.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Dispatcher
  */
@@ -433,7 +434,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
             ->addControllerDirectory(
                 __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'modules' . DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'controllers',
                 'foo'
-        );
+            );
 
         $request = new Zend_Controller_Request_Http();
         $request->setModuleName('foo');

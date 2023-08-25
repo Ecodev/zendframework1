@@ -22,6 +22,7 @@ require_once 'Zend/Controller/Request/Simple.php';
  * Test class for Zend_Controller_Request_Simple.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Request
  */

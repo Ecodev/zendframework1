@@ -24,6 +24,7 @@ require_once 'Zend/View/Helper/Placeholder/Registry.php';
  * Test class for Zend_View_Helper_Placeholder_Registry.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

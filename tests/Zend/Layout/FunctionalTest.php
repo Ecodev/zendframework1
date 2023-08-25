@@ -22,6 +22,7 @@ require_once 'Zend/Controller/Plugin/ErrorHandler.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Layout
  */
 class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase

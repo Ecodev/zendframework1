@@ -28,6 +28,7 @@ require_once 'Zend/Validate/File/Upload.php';
  * Test class for Zend_File_Transfer_Adapter_Http.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_File
  */
 class Zend_File_Transfer_Adapter_HttpTest extends \PHPUnit\Framework\TestCase

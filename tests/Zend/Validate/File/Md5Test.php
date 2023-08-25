@@ -26,6 +26,7 @@ require_once 'Zend/Validate/File/Md5.php';
  * Md5 testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_File_Md5Test extends \PHPUnit\Framework\TestCase

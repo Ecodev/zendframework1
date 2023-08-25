@@ -23,6 +23,7 @@ require_once 'Zend/View/Helper/Navigation/Links.php';
  * Tests Zend_View_Helper_Navigation_Links.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
@@ -55,7 +56,7 @@ class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_
         $this->_doctypeHelper = $this->_helper->view->doctype();
         $this->_oldDoctype = $this->_doctypeHelper->getDoctype();
         $this->_doctypeHelper->setDoctype(
-                Zend_View_Helper_Doctype::HTML4_LOOSE);
+            Zend_View_Helper_Doctype::HTML4_LOOSE);
 
         // disable all active pages
         foreach ($this->_helper->findAllByActive(true) as $page) {

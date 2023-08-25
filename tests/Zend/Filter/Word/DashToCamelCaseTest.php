@@ -22,6 +22,7 @@ require_once 'Zend/Filter/Word/DashToCamelCase.php';
  * Test class for Zend_Filter_Word_DashToCamelCase.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_Word_DashToCamelCaseTest extends \PHPUnit\Framework\TestCase

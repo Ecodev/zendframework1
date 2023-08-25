@@ -44,8 +44,6 @@ class ZendX_JQuery_Form extends Zend_Form
      *
      * Ensures that the view object has the jQuery view helper path set.
      *
-     * @param  Zend_View_Interface $view
-     *
      * @return ZendX_JQuery_Form
      */
     public function setView(?Zend_View_Interface $view = null)

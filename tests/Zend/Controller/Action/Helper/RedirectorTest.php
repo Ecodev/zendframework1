@@ -27,6 +27,7 @@ require_once 'Zend/Controller/Response/Http.php';
  * Test class for Zend_Controller_Action_Helper_Redirector.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
@@ -315,7 +316,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testGotoAndExit()
     {
         $this->markTestSkipped(
-          'Testing Zend_Controller_Action_Helper_Redirector::gotoAndExit() would break the test suite'
+            'Testing Zend_Controller_Action_Helper_Redirector::gotoAndExit() would break the test suite'
         );
     }
 
@@ -343,7 +344,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testGotoRouteAndExit()
     {
         $this->markTestSkipped(
-          'Testing Zend_Controller_Action_Helper_Redirector::gotoRouteAndExit() would break the test suite'
+            'Testing Zend_Controller_Action_Helper_Redirector::gotoRouteAndExit() would break the test suite'
         );
     }
 
@@ -359,14 +360,14 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
     public function testGotoUrlAndExit()
     {
         $this->markTestSkipped(
-          'Testing Zend_Controller_Action_Helper_Redirector::gotoUrlAndExit() would break the test suite'
+            'Testing Zend_Controller_Action_Helper_Redirector::gotoUrlAndExit() would break the test suite'
         );
     }
 
     public function testRedirectAndExit()
     {
         $this->markTestSkipped(
-          'Testing Zend_Controller_Action_Helper_Redirector::redirectAndExit() would break the test suite'
+            'Testing Zend_Controller_Action_Helper_Redirector::redirectAndExit() would break the test suite'
         );
     }
 

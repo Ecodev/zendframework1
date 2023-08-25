@@ -33,6 +33,7 @@ require_once 'Zend/View.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]
@@ -1529,8 +1530,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->foo->setIsArray(false)
             ->addElement('text', 'foo')             // foo[foo][foo][foo]
             ->foo->addValidator('Identical',
-                                                 false,
-                                                 ['foo Value']);
+                false,
+                ['foo Value']);
 
         $this->form->foo->addSubForm(new Zend_Form_SubForm(), 'baz') // foo[foo][baz]
             ->baz->setIsArray(false)
@@ -1538,8 +1539,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->baz->setElementsBelongTo('baz[baz]')       // foo[foo][baz][baz][baz]
             ->addElement('text', 'baz')             // foo[foo][baz][baz][baz][baz]
             ->baz->addValidator('Identical',
-                                                 false,
-                                                 ['baz Value']);
+                false,
+                ['baz Value']);
 
         // This is appending a different named SubForm and setting
         // elementsBelongTo to a !isArray() Subform name from same level
@@ -1547,8 +1548,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->quo->setElementsBelongTo('foo')            // foo[foo][foo] !!!!
             ->addElement('text', 'quo')             // foo[foo][foo][quo]
             ->quo->addValidator('Identical',
-                                                 false,
-                                                 ['quo Value']);
+                false,
+                ['quo Value']);
 
         // This is setting elementsBelongTo point into the middle of
         // a chain of another SubForms elementsBelongTo
@@ -1556,8 +1557,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->duh->setElementsBelongTo('foo[zoo]')            // foo[zoo] !!!!
             ->addElement('text', 'zoo')                  // foo[zoo][zoo]
             ->zoo->addValidator('Identical',
-                                            false,
-                                            ['zoo Value']);
+                false,
+                ['zoo Value']);
 
         // This is !isArray SubForms Name equal to the last segment
         // of another SubForms elementsBelongTo
@@ -1567,8 +1568,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->zoo->setIsArray(false)
             ->addElement('text', 'iek')             // foo[zoo][iek]
             ->iek->addValidator('Identical',
-                                                 false,
-                                                 ['iek Value']);
+                false,
+                ['iek Value']);
 
         $data = ['valid' => ['foo' => ['foo' => ['foo' => ['foo' => 'foo Value',
             'quo' => 'quo Value', ],
@@ -1652,14 +1653,14 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->$sub0->setElementsBelongTo('f[2]')
             ->addElement('text', 'foo')
             ->foo->addValidator('Identical',
-                                              false,
-                                              ['foo Value']);
+                false,
+                ['foo Value']);
 
         $this->form->$sub0->addSubForm(new Zend_Form_SubForm(), $sub0)
             ->$sub0->addElement('text', 'quo')
             ->quo->addValidator('Identical',
-                                                     false,
-                                                     ['quo Value']);
+                false,
+                ['quo Value']);
 
         $data = ['valid' => ['f' => [2 => ['foo' => 'foo Value',
             0 => ['quo' => 'quo Value'], ]]],
@@ -1705,14 +1706,14 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ->foo->setBelongsTo('bar[quo]')
             ->setRequired(true)
             ->addValidator('Identical',
-                                       false,
-                                       'foo Value');
+                false,
+                'foo Value');
 
         $this->form->addElement('text', 'quo')
             ->quo->setBelongsTo('bar[quo]')
             ->addValidator('Identical',
-                                       false,
-                                       'quo Value');
+                false,
+                'quo Value');
 
         $data = ['valid' => ['bar' => ['quo' => ['foo' => 'foo Value',
             'quo' => 'quo Value', ]]],
@@ -2753,8 +2754,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->form->addElement('text', 'quo')
             ->quo->setBelongsTo('bar[quo]')
             ->addValidator('Callback',
-                                       false,
-                                       $callback);
+                false,
+                $callback);
 
         return ['bar' => ['quo' => ['foo' => 'foo Value',
             'quo' => 'quo Value', ]]];

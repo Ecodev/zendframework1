@@ -112,7 +112,6 @@ class Zend_Http_Header_SetCookie
      *
      * @static
      *
-     * @param  $headerLine
      * @param  bool $bypassHeaderFieldName
      *
      * @return array|SetCookie
@@ -151,25 +150,25 @@ class Zend_Http_Header_SetCookie
                 switch (str_replace(['-', '_'], '', strtolower($headerKey))) {
                     case 'expires' : $header->setExpires($headerValue);
 
-break;
+                        break;
                     case 'domain'  : $header->setDomain($headerValue);
 
-break;
+                        break;
                     case 'path'    : $header->setPath($headerValue);
 
-break;
+                        break;
                     case 'secure'  : $header->setSecure(true);
 
-break;
+                        break;
                     case 'httponly': $header->setHttponly(true);
 
-break;
+                        break;
                     case 'version' : $header->setVersion((int) $headerValue);
 
-break;
+                        break;
                     case 'maxage'  : $header->setMaxAge((int) $headerValue);
 
-break;
+                        break;
                     default:
                         // Intentionally omitted
                 }

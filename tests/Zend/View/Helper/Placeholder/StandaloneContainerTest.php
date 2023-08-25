@@ -33,6 +33,7 @@ require_once 'Zend/View.php';
  * Test class for Zend_View_Helper_Placeholder_StandaloneContainer.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

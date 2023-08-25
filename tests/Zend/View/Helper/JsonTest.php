@@ -26,6 +26,7 @@ require_once 'Zend/Layout.php';
  * Test class for Zend_View_Helper_Json.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

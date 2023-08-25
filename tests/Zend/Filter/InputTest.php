@@ -29,6 +29,7 @@ require_once 'Zend/Loader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
@@ -678,11 +679,11 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(is_array($messages));
         $this->assertEquals(['rule2', 'rule3'], array_keys($messages));
         $this->assertEquals(['isEmpty' => "You must give a non-empty value for field 'password3'"],
-                            $messages['rule2']);
+            $messages['rule2']);
         $this->assertEquals(['isEmpty' => "You must give a non-empty value for field 'password3'",
             0 => "You must give a non-empty value for field 'password4'",
         ],
-                            $messages['rule3']);
+            $messages['rule3']);
     }
 
     public function testValidatorBreakChain()
@@ -718,12 +719,12 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
             $messageUserDefined,
             current($messages['field1']),
             'Expected message to break 2 validators, the message of the latter overwriting that of the former'
-            );
+        );
         $this->assertEquals(
             "'150' is not between '1' and '100', inclusively",
             current($messages['field2']),
             'Expected rule for field2 to break the validation chain at the first validator'
-            );
+        );
     }
 
     public function testValidatorAllowEmpty()

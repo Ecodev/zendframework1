@@ -22,6 +22,7 @@ require_once 'Zend/Controller/Router/Route/Static.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
@@ -46,7 +47,7 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
     public function testStaticMatchWithDefaults()
     {
         $route = new Zend_Controller_Router_Route_Static('users/all',
-                    ['controller' => 'ctrl', 'action' => 'act']);
+            ['controller' => 'ctrl', 'action' => 'act']);
         $values = $route->match('users/all');
 
         $this->assertTrue(is_array($values));
@@ -81,7 +82,7 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
     public function testGetDefaults()
     {
         $route = new Zend_Controller_Router_Route_Static('users/all',
-                    ['controller' => 'ctrl', 'action' => 'act']);
+            ['controller' => 'ctrl', 'action' => 'act']);
 
         $values = $route->getDefaults();
 
@@ -93,7 +94,7 @@ class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCas
     public function testGetDefault()
     {
         $route = new Zend_Controller_Router_Route_Static('users/all',
-                    ['controller' => 'ctrl', 'action' => 'act']);
+            ['controller' => 'ctrl', 'action' => 'act']);
 
         $this->assertSame('ctrl', $route->getDefault('controller'));
         $this->assertSame(null, $route->getDefault('bogus'));

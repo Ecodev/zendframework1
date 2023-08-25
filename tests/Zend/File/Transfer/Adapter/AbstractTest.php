@@ -28,6 +28,7 @@ require_once 'Zend/Validate/File/Extension.php';
  * Test class for Zend_File_Transfer_Adapter_Abstract.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_File
  */
 class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCase

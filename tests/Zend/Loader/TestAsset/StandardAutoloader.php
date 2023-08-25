@@ -19,6 +19,7 @@
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Loader
  */
 class Zend_Loader_TestAsset_StandardAutoloader extends Zend_Loader_StandardAutoloader

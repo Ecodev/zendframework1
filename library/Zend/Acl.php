@@ -506,7 +506,6 @@ class Zend_Acl
      * @param  array|string|Zend_Acl_Role_Interface     $roles
      * @param  array|string|Zend_Acl_Resource_Interface $resources
      * @param  array|string                             $privileges
-     * @param  Zend_Acl_Assert_Interface                $assert
      *
      * @uses   Zend_Acl::setRule()
      *
@@ -523,7 +522,6 @@ class Zend_Acl
      * @param  array|string|Zend_Acl_Role_Interface     $roles
      * @param  array|string|Zend_Acl_Resource_Interface $resources
      * @param  array|string                             $privileges
-     * @param  Zend_Acl_Assert_Interface                $assert
      *
      * @uses   Zend_Acl::setRule()
      *
@@ -612,7 +610,6 @@ class Zend_Acl
      * @param  array|string|Zend_Acl_Role_Interface     $roles
      * @param  array|string|Zend_Acl_Resource_Interface $resources
      * @param  array|string                             $privileges
-     * @param  Zend_Acl_Assert_Interface                $assert
      *
      * @uses   Zend_Acl_Role_Registry::get()
      * @uses   Zend_Acl::get()
@@ -681,7 +678,6 @@ class Zend_Acl
         }
 
         switch ($operation) {
-
             // add to the rules
             case self::OP_ADD:
                 if ($resources !== null) {
@@ -721,7 +717,7 @@ class Zend_Acl
 
                 break;
 
-            // remove from the rules
+                // remove from the rules
             case self::OP_REMOVE:
                 if ($resources !== null) {
                     // this block will iterate the provided resources
@@ -940,8 +936,6 @@ class Zend_Acl
      * This method returns true if a rule is found and allows access. If a rule exists and denies access,
      * then this method returns false. If no applicable rule is found, then this method returns null.
      *
-     * @param  Zend_Acl_Resource_Interface $resource
-     *
      * @return null|bool
      */
     protected function _roleDFSAllPrivileges(Zend_Acl_Role_Interface $role, ?Zend_Acl_Resource_Interface $resource = null)
@@ -974,7 +968,6 @@ class Zend_Acl
      *
      * This method is used by the internal depth-first search algorithm and may modify the DFS data structure.
      *
-     * @param  Zend_Acl_Resource_Interface $resource
      * @param  array                  $dfs
      *
      * @return null|bool
@@ -1017,7 +1010,6 @@ class Zend_Acl
      * This method returns true if a rule is found and allows access. If a rule exists and denies access,
      * then this method returns false. If no applicable rule is found, then this method returns null.
      *
-     * @param  Zend_Acl_Resource_Interface $resource
      * @param  string                      $privilege
      *
      * @return null|bool
@@ -1062,7 +1054,6 @@ class Zend_Acl
      *
      * This method is used by the internal depth-first search algorithm and may modify the DFS data structure.
      *
-     * @param  Zend_Acl_Resource_Interface $resource
      * @param  string                      $privilege
      * @param  array                       $dfs
      *
@@ -1120,8 +1111,6 @@ class Zend_Acl
      * If all three parameters are null, then the default ACL rule type is returned,
      * based on whether its assertion method passes.
      *
-     * @param  Zend_Acl_Resource_Interface $resource
-     * @param  Zend_Acl_Role_Interface     $role
      * @param  string                      $privilege
      *
      * @return null|string
@@ -1156,7 +1145,7 @@ class Zend_Acl
                 ($this->_isAllowedRole instanceof Zend_Acl_Role_Interface) ? $this->_isAllowedRole : $role,
                 ($this->_isAllowedResource instanceof Zend_Acl_Resource_Interface) ? $this->_isAllowedResource : $resource,
                 $this->_isAllowedPrivilege
-                );
+            );
         }
 
         if (null === $rule['assert'] || $assertionValue) {
@@ -1180,14 +1169,12 @@ class Zend_Acl
      *
      * If the $create parameter is true, then a rule set is first created and then returned to the caller.
      *
-     * @param  Zend_Acl_Resource_Interface $resource
-     * @param  Zend_Acl_Role_Interface     $role
      * @param  bool                     $create
      *
      * @return null|array
      */
     protected function &_getRules(?Zend_Acl_Resource_Interface $resource = null, ?Zend_Acl_Role_Interface $role = null,
-                                  $create = false)
+        $create = false)
     {
         // create a reference to null
         $null = null;

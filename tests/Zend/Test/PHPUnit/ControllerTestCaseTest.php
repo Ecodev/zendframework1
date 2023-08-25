@@ -33,6 +33,7 @@ require_once 'Zend/Controller/Action.php';
  * Test class for Zend_Test_PHPUnit_ControllerTestCase.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Test
  * @group      Zend_Test_PHPUnit
  */

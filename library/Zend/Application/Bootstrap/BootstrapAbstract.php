@@ -37,7 +37,7 @@ require_once 'Zend/Application/Bootstrap/ResourceBootstrapper.php';
  */
 abstract class Zend_Application_Bootstrap_BootstrapAbstract implements
     Zend_Application_Bootstrap_Bootstrapper,
-               Zend_Application_Bootstrap_ResourceBootstrapper
+    Zend_Application_Bootstrap_ResourceBootstrapper
 {
     /**
      * @var Zend_Application|Zend_Application_Bootstrap_Bootstrapper

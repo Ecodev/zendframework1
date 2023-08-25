@@ -30,6 +30,7 @@ require_once 'Zend/Controller/Front.php';
  * Test class for Zend_View_Helper_Partial.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

@@ -23,6 +23,7 @@ require_once 'Zend/View/Helper/Form.php';
  * Test class for Zend_View_Helper_Form.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

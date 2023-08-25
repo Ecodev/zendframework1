@@ -30,6 +30,7 @@ require_once 'Zend/Navigation.php';
  * Base class for navigation view helper tests.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

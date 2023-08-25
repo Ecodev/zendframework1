@@ -22,6 +22,7 @@ require_once 'Zend/Controller/Router/Route/Regex.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
@@ -98,8 +99,8 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
     public function testNegativeMatch()
     {
         $route = new Zend_Controller_Router_Route_Regex('((?!admin|moderator).+)',
-           ['module' => 'index', 'controller' => 'index'],
-           [1 => 'action']
+            ['module' => 'index', 'controller' => 'index'],
+            [1 => 'action']
         );
 
         $values = $route->match('users');
@@ -358,7 +359,7 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
             ['module' => 'default', 'controller' => 'content.item', 'action' => 'forward'],
             [1 => 'name', 2 => 'id', 3 => 'class'],
             '%s.%s-%s.html'
-         );
+        );
 
         $route->match('uml-explained-composition.72-3.html');
 

@@ -23,6 +23,7 @@ require_once 'Zend/View/Helper/ServerUrl.php';
  * Tests Zend_View_Helper_ServerUrl.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

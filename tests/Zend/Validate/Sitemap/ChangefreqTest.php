@@ -22,6 +22,7 @@ require_once 'Zend/Validate/Sitemap/Changefreq.php';
  * Tests Zym_Validate_Sitemap_Changefreq.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_Sitemap_ChangefreqTest extends \PHPUnit\Framework\TestCase

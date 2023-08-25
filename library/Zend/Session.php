@@ -242,7 +242,7 @@ class Zend_Session extends Zend_Session_Abstract
             [&$saveHandler, 'write'],
             [&$saveHandler, 'destroy'],
             [&$saveHandler, 'gc']
-            );
+        );
 
         if (!$result) {
             throw new Zend_Session_Exception('Unable to set session handler');
@@ -329,7 +329,7 @@ class Zend_Session extends Zend_Session_Abstract
             $cookieParams['path'],
             $cookieParams['domain'],
             $cookieParams['secure']
-            );
+        );
 
         // normally "rememberMe()" represents a security context change, so should use new session id
         self::regenerateId();
@@ -493,13 +493,13 @@ class Zend_Session extends Zend_Session_Abstract
         switch ($hashBitsPerChar) {
             case 4: $pattern = '^[0-9a-f]*$';
 
-break;
+                break;
             case 5: $pattern = '^[0-9a-v]*$';
 
-break;
+                break;
             case 6: $pattern = '^[0-9a-zA-Z-,]*$';
 
-break;
+                break;
         }
 
         return preg_match('#' . $pattern . '#', $id);
@@ -513,10 +513,8 @@ break;
     {
         // process global metadata
         if (isset($_SESSION['__ZF'])) {
-
             // expire globally expired values
             foreach ($_SESSION['__ZF'] as $namespace => $namespace_metadata) {
-
                 // Expire Namespace by Time (ENT)
                 if (isset($namespace_metadata['ENT']) && ($namespace_metadata['ENT'] > 0) && (time() > $namespace_metadata['ENT'])) {
                     unset($_SESSION[$namespace], $_SESSION['__ZF'][$namespace]);
@@ -730,7 +728,7 @@ break;
                 session_name(),
                 false,
                 ['expires' => 315_554_400, 'path' => $cookie_params['path'], 'domain' => $cookie_params['domain'], 'secure' => $cookie_params['secure']]
-                );
+            );
         }
     }
 

@@ -919,8 +919,6 @@ class Zend_Form_DisplayGroup implements Iterator, Countable
     /**
      * Set view.
      *
-     * @param  Zend_View_Interface $view
-     *
      * @return Zend_Form_DisplayGroup
      */
     public function setView(?Zend_View_Interface $view = null)

@@ -24,6 +24,7 @@ require_once 'Zend/Controller/Request/Simple.php';
  * Test class for Zend_Controller_Action_Helper_ActionStack.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper

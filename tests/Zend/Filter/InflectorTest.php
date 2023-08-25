@@ -33,6 +33,7 @@ require_once 'Zend/Config.php';
  * Test class for Zend_Filter_Inflector.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 #[AllowDynamicProperties]
@@ -269,7 +270,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
             ],
             null,
             '?=##'
-            );
+        );
 
         $filtered = $this->inflector->filter([
             'controller' => 'FooBar',
@@ -304,7 +305,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
             ],
             true,
             '?=##'
-            );
+        );
 
         try {
             $filtered = $this->inflector->filter(['controller' => 'FooBar']);
@@ -325,7 +326,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
             ],
             true,
             ':'
-            );
+        );
 
         try {
             $filtered = $this->inflector->filter(['controller' => 'FooBar', 'action' => 'MooToo']);
@@ -426,7 +427,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
             ],
             true,
             ':'
-            );
+        );
 
         $this->inflector->setStaticRule('moduleDir', 'C:\htdocs\public\cache\00\01\42\app\modules');
 

@@ -39,6 +39,7 @@ require_once 'Zend/Json/Decoder.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Json
  */
 class Zend_JsonTest extends \PHPUnit\Framework\TestCase

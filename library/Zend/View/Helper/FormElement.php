@@ -144,7 +144,7 @@ abstract class Zend_View_Helper_FormElement extends Zend_View_Helper_HtmlElement
             $info['id'] = (string) $attribs['id'];
         } elseif ('' !== $info['name']) {
             $info['id'] = trim(strtr($info['name'] ?? '',
-                                     ['[' => '-', ']' => '']), '-');
+                ['[' => '-', ']' => '']), '-');
         }
 
         // Remove NULL name attribute override

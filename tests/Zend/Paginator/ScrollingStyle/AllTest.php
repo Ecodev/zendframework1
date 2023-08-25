@@ -33,6 +33,7 @@ require_once 'Zend/Paginator/ScrollingStyle/All.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Paginator
  */
 class Zend_Paginator_ScrollingStyle_AllTest extends \PHPUnit\Framework\TestCase

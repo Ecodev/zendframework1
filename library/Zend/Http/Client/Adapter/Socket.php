@@ -199,7 +199,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
             if ($secure || $this->config['sslusecontext']) {
                 if ($this->config['sslcert'] !== null) {
                     if (!stream_context_set_option($context, 'ssl', 'local_cert',
-                                                    $this->config['sslcert'])) {
+                        $this->config['sslcert'])) {
                         require_once 'Zend/Http/Client/Adapter/Exception.php';
 
                         throw new Zend_Http_Client_Adapter_Exception('Unable to set sslcert option');
@@ -207,7 +207,7 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
                 }
                 if ($this->config['sslpassphrase'] !== null) {
                     if (!stream_context_set_option($context, 'ssl', 'passphrase',
-                                                    $this->config['sslpassphrase'])) {
+                        $this->config['sslpassphrase'])) {
                         require_once 'Zend/Http/Client/Adapter/Exception.php';
 
                         throw new Zend_Http_Client_Adapter_Exception('Unable to set sslpassphrase option');
@@ -221,11 +221,11 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
             }
 
             $this->socket = @stream_socket_client($host . ':' . $port,
-                                                  $errno,
-                                                  $errstr,
-                                                  (int) $this->config['timeout'],
-                                                  $flags,
-                                                  $context);
+                $errno,
+                $errstr,
+                (int) $this->config['timeout'],
+                $flags,
+                $context);
 
             if (!$this->socket) {
                 $this->close();
@@ -355,7 +355,6 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
          */
         if ($statusCode == 304 || $statusCode == 204
             || $this->method == Zend_Http_Client::HEAD) {
-
             // Close the connection if requested to do so by the server
             if (isset($headers['connection']) && $headers['connection'] == 'close') {
                 $this->close();
@@ -434,7 +433,6 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
             }
             // Else, if we got the content-length header, read this number of bytes
         } elseif (isset($headers['content-length'])) {
-
             // If we got more than one Content-Length header (see ZF-9404) use
             // the last value sent
             if (is_array($headers['content-length'])) {
@@ -447,8 +445,8 @@ class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interf
             $chunk = '';
 
             for ($read_to = $current_pos + $contentLength;
-                 $read_to > $current_pos;
-                 $current_pos = ftell($this->socket)) {
+                $read_to > $current_pos;
+                $current_pos = ftell($this->socket)) {
                 if ($this->out_stream) {
                     if (@stream_copy_to_stream($this->socket, $this->out_stream, $read_to - $current_pos) == 0) {
                         $this->_checkSocketReadTimeout();

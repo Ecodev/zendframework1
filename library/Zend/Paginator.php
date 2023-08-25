@@ -254,7 +254,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
      *
      * @param  mixed $data
      * @param  string $adapter
-     * @param  array $prefixPaths
      *
      * @return Zend_Paginator
      */
@@ -927,8 +926,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
     /**
      * Sets the view object.
      *
-     * @param  Zend_View_Interface $view
-     *
      * @return Zend_Paginator
      */
     public function setView(?Zend_View_Interface $view = null)
@@ -986,8 +983,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
 
     /**
      * Renders the paginator.
-     *
-     * @param  Zend_View_Interface $view
      *
      * @return string
      */

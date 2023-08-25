@@ -28,6 +28,7 @@ require_once 'Zend/Filter/PregReplace.php';
  * Test class for Zend_Filter_PregReplace.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 #[AllowDynamicProperties]

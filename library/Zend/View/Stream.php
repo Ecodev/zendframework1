@@ -160,7 +160,7 @@ class Zend_View_Stream
                     return true;
                 }
 
-                    return false;
+                return false;
 
                 break;
 
@@ -171,7 +171,7 @@ class Zend_View_Stream
                     return true;
                 }
 
-                    return false;
+                return false;
 
                 break;
 
@@ -182,7 +182,7 @@ class Zend_View_Stream
                     return true;
                 }
 
-                    return false;
+                return false;
 
                 break;
 

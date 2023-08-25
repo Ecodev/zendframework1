@@ -758,7 +758,7 @@ class Zend_View_Helper_Navigation_Menu extends Zend_View_Helper_Navigation_Helpe
 
         // create iterator
         $iterator = new RecursiveIteratorIterator($container,
-                            RecursiveIteratorIterator::SELF_FIRST);
+            RecursiveIteratorIterator::SELF_FIRST);
         if (is_int($maxDepth)) {
             $iterator->setMaxDepth($maxDepth);
         }

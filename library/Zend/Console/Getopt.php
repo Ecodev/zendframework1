@@ -237,8 +237,8 @@ class Zend_Console_Getopt
             }
 
             throw new Zend_Console_Getopt_Exception(
-                    '$_SERVER["argv"] is not set, but Zend_Console_Getopt cannot work without this information.'
-                );
+                '$_SERVER["argv"] is not set, but Zend_Console_Getopt cannot work without this information.'
+            );
         }
 
         $this->_progname = $_SERVER['argv'][0];
@@ -636,8 +636,8 @@ class Zend_Console_Getopt
         }
         foreach ($lines as $linepart) {
             $usage .= sprintf("%s %s\n",
-            str_pad($linepart['name'], $maxLen),
-            $linepart['help']);
+                str_pad($linepart['name'], $maxLen),
+                $linepart['help']);
         }
 
         return $usage;

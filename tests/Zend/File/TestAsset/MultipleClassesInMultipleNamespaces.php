@@ -21,7 +21,6 @@
 
 namespace ZendTest\File\TestAsset
 {
-
     class LocatorShouldFindFirstClass
     {
     }
@@ -29,12 +28,10 @@ namespace ZendTest\File\TestAsset
     class LocatorShouldFindSecondClass
     {
     }
-
 }
 
 namespace ZendTest\File\TestAsset\SecondTestNamespace
 {
-
     class LocatorShouldFindThirdClass
     {
     }
@@ -42,5 +39,4 @@ namespace ZendTest\File\TestAsset\SecondTestNamespace
     class LocatorShouldFindFourthClass
     {
     }
-
 }

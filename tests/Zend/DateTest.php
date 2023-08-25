@@ -43,6 +43,7 @@ require_once 'Zend/Date/Cities.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Date
  */
 class Zend_DateTest extends \PHPUnit\Framework\TestCase
@@ -57,8 +58,8 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
         date_default_timezone_set('Indian/Maldives');
         require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
-                 ['lifetime' => 120, 'automatic_serialization' => true],
-                 ['cache_dir' => __DIR__ . '/_files/']);
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => __DIR__ . '/_files/']);
         $this->_orig = Zend_Date::setOptions();
 
         Zend_Date::setOptions(['cache' => $this->_cache]);
@@ -5331,8 +5332,8 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
 
         require_once 'Zend/Cache.php';
         $cache = Zend_Cache::factory('Core', 'File',
-                 ['lifetime' => 120, 'automatic_serialization' => true],
-                 ['cache_dir' => __DIR__ . '/_files/']);
+            ['lifetime' => 120, 'automatic_serialization' => true],
+            ['cache_dir' => __DIR__ . '/_files/']);
         Zend_Date::setOptions(['cache' => $cache]);
     }
 
@@ -5478,17 +5479,17 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
 
         $localtime = localtime($time, true);
         $offset = mktime($localtime['tm_hour'],
-                         $localtime['tm_min'],
-                         $localtime['tm_sec'],
-                         $localtime['tm_mon'] + 1,
-                         $localtime['tm_mday'],
-                         $localtime['tm_year'] + 1900)
+            $localtime['tm_min'],
+            $localtime['tm_sec'],
+            $localtime['tm_mon'] + 1,
+            $localtime['tm_mday'],
+            $localtime['tm_year'] + 1900)
               - gmmktime($localtime['tm_hour'],
-                         $localtime['tm_min'],
-                         $localtime['tm_sec'],
-                         $localtime['tm_mon'] + 1,
-                         $localtime['tm_mday'],
-                         $localtime['tm_year'] + 1900);
+                  $localtime['tm_min'],
+                  $localtime['tm_sec'],
+                  $localtime['tm_mon'] + 1,
+                  $localtime['tm_mday'],
+                  $localtime['tm_year'] + 1900);
 
         $this->assertEquals($stamp, $offset);
 
@@ -5497,17 +5498,17 @@ class Zend_DateTest extends \PHPUnit\Framework\TestCase
 
         $localtime = localtime($time, true);
         $offset = mktime($localtime['tm_hour'],
-                         $localtime['tm_min'],
-                         $localtime['tm_sec'],
-                         $localtime['tm_mon'] + 7,
-                         $localtime['tm_mday'],
-                         $localtime['tm_year'] + 1900)
+            $localtime['tm_min'],
+            $localtime['tm_sec'],
+            $localtime['tm_mon'] + 7,
+            $localtime['tm_mday'],
+            $localtime['tm_year'] + 1900)
               - gmmktime($localtime['tm_hour'],
-                         $localtime['tm_min'],
-                         $localtime['tm_sec'],
-                         $localtime['tm_mon'] + 7,
-                         $localtime['tm_mday'],
-                         $localtime['tm_year'] + 1900);
+                  $localtime['tm_min'],
+                  $localtime['tm_sec'],
+                  $localtime['tm_mon'] + 7,
+                  $localtime['tm_mday'],
+                  $localtime['tm_year'] + 1900);
 
         $this->assertEquals($stamp, $offset);
     }

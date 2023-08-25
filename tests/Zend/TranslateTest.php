@@ -29,6 +29,7 @@ require_once 'Zend/Translate/Plural.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Translate
  */
 class Zend_TranslateTest extends \PHPUnit\Framework\TestCase

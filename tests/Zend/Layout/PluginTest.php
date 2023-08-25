@@ -27,6 +27,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * Test class for Zend_Layout_Controller_Plugin_Layout.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Layout
  */
 class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase

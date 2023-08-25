@@ -25,6 +25,7 @@ require_once 'Zend/View/Helper/Navigation/Sitemap.php';
  * Tests Zend_View_Helper_Navigation_Sitemap.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
@@ -219,8 +220,8 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
             $this->_helper->render($nav);
         } catch (Zend_View_Exception $e) {
             $expected = sprintf(
-                    'Encountered an invalid URL for Sitemap XML: "%s"',
-                    'http://w..');
+                'Encountered an invalid URL for Sitemap XML: "%s"',
+                'http://w..');
             $actual = $e->getMessage();
             $this->assertEquals($expected, $actual);
 
@@ -289,8 +290,8 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
             $this->_helper->render($nav);
         } catch (Zend_View_Exception $e) {
             $expected = sprintf(
-                    'Sitemap is invalid according to XML Schema at "%s"',
-                    Zend_View_Helper_Navigation_Sitemap::SITEMAP_XSD);
+                'Sitemap is invalid according to XML Schema at "%s"',
+                Zend_View_Helper_Navigation_Sitemap::SITEMAP_XSD);
             $actual = $e->getMessage();
             $this->assertEquals($expected, $actual);
 

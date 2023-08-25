@@ -133,72 +133,68 @@ class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggre
      *
      * @param int $priority
      * @param Zend_Controller_Action_Helper_Abstract $helper
-     *
-     * @return Zend_Controller_Action_HelperBroker_PriorityStack
      */
     #[ReturnTypeWillChange]
- public function offsetSet($priority, $helper): Zend_Controller_Action_HelperBroker_PriorityStack
- {
-     $priority = (int) $priority;
+    public function offsetSet($priority, $helper): Zend_Controller_Action_HelperBroker_PriorityStack
+    {
+        $priority = (int) $priority;
 
-     if (!$helper instanceof Zend_Controller_Action_Helper_Abstract) {
-         require_once 'Zend/Controller/Action/Exception.php';
+        if (!$helper instanceof Zend_Controller_Action_Helper_Abstract) {
+            require_once 'Zend/Controller/Action/Exception.php';
 
-         throw new Zend_Controller_Action_Exception('$helper must extend Zend_Controller_Action_Helper_Abstract.');
-     }
+            throw new Zend_Controller_Action_Exception('$helper must extend Zend_Controller_Action_Helper_Abstract.');
+        }
 
-     if (array_key_exists($helper->getName(), $this->_helpersByNameRef)) {
-         // remove any object with the same name to retain BC compailitbility
-         // @todo At ZF 2.0 time throw an exception here.
-         $this->offsetUnset($helper->getName());
-     }
+        if (array_key_exists($helper->getName(), $this->_helpersByNameRef)) {
+            // remove any object with the same name to retain BC compailitbility
+            // @todo At ZF 2.0 time throw an exception here.
+            $this->offsetUnset($helper->getName());
+        }
 
-     if (array_key_exists($priority, $this->_helpersByPriority)) {
-         $priority = $this->getNextFreeHigherPriority($priority);  // ensures LIFO
-         trigger_error("A helper with the same priority already exists, reassigning to $priority", E_USER_WARNING);
-     }
+        if (array_key_exists($priority, $this->_helpersByPriority)) {
+            $priority = $this->getNextFreeHigherPriority($priority);  // ensures LIFO
+            trigger_error("A helper with the same priority already exists, reassigning to $priority", E_USER_WARNING);
+        }
 
-     $this->_helpersByPriority[$priority] = $helper;
-     $this->_helpersByNameRef[$helper->getName()] = $helper;
+        $this->_helpersByPriority[$priority] = $helper;
+        $this->_helpersByNameRef[$helper->getName()] = $helper;
 
-     if ($priority == ($nextFreeDefault = $this->getNextFreeHigherPriority($this->_nextDefaultPriority))) {
-         $this->_nextDefaultPriority = $nextFreeDefault;
-     }
+        if ($priority == ($nextFreeDefault = $this->getNextFreeHigherPriority($this->_nextDefaultPriority))) {
+            $this->_nextDefaultPriority = $nextFreeDefault;
+        }
 
-     krsort($this->_helpersByPriority);  // always make sure priority and LIFO are both enforced
+        krsort($this->_helpersByPriority);  // always make sure priority and LIFO are both enforced
 
-     return $this;
- }
+        return $this;
+    }
 
     /**
      * offsetUnset().
      *
      * @param int|string $priorityOrHelperName Priority integer or the helper name
-     *
-     * @return Zend_Controller_Action_HelperBroker_PriorityStack
      */
     #[ReturnTypeWillChange]
- public function offsetUnset($priorityOrHelperName): Zend_Controller_Action_HelperBroker_PriorityStack
- {
-     if (!$this->offsetExists($priorityOrHelperName)) {
-         require_once 'Zend/Controller/Action/Exception.php';
+    public function offsetUnset($priorityOrHelperName): Zend_Controller_Action_HelperBroker_PriorityStack
+    {
+        if (!$this->offsetExists($priorityOrHelperName)) {
+            require_once 'Zend/Controller/Action/Exception.php';
 
-         throw new Zend_Controller_Action_Exception('A helper with priority or name ' . $priorityOrHelperName . ' does not exist.');
-     }
+            throw new Zend_Controller_Action_Exception('A helper with priority or name ' . $priorityOrHelperName . ' does not exist.');
+        }
 
-     if (is_string($priorityOrHelperName)) {
-         $helperName = $priorityOrHelperName;
-         $helper = $this->_helpersByNameRef[$helperName];
-         $priority = array_search($helper, $this->_helpersByPriority, true);
-     } else {
-         $priority = $priorityOrHelperName;
-         $helperName = $this->_helpersByPriority[$priorityOrHelperName]->getName();
-     }
+        if (is_string($priorityOrHelperName)) {
+            $helperName = $priorityOrHelperName;
+            $helper = $this->_helpersByNameRef[$helperName];
+            $priority = array_search($helper, $this->_helpersByPriority, true);
+        } else {
+            $priority = $priorityOrHelperName;
+            $helperName = $this->_helpersByPriority[$priorityOrHelperName]->getName();
+        }
 
-     unset($this->_helpersByNameRef[$helperName], $this->_helpersByPriority[$priority]);
+        unset($this->_helpersByNameRef[$helperName], $this->_helpersByPriority[$priority]);
 
-     return $this;
- }
+        return $this;
+    }
 
     /**
      * return the count of helpers.

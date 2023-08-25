@@ -24,6 +24,7 @@ require_once 'Zend/Filter/Dir.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_DirTest extends \PHPUnit\Framework\TestCase

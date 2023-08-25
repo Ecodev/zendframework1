@@ -22,6 +22,7 @@ require_once 'Zend/Form/Element/Textarea.php';
  * Test class for Zend_Form_Element_Textarea.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]

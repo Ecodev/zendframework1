@@ -72,9 +72,9 @@ class ZendX_JQuery_View_Helper_AutoComplete extends ZendX_JQuery_View_Helper_UiW
         $params = ZendX_JQuery::encodeJson($params);
 
         $js = sprintf('%s("#%s").autocomplete(%s);',
-                ZendX_JQuery_View_Helper_JQuery::getJQueryHandler(),
-                $attribs['id'],
-                $params
+            ZendX_JQuery_View_Helper_JQuery::getJQueryHandler(),
+            $attribs['id'],
+            $params
         );
 
         $this->jquery->addOnLoad($js);

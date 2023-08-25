@@ -24,6 +24,7 @@ require_once 'Zend/Form/Element/Note.php';
  * Test class for Zend_Form_Element_Text.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]

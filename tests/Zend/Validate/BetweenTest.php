@@ -24,6 +24,7 @@ require_once 'Zend/Validate/Between.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
@@ -53,7 +54,7 @@ class Zend_Validate_BetweenTest extends \PHPUnit\Framework\TestCase
             $validator = new Zend_Validate_Between(['min' => $element[0], 'max' => $element[1], 'inclusive' => $element[2]]);
             foreach ($element[4] as $input) {
                 $this->assertEquals($element[3], $validator->isValid($input),
-                'Failed values: ' . $input . ':' . implode("\n", $validator->getMessages()));
+                    'Failed values: ' . $input . ':' . implode("\n", $validator->getMessages()));
             }
         }
     }

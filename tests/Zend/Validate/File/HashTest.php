@@ -26,6 +26,7 @@ require_once 'Zend/Validate/File/Hash.php';
  * Hash testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_File_HashTest extends \PHPUnit\Framework\TestCase

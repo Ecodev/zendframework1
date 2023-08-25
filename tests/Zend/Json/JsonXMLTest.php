@@ -25,6 +25,7 @@ require_once 'Zend/Json.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Json
  */
 class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
@@ -529,7 +530,6 @@ class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
      */
     public function testUsingXML8()
     {
-
         // Set the XML contents that will be tested here.
         $xmlStringContents = <<<EOT
             <?xml version="1.0"?>
@@ -562,6 +562,7 @@ class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-11385
+     *
      * @dataProvider providerNestingDepthIsHandledProperly
      *
      * @param mixed $xmlStringContents
@@ -575,6 +576,7 @@ class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-11385
+     *
      * @dataProvider providerNestingDepthIsHandledProperly
      *
      * @param mixed $xmlStringContents

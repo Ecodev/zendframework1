@@ -22,6 +22,7 @@ require_once 'Zend/Form/Element/Hidden.php';
  * Test class for Zend_Form_Element_Hidden.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]

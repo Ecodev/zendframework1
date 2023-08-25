@@ -60,7 +60,6 @@ class Zend_Captcha_Dumb extends Zend_Captcha_Word
     /**
      * Render the captcha.
      *
-     * @param  Zend_View_Interface $view
      * @param  mixed $element
      *
      * @return string

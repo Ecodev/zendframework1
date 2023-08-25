@@ -52,7 +52,7 @@ class Zend_View_Helper_ServerUrl
 
                 break;
             default:
-            $scheme = 'http';
+                $scheme = 'http';
         }
         $this->setScheme($scheme);
 

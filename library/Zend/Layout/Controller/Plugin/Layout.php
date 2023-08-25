@@ -38,8 +38,6 @@ class Zend_Layout_Controller_Plugin_Layout extends Zend_Controller_Plugin_Abstra
 
     /**
      * Constructor.
-     *
-     * @param  Zend_Layout $layout
      */
     public function __construct(?Zend_Layout $layout = null)
     {

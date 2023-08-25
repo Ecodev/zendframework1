@@ -122,7 +122,6 @@ class Zend_View_Helper_FormRadio extends Zend_View_Helper_FormElement
 
         // add radio buttons to the list.
         foreach ($options as $opt_value => $opt_label) {
-
             // Should the label be escaped?
             if ($escape) {
                 $opt_label = $this->view->escape($opt_label);

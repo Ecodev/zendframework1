@@ -22,6 +22,7 @@ require_once 'Zend/Navigation/Page.php';
  * Tests Zend_Navigation_Page::factory().
  * /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Navigation
  */
 class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase

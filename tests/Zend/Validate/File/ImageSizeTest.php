@@ -24,6 +24,7 @@ require_once 'Zend/Validate/File/ImageSize.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_File_ImageSizeTest extends \PHPUnit\Framework\TestCase

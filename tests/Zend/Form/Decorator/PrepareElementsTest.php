@@ -24,6 +24,7 @@ require_once 'Zend/Form/SubForm.php';
  * Test class for Zend_Form_Decorator_PrepareElements.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]

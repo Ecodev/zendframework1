@@ -26,6 +26,7 @@ require_once 'Zend/Controller/Action/Helper/Redirector.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
@@ -202,7 +203,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
         Zend_Controller_Action_HelperBroker::addPath(
             dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Helpers',
             'MyApp'
-            );
+        );
 
         $response = $this->front->dispatch($request);
         $this->assertEquals('MyApp_TestHelper', $response->getBody());
@@ -292,7 +293,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
         Zend_Controller_Action_HelperBroker::addPath(
             dirname(__FILE__, 2) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'Helpers',
             'MyApp'
-            );
+        );
 
         $urlHelper = Zend_Controller_Action_HelperBroker::getStaticHelper('url');
         $this->assertTrue($urlHelper instanceof MyApp_Url);

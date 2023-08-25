@@ -193,7 +193,6 @@ abstract class Zend_Date_DateObject
 
         $date = 0;
         if ($year >= 1970) {
-
             // Date is after UNIX epoch
             // go through leapyears
             // add months from latest given year
@@ -217,7 +216,6 @@ abstract class Zend_Date_DateObject
             $date += $day - 1;
             $date = (($date * 86400) + ($hour * 3600) + ($minute * 60) + $second);
         } else {
-
             // Date is before UNIX epoch
             // go through leapyears
             // add months from latest given year
@@ -556,10 +554,10 @@ abstract class Zend_Date_DateObject
                 case 'e':  // timezone identifier
                     if ($gmt === true) {
                         $output .= gmdate('e', mktime($date['hours'], $date['minutes'], $date['seconds'],
-                                                      $date['mon'], $date['mday'], 2000));
+                            $date['mon'], $date['mday'], 2000));
                     } else {
                         $output .= date('e', mktime($date['hours'], $date['minutes'], $date['seconds'],
-                                                      $date['mon'], $date['mday'], 2000));
+                            $date['mon'], $date['mday'], 2000));
                     }
 
                     break;
@@ -567,10 +565,10 @@ abstract class Zend_Date_DateObject
                 case 'I':  // daylight saving time or not
                     if ($gmt === true) {
                         $output .= gmdate('I', mktime($date['hours'], $date['minutes'], $date['seconds'],
-                                                      $date['mon'], $date['mday'], 2000));
+                            $date['mon'], $date['mday'], 2000));
                     } else {
                         $output .= date('I', mktime($date['hours'], $date['minutes'], $date['seconds'],
-                                                      $date['mon'], $date['mday'], 2000));
+                            $date['mon'], $date['mday'], 2000));
                     }
 
                     break;
@@ -591,10 +589,10 @@ abstract class Zend_Date_DateObject
                 case 'T':  // timezone settings
                     if ($gmt === true) {
                         $output .= gmdate('T', mktime($date['hours'], $date['minutes'], $date['seconds'],
-                                                      $date['mon'], $date['mday'], 2000));
+                            $date['mon'], $date['mday'], 2000));
                     } else {
                         $output .= date('T', mktime($date['hours'], $date['minutes'], $date['seconds'],
-                                                      $date['mon'], $date['mday'], 2000));
+                            $date['mon'], $date['mday'], 2000));
                     }
 
                     break;
@@ -803,7 +801,6 @@ abstract class Zend_Date_DateObject
             $timestamp += ($numday - $numberdays + 1) * 86400;
             $hours = floor($timestamp / 3600);
         } else {
-
             // iterate through years
             for ($i = 1970; ; ++$i) {
                 $day = $timestamp;
@@ -960,11 +957,11 @@ abstract class Zend_Date_DateObject
         if (abs($this->_unixTimestamp) <= 0x7FFFFFFF) {
             if ($rise === false) {
                 return date_sunset($this->_unixTimestamp, SUNFUNCS_RET_TIMESTAMP, $location['latitude'],
-                                   $location['longitude'], 90 + $horizon, $this->getGmtOffset() / 3600);
+                    $location['longitude'], 90 + $horizon, $this->getGmtOffset() / 3600);
             }
 
             return date_sunrise($this->_unixTimestamp, SUNFUNCS_RET_TIMESTAMP, $location['latitude'],
-                                $location['longitude'], 90 + $horizon, $this->getGmtOffset() / 3600);
+                $location['longitude'], 90 + $horizon, $this->getGmtOffset() / 3600);
         }
 
         // self calculation - timestamp bigger than 32bit
@@ -1043,8 +1040,8 @@ abstract class Zend_Date_DateObject
         $sec = intval($universalTime);
 
         return $this->mktime($hour, $min, $sec, $this->date('m', $this->_unixTimestamp),
-                             $this->date('j', $this->_unixTimestamp), $this->date('Y', $this->_unixTimestamp),
-                             -1);
+            $this->date('j', $this->_unixTimestamp), $this->date('Y', $this->_unixTimestamp),
+            -1);
     }
 
     /**
@@ -1114,9 +1111,9 @@ abstract class Zend_Date_DateObject
         $result = @date_default_timezone_set($this->_timezone);
         if ($result === true) {
             $offset = $this->mktime($date['hours'], $date['minutes'], $date['seconds'],
-                                    $date['mon'], $date['mday'], $date['year'], false)
+                $date['mon'], $date['mday'], $date['year'], false)
                     - $this->mktime($date['hours'], $date['minutes'], $date['seconds'],
-                                    $date['mon'], $date['mday'], $date['year'], true);
+                        $date['mon'], $date['mday'], $date['year'], true);
         }
         date_default_timezone_set($zone);
 

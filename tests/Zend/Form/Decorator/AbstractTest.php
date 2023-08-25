@@ -30,6 +30,7 @@ require_once 'Zend/Loader/PluginLoader.php';
  * Uses Zend_Form_Decorator_Errors as a concrete implementation
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]

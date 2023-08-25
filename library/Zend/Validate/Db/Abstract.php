@@ -329,8 +329,8 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
             if ($this->_exclude !== null) {
                 if (is_array($this->_exclude)) {
                     $select->where(
-                          $db->quoteIdentifier($this->_exclude['field'], true)
-                            . ' != ?', $this->_exclude['value']
+                        $db->quoteIdentifier($this->_exclude['field'], true)
+                          . ' != ?', $this->_exclude['value']
                     );
                 } else {
                     $select->where($this->_exclude);
@@ -360,7 +360,7 @@ abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
             $select,
             ['value' => $value], // this should work whether db supports positional or named params
             Zend_Db::FETCH_ASSOC
-            );
+        );
 
         return $result;
     }

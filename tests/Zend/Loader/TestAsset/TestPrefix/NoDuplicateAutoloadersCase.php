@@ -17,6 +17,7 @@
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Loader
  */
 class TestPrefix_NoDuplicateAutoloadersCase

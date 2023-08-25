@@ -26,6 +26,7 @@ require_once 'Zend/Validate/File/IsImage.php';
  * IsImage testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_File_IsImageTest extends \PHPUnit\Framework\TestCase

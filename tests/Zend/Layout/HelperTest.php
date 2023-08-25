@@ -25,6 +25,7 @@ require_once 'Zend/Controller/Action/HelperBroker.php';
  * Test class for Zend_Layout_Controller_Action_Helper_Layout.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Layout
  */
 class Zend_Layout_HelperTest extends \PHPUnit\Framework\TestCase

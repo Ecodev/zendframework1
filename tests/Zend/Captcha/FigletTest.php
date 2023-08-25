@@ -22,6 +22,7 @@ require_once 'Zend/Config.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Captcha
  */
 #[AllowDynamicProperties]
@@ -154,7 +155,7 @@ class Zend_Captcha_FigletTest extends \PHPUnit\Framework\TestCase
     public function testAdapterElementName()
     {
         $this->assertEquals($this->captcha->getName(),
-                    $this->element->getName());
+            $this->element->getName());
     }
 
     public function testGenerateIsRandomised()
@@ -174,7 +175,7 @@ class Zend_Captcha_FigletTest extends \PHPUnit\Framework\TestCase
     {
         $this->testCaptchaIsRendered();
         $this->assertEquals($this->captcha->getId(),
-                $this->element->getValue());
+            $this->element->getValue());
     }
 
     public function testLabelIsNull()

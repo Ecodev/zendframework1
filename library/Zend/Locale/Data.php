@@ -427,6 +427,7 @@ class Zend_Locale_Data
             case 'characters':
                 $temp = self::_getFile($locale, '/ldml/characters/exemplarCharacters',                           '', 'characters');
                 $temp += self::_getFile($locale, '/ldml/characters/exemplarCharacters[@type=\'auxiliary\']',      '', 'auxiliary');
+
                 // $temp += self::_getFile($locale, '/ldml/characters/exemplarCharacters[@type=\'currencySymbol\']', '', 'currencySymbol');
                 break;
 
@@ -1282,6 +1283,7 @@ class Zend_Locale_Data
                     $value = ['gregorian', $temp];
                 }
                 $temp = self::_getFile($locale, '/ldml/dates/fields/field[@type=\'day\']/relative[@type=\'' . $value[1] . '\']', '', $value[1]);
+
                 // $temp = self::_getFile($locale, '/ldml/dates/calendars/calendar[@type=\'' . $value[0] . '\']/fields/field/relative[@type=\'' . $value[1] . '\']', '', $value[1]);
                 break;
 

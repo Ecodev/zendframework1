@@ -24,6 +24,7 @@ require_once 'Zend/Locale/Format.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Locale
  */
 class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
@@ -769,6 +770,7 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
         } catch (Zend_Locale_Exception $e) {
             // success
         }
+
         // test interaction between class-wide default date format and using locale's default format
         try {
             $result = ['date_format' => 'MMM d, y', 'locale' => 'en_US', 'month' => '7',

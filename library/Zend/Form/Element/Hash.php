@@ -230,8 +230,6 @@ class Zend_Form_Element_Hash extends Zend_Form_Element_Xhtml
     /**
      * Render CSRF token in form.
      *
-     * @param  Zend_View_Interface $view
-     *
      * @return string
      */
     public function render(?Zend_View_Interface $view = null)

@@ -26,6 +26,7 @@ require_once 'Zend/View/Helper/FormElement.php';
  * Test class for Zend_Form_Decorator_Errors.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]

@@ -31,6 +31,7 @@ require_once 'Zend/View.php';
  * Test class for Zend_Controller_Action_Helper_AjaxContext.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
@@ -188,11 +189,11 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
         $helper = new Zend_Controller_Action_Helper_AjaxContext();
 
         $helper->setActionController(
-                    new Zend_Controller_Action_Helper_AjaxContextTestController(
-                        $request,
-                        $this->response,
-                        []
-                    )
+            new Zend_Controller_Action_Helper_AjaxContextTestController(
+                $request,
+                $this->response,
+                []
+            )
         );
 
         try {

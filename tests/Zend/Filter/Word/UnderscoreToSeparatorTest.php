@@ -22,6 +22,7 @@ require_once 'Zend/Filter/Word/UnderscoreToSeparator.php';
  * Test class for Zend_Filter_Word_UnderscoreToSeparator.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_Word_UnderscoreToSeparatorTest extends \PHPUnit\Framework\TestCase

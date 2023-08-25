@@ -26,6 +26,7 @@ require_once 'Zend/Registry.php';
  * Tests formCheckbox helper
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

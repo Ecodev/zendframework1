@@ -368,8 +368,8 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
         if (null === $this->_prefixForId) {
             $prefix = get_class($this);
             $this->_prefixForId = strtolower(
-                    trim(substr($prefix, strrpos($prefix, '_')), '_')
-                ) . '-';
+                trim(substr($prefix, strrpos($prefix, '_')), '_')
+            ) . '-';
         }
 
         return $this->_prefixForId;
@@ -625,8 +625,8 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
     public function __call($method, array $arguments = [])
     {
         return call_user_func_array(
-                [$this->getContainer(), $method],
-                $arguments);
+            [$this->getContainer(), $method],
+            $arguments);
     }
 
     /**
@@ -690,7 +690,7 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
         $found = null;
         $foundDepth = -1;
         $iterator = new RecursiveIteratorIterator($container,
-                RecursiveIteratorIterator::CHILD_FIRST);
+            RecursiveIteratorIterator::CHILD_FIRST);
 
         foreach ($iterator as $page) {
             $currDepth = $iterator->getDepth();

@@ -22,6 +22,7 @@ require_once 'Zend/Filter/Word/UnderscoreToDash.php';
  * Test class for Zend_Filter_Word_UnderscoreToDash.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_Word_UnderscoreToDashTest extends \PHPUnit\Framework\TestCase

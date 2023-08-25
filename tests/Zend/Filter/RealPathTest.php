@@ -24,6 +24,7 @@ require_once 'Zend/Filter/RealPath.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_RealPathTest extends \PHPUnit\Framework\TestCase

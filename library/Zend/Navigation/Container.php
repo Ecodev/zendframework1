@@ -111,8 +111,8 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $page must be an instance of '
-                    . 'Zend_Navigation_Page or Zend_Config, or an array');
+                'Invalid argument: $page must be an instance of '
+                . 'Zend_Navigation_Page or Zend_Config, or an array');
         }
 
         $hash = $page->hashCode();
@@ -155,9 +155,9 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
             require_once 'Zend/Navigation/Exception.php';
 
             throw new Zend_Navigation_Exception(
-                    'Invalid argument: $pages must be an array, an '
-                    . 'instance of Zend_Config or an instance of '
-                    . \Zend_Navigation_Container::class);
+                'Invalid argument: $pages must be an array, an '
+                . 'instance of Zend_Config or an instance of '
+                . \Zend_Navigation_Container::class);
         }
 
         foreach ($pages as $page) {
@@ -525,8 +525,8 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
         require_once 'Zend/Navigation/Exception.php';
 
         throw new Zend_Navigation_Exception(
-                    'Corruption detected in container; '
-                    . 'invalid key found in internal iterator');
+            'Corruption detected in container; '
+            . 'invalid key found in internal iterator');
     }
 
     /**

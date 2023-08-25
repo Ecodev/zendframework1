@@ -26,6 +26,7 @@ require_once 'Zend/Validate/File/ExcludeExtension.php';
  * ExcludeExtension testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCase

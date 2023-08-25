@@ -25,6 +25,7 @@ require_once 'Zend/Loader/PluginLoader.php';
  * Test class for Zend_Loader_PluginLoader.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Loader
  */
 #[AllowDynamicProperties]

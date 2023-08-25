@@ -55,6 +55,7 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
      * jQuery no Conflict Mode.
      *
      * @see	      http://docs.jquery.com/Using_jQuery_with_Other_Libraries
+     *
      * @staticvar Boolean Status of noConflict Mode
      */
     private static bool $noConflictMode = false;

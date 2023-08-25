@@ -25,6 +25,7 @@ require_once 'Zend/Controller/Request/Http.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
@@ -194,8 +195,8 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     protected function _getStaticHostRoute()
     {
         $route = new Zend_Controller_Router_Route_Hostname('www.zend.com',
-                                                            ['controller' => 'ctrl',
-                                                                'action' => 'act', ]);
+            ['controller' => 'ctrl',
+                'action' => 'act', ]);
 
         return $route;
     }
@@ -203,9 +204,9 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     protected function _getHostRoute()
     {
         $route = new Zend_Controller_Router_Route_Hostname(':subdomain.zend.com',
-                                                            ['controller' => 'ctrl',
-                                                                'action' => 'act', ],
-                                                            ['subdomain' => '(foo|bar)']);
+            ['controller' => 'ctrl',
+                'action' => 'act', ],
+            ['subdomain' => '(foo|bar)']);
 
         return $route;
     }
@@ -213,10 +214,10 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
     protected function _getHostRouteWithDefault()
     {
         $route = new Zend_Controller_Router_Route_Hostname(':subdomain.zend.com',
-                                                            ['controller' => 'ctrl',
-                                                                'action' => 'act',
-                                                                'subdomain' => 'bar', ],
-                                                            ['subdomain' => '(foo|bar)']);
+            ['controller' => 'ctrl',
+                'action' => 'act',
+                'subdomain' => 'bar', ],
+            ['subdomain' => '(foo|bar)']);
 
         return $route;
     }

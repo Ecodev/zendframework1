@@ -357,36 +357,36 @@ class Zend_Cache_Frontend_Page extends Zend_Cache_Core
     protected function _makePartialId($arrayName, $bool1, $bool2)
     {
         switch ($arrayName) {
-        case 'Get':
-            $var = $_GET;
+            case 'Get':
+                $var = $_GET;
 
-            break;
-        case 'Post':
-            $var = $_POST;
+                break;
+            case 'Post':
+                $var = $_POST;
 
-            break;
-        case 'Session':
-            if (isset($_SESSION)) {
-                $var = $_SESSION;
-            } else {
-                $var = null;
-            }
+                break;
+            case 'Session':
+                if (isset($_SESSION)) {
+                    $var = $_SESSION;
+                } else {
+                    $var = null;
+                }
 
-            break;
-        case 'Cookie':
-            if (isset($_COOKIE)) {
-                $var = $_COOKIE;
-            } else {
-                $var = null;
-            }
+                break;
+            case 'Cookie':
+                if (isset($_COOKIE)) {
+                    $var = $_COOKIE;
+                } else {
+                    $var = null;
+                }
 
-            break;
-        case 'Files':
-            $var = $_FILES;
+                break;
+            case 'Files':
+                $var = $_FILES;
 
-            break;
-        default:
-            return false;
+                break;
+            default:
+                return false;
         }
         if ($bool1) {
             if ($bool2) {

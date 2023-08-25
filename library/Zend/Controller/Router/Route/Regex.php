@@ -81,7 +81,6 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
     /**
      * Constructor.
      *
-     * @param       $route
      * @param array $defaults
      * @param array $map
      * @param null  $reverse

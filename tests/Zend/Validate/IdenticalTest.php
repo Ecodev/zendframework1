@@ -28,6 +28,7 @@ require_once 'Zend/Validate/Identical.php';
  * @uses       Zend_Validate_Identical
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 #[AllowDynamicProperties]

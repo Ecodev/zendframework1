@@ -24,6 +24,7 @@ require_once 'Zend/Filter/File/Rename.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_File_RenameTest extends \PHPUnit\Framework\TestCase

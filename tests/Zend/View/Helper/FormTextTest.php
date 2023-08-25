@@ -26,6 +26,7 @@ require_once 'Zend/Registry.php';
  * Tests formText helper, including some common functionality of all form helpers
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

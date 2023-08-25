@@ -562,8 +562,8 @@ class Zend_Filter_Input
 
                     foreach ($value as $prefix) {
                         $this->addValidatorPrefixPath(
-                                $prefix,
-                                str_replace('_', DIRECTORY_SEPARATOR, $prefix)
+                            $prefix,
+                            str_replace('_', DIRECTORY_SEPARATOR, $prefix)
                         );
                     }
 
@@ -575,8 +575,8 @@ class Zend_Filter_Input
 
                     foreach ($value as $prefix) {
                         $this->addFilterPrefixPath(
-                                $prefix,
-                                str_replace('_', DIRECTORY_SEPARATOR, $prefix)
+                            $prefix,
+                            str_replace('_', DIRECTORY_SEPARATOR, $prefix)
                         );
                     }
 
@@ -865,6 +865,7 @@ class Zend_Filter_Input
                 foreach ($validatorRule as $rule) {
                     if ($rule === 'NotEmpty') {
                         $foundNotEmptyValidator = true;
+
                         // field may not be empty, we are ready
                         break;
                     }
@@ -876,6 +877,7 @@ class Zend_Filter_Input
                             $ruleClass = $rule[$classKey];
                             if ($ruleClass === 'NotEmpty') {
                                 $foundNotEmptyValidator = true;
+
                                 // field may not be empty, we are ready
                                 break;
                             }
@@ -890,6 +892,7 @@ class Zend_Filter_Input
 
                     if ($rule instanceof Zend_Validate_NotEmpty) {
                         $foundNotEmptyValidator = true;
+
                         // field may not be empty, we are ready
                         break;
                     }
@@ -1120,7 +1123,7 @@ class Zend_Filter_Input
                     $this->_invalidMessages[$validatorRule[self::RULE]] = $collectedMessages;
                     if (isset($this->_invalidErrors[$validatorRule[self::RULE]])) {
                         $this->_invalidErrors[$validatorRule[self::RULE]] = array_merge($this->_invalidErrors[$validatorRule[self::RULE]],
-                                                                                        $validatorChain->getErrors());
+                            $validatorChain->getErrors());
                     } else {
                         $this->_invalidErrors[$validatorRule[self::RULE]] = $validatorChain->getErrors();
                     }

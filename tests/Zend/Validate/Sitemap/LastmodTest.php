@@ -22,6 +22,7 @@ require_once 'Zend/Validate/Sitemap/Lastmod.php';
  * Tests Zym_Validate_Sitemap_Lastmod.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase

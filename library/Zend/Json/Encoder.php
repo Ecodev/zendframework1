@@ -118,9 +118,9 @@ class Zend_Json_Encoder
                 require_once 'Zend/Json/Exception.php';
 
                 throw new Zend_Json_Exception(
-                        'Cycles not supported in JSON encoding, cycle introduced by '
-                        . 'class "' . get_class($value) . '"'
-                    );
+                    'Cycles not supported in JSON encoding, cycle introduced by '
+                    . 'class "' . get_class($value) . '"'
+                );
             }
 
             $this->_visited[] = $value;
@@ -469,8 +469,8 @@ class Zend_Json_Encoder
                     // characters U-00000800 - U-0000FFFF, mask 1110XXXX
                     // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                     $char = pack('C*', $ord_var_c,
-                                 ord($value[$i + 1]),
-                                 ord($value[$i + 2]));
+                        ord($value[$i + 1]),
+                        ord($value[$i + 2]));
                     $i += 2;
                     $utf16 = self::_utf82utf16($char);
                     $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -481,9 +481,9 @@ class Zend_Json_Encoder
                     // characters U-00010000 - U-001FFFFF, mask 11110XXX
                     // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                     $char = pack('C*', $ord_var_c,
-                                 ord($value[$i + 1]),
-                                 ord($value[$i + 2]),
-                                 ord($value[$i + 3]));
+                        ord($value[$i + 1]),
+                        ord($value[$i + 2]),
+                        ord($value[$i + 3]));
                     $i += 3;
                     $utf16 = self::_utf82utf16($char);
                     $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -494,10 +494,10 @@ class Zend_Json_Encoder
                     // characters U-00200000 - U-03FFFFFF, mask 111110XX
                     // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                     $char = pack('C*', $ord_var_c,
-                                 ord($value[$i + 1]),
-                                 ord($value[$i + 2]),
-                                 ord($value[$i + 3]),
-                                 ord($value[$i + 4]));
+                        ord($value[$i + 1]),
+                        ord($value[$i + 2]),
+                        ord($value[$i + 3]),
+                        ord($value[$i + 4]));
                     $i += 4;
                     $utf16 = self::_utf82utf16($char);
                     $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -508,11 +508,11 @@ class Zend_Json_Encoder
                     // characters U-04000000 - U-7FFFFFFF, mask 1111110X
                     // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                     $char = pack('C*', $ord_var_c,
-                                 ord($value[$i + 1]),
-                                 ord($value[$i + 2]),
-                                 ord($value[$i + 3]),
-                                 ord($value[$i + 4]),
-                                 ord($value[$i + 5]));
+                        ord($value[$i + 1]),
+                        ord($value[$i + 2]),
+                        ord($value[$i + 3]),
+                        ord($value[$i + 4]),
+                        ord($value[$i + 5]));
                     $i += 5;
                     $utf16 = self::_utf82utf16($char);
                     $ascii .= sprintf('\u%04s', bin2hex($utf16));

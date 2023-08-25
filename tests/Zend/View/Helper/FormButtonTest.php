@@ -23,6 +23,7 @@ require_once 'Zend/View/Helper/FormButton.php';
  * Test class for Zend_View_Helper_FormButton.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

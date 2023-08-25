@@ -33,6 +33,7 @@ require_once 'Zend/Paginator.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Paginator
  */
 class Zend_Paginator_ScrollingStyle_SlidingTest extends \PHPUnit\Framework\TestCase

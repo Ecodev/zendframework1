@@ -30,6 +30,7 @@ require_once __DIR__ . '/../../_files/modules/bar/controllers/IndexController.ph
  * Test class for Zend_Controller_Action_Helper_ViewRenderer.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
@@ -266,7 +267,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertStringContainsString(
             $this->_normalizePath($viewDir),
             $this->_normalizePath($scriptPath)
-            );
+        );
 
         $helperPaths = $this->helper->view->getHelperPaths();
         $found = false;
@@ -778,7 +779,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertMatchesRegularExpression(
             $expectedPathRegex,
             $this->_normalizePath($viewScriptPaths['script'][0])
-            );
+        );
         $this->assertEquals($this->helper->getViewScript(), 'index/admin.phtml');
     }
 
@@ -798,7 +799,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertMatchesRegularExpression(
             $expectedPathRegex,
             $this->_normalizePath($viewScriptPaths['script'][0])
-            );
+        );
         $this->assertEquals('car-bar/baz.phtml', $this->helper->getViewScript());
     }
 
@@ -862,6 +863,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
 
     /**
      * @group ZF-10725
+     *
      * @dataProvider providerViewScriptNameDoesNotIncludeDisallowedCharacters
      *
      * @param mixed $actionName
@@ -898,6 +900,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
 
     /**
      * @group GH-440
+     *
      * @dataProvider providerControllerNameDoesNotIncludeDisallowedCharacters
      *
      * @param mixed $controllerName
@@ -943,14 +946,14 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
             ->setActionName('index');
 
         $this->helper->setActionController(
-           new Bar_IndexController(
-               $this->request, $this->response, []
-           )
-       );
+            new Bar_IndexController(
+                $this->request, $this->response, []
+            )
+        );
 
         $this->assertEquals(
-           'metadata-validation/index.phtml', $this->helper->getViewScript()
-       );
+            'metadata-validation/index.phtml', $this->helper->getViewScript()
+        );
     }
 
     protected function _normalizePath($path)

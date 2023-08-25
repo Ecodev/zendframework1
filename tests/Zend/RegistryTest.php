@@ -24,6 +24,7 @@ require_once 'Zend/Registry.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Registry
  */
 class Zend_RegistryTest extends \PHPUnit\Framework\TestCase

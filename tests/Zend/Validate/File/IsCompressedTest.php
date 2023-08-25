@@ -26,6 +26,7 @@ require_once 'Zend/Validate/File/IsCompressed.php';
  * IsCompressed testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Validate
  */
 class Zend_Validate_File_IsCompressedTest extends \PHPUnit\Framework\TestCase
@@ -47,10 +48,10 @@ class Zend_Validate_File_IsCompressedTest extends \PHPUnit\Framework\TestCase
         if (!extension_loaded('fileinfo')
             && function_exists('mime_content_type') && ini_get('mime_magic.magicfile')
             && (mime_content_type(__DIR__ . '/_files/test.zip') == 'text/plain')
-            ) {
+        ) {
             $this->markTestSkipped('This PHP Version has no finfo, has mime_content_type, '
                 . ' but mime_content_type exhibits buggy behavior on this system.'
-                );
+            );
         }
 
         // Prevent error in the next check

@@ -29,6 +29,7 @@ require_once 'Zend/Xml/Exception.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Xml
  * @group      ZF2015-06
  */
@@ -75,6 +76,7 @@ class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider multibyteEncodings
+     *
      * @group heuristicDetection
      *
      * @param mixed $encoding
@@ -138,6 +140,7 @@ class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @dataProvider multibyteEncodings
+     *
      * @group mixedEncoding
      *
      * @param mixed $encoding

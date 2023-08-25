@@ -33,6 +33,7 @@ require_once 'Zend/View.php';
  * Test class for Zend_View_Helper_HeadMeta.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
@@ -360,8 +361,8 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->view->doctype('XHTML1_RDFA');
         $this->helper->headMeta('foo', 'og:title', 'property');
         $this->assertEquals('<meta property="og:title" content="foo" />',
-                            $this->helper->toString()
-                           );
+            $this->helper->toString()
+        );
     }
 
     /**
@@ -379,6 +380,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-9743
+     *
      * @depends testPropertyIsSupportedWithRdfaDoctype
      */
     public function testOverloadingAppendPropertyAppendsMetaTagToStack()
@@ -389,6 +391,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-9743
+     *
      * @depends testPropertyIsSupportedWithRdfaDoctype
      */
     public function testOverloadingPrependPropertyPrependsMetaTagToStack()
@@ -399,6 +402,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @group ZF-9743
+     *
      * @depends testPropertyIsSupportedWithRdfaDoctype
      */
     public function testOverloadingSetPropertyOverwritesMetaTagStack()
@@ -421,7 +425,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(
             '<meta http-equiv="pragma" content="bar" />' . PHP_EOL . '<meta http-equiv="Cache-control" content="baz" />' . PHP_EOL . '<meta name="keywords" content="bat" />',
             $view->headMeta()->toString()
-            );
+        );
     }
 
     /**
@@ -439,7 +443,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(
             '<meta name="description" content="foo" />' . PHP_EOL . '<meta http-equiv="pragma" content="baz" />' . PHP_EOL . '<meta http-equiv="Cache-control" content="baz" />' . PHP_EOL . '<meta name="keywords" content="bar" />',
             $view->headMeta()->toString()
-            );
+        );
     }
 
     /**
@@ -456,7 +460,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(
             '<meta name="bar" content="some content" />' . PHP_EOL . '<meta name="keywords" content="foo" />',
             $view->headMeta()->toString()
-            );
+        );
     }
 
     /**

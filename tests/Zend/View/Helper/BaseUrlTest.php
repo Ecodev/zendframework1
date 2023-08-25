@@ -31,6 +31,7 @@ require_once 'Zend/Controller/Front.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_View
  * @group      Zend_View_Helper
  */

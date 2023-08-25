@@ -24,6 +24,7 @@ require_once 'Zend/Filter/File/LowerCase.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Filter
  */
 class Zend_Filter_File_LowerCaseTest extends \PHPUnit\Framework\TestCase

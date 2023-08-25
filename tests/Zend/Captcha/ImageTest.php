@@ -21,6 +21,7 @@ require_once 'Zend/Captcha/Adapter.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Captcha
  */
 #[AllowDynamicProperties]
@@ -63,11 +64,11 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
             @mkdir($this->testDir);
         }
         $this->element = new Zend_Form_Element_Captcha('captchaI',
-                    ['captcha' => ['Image',
-                        'sessionClass' => 'Zend_Captcha_ImageTest_SessionContainer',
-                        'imgDir' => $this->testDir,
-                        'font' => __DIR__ . '/../Pdf/_fonts/Vera.ttf', ],
-                    ]);
+            ['captcha' => ['Image',
+                'sessionClass' => 'Zend_Captcha_ImageTest_SessionContainer',
+                'imgDir' => $this->testDir,
+                'font' => __DIR__ . '/../Pdf/_fonts/Vera.ttf', ],
+            ]);
         $this->captcha = $this->element->getCaptcha();
     }
 
@@ -217,7 +218,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     public function testAdapterElementName()
     {
         $this->assertEquals($this->captcha->getName(),
-        $this->element->getName());
+            $this->element->getName());
     }
 
     public function testGenerateIsRandomised()
@@ -237,7 +238,7 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
     {
         $this->testCaptchaIsRendered();
         $this->assertEquals($this->captcha->getId(),
-        $this->element->getValue());
+            $this->element->getValue());
     }
 
     public function testLabelIsNull()

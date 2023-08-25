@@ -24,6 +24,7 @@ require_once 'Zend/Console/Getopt.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Console_Getopt
  */
 class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
@@ -594,7 +595,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
                 '--man-bear',
                 'foobar',
             ]
-            );
+        );
 
         $opts->parse();
         $this->assertEquals('foobar', $opts->getOption('man-bear'));
@@ -609,9 +610,9 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         // Fails if warning is thrown: Should not happen!
         $opts = new Zend_Console_Getopt('abp:');
         $opts->addRules(
-          [
-              'verbose|v' => 'Print verbose output',
-          ]
+            [
+                'verbose|v' => 'Print verbose output',
+            ]
         );
         self::assertTrue(true);
     }

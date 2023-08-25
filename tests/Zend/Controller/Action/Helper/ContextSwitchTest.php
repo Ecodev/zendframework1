@@ -33,6 +33,7 @@ require_once 'Zend/View/Interface.php';
  * Test class for Zend_Controller_Action_Helper_ContextSwitch.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Controller
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper

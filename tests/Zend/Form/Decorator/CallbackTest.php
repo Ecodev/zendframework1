@@ -23,6 +23,7 @@ require_once 'Zend/Form/Element.php';
  * Test class for Zend_Form_Decorator_Callback.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ *
  * @group      Zend_Form
  */
 #[AllowDynamicProperties]
