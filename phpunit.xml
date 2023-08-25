@@ -1,5 +1,6 @@
 <phpunit bootstrap="./tests/TestHelper.php"
  cacheResultFile="/tmp/.zf1.phpunit.result.cache"
+ colors="true"
 >
     <testsuite name="Zend Framework - Testsuite">
         <directory>./tests/</directory>
