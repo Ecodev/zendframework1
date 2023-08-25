@@ -113,6 +113,7 @@ class Zend_Http_Header_SetCookie
      * @static
      *
      * @param  bool $bypassHeaderFieldName
+     * @param mixed $headerLine
      *
      * @return array|SetCookie
      */
