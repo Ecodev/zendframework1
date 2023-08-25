@@ -27,6 +27,7 @@ require_once 'Zend/View/Helper/FormLabel.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_FormLabelTest extends \PHPUnit\Framework\TestCase
 {
     /**

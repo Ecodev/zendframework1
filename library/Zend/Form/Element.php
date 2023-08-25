@@ -34,6 +34,7 @@ require_once 'Zend/Validate/Abstract.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element implements Zend_Validate_Interface
 {
     /**

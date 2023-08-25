@@ -33,6 +33,7 @@ require_once 'Zend/Controller/Request/Http.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_UrlTest extends \PHPUnit\Framework\TestCase
 {
     /**

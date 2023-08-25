@@ -34,6 +34,7 @@ require_once 'Zend/Captcha/Adapter.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_Captcha extends Zend_Form_Element_Xhtml
 {
     /**

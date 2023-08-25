@@ -26,6 +26,7 @@ require_once 'Zend/Filter.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_FilterTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -198,6 +199,7 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_FilterTest_LowerCase implements Zend_Filter_Interface
 {
     public function filter($value)
@@ -206,6 +208,7 @@ class Zend_FilterTest_LowerCase implements Zend_Filter_Interface
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_FilterTest_StripUpperCase implements Zend_Filter_Interface
 {
     public function filter($value)

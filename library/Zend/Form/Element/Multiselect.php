@@ -25,6 +25,7 @@ require_once 'Zend/Form/Element/Select.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_Multiselect extends Zend_Form_Element_Select
 {
     /**

@@ -26,6 +26,7 @@ require_once 'Zend/View.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -36,6 +36,7 @@ require_once 'Zend/Loader.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_View
  */
+#[AllowDynamicProperties]
 class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
@@ -1140,6 +1141,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_ViewTest_Extension extends Zend_View
 {
     public function init()

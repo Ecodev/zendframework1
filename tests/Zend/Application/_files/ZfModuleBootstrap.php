@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZfModule_Bootstrap extends Zend_Application_Module_Bootstrap
 {
     public function run()

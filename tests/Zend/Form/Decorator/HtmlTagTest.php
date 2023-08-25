@@ -27,6 +27,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_HtmlTagTest extends \PHPUnit\Framework\TestCase
 {
     /**

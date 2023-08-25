@@ -28,6 +28,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -269,6 +270,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_ViewHelperTest_Textarea extends Zend_Form_Element
 {
     public function __construct($name, $options = null)

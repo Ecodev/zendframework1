@@ -27,6 +27,7 @@ require_once 'Zend/View/Helper/Placeholder/Registry.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -180,6 +181,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_Placeholder_RegistryTest_Container extends Zend_View_Helper_Placeholder_Container_Abstract
 {
     public $data = [];
@@ -190,6 +192,7 @@ class Zend_View_Helper_Placeholder_RegistryTest_Container extends Zend_View_Help
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_Placeholder_RegistryTest_BogusContainer
 {
 }

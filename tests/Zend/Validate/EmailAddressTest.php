@@ -26,6 +26,7 @@ require_once 'Zend/Validate/EmailAddress.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
 {
     /**

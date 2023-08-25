@@ -27,6 +27,7 @@ require_once 'Zend/View/Helper/FormElement.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_FormCheckbox extends Zend_View_Helper_FormElement
 {
     /**

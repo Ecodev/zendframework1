@@ -24,6 +24,7 @@ require_once 'Zend/Form/Element/MultiCheckbox.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_MultiCheckboxTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -33,6 +33,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -239,6 +240,7 @@ class Zend_View_Helper_PartialTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialTest_Aggregate
 {
     public $vars = [

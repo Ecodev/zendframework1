@@ -27,6 +27,7 @@ require_once 'Zend/View/Helper/Placeholder/Container.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\TestCase
 {
     /**

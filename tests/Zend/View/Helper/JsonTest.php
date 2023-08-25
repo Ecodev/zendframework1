@@ -29,6 +29,7 @@ require_once 'Zend/Layout.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -168,6 +169,7 @@ class Zend_View_Helper_JsonTest extends \PHPUnit\Framework\TestCase
 /**
  * Zend_Layout subclass to allow resetting MVC instance.
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_JsonTest_Layout extends Zend_Layout
 {
     public static function resetMvcInstance()

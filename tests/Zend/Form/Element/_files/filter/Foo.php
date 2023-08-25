@@ -23,6 +23,7 @@ require_once 'Zend/Filter/File/LowerCase.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_Test_Filter_Foo extends Zend_Filter_File_LowerCase
 {
 }

@@ -23,6 +23,7 @@ require_once 'Zend/Validate/File/Count.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_Test_Validate_Foo extends Zend_Validate_File_Count
 {
 }

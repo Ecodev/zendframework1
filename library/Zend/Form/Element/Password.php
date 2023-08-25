@@ -25,6 +25,7 @@ require_once 'Zend/Form/Element/Xhtml.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_Password extends Zend_Form_Element_Xhtml
 {
     /**

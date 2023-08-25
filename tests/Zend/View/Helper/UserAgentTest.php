@@ -28,6 +28,7 @@ require_once 'Zend/Http/UserAgent.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_UserAgentTest extends \PHPUnit\Framework\TestCase
 {
     /**

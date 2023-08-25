@@ -33,6 +33,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -371,6 +372,7 @@ class Zend_View_Helper_PartialLoopTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialLoop_IteratorTest implements Iterator, Countable
 {
     public function __construct(public array $items)
@@ -413,6 +415,7 @@ class Zend_View_Helper_PartialLoop_IteratorTest implements Iterator, Countable
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialLoop_RecursiveIteratorTest implements Iterator, Countable
 {
     public $items;
@@ -460,10 +463,12 @@ class Zend_View_Helper_PartialLoop_RecursiveIteratorTest implements Iterator, Co
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialLoop_BogusIteratorTest
 {
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialLoop_ToArrayTest
 {
     public function __construct(array $data)
@@ -477,6 +482,7 @@ class Zend_View_Helper_PartialLoop_ToArrayTest
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator, Countable
 {
     public function __construct(public array $items)
@@ -519,6 +525,7 @@ class Zend_View_Helper_PartialLoop_IteratorWithToArrayTest implements Iterator, 
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_PartialLoop_IteratorWithToArrayTestContainer
 {
     protected $_info;

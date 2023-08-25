@@ -51,6 +51,7 @@ require_once 'Zend/Application/Bootstrap/Bootstrap.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
+#[AllowDynamicProperties]
 class Zend_Application_Bootstrap_BootstrapAbstractTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
@@ -759,6 +760,7 @@ class Zend_Application_Bootstrap_BootstrapAbstractTest extends \PHPUnit\Framewor
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Application_Bootstrap_BootstrapAbstractTest_View extends Zend_Application_Resource_ResourceAbstract
 {
     public function init()
@@ -767,6 +769,7 @@ class Zend_Application_Bootstrap_BootstrapAbstractTest_View extends Zend_Applica
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Application_Bootstrap_BootstrapAbstractTest_Layout extends Zend_Application_Resource_ResourceAbstract
 {
     public $_explicitType = 'BootstrapAbstractTestLayout';
@@ -787,6 +790,7 @@ class Zend_Application_Bootstrap_BootstrapAbstractTest_Layout extends Zend_Appli
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Application_Bootstrap_BootstrapAbstractTest_Foo extends Zend_Application_Resource_ResourceAbstract
 {
     public $bootstrapSetInConstructor = false;
@@ -805,6 +809,7 @@ class Zend_Application_Bootstrap_BootstrapAbstractTest_Foo extends Zend_Applicat
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Application_Bootstrap_BootstrapAbstractTest_OptionKeys extends Zend_Application_Bootstrap_Bootstrap
 {
     public function getOptionKeys()

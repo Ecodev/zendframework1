@@ -37,6 +37,7 @@ require_once 'Zend/Form/Decorator/Abstract.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
 {
     /**

@@ -24,6 +24,7 @@ require_once 'Zend/View/Helper/HtmlFlash.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_HtmlFlashTest extends \PHPUnit\Framework\TestCase
 {
     /**

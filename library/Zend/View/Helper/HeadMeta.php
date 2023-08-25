@@ -42,6 +42,7 @@ require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
  * @method $this setName($keyValue, $content, $modifiers)
  * @method $this setProperty($property, $content, $modifiers)
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_HeadMeta extends Zend_View_Helper_Placeholder_Container_Standalone
 {
     /**

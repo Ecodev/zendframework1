@@ -30,6 +30,7 @@ require_once 'Zend/View.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -558,6 +559,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Form_Element_FileTest_MockAdapter extends Zend_File_Transfer_Adapter_Abstract
 {
     public $received = false;

@@ -27,6 +27,7 @@ require_once 'Zend/Application.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Application
  */
+#[AllowDynamicProperties]
 class Zend_Application_ApplicationTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()

@@ -30,6 +30,7 @@ require_once 'Zend/Http/Client/Adapter/Test.php';
  * @group      Zend_Rest
  * @group      Zend_Rest_Client
  */
+#[AllowDynamicProperties]
 class Zend_Rest_ClientTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp(): void

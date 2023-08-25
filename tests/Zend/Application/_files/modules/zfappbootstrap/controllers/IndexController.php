@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zfappbootstrap_IndexController extends Zend_Controller_Action
 {
     public function indexAction()

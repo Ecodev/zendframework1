@@ -24,6 +24,7 @@ require_once 'Zend/Form/Element/Checkbox.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_CheckboxTest extends \PHPUnit\Framework\TestCase
 {
     /**

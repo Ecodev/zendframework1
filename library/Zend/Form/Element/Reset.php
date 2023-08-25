@@ -25,6 +25,7 @@ require_once 'Zend/Form/Element/Submit.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_Reset extends Zend_Form_Element_Submit
 {
     /**

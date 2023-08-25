@@ -28,6 +28,7 @@ require_once 'Zend/Translate/Adapter/Array.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -31,6 +31,7 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Loader
  */
+#[AllowDynamicProperties]
 class Zend_Loader_AutoloaderTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()
@@ -434,6 +435,7 @@ function ZendLoaderAutoloader_Autoload($class)
     return $class;
 }
 
+#[AllowDynamicProperties]
 class Zend_Loader_AutoloaderTest_Autoloader implements Zend_Loader_Autoloader_Interface
 {
     public function autoload($class)

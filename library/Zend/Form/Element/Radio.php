@@ -25,6 +25,7 @@ require_once 'Zend/Form/Element/Multi.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_Radio extends Zend_Form_Element_Multi
 {
     /**

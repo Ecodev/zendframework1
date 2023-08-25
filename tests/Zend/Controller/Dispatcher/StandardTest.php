@@ -28,6 +28,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Dispatcher
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCase
 {
     protected $_dispatcher;

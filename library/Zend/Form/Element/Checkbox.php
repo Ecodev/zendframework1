@@ -25,6 +25,7 @@ require_once 'Zend/Form/Element/Xhtml.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_Checkbox extends Zend_Form_Element_Xhtml
 {
     /**

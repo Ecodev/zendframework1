@@ -30,6 +30,7 @@ require_once 'Zend/Validate/Hostname.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
 {
     public const INVALID = 'emailAddressInvalid';

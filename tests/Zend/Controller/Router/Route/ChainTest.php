@@ -58,6 +58,7 @@ require_once 'Zend/Config.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_Route_ChainTest extends \PHPUnit\Framework\TestCase
 {
     /**

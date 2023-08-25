@@ -36,6 +36,7 @@ require_once 'Zend/View.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_Placeholder_StandaloneContainerTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -94,6 +95,7 @@ class Zend_View_Helper_Placeholder_StandaloneContainerTest extends \PHPUnit\Fram
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_Placeholder_StandaloneContainerTest_Foo extends Zend_View_Helper_Placeholder_Container_Standalone
 {
     protected $_regKey = 'foo';

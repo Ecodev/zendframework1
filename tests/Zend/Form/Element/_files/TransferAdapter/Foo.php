@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_FileTest_Adapter_Foo extends Zend_File_Transfer_Adapter_Abstract
 {
     public $received = false;

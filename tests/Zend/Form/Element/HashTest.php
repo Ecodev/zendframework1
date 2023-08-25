@@ -24,6 +24,7 @@ require_once 'Zend/Form/Element/Hash.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -199,6 +200,7 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Form_Element_HashTest_SessionContainer
 {
     protected static $_hash;

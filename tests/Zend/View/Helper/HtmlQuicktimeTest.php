@@ -24,6 +24,7 @@ require_once 'Zend/View/Helper/HtmlQuicktime.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_HtmlQuicktimeTest extends \PHPUnit\Framework\TestCase
 {
     /**

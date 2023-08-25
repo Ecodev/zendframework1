@@ -25,6 +25,7 @@ require_once 'Zend/View/Helper/HtmlElement.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_HtmlObject extends Zend_View_Helper_HtmlElement
 {
     /**

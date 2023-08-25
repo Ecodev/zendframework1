@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Form_Element_CaptchaTest_Captcha_Foo extends Zend_Captcha_Dumb
 {
 }

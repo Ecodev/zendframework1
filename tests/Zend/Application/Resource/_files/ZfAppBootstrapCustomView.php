@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZfAppBootstrapCustomView extends Zend_Application_Bootstrap_Bootstrap
 {
     public function _initView()

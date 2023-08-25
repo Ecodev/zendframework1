@@ -28,6 +28,7 @@ require_once 'Zend/Form/SubForm.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_FieldsetTest extends \PHPUnit\Framework\TestCase
 {
     /**

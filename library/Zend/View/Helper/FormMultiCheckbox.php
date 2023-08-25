@@ -25,6 +25,7 @@ require_once 'Zend/View/Helper/FormRadio.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_FormMultiCheckbox extends Zend_View_Helper_FormRadio
 {
     /**

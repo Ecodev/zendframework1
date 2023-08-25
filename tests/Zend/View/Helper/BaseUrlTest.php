@@ -34,6 +34,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_BaseUrlTest extends \PHPUnit\Framework\TestCase
 {
     /**

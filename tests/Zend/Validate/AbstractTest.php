@@ -30,6 +30,7 @@ require_once 'Zend/Registry.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -275,6 +276,7 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_Validate_AbstractTest_Concrete extends Zend_Validate_Abstract
 {
     public const FOO_MESSAGE = 'fooMessage';

@@ -29,6 +29,7 @@ require_once 'Zend/Cache.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Locale
  */
+#[AllowDynamicProperties]
 class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -961,6 +962,7 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_LocaleTestHelper extends Zend_Locale
 {
     public static function resetObject()

@@ -32,6 +32,7 @@ require_once 'Zend/View/Helper/Navigation/HelperAbstract.php';
  * @method Zend_View_Helper_Navigation_Menu menu
  * @method Zend_View_Helper_Navigation_Sitemap sitemap
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbstract
 {
     /**

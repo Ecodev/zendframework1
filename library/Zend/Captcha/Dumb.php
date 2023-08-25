@@ -27,6 +27,7 @@ require_once 'Zend/Captcha/Word.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Captcha_Dumb extends Zend_Captcha_Word
 {
     /**

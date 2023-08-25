@@ -27,6 +27,7 @@ require_once 'Zend/Captcha/Word.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Captcha_Image extends Zend_Captcha_Word
 {
     /**

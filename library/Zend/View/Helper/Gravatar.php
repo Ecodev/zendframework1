@@ -27,6 +27,7 @@ require_once 'Zend/View/Helper/HtmlElement.php';
  *
  * @see http://pl.gravatar.com/site/implement/url
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_Gravatar extends Zend_View_Helper_HtmlElement
 {
     /**

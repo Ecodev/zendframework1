@@ -27,6 +27,7 @@ require_once 'Zend/View/Helper/Cycle.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_CycleTest extends \PHPUnit\Framework\TestCase
 {
     /**

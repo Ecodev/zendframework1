@@ -28,6 +28,7 @@ require_once 'Zend/View/Helper/FormElement.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -198,6 +199,7 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
     }
 }
 
+#[AllowDynamicProperties]
 class Zend_View_Helper_FormFileMock extends Zend_View_Helper_FormElement
 {
     public function formFileMock($name, $attribs = null)

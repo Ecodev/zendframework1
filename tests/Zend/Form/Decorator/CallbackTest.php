@@ -25,6 +25,7 @@ require_once 'Zend/Form/Element.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  * @group      Zend_Form
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_CallbackTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -181,6 +182,7 @@ function Zend_Form_Decorator_CallbackTest_TestCallback($content, $element, array
     return $html;
 }
 
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_CallbackTest_TestCallbackClass
 {
     public static function direct($content, $element, array $options)

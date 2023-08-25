@@ -34,6 +34,7 @@ require_once 'Zend/Translate/Adapter/Array.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_TranslateTest extends \PHPUnit\Framework\TestCase
 {
     /**

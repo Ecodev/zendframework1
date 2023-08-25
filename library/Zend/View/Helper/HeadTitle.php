@@ -27,6 +27,7 @@ require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_Standalone
 {
     /**
