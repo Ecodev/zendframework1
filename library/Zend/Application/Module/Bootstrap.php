@@ -30,6 +30,7 @@ require_once 'Zend/Application/Bootstrap/Bootstrap.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Application_Module_Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
     /**

@@ -27,6 +27,7 @@ require_once 'Zend/Filter/HtmlEntities.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -27,6 +27,7 @@ require_once 'Zend/Captcha/Base.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 abstract class Zend_Captcha_Word extends Zend_Captcha_Base
 {
     /**#@+

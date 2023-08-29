@@ -27,6 +27,7 @@ require_once 'Zend/Filter/PregReplace.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Filter_Word_Separator_Abstract extends Zend_Filter_PregReplace
 {
     protected $_separator;

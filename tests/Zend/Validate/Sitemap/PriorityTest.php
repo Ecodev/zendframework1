@@ -25,6 +25,7 @@ require_once 'Zend/Validate/Sitemap/Priority.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_Sitemap_PriorityTest extends \PHPUnit\Framework\TestCase
 {
     /**

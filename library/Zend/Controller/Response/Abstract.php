@@ -24,6 +24,7 @@
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Controller_Response_Abstract
 {
     /**

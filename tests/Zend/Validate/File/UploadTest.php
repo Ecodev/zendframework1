@@ -27,6 +27,7 @@ require_once 'Zend/Validate/File/Upload.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
 {
     /**

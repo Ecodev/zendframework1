@@ -32,6 +32,7 @@ require_once 'Zend/Controller/Request/Http.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Plugin_PutHandler extends Zend_Controller_Plugin_Abstract
 {
     /**

@@ -32,6 +32,7 @@ require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElementMarker.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_Form_Decorator_UiWidgetElement extends Zend_Form_Decorator_ViewHelper implements ZendX_JQuery_Form_Decorator_UiWidgetElementMarker
 {
     /**

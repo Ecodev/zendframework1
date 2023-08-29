@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Digits.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_DigitsTest extends \PHPUnit\Framework\TestCase
 {
     /**

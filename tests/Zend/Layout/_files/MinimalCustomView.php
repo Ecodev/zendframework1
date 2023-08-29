@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Layout_Test_MinimalCustomView implements Zend_View_Interface
 {
     public function getEngine()

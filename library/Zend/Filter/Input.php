@@ -35,6 +35,7 @@ require_once 'Zend/Validate.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Input
 {
     public const ALLOW_EMPTY = 'allowEmpty';

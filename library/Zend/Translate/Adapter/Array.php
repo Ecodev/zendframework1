@@ -26,6 +26,7 @@ require_once 'Zend/Translate/Adapter.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Translate_Adapter_Array extends Zend_Translate_Adapter
 {
     private $_data = [];

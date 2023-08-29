@@ -46,6 +46,7 @@ require_once 'Zend/Date/Cities.php';
  *
  * @group      Zend_Date
  */
+#[AllowDynamicProperties]
 class Zend_DateTest extends \PHPUnit\Framework\TestCase
 {
     private $_cache;

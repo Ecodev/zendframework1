@@ -27,6 +27,7 @@ require_once 'Zend/Validate/File/Count.php';
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_WordCount extends Zend_Validate_File_Count
 {
     /**#@+

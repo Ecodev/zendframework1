@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/Sha1.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_Sha1Test extends \PHPUnit\Framework\TestCase
 {
     /**

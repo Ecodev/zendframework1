@@ -28,6 +28,7 @@ require_once 'Zend/Controller/Action.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Rest_Controller extends Zend_Controller_Action
 {
     /**

@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/Crc32.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_Crc32Test extends \PHPUnit\Framework\TestCase
 {
     /**

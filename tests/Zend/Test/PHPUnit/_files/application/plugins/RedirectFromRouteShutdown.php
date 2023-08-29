@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Application_Plugin_RedirectFromRouteShutdown extends Zend_Controller_Plugin_Abstract
 {
     public function routeShutdown(Zend_Controller_Request_Abstract $r)

@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/SeparatorToSeparator.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_UnderscoreToSeparator extends Zend_Filter_Word_SeparatorToSeparator
 {
     /**

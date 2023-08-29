@@ -36,6 +36,7 @@ require_once 'Zend/Uri.php';
  *
  * @uses       Zend_Controller_Request_Http
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Request_Apache404 extends Zend_Controller_Request_Http
 {
     public function setRequestUri($requestUri = null)

@@ -39,6 +39,7 @@ require_once 'Zend/Registry.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\TestCase
 {
     /**

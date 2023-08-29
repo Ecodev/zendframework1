@@ -25,6 +25,7 @@ require_once 'Zend/Form/Exception.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_Exception extends Zend_Form_Exception
 {
 }

@@ -25,6 +25,7 @@ require_once 'Zend/Paginator/Adapter/Interface.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Paginator_Adapter_Null implements Zend_Paginator_Adapter_Interface
 {
     /**

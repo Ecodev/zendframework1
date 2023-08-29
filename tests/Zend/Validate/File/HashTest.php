@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/Hash.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_HashTest extends \PHPUnit\Framework\TestCase
 {
     /**

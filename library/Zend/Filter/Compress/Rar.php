@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Compress/CompressAbstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Compress_Rar extends Zend_Filter_Compress_CompressAbstract
 {
     /**

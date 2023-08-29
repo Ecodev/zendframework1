@@ -22,6 +22,7 @@ namespace ZendTest\UnusualNamespace\Name_Space;
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class Namespaced_Class
 {
 }

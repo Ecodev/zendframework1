@@ -25,6 +25,7 @@
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Session_Abstract
 {
     /**

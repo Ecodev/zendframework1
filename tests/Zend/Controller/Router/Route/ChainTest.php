@@ -1039,6 +1039,7 @@ class Zend_Controller_Router_Route_SubclassTest extends Zend_Controller_Router_R
  *
  * @uses Zend_Controller_Request_Interface
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_ChainTest_Request extends Zend_Controller_Request_Http
 {
     protected $_host;
@@ -1072,6 +1073,7 @@ class Zend_Controller_Router_ChainTest_Request extends Zend_Controller_Request_H
 /**
  * Zend_Controller_Router_ChainTest_Dispatcher - dispatcher object for router testing.
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_ChainTest_Dispatcher extends Zend_Controller_Dispatcher_Standard
 {
     public function getDefaultControllerName()

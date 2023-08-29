@@ -35,6 +35,7 @@ require_once 'Zend/Application/Bootstrap/ResourceBootstrapper.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Application_Bootstrap_BootstrapAbstract implements
     Zend_Application_Bootstrap_Bootstrapper,
     Zend_Application_Bootstrap_ResourceBootstrapper

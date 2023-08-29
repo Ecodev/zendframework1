@@ -42,6 +42,7 @@ require_once 'Zend/Http/Client/Adapter/Socket.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_Client_Adapter_Proxy extends Zend_Http_Client_Adapter_Socket
 {
     /**

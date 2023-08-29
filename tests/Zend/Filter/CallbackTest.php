@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Callback.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_CallbackTest extends \PHPUnit\Framework\TestCase
 {
     public function testObjectCallback()

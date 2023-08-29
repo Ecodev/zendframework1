@@ -28,6 +28,7 @@ require_once 'Zend/Controller/Action/HelperBroker.php';
  *
  * @group      Zend_Layout
  */
+#[AllowDynamicProperties]
 class Zend_Layout_HelperTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -125,6 +126,7 @@ class Zend_Layout_HelperTest extends \PHPUnit\Framework\TestCase
 /**
  * Zend_Layout extension to allow resetting MVC instance.
  */
+#[AllowDynamicProperties]
 class Zend_Layout_HelperTest_Layout extends Zend_Layout
 {
     public static function resetMvcInstance()

@@ -23,6 +23,7 @@ if (class_exists(\Zend_Loader_AutoloaderFactory::class)) {
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Loader_AutoloaderFactory
 {
     public const STANDARD_AUTOLOADER = 'Zend_Loader_StandardAutoloader';

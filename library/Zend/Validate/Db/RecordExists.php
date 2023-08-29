@@ -29,6 +29,7 @@ require_once 'Zend/Validate/Db/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate_Db_RecordExists extends Zend_Validate_Db_Abstract
 {
     public function isValid($value)

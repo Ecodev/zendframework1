@@ -28,6 +28,7 @@ require_once 'Zend/Controller/Plugin/Abstract.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstract
 {
     /**

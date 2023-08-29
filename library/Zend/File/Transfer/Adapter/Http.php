@@ -27,6 +27,7 @@ require_once 'Zend/File/Transfer/Adapter/Abstract.php';
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstract
 {
     protected static $_callbackApc = 'apc_fetch';

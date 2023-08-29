@@ -30,6 +30,7 @@ require_once 'Zend/Loader.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate_Barcode extends Zend_Validate_Abstract
 {
     public const INVALID = 'barcodeInvalid';

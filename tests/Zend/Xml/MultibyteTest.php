@@ -33,6 +33,7 @@ require_once 'Zend/Xml/Exception.php';
  * @group      Zend_Xml
  * @group      ZF2015-06
  */
+#[AllowDynamicProperties]
 class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()

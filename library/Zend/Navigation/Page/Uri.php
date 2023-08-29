@@ -27,6 +27,7 @@ require_once 'Zend/Navigation/Page.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Navigation_Page_Uri extends Zend_Navigation_Page
 {
     /**

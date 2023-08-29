@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/SeparatorToCamelCase.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_UnderscoreToCamelCase extends Zend_Filter_Word_SeparatorToCamelCase
 {
     /**

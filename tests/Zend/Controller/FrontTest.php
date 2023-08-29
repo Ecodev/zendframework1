@@ -31,6 +31,7 @@ require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Front
  */
+#[AllowDynamicProperties]
 class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
 {
     protected $_controller;

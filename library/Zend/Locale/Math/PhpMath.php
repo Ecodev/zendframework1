@@ -25,6 +25,7 @@
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Locale_Math_PhpMath extends Zend_Locale_Math
 {
     public static function disable()

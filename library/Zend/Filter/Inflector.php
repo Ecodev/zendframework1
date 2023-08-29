@@ -33,6 +33,7 @@ require_once 'Zend/Loader/PluginLoader.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Inflector implements Zend_Filter_Interface
 {
     /**

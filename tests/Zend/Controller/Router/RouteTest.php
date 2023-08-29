@@ -35,6 +35,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
 {
     /**

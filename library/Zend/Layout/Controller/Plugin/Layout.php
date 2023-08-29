@@ -27,6 +27,7 @@ require_once 'Zend/Controller/Plugin/Abstract.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Layout_Controller_Plugin_Layout extends Zend_Controller_Plugin_Abstract
 {
     protected $_layoutActionHelper;

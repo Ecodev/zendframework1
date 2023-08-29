@@ -22,6 +22,7 @@
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class Zend_Loader_TestAsset_StandardAutoloader extends Zend_Loader_StandardAutoloader
 {
     /**

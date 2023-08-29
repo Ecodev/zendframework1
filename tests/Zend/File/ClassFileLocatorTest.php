@@ -23,6 +23,7 @@ require_once 'Zend/File/ClassFileLocator.php';
  *
  * @group      Zend_File
  */
+#[AllowDynamicProperties]
 class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstructorThrowsInvalidArgumentExceptionForInvalidStringDirectory()

@@ -24,6 +24,7 @@ require_once __DIR__ . '/../FooController.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Admin_FooBarController extends FooController
 {
     /**

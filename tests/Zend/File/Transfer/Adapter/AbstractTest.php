@@ -31,6 +31,7 @@ require_once 'Zend/Validate/File/Extension.php';
  *
  * @group      Zend_File
  */
+#[AllowDynamicProperties]
 class Zend_File_Transfer_Adapter_AbstractTest extends \PHPUnit\Framework\TestCase
 {
     /**

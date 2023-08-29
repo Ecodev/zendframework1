@@ -32,6 +32,7 @@ require_once 'Zend/View/Helper/HtmlElement.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Helper_HtmlElement implements Zend_View_Helper_Navigation_Helper
 {
     /**

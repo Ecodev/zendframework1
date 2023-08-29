@@ -22,6 +22,7 @@ namespace ZendTest\Loader\TestAsset\TestPlugins;
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class ZendTest_Loader_TestAsset_TestPlugins_Baz
 {
 }

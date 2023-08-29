@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendLayoutFunctionalTestErrorController extends Zend_Controller_Action
 {
     public function errorAction()

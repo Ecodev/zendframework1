@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Boolean.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
 {
     /**

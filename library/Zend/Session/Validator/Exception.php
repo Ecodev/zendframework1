@@ -29,6 +29,7 @@ require_once 'Zend/Session/Exception.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Session_Validator_Exception extends Zend_Session_Exception
 {
 }

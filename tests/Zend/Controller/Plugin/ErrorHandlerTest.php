@@ -34,6 +34,7 @@ require_once 'Zend/Controller/Front.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Plugin_ErrorHandlerTest extends \PHPUnit\Framework\TestCase
 {
     /**

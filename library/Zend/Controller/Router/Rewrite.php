@@ -30,6 +30,7 @@ require_once 'Zend/Controller/Router/Route.php';
  *
  * @see        http://manuals.rubyonrails.com/read/chapter/65
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
 {
     /**

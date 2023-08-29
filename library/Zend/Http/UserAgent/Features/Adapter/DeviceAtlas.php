@@ -27,6 +27,7 @@ require_once 'Zend/Http/UserAgent/Features/Adapter.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_UserAgent_Features_Adapter_DeviceAtlas implements Zend_Http_UserAgent_Features_Adapter
 {
     /**

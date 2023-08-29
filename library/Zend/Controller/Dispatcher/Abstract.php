@@ -23,6 +23,7 @@ require_once 'Zend/Controller/Dispatcher/Interface.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Dispatcher_Interface
 {
     /**

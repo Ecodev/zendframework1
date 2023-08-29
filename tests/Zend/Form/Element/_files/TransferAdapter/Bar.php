@@ -24,6 +24,7 @@ use Zend_File_Transfer_Adapter_Abstract;
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Bar extends Zend_File_Transfer_Adapter_Abstract
 {
     public $received = false;

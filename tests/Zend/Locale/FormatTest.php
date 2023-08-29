@@ -27,6 +27,7 @@ require_once 'Zend/Locale/Format.php';
  *
  * @group      Zend_Locale
  */
+#[AllowDynamicProperties]
 class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
 {
     /**

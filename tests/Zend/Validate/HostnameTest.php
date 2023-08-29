@@ -27,6 +27,7 @@ require_once 'Zend/Validate/Hostname.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
 {
     /**

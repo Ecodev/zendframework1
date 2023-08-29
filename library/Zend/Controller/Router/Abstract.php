@@ -26,6 +26,7 @@ require_once 'Zend/Controller/Router/Interface.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Controller_Router_Abstract implements Zend_Controller_Router_Interface
 {
     /**

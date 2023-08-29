@@ -27,6 +27,7 @@ require_once 'Zend/Loader/Autoloader/Resource.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Application_Module_Autoloader extends Zend_Loader_Autoloader_Resource
 {
     /**

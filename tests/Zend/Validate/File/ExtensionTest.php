@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/Extension.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_ExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /**

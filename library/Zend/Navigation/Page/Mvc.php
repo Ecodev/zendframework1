@@ -40,6 +40,7 @@ require_once 'Zend/Controller/Front.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
 {
     /**

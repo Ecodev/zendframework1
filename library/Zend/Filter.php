@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Interface.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter implements Zend_Filter_Interface
 {
     public const CHAIN_APPEND = 'append';

@@ -35,6 +35,7 @@ require_once 'Zend/Cache/Manager.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_Cache extends Zend_Controller_Action_Helper_Abstract
 {
     /**

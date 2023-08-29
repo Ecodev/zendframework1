@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/SeparatorToDash.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_SeparatorToDashTest extends \PHPUnit\Framework\TestCase
 {
     /**

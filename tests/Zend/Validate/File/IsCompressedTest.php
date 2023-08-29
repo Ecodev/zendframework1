@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/IsCompressed.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_IsCompressedTest extends \PHPUnit\Framework\TestCase
 {
     /**

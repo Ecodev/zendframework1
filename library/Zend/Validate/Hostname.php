@@ -39,6 +39,7 @@ require_once 'Zend/Validate/Ip.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate_Hostname extends Zend_Validate_Abstract
 {
     public const CANNOT_DECODE_PUNYCODE = 'hostnameCannotDecodePunycode';

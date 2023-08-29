@@ -25,6 +25,7 @@ require_once 'Zend/Validate/Interface.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate implements Zend_Validate_Interface
 {
     /**

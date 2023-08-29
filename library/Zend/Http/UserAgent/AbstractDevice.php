@@ -21,6 +21,7 @@ require_once 'Zend/Http/UserAgent/Device.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Http_UserAgent_AbstractDevice implements Zend_Http_UserAgent_Device
 {
     /**

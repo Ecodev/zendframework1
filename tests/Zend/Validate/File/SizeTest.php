@@ -27,6 +27,7 @@ require_once 'Zend/Validate/File/Size.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_SizeTest extends \PHPUnit\Framework\TestCase
 {
     /**

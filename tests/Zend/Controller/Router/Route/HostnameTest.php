@@ -29,6 +29,7 @@ require_once 'Zend/Controller/Request/Http.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -231,6 +232,7 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
 /**
  * Zend_Controller_RouterTest_Request_Stub - request object for route testing.
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_RewriteTest_Request_Stub extends Zend_Controller_Request_Abstract
 {
     protected $_host;

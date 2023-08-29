@@ -25,6 +25,7 @@ require_once 'Zend/Filter/StringToUpper.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_File_UpperCase extends Zend_Filter_StringToUpper
 {
     /**

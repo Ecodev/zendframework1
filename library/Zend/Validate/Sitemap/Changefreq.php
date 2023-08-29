@@ -29,6 +29,7 @@ require_once 'Zend/Validate/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate_Sitemap_Changefreq extends Zend_Validate_Abstract
 {
     /**

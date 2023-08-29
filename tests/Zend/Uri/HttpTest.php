@@ -32,6 +32,7 @@ require_once 'Zend/Uri/Http.php';
  *
  * @group      Zend_Uri
  */
+#[AllowDynamicProperties]
 class Zend_Uri_HttpTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp(): void

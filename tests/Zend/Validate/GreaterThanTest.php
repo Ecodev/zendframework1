@@ -27,6 +27,7 @@ require_once 'Zend/Validate/GreaterThan.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_GreaterThanTest extends \PHPUnit\Framework\TestCase
 {
     /**

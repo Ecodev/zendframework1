@@ -25,6 +25,7 @@ require_once 'Zend/Validate/Interface.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
 {
     /**#@+

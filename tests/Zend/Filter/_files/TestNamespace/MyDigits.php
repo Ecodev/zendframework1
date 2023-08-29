@@ -27,6 +27,7 @@ require_once 'Zend/Validate/Digits.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class TestNamespace_MyDigits extends Zend_Validate_Digits
 {
 }

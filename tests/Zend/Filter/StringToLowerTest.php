@@ -27,6 +27,7 @@ require_once 'Zend/Filter/StringToLower.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
 {
     /**

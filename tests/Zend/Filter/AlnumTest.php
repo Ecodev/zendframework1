@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Alnum.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_AlnumTest extends \PHPUnit\Framework\TestCase
 {
     /**

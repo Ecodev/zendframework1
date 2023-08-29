@@ -27,6 +27,7 @@ require_once 'Zend/Controller/Action/Helper/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action_Helper_Abstract
 {
     /**

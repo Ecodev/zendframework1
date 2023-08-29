@@ -29,6 +29,7 @@ require_once 'Zend/Controller/Action/Helper/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Controller_Action_Helper_AutoComplete_Abstract extends Zend_Controller_Action_Helper_Abstract
 {
     /**

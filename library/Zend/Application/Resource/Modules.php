@@ -27,6 +27,7 @@ require_once 'Zend/Application/Resource/ResourceAbstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Application_Resource_Modules extends Zend_Application_Resource_ResourceAbstract
 {
     /**

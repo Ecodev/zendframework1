@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/CamelCaseToSeparator.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_CamelCaseToDash extends Zend_Filter_Word_CamelCaseToSeparator
 {
     /**

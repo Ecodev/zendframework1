@@ -28,6 +28,7 @@ require_once 'Zend/Controller/Request/Http.php';
  *
  * @group      Zend_Navigation
  */
+#[AllowDynamicProperties]
 class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
 {
     /**

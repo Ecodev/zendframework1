@@ -23,6 +23,7 @@ require_once 'Zend/Http/UserAgent/Exception.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_UserAgent_Storage_Exception extends Zend_Http_UserAgent_Exception
 {
 }

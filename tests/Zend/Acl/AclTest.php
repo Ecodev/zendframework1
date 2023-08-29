@@ -26,6 +26,7 @@ require_once __DIR__ . '/_files/MockAssertion.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 {
     /**

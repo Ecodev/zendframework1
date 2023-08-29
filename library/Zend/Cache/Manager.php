@@ -26,6 +26,7 @@ require_once 'Zend/Cache.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Cache_Manager
 {
     /**

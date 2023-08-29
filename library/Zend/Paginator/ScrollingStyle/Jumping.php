@@ -29,6 +29,7 @@ require_once 'Zend/Paginator/ScrollingStyle/Interface.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Paginator_ScrollingStyle_Jumping implements Zend_Paginator_ScrollingStyle_Interface
 {
     /**

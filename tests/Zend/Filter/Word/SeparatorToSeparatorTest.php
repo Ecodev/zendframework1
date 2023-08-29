@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/SeparatorToSeparator.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_SeparatorToSeparatorTest extends \PHPUnit\Framework\TestCase
 {
     /**

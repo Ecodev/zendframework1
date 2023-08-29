@@ -32,6 +32,7 @@ require_once dirname(__FILE__, 3) . '/_files/HelperFlashMessengerController.php'
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -210,6 +211,7 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
  * Subclass of FlashMessenger action helper which exposes a reset method
  * to allow faking a second (fresh) request.
  */
+#[AllowDynamicProperties]
 class FlashMessengerControllerActionHelper extends Zend_Controller_Action_Helper_FlashMessenger
 {
     public function getName()

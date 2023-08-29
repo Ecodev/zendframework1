@@ -23,6 +23,7 @@ require_once 'Zend/Form/Decorator/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class My_Decorator_TableRow extends Zend_Form_Decorator_Abstract
 {
     /**

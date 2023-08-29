@@ -29,6 +29,7 @@ require_once 'Zend/Controller/Request/Simple.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\TestCase
 {
     /**

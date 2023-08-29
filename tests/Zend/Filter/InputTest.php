@@ -32,6 +32,7 @@ require_once 'Zend/Loader.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -20,6 +20,7 @@
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class TestPrefix_FallbackCase
 {
 }

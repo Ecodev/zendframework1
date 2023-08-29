@@ -26,6 +26,7 @@ require_once 'Zend/Controller/Dispatcher/Abstract.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Dispatcher_Standard extends Zend_Controller_Dispatcher_Abstract
 {
     /**

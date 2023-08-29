@@ -33,6 +33,7 @@ require_once 'Zend/Xml/Exception.php';
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Config_Xml extends Zend_Config
 {
     /**

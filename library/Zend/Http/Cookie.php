@@ -37,6 +37,7 @@ require_once 'Zend/Uri/Http.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_Cookie
 {
     /**

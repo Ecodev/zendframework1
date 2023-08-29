@@ -27,6 +27,7 @@ require_once 'Zend/Rest/Exception.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Rest_Client_Exception extends Zend_Rest_Exception
 {
 }

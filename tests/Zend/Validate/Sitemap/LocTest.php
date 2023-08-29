@@ -25,6 +25,7 @@ require_once 'Zend/Validate/Sitemap/Loc.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_Sitemap_LocTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -34,6 +34,7 @@ require_once 'Zend/Navigation.php';
  * @group      Zend_View
  * @group      Zend_View_Helper
  */
+#[AllowDynamicProperties]
 abstract class Zend_View_Helper_Navigation_TestAbstract extends \PHPUnit\Framework\TestCase
 {
     public const REGISTRY_KEY = 'Zend_Navigation';

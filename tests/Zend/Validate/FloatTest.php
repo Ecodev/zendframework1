@@ -27,6 +27,7 @@ require_once 'Zend/Validate/Float.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
 {
     /**

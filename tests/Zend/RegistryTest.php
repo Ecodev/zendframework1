@@ -27,6 +27,7 @@ require_once 'Zend/Registry.php';
  *
  * @group      Zend_Registry
  */
+#[AllowDynamicProperties]
 class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp(): void

@@ -31,6 +31,7 @@ require_once 'Zend/Controller/Request/HttpTestCase.php';
  *
  * @group      Zend_Rest
  */
+#[AllowDynamicProperties]
 class Zend_Rest_RouteTest extends \PHPUnit\Framework\TestCase
 {
     protected $_front;

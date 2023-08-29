@@ -25,6 +25,7 @@ require_once 'Zend/Validate/Sitemap/Changefreq.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_Sitemap_ChangefreqTest extends \PHPUnit\Framework\TestCase
 {
     /**

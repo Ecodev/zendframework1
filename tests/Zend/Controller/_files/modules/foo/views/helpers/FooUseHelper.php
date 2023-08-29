@@ -21,6 +21,7 @@ require_once 'Zend/View/Helper/Abstract.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Foo_View_Helper_FooUseHelper extends Zend_View_Helper_Abstract
 {
     public function fooUseHelper()

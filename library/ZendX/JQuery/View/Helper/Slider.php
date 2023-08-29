@@ -29,6 +29,7 @@ require_once 'ZendX/JQuery/View/Helper/UiWidget.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_View_Helper_Slider extends ZendX_JQuery_View_Helper_UiWidget
 {
     /**

@@ -30,6 +30,7 @@ require_once 'Zend/Paginator/SerializableLimitIterator.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Paginator_Adapter_Iterator implements Zend_Paginator_Adapter_Interface
 {
     /**

@@ -27,6 +27,7 @@ require_once 'Zend/Validate/Date.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_DateTest extends \PHPUnit\Framework\TestCase
 {
     /**

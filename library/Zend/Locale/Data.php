@@ -30,6 +30,7 @@ require_once 'Zend/Xml/Security.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Locale_Data
 {
     /**

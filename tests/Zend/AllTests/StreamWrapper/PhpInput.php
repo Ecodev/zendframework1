@@ -42,6 +42,7 @@
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_AllTests_StreamWrapper_PhpInput
 {
     protected static $_data;

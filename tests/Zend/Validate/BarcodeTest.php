@@ -29,6 +29,7 @@ require_once 'Zend/Validate/Barcode.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_BarcodeTest extends \PHPUnit\Framework\TestCase
 {
     /**

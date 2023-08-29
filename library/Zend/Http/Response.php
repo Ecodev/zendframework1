@@ -30,6 +30,7 @@ require_once 'Zend/Http/Header/HeaderValue.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_Response
 {
     /**

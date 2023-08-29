@@ -25,6 +25,7 @@ require_once 'Zend/Locale/Exception.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Locale_Math_Exception extends Zend_Locale_Exception
 {
     protected $op1;

@@ -27,6 +27,7 @@ require_once 'Zend/Filter/RealPath.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_RealPathTest extends \PHPUnit\Framework\TestCase
 {
     /**

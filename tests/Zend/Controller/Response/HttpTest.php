@@ -28,6 +28,7 @@ require_once 'Zend/Controller/Response/Exception.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Response
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 {
     /**

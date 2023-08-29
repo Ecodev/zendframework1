@@ -30,6 +30,7 @@ require_once 'Zend/Validate/Abstract.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 abstract class Zend_Captcha_Base extends Zend_Validate_Abstract implements Zend_Captcha_Adapter
 {
     /**

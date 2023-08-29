@@ -21,6 +21,7 @@ require_once 'Zend/Db/Table/Abstract.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class TestTable extends Zend_Db_Table_Abstract
 {
     protected $_primary = 'number';

@@ -21,6 +21,7 @@ require_once 'Zend/File/PhpClassFile.php';
  *
  * @license    New BSD {@link http://framework.zend.com/license/new-bsd}
  */
+#[AllowDynamicProperties]
 class Zend_File_ClassFileLocator extends FilterIterator
 {
     /**

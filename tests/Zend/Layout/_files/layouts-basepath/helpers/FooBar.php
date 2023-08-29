@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Layout_View_Helper_FooBar
 {
     public function fooBar()

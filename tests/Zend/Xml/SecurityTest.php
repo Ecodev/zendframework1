@@ -29,6 +29,7 @@ require_once 'Zend/Xml/Exception.php';
  *
  * @group      Zend_Xml
  */
+#[AllowDynamicProperties]
 class Zend_Xml_SecurityTest extends \PHPUnit\Framework\TestCase
 {
     public static function main()

@@ -21,6 +21,7 @@ require_once 'Zend/Controller/Action.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ErrorController extends Zend_Controller_Action
 {
     public function errorAction()

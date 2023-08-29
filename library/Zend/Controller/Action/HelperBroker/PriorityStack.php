@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Action_HelperBroker_PriorityStack implements IteratorAggregate, ArrayAccess, Countable
 {
     protected $_helpersByPriority = [];

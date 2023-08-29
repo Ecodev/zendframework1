@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/Md5.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_Md5Test extends \PHPUnit\Framework\TestCase
 {
     /**

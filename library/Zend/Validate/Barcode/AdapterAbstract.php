@@ -25,6 +25,7 @@ require_once 'Zend/Validate/Barcode/AdapterInterface.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Validate_Barcode_AdapterAbstract implements Zend_Validate_Barcode_AdapterInterface
 {
     /**

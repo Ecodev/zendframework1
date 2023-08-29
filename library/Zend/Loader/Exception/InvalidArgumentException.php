@@ -19,6 +19,7 @@ require_once __DIR__ . '/../Exception.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Loader_Exception_InvalidArgumentException extends Zend_Loader_Exception
 {
 }

@@ -27,6 +27,7 @@ require_once 'Zend/Controller/Router/Route/Abstract.php';
  *
  * @see        http://manuals.rubyonrails.com/read/chapter/65
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route_Abstract
 {
     /**

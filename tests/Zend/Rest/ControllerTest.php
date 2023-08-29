@@ -29,6 +29,7 @@ require_once 'Zend/Controller/Response/HttpTestCase.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Rest_TestController extends Zend_Rest_Controller
 {
     public $testValue = '';
@@ -75,6 +76,7 @@ class Zend_Rest_TestController extends Zend_Rest_Controller
  *
  * @group      Zend_Rest
  */
+#[AllowDynamicProperties]
 class Zend_Rest_ControllerTest extends \PHPUnit\Framework\TestCase
 {
     protected $_testController;

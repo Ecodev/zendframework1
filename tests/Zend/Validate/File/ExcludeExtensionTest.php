@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/ExcludeExtension.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_ExcludeExtensionTest extends \PHPUnit\Framework\TestCase
 {
     /**

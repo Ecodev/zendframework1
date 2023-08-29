@@ -27,6 +27,7 @@ require_once 'Zend/Validate/Ip.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_IpTest extends \PHPUnit\Framework\TestCase
 {
     /**

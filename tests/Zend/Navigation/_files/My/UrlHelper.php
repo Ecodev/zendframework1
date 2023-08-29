@@ -21,6 +21,7 @@ require_once 'Zend/Controller/Action/Helper/Url.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class My_UrlHelper extends Zend_Controller_Action_Helper_Url
 {
     public const RETURN_URL = 'spotify:track:2nd6CTjR9zjHGT0QtpfLHe';

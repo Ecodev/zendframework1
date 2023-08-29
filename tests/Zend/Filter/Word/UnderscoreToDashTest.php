@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/UnderscoreToDash.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_UnderscoreToDashTest extends \PHPUnit\Framework\TestCase
 {
     /**

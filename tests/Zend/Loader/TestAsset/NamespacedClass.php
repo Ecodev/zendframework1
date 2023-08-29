@@ -24,6 +24,7 @@ namespace Zend\UnusualNamespace;
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class NamespacedClass
 {
 }

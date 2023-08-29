@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Compress/CompressInterface.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Compress_Lzf implements Zend_Filter_Compress_CompressInterface
 {
     /**

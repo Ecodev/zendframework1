@@ -25,6 +25,7 @@ require_once 'Zend/Http/Client.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Service_Abstract
 {
     /**

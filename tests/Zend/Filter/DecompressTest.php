@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Decompress.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_DecompressTest extends \PHPUnit\Framework\TestCase
 {
     /**

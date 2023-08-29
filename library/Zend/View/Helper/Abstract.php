@@ -25,6 +25,7 @@ require_once 'Zend/View/Helper/Interface.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_View_Helper_Abstract implements Zend_View_Helper_Interface
 {
     /**

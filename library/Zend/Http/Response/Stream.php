@@ -25,6 +25,7 @@
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_Response_Stream extends Zend_Http_Response
 {
     /**

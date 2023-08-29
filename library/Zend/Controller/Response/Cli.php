@@ -29,6 +29,7 @@ require_once 'Zend/Controller/Response/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Response_Cli extends Zend_Controller_Response_Abstract
 {
     /**

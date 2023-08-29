@@ -25,6 +25,7 @@ require_once 'Zend/Http/Exception.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_Header_Exception_RuntimeException extends Zend_Http_Exception
 {
 }

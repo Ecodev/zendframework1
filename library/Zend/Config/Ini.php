@@ -25,6 +25,7 @@ require_once 'Zend/Config.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Config_Ini extends Zend_Config
 {
     /**

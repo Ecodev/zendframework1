@@ -30,6 +30,7 @@ require_once 'Zend/Uri.php';
  *
  * @uses Zend_Controller_Request_Abstract
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
 {
     /**

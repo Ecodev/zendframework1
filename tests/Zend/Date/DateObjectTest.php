@@ -27,6 +27,7 @@ require_once 'Zend/Date.php';
  *
  * @group      Zend_Date
  */
+#[AllowDynamicProperties]
 class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp(): void

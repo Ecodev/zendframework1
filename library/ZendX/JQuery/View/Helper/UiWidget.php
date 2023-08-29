@@ -34,6 +34,7 @@ require_once 'ZendX/JQuery.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class ZendX_JQuery_View_Helper_UiWidget extends Zend_View_Helper_HtmlElement
 {
     /**

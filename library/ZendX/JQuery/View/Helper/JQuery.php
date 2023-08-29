@@ -44,6 +44,7 @@ require_once 'ZendX/JQuery/View/Helper/JQuery/Container.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
 {
     /**

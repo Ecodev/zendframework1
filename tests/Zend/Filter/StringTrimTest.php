@@ -27,6 +27,7 @@ require_once 'Zend/Filter/StringTrim.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_StringTrimTest extends \PHPUnit\Framework\TestCase
 {
     /**

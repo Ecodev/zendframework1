@@ -40,6 +40,7 @@ require_once 'Zend/Http/Client/Adapter/Interface.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_Client_Adapter_Test implements Zend_Http_Client_Adapter_Interface
 {
     /**

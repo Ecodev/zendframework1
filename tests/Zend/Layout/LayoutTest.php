@@ -32,6 +32,7 @@ require_once 'Zend/View.php';
  *
  * @group      Zend_Layout
  */
+#[AllowDynamicProperties]
 class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -470,6 +471,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
 /**
  * Zend_Layout extension to allow resetting mvcInstance static member.
  */
+#[AllowDynamicProperties]
 class Zend_Layout_LayoutTest_Override extends Zend_Layout
 {
     public static function resetMvcInstance()

@@ -29,6 +29,7 @@ require_once 'Zend/Session/Validator/Interface.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Session_Validator_Abstract implements Zend_Session_Validator_Interface
 {
     /**

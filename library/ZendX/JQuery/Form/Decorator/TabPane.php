@@ -27,6 +27,7 @@ require_once 'UiWidgetPane.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_Form_Decorator_TabPane extends ZendX_JQuery_Form_Decorator_UiWidgetPane
 {
     protected $_helper = 'tabPane';

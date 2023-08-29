@@ -25,6 +25,7 @@ require_once 'Zend/Validate/Sitemap/Lastmod.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_Sitemap_LastmodTest extends \PHPUnit\Framework\TestCase
 {
     /**

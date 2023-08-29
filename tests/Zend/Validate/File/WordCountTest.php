@@ -27,6 +27,7 @@ require_once 'Zend/Validate/File/WordCount.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_WordCountTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -27,6 +27,7 @@ require_once 'Zend/Config.php';
  *
  * @group      Zend_Config
  */
+#[AllowDynamicProperties]
 class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
 {
     protected $_iniFileConfig;

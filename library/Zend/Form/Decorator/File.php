@@ -33,6 +33,7 @@ require_once 'Zend/File/Transfer/Adapter/Http.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_File extends Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Marker_File_Interface
 {
     /**

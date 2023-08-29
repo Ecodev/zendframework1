@@ -45,6 +45,7 @@ require_once 'Zend/Acl/Resource.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Acl
 {
     /**

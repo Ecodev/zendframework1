@@ -25,6 +25,7 @@ require_once 'Zend/Locale/Data.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Locale_Format
 {
     public const STANDARD = 'auto';

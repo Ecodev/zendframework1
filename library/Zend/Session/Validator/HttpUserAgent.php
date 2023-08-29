@@ -29,6 +29,7 @@ require_once 'Zend/Session/Validator/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Session_Validator_HttpUserAgent extends Zend_Session_Validator_Abstract
 {
     /**

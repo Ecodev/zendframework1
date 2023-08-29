@@ -28,6 +28,7 @@ require_once 'Zend/Locale/Math.php';
 /**
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Date extends Zend_Date_DateObject
 {
     private $_locale;

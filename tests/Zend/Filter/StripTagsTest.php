@@ -29,6 +29,7 @@ require_once 'Zend/Filter/StripTags.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_StripTagsTest extends \PHPUnit\Framework\TestCase
 {
     /**

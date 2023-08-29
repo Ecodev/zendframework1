@@ -27,6 +27,7 @@ require_once 'Zend/Validate/File/Exists.php';
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_NotExists extends Zend_Validate_File_Exists
 {
     /**

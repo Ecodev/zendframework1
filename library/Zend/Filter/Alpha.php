@@ -29,6 +29,7 @@ require_once 'Zend/Locale.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Alpha implements Zend_Filter_Interface
 {
     /**

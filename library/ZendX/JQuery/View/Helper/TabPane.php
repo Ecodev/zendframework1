@@ -25,6 +25,7 @@ require_once 'UiWidgetPane.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_View_Helper_TabPane extends ZendX_JQuery_View_Helper_UiWidgetPane
 {
     /**

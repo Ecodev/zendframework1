@@ -22,6 +22,7 @@
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_View_Helper_Placeholder_Container_Abstract extends ArrayObject
 {
     /**

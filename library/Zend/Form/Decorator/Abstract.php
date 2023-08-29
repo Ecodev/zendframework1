@@ -25,6 +25,7 @@ require_once 'Zend/Form/Decorator/Interface.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 abstract class Zend_Form_Decorator_Abstract implements Zend_Form_Decorator_Interface
 {
     /**

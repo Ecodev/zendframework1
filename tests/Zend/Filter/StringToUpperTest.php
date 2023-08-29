@@ -27,6 +27,7 @@ require_once 'Zend/Filter/StringToUpper.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_StringToUpperTest extends \PHPUnit\Framework\TestCase
 {
     /**

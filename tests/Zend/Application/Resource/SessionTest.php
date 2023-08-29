@@ -27,6 +27,7 @@ require_once 'Zend/Session/SaveHandler/Interface.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 {
     public $resource;

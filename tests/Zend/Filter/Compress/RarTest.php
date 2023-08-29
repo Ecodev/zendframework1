@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Compress/Rar.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Compress_RarTest extends \PHPUnit\Framework\TestCase
 {
     /**

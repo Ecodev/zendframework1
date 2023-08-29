@@ -31,6 +31,7 @@ require_once 'Zend/Paginator/ScrollingStyle/Sliding.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Paginator_ScrollingStyle_Elastic extends Zend_Paginator_ScrollingStyle_Sliding
 {
     /**

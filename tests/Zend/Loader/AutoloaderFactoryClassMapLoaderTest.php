@@ -21,6 +21,7 @@ require_once 'Zend/Loader/AutoloaderFactory.php';
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zabt_Resource_Autoloaded extends Zend_Application_Resource_ResourceAbstract
 {
     public function init()

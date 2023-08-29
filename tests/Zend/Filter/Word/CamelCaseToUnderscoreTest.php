@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/CamelCaseToUnderscore.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_CamelCaseToUnderscoreTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -21,6 +21,7 @@ require_once 'Zend/Paginator/Adapter/Interface.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zf4207 extends ArrayObject implements Zend_Paginator_Adapter_Interface
 {
     public function count(): int

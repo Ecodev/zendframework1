@@ -27,6 +27,7 @@ require_once 'Zend/Locale/Data.php';
  *
  * @group      Zend_Locale
  */
+#[AllowDynamicProperties]
 class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
 {
     private $_cache;

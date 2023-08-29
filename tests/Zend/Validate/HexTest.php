@@ -27,6 +27,7 @@ require_once 'Zend/Validate/Hex.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_HexTest extends \PHPUnit\Framework\TestCase
 {
     /**

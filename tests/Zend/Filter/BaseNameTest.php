@@ -27,6 +27,7 @@ require_once 'Zend/Filter/BaseName.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_BaseNameTest extends \PHPUnit\Framework\TestCase
 {
     /**

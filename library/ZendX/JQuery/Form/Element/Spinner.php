@@ -27,6 +27,7 @@ require_once 'UiWidget.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_Form_Element_Spinner extends ZendX_JQuery_Form_Element_UiWidget
 {
     public $helper = 'spinner';

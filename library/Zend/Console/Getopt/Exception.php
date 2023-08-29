@@ -25,6 +25,7 @@ require_once 'Zend/Exception.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Console_Getopt_Exception extends Zend_Exception
 {
     /**

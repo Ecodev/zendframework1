@@ -21,6 +21,7 @@ require_once 'Zend/View/Helper/ServerUrl.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class My_SchemeHelper extends Zend_View_Helper_ServerUrl
 {
     public const RETURN_URL = 'spotify:track:2nd6CTjR9zjHGT0QtpfLHe';

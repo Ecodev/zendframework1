@@ -29,6 +29,7 @@ require_once 'Zend/Exception.php';
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Text_Exception extends Zend_Exception
 {
 }

@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/IsImage.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_IsImageTest extends \PHPUnit\Framework\TestCase
 {
     /**

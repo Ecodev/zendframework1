@@ -25,6 +25,7 @@ require_once 'Zend/Cache/Core.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Cache_Frontend_Page extends Zend_Cache_Core
 {
     /**

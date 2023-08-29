@@ -32,6 +32,7 @@ require_once 'Zend/Translate/Plural.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Translate_Adapter
 {
     /**

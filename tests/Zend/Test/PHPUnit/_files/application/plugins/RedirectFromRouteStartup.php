@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Application_Plugin_RedirectFromRouteStartup extends Zend_Controller_Plugin_Abstract
 {
     public function routeStartup(Zend_Controller_Request_Abstract $r)

@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Null.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_NullTest extends \PHPUnit\Framework\TestCase
 {
     /**

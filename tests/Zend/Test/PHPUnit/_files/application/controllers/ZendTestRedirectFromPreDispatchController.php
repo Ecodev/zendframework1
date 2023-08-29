@@ -20,6 +20,7 @@
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendTestRedirectFromPreDispatchController extends Zend_Controller_Action
 {
     public function preDispatch()

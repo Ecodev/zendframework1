@@ -20,6 +20,7 @@
  *
  * @license    New BSD {@link http://framework.zend.com/license/new-bsd}
  */
+#[AllowDynamicProperties]
 class Zend_File_PhpClassFile extends SplFileInfo
 {
     /**

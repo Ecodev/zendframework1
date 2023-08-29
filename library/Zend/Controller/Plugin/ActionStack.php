@@ -30,6 +30,7 @@ require_once 'Zend/Registry.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
 {
     /**

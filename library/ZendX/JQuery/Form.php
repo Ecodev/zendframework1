@@ -23,6 +23,7 @@ require_once 'Zend/Form.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_Form extends Zend_Form
 {
     /**

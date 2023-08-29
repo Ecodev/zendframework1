@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/CamelCaseToDash.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_CamelCaseToDashTest extends \PHPUnit\Framework\TestCase
 {
     /**

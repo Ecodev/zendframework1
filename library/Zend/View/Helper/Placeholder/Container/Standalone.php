@@ -28,6 +28,7 @@ require_once 'Zend/View/Helper/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_View_Helper_Abstract implements IteratorAggregate, Countable, ArrayAccess
 {
     /**

@@ -27,6 +27,7 @@ require_once 'UiWidgetContainer.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_Form_Decorator_TabContainer extends ZendX_JQuery_Form_Decorator_UiWidgetContainer
 {
     protected $_helper = 'tabContainer';

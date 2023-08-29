@@ -27,6 +27,7 @@ require_once 'Zend/Validate/Iban.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_IbanTest extends \PHPUnit\Framework\TestCase
 {
     /**

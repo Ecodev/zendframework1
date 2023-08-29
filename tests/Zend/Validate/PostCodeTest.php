@@ -27,6 +27,7 @@ require_once 'Zend/Validate/PostCode.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
 {
     /**

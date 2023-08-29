@@ -28,6 +28,7 @@ require_once 'Zend/Session/Namespace.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_UserAgent_Storage_Session implements Zend_Http_UserAgent_Storage
 {
     /**

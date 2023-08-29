@@ -27,6 +27,7 @@ require_once 'Zend/Console/Getopt.php';
  *
  * @group      Zend_Console_Getopt
  */
+#[AllowDynamicProperties]
 class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
 {
     public function setUp(): void

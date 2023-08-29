@@ -27,6 +27,7 @@ require_once 'Zend/Validate/File/Size.php';
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_FilesSize extends Zend_Validate_File_Size
 {
     /**

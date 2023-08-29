@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/MimeType.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**

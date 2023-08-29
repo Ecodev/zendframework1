@@ -28,6 +28,7 @@ require_once 'Zend/Registry.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Plugin_ActionStackTest extends \PHPUnit\Framework\TestCase
 {
     public $key = \Zend_Controller_Plugin_ActionStack::class;

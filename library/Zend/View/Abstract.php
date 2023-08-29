@@ -31,6 +31,7 @@ require_once 'Zend/View/Interface.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_View_Abstract implements Zend_View_Interface
 {
     /**

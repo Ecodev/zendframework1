@@ -25,6 +25,7 @@ require_once 'Zend/Controller/Plugin/ErrorHandler.php';
  *
  * @group      Zend_Layout
  */
+#[AllowDynamicProperties]
 class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
 {
     /**

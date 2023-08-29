@@ -27,6 +27,7 @@ require_once 'Zend/Navigation/Container.php';
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Navigation extends Zend_Navigation_Container
 {
     /**

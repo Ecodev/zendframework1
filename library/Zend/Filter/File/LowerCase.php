@@ -25,6 +25,7 @@ require_once 'Zend/Filter/StringToLower.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_File_LowerCase extends Zend_Filter_StringToLower
 {
     /**

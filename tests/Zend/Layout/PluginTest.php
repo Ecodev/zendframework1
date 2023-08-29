@@ -30,6 +30,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  *
  * @group      Zend_Layout
  */
+#[AllowDynamicProperties]
 class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -213,6 +214,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
 /**
  * Zend_Layout extension to allow resetting MVC instance.
  */
+#[AllowDynamicProperties]
 class Zend_Layout_PluginTest_Layout extends Zend_Layout
 {
     public static function resetMvcInstance()

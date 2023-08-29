@@ -21,6 +21,7 @@ require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Application_Resource_TestAsset_ViewRenderer extends Zend_Controller_Action_Helper_ViewRenderer
 {
 }

@@ -28,6 +28,7 @@ require_once 'Zend/Controller/Response/Cli.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Plugin
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Plugin_BrokerTest extends \PHPUnit\Framework\TestCase
 {
     public $controller;

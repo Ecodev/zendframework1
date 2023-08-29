@@ -22,6 +22,7 @@
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class Zend_UnusualNamespace_ClassMappedClass
 {
     public $options;

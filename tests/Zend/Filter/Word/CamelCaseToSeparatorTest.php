@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/CamelCaseToSeparator.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_CamelCaseToSeparatorTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -20,6 +20,7 @@
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class ZendTest_UnusualPrefix_PrefixedClass
 {
 }

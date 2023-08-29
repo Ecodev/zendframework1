@@ -29,6 +29,7 @@ require_once 'Zend/Validate/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Validate_Db_Abstract extends Zend_Validate_Abstract
 {
     /**

@@ -27,6 +27,7 @@ require_once 'Zend/Controller/Router/Route/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_Route_Static extends Zend_Controller_Router_Route_Abstract
 {
     /**

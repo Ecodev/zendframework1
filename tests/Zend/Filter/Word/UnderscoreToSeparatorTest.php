@@ -25,6 +25,7 @@ require_once 'Zend/Filter/Word/UnderscoreToSeparator.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Word_UnderscoreToSeparatorTest extends \PHPUnit\Framework\TestCase
 {
     /**

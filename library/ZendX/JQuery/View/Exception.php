@@ -23,6 +23,7 @@ require_once 'ZendX/JQuery/Exception.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_View_Exception extends ZendX_JQuery_Exception
 {
 }

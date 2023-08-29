@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Dir.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_DirTest extends \PHPUnit\Framework\TestCase
 {
     /**

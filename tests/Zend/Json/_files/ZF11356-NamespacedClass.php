@@ -26,6 +26,7 @@ use ArrayIterator;
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class NamespacedClass extends ArrayIterator
 {
 }

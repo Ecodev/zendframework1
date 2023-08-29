@@ -27,6 +27,7 @@ require_once 'Zend/Filter/Alpha.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_AlphaTest extends \PHPUnit\Framework\TestCase
 {
     /**

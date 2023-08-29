@@ -25,6 +25,7 @@ require_once 'Zend/Form.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 class Zend_Form_SubForm extends Zend_Form
 {
     /**

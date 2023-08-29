@@ -28,6 +28,7 @@ require_once 'Zend/Json.php';
  *
  * @group      Zend_Json
  */
+#[AllowDynamicProperties]
 class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
 {
     /**

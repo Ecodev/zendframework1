@@ -24,6 +24,7 @@ require_once 'Zend/View.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ObController extends Zend_Controller_Action
 {
     /**

@@ -29,6 +29,7 @@ require_once 'Zend/Validate/StringLength.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_MessageTest extends \PHPUnit\Framework\TestCase
 {
     /**

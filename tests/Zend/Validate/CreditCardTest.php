@@ -27,6 +27,7 @@ require_once 'Zend/Validate/CreditCard.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
 {
     /**

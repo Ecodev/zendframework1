@@ -30,6 +30,7 @@ require_once 'Zend/Rest/Client/Result.php';
  * @group      Zend_Rest
  * @group      Zend_Rest_Result
  */
+#[AllowDynamicProperties]
 class Zend_Rest_ResultTest extends \PHPUnit\Framework\TestCase
 {
     static $path;

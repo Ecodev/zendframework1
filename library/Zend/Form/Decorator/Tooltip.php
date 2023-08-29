@@ -27,6 +27,7 @@ require_once 'Zend/Form/Decorator/Abstract.php';
  *
  * @version    $Id: Tooltip.php$
  */
+#[AllowDynamicProperties]
 class Zend_Form_Decorator_Tooltip extends Zend_Form_Decorator_Abstract
 {
     /**

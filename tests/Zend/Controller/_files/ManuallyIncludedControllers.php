@@ -23,6 +23,7 @@ require_once 'Zend/Controller/Action.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class IncludedController extends Zend_Controller_Action
 {
     public function indexAction()

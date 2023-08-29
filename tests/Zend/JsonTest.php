@@ -42,6 +42,7 @@ require_once 'Zend/Json/Decoder.php';
  *
  * @group      Zend_Json
  */
+#[AllowDynamicProperties]
 class Zend_JsonTest extends \PHPUnit\Framework\TestCase
 {
     private $_originalUseBuiltinEncoderDecoderValue;
@@ -921,6 +922,7 @@ class Zend_JsonTest extends \PHPUnit\Framework\TestCase
 /**
  * Zend_JsonTest_Item: test item for use with testZf461().
  */
+#[AllowDynamicProperties]
 class Zend_JsonTest_Item
 {
 }
@@ -928,6 +930,7 @@ class Zend_JsonTest_Item
 /**
  * Zend_JsonTest_Object: test class for encoding classes.
  */
+#[AllowDynamicProperties]
 class Zend_JsonTest_Object
 {
     public const FOO = 'bar';
@@ -976,6 +979,7 @@ class ToJsonClass
  *
  * @see ZF-11167
  */
+#[AllowDynamicProperties]
 class ZF11167_ToArrayClass
 {
     private string $_firstName = 'John';
@@ -1001,6 +1005,7 @@ class ZF11167_ToArrayClass
  *
  * @see ZF-11167
  */
+#[AllowDynamicProperties]
 class ZF11167_ToArrayToJsonClass extends ZF11167_ToArrayClass
 {
     public function toJson()
@@ -1012,6 +1017,7 @@ class ZF11167_ToArrayToJsonClass extends ZF11167_ToArrayClass
 /**
  * ISSUE  ZF-4946.
  */
+#[AllowDynamicProperties]
 class Zend_Json_ToJsonWithExpr
 {
     private string $_string = 'text';
@@ -1035,6 +1041,7 @@ class Zend_Json_ToJsonWithExpr
 /**
  * @see ZF-12347
  */
+#[AllowDynamicProperties]
 class ZF12347_IteratorAggregate implements IteratorAggregate
 {
     protected $array = [

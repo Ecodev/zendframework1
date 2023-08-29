@@ -29,6 +29,7 @@ require_once 'Zend/Application/Exception.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Application_Resource_Exception extends Zend_Application_Exception
 {
 }

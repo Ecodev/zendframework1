@@ -25,6 +25,7 @@ require_once 'Zend/View/Helper/Abstract.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_View_Helper_HtmlElement extends Zend_View_Helper_Abstract
 {
     /**

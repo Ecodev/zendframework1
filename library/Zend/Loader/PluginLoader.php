@@ -28,6 +28,7 @@ require_once 'Zend/Loader.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Loader_PluginLoader implements Zend_Loader_PluginLoader_Interface
 {
     /**

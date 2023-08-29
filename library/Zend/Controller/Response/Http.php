@@ -27,6 +27,7 @@ require_once 'Zend/Controller/Response/Abstract.php';
  *
  * @uses Zend_Controller_Response_Abstract
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Response_Http extends Zend_Controller_Response_Abstract
 {
 }

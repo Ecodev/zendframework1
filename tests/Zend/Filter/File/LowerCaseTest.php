@@ -27,6 +27,7 @@ require_once 'Zend/Filter/File/LowerCase.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_File_LowerCaseTest extends \PHPUnit\Framework\TestCase
 {
     /**

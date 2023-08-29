@@ -35,6 +35,7 @@ require_once 'Zend/Controller/Front.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 abstract class Zend_Controller_Action implements Zend_Controller_Action_Interface
 {
     /**

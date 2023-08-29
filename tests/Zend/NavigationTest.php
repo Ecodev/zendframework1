@@ -27,6 +27,7 @@ require_once 'Zend/Navigation.php';
  *
  * @group      Zend_Navigation
  */
+#[AllowDynamicProperties]
 class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
 {
     private ?\Zend_Navigation $_navigation;

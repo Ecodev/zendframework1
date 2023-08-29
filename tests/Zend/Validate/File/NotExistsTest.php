@@ -29,6 +29,7 @@ require_once 'Zend/Validate/File/NotExists.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_NotExistsTest extends \PHPUnit\Framework\TestCase
 {
     /**

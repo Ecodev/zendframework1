@@ -26,6 +26,7 @@ require_once 'Zend/Filter/Interface.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Filter_Dir implements Zend_Filter_Interface
 {
     /**

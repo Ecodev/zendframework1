@@ -27,6 +27,7 @@ require_once 'Zend/Validate/File/Count.php';
  *
  * @group      Zend_Validate
  */
+#[AllowDynamicProperties]
 class Zend_Validate_File_CountTest extends \PHPUnit\Framework\TestCase
 {
     /**

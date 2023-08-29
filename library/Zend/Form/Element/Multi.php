@@ -25,6 +25,7 @@ require_once 'Zend/Form/Element/Xhtml.php';
  *
  * @version    $Id$
  */
+#[AllowDynamicProperties]
 abstract class Zend_Form_Element_Multi extends Zend_Form_Element_Xhtml
 {
     /**

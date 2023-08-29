@@ -23,6 +23,7 @@ require_once 'Zend/Form/Element.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery_Form_Element_UiWidget extends Zend_Form_Element
 {
     /**

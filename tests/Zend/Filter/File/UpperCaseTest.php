@@ -27,6 +27,7 @@ require_once 'Zend/Filter/File/UpperCase.php';
  *
  * @group      Zend_Filter
  */
+#[AllowDynamicProperties]
 class Zend_Filter_File_UpperCaseTest extends \PHPUnit\Framework\TestCase
 {
     /**

@@ -32,6 +32,7 @@ require_once 'Zend/Controller/Response/Http.php';
  * @group      Zend_Controller_Action
  * @group      Zend_Controller_Action_Helper
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -560,6 +561,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
 /**
  * Test controller for use with redirector tests.
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Action_Helper_Redirector_TestController extends Zend_Controller_Action
 {
 }

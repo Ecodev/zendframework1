@@ -32,6 +32,7 @@ require_once 'Zend/Translate/Plural.php';
  *
  * @group      Zend_Translate
  */
+#[AllowDynamicProperties]
 class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
 {
     /**

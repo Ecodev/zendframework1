@@ -20,6 +20,7 @@
  *
  * @group      Loader
  */
+#[AllowDynamicProperties]
 class ZendTest_Loader_TestAsset_TestPlugins_Bar
 {
 }

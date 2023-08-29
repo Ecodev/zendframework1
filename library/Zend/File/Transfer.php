@@ -27,6 +27,7 @@ require_once 'Zend/Loader.php';
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_File_Transfer
 {
     /**

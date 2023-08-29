@@ -40,6 +40,7 @@ require_once 'Zend/Session/SaveHandler/Interface.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Session extends Zend_Session_Abstract
 {
     /**

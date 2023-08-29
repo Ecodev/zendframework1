@@ -31,6 +31,7 @@ require_once 'Zend/Paginator/Adapter/Array.php';
  *
  * @group      Zend_Paginator
  */
+#[AllowDynamicProperties]
 class Zend_Paginator_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 {
     private ?\Zend_Paginator_Adapter_Array $_adapter;

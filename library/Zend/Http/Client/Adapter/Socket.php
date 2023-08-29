@@ -37,6 +37,7 @@ require_once 'Zend/Http/Client/Adapter/Stream.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Http_Client_Adapter_Socket implements Zend_Http_Client_Adapter_Interface, Zend_Http_Client_Adapter_Stream
 {
     /**

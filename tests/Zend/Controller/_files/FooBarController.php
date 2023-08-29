@@ -23,6 +23,7 @@ require_once 'Zend/Controller/Action.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class FooBarController extends Zend_Controller_Action
 {
     /**

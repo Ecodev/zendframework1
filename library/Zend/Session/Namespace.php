@@ -34,6 +34,7 @@ require_once 'Zend/Session/Abstract.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class Zend_Session_Namespace extends Zend_Session_Abstract implements IteratorAggregate
 {
     /**

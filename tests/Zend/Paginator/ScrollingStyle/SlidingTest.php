@@ -36,6 +36,7 @@ require_once 'Zend/Paginator.php';
  *
  * @group      Zend_Paginator
  */
+#[AllowDynamicProperties]
 class Zend_Paginator_ScrollingStyle_SlidingTest extends \PHPUnit\Framework\TestCase
 {
     private ?\Zend_Paginator_ScrollingStyle_Sliding $_scrollingStyle;

@@ -26,6 +26,7 @@ require_once 'Zend/Controller/Router/Route/Regex.php';
  * @group      Zend_Controller
  * @group      Zend_Controller_Router
  */
+#[AllowDynamicProperties]
 class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
 {
     public function testStaticMatch()

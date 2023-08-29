@@ -29,6 +29,7 @@ require_once 'Zend/Json.php';
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
+#[AllowDynamicProperties]
 class ZendX_JQuery
 {
     /**

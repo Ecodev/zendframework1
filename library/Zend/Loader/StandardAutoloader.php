@@ -27,6 +27,7 @@ require_once __DIR__ . '/SplAutoloader.php';
  *
  * @license    New BSD {@link http://framework.zend.com/license/new-bsd}
  */
+#[AllowDynamicProperties]
 class Zend_Loader_StandardAutoloader implements Zend_Loader_SplAutoloader
 {
     public const NS_SEPARATOR = '\\';
