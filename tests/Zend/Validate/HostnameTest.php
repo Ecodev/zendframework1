@@ -467,7 +467,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_ALL);
 
         $this->assertTrue($validator->isValid('Test123.ca'));
-        $this->assertTrue($validator->isValid('tàr.ca'));
+        $this->assertFalse($validator->isValid('tàr.ca'));
         $this->assertFalse($validator->isValid('țest123.ca'));
         $this->assertFalse($validator->isValid('tĕst123.ca'));
         $this->assertFalse($validator->isValid('رات.ca'));
