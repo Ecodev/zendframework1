@@ -20,7 +20,6 @@
 /**
  * Zend_View_Helper_FormELement.
  */
-require_once 'Zend/View/Helper/FormElement.php';
 
 /**
  * Helper for ordered and unordered lists.

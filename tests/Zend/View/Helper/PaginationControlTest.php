@@ -16,8 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/View.php';
-require_once 'Zend/Paginator.php';
 require_once 'Zend/View/Helper/PaginationControl.php';
 
 /**

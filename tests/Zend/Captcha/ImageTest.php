@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Form/Element/Captcha.php';
 require_once 'Zend/Captcha/Adapter.php';
 
 /**
@@ -120,7 +119,6 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
 
     public function getView()
     {
-        require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
 

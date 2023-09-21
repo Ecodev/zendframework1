@@ -104,7 +104,6 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
         }
 
         if (is_array($page) || $page instanceof Zend_Config) {
-            require_once 'Zend/Navigation/Page.php';
             $page = Zend_Navigation_Page::factory($page);
         } elseif (!$page instanceof Zend_Navigation_Page) {
             throw new Zend_Navigation_Exception(

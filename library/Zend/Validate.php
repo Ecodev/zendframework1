@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Interface
- */
-require_once 'Zend/Validate/Interface.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -198,7 +193,6 @@ class Zend_Validate implements Zend_Validate_Interface
 
         try {
             if (!class_exists($className, false)) {
-                require_once 'Zend/Loader.php';
                 foreach ($namespaces as $namespace) {
                     $class = $namespace . '_' . $className;
                     $file = str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
@@ -252,8 +246,6 @@ class Zend_Validate implements Zend_Validate_Interface
      */
     public static function getMessageLength()
     {
-        require_once 'Zend/Validate/Abstract.php';
-
         return Zend_Validate_Abstract::getMessageLength();
     }
 
@@ -264,7 +256,6 @@ class Zend_Validate implements Zend_Validate_Interface
      */
     public static function setMessageLength($length = -1)
     {
-        require_once 'Zend/Validate/Abstract.php';
         Zend_Validate_Abstract::setMessageLength($length);
     }
 
@@ -277,8 +268,6 @@ class Zend_Validate implements Zend_Validate_Interface
      */
     public static function getDefaultTranslator($translator = null)
     {
-        require_once 'Zend/Validate/Abstract.php';
-
         return Zend_Validate_Abstract::getDefaultTranslator();
     }
 
@@ -289,7 +278,6 @@ class Zend_Validate implements Zend_Validate_Interface
      */
     public static function setDefaultTranslator($translator = null)
     {
-        require_once 'Zend/Validate/Abstract.php';
         Zend_Validate_Abstract::setDefaultTranslator($translator);
     }
 }

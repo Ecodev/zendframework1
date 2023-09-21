@@ -18,10 +18,8 @@
  */
 
 /** Zend_Loader_PluginLoader_Interface */
-require_once 'Zend/Loader/PluginLoader/Interface.php';
 
 /** Zend_Loader */
-require_once 'Zend/Loader.php';
 
 /**
  * Generic plugin class loader.

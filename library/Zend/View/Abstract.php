@@ -18,13 +18,10 @@
  */
 
 /** @see Zend_Loader */
-require_once 'Zend/Loader.php';
 
 /** @see Zend_Loader_PluginLoader */
-require_once 'Zend/Loader/PluginLoader.php';
 
 /** @see Zend_View_Interface */
-require_once 'Zend/View/Interface.php';
 
 /**
  * Abstract class for Zend_View to help enforce private constructs.

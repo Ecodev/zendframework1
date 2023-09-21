@@ -18,21 +18,10 @@
  */
 
 /**
- * @see Zend_Navigation_Page
- */
-require_once 'Zend/Navigation/Page.php';
-
-/**
- * @see Zend_Controller_Action_HelperBroker
- */
-require_once 'Zend/Controller/Action/HelperBroker.php';
-
-/**
  * Used to check if page is active.
  *
  * @see Zend_Controller_Front
  */
-require_once 'Zend/Controller/Front.php';
 
 /**
  * Represents a page that is defined using module, controller, action, route
@@ -265,7 +254,6 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
         $scheme = $this->getScheme();
         if (null !== $scheme) {
             if (null === self::$_schemeHelper) {
-                require_once 'Zend/View/Helper/ServerUrl.php';
                 self::$_schemeHelper = new Zend_View_Helper_ServerUrl();
             }
 

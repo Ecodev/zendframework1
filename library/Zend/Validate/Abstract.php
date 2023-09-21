@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Interface
- */
-require_once 'Zend/Validate/Interface.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -413,7 +408,6 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
     public static function getDefaultTranslator()
     {
         if (null === self::$_defaultTranslator) {
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
                 $translator = Zend_Registry::get(\Zend_Translate::class);
                 if ($translator instanceof Zend_Translate_Adapter) {

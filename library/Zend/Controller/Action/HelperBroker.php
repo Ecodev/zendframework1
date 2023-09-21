@@ -18,16 +18,6 @@
  */
 
 /**
- * @see Zend_Controller_Action_HelperBroker_PriorityStack
- */
-require_once 'Zend/Controller/Action/HelperBroker/PriorityStack.php';
-
-/**
- * @see Zend_Loader
- */
-require_once 'Zend/Loader.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -73,7 +63,6 @@ class Zend_Controller_Action_HelperBroker
     public static function getPluginLoader()
     {
         if (null === self::$_pluginLoader) {
-            require_once 'Zend/Loader/PluginLoader.php';
             self::$_pluginLoader = new Zend_Loader_PluginLoader([
                 'Zend_Controller_Action_Helper' => 'Zend/Controller/Action/Helper/',
             ]);

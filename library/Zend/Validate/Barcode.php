@@ -18,16 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/Abstract.php';
-
-/**
- * @see Zend_Loader
- */
-require_once 'Zend/Loader.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -125,7 +115,6 @@ class Zend_Validate_Barcode extends Zend_Validate_Abstract
     public function setAdapter($adapter, $options = null)
     {
         $adapter = ucfirst(strtolower($adapter));
-        require_once 'Zend/Loader.php';
         if (Zend_Loader::isReadable('Zend/Validate/Barcode/' . $adapter . '.php')) {
             $adapter = 'Zend_Validate_Barcode_' . $adapter;
         }

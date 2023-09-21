@@ -16,7 +16,6 @@
  */
 
 /** Zend_Controller_Plugin_Abstract */
-require_once 'Zend/Controller/Plugin/Abstract.php';
 
 /**
  * Handle exceptions that bubble up based on missing controllers, actions, or

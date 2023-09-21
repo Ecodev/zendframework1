@@ -442,7 +442,6 @@ class Zend_Loader_PluginLoaderTest extends \PHPUnit\Framework\TestCase
      */
     public function testClassFilesGrabCorrectPathForLoadedClasses()
     {
-        require_once 'Zend/View/Helper/DeclareVars.php';
         $reflection = new ReflectionClass(\Zend_View_Helper_DeclareVars::class);
         $expected = $reflection->getFileName();
 

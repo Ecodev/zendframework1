@@ -19,7 +19,6 @@
 
 // Call Zend_Controller_Response_HttpTest::main() if this source file is executed directly.
 
-require_once 'Zend/Controller/Response/Http.php';
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  *
@@ -637,7 +636,6 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-require_once 'Zend/Controller/Action.php';
 class Zend_Controller_Response_HttpTest_Action extends Zend_Controller_Action
 {
 }

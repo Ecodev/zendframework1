@@ -50,7 +50,6 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
             Zend_Translate::removeCache();
         }
 
-        require_once 'Zend/Translate/Adapter/Array.php';
         if (Zend_Translate_Adapter_Array::hasCache()) {
             Zend_Translate_Adapter_Array::removeCache();
         }
@@ -172,7 +171,6 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testTestingCacheHandling()
     {
-        require_once 'Zend/Cache.php';
         $cache = Zend_Cache::factory('Core', 'File',
             ['lifetime' => 120, 'automatic_serialization' => true],
             ['cache_dir' => __DIR__ . '/_files/']);
@@ -206,9 +204,7 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
 
     public function testZF3679()
     {
-        require_once 'Zend/Locale.php';
         $locale = new Zend_Locale('de_AT');
-        require_once 'Zend/Registry.php';
         Zend_Registry::set(\Zend_Locale::class, $locale);
 
         $lang = new Zend_Translate(Zend_Translate::AN_ARRAY, ['msg1' => 'message1'], 'de_AT');
@@ -479,7 +475,6 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetCacheThroughOptions()
     {
-        require_once 'Zend/Cache.php';
         $cache = Zend_Cache::factory('Core', 'File',
             ['lifetime' => 120, 'automatic_serialization' => true],
             ['cache_dir' => __DIR__ . '/_files/']);

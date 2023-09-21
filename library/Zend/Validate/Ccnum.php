@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/Abstract.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -74,10 +69,7 @@ class Zend_Validate_Ccnum extends Zend_Validate_Abstract
         $this->_setValue($value);
 
         if (null === self::$_filter) {
-            /**
-             * @see Zend_Filter_Digits
-             */
-            require_once 'Zend/Filter/Digits.php';
+            // @see Zend_Filter_Digits
             self::$_filter = new Zend_Filter_Digits();
         }
 

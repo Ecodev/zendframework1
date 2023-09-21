@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/Abstract.php';
-
-/**
  * Validator for the maximum size of a file up to a max of 2GB.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
@@ -275,7 +270,6 @@ class Zend_Validate_File_Size extends Zend_Validate_Abstract
     public function isValid($value, $file = null)
     {
         // Is file readable ?
-        require_once 'Zend/Loader.php';
         if (!Zend_Loader::isReadable($value)) {
             return $this->_throw($file, self::NOT_FOUND);
         }

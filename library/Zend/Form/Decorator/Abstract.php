@@ -16,7 +16,6 @@
  */
 
 /** Zend_Form_Decorator_Interface */
-require_once 'Zend/Form/Decorator/Interface.php';
 
 /**
  * Zend_Form_Decorator_Abstract.

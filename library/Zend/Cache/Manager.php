@@ -19,7 +19,6 @@
 
 /** @see Zend_Cache_Exception */
 /** @see Zend_Cache */
-require_once 'Zend/Cache.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

@@ -18,7 +18,6 @@
  */
 
 /** Zend_View_Helper_Abstract.php */
-require_once 'Zend/View/Helper/Abstract.php';
 
 /**
  * Helper for rendering output of a controller action.

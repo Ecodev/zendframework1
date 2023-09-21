@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/File/Extension.php';
-
-/**
  * Validator for the excluding file extensions.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
@@ -59,7 +54,6 @@ class Zend_Validate_File_ExcludeExtension extends Zend_Validate_File_Extension
     {
         $info = [];
         // Is file readable ?
-        require_once 'Zend/Loader.php';
         if (!Zend_Loader::isReadable($value)) {
             return $this->_throw($file, self::NOT_FOUND);
         }

@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Barcode_AdapterInterface
- */
-require_once 'Zend/Validate/Barcode/AdapterInterface.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]

@@ -43,8 +43,6 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
     function testIfCustomMessagesOnValidatorInstancesCanBeUsed()
     {
         // test with a Digits validator
-        require_once 'Zend/Validate/Digits.php';
-        require_once 'Zend/Validate/NotEmpty.php';
         $data = ['field1' => 'invalid data'];
         $customMessage = 'Hey, that\'s not a Digit!!!';
         $validator = new Zend_Validate_Digits();
@@ -81,7 +79,6 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
      */
     function testAllowEmptyTrueRespectsNotEmtpyValidators()
     {
-        require_once 'Zend/Validate/NotEmpty.php';
         require_once 'Zend/Validate/Digits.php';
 
         $data = [
@@ -206,7 +203,6 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
      */
     public function testNoNestedMessageArrays()
     {
-        require_once 'Zend/Validate/NotEmpty.php';
         $data = [
             'field1' => '',
             'field2' => '',
@@ -240,8 +236,6 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
      */
     public function testTwoValidatorsInChainShowCorrectError()
     {
-        require_once 'Zend/Validate/NotEmpty.php';
-        require_once 'Zend/Validate/Float.php';
         $validators = [
             'field1' => [
                 'NotEmpty', 'Float',
@@ -2053,8 +2047,6 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
      */
     public function testSettingNotEmptyMessageAndMessagePerKeyAndMessagePerArray()
     {
-        require_once 'Zend/Validate/NotEmpty.php';
-        require_once 'Zend/Validate/Regex.php';
         require_once 'Zend/Validate/StringLength.php';
 
         $filters = [];
@@ -2097,8 +2089,6 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
      */
     public function testSettingMultipleNotEmptyMessages()
     {
-        require_once 'Zend/Validate/NotEmpty.php';
-        require_once 'Zend/Validate/Regex.php';
         require_once 'Zend/Validate/StringLength.php';
 
         $filters = [];
@@ -2128,7 +2118,6 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
      */
     public function testTranslateNotEmptyMessages()
     {
-        require_once 'Zend/Translate/Adapter/Array.php';
         $translator = new Zend_Translate_Adapter_Array(['missingMessage' => 'Still missing'], 'en');
 
         $validators = [
@@ -2153,9 +2142,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
      */
     public function testTranslateNotEmptyMessagesByUsingRegistry()
     {
-        require_once 'Zend/Translate/Adapter/Array.php';
         $translator = new Zend_Translate_Adapter_Array(['missingMessage' => 'Still missing'], 'en');
-        require_once 'Zend/Registry.php';
         Zend_Registry::set(\Zend_Translate::class, $translator);
 
         $validators = [

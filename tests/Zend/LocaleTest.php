@@ -22,7 +22,6 @@
 /**
  * Zend_Locale.
  */
-require_once 'Zend/Locale.php';
 require_once 'Zend/Cache.php';
 
 /**
@@ -50,7 +49,6 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
     {
         $this->_locale = setlocale(LC_ALL, 0);
         setlocale(LC_ALL, 'de');
-        require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
             ['lifetime' => 120, 'automatic_serialization' => true],
             ['cache_dir' => __DIR__ . '/_files/']);

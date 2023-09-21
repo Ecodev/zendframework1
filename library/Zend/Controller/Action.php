@@ -18,21 +18,6 @@
  */
 
 /**
- * @see Zend_Controller_Action_HelperBroker
- */
-require_once 'Zend/Controller/Action/HelperBroker.php';
-
-/**
- * @see Zend_Controller_Action_Interface
- */
-require_once 'Zend/Controller/Action/Interface.php';
-
-/**
- * @see Zend_Controller_Front
- */
-require_once 'Zend/Controller/Front.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -164,7 +149,6 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
             return $this->view;
         }
 
-        require_once 'Zend/View/Interface.php';
         if (isset($this->view) && ($this->view instanceof Zend_View_Interface)) {
             return $this->view;
         }
@@ -180,7 +164,6 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
             throw new Zend_Controller_Exception('Missing base view directory ("' . $baseDir . '")');
         }
 
-        require_once 'Zend/View.php';
         $this->view = new Zend_View(['basePath' => $baseDir]);
 
         return $this->view;

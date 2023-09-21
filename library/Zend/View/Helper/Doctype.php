@@ -18,10 +18,8 @@
  */
 
 /** Zend_Registry */
-require_once 'Zend/Registry.php';
 
 /** Zend_View_Helper_Abstract.php */
-require_once 'Zend/View/Helper/Abstract.php';
 
 /**
  * Helper for setting and retrieving the doctype.

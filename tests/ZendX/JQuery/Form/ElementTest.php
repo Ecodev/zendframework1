@@ -18,12 +18,6 @@
  */
 require_once __DIR__ . '/../../../TestHelper.php';
 
-require_once 'Zend/Registry.php';
-require_once 'Zend/View.php';
-require_once 'Zend/Form/Element.php';
-require_once 'Zend/Form/SubForm.php';
-require_once 'Zend/Form/Decorator/Description.php';
-require_once 'Zend/Json.php';
 require_once 'ZendX/JQuery.php';
 require_once 'ZendX/JQuery/Form.php';
 require_once 'ZendX/JQuery/View/Helper/JQuery.php';
@@ -33,7 +27,6 @@ require_once 'ZendX/JQuery/Form/Element/Slider.php';
 require_once 'ZendX/JQuery/Form/Element/DatePicker.php';
 require_once 'ZendX/JQuery/Form/Element/AutoComplete.php';
 
-require_once 'Zend/Form/Decorator/ViewHelper.php';
 require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElement.php';
 
 class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase

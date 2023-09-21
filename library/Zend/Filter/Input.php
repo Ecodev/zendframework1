@@ -18,21 +18,6 @@
  */
 
 /**
- * @see Zend_Loader
- */
-require_once 'Zend/Loader.php';
-
-/**
- * @see Zend_Filter
- */
-require_once 'Zend/Filter.php';
-
-/**
- * @see Zend_Validate
- */
-require_once 'Zend/Validate.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -283,7 +268,6 @@ class Zend_Filter_Input
                     throw new Zend_Filter_Exception(sprintf('Invalid type "%s" provided to getPluginLoader()', $type));
             }
 
-            require_once 'Zend/Loader/PluginLoader.php';
             $this->_loaders[$type] = new Zend_Loader_PluginLoader(
                 [$prefixSegment => $pathSegment]
             );
@@ -622,7 +606,6 @@ class Zend_Filter_Input
         }
 
         if ($this->_translator === null) {
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
                 $translator = Zend_Registry::get(\Zend_Translate::class);
                 if ($translator instanceof Zend_Translate_Adapter) {

@@ -20,7 +20,6 @@
 /**
  * Zend_Http_Client.
  */
-require_once 'Zend/Http/Client.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

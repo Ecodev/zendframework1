@@ -19,19 +19,6 @@
  */
 
 /**
- * @see Zend_Uri_Http
- */
-require_once 'Zend/Uri/Http.php';
-/**
- * @see Zend_Http_Client
- */
-require_once 'Zend/Http/Client.php';
-/**
- * @see Zend_Http_Client_Adapter_Socket
- */
-require_once 'Zend/Http/Client/Adapter/Socket.php';
-
-/**
  * HTTP Proxy-supporting Zend_Http_Client adapter class, based on the default
  * socket based adapter.
  *

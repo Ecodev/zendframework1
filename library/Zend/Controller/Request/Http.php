@@ -18,10 +18,8 @@
  */
 
 /** @see Zend_Controller_Request_Abstract */
-require_once 'Zend/Controller/Request/Abstract.php';
 
 /** @see Zend_Uri */
-require_once 'Zend/Uri.php';
 
 /**
  * Zend_Controller_Request_Http.

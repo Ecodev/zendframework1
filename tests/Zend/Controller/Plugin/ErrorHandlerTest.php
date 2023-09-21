@@ -16,8 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Controller/Plugin/ErrorHandler.php';
-require_once 'Zend/Controller/Request/Http.php';
 require_once 'Zend/Controller/Response/Http.php';
 
 require_once 'Zend/Controller/Front.php';

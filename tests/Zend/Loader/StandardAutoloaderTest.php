@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Loader/StandardAutoloader.php';
 require_once 'Zend/Loader/TestAsset/StandardAutoloader.php';
 
 /**

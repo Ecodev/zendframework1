@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Form/Decorator/Callback.php';
 require_once 'Zend/Form/Element.php';
 
 /**

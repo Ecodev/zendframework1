@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Filter_Interface
- */
-require_once 'Zend/Filter/Interface.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -185,7 +180,6 @@ class Zend_Filter_Boolean implements Zend_Filter_Interface
             throw new Zend_Filter_Exception('Locale has to be string, array or an instance of Zend_Locale');
         }
 
-        require_once 'Zend/Locale.php';
         foreach ($locale as $single) {
             if (!Zend_Locale::isLocale($single)) {
                 throw new Zend_Filter_Exception("Unknown locale '$single'");
@@ -239,7 +233,6 @@ class Zend_Filter_Boolean implements Zend_Filter_Interface
         if ($type >= self::YES) {
             $type -= self::YES;
             if (is_string($value)) {
-                require_once 'Zend/Locale.php';
                 $locales = $this->getLocale();
                 foreach ($locales as $locale) {
                     if ($this->_getLocalizedQuestion($value, false, $locale) === false) {

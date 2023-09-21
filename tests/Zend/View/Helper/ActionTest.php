@@ -234,7 +234,6 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
      */
     public function testActionWithPartialsUseOfViewRendererReturnsToOriginatingViewState()
     {
-        require_once 'Zend/View/Helper/Partial.php';
         $partial = new Zend_View_Helper_Partial();
         $this->view->setScriptPath(__DIR__ . '/_files/modules/default/views/scripts/');
         $partial->setView($this->view);

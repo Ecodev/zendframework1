@@ -18,16 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/Abstract.php';
-
-/**
- * @see Zend_Locale_Format
- */
-require_once 'Zend/Locale/Format.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -73,7 +63,6 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
         }
 
         if (empty($options)) {
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
                 $this->setLocale(Zend_Registry::get(\Zend_Locale::class));
             }
@@ -116,7 +105,6 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
      */
     public function setLocale($locale = null)
     {
-        require_once 'Zend/Locale.php';
         $this->_locale = Zend_Locale::findLocale($locale);
         $locale = new Zend_Locale($this->_locale);
         $region = $locale->getRegion();

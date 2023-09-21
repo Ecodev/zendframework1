@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Filter_CamelCaseToSeparator
- */
-require_once 'Zend/Filter/Word/CamelCaseToSeparator.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]

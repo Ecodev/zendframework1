@@ -20,7 +20,6 @@
 /**
  * include needed classes.
  */
-require_once 'Zend/Locale/Data.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -298,7 +297,6 @@ class Zend_Locale_Format
     public static function toNumber($value, array $options = [])
     {
         // load class within method for speed
-        require_once 'Zend/Locale/Math.php';
 
         $value = Zend_Locale_Math::floatalize($value);
         $value = Zend_Locale_Math::normalize($value);

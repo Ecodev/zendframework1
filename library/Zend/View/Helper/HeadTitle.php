@@ -18,7 +18,6 @@
  */
 
 /** Zend_View_Helper_Placeholder_Container_Standalone */
-require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
 
 /**
  * Helper for setting and retrieving title element for HTML head.
@@ -149,7 +148,6 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
     public function getTranslator()
     {
         if (null === $this->_translator) {
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
                 $this->setTranslator(Zend_Registry::get(\Zend_Translate::class));
             }

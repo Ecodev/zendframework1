@@ -16,11 +16,6 @@
  */
 
 /**
- * @see Zend_Form_Decorator_Abstract
- */
-require_once 'Zend/Form/Decorator/Abstract.php';
-
-/**
  * Zend_Form_Decorator_Element_HtmlTag.
  *
  * Wraps content in an HTML block tag.
@@ -108,9 +103,6 @@ class Zend_Form_Decorator_HtmlTag extends Zend_Form_Decorator_Abstract
     public function normalizeTag($tag)
     {
         if (!isset($this->_tagFilter)) {
-            require_once 'Zend/Filter.php';
-            require_once 'Zend/Filter/Alnum.php';
-            require_once 'Zend/Filter/StringToLower.php';
             $this->_tagFilter = new Zend_Filter();
             $this->_tagFilter->addFilter(new Zend_Filter_Alnum())
                 ->addFilter(new Zend_Filter_StringToLower());

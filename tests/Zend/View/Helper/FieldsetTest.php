@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/View/Helper/Fieldset.php';
 require_once 'Zend/View.php';
 
 /**

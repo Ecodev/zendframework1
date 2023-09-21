@@ -34,7 +34,6 @@ class Zend_Date_DateObjectTest extends \PHPUnit\Framework\TestCase
     {
         $this->originalTimezone = date_default_timezone_get();
         date_default_timezone_set('Europe/Paris');
-        require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
             ['lifetime' => 120, 'automatic_serialization' => true],
             ['cache_dir' => __DIR__ . '/../_files/']);

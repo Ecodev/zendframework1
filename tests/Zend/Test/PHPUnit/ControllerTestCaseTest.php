@@ -165,10 +165,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
 
     public function testResetShouldResetMvcState()
     {
-        require_once 'Zend/Controller/Action/HelperBroker.php';
-        require_once 'Zend/Controller/Dispatcher/Standard.php';
-        require_once 'Zend/Controller/Plugin/ErrorHandler.php';
-        require_once 'Zend/Controller/Router/Rewrite.php';
         $request = $this->testCase->getRequest();
         $response = $this->testCase->getResponse();
         $router = new Zend_Controller_Router_Rewrite();
@@ -228,12 +224,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
 
     public function bootstrapCallback()
     {
-        require_once 'Zend/Controller/Action/HelperBroker.php';
-        require_once 'Zend/Controller/Dispatcher/Standard.php';
-        require_once 'Zend/Controller/Front.php';
-        require_once 'Zend/Controller/Plugin/ErrorHandler.php';
-        require_once 'Zend/Controller/Router/Rewrite.php';
-        require_once 'Zend/Registry.php';
         $router = new Zend_Controller_Router_Rewrite();
         $dispatcher = new Zend_Controller_Dispatcher_Standard();
         $plugin = new Zend_Controller_Plugin_ErrorHandler();
@@ -450,7 +440,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
      */
     public function testTestCaseShouldAllowUsingApplicationObjectAsBootstrap()
     {
-        require_once 'Zend/Application.php';
         $application = new Zend_Application('testing', [
             'resources' => [
                 'frontcontroller' => [
@@ -471,7 +460,6 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
      */
     public function testWhenApplicationObjectUsedAsBootstrapTestCaseShouldExecuteBootstrapRunMethod()
     {
-        require_once 'Zend/Application.php';
         $application = new Zend_Application('testing', [
             'resources' => [
                 'frontcontroller' => [

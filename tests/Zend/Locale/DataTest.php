@@ -34,7 +34,6 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
 
     public function setUp(): void
     {
-        require_once 'Zend/Cache.php';
         $this->_cache = Zend_Cache::factory('Core', 'File',
             ['lifetime' => 1, 'automatic_serialization' => true],
             ['cache_dir' => __DIR__ . '/../_files/']);

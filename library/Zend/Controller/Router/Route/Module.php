@@ -18,7 +18,6 @@
  */
 
 /** Zend_Controller_Router_Route_Abstract */
-require_once 'Zend/Controller/Router/Route/Abstract.php';
 
 /**
  * Module Route.

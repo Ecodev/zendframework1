@@ -18,7 +18,6 @@
  */
 
 /** Zend_View_Helper_Partial */
-require_once 'Zend/View/Helper/Partial.php';
 
 /**
  * Helper for rendering a template fragment in its own variable scope; iterates

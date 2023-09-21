@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/Abstract.php';
-
-/**
  * Validator which checks if the file already exists in the directory.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License

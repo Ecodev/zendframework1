@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Xml/Security.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

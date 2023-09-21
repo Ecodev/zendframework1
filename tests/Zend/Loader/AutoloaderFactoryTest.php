@@ -19,8 +19,6 @@
  * Preload a number of classes to ensure they're available once we've disabled
  * other autoloaders.
  */
-require_once 'Zend/Loader/AutoloaderFactory.php';
-require_once 'Zend/Loader/ClassMapAutoloader.php';
 require_once 'Zend/Loader/StandardAutoloader.php';
 
 /**

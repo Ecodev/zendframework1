@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Form/Element/Captcha.php';
 require_once 'Zend/View.php';
 
 /**

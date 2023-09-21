@@ -18,19 +18,14 @@
  */
 
 /** @see Zend_Controller_Front */
-require_once 'Zend/Controller/Front.php';
 
 /** @see Zend_Controller_Action_HelperBroker */
-require_once 'Zend/Controller/Action/HelperBroker.php';
 
 /** @see Zend_Layout */
-require_once 'Zend/Layout.php';
 
 /** @see Zend_Session */
-require_once 'Zend/Session.php';
 
 /** @see Zend_Registry */
-require_once 'Zend/Registry.php';
 
 /**
  * Functional testing scaffold for MVC applications.
@@ -135,7 +130,6 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
             } elseif (is_callable($this->bootstrap)) {
                 call_user_func($this->bootstrap);
             } elseif (is_string($this->bootstrap)) {
-                require_once 'Zend/Loader.php';
                 if (Zend_Loader::isReadable($this->bootstrap)) {
                     include $this->bootstrap;
                 }
@@ -449,7 +443,6 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     public function getRequest()
     {
         if (null === $this->_request) {
-            require_once 'Zend/Controller/Request/HttpTestCase.php';
             $this->_request = new Zend_Controller_Request_HttpTestCase();
         }
 
@@ -464,7 +457,6 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     public function getResponse()
     {
         if (null === $this->_response) {
-            require_once 'Zend/Controller/Response/HttpTestCase.php';
             $this->_response = new Zend_Controller_Response_HttpTestCase();
         }
 

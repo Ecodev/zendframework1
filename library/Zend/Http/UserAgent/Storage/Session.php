@@ -16,16 +16,6 @@
  */
 
 /**
- * @see Zend_Http_UserAgent_Storage
- */
-require_once 'Zend/Http/UserAgent/Storage.php';
-
-/**
- * @see Zend_Session_Namespace
- */
-require_once 'Zend/Session/Namespace.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]

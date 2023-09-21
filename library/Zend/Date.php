@@ -20,10 +20,6 @@
 /**
  * Include needed Date classes.
  */
-require_once 'Zend/Date/DateObject.php';
-require_once 'Zend/Locale.php';
-require_once 'Zend/Locale/Format.php';
-require_once 'Zend/Locale/Math.php';
 
 /**
  * @license   http://framework.zend.com/license/new-bsd     New BSD License

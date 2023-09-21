@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Navigation_Container
- */
-require_once 'Zend/Navigation/Container.php';
-
-/**
  * Base class for Zend_Navigation_Page pages.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
@@ -225,7 +220,6 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
                 }
 
                 if (!class_exists($type)) {
-                    require_once 'Zend/Loader.php';
                     @Zend_Loader::loadClass($type);
                 }
 
@@ -247,13 +241,9 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
                   || isset($options['params']);
 
         if ($hasMvc) {
-            require_once 'Zend/Navigation/Page/Mvc.php';
-
             return new Zend_Navigation_Page_Mvc($options);
         }
         if ($hasUri) {
-            require_once 'Zend/Navigation/Page/Uri.php';
-
             return new Zend_Navigation_Page_Uri($options);
         }
         $message = 'Invalid argument: Unable to determine class to instantiate';

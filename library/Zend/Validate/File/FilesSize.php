@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_File_Size
- */
-require_once 'Zend/Validate/File/Size.php';
-
-/**
  * Validator for the size of all files which will be validated in sum.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
@@ -99,7 +94,6 @@ class Zend_Validate_File_FilesSize extends Zend_Validate_File_Size
      */
     public function isValid($value, $file = null)
     {
-        require_once 'Zend/Loader.php';
         if (is_string($value)) {
             $value = [$value];
         }

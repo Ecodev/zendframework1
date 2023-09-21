@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_File_Count
- */
-require_once 'Zend/Validate/File/Count.php';
-
-/**
  * Validator for counting all words in a file.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
@@ -61,7 +56,6 @@ class Zend_Validate_File_WordCount extends Zend_Validate_File_Count
     public function isValid($value, $file = null)
     {
         // Is file readable ?
-        require_once 'Zend/Loader.php';
         if (!Zend_Loader::isReadable($value)) {
             return $this->_throw($file, self::NOT_FOUND);
         }

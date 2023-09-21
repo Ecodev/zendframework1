@@ -18,13 +18,10 @@
  */
 
 /** Zend_Service_Abstract */
-require_once 'Zend/Service/Abstract.php';
 
 /** Zend_Rest_Client_Result */
-require_once 'Zend/Rest/Client/Result.php';
 
 /** Zend_Uri */
-require_once 'Zend/Uri.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

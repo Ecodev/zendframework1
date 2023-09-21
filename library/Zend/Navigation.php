@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Navigation_Container
- */
-require_once 'Zend/Navigation/Container.php';
-
-/**
  * A simple container class for {@link Zend_Navigation_Page} pages.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License

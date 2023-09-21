@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/Abstract.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -131,10 +126,7 @@ class Zend_Validate_Alnum extends Zend_Validate_Abstract
         }
 
         if (null === self::$_filter) {
-            /**
-             * @see Zend_Filter_Alnum
-             */
-            require_once 'Zend/Filter/Alnum.php';
+            // @see Zend_Filter_Alnum
             self::$_filter = new Zend_Filter_Alnum();
         }
 

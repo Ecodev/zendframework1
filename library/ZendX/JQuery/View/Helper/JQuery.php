@@ -18,26 +18,6 @@
  */
 
 /**
- * @see ZendX_JQuery
- */
-require_once 'ZendX/JQuery.php';
-
-/**
- * @see Zend_Registry
- */
-require_once 'Zend/Registry.php';
-
-/**
- * @see Zend_View_Helper_Abstract
- */
-require_once 'Zend/View/Helper/Abstract.php';
-
-/**
- * @see ZendX_JQuery_View_Helper_JQuery_Container
- */
-require_once 'ZendX/JQuery/View/Helper/JQuery/Container.php';
-
-/**
  * jQuery Helper. Functions as a stack for code and loads all jQuery dependencies.
  *
  * @uses 	   Zend_Json
@@ -71,7 +51,6 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
     {
         $registry = Zend_Registry::getInstance();
         if (!isset($registry[self::class])) {
-            require_once 'ZendX/JQuery/View/Helper/JQuery/Container.php';
             $container = new ZendX_JQuery_View_Helper_JQuery_Container();
             $registry[self::class] = $container;
         }

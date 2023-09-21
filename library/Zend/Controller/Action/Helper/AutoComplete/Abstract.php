@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Controller_Action_Helper_Abstract
- */
-require_once 'Zend/Controller/Action/Helper/Abstract.php';
-
-/**
  * Create and send autocompletion lists.
  *
  * @uses       Zend_Controller_Action_Helper_Abstract
@@ -65,10 +60,7 @@ abstract class Zend_Controller_Action_Helper_AutoComplete_Abstract extends Zend_
      */
     public function disableLayouts()
     {
-        /**
-         * @see Zend_Layout
-         */
-        require_once 'Zend/Layout.php';
+        // @see Zend_Layout
         if (null !== ($layout = Zend_Layout::getMvcInstance())) {
             $layout->disableLayout();
         }

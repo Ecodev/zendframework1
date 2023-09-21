@@ -18,31 +18,6 @@
  */
 
 /**
- * @see Zend_Acl_Resource_Interface
- */
-require_once 'Zend/Acl/Resource/Interface.php';
-
-/**
- * @see Zend_Acl_Role_Registry
- */
-require_once 'Zend/Acl/Role/Registry.php';
-
-/**
- * @see Zend_Acl_Assert_Interface
- */
-require_once 'Zend/Acl/Assert/Interface.php';
-
-/**
- * @see Zend_Acl_Role
- */
-require_once 'Zend/Acl/Role.php';
-
-/**
- * @see Zend_Acl_Resource
- */
-require_once 'Zend/Acl/Resource.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]

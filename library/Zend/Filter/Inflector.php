@@ -21,12 +21,6 @@
  * @see Zend_Filter
  * @see Zend_Filter_Interface
  */
-require_once 'Zend/Filter.php';
-
-/**
- * @see Zend_Loader_PluginLoader
- */
-require_once 'Zend/Loader/PluginLoader.php';
 
 /**
  * Filter chain for string inflection.

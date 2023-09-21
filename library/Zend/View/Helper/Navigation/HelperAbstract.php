@@ -18,16 +18,6 @@
  */
 
 /**
- * @see Zend_View_Helper_Navigation_Helper
- */
-require_once 'Zend/View/Helper/Navigation/Helper.php';
-
-/**
- * @see Zend_View_Helper_HtmlElement
- */
-require_once 'Zend/View/Helper/HtmlElement.php';
-
-/**
  * Base class for navigational helpers.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -184,7 +174,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
     {
         if (null === $this->_container) {
             // try to fetch from registry first
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Navigation::class)) {
                 $nav = Zend_Registry::get(\Zend_Navigation::class);
                 if ($nav instanceof Zend_Navigation_Container) {
@@ -193,7 +182,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
             }
 
             // nothing found in registry, create new container
-            require_once 'Zend/Navigation.php';
             $this->_container = new Zend_Navigation();
         }
 
@@ -429,7 +417,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
     public function getTranslator()
     {
         if (null === $this->_translator) {
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
                 $this->setTranslator(Zend_Registry::get(\Zend_Translate::class));
             }

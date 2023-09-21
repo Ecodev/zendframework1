@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_File_Transfer_Adapter_Abstract
- */
-require_once 'Zend/File/Transfer/Adapter/Abstract.php';
-
-/**
  * File transfer adapter class for the HTTP protocol.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
@@ -387,7 +382,6 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
 
         if (isset($adapter, $status['id'])) {
             if ($adapter instanceof Zend_ProgressBar_Adapter) {
-                require_once 'Zend/ProgressBar.php';
                 $adapter = new Zend_ProgressBar($adapter, 0, $status['total'], $session);
             }
 

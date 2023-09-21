@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_View_Helper_Abstract
- */
-require_once 'Zend/View/Helper/Abstract.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
@@ -112,7 +107,6 @@ abstract class Zend_View_Helper_HtmlElement extends Zend_View_Helper_Abstract
                 // Don't escape event attributes; _do_ substitute double quotes with singles
                 if (!is_scalar($val)) {
                     // non-scalar data should be cast to JSON first
-                    require_once 'Zend/Json.php';
                     $val = Zend_Json::encode($val);
                 }
                 // Escape single quotes inside event attribute values.

@@ -196,8 +196,6 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
 
     public function testCanTranslateTitle()
     {
-        require_once 'Zend/Translate/Adapter/Array.php';
-        require_once 'Zend/Registry.php';
         $adapter = new Zend_Translate_Adapter_Array(['Message_1' => 'Message 1 (en)'], 'en');
         Zend_Registry::set(\Zend_Translate::class, $adapter);
         $this->helper->enableTranslation();

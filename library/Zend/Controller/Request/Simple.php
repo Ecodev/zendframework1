@@ -18,7 +18,6 @@
  */
 
 /** Zend_Controller_Request_Abstract */
-require_once 'Zend/Controller/Request/Abstract.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

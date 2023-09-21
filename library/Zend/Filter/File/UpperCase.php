@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Filter_StringToUpper
- */
-require_once 'Zend/Filter/StringToUpper.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]

@@ -18,7 +18,6 @@
  */
 
 /** Zend_Controller_Dispatcher_Interface */
-require_once 'Zend/Controller/Dispatcher/Interface.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -258,7 +257,6 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     public function getFrontController()
     {
         if (null === $this->_frontController) {
-            require_once 'Zend/Controller/Front.php';
             $this->_frontController = Zend_Controller_Front::getInstance();
         }
 

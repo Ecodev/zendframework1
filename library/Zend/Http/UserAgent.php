@@ -735,7 +735,6 @@ class Zend_Http_UserAgent implements Serializable
 
         if (is_string($loader)) {
             if (!class_exists($loader)) {
-                require_once 'Zend/Loader.php';
                 Zend_Loader::loadClass($loader);
             }
             $loader = new $loader();
@@ -783,7 +782,6 @@ class Zend_Http_UserAgent implements Serializable
     {
         $type = $this->_validateLoaderType($type);
         if (!isset($this->_loaders[$type])) {
-            require_once 'Zend/Loader/PluginLoader.php';
             $this->setPluginLoader($type, new Zend_Loader_PluginLoader());
         }
 

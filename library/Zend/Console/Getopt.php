@@ -505,7 +505,6 @@ class Zend_Console_Getopt
         /**
          * @see Zend_Json
          */
-        require_once 'Zend/Json.php';
         $json = Zend_Json::encode($j);
 
         return $json;

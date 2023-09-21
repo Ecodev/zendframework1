@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/Abstract.php';
-
-/**
  * Validator for counting all given files.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License

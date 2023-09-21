@@ -20,16 +20,6 @@
  */
 
 /**
- * @see Zend_Session
- */
-require_once 'Zend/Session.php';
-
-/**
- * @see Zend_Session_Abstract
- */
-require_once 'Zend/Session/Abstract.php';
-
-/**
  * Zend_Session_Namespace.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

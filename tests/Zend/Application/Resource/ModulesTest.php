@@ -192,7 +192,6 @@ class Zend_Application_Resource_ModulesTest extends \PHPUnit\Framework\TestCase
     }
 }
 
-require_once 'Zend/Application/Resource/Modules.php';
 class ZendTest_Application_Resource_ModulesHalf extends Zend_Application_Resource_Modules
 {
     protected function bootstrapBootstraps($bootstraps)

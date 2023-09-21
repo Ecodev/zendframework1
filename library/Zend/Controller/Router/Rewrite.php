@@ -18,10 +18,8 @@
  */
 
 /** Zend_Controller_Router_Abstract */
-require_once 'Zend/Controller/Router/Abstract.php';
 
 /** Zend_Controller_Router_Route */
-require_once 'Zend/Controller/Router/Route.php';
 
 /**
  * Ruby routing based Router.
@@ -87,7 +85,6 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
             $dispatcher = $this->getFrontController()->getDispatcher();
             $request = $this->getFrontController()->getRequest();
 
-            require_once 'Zend/Controller/Router/Route/Module.php';
             $compat = new Zend_Controller_Router_Route_Module([], $dispatcher, $request);
 
             $this->_routes = ['default' => $compat] + $this->_routes;
@@ -206,7 +203,6 @@ class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
     {
         $class = $info->type ?? \Zend_Controller_Router_Route::class;
         if (!class_exists($class)) {
-            require_once 'Zend/Loader.php';
             Zend_Loader::loadClass($class);
         }
 

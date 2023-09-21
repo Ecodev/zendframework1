@@ -18,19 +18,6 @@
  */
 
 /**
- * @see Zend_Uri
- */
-require_once 'Zend/Uri.php';
-/**
- * @see Zend_Http_Cookie
- */
-require_once 'Zend/Http/Cookie.php';
-/**
- * @see Zend_Http_Response
- */
-require_once 'Zend/Http/Response.php';
-
-/**
  * A Zend_Http_CookieJar object is designed to contain and maintain HTTP cookies, and should
  * be used along with Zend_Http_Client in order to manage cookies across HTTP requests and
  * responses.

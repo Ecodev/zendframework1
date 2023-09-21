@@ -18,7 +18,6 @@
  */
 require_once 'Zend/Controller/Action/Helper/Url.php';
 
-require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Request/Http.php';
 
 /**

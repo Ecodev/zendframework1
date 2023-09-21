@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Controller_Action_Helper_Abstract
- */
-require_once 'Zend/Controller/Action/Helper/Abstract.php';
-
-/**
  * Simplify context switching based on requested format.
  *
  * @uses       Zend_Controller_Action_Helper_Abstract
@@ -286,7 +281,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
             /**
              * @see Zend_Layout
              */
-            require_once 'Zend/Layout.php';
             $layout = Zend_Layout::getMvcInstance();
             if (null !== $layout) {
                 $layout->disableLayout();
@@ -1104,7 +1098,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $view = $viewRenderer->view;
         if ($view instanceof Zend_View_Interface) {
             if (method_exists($view, 'getVars')) {
-                require_once 'Zend/Json.php';
                 $vars = Zend_Json::encode($view->getVars());
                 $this->getResponse()->setBody($vars);
             } else {

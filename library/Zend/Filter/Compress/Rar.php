@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Filter_Compress_CompressAbstract
- */
-require_once 'Zend/Filter/Compress/CompressAbstract.php';
-
-/**
  * Compression adapter for Rar.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

@@ -16,7 +16,6 @@
  *
  * @version     $Id$
  */
-require_once 'Zend/Form/Element.php';
 
 /**
  * Base Form Element for jQuery View Helpers.

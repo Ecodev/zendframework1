@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Filter_Interface
- */
-require_once 'Zend/Filter/Interface.php';
-
-/**
  * Compresses a given string.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -93,7 +88,6 @@ class Zend_Filter_Compress implements Zend_Filter_Interface
         $adapter = $this->_adapter;
         $options = $this->getAdapterOptions();
         if (!class_exists($adapter)) {
-            require_once 'Zend/Loader.php';
             if (Zend_Loader::isReadable('Zend/Filter/Compress/' . ucfirst($adapter) . '.php')) {
                 $adapter = 'Zend_Filter_Compress_' . ucfirst($adapter);
             }

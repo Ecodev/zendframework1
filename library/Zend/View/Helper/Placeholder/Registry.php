@@ -18,13 +18,10 @@
  */
 
 /** Zend_Registry */
-require_once 'Zend/Registry.php';
 
 /** Zend_View_Helper_Placeholder_Container_Abstract */
-require_once 'Zend/View/Helper/Placeholder/Container/Abstract.php';
 
 /** Zend_View_Helper_Placeholder_Container */
-require_once 'Zend/View/Helper/Placeholder/Container.php';
 
 /**
  * Registry for placeholder containers.
@@ -165,7 +162,6 @@ class Zend_View_Helper_Placeholder_Registry
     public function setContainerClass($name)
     {
         if (!class_exists($name)) {
-            require_once 'Zend/Loader.php';
             Zend_Loader::loadClass($name);
         }
 

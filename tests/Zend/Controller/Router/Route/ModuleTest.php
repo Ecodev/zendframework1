@@ -69,7 +69,6 @@ class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCas
             'module' => 'default',
         ];
 
-        require_once 'Zend/Controller/Request/Http.php';
         $this->_request = new Zend_Controller_Request_Http();
         $front->setRequest($this->_request);
 

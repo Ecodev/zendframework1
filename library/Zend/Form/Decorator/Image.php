@@ -16,7 +16,6 @@
  */
 
 /** Zend_Form_Decorator_Abstract */
-require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
  * Zend_Form_Decorator_Image.
@@ -136,7 +135,6 @@ class Zend_Form_Decorator_Image extends Zend_Form_Decorator_Abstract
         $image = $view->formImage($name, $element->getImageValue(), $attribs);
 
         if (null !== $tag) {
-            require_once 'Zend/Form/Decorator/HtmlTag.php';
             $decorator = new Zend_Form_Decorator_HtmlTag();
             $decorator->setOptions(['tag' => $tag]);
             $image = $decorator->render($image);

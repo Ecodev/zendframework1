@@ -18,17 +18,8 @@
  */
 
 /**
- * @see Zend_Controller_Action_Helper_Abstract
- */
-require_once 'Zend/Controller/Action/Helper/Abstract.php';
-
-/**
  * @see Zend_Controller_Action_Exception
  */
-/**
- * @see Zend_Cache_Manager
- */
-require_once 'Zend/Cache/Manager.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

@@ -16,7 +16,6 @@
  */
 
 /** Zend_Form_Element_Multi */
-require_once 'Zend/Form/Element/Multi.php';
 
 /**
  * Radio form element.

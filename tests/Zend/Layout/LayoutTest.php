@@ -16,12 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Layout.php';
-require_once 'Zend/Layout/Controller/Plugin/Layout.php';
-require_once 'Zend/Layout/Controller/Action/Helper/Layout.php';
-require_once 'Zend/Controller/Front.php';
-require_once 'Zend/Controller/Action/HelperBroker.php';
-require_once 'Zend/Filter/Inflector.php';
 require_once 'Zend/View/Interface.php';
 require_once 'Zend/View.php';
 
@@ -96,7 +90,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     {
         $layout = new Zend_Layout();
 
-        require_once 'Zend/Config.php';
         $config = new Zend_Config([
             'layout' => 'foo',
             'contentKey' => 'foo',
@@ -114,7 +107,6 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
     {
         $layout = new Zend_Layout();
 
-        require_once 'Zend/Config.php';
         $config = new Zend_Config([
             'layout' => 'foo',
             'contentKey' => 'foo',

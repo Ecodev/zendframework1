@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Controller_Request_Http
- */
-require_once 'Zend/Controller/Request/Http.php';
-
-/**
  * Zend_Controller_Request_HttpTestCase.
  *
  * HTTP request object for use with Zend_Controller family.

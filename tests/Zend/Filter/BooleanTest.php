@@ -563,7 +563,6 @@ class Zend_Filter_BooleanTest extends \PHPUnit\Framework\TestCase
      */
     public function testConfigObject()
     {
-        require_once 'Zend/Config.php';
         $options = ['type' => 'all', 'locale' => 'de'];
         $config = new Zend_Config($options);
 

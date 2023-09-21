@@ -21,21 +21,6 @@
  */
 
 /**
- * @see Zend_Session_Abstract
- */
-require_once 'Zend/Session/Abstract.php';
-
-/**
- * @see Zend_Session_Namespace
- */
-require_once 'Zend/Session/Namespace.php';
-
-/**
- * @see Zend_Session_SaveHandler_Interface
- */
-require_once 'Zend/Session/SaveHandler/Interface.php';
-
-/**
  * Zend_Session.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -712,7 +697,6 @@ class Zend_Session extends Zend_Session_Abstract
     {
         foreach ($_SESSION['__ZF']['VALID'] as $validator_name => $valid_data) {
             if (!class_exists($validator_name)) {
-                require_once 'Zend/Loader.php';
                 Zend_Loader::loadClass($validator_name);
             }
             $validator = new $validator_name();

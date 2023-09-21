@@ -18,13 +18,10 @@
  */
 
 /** Zend_Loader */
-require_once 'Zend/Loader.php';
 
 /** Zend_Controller_Action_HelperBroker */
-require_once 'Zend/Controller/Action/HelperBroker.php';
 
 /** Zend_Controller_Plugin_Broker */
-require_once 'Zend/Controller/Plugin/Broker.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -459,7 +456,6 @@ class Zend_Controller_Front
     {
         if (is_string($request)) {
             if (!class_exists($request)) {
-                require_once 'Zend/Loader.php';
                 Zend_Loader::loadClass($request);
             }
             $request = new $request();
@@ -500,7 +496,6 @@ class Zend_Controller_Front
     {
         if (is_string($router)) {
             if (!class_exists($router)) {
-                require_once 'Zend/Loader.php';
                 Zend_Loader::loadClass($router);
             }
             $router = new $router();
@@ -526,7 +521,6 @@ class Zend_Controller_Front
     public function getRouter()
     {
         if (null == $this->_router) {
-            require_once 'Zend/Controller/Router/Rewrite.php';
             $this->setRouter(new Zend_Controller_Router_Rewrite());
         }
 
@@ -606,7 +600,6 @@ class Zend_Controller_Front
     {
         // Instantiate the default dispatcher if one was not set.
         if (!$this->_dispatcher instanceof Zend_Controller_Dispatcher_Interface) {
-            require_once 'Zend/Controller/Dispatcher/Standard.php';
             $this->_dispatcher = new Zend_Controller_Dispatcher_Standard();
         }
 
@@ -629,7 +622,6 @@ class Zend_Controller_Front
     {
         if (is_string($response)) {
             if (!class_exists($response)) {
-                require_once 'Zend/Loader.php';
                 Zend_Loader::loadClass($response);
             }
             $response = new $response();
@@ -860,12 +852,10 @@ class Zend_Controller_Front
     {
         if (!$this->getParam('noErrorHandler') && !$this->_plugins->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class)) {
             // Register with stack index of 100
-            require_once 'Zend/Controller/Plugin/ErrorHandler.php';
             $this->_plugins->registerPlugin(new Zend_Controller_Plugin_ErrorHandler(), 100);
         }
 
         if (!$this->getParam('noViewRenderer') && !Zend_Controller_Action_HelperBroker::hasHelper('viewRenderer')) {
-            require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
             Zend_Controller_Action_HelperBroker::getStack()->offsetSet(-80, new Zend_Controller_Action_Helper_ViewRenderer());
         }
 
@@ -873,7 +863,6 @@ class Zend_Controller_Front
         if (null !== $request) {
             $this->setRequest($request);
         } elseif ((null === $request) && (null === ($request = $this->getRequest()))) {
-            require_once 'Zend/Controller/Request/Http.php';
             $request = new Zend_Controller_Request_Http();
             $this->setRequest($request);
         }
@@ -889,7 +878,6 @@ class Zend_Controller_Front
         if (null !== $response) {
             $this->setResponse($response);
         } elseif ((null === $this->_response) && (null === ($this->_response = $this->getResponse()))) {
-            require_once 'Zend/Controller/Response/Http.php';
             $response = new Zend_Controller_Response_Http();
             $this->setResponse($response);
         }

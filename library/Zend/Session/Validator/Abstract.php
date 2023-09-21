@@ -20,11 +20,6 @@
  */
 
 /**
- * @see Zend_Session_Validator_Interface
- */
-require_once 'Zend/Session/Validator/Interface.php';
-
-/**
  * Zend_Session_Validator_Abstract.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

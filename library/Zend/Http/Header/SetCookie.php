@@ -24,10 +24,6 @@
 /**
  * @see Zend_Http_Header_Exception_RuntimeException
  */
-/**
- * @see Zend_Http_Header_HeaderValue
- */
-require_once 'Zend/Http/Header/HeaderValue.php';
 
 /**
  * Zend_Http_Client is an implementation of an HTTP client in PHP. The client

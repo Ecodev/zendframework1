@@ -16,8 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Controller/Action/HelperBroker.php';
-require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
 require_once 'Zend/Controller/Action/Helper/Redirector.php';
 
 /**

@@ -18,10 +18,8 @@
  */
 
 /** Zend_Locale */
-require_once 'Zend/Locale.php';
 
 /** Zend_View_Helper_Abstract.php */
-require_once 'Zend/View/Helper/Abstract.php';
 
 /**
  * Translation view helper.
@@ -125,7 +123,6 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
     public function getTranslator()
     {
         if ($this->_translator === null) {
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
                 $this->setTranslator(Zend_Registry::get(\Zend_Translate::class));
             }

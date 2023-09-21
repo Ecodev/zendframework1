@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Http_UserAgent_Storage_Interface
- */
-require_once 'Zend/Http/UserAgent/Storage.php';
-
-/**
  * Non-Persistent Browser Storage.
  *
  * Since HTTP Browserentication happens again on each request, this will always be

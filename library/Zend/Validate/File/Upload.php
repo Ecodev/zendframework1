@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_Abstract
- */
-require_once 'Zend/Validate/Abstract.php';
-
-/**
  * Validator for the maximum size of a file up to a max of 2GB.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License

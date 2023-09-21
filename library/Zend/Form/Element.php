@@ -16,16 +16,12 @@
  */
 
 /** @see Zend_Filter */
-require_once 'Zend/Filter.php';
 
 /** @see Zend_Form */
-require_once 'Zend/Form.php';
 
 /** @see Zend_Validate_Interface */
-require_once 'Zend/Validate/Interface.php';
 
 /** @see Zend_Validate_Abstract */
-require_once 'Zend/Validate/Abstract.php';
 
 /**
  * Zend_Form_Element.
@@ -1098,7 +1094,6 @@ class Zend_Form_Element implements Zend_Validate_Interface
                     $pathSegment = 'Form/Decorator';
                 }
                 if (!isset($this->_loaders[$type])) {
-                    require_once 'Zend/Loader/PluginLoader.php';
                     $this->_loaders[$type] = new Zend_Loader_PluginLoader(
                         ['Zend_' . $prefixSegment . '_' => 'Zend/' . $pathSegment . '/']
                     );
@@ -1901,7 +1896,6 @@ class Zend_Form_Element implements Zend_Validate_Interface
     public function getView()
     {
         if (null === $this->_view) {
-            require_once 'Zend/Controller/Action/HelperBroker.php';
             $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
             $this->setView($viewRenderer->view);
         }

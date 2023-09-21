@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_View_Helper_Navigation_HelperAbstract
- */
-require_once 'Zend/View/Helper/Navigation/HelperAbstract.php';
-
-/**
  * Helper for printing <link> elements.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

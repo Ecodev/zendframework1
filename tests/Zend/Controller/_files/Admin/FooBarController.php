@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Controller/Action.php';
 require_once __DIR__ . '/../FooController.php';
 
 /**

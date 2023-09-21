@@ -96,7 +96,6 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         $options = [
             'scriptPath' => __DIR__,
         ];
-        require_once 'Zend/Application/Resource/View.php';
         $resource = new Zend_Application_Resource_View($options);
         $resource->init();
         $view = $resource->getView();

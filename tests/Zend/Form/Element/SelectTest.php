@@ -56,7 +56,6 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
 
     public function getView()
     {
-        require_once 'Zend/View.php';
         $view = new Zend_View([
             'encoding' => 'UTF-8',
         ]);
@@ -123,8 +122,6 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
      */
     public function testTranslationShouldNotRaiseWarningsWithNestedGroups()
     {
-        require_once 'Zend/Translate.php';
-        require_once 'Zend/View.php';
         $translate = new Zend_Translate('array', ['Select Test', 'Select Test Translated'], 'en');
         $this->element
             ->setLabel('Select Test')

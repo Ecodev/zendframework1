@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Json
- */
-require_once 'Zend/Json.php';
-
-/**
  * jQuery Global Class holding constants and static convienience methods.
  *
  * @todo       Offer convenience methods to add a tab or accordion container/pane combination.
@@ -144,10 +139,7 @@ class ZendX_JQuery
         }
 
         if (!class_exists(\Zend_Json::class)) {
-            /**
-             * @see Zend_Json
-             */
-            require_once 'Zend/Json.php';
+            // @see Zend_Json
         }
 
         return Zend_Json::encode($value, false, ['enableJsonExprFinder' => true]);

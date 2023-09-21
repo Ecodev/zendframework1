@@ -18,10 +18,6 @@
  */
 require_once 'Zend/Form/Decorator/Errors.php';
 
-require_once 'Zend/Config.php';
-require_once 'Zend/Form.php';
-require_once 'Zend/Form/DisplayGroup.php';
-require_once 'Zend/Form/Element.php';
 require_once 'Zend/Loader/PluginLoader.php';
 
 /**

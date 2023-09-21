@@ -1216,8 +1216,6 @@ class Zend_Locale
             return self::$_environment;
         }
 
-        require_once 'Zend/Locale/Data/Translation.php';
-
         $language = setlocale(LC_ALL, 0);
         $languages = explode(';', $language);
         $languagearray = [];
@@ -1450,7 +1448,6 @@ class Zend_Locale
      */
     public static function getTranslationList($path = null, $locale = null, $value = null)
     {
-        require_once 'Zend/Locale/Data.php';
         $locale = self::findLocale($locale);
         $result = Zend_Locale_Data::getList($locale, $path, $value);
         if (empty($result) === true) {
@@ -1537,7 +1534,6 @@ class Zend_Locale
      */
     public static function getTranslation($value = null, $path = null, $locale = null)
     {
-        require_once 'Zend/Locale/Data.php';
         $locale = self::findLocale($locale);
         $result = Zend_Locale_Data::getContent($locale, $path, $value);
         if (empty($result) === true && '0' !== $result) {
@@ -1625,7 +1621,6 @@ class Zend_Locale
      */
     public static function getQuestion($locale = null)
     {
-        require_once 'Zend/Locale/Data.php';
         $locale = self::findLocale($locale);
         $quest = Zend_Locale_Data::getList($locale, 'question');
         $yes = explode(':', $quest['yes']);
@@ -1759,7 +1754,6 @@ class Zend_Locale
     public static function findLocale($locale = null)
     {
         if ($locale === null) {
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
                 $locale = Zend_Registry::get(\Zend_Locale::class);
             }
@@ -1825,8 +1819,6 @@ class Zend_Locale
      */
     public static function getCache()
     {
-        require_once 'Zend/Locale/Data.php';
-
         return Zend_Locale_Data::getCache();
     }
 
@@ -1837,7 +1829,6 @@ class Zend_Locale
      */
     public static function setCache(Zend_Cache_Core $cache)
     {
-        require_once 'Zend/Locale/Data.php';
         Zend_Locale_Data::setCache($cache);
     }
 
@@ -1848,8 +1839,6 @@ class Zend_Locale
      */
     public static function hasCache()
     {
-        require_once 'Zend/Locale/Data.php';
-
         return Zend_Locale_Data::hasCache();
     }
 
@@ -1858,7 +1847,6 @@ class Zend_Locale
      */
     public static function removeCache()
     {
-        require_once 'Zend/Locale/Data.php';
         Zend_Locale_Data::removeCache();
     }
 
@@ -1869,7 +1857,6 @@ class Zend_Locale
      */
     public static function clearCache($tag = null)
     {
-        require_once 'Zend/Locale/Data.php';
         Zend_Locale_Data::clearCache();
     }
 
@@ -1880,7 +1867,6 @@ class Zend_Locale
      */
     public static function disableCache($flag)
     {
-        require_once 'Zend/Locale/Data.php';
         Zend_Locale_Data::disableCache($flag);
     }
 

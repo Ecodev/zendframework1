@@ -247,7 +247,6 @@ class Zend_Loader
     public static function registerAutoload($class = \Zend_Loader::class, $enabled = true)
     {
         trigger_error(self::class . '::' . __METHOD__ . ' is deprecated as of 1.8.0 and will be removed with 2.0.0; use Zend_Loader_Autoloader instead', E_USER_NOTICE);
-        require_once 'Zend/Loader/Autoloader.php';
         $autoloader = Zend_Loader_Autoloader::getInstance();
         $autoloader->setFallbackAutoloader(true);
 

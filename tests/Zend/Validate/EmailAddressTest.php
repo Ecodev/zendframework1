@@ -375,9 +375,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public function testHostnameValidatorMessagesShouldBeTranslated()
     {
-        require_once 'Zend/Validate/Hostname.php';
         $hostnameValidator = new Zend_Validate_Hostname();
-        require_once 'Zend/Translate.php';
         $translations = [
             'hostnameIpAddressNotAllowed' => 'hostnameIpAddressNotAllowed translation',
             'hostnameUnknownTld' => 'hostnameUnknownTld translation',

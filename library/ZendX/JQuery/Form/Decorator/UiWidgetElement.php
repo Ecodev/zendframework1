@@ -18,16 +18,6 @@
  */
 
 /**
- * @see Zend_Form_Decorator_ViewHelper
- */
-require_once 'Zend/Form/Decorator/ViewHelper.php';
-
-/**
- * @see ZendX_JQuery_Form_Decorator_UiWidgetElementMarker
- */
-require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElementMarker.php';
-
-/**
  * Abstract Form Decorator for all jQuery UI Form Elements.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

@@ -18,10 +18,8 @@
  */
 
 /** Zend_Loader */
-require_once 'Zend/Loader.php';
 
 /** Zend_Controller_Dispatcher_Abstract */
-require_once 'Zend/Controller/Dispatcher/Abstract.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

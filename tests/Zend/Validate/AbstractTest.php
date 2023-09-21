@@ -246,7 +246,6 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
 
     public function testMaximumErrorMessageLength()
     {
-        require_once 'Zend/Validate.php';
         $this->assertEquals(-1, Zend_Validate::getMessageLength());
         Zend_Validate_Abstract::setMessageLength(10);
         $this->assertEquals(10, Zend_Validate::getMessageLength());

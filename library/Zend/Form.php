@@ -16,7 +16,6 @@
  */
 
 /** @see Zend_Validate_Interface */
-require_once 'Zend/Validate/Interface.php';
 
 /**
  * Zend_Form.
@@ -479,7 +478,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                     throw new Zend_Form_Exception(sprintf('Invalid type "%s" provided to getPluginLoader()', $type));
             }
 
-            require_once 'Zend/Loader/PluginLoader.php';
             $this->_loaders[$type] = new Zend_Loader_PluginLoader(
                 ['Zend_' . $prefixSegment . '_' => 'Zend/' . $pathSegment . '/']
             );
@@ -1935,7 +1933,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         }
 
         if (!class_exists($class)) {
-            require_once 'Zend/Loader.php';
             Zend_Loader::loadClass($class);
         }
         $this->_displayGroups[$name] = new $class(
@@ -2462,7 +2459,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      */
     public function processAjax(array $data)
     {
-        require_once 'Zend/Json.php';
         if ($this->isValidPartial($data)) {
             return Zend_Json::encode(true);
         }
@@ -2781,7 +2777,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     public function getView()
     {
         if (null === $this->_view) {
-            require_once 'Zend/Controller/Action/HelperBroker.php';
             $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
             $this->setView($viewRenderer->view);
         }
@@ -3195,7 +3190,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     public static function getDefaultTranslator()
     {
         if (null === self::$_translatorDefault) {
-            require_once 'Zend/Registry.php';
             if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
                 $translator = Zend_Registry::get(\Zend_Translate::class);
                 if ($translator instanceof Zend_Translate_Adapter) {

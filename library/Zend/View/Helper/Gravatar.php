@@ -18,7 +18,6 @@
  */
 
 /** Zend_View_Helper_HtmlElement */
-require_once 'Zend/View/Helper/HtmlElement.php';
 
 /**
  * Helper for retrieving avatars from gravatar.com.

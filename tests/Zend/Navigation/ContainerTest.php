@@ -16,9 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Navigation.php';
-require_once 'Zend/Config.php';
-require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Request/Http.php';
 
 /**

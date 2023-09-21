@@ -209,7 +209,6 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 
     public function testOptionLocaleDirectory()
     {
-        require_once 'Zend/Translate.php';
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/testarray', 'de_AT', ['scan' => Zend_Translate::LOCALE_DIRECTORY]);
         $this->assertEquals(['de_AT' => 'de_AT', 'en_GB' => 'en_GB', 'ja' => 'ja'], $adapter->getList());
         $this->assertEquals('Nachricht 8', $adapter->translate('Message 8'));
@@ -217,7 +216,6 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 
     public function testOptionLocaleFilename()
     {
-        require_once 'Zend/Translate.php';
         $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/testarray', 'de_DE', ['scan' => Zend_Translate::LOCALE_FILENAME]);
         $this->assertEquals(['de_DE' => 'de_DE', 'en_US' => 'en_US', 'ja' => 'ja'], $adapter->getList());
         $this->assertEquals('Nachricht 8', $adapter->translate('Message 8'));
@@ -255,7 +253,6 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 
     public function testCaching()
     {
-        require_once 'Zend/Cache.php';
         $cache = Zend_Cache::factory('Core', 'File',
             ['lifetime' => 120, 'automatic_serialization' => true],
             ['cache_dir' => __DIR__ . '/_files/']);
@@ -286,7 +283,6 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
 
     public function testLoadingFilesIntoCacheAfterwards()
     {
-        require_once 'Zend/Cache.php';
         $cache = Zend_Cache::factory('Core', 'File',
             ['lifetime' => 120, 'automatic_serialization' => true],
             ['cache_dir' => __DIR__ . '/_files/']);

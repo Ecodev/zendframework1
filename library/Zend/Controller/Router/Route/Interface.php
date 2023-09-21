@@ -18,7 +18,6 @@
  */
 
 /** Zend_Config */
-require_once 'Zend/Config.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

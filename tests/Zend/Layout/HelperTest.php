@@ -16,9 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Layout/Controller/Action/Helper/Layout.php';
-require_once 'Zend/Layout.php';
-require_once 'Zend/Controller/Front.php';
 require_once 'Zend/Controller/Action/HelperBroker.php';
 
 /**

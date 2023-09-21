@@ -16,12 +16,8 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Controller/Front.php';
-require_once 'Zend/Controller/Request/Http.php';
 require_once 'Zend/Controller/Response/Cli.php';
 
-require_once 'Zend/Controller/Action/HelperBroker.php';
-require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
 require_once 'Zend/Controller/Action/Helper/Redirector.php';
 
 /**

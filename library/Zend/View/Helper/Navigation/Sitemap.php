@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_View_Helper_Navigation_HelperAbstract
- */
-require_once 'Zend/View/Helper/Navigation/HelperAbstract.php';
-
-/**
  * Helper for printing sitemaps.
  *
  * @see http://www.sitemaps.org/protocol.php
@@ -186,7 +181,6 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
      */
     public function setServerUrl($serverUrl)
     {
-        require_once 'Zend/Uri.php';
         $uri = Zend_Uri::factory($serverUrl);
         $uri->setFragment('');
         $uri->setPath('');
@@ -294,11 +288,6 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
 
         // check if we should validate using our own validators
         if ($this->getUseSitemapValidators()) {
-            require_once 'Zend/Validate/Sitemap/Changefreq.php';
-            require_once 'Zend/Validate/Sitemap/Lastmod.php';
-            require_once 'Zend/Validate/Sitemap/Loc.php';
-            require_once 'Zend/Validate/Sitemap/Priority.php';
-
             // create validators
             $locValidator = new Zend_Validate_Sitemap_Loc();
             $lastmodValidator = new Zend_Validate_Sitemap_Lastmod();

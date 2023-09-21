@@ -19,11 +19,6 @@
  */
 
 /**
- * @see Zend_Uri_Http
- */
-require_once 'Zend/Uri/Http.php';
-
-/**
  * Zend_Http_Cookie is a class describing an HTTP cookie and all it's parameters.
  *
  * Zend_Http_Cookie is a class describing an HTTP cookie and all it's parameters. The
@@ -339,8 +334,6 @@ class Zend_Http_Cookie
                              *
                              * @see Zend_Date
                              */
-                            require_once 'Zend/Date.php';
-
                             $expireDate = new Zend_Date($v);
                             $expires = $expireDate->getTimestamp();
                         }

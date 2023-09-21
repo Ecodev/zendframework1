@@ -18,12 +18,8 @@
  */
 require_once __DIR__ . '/../../TestHelper.php';
 
-require_once 'Zend/Registry.php';
-require_once 'Zend/View.php';
-require_once 'Zend/Form.php';
 require_once 'ZendX/JQuery.php';
 require_once 'ZendX/JQuery/Form.php';
-require_once 'Zend/Form/Element.php';
 require_once 'ZendX/JQuery/Form/Element/Spinner.php';
 
 class ZendX_JQuery_JQueryTest extends \PHPUnit\Framework\TestCase

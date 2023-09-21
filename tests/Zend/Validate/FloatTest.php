@@ -44,7 +44,6 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
     {
         $this->_locale = setlocale(LC_ALL, 0); //backup locale
 
-        require_once 'Zend/Registry.php';
         if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
             Zend_Registry::getInstance()->offsetUnset(\Zend_Locale::class);
         }

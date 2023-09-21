@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Filter_Compress_CompressAbstract
- */
-require_once 'Zend/Filter/Compress/CompressAbstract.php';
-
-/**
  * Compression adapter for Tar.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -53,8 +48,6 @@ class Zend_Filter_Compress_Tar extends Zend_Filter_Compress_CompressAbstract
     public function __construct($options = null)
     {
         if (!class_exists('Archive_Tar')) {
-            require_once 'Zend/Loader.php';
-
             try {
                 Zend_Loader::loadClass('Archive_Tar');
             } catch (Zend_Exception $e) {

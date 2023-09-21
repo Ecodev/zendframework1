@@ -18,16 +18,6 @@
  */
 
 /**
- * @see Zend_Controller_Action_Helper_Abstract
- */
-require_once 'Zend/Controller/Action/Helper/Abstract.php';
-
-/**
- * @see Zend_View
- */
-require_once 'Zend/View.php';
-
-/**
  * View script integration.
  *
  * Zend_Controller_Action_Helper_ViewRenderer provides transparent view
@@ -259,18 +249,9 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
     public function getInflector()
     {
         if (null === $this->_inflector) {
-            /**
-             * @see Zend_Filter_Inflector
-             */
-            require_once 'Zend/Filter/Inflector.php';
-            /**
-             * @see Zend_Filter_PregReplace
-             */
-            require_once 'Zend/Filter/PregReplace.php';
-            /**
-             * @see Zend_Filter_Word_UnderscoreToSeparator
-             */
-            require_once 'Zend/Filter/Word/UnderscoreToSeparator.php';
+            // @see Zend_Filter_Inflector
+            // @see Zend_Filter_PregReplace
+            // @see Zend_Filter_Word_UnderscoreToSeparator
             $this->_inflector = new Zend_Filter_Inflector();
             $this->_inflector->setStaticRuleReference('moduleDir', $this->_moduleDir) // moduleDir must be specified before the less specific 'module'
                 ->addRules([
@@ -859,7 +840,6 @@ class Zend_Controller_Action_Helper_ViewRenderer extends Zend_Controller_Action_
         $module = $dispatcher->formatModuleName($request->getModuleName());
 
         // Format controller name
-        require_once 'Zend/Filter/Word/CamelCaseToDash.php';
         $filter = new Zend_Filter_Word_CamelCaseToDash();
         $controller = $filter->filter($request->getControllerName());
         $controller = $dispatcher->formatControllerName($controller);

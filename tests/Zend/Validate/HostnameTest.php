@@ -269,7 +269,6 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     {
         $code = null;
         $message = null;
-        require_once 'Zend/Translate.php';
         $translations = [
             'hostnameInvalidLocalName' => 'this is the IP error message',
         ];

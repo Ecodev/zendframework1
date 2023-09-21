@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Application_Resource_ResourceAbstract
- */
-require_once 'Zend/Application/Resource/ResourceAbstract.php';
-
-/**
  * Front Controller resource.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

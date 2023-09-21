@@ -18,7 +18,6 @@
  */
 
 /** Zend_Loader_Autoloader_Interface */
-require_once 'Zend/Loader/Autoloader/Interface.php';
 
 /**
  * Resource loader.
@@ -81,7 +80,6 @@ class Zend_Loader_Autoloader_Resource implements Zend_Loader_Autoloader_Interfac
         if (!empty($namespace)) {
             $namespace .= '_';
         }
-        require_once 'Zend/Loader/Autoloader.php';
         Zend_Loader_Autoloader::getInstance()->unshiftAutoloader($this, $namespace);
     }
 

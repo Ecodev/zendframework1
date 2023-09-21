@@ -18,8 +18,6 @@
  */
 require_once 'Zend/Form/Decorator/ViewHelper.php';
 
-require_once 'Zend/Form/Element.php';
-require_once 'Zend/Form/Element/Text.php';
 require_once 'Zend/View.php';
 
 /**
@@ -140,8 +138,6 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
 
     public function testMultiOptionsPassedToViewHelperAreTranslated()
     {
-        require_once 'Zend/Form/Element/Select.php';
-        require_once 'Zend/Translate.php';
         $element = new Zend_Form_Element_Select('foo');
         $options = [
             'foo' => 'This Foo Will Not Be Displayed',

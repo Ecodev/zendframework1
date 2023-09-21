@@ -16,8 +16,6 @@
  *
  * @version $Id$
  */
-require_once 'Zend/View.php';
-require_once 'Zend/View/Helper/FormText.php';
 require_once 'Zend/Registry.php';
 
 /**

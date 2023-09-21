@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_View_Helper_HtmlObject
- */
-require_once 'Zend/View/Helper/HtmlObject.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]

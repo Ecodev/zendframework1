@@ -18,21 +18,6 @@
  */
 
 /**
- * @see Zend_Acl
- */
-require_once 'Zend/Acl.php';
-
-/**
- * @see Zend_Acl_Role_Interface
- */
-require_once 'Zend/Acl/Role/Interface.php';
-
-/**
- * @see Zend_Acl_Resource_Interface
- */
-require_once 'Zend/Acl/Resource/Interface.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 interface Zend_Acl_Assert_Interface

@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Form/Decorator/Form.php';
 require_once 'Zend/Form.php';
 
 /**
@@ -57,7 +56,6 @@ class Zend_Form_Decorator_FormTest extends \PHPUnit\Framework\TestCase
 
     public function getView()
     {
-        require_once 'Zend/View.php';
         $view = new Zend_View();
         $view->addHelperPath(__DIR__ . '/../../../../library/Zend/View/Helper');
 
@@ -75,8 +73,6 @@ class Zend_Form_Decorator_FormTest extends \PHPUnit\Framework\TestCase
         $this->decorator->setOption('helper', 'formForm');
         $this->assertEquals('formForm', $this->decorator->getHelper());
 
-        require_once 'Zend/Form/DisplayGroup.php';
-        require_once 'Zend/Loader/PluginLoader.php';
         $attribs = [
             'enctype' => 'ascii',
             'charset' => 'us-ascii',

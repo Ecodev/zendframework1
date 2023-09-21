@@ -16,12 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Controller/Front.php';
-require_once 'Zend/Controller/Request/Http.php';
-require_once 'Zend/Controller/Response/Cli.php';
-require_once 'Zend/Controller/Action/HelperBroker.php';
-require_once 'Zend/Controller/Action/Helper/FlashMessenger.php';
-require_once 'Zend/Session.php';
 require_once dirname(__FILE__, 3) . '/_files/HelperFlashMessengerController.php';
 
 /**

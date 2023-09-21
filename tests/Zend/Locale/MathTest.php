@@ -20,7 +20,6 @@
 /**
  * Zend_Locale_Format.
  */
-require_once 'Zend/Locale/Math.php';
 require_once 'Zend/Locale/Math/PhpMath.php';
 
 /**

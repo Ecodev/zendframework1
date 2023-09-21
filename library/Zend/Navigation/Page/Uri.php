@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Navigation_Page_Abstract
- */
-require_once 'Zend/Navigation/Page.php';
-
-/**
  * Represents a page that is defined by specifying a URI.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License

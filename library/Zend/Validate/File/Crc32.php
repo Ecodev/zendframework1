@@ -18,11 +18,6 @@
  */
 
 /**
- * @see Zend_Validate_File_Hash
- */
-require_once 'Zend/Validate/File/Hash.php';
-
-/**
  * Validator for the crc32 hash of given files.
  *
  * @license   http://framework.zend.com/license/new-bsd     New BSD License
@@ -162,7 +157,6 @@ class Zend_Validate_File_Crc32 extends Zend_Validate_File_Hash
     public function isValid($value, $file = null)
     {
         // Is file readable ?
-        require_once 'Zend/Loader.php';
         if (!Zend_Loader::isReadable($value)) {
             return $this->_throw($file, self::NOT_FOUND);
         }

@@ -18,14 +18,11 @@
  */
 require_once __DIR__ . '/../../../TestHelper.php';
 
-require_once 'Zend/Registry.php';
-require_once 'Zend/View.php';
 require_once 'ZendX/JQuery.php';
 require_once 'ZendX/JQuery/View/Helper/JQuery.php';
 
 require_once 'ZendX/JQuery/Form.php';
 require_once 'ZendX/JQuery/Form/Element/Spinner.php';
-require_once 'Zend/Form/Decorator/ViewHelper.php';
 require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElement.php';
 require_once 'ZendX/JQuery/Form/Decorator/TabContainer.php';
 require_once 'ZendX/JQuery/Form/Decorator/TabPane.php';

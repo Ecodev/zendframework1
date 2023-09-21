@@ -18,16 +18,6 @@
  */
 
 /**
- * @see Zend_Paginator_Adapter_Interface
- */
-require_once 'Zend/Paginator/Adapter/Interface.php';
-
-/**
- * @see Zend_Paginator_SerializableLimitIterator
- */
-require_once 'Zend/Paginator/SerializableLimitIterator.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]

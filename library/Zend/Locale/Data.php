@@ -20,10 +20,8 @@
 /**
  * include needed classes.
  */
-require_once 'Zend/Locale.php';
 
 /** @see Zend_Xml_Security */
-require_once 'Zend/Xml/Security.php';
 
 /**
  * Locale data reader, handles the CLDR.
@@ -304,7 +302,6 @@ class Zend_Locale_Data
         $locale = self::_checkLocale($locale);
 
         if (!isset(self::$_cache) && !self::$_cacheDisabled) {
-            require_once 'Zend/Cache.php';
             self::$_cache = Zend_Cache::factory(
                 'Core',
                 'File',
@@ -1015,7 +1012,6 @@ class Zend_Locale_Data
         $locale = self::_checkLocale($locale);
 
         if (!isset(self::$_cache) && !self::$_cacheDisabled) {
-            require_once 'Zend/Cache.php';
             self::$_cache = Zend_Cache::factory(
                 'Core',
                 'File',

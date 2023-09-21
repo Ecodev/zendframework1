@@ -18,7 +18,6 @@
  */
 
 /** Zend_Controller_Action_Helper_Abstract */
-require_once 'Zend/Controller/Action/Helper/Abstract.php';
 
 /**
  * Helper for interacting with Zend_Layout objects.
@@ -56,7 +55,6 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
             /**
              * @see Zend_Layout
              */
-            require_once 'Zend/Layout.php';
             $layout = Zend_Layout::getMvcInstance();
         }
 
@@ -83,10 +81,7 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
     public function getFrontController()
     {
         if (null === $this->_frontController) {
-            /**
-             * @see Zend_Controller_Front
-             */
-            require_once 'Zend/Controller/Front.php';
+            // @see Zend_Controller_Front
             $this->_frontController = Zend_Controller_Front::getInstance();
         }
 
@@ -101,10 +96,7 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
     public function getLayoutInstance()
     {
         if (null === $this->_layout) {
-            /**
-             * @see Zend_Layout
-             */
-            require_once 'Zend/Layout.php';
+            // @see Zend_Layout
             if (null === ($this->_layout = Zend_Layout::getMvcInstance())) {
                 $this->_layout = new Zend_Layout();
             }

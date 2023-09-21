@@ -16,7 +16,6 @@
  */
 
 /** Zend_Form_Element_Select */
-require_once 'Zend/Form/Element/Select.php';
 
 /**
  * Multiselect form element.

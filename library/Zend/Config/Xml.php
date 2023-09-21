@@ -17,13 +17,7 @@
  * @version   $Id$
  */
 
-/**
- * @see Zend_Config
- */
-require_once 'Zend/Config.php';
-
 /** @see Zend_Xml_Security */
-require_once 'Zend/Xml/Security.php';
 
 /** @see Zend_Xml_Exception */
 /**

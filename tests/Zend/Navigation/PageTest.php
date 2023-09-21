@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Navigation/Page.php';
 require_once 'Zend/Config.php';
 
 /**
@@ -476,7 +475,6 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
             'label' => 'hello',
         ]);
 
-        require_once 'Zend/Acl/Resource.php';
         $resource = new Zend_Acl_Resource('bar');
 
         $page->setResource($resource);

@@ -22,10 +22,8 @@
  *
  * @see Zend_Json_Expr
  */
-require_once 'Zend/Json/Expr.php';
 
 /** @see Zend_Xml_Security */
-require_once 'Zend/Xml/Security.php';
 
 /**
  * Class for encoding to and decoding from JSON.
@@ -100,8 +98,6 @@ class Zend_Json
             return $decode;
         }
 
-        require_once 'Zend/Json/Decoder.php';
-
         return Zend_Json_Decoder::decode($encodedValue, $objectDecodeType);
     }
 
@@ -145,7 +141,6 @@ class Zend_Json
             /**
              * @see Zend_Json_Encoder
              */
-            require_once 'Zend/Json/Encoder.php';
             $valueToEncode = self::_recursiveJsonExprFinder($valueToEncode, $javascriptExpressions);
         }
 
@@ -153,7 +148,6 @@ class Zend_Json
         if (function_exists('json_encode') && self::$useBuiltinEncoderDecoder !== true) {
             $encodedResult = json_encode($valueToEncode, JSON_THROW_ON_ERROR);
         } else {
-            require_once 'Zend/Json/Encoder.php';
             $encodedResult = Zend_Json_Encoder::encode($valueToEncode, $cycleCheck, $options);
         }
 

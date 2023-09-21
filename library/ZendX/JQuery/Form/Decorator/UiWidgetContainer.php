@@ -16,7 +16,6 @@
  *
  * @version     $Id$
  */
-require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
  * Abstract Form Decorator for all jQuery UI Widget Containers.

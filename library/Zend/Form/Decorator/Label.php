@@ -16,7 +16,6 @@
  */
 
 /** Zend_Form_Decorator_Abstract */
-require_once 'Zend/Form/Decorator/Abstract.php';
 
 /**
  * Zend_Form_Decorator_Label.
@@ -437,7 +436,6 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
         }
 
         if (null !== $tag) {
-            require_once 'Zend/Form/Decorator/HtmlTag.php';
             $decorator = new Zend_Form_Decorator_HtmlTag();
             if (null !== $this->_tagClass) {
                 $decorator->setOptions(['tag' => $tag,

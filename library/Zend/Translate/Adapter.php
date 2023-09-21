@@ -18,16 +18,6 @@
  */
 
 /**
- * @see Zend_Locale
- */
-require_once 'Zend/Locale.php';
-
-/**
- * @see Zend_Translate_Plural
- */
-require_once 'Zend/Translate/Plural.php';
-
-/**
  * Basic adapter class for each translation source adapter.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -973,7 +963,6 @@ abstract class Zend_Translate_Adapter
      */
     public static function clearCache($tag = null)
     {
-        require_once 'Zend/Cache.php';
         if (self::$_cacheTags) {
             if ($tag == null) {
                 $tag = 'Zend_Translate';
