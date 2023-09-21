@@ -52,8 +52,6 @@ class Zend_Translate_Adapter_Array extends Zend_Translate_Adapter
             }
         }
         if (!is_array($data)) {
-            require_once 'Zend/Translate/Exception.php';
-
             throw new Zend_Translate_Exception("Error including array or file '" . $data . "'");
         }
 

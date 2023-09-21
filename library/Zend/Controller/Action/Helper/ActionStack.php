@@ -84,22 +84,12 @@ class Zend_Controller_Action_Helper_ActionStack extends Zend_Controller_Action_H
             return $this->pushStack($action);
         }
         if (!is_string($action)) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception('ActionStack requires either a request object or minimally a string action');
         }
 
         $request = $this->getRequest();
 
         if ($request instanceof Zend_Controller_Request_Abstract === false) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception('Request object not set yet');
         }
 

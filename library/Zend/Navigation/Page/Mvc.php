@@ -293,8 +293,6 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
     public function setAction($action)
     {
         if (null !== $action && !is_string($action)) {
-            require_once 'Zend/Navigation/Exception.php';
-
             throw new Zend_Navigation_Exception(
                 'Invalid argument: $action must be a string or null'
             );
@@ -330,8 +328,6 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
     public function setController($controller)
     {
         if (null !== $controller && !is_string($controller)) {
-            require_once 'Zend/Navigation/Exception.php';
-
             throw new Zend_Navigation_Exception(
                 'Invalid argument: $controller must be a string or null'
             );
@@ -367,8 +363,6 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
     public function setModule($module)
     {
         if (null !== $module && !is_string($module)) {
-            require_once 'Zend/Navigation/Exception.php';
-
             throw new Zend_Navigation_Exception(
                 'Invalid argument: $module must be a string or null'
             );
@@ -541,8 +535,6 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
     public function setRoute($route)
     {
         if (null !== $route && (!is_string($route) || strlen($route) < 1)) {
-            require_once 'Zend/Navigation/Exception.php';
-
             throw new Zend_Navigation_Exception(
                 'Invalid argument: $route must be a non-empty string or null'
             );
@@ -637,8 +629,6 @@ class Zend_Navigation_Page_Mvc extends Zend_Navigation_Page
     public function setScheme($scheme)
     {
         if (null !== $scheme && !is_string($scheme)) {
-            require_once 'Zend/Navigation/Exception.php';
-
             throw new Zend_Navigation_Exception(
                 'Invalid argument: $scheme must be a string or null'
             );

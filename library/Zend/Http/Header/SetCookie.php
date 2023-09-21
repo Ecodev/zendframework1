@@ -21,13 +21,9 @@
 /**
  * @see Zend_Http_Header_Exception_InvalidArgumentException
  */
-require_once 'Zend/Http/Header/Exception/InvalidArgumentException.php';
-
 /**
  * @see Zend_Http_Header_Exception_RuntimeException
  */
-require_once 'Zend/Http/Header/Exception/RuntimeException.php';
-
 /**
  * @see Zend_Http_Header_HeaderValue
  */

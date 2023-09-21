@@ -22,8 +22,6 @@
  */
 require_once 'Zend/Xml/Security.php';
 
-require_once 'Zend/Xml/Exception.php';
-
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  *

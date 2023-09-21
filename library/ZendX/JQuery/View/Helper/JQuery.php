@@ -108,8 +108,6 @@ class ZendX_JQuery_View_Helper_JQuery extends Zend_View_Helper_Abstract
     public function __call($method, $args)
     {
         if (!method_exists($this->_container, $method)) {
-            require_once 'Zend/View/Exception.php';
-
             throw new Zend_View_Exception(sprintf('Invalid method "%s" called on jQuery view helper', $method));
         }
 

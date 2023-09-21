@@ -20,8 +20,6 @@
 /**
  * @see Zend_Controller_Exception
  */
-require_once 'Zend/Controller/Exception.php';
-
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */

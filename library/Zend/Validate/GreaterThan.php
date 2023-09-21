@@ -66,8 +66,6 @@ class Zend_Validate_GreaterThan extends Zend_Validate_Abstract
             if (array_key_exists('min', $min)) {
                 $min = $min['min'];
             } else {
-                require_once 'Zend/Validate/Exception.php';
-
                 throw new Zend_Validate_Exception("Missing option 'min'");
             }
         }

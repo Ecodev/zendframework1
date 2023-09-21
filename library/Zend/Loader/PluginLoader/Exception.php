@@ -20,8 +20,6 @@
 /**
  * @see Zend_Loader_Exception
  */
-require_once 'Zend/Loader/Exception.php';
-
 /**
  * Plugin class loader exceptions.
  *

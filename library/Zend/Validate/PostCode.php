@@ -93,8 +93,6 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
 
         $format = $this->getFormat();
         if (empty($format)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('A postcode-format string has to be given for validation');
         }
     }
@@ -123,8 +121,6 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
         $locale = new Zend_Locale($this->_locale);
         $region = $locale->getRegion();
         if (empty($region)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception("Unable to detect a region for the locale '$locale'");
         }
 
@@ -135,8 +131,6 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
         );
 
         if (empty($format)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception("Unable to detect a postcode format for the region '{$locale->getRegion()}'");
         }
 
@@ -165,8 +159,6 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
     public function setFormat($format)
     {
         if (empty($format) || !is_string($format)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('A postcode-format string has to be given for validation');
         }
 

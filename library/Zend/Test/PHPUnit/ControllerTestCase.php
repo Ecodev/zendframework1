@@ -78,8 +78,6 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
     public function __set($name, $value)
     {
         if (in_array($name, ['request', 'response', 'frontController'])) {
-            require_once 'Zend/Exception.php';
-
             throw new Zend_Exception(sprintf('Setting %s object manually is not allowed', $name));
         }
         $this->$name = $value;

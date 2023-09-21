@@ -198,8 +198,6 @@ class Zend_View_Helper_Gravatar extends Zend_View_Helper_HtmlElement
 
                 break;
             default:
-                require_once 'Zend/View/Exception.php';
-
                 throw new Zend_View_Exception(sprintf(
                     'The rating value "%s" is not allowed',
                     $rating

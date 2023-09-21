@@ -62,8 +62,6 @@ abstract class ZendX_JQuery_Form_Decorator_UiWidgetPane extends Zend_Form_Decora
     public function getHelper()
     {
         if (null === $this->_helper) {
-            require_once 'Zend/Form/Decorator/Exception.php';
-
             throw new Zend_Form_Decorator_Exception('No view helper specified fo UiWidgetContainer decorator');
         }
 
@@ -112,8 +110,6 @@ abstract class ZendX_JQuery_Form_Decorator_UiWidgetPane extends Zend_Form_Decora
 
         // Ensure we have a title param
         if (!array_key_exists('title', $this->_jQueryParams)) {
-            require_once 'Zend/Form/Decorator/Exception.php';
-
             throw new Zend_Form_Decorator_Exception("UiWidgetPane Decorators have to have a jQueryParam 'title' to render. This title can been set via setJQueryParam('title') on the parent element.");
         }
 
@@ -147,8 +143,6 @@ abstract class ZendX_JQuery_Form_Decorator_UiWidgetPane extends Zend_Form_Decora
         if (isset($jQueryParams['containerId'])) {
             $id = $jQueryParams['containerId'] . '-container';
         } else {
-            require_once 'Zend/Form/Decorator/Exception.php';
-
             throw new Zend_Form_Decorator_Exception("UiWidgetPane Decorators have to have a jQueryParam 'containerId', to point at their parent container. This containerId has been set via setAttrib('id') on the parent element.");
         }
 

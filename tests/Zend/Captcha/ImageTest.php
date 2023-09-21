@@ -109,8 +109,6 @@ class Zend_Captcha_ImageTest extends \PHPUnit\Framework\TestCase
                     $tmpdir = realpath(dirname($tempFile));
                     unlink($tempFile);
                 } else {
-                    require_once 'Zend/File/Transfer/Exception.php';
-
                     throw new Zend_File_Transfer_Exception('Could not determine temp directory');
                 }
             }

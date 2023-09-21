@@ -81,13 +81,10 @@ class Zend_Json
                     return null;
                 }
                 if ($decode === null) {
-                    require_once 'Zend/Json/Exception.php';
-
                     throw new Zend_Json_Exception('Decoding failed');
                 }
                 // php >= 5.3
             } elseif (($jsonLastErr = json_last_error()) != JSON_ERROR_NONE) {
-                require_once 'Zend/Json/Exception.php';
                 switch ($jsonLastErr) {
                     case JSON_ERROR_DEPTH:
                         throw new Zend_Json_Exception('Decoding failed: Maximum stack depth exceeded');
@@ -272,8 +269,6 @@ class Zend_Json
         // Keep an eye on how deeply we are involved in recursion.
         if ($recursionDepth > self::$maxRecursionDepthAllowed) {
             // XML tree is too deep. Exit now by throwing an exception.
-            require_once 'Zend/Json/Exception.php';
-
             throw new Zend_Json_Exception(
                 'Function _processXml exceeded the allowed recursion depth of '
                 . self::$maxRecursionDepthAllowed);
@@ -358,8 +353,6 @@ class Zend_Json
 
         // If it is not a valid XML content, throw an exception.
         if ($simpleXmlElementObject == null) {
-            require_once 'Zend/Json/Exception.php';
-
             throw new Zend_Json_Exception('Function fromXml was called with an invalid XML formatted string.');
         } // End of if ($simpleXmlElementObject == null)
 

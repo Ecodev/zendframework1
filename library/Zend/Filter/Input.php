@@ -244,8 +244,6 @@ class Zend_Filter_Input
 
                 return $this;
             default:
-                require_once 'Zend/Filter/Exception.php';
-
                 throw new Zend_Filter_Exception(sprintf('Invalid type "%s" provided to setPluginLoader()', $type));
         }
 
@@ -282,8 +280,6 @@ class Zend_Filter_Input
 
                     break;
                 default:
-                    require_once 'Zend/Filter/Exception.php';
-
                     throw new Zend_Filter_Exception(sprintf('Invalid type "%s" provided to getPluginLoader()', $type));
             }
 
@@ -489,13 +485,9 @@ class Zend_Filter_Input
     {
         $this->_process();
         if ($this->hasInvalid()) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception('Input has invalid fields');
         }
         if ($this->hasMissing()) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception('Input has missing fields');
         }
 
@@ -532,8 +524,6 @@ class Zend_Filter_Input
             $escapeFilter = $this->_getFilter($escapeFilter);
         }
         if (!$escapeFilter instanceof Zend_Filter_Interface) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception('Escape filter specified does not implement Zend_Filter_Interface');
         }
         $this->_defaultEscapeFilter = $escapeFilter;
@@ -591,8 +581,6 @@ class Zend_Filter_Input
 
                     break;
                 default:
-                    require_once 'Zend/Filter/Exception.php';
-
                     throw new Zend_Filter_Exception("Unknown option '$option'");
 
                     break;
@@ -616,8 +604,6 @@ class Zend_Filter_Input
         } elseif ($translator instanceof Zend_Translate) {
             $this->_translator = $translator->getAdapter();
         } else {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('Invalid translator specified');
         }
 
@@ -1209,8 +1195,6 @@ class Zend_Filter_Input
         $class = new ReflectionClass($className);
 
         if (!$class->implementsInterface($interfaceName)) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception("Class '$className' based on basename '$classBaseName' must implement the '$interfaceName' interface");
         }
 

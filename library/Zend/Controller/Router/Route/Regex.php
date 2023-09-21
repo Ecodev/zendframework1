@@ -213,8 +213,6 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
     public function assemble($data = [], $reset = false, $encode = false, $partial = false)
     {
         if ($this->_reverse === null) {
-            require_once 'Zend/Controller/Router/Exception.php';
-
             throw new Zend_Controller_Router_Exception('Cannot assemble. Reversed route is not specified.');
         }
 
@@ -247,8 +245,6 @@ class Zend_Controller_Router_Route_Regex extends Zend_Controller_Router_Route_Ab
         $return = $mergedData ? @vsprintf($this->_reverse, $mergedData) : $this->_reverse;
 
         if ($return === false) {
-            require_once 'Zend/Controller/Router/Exception.php';
-
             throw new Zend_Controller_Router_Exception('Cannot assemble. Too few arguments?');
         }
 

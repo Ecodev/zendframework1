@@ -160,8 +160,6 @@ class Zend_Layout
             } elseif ($options instanceof Zend_Config) {
                 $this->setConfig($options);
             } else {
-                require_once 'Zend/Layout/Exception.php';
-
                 throw new Zend_Layout_Exception('Invalid option provided to constructor');
             }
         }
@@ -242,8 +240,6 @@ class Zend_Layout
         if ($options instanceof Zend_Config) {
             $options = $options->toArray();
         } elseif (!is_array($options)) {
-            require_once 'Zend/Layout/Exception.php';
-
             throw new Zend_Layout_Exception('setOptions() expects either an array or a Zend_Config object');
         }
 
@@ -784,8 +780,6 @@ class Zend_Layout
 
             return $this;
         }
-
-        require_once 'Zend/Layout/Exception.php';
 
         throw new Zend_Layout_Exception('Invalid values passed to assign()');
     }

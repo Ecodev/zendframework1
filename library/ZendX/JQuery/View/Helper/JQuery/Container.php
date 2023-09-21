@@ -447,8 +447,6 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     public function onLoadCaptureStart()
     {
         if ($this->_captureLock) {
-            require_once 'Zend/Exception.php';
-
             throw new Zend_Exception('Cannot nest onLoad captures');
         }
 
@@ -480,8 +478,6 @@ class ZendX_JQuery_View_Helper_JQuery_Container
     public function javascriptCaptureStart()
     {
         if ($this->_captureLock) {
-            require_once 'Zend/Exception.php';
-
             throw new Zend_Exception('Cannot nest captures');
         }
 

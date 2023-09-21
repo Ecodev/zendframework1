@@ -20,8 +20,6 @@
 /**
  * @see Zend_Exception
  */
-require_once 'Zend/Exception.php';
-
 /**
  * Exception for Zend_Form component.
  *

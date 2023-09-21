@@ -495,7 +495,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
             || $role instanceof Zend_Acl_Role_Interface) {
             $this->_role = $role;
         } else {
-            require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception(sprintf(
                 '$role must be a string, null, or an instance of '
                 . 'Zend_Acl_Role_Interface; %s given',
@@ -989,8 +988,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
             || $role instanceof Zend_Acl_Role_Interface) {
             self::$_defaultRole = $role;
         } else {
-            require_once 'Zend/View/Exception.php';
-
             throw new Zend_View_Exception(
                 '$role must be null|string|Zend_Acl_Role_Interface'
             );

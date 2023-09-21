@@ -57,8 +57,6 @@ abstract class ZendX_JQuery_View_Helper_UiWidgetPane extends ZendX_JQuery_View_H
     public function captureStart($id, $name, array $options = [])
     {
         if (array_key_exists($id, $this->_captureLock)) {
-            require_once 'ZendX/JQuery/View/Exception.php';
-
             throw new ZendX_JQuery_View_Exception(sprintf('Lock already exists for id "%s"', $id));
         }
 
@@ -83,8 +81,6 @@ abstract class ZendX_JQuery_View_Helper_UiWidgetPane extends ZendX_JQuery_View_H
         $name = null;
         $options = null;
         if (!array_key_exists($id, $this->_captureLock)) {
-            require_once 'ZendX/JQuery/View/Exception.php';
-
             throw new ZendX_JQuery_View_Exception(sprintf('No capture lock exists for id "%s"; nothing to capture', $id));
         }
 

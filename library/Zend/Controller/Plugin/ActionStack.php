@@ -211,8 +211,6 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
         $this->_saveStack($stack);
 
         if (!$next instanceof Zend_Controller_Request_Abstract) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception('ArrayStack should only contain request objects');
         }
         $action = $next->getActionName();

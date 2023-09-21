@@ -108,7 +108,6 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
         } elseif ($translate instanceof Zend_Translate) {
             $this->_translator = $translate->getAdapter();
         } else {
-            require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('You must set an instance of Zend_Translate or Zend_Translate_Adapter');
             $e->setView($this->view);
 
@@ -146,7 +145,6 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
     {
         $translate = $this->getTranslator();
         if ($translate === null) {
-            require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('You must set an instance of Zend_Translate or Zend_Translate_Adapter');
             $e->setView($this->view);
 
@@ -167,7 +165,6 @@ class Zend_View_Helper_Translate extends Zend_View_Helper_Abstract
     {
         $translate = $this->getTranslator();
         if ($translate === null) {
-            require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('You must set an instance of Zend_Translate or Zend_Translate_Adapter');
             $e->setView($this->view);
 

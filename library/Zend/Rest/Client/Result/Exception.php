@@ -20,8 +20,6 @@
 /**
  * @see Zend_Rest_Client_Exception
  */
-require_once 'Zend/Rest/Client/Exception.php';
-
 /**
  * Zend_Rest_Client_Result_Exception.
  *

@@ -173,7 +173,6 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
 
         if (!$helper instanceof Zend_View_Helper_Navigation_Helper) {
             if ($strict) {
-                require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception(sprintf(
                     'Proxy helper "%s" is not an instance of '
                     . \Zend_View_Helper_Navigation_Helper::class,

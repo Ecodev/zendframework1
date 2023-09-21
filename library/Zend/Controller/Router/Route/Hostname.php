@@ -296,8 +296,6 @@ class Zend_Controller_Router_Route_Hostname extends Zend_Controller_Router_Route
                 } elseif (isset($this->_defaults[$name])) {
                     $host[$key] = $this->_defaults[$name];
                 } else {
-                    require_once 'Zend/Controller/Router/Exception.php';
-
                     throw new Zend_Controller_Router_Exception($name . ' is not specified');
                 }
             } else {

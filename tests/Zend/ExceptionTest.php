@@ -16,8 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Exception.php';
-
 /**
  * @group      Zend_Exception
  *

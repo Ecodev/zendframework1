@@ -161,8 +161,6 @@ class ZendX_JQuery_Form_Element_UiWidget extends Zend_Form_Element
                 }
             }
             if ($foundUiWidgetElementMarker === false) {
-                require_once 'ZendX/JQuery/Form/Exception.php';
-
                 throw new ZendX_JQuery_Form_Exception(
                     'Cannot render jQuery form element without at least one decorator '
                     . "implementing the 'ZendX_JQuery_Form_Decorator_UiWidgetElementMarker' interface. "

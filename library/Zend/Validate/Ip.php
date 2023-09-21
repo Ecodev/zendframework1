@@ -101,8 +101,6 @@ class Zend_Validate_Ip extends Zend_Validate_Abstract
         }
 
         if (!$this->_options['allowipv4'] && !$this->_options['allowipv6']) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('Nothing to validate. Check your options');
         }
 

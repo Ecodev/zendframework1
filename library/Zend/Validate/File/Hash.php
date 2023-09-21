@@ -65,8 +65,6 @@ class Zend_Validate_File_Hash extends Zend_Validate_Abstract
         } elseif (is_scalar($options)) {
             $options = ['hash1' => $options];
         } elseif (!is_array($options)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('Invalid options to validator provided');
         }
 
@@ -114,8 +112,6 @@ class Zend_Validate_File_Hash extends Zend_Validate_Abstract
         if (is_string($options)) {
             $options = [$options];
         } elseif (!is_array($options)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('False parameter given');
         }
 
@@ -128,8 +124,6 @@ class Zend_Validate_File_Hash extends Zend_Validate_Abstract
         }
 
         if (!in_array($algorithm, $known)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception("Unknown algorithm '{$algorithm}'");
         }
 

@@ -301,11 +301,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
             } elseif (is_array($callback)) {
                 call_user_func($callback);
             } else {
-                /**
-                 * @see Zend_Controller_Action_Exception
-                 */
-                require_once 'Zend/Controller/Action/Exception.php';
-
                 throw new Zend_Controller_Action_Exception(sprintf('Invalid context callback registered for context "%s"', $context));
             }
         }
@@ -393,11 +388,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
                 $count = count($suffixInfo);
                 switch (true) {
                     case ($count < 2) && (null === $context):
-                        /**
-                         * @see Zend_Controller_Action_Exception
-                         */
-                        require_once 'Zend/Controller/Action/Exception.php';
-
                         throw new Zend_Controller_Action_Exception('Invalid suffix information provided in config');
                     case $count < 2:
                         $suffix = array_shift($suffixInfo);
@@ -445,11 +435,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
     public function setSuffix($context, $suffix, $prependViewRendererSuffix = true)
     {
         if (!isset($this->_contexts[$context])) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception(sprintf('Cannot set suffix; invalid context type "%s"', $context));
         }
 
@@ -493,11 +478,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
     public function getSuffix($type)
     {
         if (!isset($this->_contexts[$type])) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception(sprintf('Cannot retrieve suffix; invalid context type "%s"', $type));
         }
 
@@ -536,11 +516,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         }
 
         if ($throwException) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception(sprintf('Context "%s" does not exist', $context));
         }
 
@@ -565,11 +540,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $content = (string) $content;
 
         if (isset($this->_contexts[$context]['headers'][$header])) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception(sprintf('Cannot add "%s" header to context "%s": already exists', $header, $context));
         }
 
@@ -744,11 +714,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         }
 
         if (!in_array($trigger, [self::TRIGGER_INIT, self::TRIGGER_POST])) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception(sprintf('Invalid trigger "%s"', $trigger));
         }
 
@@ -771,11 +736,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
 
         if (!is_string($callback)) {
             if (!is_array($callback) || (2 != count($callback))) {
-                /**
-                 * @see Zend_Controller_Action_Exception
-                 */
-                require_once 'Zend/Controller/Action/Exception.php';
-
                 throw new Zend_Controller_Action_Exception('Invalid callback specified');
             }
         }
@@ -930,11 +890,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
     public function setDefaultContext($type)
     {
         if (!isset($this->_contexts[$type])) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception(sprintf('Cannot set default context; invalid context type "%s"', $type));
         }
 
@@ -988,11 +943,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
     public function addContext($context, array $spec)
     {
         if ($this->hasContext($context)) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception(sprintf('Cannot add context "%s"; already exists', $context));
         }
         $context = (string) $context;
@@ -1133,11 +1083,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
                 } elseif (is_array($callback)) {
                     call_user_func($callback);
                 } else {
-                    /**
-                     * @see Zend_Controller_Action_Exception
-                     */
-                    require_once 'Zend/Controller/Action/Exception.php';
-
                     throw new Zend_Controller_Action_Exception(sprintf('Invalid postDispatch context callback registered for context "%s"', $context));
                 }
             }
@@ -1158,14 +1103,11 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
         $view = $viewRenderer->view;
         if ($view instanceof Zend_View_Interface) {
-            // @see Zend_Json
             if (method_exists($view, 'getVars')) {
                 require_once 'Zend/Json.php';
                 $vars = Zend_Json::encode($view->getVars());
                 $this->getResponse()->setBody($vars);
             } else {
-                require_once 'Zend/Controller/Action/Exception.php';
-
                 throw new Zend_Controller_Action_Exception('View does not implement the getVars() method needed to encode the view into JSON');
             }
         }
@@ -1298,11 +1240,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $allContexts = $controller->{$contextKey};
 
         if (!is_array($allContexts)) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception('Invalid contexts found for controller');
         }
 
@@ -1317,11 +1254,6 @@ class Zend_Controller_Action_Helper_ContextSwitch extends Zend_Controller_Action
         $contexts = $allContexts[$action];
 
         if (!is_array($contexts)) {
-            /**
-             * @see Zend_Controller_Action_Exception
-             */
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception(sprintf("Invalid contexts found for action '%s'", $action));
         }
 

@@ -177,8 +177,6 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
         }
         $baseDir = dirname($dirs[$module]) . DIRECTORY_SEPARATOR . 'views';
         if (!file_exists($baseDir) || !is_dir($baseDir)) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception('Missing base view directory ("' . $baseDir . '")');
         }
 
@@ -273,8 +271,6 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
         if (null === $action) {
             $action = $request->getActionName();
         } elseif (!is_string($action)) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception('Invalid action specifier for view render');
         }
 
@@ -435,8 +431,6 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
         }
 
         // Throw exception in all other cases
-        require_once 'Zend/Controller/Exception.php';
-
         throw new Zend_Controller_Exception('Front controller class has not been loaded');
     }
 
@@ -478,7 +472,6 @@ abstract class Zend_Controller_Action implements Zend_Controller_Action_Interfac
      */
     public function __call($methodName, $args)
     {
-        require_once 'Zend/Controller/Action/Exception.php';
         if ('Action' == substr($methodName, -6)) {
             $action = substr($methodName, 0, strlen($methodName) - 6);
 

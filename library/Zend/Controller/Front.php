@@ -296,8 +296,6 @@ class Zend_Controller_Front
         try {
             $dir = new DirectoryIterator($path);
         } catch (Exception $e) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception("Directory $path not readable", 0, $e);
         }
         foreach ($dir as $file) {
@@ -467,8 +465,6 @@ class Zend_Controller_Front
             $request = new $request();
         }
         if (!$request instanceof Zend_Controller_Request_Abstract) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception('Invalid request class');
         }
 
@@ -511,8 +507,6 @@ class Zend_Controller_Front
         }
 
         if (!$router instanceof Zend_Controller_Router_Interface) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception('Invalid router class');
         }
 
@@ -562,8 +556,6 @@ class Zend_Controller_Front
     public function setBaseUrl($base = null)
     {
         if (!is_string($base) && (null !== $base)) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception('Rewrite base must be a string');
         }
 
@@ -643,8 +635,6 @@ class Zend_Controller_Front
             $response = new $response();
         }
         if (!$response instanceof Zend_Controller_Response_Abstract) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception('Invalid response class');
         }
 

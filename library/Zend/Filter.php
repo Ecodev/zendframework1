@@ -228,7 +228,6 @@ class Zend_Filter implements Zend_Filter_Interface
                 return $object->filter($value);
             }
         }
-        require_once 'Zend/Filter/Exception.php';
 
         throw new Zend_Filter_Exception("Filter class not found from basename '$classBaseName'");
     }

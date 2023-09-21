@@ -42,8 +42,6 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
     public function __construct($options = [])
     {
         if (ini_get('file_uploads') == false) {
-            require_once 'Zend/File/Transfer/Exception.php';
-
             throw new Zend_File_Transfer_Exception('File uploads are not allowed in your php config!');
         }
 
@@ -102,8 +100,6 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
      */
     public function send($options = null)
     {
-        require_once 'Zend/File/Transfer/Exception.php';
-
         throw new Zend_File_Transfer_Exception('Method not implemented');
     }
 
@@ -232,8 +228,6 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
      */
     public function isSent($files = null)
     {
-        require_once 'Zend/File/Transfer/Exception.php';
-
         throw new Zend_File_Transfer_Exception('Method not implemented');
     }
 
@@ -317,8 +311,6 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
     {
         $call = null;
         if (!function_exists('apc_fetch') and !function_exists('uploadprogress_get_info')) {
-            require_once 'Zend/File/Transfer/Exception.php';
-
             throw new Zend_File_Transfer_Exception('Neither APC nor uploadprogress extension installed');
         }
 
@@ -400,8 +392,6 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
             }
 
             if (!($adapter instanceof Zend_ProgressBar)) {
-                require_once 'Zend/File/Transfer/Exception.php';
-
                 throw new Zend_File_Transfer_Exception('Unknown Adapter given');
             }
 

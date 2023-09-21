@@ -60,8 +60,6 @@ class Zend_Registry extends ArrayObject
     public static function setInstance(Zend_Registry $registry)
     {
         if (self::$_registry !== null) {
-            require_once 'Zend/Exception.php';
-
             throw new Zend_Exception('Registry is already initialized');
         }
 
@@ -87,14 +85,10 @@ class Zend_Registry extends ArrayObject
     public static function setClassName($registryClassName = \Zend_Registry::class)
     {
         if (self::$_registry !== null) {
-            require_once 'Zend/Exception.php';
-
             throw new Zend_Exception('Registry is already initialized');
         }
 
         if (!is_string($registryClassName)) {
-            require_once 'Zend/Exception.php';
-
             throw new Zend_Exception('Argument is not a class name');
         }
 
@@ -134,8 +128,6 @@ class Zend_Registry extends ArrayObject
         $instance = self::getInstance();
 
         if (!$instance->offsetExists($index)) {
-            require_once 'Zend/Exception.php';
-
             throw new Zend_Exception("No entry is registered for key '$index'");
         }
 

@@ -67,8 +67,6 @@ class Zend_Validate_File_Crc32 extends Zend_Validate_File_Hash
         } elseif (is_scalar($options)) {
             $options = ['hash1' => $options];
         } elseif (!is_array($options)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('Invalid options to validator provided');
         }
 

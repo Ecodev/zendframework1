@@ -92,11 +92,6 @@ abstract class Zend_Controller_Action_Helper_AutoComplete_Abstract extends Zend_
             return Zend_Controller_Action_HelperBroker::getStaticHelper('Json')->encodeJson($data, $keepLayouts);
         }
 
-        /**
-         * @see Zend_Controller_Action_Exception
-         */
-        require_once 'Zend/Controller/Action/Exception.php';
-
         throw new Zend_Controller_Action_Exception('Invalid data passed for autocompletion');
     }
 

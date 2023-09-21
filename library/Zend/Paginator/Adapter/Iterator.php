@@ -55,11 +55,6 @@ class Zend_Paginator_Adapter_Iterator implements Zend_Paginator_Adapter_Interfac
     public function __construct(Iterator $iterator)
     {
         if (!$iterator instanceof Countable) {
-            /**
-             * @see Zend_Paginator_Exception
-             */
-            require_once 'Zend/Paginator/Exception.php';
-
             throw new Zend_Paginator_Exception('Iterator must implement Countable');
         }
 

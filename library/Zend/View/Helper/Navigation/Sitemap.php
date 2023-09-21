@@ -195,7 +195,6 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
         if ($uri->valid()) {
             $this->_serverUrl = $uri->getUri();
         } else {
-            require_once 'Zend/Uri/Exception.php';
             $e = new Zend_Uri_Exception(sprintf(
                 'Invalid server URL: "%s"',
                 $serverUrl));
@@ -347,7 +346,6 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
 
             if ($this->getUseSitemapValidators()
                 && !$locValidator->isValid($url)) {
-                require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception(sprintf(
                     'Encountered an invalid URL for Sitemap XML: "%s"',
                     $url));
@@ -406,7 +404,6 @@ class Zend_View_Helper_Navigation_Sitemap extends Zend_View_Helper_Navigation_He
         // validate using schema if specified
         if ($this->getUseSchemaValidation()) {
             if (!@$dom->schemaValidate(self::SITEMAP_XSD)) {
-                require_once 'Zend/View/Exception.php';
                 $e = new Zend_View_Exception(sprintf(
                     'Sitemap is invalid according to XML Schema at "%s"',
                     self::SITEMAP_XSD));

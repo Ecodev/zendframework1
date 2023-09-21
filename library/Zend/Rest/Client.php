@@ -103,8 +103,6 @@ class Zend_Rest_Client extends Zend_Service_Abstract
     {
         // Get the URI object and configure it
         if (!$this->_uri instanceof Zend_Uri_Http) {
-            require_once 'Zend/Rest/Client/Exception.php';
-
             throw new Zend_Rest_Client_Exception('URI object must be set before performing call');
         }
 

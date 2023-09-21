@@ -20,8 +20,6 @@
 /**
  * Zend_Exception.
  */
-require_once 'Zend/Exception.php';
-
 /**
  * Exception for Zend_View class.
  *

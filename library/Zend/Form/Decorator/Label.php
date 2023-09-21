@@ -261,16 +261,12 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
 
                     break;
                 default:
-                    require_once 'Zend/Form/Exception.php';
-
                     throw new Zend_Form_Exception(sprintf('Invalid method "%s" called in Label decorator, and detected as type %s', $method, $type));
             }
 
             switch ($head) {
                 case 'set':
                     if (0 === count($args)) {
-                        require_once 'Zend/Form/Exception.php';
-
                         throw new Zend_Form_Exception(sprintf('Method "%s" requires at least one argument; none provided', $method));
                     }
                     $value = array_shift($args);
@@ -290,8 +286,6 @@ class Zend_Form_Decorator_Label extends Zend_Form_Decorator_Abstract
                     return $this->$key;
             }
         }
-
-        require_once 'Zend/Form/Exception.php';
 
         throw new Zend_Form_Exception(sprintf('Invalid method "%s" called in Label decorator', $method));
     }

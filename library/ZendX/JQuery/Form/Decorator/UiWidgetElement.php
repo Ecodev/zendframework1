@@ -144,8 +144,6 @@ class ZendX_JQuery_Form_Decorator_UiWidgetElement extends Zend_Form_Decorator_Vi
         $element = $this->getElement();
         $view = $element->getView();
         if (null === $view) {
-            require_once 'Zend/Form/Decorator/Exception.php';
-
             throw new Zend_Form_Decorator_Exception('UiWidgetElement decorator cannot render without a registered view object');
         }
 

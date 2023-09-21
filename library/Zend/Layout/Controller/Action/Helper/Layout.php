@@ -174,8 +174,6 @@ class Zend_Layout_Controller_Action_Helper_Layout extends Zend_Controller_Action
             return call_user_func_array([$layout, $method], $args);
         }
 
-        require_once 'Zend/Layout/Exception.php';
-
         throw new Zend_Layout_Exception(sprintf("Invalid method '%s' called on layout action helper", $method));
     }
 }

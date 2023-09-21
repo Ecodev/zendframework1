@@ -60,8 +60,6 @@ class Zend_Controller_Action_HelperBroker
     public static function setPluginLoader($loader)
     {
         if ((null !== $loader) && (!$loader instanceof Zend_Loader_PluginLoader_Interface)) {
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception('Invalid plugin loader provided to HelperBroker');
         }
         self::$_pluginLoader = $loader;
@@ -167,8 +165,6 @@ class Zend_Controller_Action_HelperBroker
         $stack = self::getStack();
 
         if (!isset($stack->{$name})) {
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception('Action helper "' . $name . '" has not been registered with the helper broker');
         }
 
@@ -308,8 +304,6 @@ class Zend_Controller_Action_HelperBroker
     {
         $helper = $this->getHelper($method);
         if (!method_exists($helper, 'direct')) {
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception('Helper "' . $method . '" does not support overloading via direct()');
         }
 
@@ -354,16 +348,12 @@ class Zend_Controller_Action_HelperBroker
         try {
             $class = self::getPluginLoader()->load($name);
         } catch (Zend_Loader_PluginLoader_Exception $e) {
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception('Action Helper by name ' . $name . ' not found', 0, $e);
         }
 
         $helper = new $class();
 
         if (!$helper instanceof Zend_Controller_Action_Helper_Abstract) {
-            require_once 'Zend/Controller/Action/Exception.php';
-
             throw new Zend_Controller_Action_Exception('Helper name ' . $name . ' -> class ' . $class . ' is not of type Zend_Controller_Action_Helper_Abstract');
         }
 

@@ -229,8 +229,6 @@ class Zend_Validate_CreditCard extends Zend_Validate_Abstract
     public function setService($service)
     {
         if (!is_callable($service)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('Invalid callback given');
         }
 

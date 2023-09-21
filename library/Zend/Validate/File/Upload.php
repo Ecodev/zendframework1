@@ -108,8 +108,6 @@ class Zend_Validate_File_Upload extends Zend_Validate_Abstract
             }
 
             if (count($return) === 0) {
-                require_once 'Zend/Validate/Exception.php';
-
                 throw new Zend_Validate_Exception("The file '$file' was not found");
             }
 

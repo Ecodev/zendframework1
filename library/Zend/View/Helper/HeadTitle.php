@@ -97,8 +97,6 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
             Zend_View_Helper_Placeholder_Container_Abstract::SET,
             Zend_View_Helper_Placeholder_Container_Abstract::PREPEND,
         ])) {
-            require_once 'Zend/View/Exception.php';
-
             throw new Zend_View_Exception("You must use a valid attach order: 'PREPEND', 'APPEND' or 'SET'");
         }
 
@@ -131,7 +129,6 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
         } elseif ($translate instanceof Zend_Translate) {
             $this->_translator = $translate->getAdapter();
         } else {
-            require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception('You must set an instance of Zend_Translate or Zend_Translate_Adapter');
             $e->setView($this->view);
 

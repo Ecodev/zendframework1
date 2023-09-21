@@ -150,8 +150,6 @@ class Zend_Filter_Boolean implements Zend_Filter_Interface
         }
 
         if (!is_int($type) || ($type < 0) || ($type > self::ALL)) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception('Unknown type');
         }
 
@@ -184,16 +182,12 @@ class Zend_Filter_Boolean implements Zend_Filter_Interface
         } elseif ($locale instanceof Zend_Locale) {
             $locale = [$locale->toString()];
         } elseif (!is_array($locale)) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception('Locale has to be string, array or an instance of Zend_Locale');
         }
 
         require_once 'Zend/Locale.php';
         foreach ($locale as $single) {
             if (!Zend_Locale::isLocale($single)) {
-                require_once 'Zend/Filter/Exception.php';
-
                 throw new Zend_Filter_Exception("Unknown locale '$single'");
             }
         }

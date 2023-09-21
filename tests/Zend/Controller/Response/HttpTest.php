@@ -20,8 +20,6 @@
 // Call Zend_Controller_Response_HttpTest::main() if this source file is executed directly.
 
 require_once 'Zend/Controller/Response/Http.php';
-require_once 'Zend/Controller/Response/Exception.php';
-
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  *

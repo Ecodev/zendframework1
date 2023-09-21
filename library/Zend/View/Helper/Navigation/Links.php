@@ -268,7 +268,6 @@ class Zend_View_Helper_Navigation_Links extends Zend_View_Helper_Navigation_Help
     public function findRelation(Zend_Navigation_Page $page, $rel, $type)
     {
         if (!in_array($rel, ['rel', 'rev'])) {
-            require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception(sprintf(
                 'Invalid argument: $rel must be "rel" or "rev"; "%s" given',
                 $rel));
@@ -729,7 +728,6 @@ class Zend_View_Helper_Navigation_Links extends Zend_View_Helper_Navigation_Help
     public function renderLink(Zend_Navigation_Page $page, $attrib, $relation)
     {
         if (!in_array($attrib, ['rel', 'rev'])) {
-            require_once 'Zend/View/Exception.php';
             $e = new Zend_View_Exception(sprintf(
                 'Invalid relation attribute "%s", must be "rel" or "rev"',
                 $attrib));

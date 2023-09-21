@@ -83,8 +83,6 @@ class Zend_ProgressBar
     {
         // Check min/max values and set them
         if ($min > $max) {
-            require_once 'Zend/ProgressBar/Exception.php';
-
             throw new Zend_ProgressBar_Exception('$max must be greater than $min');
         }
 

@@ -43,8 +43,6 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
     public function registerPlugin(Zend_Controller_Plugin_Abstract $plugin, $stackIndex = null)
     {
         if (false !== array_search($plugin, $this->_plugins, true)) {
-            require_once 'Zend/Controller/Exception.php';
-
             throw new Zend_Controller_Exception('Plugin already registered');
         }
 
@@ -52,8 +50,6 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
 
         if ($stackIndex) {
             if (isset($this->_plugins[$stackIndex])) {
-                require_once 'Zend/Controller/Exception.php';
-
                 throw new Zend_Controller_Exception('Plugin with stackIndex "' . $stackIndex . '" already registered');
             }
             $this->_plugins[$stackIndex] = $plugin;
@@ -92,8 +88,6 @@ class Zend_Controller_Plugin_Broker extends Zend_Controller_Plugin_Abstract
             // Given a plugin object, find it in the array
             $key = array_search($plugin, $this->_plugins, true);
             if (false === $key) {
-                require_once 'Zend/Controller/Exception.php';
-
                 throw new Zend_Controller_Exception('Plugin never registered.');
             }
             unset($this->_plugins[$key]);

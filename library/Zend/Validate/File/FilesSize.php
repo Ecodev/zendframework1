@@ -71,8 +71,6 @@ class Zend_Validate_File_FilesSize extends Zend_Validate_File_Size
         } elseif (is_scalar($options)) {
             $options = ['max' => $options];
         } elseif (!is_array($options)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('Invalid options to validator provided');
         }
 

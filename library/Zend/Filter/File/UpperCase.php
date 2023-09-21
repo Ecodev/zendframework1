@@ -52,21 +52,15 @@ class Zend_Filter_File_UpperCase extends Zend_Filter_StringToUpper
     public function filter($value)
     {
         if (!file_exists($value)) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception("File '$value' not found");
         }
 
         if (!is_writable($value)) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception("File '$value' is not writable");
         }
 
         $content = file_get_contents($value);
         if (!$content) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception("Problem while reading file '$value'");
         }
 
@@ -74,8 +68,6 @@ class Zend_Filter_File_UpperCase extends Zend_Filter_StringToUpper
         $result = file_put_contents($value, $content);
 
         if (!$result) {
-            require_once 'Zend/Filter/Exception.php';
-
             throw new Zend_Filter_Exception("Problem while writing file '$value'");
         }
 

@@ -133,8 +133,6 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
         } elseif (is_string($mimetype)) {
             $mimetype = explode(',', $mimetype);
         } elseif (!is_array($mimetype)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('Invalid options to validator provided');
         }
 
@@ -170,7 +168,6 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
                 !(@ini_get('safe_mode') == 'On' || @ini_get('safe_mode') === 1)
                 && $this->shouldTryCommonMagicFiles() // @see ZF-11784
             ) {
-                require_once 'Zend/Validate/Exception.php';
                 foreach ($this->_magicFiles as $file) {
                     // supressing errors which are thrown due to openbase_dir restrictions
                     try {
@@ -207,12 +204,9 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             $this->_magicfile = null;
         } elseif (!(class_exists(\finfo::class, false))) {
             $this->_magicfile = null;
-            require_once 'Zend/Validate/Exception.php';
 
             throw new Zend_Validate_Exception('Magicfile can not be set. There is no finfo extension installed');
         } elseif (!is_file($file) || !is_readable($file)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('The given magicfile can not be read');
         } else {
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
@@ -221,7 +215,6 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
             restore_error_handler();
             if (empty($this->_finfo)) {
                 $this->_finfo = null;
-                require_once 'Zend/Validate/Exception.php';
 
                 throw new Zend_Validate_Exception(
                     sprintf('The given magicfile ("%s") is not accepted by finfo', $file),
@@ -336,8 +329,6 @@ class Zend_Validate_File_MimeType extends Zend_Validate_Abstract
         if (is_string($mimetype)) {
             $mimetype = explode(',', $mimetype);
         } elseif (!is_array($mimetype)) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('Invalid options to validator provided');
         }
 

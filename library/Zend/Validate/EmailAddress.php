@@ -289,8 +289,6 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
     public function setValidateMx($mx)
     {
         if ((bool) $mx && !$this->validateMxSupported()) {
-            require_once 'Zend/Validate/Exception.php';
-
             throw new Zend_Validate_Exception('MX checking not available on this system');
         }
 
