@@ -922,7 +922,7 @@ class Zend_Form_Element implements Zend_Validate_Interface
      *
      * @param  string $name
      *
-     * @return string
+     * @return ?string
      */
     public function getAttrib($name)
     {
