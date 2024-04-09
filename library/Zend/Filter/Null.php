@@ -49,7 +49,7 @@ class Zend_Filter_Null implements Zend_Filter_Interface
     /**
      * Constructor.
      *
-     * @param array|string|Zend_Config $options OPTIONAL
+     * @param array|int|string|Zend_Config $options OPTIONAL
      */
     public function __construct($options = null)
     {

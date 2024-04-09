@@ -2807,7 +2807,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     /**
      * Add a decorator for rendering the element.
      *
-     * @param  string|Zend_Form_Decorator_Interface $decorator
+     * @param  array|string|Zend_Form_Decorator_Interface $decorator
      * @param  array|Zend_Config                    $options Options with which to initialize decorator
      *
      * @return Zend_Form
