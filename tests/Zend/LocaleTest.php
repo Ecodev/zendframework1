@@ -17,8 +17,6 @@
  * @version    $Id $
  */
 
-// define('TESTS_ZEND_LOCALE_BCMATH_ENABLED', false); // uncomment to disable use of bcmath extension by Zend_Date
-
 /**
  * Zend_Locale.
  */

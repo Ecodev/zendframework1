@@ -227,7 +227,6 @@ defined('TESTS_ZEND_LOCALE_FORMAT_SETLOCALE') || define('TESTS_ZEND_LOCALE_FORMA
  * Edit TestConfiguration.php, not TestConfiguration.php.dist.
  */
 defined('TESTS_ZEND_LOCALE_BCMATH_ENABLED') || define('TESTS_ZEND_LOCALE_BCMATH_ENABLED', true);
-defined('TESTS_ZEND_I18N_EXTENDED_COVERAGE') || define('TESTS_ZEND_I18N_EXTENDED_COVERAGE', true);
 
 /**
  * Zend_Rest tests

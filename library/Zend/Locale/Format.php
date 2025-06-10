@@ -1185,7 +1185,6 @@ class Zend_Locale_Format
     /**
      * Returns if the given datestring contains all date parts from the given format.
      * If no format is given, the default date format from the locale is used
-     * If you want to check if the date is a proper date you should use Zend_Date::isDate().
      *
      * @param   string  $date     Date string
      * @param   array   $options  Options: format_type, fix_date, locale, date_format. See {@link setOptions()} for details.
