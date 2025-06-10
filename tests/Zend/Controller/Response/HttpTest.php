@@ -29,7 +29,7 @@
 class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var Zend_Http_Response
+     * @var Zend_Controller_Response_Http
      */
     protected $_response;
 
