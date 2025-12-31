@@ -45,8 +45,6 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
         } elseif (defined('TESTS_ZEND_LOCALE_FORMAT_SETLOCALE')) {
             setlocale(LC_ALL, TESTS_ZEND_LOCALE_FORMAT_SETLOCALE);
         }
-
-        Zend_Locale_Data::removeCache();
     }
 
     /**
@@ -708,7 +706,7 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetOption()
     {
-        $this->assertEquals(8, count(Zend_Locale_Format::setOptions(['format_type' => 'php'])));
+        $this->assertEquals(6, count(Zend_Locale_Format::setOptions(['format_type' => 'php'])));
         $this->assertTrue(is_array(Zend_Locale_Format::setOptions()));
 
         try {
@@ -1074,27 +1072,6 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
         } catch (\PHPUnit\Framework\Error_Notice $ex) {
             $this->fail('Zend_Locale_Format::checkDateFormat emitted unexpected E_NOTICE');
         }
-    }
-
-    /**
-     * @group GH-363
-     */
-    public function testByDefaultCacheShouldBeUsed()
-    {
-        $value = Zend_Locale_Format::getDate('2014-01-01');
-
-        $this->assertTrue(Zend_Locale_Data::hasCache());
-    }
-
-    /**
-     * @group GH-363
-     */
-    public function testZendLocaleDisableCacheShouldNotOverwritten()
-    {
-        Zend_Locale::disableCache(true);
-        $value = Zend_Locale_Format::getDate('2014-01-01');
-
-        $this->assertFalse(Zend_Locale_Data::hasCache());
     }
 
     /**

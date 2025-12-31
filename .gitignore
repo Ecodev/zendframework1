@@ -2,5 +2,3 @@
 /vendor/
 /tests/Zend/Filter/_files/Compress/*
 /tests/Zend/Filter/_files/Users/*
-/tests/Zend/Translate/Adapter/_files/zend_cache---internal-metadatas---testid
-/tests/Zend/Translate/Adapter/_files/zend_cache---testid

@@ -42,21 +42,6 @@ class Zend_Locale_Data
     private static array $_list = [];
 
     /**
-     * Internal cache for ldml values.
-     */
-    private static ?\Zend_Cache_Core $_cache = null;
-
-    /**
-     * Internal value to remember if cache supports tags.
-     */
-    private static bool $_cacheTags = false;
-
-    /**
-     * Internal option, cache disabled.
-     */
-    private static bool $_cacheDisabled = false;
-
-    /**
      * Read the content from locale.
      *
      * Can be called like:
@@ -126,7 +111,7 @@ class Zend_Locale_Data
      */
     private static function _findRoute($locale, $path, $attribute, $value, &$temp)
     {
-        // load locale file if not already in cache
+        // load locale file
         // needed for alias tag when referring to other locale
         if (empty(self::$_ldml[(string) $locale])) {
             $filename = __DIR__ . '/Data/' . $locale . '.xml';
@@ -300,25 +285,6 @@ class Zend_Locale_Data
     public static function getList($locale, $path, $value = false)
     {
         $locale = self::_checkLocale($locale);
-
-        if (!isset(self::$_cache) && !self::$_cacheDisabled) {
-            self::$_cache = Zend_Cache::factory(
-                'Core',
-                'File',
-                ['automatic_serialization' => true],
-                []);
-        }
-
-        $val = $value;
-        if (is_array($value)) {
-            $val = implode('_' , $value);
-        }
-
-        $val = urlencode($val ?? '');
-        $id = self::_filterCacheId('Zend_LocaleL_' . $locale . '_' . $path . '_' . $val);
-        if (!self::$_cacheDisabled && ($result = self::$_cache->load($id))) {
-            return unserialize($result);
-        }
 
         $temp = [];
         switch (strtolower($path ?? '')) {
@@ -986,14 +952,6 @@ class Zend_Locale_Data
                 break;
         }
 
-        if (isset(self::$_cache)) {
-            if (self::$_cacheTags) {
-                self::$_cache->save(serialize($temp), $id, [\Zend_Locale::class]);
-            } else {
-                self::$_cache->save(serialize($temp), $id);
-            }
-        }
-
         return $temp;
     }
 
@@ -1010,24 +968,6 @@ class Zend_Locale_Data
     {
         $temp = [];
         $locale = self::_checkLocale($locale);
-
-        if (!isset(self::$_cache) && !self::$_cacheDisabled) {
-            self::$_cache = Zend_Cache::factory(
-                'Core',
-                'File',
-                ['automatic_serialization' => true],
-                []);
-        }
-
-        $val = $value;
-        if (is_array($value)) {
-            $val = implode('_' , $value);
-        }
-        $val = urlencode($val);
-        $id = self::_filterCacheId('Zend_LocaleC_' . $locale . '_' . $path . '_' . $val);
-        if (!self::$_cacheDisabled && ($result = self::$_cache->load($id))) {
-            return unserialize($result);
-        }
 
         switch (strtolower($path ?? '')) {
             case 'language':
@@ -1603,117 +1543,7 @@ class Zend_Locale_Data
         if (is_array($temp)) {
             $temp = current($temp);
         }
-        if (isset(self::$_cache)) {
-            if (self::$_cacheTags) {
-                self::$_cache->save(serialize($temp), $id, [\Zend_Locale::class]);
-            } else {
-                self::$_cache->save(serialize($temp), $id);
-            }
-        }
 
         return $temp;
-    }
-
-    /**
-     * Returns the set cache.
-     *
-     * @return Zend_Cache_Core The set cache
-     */
-    public static function getCache()
-    {
-        return self::$_cache;
-    }
-
-    /**
-     * Set a cache for Zend_Locale_Data.
-     *
-     * @param Zend_Cache_Core $cache A cache frontend
-     */
-    public static function setCache(Zend_Cache_Core $cache)
-    {
-        self::$_cache = $cache;
-        self::_getTagSupportForCache();
-    }
-
-    /**
-     * Returns true when a cache is set.
-     *
-     * @return bool
-     */
-    public static function hasCache()
-    {
-        if (self::$_cache !== null) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Removes any set cache.
-     */
-    public static function removeCache()
-    {
-        self::$_cache = null;
-    }
-
-    /**
-     * Clears all set cache data.
-     */
-    public static function clearCache()
-    {
-        if (self::$_cacheTags) {
-            self::$_cache->clean(Zend_Cache::CLEANING_MODE_MATCHING_TAG, [\Zend_Locale::class]);
-        } else {
-            self::$_cache->clean(Zend_Cache::CLEANING_MODE_ALL);
-        }
-    }
-
-    /**
-     * Disables the cache.
-     *
-     * @param bool $flag
-     */
-    public static function disableCache($flag)
-    {
-        self::$_cacheDisabled = (boolean) $flag;
-    }
-
-    /**
-     * Internal method to check if the given cache supports tags.
-     *
-     * @return bool
-     */
-    private static function _getTagSupportForCache()
-    {
-        $backend = self::$_cache->getBackend();
-        if ($backend instanceof Zend_Cache_Backend_ExtendedInterface) {
-            $cacheOptions = $backend->getCapabilities();
-            self::$_cacheTags = $cacheOptions['tags'];
-        } else {
-            self::$_cacheTags = false;
-        }
-
-        return self::$_cacheTags;
-    }
-
-    /**
-     * Filter an ID to only allow valid variable characters.
-     *
-     * @param  string $value
-     *
-     * @return string
-     */
-    protected static function _filterCacheId($value)
-    {
-        return strtr(
-            $value,
-            [
-                '-' => '_',
-                '%' => '_',
-                '+' => '_',
-                '.' => '_',
-            ]
-        );
     }
 }

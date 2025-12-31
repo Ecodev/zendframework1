@@ -31,11 +31,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
     public const INTERNAL_ADAPTER = 'Zend_Paginator_Adapter_Internal';
 
     /**
-     * The cache tag prefix used to namespace Paginator results in the cache.
-     */
-    public const CACHE_TAG_PREFIX = 'Zend_Paginator_';
-
-    /**
      * Adapter plugin loader.
      *
      * @var Zend_Loader_PluginLoader
@@ -78,20 +73,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
      * @var Zend_Loader_PluginLoader
      */
     protected static $_scrollingStyleLoader;
-
-    /**
-     * Cache object.
-     *
-     * @var Zend_Cache_Core
-     */
-    protected static $_cache;
-
-    /**
-     * Enable or disable the cache by Zend_Paginator instance.
-     *
-     * @var bool
-     */
-    protected $_cacheEnabled = true;
 
     /**
      * Adapter.
@@ -374,14 +355,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
     }
 
     /**
-     * Sets a cache object.
-     */
-    public static function setCache(Zend_Cache_Core $cache)
-    {
-        self::$_cache = $cache;
-    }
-
-    /**
      * Sets the default scrolling style.
      *
      * @param  string $scrollingStyle
@@ -461,20 +434,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
     }
 
     /**
-     * Enables/Disables the cache for this instance.
-     *
-     * @param bool $enable
-     *
-     * @return Zend_Paginator
-     */
-    public function setCacheEnabled($enable)
-    {
-        $this->_cacheEnabled = (bool) $enable;
-
-        return $this;
-    }
-
-    /**
      * Returns the number of pages.
      */
     public function count(): int
@@ -487,52 +446,13 @@ class Zend_Paginator implements Countable, IteratorAggregate
     }
 
     /**
-     * Returns the total number of items available.  Uses cache if caching is enabled.
+     * Returns the total number of items available.
      *
      * @return int
      */
     public function getTotalItemCount()
     {
-        if (!$this->_cacheEnabled()) {
-            return count($this->getAdapter());
-        }
-        $cacheId = md5($this->_getCacheInternalId() . '_itemCount');
-        $itemCount = self::$_cache->load($cacheId);
-
-        if ($itemCount === false) {
-            $itemCount = count($this->getAdapter());
-
-            self::$_cache->save($itemCount, $cacheId, [$this->_getCacheInternalId()]);
-        }
-
-        return $itemCount;
-    }
-
-    /**
-     * Clear the page item cache.
-     *
-     * @param int $pageNumber
-     *
-     * @return Zend_Paginator
-     */
-    public function clearPageItemCache($pageNumber = null)
-    {
-        if (!$this->_cacheEnabled()) {
-            return $this;
-        }
-
-        if (null === $pageNumber) {
-            foreach (self::$_cache->getIdsMatchingTags([$this->_getCacheInternalId()]) as $id) {
-                if (preg_match('|' . self::CACHE_TAG_PREFIX . "(\d+)_.*|", $id, $page)) {
-                    self::$_cache->remove($this->_getCacheId($page[1]));
-                }
-            }
-        } else {
-            $cleanId = $this->_getCacheId($pageNumber);
-            self::$_cache->remove($cleanId);
-        }
-
-        return $this;
+        return count($this->getAdapter());
     }
 
     /**
@@ -745,13 +665,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
     {
         $pageNumber = $this->normalizePageNumber($pageNumber);
 
-        if ($this->_cacheEnabled()) {
-            $data = self::$_cache->load($this->_getCacheId($pageNumber));
-            if ($data !== false) {
-                return $data;
-            }
-        }
-
         $offset = ($pageNumber - 1) * $this->getItemCountPerPage();
 
         $items = $this->_adapter->getItems($offset, $this->getItemCountPerPage());
@@ -764,10 +677,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
 
         if (!$items instanceof Traversable) {
             $items = new ArrayIterator($items);
-        }
-
-        if ($this->_cacheEnabled()) {
-            self::$_cache->save($items, $this->_getCacheId($pageNumber), [$this->_getCacheInternalId()]);
         }
 
         return $items;
@@ -845,25 +754,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
         }
 
         return $pages;
-    }
-
-    /**
-     * Returns the page item cache.
-     *
-     * @return array
-     */
-    public function getPageItemCache()
-    {
-        $data = [];
-        if ($this->_cacheEnabled()) {
-            foreach (self::$_cache->getIdsMatchingTags([$this->_getCacheInternalId()]) as $id) {
-                if (preg_match('|' . self::CACHE_TAG_PREFIX . "(\d+)_.*|", $id, $page)) {
-                    $data[$page[1]] = self::$_cache->load($this->_getCacheId($page[1]));
-                }
-            }
-        }
-
-        return $data;
     }
 
     /**
@@ -972,61 +862,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
         $currentItems = $this->getCurrentItems();
 
         return Zend_Json::encode($currentItems);
-    }
-
-    /**
-     * Tells if there is an active cache object
-     * and if the cache has not been desabled.
-     *
-     * @return bool
-     */
-    protected function _cacheEnabled()
-    {
-        return (self::$_cache !== null) && $this->_cacheEnabled;
-    }
-
-    /**
-     * Makes an Id for the cache
-     * Depends on the adapter object and the page number.
-     *
-     * Used to store item in cache from that Paginator instance
-     *  and that current page
-     *
-     * @param int $page
-     *
-     * @return string
-     */
-    protected function _getCacheId($page = null)
-    {
-        if ($page === null) {
-            $page = $this->getCurrentPageNumber();
-        }
-
-        return self::CACHE_TAG_PREFIX . $page . '_' . $this->_getCacheInternalId();
-    }
-
-    /**
-     * Get the internal cache id
-     * Depends on the adapter and the item count per page.
-     *
-     * Used to tag that unique Paginator instance in cache
-     *
-     * @return string
-     */
-    protected function _getCacheInternalId()
-    {
-        $adapter = $this->getAdapter();
-
-        if (method_exists($adapter, 'getCacheIdentifier')) {
-            return md5(serialize([
-                $adapter->getCacheIdentifier(), $this->getItemCountPerPage(),
-            ]));
-        }
-
-        return md5(serialize([
-            $adapter,
-            $this->getItemCountPerPage(),
-        ]));
     }
 
     /**

@@ -44,17 +44,6 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp(): void
-    {
-        if (Zend_Translate::hasCache()) {
-            Zend_Translate::removeCache();
-        }
-
-        if (Zend_Translate_Adapter_Array::hasCache()) {
-            Zend_Translate_Adapter_Array::removeCache();
-        }
-    }
-
     public function testCreate()
     {
         $lang = new Zend_Translate(Zend_Translate::AN_ARRAY, ['1' => '1']);
@@ -167,29 +156,6 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($lang->isTranslated('msg1', false, 'en'));
         $this->assertFalse($lang->isTranslated('msg1', true,  'en'));
         $this->assertFalse($lang->isTranslated('msg1', false, 'ru'));
-    }
-
-    public function testTestingCacheHandling()
-    {
-        $cache = Zend_Cache::factory('Core', 'File',
-            ['lifetime' => 120, 'automatic_serialization' => true],
-            ['cache_dir' => __DIR__ . '/_files/']);
-        Zend_Translate::setCache($cache);
-
-        $cache = Zend_Translate::getCache();
-        $this->assertTrue($cache instanceof Zend_Cache_Core);
-        $this->assertTrue(Zend_Translate::hasCache());
-
-        $lang = new Zend_Translate(Zend_Translate::AN_ARRAY, ['msg1' => 'Message 1 (en)'], 'en');
-        $adapter = $lang->getAdapter();
-        $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
-        $adaptercache = $adapter->getCache();
-        $this->assertTrue($adaptercache instanceof Zend_Cache_Core);
-
-        Zend_Translate::clearCache();
-        $this->assertTrue(Zend_Translate::hasCache());
-        Zend_Translate::removeCache();
-        $this->assertFalse(Zend_Translate::hasCache());
     }
 
     public function testExceptionWhenNoAdapterClassWasSet()
@@ -468,27 +434,6 @@ class Zend_TranslateTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(array_key_exists('de_DE', $langs));
         $this->assertFalse(array_key_exists('ja', $langs));
         $this->assertTrue(array_key_exists('en_US', $langs));
-    }
-
-    /**
-     * ZF-9877.
-     */
-    public function testSetCacheThroughOptions()
-    {
-        $cache = Zend_Cache::factory('Core', 'File',
-            ['lifetime' => 120, 'automatic_serialization' => true],
-            ['cache_dir' => __DIR__ . '/_files/']);
-
-        $translate = new Zend_Translate([
-            'adapter' => Zend_Translate::AN_ARRAY,
-            'content' => ['msg1' => 'Message 1 (en)'],
-            'locale' => 'en',
-            'cache' => $cache,
-        ]);
-
-        $return = Zend_Translate::getCache();
-        $this->assertTrue($return instanceof Zend_Cache_Core);
-        $this->assertTrue(Zend_Translate::hasCache());
     }
 
     /**

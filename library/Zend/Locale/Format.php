@@ -34,8 +34,6 @@ class Zend_Locale_Format
         'format_type' => 'iso',
         'fix_date' => false,
         'locale' => null,
-        'cache' => null,
-        'disableCache' => null,
         'precision' => null, ];
 
     /**
@@ -139,20 +137,6 @@ class Zend_Locale_Format
 
                 case 'locale' :
                     $options['locale'] = Zend_Locale::findLocale($value);
-
-                    break;
-
-                case 'cache' :
-                    if ($value instanceof Zend_Cache_Core) {
-                        Zend_Locale_Data::setCache($value);
-                    }
-
-                    break;
-
-                case 'disablecache' :
-                    if (null !== $value) {
-                        Zend_Locale_Data::disableCache($value);
-                    }
 
                     break;
 

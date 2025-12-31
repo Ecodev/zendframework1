@@ -20,7 +20,6 @@
 /**
  * Zend_Locale.
  */
-require_once 'Zend/Cache.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
@@ -39,19 +38,13 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    private $_cache;
-
     private $_locale;
 
     public function setUp(): void
     {
         $this->_locale = setlocale(LC_ALL, 0);
         setlocale(LC_ALL, 'de');
-        $this->_cache = Zend_Cache::factory('Core', 'File',
-            ['lifetime' => 120, 'automatic_serialization' => true],
-            ['cache_dir' => __DIR__ . '/_files/']);
         Zend_LocaleTestHelper::resetObject();
-        Zend_LocaleTestHelper::setCache($this->_cache);
 
         // compatibilityMode is true until 1.8 therefor we have to change it
         Zend_LocaleTestHelper::$compatibilityMode = false;
@@ -60,7 +53,6 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
 
     public function tearDown(): void
     {
-        $this->_cache->clean(Zend_Cache::CLEANING_MODE_ALL);
         if (is_string($this->_locale) && strpos($this->_locale, ';')) {
             $locales = [];
             foreach (explode(';', $this->_locale) as $l) {
@@ -771,22 +763,6 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
         Zend_LocaleTestHelper::$compatibilityMode = true;
         $this->assertTrue(array_key_exists('de', Zend_LocaleTestHelper::getDefault(Zend_Locale::BROWSER)));
         restore_error_handler();
-    }
-
-    /**
-     * Caching method tests.
-     */
-    public function testCaching()
-    {
-        $cache = Zend_LocaleTestHelper::getCache();
-        $this->assertTrue($cache instanceof Zend_Cache_Core);
-        $this->assertTrue(Zend_LocaleTestHelper::hasCache());
-
-        Zend_LocaleTestHelper::clearCache();
-        $this->assertTrue(Zend_LocaleTestHelper::hasCache());
-
-        Zend_LocaleTestHelper::removeCache();
-        $this->assertFalse(Zend_LocaleTestHelper::hasCache());
     }
 
     /**

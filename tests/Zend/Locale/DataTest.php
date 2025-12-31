@@ -30,21 +30,6 @@ require_once 'Zend/Locale/Data.php';
 #[AllowDynamicProperties]
 class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
 {
-    private $_cache;
-
-    public function setUp(): void
-    {
-        $this->_cache = Zend_Cache::factory('Core', 'File',
-            ['lifetime' => 1, 'automatic_serialization' => true],
-            ['cache_dir' => __DIR__ . '/../_files/']);
-        Zend_Locale_Data::setCache($this->_cache);
-    }
-
-    public function tearDown(): void
-    {
-        $this->_cache->clean(Zend_Cache::CLEANING_MODE_ALL);
-    }
-
     /**
      * test for reading the scriptlist from a locale that is an alias.
      */
@@ -7203,32 +7188,6 @@ class Zend_Locale_DataTest extends \PHPUnit\Framework\TestCase
         $result = Zend_Locale_Data::getList('de_AT', 'type', '');
         $this->assertTrue(is_array($result));
         $this->assertTrue(count($result) > 0);
-    }
-
-    /**
-     * @group GH-465
-     */
-    public function testCreateValidCacheIdsInGetContentMethod()
-    {
-        try {
-            $content = Zend_Locale_Data::getContent('de_DE', 'language', 1234.56);
-        } catch (Zend_Cache_Exception $e) {
-            static::fail($e->getMessage());
-        }
-        self::assertTrue(true);
-    }
-
-    /**
-     * @group GH-465
-     */
-    public function testCreateValidCacheIdsInGetListMethod()
-    {
-        try {
-            $list = Zend_Locale_Data::getList('de_DE', 'language', 1234.56);
-        } catch (Zend_Cache_Exception $e) {
-            static::fail($e->getMessage());
-        }
-        self::assertTrue(true);
     }
 
     /**

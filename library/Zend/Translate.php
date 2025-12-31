@@ -109,10 +109,6 @@ class Zend_Translate
             Zend_Loader::loadClass($options['adapter']);
         }
 
-        if (array_key_exists('cache', $options)) {
-            Zend_Translate_Adapter::setCache($options['cache']);
-        }
-
         $adapter = $options['adapter'];
         unset($options['adapter']);
         $this->_adapter = new $adapter($options);
@@ -129,54 +125,6 @@ class Zend_Translate
     public function getAdapter()
     {
         return $this->_adapter;
-    }
-
-    /**
-     * Returns the set cache.
-     *
-     * @return Zend_Cache_Core The set cache
-     */
-    public static function getCache()
-    {
-        return Zend_Translate_Adapter::getCache();
-    }
-
-    /**
-     * Sets a cache for all instances of Zend_Translate.
-     *
-     * @param  Zend_Cache_Core $cache Cache to store to
-     */
-    public static function setCache(Zend_Cache_Core $cache)
-    {
-        Zend_Translate_Adapter::setCache($cache);
-    }
-
-    /**
-     * Returns true when a cache is set.
-     *
-     * @return bool
-     */
-    public static function hasCache()
-    {
-        return Zend_Translate_Adapter::hasCache();
-    }
-
-    /**
-     * Removes any set cache.
-     */
-    public static function removeCache()
-    {
-        Zend_Translate_Adapter::removeCache();
-    }
-
-    /**
-     * Clears all set cache data.
-     *
-     * @param string $tag Tag to clear when the default tag name is not used
-     */
-    public static function clearCache($tag = null)
-    {
-        Zend_Translate_Adapter::clearCache($tag);
     }
 
     /**

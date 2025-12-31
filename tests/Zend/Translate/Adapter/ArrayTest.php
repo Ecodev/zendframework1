@@ -46,22 +46,6 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function setUp(): void
-    {
-        if (Zend_Translate_Adapter_Array::hasCache()) {
-            Zend_Translate_Adapter_Array::clearCache();
-            Zend_Translate_Adapter_Array::removeCache();
-        }
-    }
-
-    public function tearDown(): void
-    {
-        if (Zend_Translate_Adapter_Array::hasCache()) {
-            Zend_Translate_Adapter_Array::clearCache();
-            Zend_Translate_Adapter_Array::removeCache();
-        }
-    }
-
     public function testCreate()
     {
         set_error_handler([$this, 'errorHandlerIgnore']);
@@ -249,55 +233,6 @@ class Zend_Translate_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(1, count($adapter->getMessages('all')));
         $test = $adapter->getMessages('all');
         $this->assertEquals('Message 1 (en)', $test['en']['Message 1']);
-    }
-
-    public function testCaching()
-    {
-        $cache = Zend_Cache::factory('Core', 'File',
-            ['lifetime' => 120, 'automatic_serialization' => true],
-            ['cache_dir' => __DIR__ . '/_files/']);
-
-        $this->assertFalse(Zend_Translate_Adapter_Array::hasCache());
-        Zend_Translate_Adapter_Array::setCache($cache);
-        $this->assertTrue(Zend_Translate_Adapter_Array::hasCache());
-
-        $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        $cache = Zend_Translate_Adapter_Array::getCache();
-        $this->assertTrue($cache instanceof Zend_Cache_Core);
-        unset($adapter);
-
-        $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        $cache = Zend_Translate_Adapter_Array::getCache();
-        $this->assertTrue($cache instanceof Zend_Cache_Core);
-
-        Zend_Translate_Adapter_Array::removeCache();
-        $this->assertFalse(Zend_Translate_Adapter_Array::hasCache());
-
-        $cache->save('testdata', 'testid');
-        Zend_Translate_Adapter_Array::setCache($cache);
-        $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        Zend_Translate_Adapter_Array::removeCache();
-        $temp = $cache->load('testid');
-        $this->assertEquals('testdata', $temp);
-    }
-
-    public function testLoadingFilesIntoCacheAfterwards()
-    {
-        $cache = Zend_Cache::factory('Core', 'File',
-            ['lifetime' => 120, 'automatic_serialization' => true],
-            ['cache_dir' => __DIR__ . '/_files/']);
-
-        $this->assertFalse(Zend_Translate_Adapter_Array::hasCache());
-        Zend_Translate_Adapter_Array::setCache($cache);
-        $this->assertTrue(Zend_Translate_Adapter_Array::hasCache());
-
-        $adapter = new Zend_Translate_Adapter_Array(__DIR__ . '/_files/translation_en.php', 'en');
-        $cache = Zend_Translate_Adapter_Array::getCache();
-        $this->assertTrue($cache instanceof Zend_Cache_Core);
-
-        $adapter->addTranslation(__DIR__ . '/_files/translation_en.php', 'ru', ['reload' => true]);
-        $test = $adapter->getMessages('all');
-        $this->assertEquals(6, is_countable($test['ru']) ? count($test['ru']) : 0);
     }
 
     /**

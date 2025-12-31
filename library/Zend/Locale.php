@@ -1813,64 +1813,6 @@ class Zend_Locale
     }
 
     /**
-     * Returns the set cache.
-     *
-     * @return Zend_Cache_Core The set cache
-     */
-    public static function getCache()
-    {
-        return Zend_Locale_Data::getCache();
-    }
-
-    /**
-     * Sets a cache.
-     *
-     * @param  Zend_Cache_Core $cache Cache to set
-     */
-    public static function setCache(Zend_Cache_Core $cache)
-    {
-        Zend_Locale_Data::setCache($cache);
-    }
-
-    /**
-     * Returns true when a cache is set.
-     *
-     * @return bool
-     */
-    public static function hasCache()
-    {
-        return Zend_Locale_Data::hasCache();
-    }
-
-    /**
-     * Removes any set cache.
-     */
-    public static function removeCache()
-    {
-        Zend_Locale_Data::removeCache();
-    }
-
-    /**
-     * Clears all set cache data.
-     *
-     * @param string $tag Tag to clear when the default tag name is not used
-     */
-    public static function clearCache($tag = null)
-    {
-        Zend_Locale_Data::clearCache();
-    }
-
-    /**
-     * Disables the set cache.
-     *
-     * @param  bool $flag True disables any set cache, default is false
-     */
-    public static function disableCache($flag)
-    {
-        Zend_Locale_Data::disableCache($flag);
-    }
-
-    /**
      * Internal function, returns a single locale on detection.
      *
      * @param  string|Zend_Locale $locale (Optional) Locale to work on
