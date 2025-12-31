@@ -257,10 +257,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
         if ($adapter == self::INTERNAL_ADAPTER) {
             if (is_array($data)) {
                 $adapter = 'Array';
-            } elseif ($data instanceof Zend_Db_Table_Select) {
-                $adapter = 'DbTableSelect';
-            } elseif ($data instanceof Zend_Db_Select) {
-                $adapter = 'DbSelect';
             } elseif ($data instanceof Iterator) {
                 $adapter = \Iterator::class;
             } elseif (is_integer($data)) {
@@ -974,10 +970,6 @@ class Zend_Paginator implements Countable, IteratorAggregate
     public function toJson()
     {
         $currentItems = $this->getCurrentItems();
-
-        if ($currentItems instanceof Zend_Db_Table_Rowset_Abstract) {
-            return Zend_Json::encode($currentItems->toArray());
-        }
 
         return Zend_Json::encode($currentItems);
     }
