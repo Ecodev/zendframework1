@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -27,12 +28,11 @@ require_once 'Zend/Registry.php';
  * Test class for Zend_View_Helper_Doctype.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_DoctypeTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Doctype
@@ -49,8 +49,8 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_DoctypeTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_DoctypeTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -59,7 +59,7 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp(): void
     {
-        $regKey = \Zend_View_Helper_Doctype::class;
+        $regKey = Zend_View_Helper_Doctype::class;
         if (Zend_Registry::isRegistered($regKey)) {
             $registry = Zend_Registry::getInstance();
             unset($registry[$regKey]);
@@ -78,8 +78,8 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
 
     public function testRegistryEntryCreatedAfterInstantiation()
     {
-        $this->assertTrue(Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class));
-        $doctype = Zend_Registry::get(\Zend_View_Helper_Doctype::class);
+        $this->assertTrue(Zend_Registry::isRegistered(Zend_View_Helper_Doctype::class));
+        $doctype = Zend_Registry::get(Zend_View_Helper_Doctype::class);
         $this->assertTrue($doctype instanceof ArrayObject);
         $this->assertTrue(isset($doctype['doctype']));
         $this->assertTrue(isset($doctype['doctypes']));
@@ -123,7 +123,7 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
     {
         $doctype = $this->helper->doctype('HTML5');
         $string = $doctype->__toString();
-        $registry = Zend_Registry::get(\Zend_View_Helper_Doctype::class);
+        $registry = Zend_Registry::get(Zend_View_Helper_Doctype::class);
         $this->assertEquals($registry['doctypes']['HTML5'], $string);
     }
 }

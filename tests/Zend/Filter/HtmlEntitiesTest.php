@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Filter/HtmlEntities.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Filter
  */
 #[AllowDynamicProperties]
-class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
+class Zend_Filter_HtmlEntitiesTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Filter_HtmlEntities object.
@@ -82,9 +82,8 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that getCharSet() returns expected default value.
-     *
-     * @group ZF-8715
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8715')]
     public function testGetCharSet()
     {
         $this->assertEquals('UTF-8', $this->_filter->getCharSet());
@@ -118,18 +117,15 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensure that fluent interfaces are supported.
-     *
-     * @group ZF-3172
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3172')]
     public function testFluentInterface()
     {
         $instance = $this->_filter->setCharSet('UTF-8')->setQuoteStyle(ENT_QUOTES)->setDoubleQuote(false);
         $this->assertTrue($instance instanceof Zend_Filter_HtmlEntities);
     }
 
-    /**
-     * @group ZF-8995
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8995')]
     public function testConfigObject()
     {
         $options = ['quotestyle' => 5, 'encoding' => 'ISO-8859-1'];
@@ -145,9 +141,8 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that when ENT_QUOTES is set, the filtered value has both 'single' and "double" quotes encoded.
-     *
-     * @group  ZF-8962
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8962')]
     public function testQuoteStyleQuotesEncodeBoth()
     {
         $input = "A 'single' and " . '"double"';
@@ -159,9 +154,8 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that when ENT_COMPAT is set, the filtered value has only "double" quotes encoded.
-     *
-     * @group  ZF-8962
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8962')]
     public function testQuoteStyleQuotesEncodeDouble()
     {
         $input = "A 'single' and " . '"double"';
@@ -173,9 +167,8 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that when ENT_NOQUOTES is set, the filtered value leaves both "double" and 'single' quotes un-altered.
-     *
-     * @group  ZF-8962
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8962')]
     public function testQuoteStyleQuotesEncodeNone()
     {
         $input = "A 'single' and " . '"double"';
@@ -185,9 +178,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($result, $this->_filter->filter($input));
     }
 
-    /**
-     * @group ZF-11344
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11344')]
     public function testCorrectsForEncodingMismatch()
     {
         if (version_compare(phpversion(), '5.4', '>=')) {
@@ -205,9 +196,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(strlen($result) > 0);
     }
 
-    /**
-     * @group ZF-11344
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11344')]
     public function testStripsUnknownCharactersWhenEncodingMismatchDetected()
     {
         if (version_compare(phpversion(), '5.4', '>=')) {
@@ -225,9 +214,7 @@ class Zend_Filter_HtmlEntitiesTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('&quot;&quot;', $result);
     }
 
-    /**
-     * @group ZF-11344
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11344')]
     public function testRaisesExceptionIfEncodingMismatchDetectedAndFinalStringIsEmpty()
     {
         $string = file_get_contents(__DIR__ . '/_files/latin-1-dash-only.txt');

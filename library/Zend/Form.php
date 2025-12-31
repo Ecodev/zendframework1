@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -69,7 +70,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
      *
      * @var string
      */
-    protected $_defaultDisplayGroupClass = \Zend_Form_DisplayGroup::class;
+    protected $_defaultDisplayGroupClass = Zend_Form_DisplayGroup::class;
 
     /**
      * Form description.

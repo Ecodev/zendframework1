@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -48,9 +49,7 @@ class ZendX_JQuery_View_DialogContainerTest extends ZendX_JQuery_View_jQueryTest
         $this->assertStringContainsString('</div>', $element);
     }
 
-    /**
-     * @group ZF-4685
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4685')]
     public function testUsingJsonExprForResizeShouldBeValidJsCallbackRegression()
     {
         $params = [

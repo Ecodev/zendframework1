@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -27,7 +28,7 @@ require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElement.php';
 require_once 'ZendX/JQuery/Form/Decorator/TabContainer.php';
 require_once 'ZendX/JQuery/Form/Decorator/TabPane.php';
 
-class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
+class ZendX_JQuery_Form_DecoratorTest extends PHPUnit\Framework\TestCase
 {
     public function setUp(): void
     {
@@ -215,9 +216,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('id="tabContainer-frag-1"', $output);
     }
 
-    /**
-     * @group ZF-12175
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12175')]
     public function testUiWidgetContainerRenderWithContent()
     {
         // Setup view
@@ -309,9 +308,7 @@ class ZendX_JQuery_Form_DecoratorTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-8055
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8055')]
     public function testUiWidgetDialogContainerRenderBug()
     {
         $view = new Zend_View();

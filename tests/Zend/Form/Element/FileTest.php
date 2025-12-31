@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,11 +23,10 @@ require_once 'Zend/View.php';
  * Test class for Zend_Form_Element_File.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Form_Element_File
@@ -43,8 +43,8 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_FileTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_FileTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -115,7 +115,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 
     public function testElementShouldThrowExceptionWhenAddingAdapterOfInvalidType()
     {
-        $this->expectException(\Zend_Form_Element_Exception::class);
+        $this->expectException(Zend_Form_Element_Exception::class);
         $this->element->setTransferAdapter(new stdClass());
     }
 
@@ -443,9 +443,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($this->element, $this->element->loadDefaultDecorators());
     }
 
-    /**
-     * @group ZF-12173
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12173')]
     public function testElementShouldAllowAdapterWithBackslahes()
     {
         if (version_compare(PHP_VERSION, '5.3.0', '<')) {
@@ -469,9 +467,7 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-12210
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12210')]
     public function testAutoInsertNotEmptyValidator()
     {
         $this->testElementShouldAllowSpecifyingAdapterUsingConcreteInstance();
@@ -488,15 +484,13 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group GH-247
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-247')]
     public function testCallbackFunctionAtHtmlTag()
     {
         $this->assertEquals(
             [
                 'callback' => [
-                    \Zend_Form_Element_File::class,
+                    Zend_Form_Element_File::class,
                     'resolveElementId',
                 ],
             ],
@@ -504,17 +498,15 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group GH-247
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-247')]
     public function testDefaultDecoratorOrder()
     {
         $expected = [
-            \Zend_Form_Decorator_File::class,
-            \Zend_Form_Decorator_Errors::class,
-            \Zend_Form_Decorator_Description::class,
-            \Zend_Form_Decorator_HtmlTag::class,
-            \Zend_Form_Decorator_Label::class,
+            Zend_Form_Decorator_File::class,
+            Zend_Form_Decorator_Errors::class,
+            Zend_Form_Decorator_Description::class,
+            Zend_Form_Decorator_HtmlTag::class,
+            Zend_Form_Decorator_Label::class,
         ];
 
         $this->assertEquals(

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,20 +23,19 @@ require_once 'Zend/View.php';
  * Test class for Zend_View_Helper_FormSelect.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_FormSelectTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_FormSelectTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormSelectTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormSelectTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -58,9 +58,7 @@ class Zend_View_Helper_FormSelectTest extends \PHPUnit\Framework\TestCase
         unset($this->helper, $this->view);
     }
 
-    /**
-     * @group ZF-10661
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10661')]
     public function testRenderingWithOptions()
     {
         $html = $this->helper->formSelect(
@@ -319,9 +317,7 @@ class Zend_View_Helper_FormSelectTest extends \PHPUnit\Framework\TestCase
         $this->assertDoesNotMatchRegularExpression('/<select[^>]*?(multiple="multiple")/', $html, $html);
     }
 
-    /**
-     * @group ZF-8252
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8252')]
     public function testOptGroupHasAnId()
     {
         $html = $this->helper->formSelect([

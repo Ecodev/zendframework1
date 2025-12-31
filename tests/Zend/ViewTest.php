@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -34,16 +35,15 @@ require_once 'Zend/Loader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
  */
 #[AllowDynamicProperties]
-class Zend_ViewTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+class Zend_ViewTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_ViewTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_ViewTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -418,9 +418,8 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test set/getEncoding().
-     *
-     * @group ZF-8715
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8715')]
     public function testSetGetEncoding()
     {
         $view = new Zend_View();
@@ -624,9 +623,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Some text', $escaped);
     }
 
-    /**
-     * @group ZF-9595
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9595')]
     public function testEscapeShouldAllowAndUseMoreThanOneArgument()
     {
         $view = new Zend_View();
@@ -833,7 +830,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
 
     public function testGetHelperPath()
     {
-        $reflection = new ReflectionClass(\Zend_View_Helper_DeclareVars::class);
+        $reflection = new ReflectionClass(Zend_View_Helper_DeclareVars::class);
         $expected = $reflection->getFileName();
 
         $view = new Zend_View();
@@ -918,9 +915,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($helper1, $helper2);
     }
 
-    /**
-     * @group ZF-2742
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2742')]
     public function testGetHelperWorksWithPredefinedClassNames()
     {
         $view = new Zend_View();
@@ -963,9 +958,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->view->useStreamWrapper());
     }
 
-    /**
-     * @group ZF-5748
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5748')]
     public function testRenderShouldNotAllowScriptPathsContainingParentDirectoryTraversal()
     {
         $view = new Zend_View();
@@ -992,27 +985,21 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-5748
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5748')]
     public function testLfiProtectionFlagShouldBeEnabledByDefault()
     {
         $view = new Zend_View();
         $this->assertTrue($view->isLfiProtectionOn());
     }
 
-    /**
-     * @group ZF-5748
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5748')]
     public function testLfiProtectionFlagMayBeDisabledViaConstructorOption()
     {
         $view = new Zend_View(['lfiProtectionOn' => false]);
         $this->assertFalse($view->isLfiProtectionOn());
     }
 
-    /**
-     * @group ZF-5748
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5748')]
     public function testLfiProtectionFlagMayBeDisabledViaMethodCall()
     {
         $view = new Zend_View();
@@ -1020,9 +1007,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($view->isLfiProtectionOn());
     }
 
-    /**
-     * @group ZF-5748
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5748')]
     public function testDisablingLfiProtectionAllowsParentDirectoryTraversal()
     {
         $view = new Zend_View([
@@ -1038,9 +1023,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-6087
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6087')]
     public function testConstructorShouldAllowPassingArrayOfHelperPaths()
     {
         $view = new Zend_View([
@@ -1052,9 +1035,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(array_key_exists('My_View_', $paths), var_export($paths, 1));
     }
 
-    /**
-     * @group ZF-6087
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6087')]
     public function testConstructorShouldAllowPassingArrayOfFilterPaths()
     {
         $view = new Zend_View([
@@ -1066,9 +1047,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(array_key_exists('My_View_', $paths), var_export($paths, 1));
     }
 
-    /**
-     * @group ZF-8177
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8177')]
     public function testRegisterHelperShouldRegisterHelperWithView()
     {
         require_once __DIR__ . '/View/_stubs/HelperDir1/Stub1.php';
@@ -1081,30 +1060,24 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($view->stub1(), 'foo');
     }
 
-    /**
-     * @group ZF-8177
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8177')]
     public function testRegisterHelperShouldThrowExceptionIfNotProvidedAnObject()
     {
-        $this->expectException(\Zend_View_Exception::class);
+        $this->expectException(Zend_View_Exception::class);
         $view = new Zend_View();
         $view->registerHelper('Foo', 'foo');
     }
 
-    /**
-     * @group ZF-8177
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8177')]
     public function testRegisterHelperShouldThrowExceptionIfProvidedANonHelperObject()
     {
-        $this->expectException(\Zend_View_Exception::class);
+        $this->expectException(Zend_View_Exception::class);
         $view = new Zend_View();
         $helper = new stdClass();
         $view->registerHelper($helper, 'foo');
     }
 
-    /**
-     * @group ZF-8177
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8177')]
     public function testRegisterHelperShouldRegisterViewObjectWithHelper()
     {
         $view = new Zend_View();
@@ -1113,10 +1086,8 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($view, $helper->view);
     }
 
-    /**
-     * @group ZF-9000
-     * @group ZF-4622
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9000')]
+    #[PHPUnit\Framework\Attributes\Group('ZF-4622')]
     public function testAddingStreamSchemeAsScriptPathShouldNotMangleThePath()
     {
         $view = new Zend_View();
@@ -1126,9 +1097,7 @@ class Zend_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertContains($path, $paths, var_export($paths, 1));
     }
 
-    /**
-     * @group ZF-10042
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10042')]
     public function testConstructViewObjectWithInitialVariables()
     {
         $view = new Zend_View(['assign' => ['foo' => 'bar']]);

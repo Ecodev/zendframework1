@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,12 +25,11 @@ require_once 'Zend/Registry.php';
  * Tests formText helper, including some common functionality of all form helpers
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_FormTextTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -38,8 +38,8 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormTextTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormTextTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -48,9 +48,9 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp(): void
     {
-        if (Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class)) {
+        if (Zend_Registry::isRegistered(Zend_View_Helper_Doctype::class)) {
             $registry = Zend_Registry::getInstance();
-            unset($registry[\Zend_View_Helper_Doctype::class]);
+            unset($registry[Zend_View_Helper_Doctype::class]);
         }
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormText();

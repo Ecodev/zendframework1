@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,19 +25,18 @@ require_once 'Zend/View.php';
  * Test class for Zend_Form_Decorator_Errors.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_ErrorsTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Decorator_ErrorsTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -128,9 +128,7 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString($content . $this->decorator->getSeparator() . '<ul', $test, $test);
     }
 
-    /**
-     * @group ZF-11476?
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11476?')]
     public function testRenderingWithFormAsElement()
     {
         // Set up form
@@ -162,9 +160,7 @@ class Zend_Form_Decorator_ErrorsTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-11476?
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11476?')]
     public function testRenderingWithSubFormAsElement()
     {
         // Set up sub form

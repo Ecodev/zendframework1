@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,19 +23,18 @@ require_once 'Zend/View.php';
  * Test class for Zend_Form_Decorator_FormErrors.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_FormErrorsTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Decorator_FormErrorsTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -284,10 +284,9 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider markupOptionMethodsProvider
-     *
      * @param mixed $property
      */
+    #[PHPUnit\Framework\Attributes\DataProvider('markupOptionMethodsProvider')]
     public function testMarkupOptionsMayBeMutated($property)
     {
         $setter = 'set' . $property;
@@ -301,9 +300,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-11151
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11151')]
     public function testOptionShowCustomFormErrors()
     {
         $this->decorator
@@ -312,9 +309,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->decorator->getShowCustomFormErrors());
     }
 
-    /**
-     * @group ZF-11225
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11225')]
     public function testRenderingEscapesFormErrorsByDefault()
     {
         $this->setupForm();
@@ -324,9 +319,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('&lt;strong&gt;form-badness&lt;/strong&gt;', $html);
     }
 
-    /**
-     * @group ZF-11225
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11225')]
     public function testCanDisableEscapingFormErrors()
     {
         $this->setupForm();
@@ -345,7 +338,7 @@ class Zend_Form_Decorator_FormErrorsTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<li><b><strong>Sub Bar: </strong>', $html);
     }
 
-    public function markupOptionMethodsProvider()
+    public static function markupOptionMethodsProvider()
     {
         return [
             ['IgnoreSubForms'],

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -35,11 +36,11 @@ class Zend_Layout_Test_MinimalCustomView implements Zend_View_Interface
     {
     }
 
-    public function setBasePath($path, $classPrefix = \Zend_View::class)
+    public function setBasePath($path, $classPrefix = Zend_View::class)
     {
     }
 
-    public function addBasePath($path, $classPrefix = \Zend_View::class)
+    public function addBasePath($path, $classPrefix = Zend_View::class)
     {
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,19 +25,18 @@ require_once 'Zend/View.php';
  * Test class for Zend_Form_Decorator_ViewHelper.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_ViewHelperTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Decorator_ViewHelperTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -136,9 +136,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<input.*?name="foo"#s', $test);
     }
 
-    /**
-     * @group ZF-9689
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9689')]
     public function testRenderWithListSeparatorForMulticheckbox()
     {
         require_once 'Zend/Form/Element/MultiCheckbox.php';
@@ -164,9 +162,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-9689
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9689')]
     public function testRenderWithListSeparatorForRadio()
     {
         require_once 'Zend/Form/Element/Radio.php';
@@ -192,9 +188,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-5056
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5056')]
     public function testRenderingButtonWithValue()
     {
         // Create element
@@ -217,9 +211,7 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-5056
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5056')]
     public function testRenderingButtonAsTypeSubmit()
     {
         // Create element

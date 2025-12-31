@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/Float.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_FloatTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Validate_Float object.
@@ -44,8 +44,8 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
     {
         $this->_locale = setlocale(LC_ALL, 0); //backup locale
 
-        if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
-            Zend_Registry::getInstance()->offsetUnset(\Zend_Locale::class);
+        if (Zend_Registry::isRegistered(Zend_Locale::class)) {
+            Zend_Registry::getInstance()->offsetUnset(Zend_Locale::class);
         }
 
         $this->_validator = new Zend_Validate_Float();
@@ -115,7 +115,7 @@ class Zend_Validate_FloatTest extends \PHPUnit\Framework\TestCase
      */
     public function testUsingApplicationLocale()
     {
-        Zend_Registry::set(\Zend_Locale::class, new Zend_Locale('de'));
+        Zend_Registry::set(Zend_Locale::class, new Zend_Locale('de'));
         $valid = new Zend_Validate_Float();
         $this->assertTrue($valid->isValid('123,456'));
     }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,19 +23,18 @@ require_once 'Zend/Controller/Action/HelperBroker.php';
  * Test class for Zend_Layout_Controller_Action_Helper_Layout.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Layout
  */
 #[AllowDynamicProperties]
-class Zend_Layout_HelperTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Layout')]
+class Zend_Layout_HelperTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Layout_HelperTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Layout_HelperTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**

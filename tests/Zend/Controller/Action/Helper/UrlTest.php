@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,21 +25,20 @@ require_once 'Zend/Controller/Request/Http.php';
  * Test class for Zend_Controller_Action_Helper_Url.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_Helper_UrlTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_UrlTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_UrlTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -145,9 +145,7 @@ class Zend_Controller_Action_Helper_UrlTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('/ho/hum', $url);
     }
 
-    /**
-     * @group ZF-2822
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2822')]
     public function testBaseUrlIsAssembledIntoUrl()
     {
         $this->front->setBaseUrl('baseurl');

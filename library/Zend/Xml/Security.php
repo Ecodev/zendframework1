@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -85,7 +86,7 @@ class Zend_Xml_Security
 
         // Load XML with network access disabled (LIBXML_NONET)
         // error disabled with @ for PHP-FPM scenario
-        set_error_handler([\Zend_Xml_Security::class, 'loadXmlErrorHandler'], E_WARNING);
+        set_error_handler([Zend_Xml_Security::class, 'loadXmlErrorHandler'], E_WARNING);
 
         $result = $dom->loadXml($xml, LIBXML_NONET);
         restore_error_handler();

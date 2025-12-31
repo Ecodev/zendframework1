@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,12 +23,11 @@ require_once 'Zend/Controller/Router/Route/Regex.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Router
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Router')]
+class Zend_Controller_Router_Route_RegexTest extends PHPUnit\Framework\TestCase
 {
     public function testStaticMatch()
     {
@@ -400,9 +400,7 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('ctrl', $values['controller']);
     }
 
-    /**
-     * @group ZF-2301
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2301')]
     public function testAssemblyOfRouteWithMergedMatchedParts()
     {
         $route = new Zend_Controller_Router_Route_Regex(
@@ -431,9 +429,7 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('itemlist/1', $route->assemble(['page' => null]));
     }
 
-    /**
-     * @group ZF-4335
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4335')]
     public function testAssembleMethodShouldNotIgnoreEncodeParam()
     {
         $route = new Zend_Controller_Router_Route_Regex(
@@ -477,9 +473,8 @@ class Zend_Controller_Router_Route_RegexTest extends \PHPUnit\Framework\TestCase
      *         </page>
      *     </routes>
      * </zend-config>
-     *
-     * @group ZF-7658
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7658')]
     public function testAssembleWithFlippedMappedVariables()
     {
         $route = new Zend_Controller_Router_Route_Regex(

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/Iban.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_IbanTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_IbanTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Ensures that the validator follows expected behavior.
@@ -75,9 +75,7 @@ class Zend_Validate_IbanTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($validator->isValid('AT611904300234573201'));
     }
 
-    /**
-     * @group GH-641
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-641')]
     public function testIbanOfMacedonia()
     {
         $validator = new Zend_Validate_Iban();

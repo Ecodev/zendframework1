@@ -1,6 +1,9 @@
-<phpunit bootstrap="./tests/TestHelper.php"
- cacheResultFile="/tmp/.zf1.phpunit.result.cache"
- colors="true"
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="./tests/TestHelper.php"
+         colors="true"
+         cacheDirectory="/tmp/.phpunit.cache.zf1"
 >
     <testsuite name="Zend Framework - Testsuite">
         <directory>./tests/</directory>

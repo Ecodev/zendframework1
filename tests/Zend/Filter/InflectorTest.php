@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -33,19 +34,18 @@ require_once 'Zend/Config.php';
  * Test class for Zend_Filter_Inflector.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Filter
  */
 #[AllowDynamicProperties]
-class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
+class Zend_Filter_InflectorTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Filter_InflectorTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Filter_InflectorTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -413,9 +413,8 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Added str_replace('\\', '\\\\', ..) to all processedParts values to disable backreferences.
-     *
-     * @group ZF-2538 Zend_Filter_Inflector::filter() fails with all numeric folder on Windows
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2538 Zend_Filter_Inflector::filter() fails with all numeric folder on Windows')]
     public function testCheckInflectorWithPregBackreferenceLikeParts()
     {
         $this->inflector = new Zend_Filter_Inflector(
@@ -442,9 +441,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-2522
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2522')]
     public function testTestForFalseInConstructorParams()
     {
         $inflector = new Zend_Filter_Inflector('something', [], false, false);
@@ -455,9 +452,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($inflector->getTargetReplacementIdentifier(), '#');
     }
 
-    /**
-     * @group ZF-2964
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2964')]
     public function testNoInflectableTarget()
     {
         $inflector = new Zend_Filter_Inflector('abc');
@@ -465,9 +460,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($inflector->filter(['fo' => 'bar']), 'abc');
     }
 
-    /**
-     * @group ZF-7544
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7544')]
     public function testAddFilterRuleMultipleTimes()
     {
         $rules = $this->inflector->getRules();
@@ -485,9 +478,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(5, is_countable($rules) ? count($rules) : 0);
     }
 
-    /**
-     * @group ZF-8997
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8997')]
     public function testPassingArrayToConstructorSetsStateAndRules()
     {
         $options = $this->getOptions();
@@ -495,9 +486,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
         $this->_testOptions($inflector);
     }
 
-    /**
-     * @group ZF-8997
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8997')]
     public function testPassingArrayToSetConfigSetsStateAndRules()
     {
         $options = $this->getOptions();
@@ -506,9 +495,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
         $this->_testOptions($inflector);
     }
 
-    /**
-     * @group ZF-8997
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8997')]
     public function testPassingZendConfigObjectToConstructorSetsStateAndRules()
     {
         $config = $this->getConfig();
@@ -516,9 +503,7 @@ class Zend_Filter_InflectorTest extends \PHPUnit\Framework\TestCase
         $this->_testOptions($inflector);
     }
 
-    /**
-     * @group ZF-8997
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8997')]
     public function testPassingZendConfigObjectToSetConfigSetsStateAndRules()
     {
         $config = $this->getConfig();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,20 +23,19 @@ require_once 'Zend/Registry.php';
  * Test class for Zend_View_Helper_HtmlElement JS Escaping.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_AttributeJsEscapingTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormSubmitTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormSubmitTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -44,9 +44,9 @@ class Zend_View_Helper_AttributeJsEscapingTest extends \PHPUnit\Framework\TestCa
      */
     public function setUp(): void
     {
-        if (Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class)) {
+        if (Zend_Registry::isRegistered(Zend_View_Helper_Doctype::class)) {
             $registry = Zend_Registry::getInstance();
-            unset($registry[\Zend_View_Helper_Doctype::class]);
+            unset($registry[Zend_View_Helper_Doctype::class]);
         }
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormSubmit();
@@ -62,9 +62,7 @@ class Zend_View_Helper_AttributeJsEscapingTest extends \PHPUnit\Framework\TestCa
         unset($this->helper, $this->view);
     }
 
-    /**
-     * @group ZF-9926
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9926')]
     public function testRendersSubmitInput()
     {
         $html = $this->helper->formSubmit([

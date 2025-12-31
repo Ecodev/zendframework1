@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Resource_ResourceAbstractTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -150,9 +150,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
         $this->assertEquals($options, $resource->getOptions());
     }
 
-    /**
-     * @group ZF-6593
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6593')]
     public function testSetOptionsShouldRemoveBootstrapOptionWhenPassed()
     {
         require_once __DIR__ . '/../_files/resources/Foo.php';
@@ -165,9 +163,7 @@ class Zend_Application_Resource_ResourceAbstractTest extends \PHPUnit\Framework\
         $this->assertNotContains('bootstrap', array_keys($options));
     }
 
-    /**
-     * @group ZF-8520
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8520')]
     public function testFirstResourceOptionShouldNotBeDropped()
     {
         require_once __DIR__ . '/../_files/resources/Foo.php';

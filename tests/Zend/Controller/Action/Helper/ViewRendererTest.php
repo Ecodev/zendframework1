@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -25,13 +26,12 @@ require_once __DIR__ . '/../../_files/modules/bar/controllers/IndexController.ph
  * Test class for Zend_Controller_Action_Helper_ViewRenderer.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_Helper_ViewRendererTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Base path to controllers, views.
@@ -75,8 +75,8 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ViewRendererTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ViewRendererTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -811,9 +811,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertStringContainsString('fooUseHelper invoked', $body, 'Received ' . $body);
     }
 
-    /**
-     * @group ZF-10725
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10725')]
     public function testThatCharactersStrippedFromActionNameByDispatcherAreAlsoStrippedFromViewScriptName()
     {
         $this->request->setModuleName('default')
@@ -837,9 +835,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         $this->assertStringContainsString('SampleZfHelper invoked', $body, 'Received ' . $body);
     }
 
-    /**
-     * @group ZF-11127
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11127')]
     public function testViewSuffixInstanceNotSharedWhenViewHelperIsCloned()
     {
         $a = new Zend_Controller_Action_Helper_ViewRenderer();
@@ -857,12 +853,10 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     }
 
     /**
-     * @group ZF-10725
-     *
-     * @dataProvider providerViewScriptNameDoesNotIncludeDisallowedCharacters
-     *
      * @param mixed $actionName
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10725')]
+    #[PHPUnit\Framework\Attributes\DataProvider('providerViewScriptNameDoesNotIncludeDisallowedCharacters')]
     public function testViewScriptNameDoesNotIncludeDisallowedCharacters($actionName)
     {
         $this->request->setModuleName('default')
@@ -877,11 +871,10 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     /**
      * Data provider for testViewScriptNameDoesNotIncludeDisallowedCharacters.
      *
-     * @group ZF-10725
-     *
      * @return array
      */
-    public function providerViewScriptNameDoesNotIncludeDisallowedCharacters()
+    #[PHPUnit\Framework\Attributes\Group('ZF-10725')]
+    public static function providerViewScriptNameDoesNotIncludeDisallowedCharacters()
     {
         return [
             ['myBar-'],
@@ -894,12 +887,10 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     }
 
     /**
-     * @group GH-440
-     *
-     * @dataProvider providerControllerNameDoesNotIncludeDisallowedCharacters
-     *
      * @param mixed $controllerName
      */
+    #[PHPUnit\Framework\Attributes\Group('GH-440')]
+    #[PHPUnit\Framework\Attributes\DataProvider('providerControllerNameDoesNotIncludeDisallowedCharacters')]
     public function testControllerNameDoesNotIncludeDisallowedCharacters($controllerName)
     {
         $this->request->setControllerName($controllerName)
@@ -919,11 +910,10 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
     /**
      * Data provider for testControllerNameDoesNotIncludeDisallowedCharacters.
      *
-     * @group GH-440
-     *
      * @return array
      */
-    public function providerControllerNameDoesNotIncludeDisallowedCharacters()
+    #[PHPUnit\Framework\Attributes\Group('GH-440')]
+    public static function providerControllerNameDoesNotIncludeDisallowedCharacters()
     {
         return [
             ['!index'],
@@ -932,9 +922,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         ];
     }
 
-    /**
-     * @group GH-440
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-440')]
     public function testControllerNameFormattingShouldRespectWordCamelCaseToDash()
     {
         $this->request->setControllerName('MetadataValidation')
@@ -956,9 +944,7 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends \PHPUnit\Framework\
         return str_replace(['/', '\\'], '/', $path);
     }
 
-    /**
-     * @group ZF-10725
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10725')]
     public function testActionsWithLeadingCapitalLettersShouldNotInvokeTruncatedViewScripts()
     {
         $this->request->setModuleName('default')

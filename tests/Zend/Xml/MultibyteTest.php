@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -27,20 +28,19 @@ require_once 'Zend/Xml/TestAsset/Security.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Xml
- * @group      ZF2015-06
  */
 #[AllowDynamicProperties]
-class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Xml')]
+#[PHPUnit\Framework\Attributes\Group('ZF2015-06')]
+class Zend_Xml_MultibyteTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function multibyteEncodings()
+    public static function multibyteEncodings()
     {
         return [
             'UTF-16LE' => ['UTF-16LE', pack('CC', 0xFF, 0xFE), 3],
@@ -74,37 +74,34 @@ class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider multibyteEncodings
-     *
-     * @group heuristicDetection
-     *
      * @param mixed $encoding
      * @param mixed $bom
      * @param mixed $bomLength
      */
+    #[PHPUnit\Framework\Attributes\Group('heuristicDetection')]
+    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings')]
     public function testDetectsMultibyteXXEVectorsUnderFPMWithEncodedStringMissingBOM($encoding, $bom, $bomLength)
     {
         $xml = $this->getXmlWithXXE();
         $xml = str_replace('{ENCODING}', $encoding, $xml);
         $xml = iconv('UTF-8', $encoding, $xml);
         $this->assertNotSame(0, strncmp($xml, $bom, $bomLength));
-        $this->expectException(\Zend_Xml_Exception::class, 'ENTITY');
+        $this->expectException(Zend_Xml_Exception::class, 'ENTITY');
         $this->invokeHeuristicScan($xml);
     }
 
     /**
-     * @dataProvider multibyteEncodings
-     *
      * @param mixed $encoding
      * @param mixed $bom
      */
+    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings')]
     public function testDetectsMultibyteXXEVectorsUnderFPMWithEncodedStringUsingBOM($encoding, $bom)
     {
         $xml = $this->getXmlWithXXE();
         $xml = str_replace('{ENCODING}', $encoding, $xml);
         $orig = iconv('UTF-8', $encoding, $xml);
         $xml = $bom . $orig;
-        $this->expectException(\Zend_Xml_Exception::class, 'ENTITY');
+        $this->expectException(Zend_Xml_Exception::class, 'ENTITY');
         $this->invokeHeuristicScan($xml);
     }
 
@@ -119,10 +116,9 @@ class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider multibyteEncodings
-     *
      * @param mixed $encoding
      */
+    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings')]
     public function testDoesNotFlagValidMultibyteXmlAsInvalidUnderFPM($encoding)
     {
         $xml = $this->getXmlWithoutXXE();
@@ -138,20 +134,18 @@ class Zend_Xml_MultibyteTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @dataProvider multibyteEncodings
-     *
-     * @group mixedEncoding
-     *
      * @param mixed $encoding
      * @param mixed $bom
      */
+    #[PHPUnit\Framework\Attributes\Group('mixedEncoding')]
+    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings')]
     public function testDetectsXXEWhenXMLDocumentEncodingDiffersFromFileEncoding($encoding, $bom)
     {
         $xml = $this->getXmlWithXXE();
         $xml = str_replace('{ENCODING}', 'UTF-8', $xml);
         $xml = iconv('UTF-8', $encoding, $xml);
         $xml = $bom . $xml;
-        $this->expectException(\Zend_Xml_Exception::class, 'ENTITY');
+        $this->expectException(Zend_Xml_Exception::class, 'ENTITY');
         $this->invokeHeuristicScan($xml);
     }
 }

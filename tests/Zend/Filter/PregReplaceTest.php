@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -28,19 +29,18 @@ require_once 'Zend/Filter/PregReplace.php';
  * Test class for Zend_Filter_PregReplace.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Filter
  */
 #[AllowDynamicProperties]
-class Zend_Filter_PregReplaceTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
+class Zend_Filter_PregReplaceTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Filter_PregReplaceTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Filter_PregReplaceTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -116,9 +116,7 @@ class Zend_Filter_PregReplaceTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-9202
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9202')]
     public function testExtendsPregReplace()
     {
         $startMatchPattern = '~(&gt;){3,}~i';

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -41,7 +42,7 @@ class ZendX_JQuery_View_AutoCompleteTest extends ZendX_JQuery_View_jQueryTestCas
 
     public function testShouldAllowAutoCompleteOnlyWithSourceOption()
     {
-        $this->expectException(\ZendX_JQuery_Exception::class);
+        $this->expectException(ZendX_JQuery_Exception::class);
         $element = $this->view->autoComplete('elem1');
     }
 

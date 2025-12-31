@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,19 +23,18 @@ require_once 'Zend/Form/Element/Select.php';
  * Test class for Zend_Form_Element_Select.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_SelectTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_SelectTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -115,9 +115,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3953
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3953')]
     public function testUsingZeroAsValueShouldSelectAppropriateOption()
     {
         $this->element->setMultiOptions([
@@ -137,9 +135,8 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
     /**
      * Test isValid() on select elements without optgroups. This
      * ensures fixing ZF-3985 doesn't break existing functionality.
-     *
-     * @group ZF-3985
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3985')]
     public function testIsValidWithPlainOptions()
     {
         // test both syntaxes for setting plain options
@@ -154,9 +151,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid('Web Developer'));
     }
 
-    /**
-     * @group ZF-3985
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3985')]
     public function testIsValidWithOptionGroups()
     {
         // test optgroup and both syntaxes for setting plain options
@@ -177,9 +172,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid('Web Developer'));
     }
 
-    /**
-     * @group ZF-8342
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8342')]
     public function testUsingPoundSymbolInOptionLabelShouldRenderCorrectly()
     {
         $this->element->addMultiOption('1', '£' . number_format(1));
@@ -187,9 +180,7 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('>£', $html);
     }
 
-    /**
-     * @group ZF-8452
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8452')]
     public function testRenderingAsArray()
     {
         $this->element->addMultiOption('bar', 'Bar')

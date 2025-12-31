@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -51,7 +52,7 @@ class Zend_Layout
      *
      * @var string
      */
-    protected $_helperClass = \Zend_Layout_Controller_Action_Helper_Layout::class;
+    protected $_helperClass = Zend_Layout_Controller_Action_Helper_Layout::class;
 
     /**
      * Inflector used to resolve layout script.
@@ -118,7 +119,7 @@ class Zend_Layout
      *
      * @var string
      */
-    protected $_pluginClass = \Zend_Layout_Controller_Plugin_Layout::class;
+    protected $_pluginClass = Zend_Layout_Controller_Plugin_Layout::class;
 
     /**
      * @var Zend_View_Interface

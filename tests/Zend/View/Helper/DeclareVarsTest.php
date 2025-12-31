@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,12 +21,11 @@ require_once 'Zend/View/Helper/DeclareVars.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_DeclareVarsTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_DeclareVarsTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -34,8 +34,8 @@ class Zend_View_Helper_DeclareVarsTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_DeclareVarsTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_DeclareVarsTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void

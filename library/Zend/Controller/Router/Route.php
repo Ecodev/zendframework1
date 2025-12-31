@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -436,7 +437,7 @@ class Zend_Controller_Router_Route extends Zend_Controller_Router_Route_Abstract
         }
 
         try {
-            $locale = Zend_Registry::get(\Zend_Locale::class);
+            $locale = Zend_Registry::get(Zend_Locale::class);
         } catch (Zend_Exception $e) {
             $locale = null;
         }

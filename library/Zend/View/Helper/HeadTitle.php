@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -34,7 +35,7 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
      *
      * @var string
      */
-    protected $_regKey = \Zend_View_Helper_HeadTitle::class;
+    protected $_regKey = Zend_View_Helper_HeadTitle::class;
 
     /**
      * Default title rendering order (i.e. order in which each title attached).

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -43,7 +44,7 @@ class Zend_View_Helper_Placeholder_Registry
      *
      * @var string
      */
-    protected $_containerClass = \Zend_View_Helper_Placeholder_Container::class;
+    protected $_containerClass = Zend_View_Helper_Placeholder_Container::class;
 
     /**
      * Placeholder containers.
@@ -166,9 +167,8 @@ class Zend_View_Helper_Placeholder_Registry
         }
 
         $reflection = new ReflectionClass($name);
-        if (!$reflection->isSubclassOf(new ReflectionClass(\Zend_View_Helper_Placeholder_Container_Abstract::class))) {
+        if (!$reflection->isSubclassOf(new ReflectionClass(Zend_View_Helper_Placeholder_Container_Abstract::class))) {
             $e = new Zend_View_Helper_Placeholder_Registry_Exception('Invalid Container class specified');
-            $e->setView($this->view);
 
             throw $e;
         }

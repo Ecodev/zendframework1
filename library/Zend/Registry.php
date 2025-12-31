@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -30,12 +31,12 @@ class Zend_Registry extends ArrayObject
      *
      * @var string
      */
-    private static $_registryClassName = \Zend_Registry::class;
+    private static $_registryClassName = Zend_Registry::class;
 
     /**
      * Registry object provides storage for shared objects.
      */
-    private static ?\Zend_Registry $_registry = null;
+    private static ?Zend_Registry $_registry = null;
 
     /**
      * Retrieves the default registry instance.
@@ -82,7 +83,7 @@ class Zend_Registry extends ArrayObject
      *
      * @param string $registryClassName
      */
-    public static function setClassName($registryClassName = \Zend_Registry::class)
+    public static function setClassName($registryClassName = Zend_Registry::class)
     {
         if (self::$_registry !== null) {
             throw new Zend_Exception('Registry is already initialized');

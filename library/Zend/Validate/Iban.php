@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -140,8 +141,8 @@ class Zend_Validate_Iban extends Zend_Validate_Abstract
         }
 
         if (empty($locale)) {
-            if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
-                $locale = Zend_Registry::get(\Zend_Locale::class);
+            if (Zend_Registry::isRegistered(Zend_Locale::class)) {
+                $locale = Zend_Registry::get(Zend_Locale::class);
             }
         }
 

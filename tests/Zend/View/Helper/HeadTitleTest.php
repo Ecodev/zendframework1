@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -30,12 +31,11 @@ require_once 'Zend/Registry.php';
  * Test class for Zend_View_Helper_HeadTitle.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_HeadTitleTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadTitle
@@ -52,8 +52,8 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadTitleTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadTitleTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -83,12 +83,12 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists(\Zend_View_Helper_HeadTitle::class)) {
-            $registry->deleteContainer(\Zend_View_Helper_HeadTitle::class);
+        if ($registry->containerExists(Zend_View_Helper_HeadTitle::class)) {
+            $registry->deleteContainer(Zend_View_Helper_HeadTitle::class);
         }
-        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadTitle::class));
+        $this->assertFalse($registry->containerExists(Zend_View_Helper_HeadTitle::class));
         $helper = new Zend_View_Helper_HeadTitle();
-        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadTitle::class));
+        $this->assertTrue($registry->containerExists(Zend_View_Helper_HeadTitle::class));
     }
 
     public function testHeadTitleReturnsObjectInstance()
@@ -166,10 +166,9 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-2918
-     *
      * @see http://framework.zend.com/issues/browse/ZF-2918
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2918')]
     public function testZF2918()
     {
         $this->helper->headTitle('Some Title');
@@ -180,10 +179,9 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3577
-     *
      * @see http://framework.zend.com/issues/browse/ZF-3577
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3577')]
     public function testZF3577()
     {
         $this->helper->setAutoEscape(true);
@@ -194,9 +192,7 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('<title>Prefix &amp; Some Title &amp; Postfix</title>', $this->helper->toString());
     }
 
-    /**
-     * @group ZF-8036
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8036')]
     public function testHeadTitleZero()
     {
         $this->helper->headTitle('0');
@@ -211,9 +207,7 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('BarFoo', $placeholder->toString());
     }
 
-    /**
-     * @group ZF-10284
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10284')]
     public function testReturnTypeDefaultAttachOrder()
     {
         $this->assertTrue($this->helper->setDefaultAttachOrder('PREPEND') instanceof Zend_View_Helper_HeadTitle);

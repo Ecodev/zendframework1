@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -256,7 +257,7 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
             $exceptionType = get_class($exception);
             $error->exception = $exception;
             switch ($exceptionType) {
-                case \Zend_Controller_Router_Exception::class:
+                case Zend_Controller_Router_Exception::class:
                     if (404 == $exception->getCode()) {
                         $error->type = self::EXCEPTION_NO_ROUTE;
                     } else {
@@ -264,11 +265,11 @@ class Zend_Controller_Plugin_ErrorHandler extends Zend_Controller_Plugin_Abstrac
                     }
 
                     break;
-                case \Zend_Controller_Dispatcher_Exception::class:
+                case Zend_Controller_Dispatcher_Exception::class:
                     $error->type = self::EXCEPTION_NO_CONTROLLER;
 
                     break;
-                case \Zend_Controller_Action_Exception::class:
+                case Zend_Controller_Action_Exception::class:
                     if (404 == $exception->getCode()) {
                         $error->type = self::EXCEPTION_NO_ACTION;
                     } else {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -18,11 +19,10 @@ require_once 'Zend/Loader/AutoloaderFactory.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Loader
  */
 #[AllowDynamicProperties]
-class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Loader')]
+class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var array
@@ -36,8 +36,8 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework
 
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -83,13 +83,13 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends \PHPUnit\Framework
     {
         Zend_Loader_AutoloaderFactory::factory(
             [
-                \Zend_Loader_ClassMapAutoloader::class => [
+                Zend_Loader_ClassMapAutoloader::class => [
                     __DIR__ . '/_files/goodmap.php',
                 ],
             ]
         );
         $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader(
-            \Zend_Loader_ClassMapAutoloader::class
+            Zend_Loader_ClassMapAutoloader::class
         );
         $map = $loader->getAutoloadMap();
         $this->assertTrue(is_array($map));

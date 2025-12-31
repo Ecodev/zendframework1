@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,16 +23,15 @@ require_once 'Zend/View.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_DisplayGroupTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_DisplayGroupTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -237,7 +237,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 
     public function testCanNotRetrieveSingleDecoratorRegisteredAsStringUsingClassName()
     {
-        $this->assertFalse($this->group->getDecorator(\Zend_Form_Decorator_FormElements::class));
+        $this->assertFalse($this->group->getDecorator(Zend_Form_Decorator_FormElements::class));
     }
 
     public function testCanAddSingleDecoratorAsDecoratorObject()
@@ -247,7 +247,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
 
         $decorator = new Zend_Form_Decorator_ViewHelper();
         $this->group->addDecorator($decorator);
-        $test = $this->group->getDecorator(\Zend_Form_Decorator_ViewHelper::class);
+        $test = $this->group->getDecorator(Zend_Form_Decorator_ViewHelper::class);
         $this->assertSame($decorator, $test);
     }
 
@@ -292,9 +292,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->group->getDecorator('form'));
     }
 
-    /**
-     * @group ZF-3069
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3069')]
     public function testRemovingNamedDecoratorsShouldWork()
     {
         $this->_checkZf2794();
@@ -339,9 +337,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('fieldset', $decorator->getOption('tag'));
     }
 
-    /**
-     * @group ZF-3494
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3494')]
     public function testGetViewShouldNotReturnNullWhenViewRendererIsActive()
     {
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
@@ -683,9 +679,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(empty($decorators));
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3217')]
     public function testGroupShouldOverloadToRenderDecorators()
     {
         $foo = new Zend_Form_Element_Text('foo');
@@ -706,12 +700,10 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('this is the content', $html);
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3217')]
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
-        $this->expectException(\Zend_Form_Exception::class);
+        $this->expectException(Zend_Form_Exception::class);
         $html = $this->group->bogusMethodCall();
     }
 
@@ -737,9 +729,7 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($this->group, $this->group->loadDefaultDecorators());
     }
 
-    /**
-     * @group ZF-7552
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7552')]
     public function testAddDecoratorsKeepsNonNumericKeyNames()
     {
         $this->group->addDecorators([[['td' => 'HtmlTag'],

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -63,8 +64,8 @@ class Zend_Validate_PostCode extends Zend_Validate_Abstract
         }
 
         if (empty($options)) {
-            if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
-                $this->setLocale(Zend_Registry::get(\Zend_Locale::class));
+            if (Zend_Registry::isRegistered(Zend_Locale::class)) {
+                $this->setLocale(Zend_Registry::get(Zend_Locale::class));
             }
         } elseif (is_array($options)) {
             // Received

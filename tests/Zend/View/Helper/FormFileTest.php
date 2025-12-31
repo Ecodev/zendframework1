@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,12 +25,11 @@ require_once 'Zend/Registry.php';
  * Tests formFile helper
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_FormFileTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View
@@ -48,8 +48,8 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormFileTest');
-        \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormFileTest');
+        PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -58,9 +58,9 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp(): void
     {
-        if (Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class)) {
+        if (Zend_Registry::isRegistered(Zend_View_Helper_Doctype::class)) {
             $registry = Zend_Registry::getInstance();
-            unset($registry[\Zend_View_Helper_Doctype::class]);
+            unset($registry[Zend_View_Helper_Doctype::class]);
         }
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormFile();
@@ -101,9 +101,7 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString(' />', $test);
     }
 
-    /**
-     * @group GH-191
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-191')]
     public function testRendersCustomAttributes()
     {
         $test = $this->helper->formFile(

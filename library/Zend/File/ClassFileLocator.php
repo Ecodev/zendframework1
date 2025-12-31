@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -51,7 +52,7 @@ class Zend_File_ClassFileLocator extends FilterIterator
         }
 
         parent::__construct($iterator);
-        $this->setInfoClass(\Zend_File_PhpClassFile::class);
+        $this->setInfoClass(Zend_File_PhpClassFile::class);
     }
 
     /**

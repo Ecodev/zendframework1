@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -28,12 +29,11 @@ require_once 'Zend/Registry.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Router
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Router')]
+class Zend_Controller_Router_RouteTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Server backup.
@@ -63,7 +63,7 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
         // Restore server array
         $_SERVER = $this->_server;
 
-        Zend_Registry::set(\Zend_Locale::class, null);
+        Zend_Registry::set(Zend_Locale::class, null);
         Zend_Controller_Router_Route::setDefaultLocale(null);
     }
 
@@ -409,9 +409,7 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('archives/2006/03', $url);
     }
 
-    /**
-     * @group ZF-7917
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7917')]
     public function testAssembleWithGivenDataEqualsDefaults()
     {
         $route = new Zend_Controller_Router_Route('index/*', [

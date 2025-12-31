@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -26,19 +27,18 @@ require_once 'Zend/Validate/File/Md5.php';
  * Md5 testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_File_Md5Test extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_File_Md5Test extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_File_Md5Test');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_File_Md5Test');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**

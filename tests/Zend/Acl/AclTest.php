@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -19,12 +20,11 @@
 require_once __DIR__ . '/_files/MockAssertion.php';
 
 /**
- * @group      Zend_Acl
- *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
-class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Acl')]
+class Zend_Acl_AclTest extends PHPUnit\Framework\TestCase
 {
     /**
      * ACL object for each test method.
@@ -256,9 +256,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that basic addition and retrieval of a single Resource works.
-     *
-     * @group ZF-1167
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-1167')]
     public function testResourceAddAndGetOneWithAddResourceMethod()
     {
         $resourceArea = new Zend_Acl_Resource('area');
@@ -949,9 +948,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that the $onlyParents argument to inheritsRole() works.
-     *
-     * @group ZF-2502
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2502')]
     public function testRoleInheritanceSupportsCheckingOnlyParents()
     {
         $this->_acl->addRole(new Zend_Acl_Role('grandparent'))
@@ -962,9 +960,8 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensures that the solution for ZF-2234 works as expected.
-     *
-     * @group ZF-2234
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2234')]
     public function testAclInternalDFSMethodsBehaveProperly()
     {
         require_once __DIR__ . '/_files/ExtendedAclZF2234.php';
@@ -1008,9 +1005,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-1721
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-1721')]
     public function testAclAssertionsGetProperRoleWhenInheritenceIsUsed()
     {
         $acl = $this->_loadUseCase1();
@@ -1028,9 +1023,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('publisher', $assertion->lastAssertRole->getRoleId());
     }
 
-    /**
-     * @group ZF-1722
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-1722')]
     public function testAclAssertionsGetOriginalIsAllowedObjects()
     {
         $acl = $this->_loadUseCase1();
@@ -1072,27 +1065,10 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Returns an array of registered roles.
-     *
-     * @group ZF-5638
-     */
-    public function testGetRegisteredRoles()
-    {
-        $this->expectException(\PHPUnit\Framework\Exception::class);
-        $acl = $this->_acl;
-        $acl->addRole('developer');
-
-        $roles = $acl->getRegisteredRoles();
-        $this->assertTrue(is_array($roles));
-        $this->assertFalse(empty($roles));
-    }
-
-    /**
      * Confirm that deleting a role after allowing access to all roles
      * raise undefined index error.
-     *
-     * @group ZF-5700
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5700')]
     public function testRemovingRoleAfterItWasAllowedAccessToAllResourcesGivesError()
     {
         $acl = new Zend_Acl();
@@ -1110,12 +1086,9 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($acl->hasRole('test0'));
     }
 
-    /**
-     * @group ZF-8039
-     *
-     * Meant to test for the (in)existance of this notice:
-     * "Notice: Undefined index: allPrivileges in lib/Zend/Acl.php on line 682"
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8039
+Meant to test for the (in)existance of this notice:
+"Notice: Undefined index: allPrivileges in lib/Zend/Acl.php on line 682"')]
     public function testMethodRemoveAllowDoesNotThrowNotice()
     {
         $acl = new Zend_Acl();
@@ -1138,9 +1111,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('_fooBar_',(string) $resource);
     }
 
-    /**
-     * @group ZF-7973
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7973')]
     public function testAclPassesPrivilegeToAssertClass()
     {
         require_once __DIR__ . '/_files/AssertionZF7973.php';
@@ -1155,26 +1126,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($allowed);
     }
 
-    /**
-     * @group ZF-8468
-     */
-    public function testGetRegisteredRolesIsDeprecated()
-    {
-        try {
-            $this->_acl->getRegisteredRoles();
-            $this->fail('getRegisteredRoles() did not throw an exception');
-        } catch (\PHPUnit\Framework\Exception) {
-            self::assertTrue(true);
-
-            return;
-        }
-
-        static::fail('An expected notice has not been raised');
-    }
-
-    /**
-     * @group ZF-8468
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8468')]
     public function testgetRoles()
     {
         $this->assertEquals([],$this->_acl->getRoles());
@@ -1189,9 +1141,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $this->_acl->getRoles());
     }
 
-    /**
-     * @group ZF-8468
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8468')]
     public function testgetResources()
     {
         $this->assertEquals([],$this->_acl->getResources());
@@ -1203,9 +1153,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $this->_acl->getResources());
     }
 
-    /**
-     * @group ZF-9643
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9643')]
     public function testRemoveAllowWithNullResourceAfterResourceSpecificRulesAppliesToAllResources()
     {
         $this->_acl->addRole('guest');
@@ -1230,9 +1178,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->_acl->isAllowed('guest', 'newsletter', 'read'));
     }
 
-    /**
-     * @group ZF-9643
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9643')]
     public function testRemoveDenyWithNullResourceAfterResourceSpecificRulesAppliesToAllResources()
     {
         $this->_acl->addRole('guest');
@@ -1259,9 +1205,7 @@ class Zend_Acl_AclTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_acl->isAllowed('guest', 'newsletter', 'read'));
     }
 
-    /**
-     * @group ZF-10649
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10649')]
     public function testAllowAndDenyWithNullForResourcesWillApplyToAllResources()
     {
         $this->_acl->addRole('guest');

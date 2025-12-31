@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,11 +24,10 @@ require_once 'Zend/View/Helper/Navigation.php';
  * Tests Zend_View_Helper_Navigation.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
 class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Navigation_TestAbstract
 {
     /**
@@ -35,7 +35,7 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
      *
      * @var string
      */
-    protected $_helperName = \Zend_View_Helper_Navigation::class;
+    protected $_helperName = Zend_View_Helper_Navigation::class;
 
     /**
      * View helper.
@@ -353,9 +353,7 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-10458
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10458')]
     public function testFindCustomHelper()
     {
         $this->_helper->view->addHelperPath(
@@ -368,9 +366,7 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
         );
     }
 
-    /**
-     * @group ZF-10458
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10458')]
     public function testAddHelperPath()
     {
         $this->_helper->view->addHelperPath(
@@ -390,9 +386,7 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
         $this->assertSame($expected, $this->_helper->view->getHelperPaths());
     }
 
-    /**
-     * @group ZF-10458
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10458')]
     public function testRenderCustomHelper()
     {
         $this->_helper->view->addHelperPath(
@@ -403,9 +397,7 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
         $this->assertSame('<menu/>', (string) $this->_helper->menu());
     }
 
-    /**
-     * @group ZF-6854
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6854')]
     public function testRenderInvisibleItem()
     {
         $container = new Zend_Navigation([

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -26,7 +27,7 @@ require_once 'Zend/Validate/Isbn.php';
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
-class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
+class Zend_Validate_IsbnTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Ensures that the validator follows expected behavior.
@@ -232,9 +233,7 @@ class Zend_Validate_IsbnTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->isValid('978 0 555023 40 2'));
     }
 
-    /**
-     * @group ZF-9605
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9605')]
     public function testInvalidTypeGiven()
     {
         $validator = new Zend_Validate_Isbn();

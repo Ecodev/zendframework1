@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Locale/Math/PhpMath.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Locale
  */
 #[AllowDynamicProperties]
-class Zend_Locale_MathTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Locale')]
+class Zend_Locale_MathTest extends PHPUnit\Framework\TestCase
 {
     private static string $savedLocale = 'C';
 

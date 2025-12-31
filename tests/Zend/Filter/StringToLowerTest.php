@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Filter/StringToLower.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Filter
  */
 #[AllowDynamicProperties]
-class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
+class Zend_Filter_StringToLowerTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Filter_StringToLower object.
@@ -149,9 +149,7 @@ class Zend_Filter_StringToLowerTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-9854
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9854')]
     public function testDetectMbInternalEncoding()
     {
         if (!function_exists('mb_internal_encoding')) {

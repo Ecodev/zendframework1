@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Config/Ini.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Config
  */
 #[AllowDynamicProperties]
-class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Config')]
+class Zend_Config_IniTest extends PHPUnit\Framework\TestCase
 {
     protected $_iniFileConfig;
 
@@ -259,9 +259,7 @@ class Zend_Config_IniTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-8159
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8159')]
     public function testZF8159()
     {
         $config = new Zend_Config_Ini(

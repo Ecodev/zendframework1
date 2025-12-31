@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -25,11 +26,10 @@ require_once 'Zend/Json.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Json
  */
 #[AllowDynamicProperties]
-class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Json')]
+class Zend_Json_JsonXMLTest extends PHPUnit\Framework\TestCase
 {
     /**
      * xml2json Test 1
@@ -524,11 +524,10 @@ class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
         }
 
         $this->assertNotSame($ex, null, 'Zend_JSON::fromXml returned an exception.');
-    } // End of function testUsingXML7
+    }
 
-    /**
-     *  @group ZF-3257
-     */
+    // End of function testUsingXML7
+    #[PHPUnit\Framework\Attributes\Group('ZF-3257')]
     public function testUsingXML8()
     {
         // Set the XML contents that will be tested here.
@@ -562,26 +561,22 @@ class Zend_Json_JsonXMLTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-11385
-     *
-     * @dataProvider providerNestingDepthIsHandledProperly
-     *
      * @param mixed $xmlStringContents
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11385')]
+    #[PHPUnit\Framework\Attributes\DataProvider('providerNestingDepthIsHandledProperly')]
     public function testNestingDepthIsHandledProperlyWhenNestingDepthExceedsMaximum($xmlStringContents)
     {
-        $this->expectException(\Zend_Json_Exception::class);
+        $this->expectException(Zend_Json_Exception::class);
         Zend_Json::$maxRecursionDepthAllowed = 1;
         Zend_Json::fromXml($xmlStringContents, true);
     }
 
     /**
-     * @group ZF-11385
-     *
-     * @dataProvider providerNestingDepthIsHandledProperly
-     *
      * @param mixed $xmlStringContents
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11385')]
+    #[PHPUnit\Framework\Attributes\DataProvider('providerNestingDepthIsHandledProperly')]
     public function testNestingDepthIsHandledProperlyWhenNestingDepthDoesNotExceedMaximum($xmlStringContents)
     {
         try {

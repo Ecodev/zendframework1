@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -31,21 +32,21 @@ class Zend_Locale_Math
     // support unit testing without using bcmath functions
     public static $_bcmathDisabled = false;
 
-    public static $add = [\Zend_Locale_Math::class, 'Add'];
+    public static $add = [Zend_Locale_Math::class, 'Add'];
 
-    public static $sub = [\Zend_Locale_Math::class, 'Sub'];
+    public static $sub = [Zend_Locale_Math::class, 'Sub'];
 
-    public static $pow = [\Zend_Locale_Math::class, 'Pow'];
+    public static $pow = [Zend_Locale_Math::class, 'Pow'];
 
-    public static $mul = [\Zend_Locale_Math::class, 'Mul'];
+    public static $mul = [Zend_Locale_Math::class, 'Mul'];
 
-    public static $div = [\Zend_Locale_Math::class, 'Div'];
+    public static $div = [Zend_Locale_Math::class, 'Div'];
 
-    public static $comp = [\Zend_Locale_Math::class, 'Comp'];
+    public static $comp = [Zend_Locale_Math::class, 'Comp'];
 
-    public static $sqrt = [\Zend_Locale_Math::class, 'Sqrt'];
+    public static $sqrt = [Zend_Locale_Math::class, 'Sqrt'];
 
-    public static $mod = [\Zend_Locale_Math::class, 'Mod'];
+    public static $mod = [Zend_Locale_Math::class, 'Mod'];
 
     public static $scale = 'bcscale';
 

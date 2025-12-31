@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/Hostname.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_HostnameTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Default instance created for all test methods.
@@ -259,9 +259,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(Zend_Validate_Hostname::ALLOW_DNS, $this->_validator->getAllow());
     }
 
-    /**
-     * @group ZF-6033
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6033')]
     public function testNumberNames()
     {
         $validator = new Zend_Validate_Hostname();
@@ -278,9 +276,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-6133
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6133')]
     public function testPunycodeDecoding()
     {
         $validator = new Zend_Validate_Hostname();
@@ -315,9 +311,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_validator->isValid('ya#hoo'));
     }
 
-    /**
-     * @group ZF-7277
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7277')]
     public function testDifferentIconvEncoding()
     {
         if (PHP_VERSION_ID < 50600) {
@@ -347,9 +341,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_validator->isValid('test.com / http://www.test.com'));
     }
 
-    /**
-     * @group ZF-10267
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10267')]
     public function testURI()
     {
         $valuesExpected = [
@@ -366,9 +358,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Ensure that a trailing "." in a local hostname is permitted.
-     *
-     * @group ZF-6363
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6363')]
     public function testTrailingDot()
     {
         $valuesExpected = [
@@ -388,10 +379,9 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-11334
-     *
      * @see http://www.ietf.org/rfc/rfc2732.txt
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11334')]
     public function testSupportsIpv6AddressesWhichContainHexDigitF()
     {
         $validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_ALL);
@@ -405,9 +395,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->isValid('2010:836B:4179::836B:4179'));
     }
 
-    /**
-     * @group ZF-11796
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11796')]
     public function testIDNSI()
     {
         $validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_ALL);
@@ -441,9 +429,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($validator->isValid('رات.ca'));
     }
 
-    /**
-     * @group ZF-12413
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12413')]
     public function testIDNUA()
     {
         $validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_ALL);
@@ -454,9 +440,8 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test for IDN serbia .rs.
-     *
-     * @group GH-115
      */
+    #[PHPUnit\Framework\Attributes\Group('GH-115')]
     public function testIDNRS()
     {
         $validator = new Zend_Validate_Hostname(Zend_Validate_Hostname::ALLOW_ALL);
@@ -464,9 +449,7 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->isValid('test.rs'));
     }
 
-    /**
-     * @group GH-19
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-19')]
     public function testRussianIdn()
     {
         $validator = new Zend_Validate_Hostname();
@@ -474,27 +457,21 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->isValid('президент.рф'));
     }
 
-    /**
-     * @group GH-451
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-451')]
     public function testVermögensberaterIdns()
     {
         $validator = new Zend_Validate_Hostname();
         $this->assertTrue($validator->isValid('mysite.vermögensberater'));
     }
 
-    /**
-     * @group GH-610
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-610')]
     public function testGermanSmallLetterSharpS()
     {
         $validator = new Zend_Validate_Hostname();
         $this->assertTrue($validator->isValid('straße.de'));
     }
 
-    /**
-     * @group GH-612
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-612')]
     public function testZeroSubdomain()
     {
         $validator = new Zend_Validate_Hostname();

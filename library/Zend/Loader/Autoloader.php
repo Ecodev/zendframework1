@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -42,7 +43,7 @@ class Zend_Loader_Autoloader
     /**
      * @var array Default autoloader callback
      */
-    protected $_defaultAutoloader = [\Zend_Loader::class, 'loadClass'];
+    protected $_defaultAutoloader = [Zend_Loader::class, 'loadClass'];
 
     /**
      * @var bool Whether or not to act as a fallback autoloader

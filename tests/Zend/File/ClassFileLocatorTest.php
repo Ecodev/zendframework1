@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,22 +21,21 @@ require_once 'Zend/File/ClassFileLocator.php';
  * Test class for Zend_File_ClassFileLocator.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_File
  */
 #[AllowDynamicProperties]
-class Zend_File_ClassFileLocatorTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_File')]
+class Zend_File_ClassFileLocatorTest extends PHPUnit\Framework\TestCase
 {
     public function testConstructorThrowsInvalidArgumentExceptionForInvalidStringDirectory()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $locator = new Zend_File_ClassFileLocator('__foo__');
     }
 
     public function testConstructorThrowsInvalidArgumentExceptionForNonDirectoryIteratorArgument()
     {
         $iterator = new ArrayIterator([]);
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $locator = new Zend_File_ClassFileLocator($iterator);
     }
 

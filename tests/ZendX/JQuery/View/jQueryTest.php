@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -29,7 +30,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
     public function testHelperFailingCallForward()
     {
-        $this->expectException(\Zend_View_Exception::class);
+        $this->expectException(Zend_View_Exception::class);
         $jquery = new ZendX_JQuery_View_Helper_JQuery();
         $jquery->addAsdf();
     }
@@ -54,9 +55,8 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
     /**
      * Behaviour changed in 1.8.
-     *
-     * @group ZF-5667
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5667')]
     public function testUsingCdnShouldNotEnableHelperAnymore()
     {
         $this->jquery->setCdnVersion();
@@ -194,7 +194,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
     public function testShouldDisallowNestingCapturesWithException()
     {
         $this->jquery->javascriptCaptureStart();
-        $this->expectException(\Zend_Exception::class);
+        $this->expectException(Zend_Exception::class);
 
         try {
             $this->jquery->javascriptCaptureStart();
@@ -205,7 +205,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
     public function testShouldDisallowNestingCapturesWithException2()
     {
-        $this->expectException(\Zend_Exception::class);
+        $this->expectException(Zend_Exception::class);
         $this->jquery->onLoadCaptureStart();
 
         try {
@@ -350,9 +350,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertStringContainsString('helloWorld();', $render);
     }
 
-    /**
-     * @group ZF-5185
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5185')]
     public function testClearAddOnLoadStack()
     {
         $this->jquery->addOnLoad('foo');
@@ -365,9 +363,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertEquals([], $this->jquery->getOnLoadActions());
     }
 
-    /**
-     * @group ZF-5344
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5344')]
     public function testNoConflictModeIsRecognizedInRenderingOnLoadStackEvent()
     {
         ZendX_JQuery_View_Helper_JQuery::enableNoConflictMode();
@@ -384,9 +380,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertStringNotContainsString('$j(document).ready(function()', $jQueryStack);
     }
 
-    /**
-     * @group ZF-5839
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5839')]
     public function testStylesheetShouldRenderCorrectClosingBracketBasedOnHtmlDoctypeDefinition()
     {
         $this->jquery->addStylesheet('test.css');
@@ -397,9 +391,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertStringContainsString($assert, $this->jquery->__toString());
     }
 
-    /**
-     * @group ZF-11592
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11592')]
     public function testAddedStylesheetsCanBeCleared()
     {
         $this->jquery->addStylesheet('foo.css');
@@ -410,9 +402,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertSame([], $this->jquery->getStylesheets());
     }
 
-    /**
-     * @group ZF-6078
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6078')]
     public function testIncludeJQueryLibraryFromSslPath()
     {
         $this->jquery->setCdnSsl(true);
@@ -421,9 +411,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertStringContainsString(ZendX_JQuery::CDN_BASE_GOOGLE_SSL, $this->jquery->__toString());
     }
 
-    /**
-     * @group ZF-6594
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6594')]
     public function testJQueryGoogleCdnPathIsBuiltCorrectly()
     {
         $jQueryCdnPath = 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js';
@@ -433,9 +421,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertStringContainsString($jQueryCdnPath, $this->jquery->__toString());
     }
 
-    /**
-     * @group ZF-6594
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6594')]
     public function testJQueryUiGoogleCdnPathIsBuiltCorrectly()
     {
         $jQueryCdnPath = 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js';
@@ -447,9 +433,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertStringContainsString($jQueryCdnPath, $this->jquery->__toString());
     }
 
-    /**
-     * @group ZF-6594
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6594')]
     public function testJQueryGoogleCdnSslPathIsBuiltCorrectly()
     {
         $jQueryCdnPath = 'https://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js';
@@ -460,9 +444,7 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
         $this->assertStringContainsString($jQueryCdnPath, $this->jquery->__toString());
     }
 
-    /**
-     * @group ZF-6594
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6594')]
     public function testJQueryUiGoogleCdnSslPathIsBuiltCorrectly()
     {
         $jQueryCdnPath = 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js';

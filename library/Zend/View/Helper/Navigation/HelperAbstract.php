@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -160,8 +161,8 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
     {
         if (null === $this->_container) {
             // try to fetch from registry first
-            if (Zend_Registry::isRegistered(\Zend_Navigation::class)) {
-                $nav = Zend_Registry::get(\Zend_Navigation::class);
+            if (Zend_Registry::isRegistered(Zend_Navigation::class)) {
+                $nav = Zend_Registry::get(Zend_Navigation::class);
                 if ($nav instanceof Zend_Navigation_Container) {
                     return $this->_container = $nav;
                 }

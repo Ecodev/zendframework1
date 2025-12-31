@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend_Console_Getopt is a class to parse options for command-line
  * applications.
@@ -523,9 +524,9 @@ class Zend_Console_Getopt
         $doc->appendChild($optionsNode);
         foreach ($this->_options as $flag => $value) {
             $optionNode = $doc->createElement('option');
-            $optionNode->setAttribute('flag', utf8_encode($flag));
+            $optionNode->setAttribute('flag', $flag);
             if ($value !== true) {
-                $optionNode->setAttribute('parameter', utf8_encode($value));
+                $optionNode->setAttribute('parameter', $value);
             }
             $optionsNode->appendChild($optionNode);
         }

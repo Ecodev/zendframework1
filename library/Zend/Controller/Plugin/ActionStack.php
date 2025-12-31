@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -41,7 +42,7 @@ class Zend_Controller_Plugin_ActionStack extends Zend_Controller_Plugin_Abstract
      *
      * @var string
      */
-    protected $_registryKey = \Zend_Controller_Plugin_ActionStack::class;
+    protected $_registryKey = Zend_Controller_Plugin_ActionStack::class;
 
     /**
      * Valid keys for stack items.

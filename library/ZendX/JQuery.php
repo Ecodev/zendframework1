@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -138,7 +139,7 @@ class ZendX_JQuery
             return '{}';
         }
 
-        if (!class_exists(\Zend_Json::class)) {
+        if (!class_exists(Zend_Json::class)) {
             // @see Zend_Json
         }
 

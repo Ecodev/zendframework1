@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,18 +24,16 @@
 require_once 'Zend/Paginator/Adapter/Array.php';
 
 /**
- * @see \PHPUnit\Framework\TestCase
+ * @see PHPUnit\Framework\TestCase
  */
-
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Paginator
  */
 #[AllowDynamicProperties]
-class Zend_Paginator_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Paginator')]
+class Zend_Paginator_Adapter_ArrayTest extends PHPUnit\Framework\TestCase
 {
-    private ?\Zend_Paginator_Adapter_Array $_adapter;
+    private ?Zend_Paginator_Adapter_Array $_adapter;
 
     /**
      * Prepares the environment before running a test.
@@ -73,9 +72,7 @@ class Zend_Paginator_Adapter_ArrayTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(101, $this->_adapter->count());
     }
 
-    /**
-     * @group ZF-4151
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4151')]
     public function testEmptySet()
     {
         $this->_adapter = new Zend_Paginator_Adapter_Array([]);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,12 +21,11 @@ require_once 'Zend/View/Helper/HtmlFlash.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_HtmlFlashTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_HtmlFlashTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HtmlFlash
@@ -39,8 +39,8 @@ class Zend_View_Helper_HtmlFlashTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HtmlFlashTest');
-        \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_HtmlFlashTest');
+        PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**

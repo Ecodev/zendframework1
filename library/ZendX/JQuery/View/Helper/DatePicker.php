@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -43,7 +44,7 @@ class ZendX_JQuery_View_Helper_DatePicker extends ZendX_JQuery_View_Helper_UiWid
     {
         $attribs = $this->_prepareAttributes($id, $value, $attribs);
 
-        if (!isset($params['dateFormat']) && Zend_Registry::isRegistered(\Zend_Locale::class)) {
+        if (!isset($params['dateFormat']) && Zend_Registry::isRegistered(Zend_Locale::class)) {
             $params['dateFormat'] = self::resolveZendLocaleToDatePickerFormat();
         }
 
@@ -74,7 +75,7 @@ class ZendX_JQuery_View_Helper_DatePicker extends ZendX_JQuery_View_Helper_UiWid
     public static function resolveZendLocaleToDatePickerFormat($format = null)
     {
         if ($format == null) {
-            $locale = Zend_Registry::get(\Zend_Locale::class);
+            $locale = Zend_Registry::get(Zend_Locale::class);
             if (!($locale instanceof Zend_Locale)) {
                 throw new ZendX_JQuery_Exception('Cannot resolve Zend Locale format by default, no application wide locale is set.');
             }

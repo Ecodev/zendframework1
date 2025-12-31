@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -634,8 +635,8 @@ abstract class Zend_File_Transfer_Adapter_Abstract
         $break = false;
         foreach ($check as $key => $content) {
             if (array_key_exists('validators', $content)
-                && in_array(\Zend_Validate_File_Count::class, $content['validators'])) {
-                $validator = $this->_validators[\Zend_Validate_File_Count::class];
+                && in_array(Zend_Validate_File_Count::class, $content['validators'])) {
+                $validator = $this->_validators[Zend_Validate_File_Count::class];
                 $count = $content;
                 if (empty($content['tmp_name'])) {
                     continue;
@@ -668,7 +669,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
                 foreach ($content['validators'] as $class) {
                     $validator = $this->_validators[$class];
 
-                    if (($class === \Zend_Validate_File_Upload::class) and (empty($content['tmp_name']))) {
+                    if (($class === Zend_Validate_File_Upload::class) and (empty($content['tmp_name']))) {
                         $tocheck = $key;
                     } else {
                         $tocheck = $content['tmp_name'];
@@ -684,7 +685,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
                         break;
                     }
 
-                    if (($class === \Zend_Validate_File_Upload::class) and ((is_countable($fileerrors) ? count($fileerrors) : 0) > 0)) {
+                    if (($class === Zend_Validate_File_Upload::class) and ((is_countable($fileerrors) ? count($fileerrors) : 0) > 0)) {
                         break;
                     }
 
@@ -1245,7 +1246,7 @@ abstract class Zend_File_Transfer_Adapter_Abstract
             return null;
         }
 
-        if (class_exists(\finfo::class, false)) {
+        if (class_exists(finfo::class, false)) {
             $const = defined('FILEINFO_MIME_TYPE') ? FILEINFO_MIME_TYPE : FILEINFO_MIME;
             if (!empty($value['options']['magicFile'])) {
                 $mime = @finfo_open($const, $value['options']['magicFile']);

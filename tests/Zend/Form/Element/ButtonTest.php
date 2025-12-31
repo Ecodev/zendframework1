@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -16,16 +17,14 @@
  *
  * @version    $Id$
  */
-
 /**
  * Test class for Zend_Form_Element_Button.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Element_ButtonTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Form_Element_Button
@@ -37,8 +36,8 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_ButtonTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_ButtonTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -96,9 +95,7 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('formButton', $helper);
     }
 
-    /**
-     * @group ZF-3961
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3961')]
     public function testValuePropertyShouldNotBeRendered()
     {
         $this->element->setLabel('Button Label')
@@ -113,9 +110,7 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->element->getIgnore());
     }
 
-    /**
-     * @group ZF-5056
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5056')]
     public function testValidateAlwaysReturnsTrue()
     {
         $this->element->setValue('foo');
@@ -123,9 +118,7 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->element->isValid('bar'));
     }
 
-    /**
-     * @group ZF-5056
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5056')]
     public function testRenderingWithValueAfterValidation()
     {
         // Set element options

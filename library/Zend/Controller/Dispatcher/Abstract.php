@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -235,7 +236,7 @@ abstract class Zend_Controller_Dispatcher_Abstract implements Zend_Controller_Di
     {
         // preserve directories
         if (!$isAction) {
-            $segments = explode($this->getPathDelimiter(), $unformatted);
+            $segments = explode($this->getPathDelimiter(), $unformatted ?? '');
         } else {
             $segments = (array) $unformatted;
         }

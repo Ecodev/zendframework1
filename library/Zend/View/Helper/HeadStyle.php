@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -39,7 +40,7 @@ class Zend_View_Helper_HeadStyle extends Zend_View_Helper_Placeholder_Container_
      *
      * @var string
      */
-    protected $_regKey = \Zend_View_Helper_HeadStyle::class;
+    protected $_regKey = Zend_View_Helper_HeadStyle::class;
 
     /**
      * Allowed optional attributes.

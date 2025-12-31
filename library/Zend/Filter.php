@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -195,7 +196,7 @@ class Zend_Filter implements Zend_Filter_Interface
      */
     public static function filterStatic($value, $classBaseName, array $args = [], $namespaces = [])
     {
-        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, [\Zend_Filter::class]);
+        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, [Zend_Filter::class]);
         foreach ($namespaces as $namespace) {
             $className = $namespace . '_' . ucfirst($classBaseName);
             if (!class_exists($className, false)) {
@@ -212,7 +213,7 @@ class Zend_Filter implements Zend_Filter_Interface
             }
 
             $class = new ReflectionClass($className);
-            if ($class->implementsInterface(\Zend_Filter_Interface::class)) {
+            if ($class->implementsInterface(Zend_Filter_Interface::class)) {
                 if ($class->hasMethod('__construct')) {
                     $object = $class->newInstanceArgs($args);
                 } else {

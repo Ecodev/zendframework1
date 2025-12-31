@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -14,7 +15,7 @@
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-if (interface_exists(\Zend_Loader_SplAutoloader::class)) {
+if (interface_exists(Zend_Loader_SplAutoloader::class)) {
     return;
 }
 

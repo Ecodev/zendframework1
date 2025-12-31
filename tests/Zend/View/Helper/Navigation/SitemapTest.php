@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,11 +24,10 @@ require_once 'Zend/View/Helper/Navigation/Sitemap.php';
  * Tests Zend_View_Helper_Navigation_Sitemap.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
 class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigation_TestAbstract
 {
     protected $_front;
@@ -43,7 +43,7 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
      *
      * @var string
      */
-    protected $_helperName = \Zend_View_Helper_Navigation_Sitemap::class;
+    protected $_helperName = Zend_View_Helper_Navigation_Sitemap::class;
 
     /**
      * View helper.
@@ -299,9 +299,7 @@ class Zend_View_Helper_Navigation_SitemapTest extends Zend_View_Helper_Navigatio
         $this->fail('A Zend_View_Exception was not thrown when using Schema validation');
     }
 
-    /**
-     * @group ZF-8874
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8874')]
     public function testRenderingWithoutWhitespace()
     {
         // Reset format output option

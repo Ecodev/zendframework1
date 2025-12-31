@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,12 +21,11 @@ require_once 'Zend/Controller/Action/Helper/ViewRenderer.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Front
  */
 #[AllowDynamicProperties]
-class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Front')]
+class Zend_Controller_FrontTest extends PHPUnit\Framework\TestCase
 {
     protected $_controller;
 
@@ -36,8 +36,8 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_FrontTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_FrontTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -92,7 +92,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($request === $this->_controller->getRequest());
 
         $this->_controller->resetInstance();
-        $this->_controller->setRequest(\Zend_Controller_Request_Http::class);
+        $this->_controller->setRequest(Zend_Controller_Request_Http::class);
         $request = $this->_controller->getRequest();
         $this->assertTrue($request instanceof Zend_Controller_Request_Http);
     }
@@ -100,7 +100,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     public function testSetRequestThrowsExceptionWithBadRequest()
     {
         try {
-            $this->_controller->setRequest(\Zend_Controller_Response_Cli::class);
+            $this->_controller->setRequest(Zend_Controller_Response_Cli::class);
             $this->fail('Should not be able to set invalid request class');
         } catch (Exception $e) {
             self::assertTrue(true);
@@ -114,7 +114,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($response === $this->_controller->getResponse());
 
         $this->_controller->resetInstance();
-        $this->_controller->setResponse(\Zend_Controller_Response_Cli::class);
+        $this->_controller->setResponse(Zend_Controller_Response_Cli::class);
         $response = $this->_controller->getResponse();
         $this->assertTrue($response instanceof Zend_Controller_Response_Cli);
     }
@@ -122,7 +122,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     public function testSetResponseThrowsExceptionWithBadResponse()
     {
         try {
-            $this->_controller->setResponse(\Zend_Controller_Request_Http::class);
+            $this->_controller->setResponse(Zend_Controller_Request_Http::class);
             $this->fail('Should not be able to set invalid response class');
         } catch (Exception $e) {
             self::assertTrue(true);
@@ -136,7 +136,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($router === $this->_controller->getRouter());
 
         $this->_controller->resetInstance();
-        $this->_controller->setRouter(\Zend_Controller_Router_Rewrite::class);
+        $this->_controller->setRouter(Zend_Controller_Router_Rewrite::class);
         $router = $this->_controller->getRouter();
         $this->assertTrue($router instanceof Zend_Controller_Router_Rewrite);
     }
@@ -144,7 +144,7 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
     public function testSetRouterThrowsExceptionWithBadRouter()
     {
         try {
-            $this->_controller->setRouter(\Zend_Controller_Request_Http::class);
+            $this->_controller->setRouter(Zend_Controller_Request_Http::class);
             $this->fail('Should not be able to set invalid router class');
         } catch (Exception $e) {
             self::assertTrue(true);
@@ -620,24 +620,24 @@ class Zend_Controller_FrontTest extends \PHPUnit\Framework\TestCase
 
     public function testErrorHandlerPluginRegisteredWhenDispatched()
     {
-        $this->assertFalse($this->_controller->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
+        $this->assertFalse($this->_controller->hasPlugin(Zend_Controller_Plugin_ErrorHandler::class));
         $request = new Zend_Controller_Request_Http('http://example.com/index/index');
         $this->_controller->setParam('noErrorHandler', false)
             ->setResponse(new Zend_Controller_Response_Cli());
         $response = $this->_controller->dispatch($request);
 
-        $this->assertTrue($this->_controller->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
+        $this->assertTrue($this->_controller->hasPlugin(Zend_Controller_Plugin_ErrorHandler::class));
     }
 
     public function testErrorHandlerPluginNotRegisteredIfNoErrorHandlerSet()
     {
-        $this->assertFalse($this->_controller->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
+        $this->assertFalse($this->_controller->hasPlugin(Zend_Controller_Plugin_ErrorHandler::class));
         $request = new Zend_Controller_Request_Http('http://example.com/index/index');
         $this->_controller->setParam('noErrorHandler', true)
             ->setResponse(new Zend_Controller_Response_Cli());
         $response = $this->_controller->dispatch($request);
 
-        $this->assertFalse($this->_controller->hasPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
+        $this->assertFalse($this->_controller->hasPlugin(Zend_Controller_Plugin_ErrorHandler::class));
     }
 
     public function testReplaceRequestAndResponseMidStream()

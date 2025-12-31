@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -30,12 +31,11 @@ require_once 'Zend/Registry.php';
  * Test class for Zend_View_Helper_InlineScript.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_InlineScriptTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_InlineScriptTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_InlineScript
@@ -52,8 +52,8 @@ class Zend_View_Helper_InlineScriptTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_InlineScriptTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_InlineScriptTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -83,12 +83,12 @@ class Zend_View_Helper_InlineScriptTest extends \PHPUnit\Framework\TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists(\Zend_View_Helper_InlineScript::class)) {
-            $registry->deleteContainer(\Zend_View_Helper_InlineScript::class);
+        if ($registry->containerExists(Zend_View_Helper_InlineScript::class)) {
+            $registry->deleteContainer(Zend_View_Helper_InlineScript::class);
         }
-        $this->assertFalse($registry->containerExists(\Zend_View_Helper_InlineScript::class));
+        $this->assertFalse($registry->containerExists(Zend_View_Helper_InlineScript::class));
         $helper = new Zend_View_Helper_InlineScript();
-        $this->assertTrue($registry->containerExists(\Zend_View_Helper_InlineScript::class));
+        $this->assertTrue($registry->containerExists(Zend_View_Helper_InlineScript::class));
     }
 
     public function testInlineScriptReturnsObjectInstance()

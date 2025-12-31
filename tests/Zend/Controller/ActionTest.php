@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,12 +21,11 @@ require_once 'Zend/Controller/Response/Cli.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
  */
 #[AllowDynamicProperties]
-class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+class Zend_Controller_ActionTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -34,8 +34,8 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_ActionTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_ActionTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -212,9 +212,7 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('bar', $params['foo']);
     }
 
-    /**
-     * @group ZF-5163
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5163')]
     public function testGetParamForZeroValues()
     {
         $this->_controller->setParam('foo', 'bar');
@@ -226,9 +224,7 @@ class Zend_Controller_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(-1, $this->_controller->getParam('baz', -1));
     }
 
-    /**
-     * @group ZF-9179
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9179')]
     public function testGetParamForEmptyString()
     {
         $this->_controller->setParam('lang', '');

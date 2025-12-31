@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,12 +25,11 @@ require_once 'Zend/View/Helper/Placeholder/Registry.php';
  * Test class for Zend_View_Helper_Placeholder_Registry.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_Placeholder_RegistryTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Placeholder_Registry
@@ -41,8 +41,8 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_Placeholder_RegistryTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_Placeholder_RegistryTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -108,7 +108,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
 
     public function testContainerClassAccessorsSetState()
     {
-        $this->assertEquals(\Zend_View_Helper_Placeholder_Container::class, $this->registry->getContainerClass());
+        $this->assertEquals(Zend_View_Helper_Placeholder_Container::class, $this->registry->getContainerClass());
         $this->registry->setContainerClass('Zend_View_Helper_Placeholder_RegistryTest_Container');
         $this->assertEquals('Zend_View_Helper_Placeholder_RegistryTest_Container', $this->registry->getContainerClass());
     }
@@ -168,9 +168,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends \PHPUnit\Framework\TestC
         $this->assertSame($registry, $registered);
     }
 
-    /**
-     * @group ZF-10793
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10793')]
     public function testSetValueCreateContainer()
     {
         $this->registry->setContainerClass('Zend_View_Helper_Placeholder_RegistryTest_Container');

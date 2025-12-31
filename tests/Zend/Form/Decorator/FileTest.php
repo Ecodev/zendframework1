@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,19 +25,18 @@ require_once 'Zend/View/Helper/FormElement.php';
  * Test class for Zend_Form_Decorator_Errors.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_FileTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Decorator_FileTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -152,9 +152,7 @@ class Zend_Form_Decorator_FileTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<input[^>]*>.*?(content)#s', $file, $file);
     }
 
-    /**
-     * @group ZF-10519
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10519')]
     public function testCanChangeViewHelper()
     {
         $element = new Zend_Form_Element_File('foo');

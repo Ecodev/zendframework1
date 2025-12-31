@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -33,12 +34,11 @@ require_once 'Zend/View.php';
  * Test class for Zend_View_Helper_HeadMeta.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadMeta
@@ -55,8 +55,8 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadMetaTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadMetaTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -66,7 +66,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         $this->error = false;
-        foreach ([Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, \Zend_View_Helper_Doctype::class] as $key) {
+        foreach ([Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, Zend_View_Helper_Doctype::class] as $key) {
             if (Zend_Registry::isRegistered($key)) {
                 $registry = Zend_Registry::getInstance();
                 unset($registry[$key]);
@@ -95,12 +95,12 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists(\Zend_View_Helper_HeadMeta::class)) {
-            $registry->deleteContainer(\Zend_View_Helper_HeadMeta::class);
+        if ($registry->containerExists(Zend_View_Helper_HeadMeta::class)) {
+            $registry->deleteContainer(Zend_View_Helper_HeadMeta::class);
         }
-        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadMeta::class));
+        $this->assertFalse($registry->containerExists(Zend_View_Helper_HeadMeta::class));
         $helper = new Zend_View_Helper_HeadMeta();
-        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadMeta::class));
+        $this->assertTrue($registry->containerExists(Zend_View_Helper_HeadMeta::class));
     }
 
     public function testHeadMetaReturnsObjectInstance()
@@ -291,9 +291,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('name="title" content="boo bah"', $string);
     }
 
-    /**
-     * @group ZF-6637
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6637')]
     public function testToStringWhenInvalidKeyProvidedShouldConvertThrownException()
     {
         $this->helper->headMeta('some-content', 'tag value', 'not allowed key');
@@ -301,6 +299,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $string = @$this->helper->toString();
         $this->assertEquals('', $string);
         $this->assertTrue(is_string($this->error));
+        restore_error_handler();
     }
 
     public function testHeadMetaHelperCreatesItemEntry()
@@ -347,9 +346,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('foo', $test);
     }
 
-    /**
-     * @group ZF-9743
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9743')]
     public function testPropertyIsNotSupportedByDefaultDoctype()
     {
         try {
@@ -360,9 +357,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-2663
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2663')]
     public function testSetNameDoesntClobber()
     {
         $view = new Zend_View();
@@ -377,9 +372,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-2663
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2663')]
     public function testSetNameDoesntClobberPart2()
     {
         $view = new Zend_View();
@@ -396,10 +389,9 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3780
-     *
      * @see http://framework.zend.com/issues/browse/ZF-3780
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3780')]
     public function testPlacesMetaTagsInProperOrder()
     {
         $view = new Zend_View();
@@ -412,9 +404,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-5435
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5435')]
     public function testContainerMaintainsCorrectOrderOfItems()
     {
         $this->helper->offsetSetName(1, 'keywords', 'foo');
@@ -432,9 +422,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-7722
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7722')]
     public function testCharset()
     {
         $view = new Zend_View();
@@ -446,9 +434,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
             $view->headMeta()->toString());
     }
 
-    /**
-     * @group ZF-11835
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11835')]
     public function testConditional()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', ['conditional' => 'lt IE 7'])->toString();
@@ -457,9 +443,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression("|<!\[endif\]-->$|", $html);
     }
 
-    /**
-     * @group ZF-11910
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11910')]
     public function testStandaloneInstantiationWithoutViewDoesNotCauseFatalError()
     {
         $expected = '<meta name="foo" content="bar" />';
@@ -468,9 +452,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $result);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-515')]
     public function testConditionalNoIE()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', ['conditional' => '!IE'])->toString();
@@ -478,9 +460,7 @@ class Zend_View_Helper_HeadMetaTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<!--<![endif]-->', $html);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-515')]
     public function testConditionalNoIEWidthSpace()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', ['conditional' => '! IE'])->toString();

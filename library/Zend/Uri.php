@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -115,7 +116,7 @@ abstract class Zend_Uri
                 case 'http':
                     // Break intentionally omitted
                 case 'https':
-                    $className = \Zend_Uri_Http::class;
+                    $className = Zend_Uri_Http::class;
 
                     break;
 

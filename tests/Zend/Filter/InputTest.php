@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -29,17 +30,14 @@ require_once 'Zend/Loader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Filter
  */
 #[AllowDynamicProperties]
-class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
+class Zend_Filter_InputTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * @group ZF-11267
-     * If we pass in a validator instance that has a preset custom message, this
-     * message should be used.
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11267
+If we pass in a validator instance that has a preset custom message, this
+message should be used.')]
     function testIfCustomMessagesOnValidatorInstancesCanBeUsed()
     {
         // test with a Digits validator
@@ -74,9 +72,8 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
     /**
      * If setAllowEmpty(true) is called, all fields are optional, but fields with
      * a NotEmpty validator attached to them, should contain a non empty value.
-     *
-     * @group ZF-9289
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9289')]
     function testAllowEmptyTrueRespectsNotEmtpyValidators()
     {
         require_once 'Zend/Validate/Digits.php';
@@ -173,34 +170,31 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($input->isValid(), 'If the NotEmpty validator is an array, the NotEmpty validator is ignored !');
     }
 
-    /**
-     * @group ZF-8446
-     * The issue reports about nested error messages. This is to assure these do not occur.
-     *
-     * Example:
-     * Expected Result
-     *      array(2) {
-     *        ["field1"] => array(1) {
-     *          ["isEmpty"] => string(20) "'field1' is required"
-     *        }
-     *        ["field2"] => array(1) {
-     *          ["isEmpty"] => string(36) "Value is required and can't be empty"
-     *        }
-     *      }
-     *  Actual Result
-     *      array(2) {
-     *        ["field1"] => array(1) {
-     *          ["isEmpty"] => array(1) {
-     *            ["isEmpty"] => string(20) "'field1' is required"
-     *          }
-     *        }
-     *        ["field2"] => array(1) {
-     *          ["isEmpty"] => array(1) {
-     *            ["isEmpty"] => string(20) "'field1' is required"
-     *          }
-     *        }
-     *      }
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8446
+The issue reports about nested error messages. This is to assure these do not occur.
+Example:
+Expected Result
+     array(2) {
+       ["field1"] => array(1) {
+         ["isEmpty"] => string(20) "\'field1\' is required"
+       }
+       ["field2"] => array(1) {
+         ["isEmpty"] => string(36) "Value is required and can\'t be empty"
+       }
+     }
+ Actual Result
+     array(2) {
+       ["field1"] => array(1) {
+         ["isEmpty"] => array(1) {
+           ["isEmpty"] => string(20) "\'field1\' is required"
+         }
+       }
+       ["field2"] => array(1) {
+         ["isEmpty"] => array(1) {
+           ["isEmpty"] => string(20) "\'field1\' is required"
+         }
+       }
+     }')]
     public function testNoNestedMessageArrays()
     {
         $data = [
@@ -231,9 +225,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(isset($messages['field1']['isEmpty']), 'oh no, we not even got the normally expected messages');
     }
 
-    /**
-     * @group ZF-11142, ZF-8446, ZF-9289
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11142, ZF-8446, ZF-9289')]
     public function testTwoValidatorsInChainShowCorrectError()
     {
         $validators = [
@@ -279,7 +271,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $data = [
             'month' => '6abc ',
         ];
-        Zend_Loader::loadClass(\Zend_Filter_Digits::class);
+        Zend_Loader::loadClass(Zend_Filter_Digits::class);
         $filters = [
             'month' => [new Zend_Filter_Digits()],
         ];
@@ -426,7 +418,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $data = [
             'month' => '6',
         ];
-        Zend_Loader::loadClass(\Zend_Validate_Digits::class);
+        Zend_Loader::loadClass(Zend_Validate_Digits::class);
         $validators = [
             'month' => [
                 new Zend_Validate_Digits(),
@@ -482,7 +474,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
             'field2' => 'abc123',
             'field3' => 150,
         ];
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
         $btw = new Zend_Validate_Between(1, 100);
         $validators = [
             'field1' => ['digits', $btw],
@@ -511,7 +503,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $data = [
             'field2' => 'abc123',
         ];
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
         $validators = [
             'field2a' => [
                 'digits',
@@ -626,9 +618,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
             current($messages['rule2']));
     }
 
-    /**
-     * @group ZF-6711
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6711')]
     public function testValidatorMultiFieldAllowEmptyProcessing()
     {
         $data = [
@@ -688,7 +678,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
             'field2' => '150',
         ];
 
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
 
         $btw1 = new Zend_Validate_Between(1, 100);
 
@@ -753,10 +743,8 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("You must give a non-empty value for field 'field1'", current($messages['field1']));
     }
 
-    /**
-     * @group ZF-6708
-     * @group ZF-1912
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6708')]
+    #[PHPUnit\Framework\Attributes\Group('ZF-1912')]
     public function testValidatorAllowEmptyWithOtherValidatersProcessing()
     {
         $data = [
@@ -781,9 +769,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("You must give a non-empty value for field 'field1'", current($messages['field1']));
     }
 
-    /**
-     * @group ZF-6708
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6708')]
     public function testValidatorShouldNotProcessZeroAsEmpty()
     {
         $validation = [
@@ -808,9 +794,9 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
 
     public function testValidatorAllowEmptyNoValidatorChain()
     {
-        Zend_Loader::loadClass(\Zend_Filter_StringTrim::class);
-        Zend_Loader::loadClass(\Zend_Filter_StripTags::class);
-        Zend_Loader::loadClass(\Zend_Validate_EmailAddress::class);
+        Zend_Loader::loadClass(Zend_Filter_StringTrim::class);
+        Zend_Loader::loadClass(Zend_Filter_StripTags::class);
+        Zend_Loader::loadClass(Zend_Validate_EmailAddress::class);
 
         $data = [
             'nick' => '',
@@ -920,9 +906,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('field8default', $input->field8, 'Expected field8 to be non-null');
     }
 
-    /**
-     * @group ZF-6761
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6761')]
     public function testValidatorMissingDefaults()
     {
         $validators = [
@@ -1030,7 +1014,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $data = ['month' => '13abc'];
         $digitsMesg = 'Month should consist of digits';
         $betweenMesg = 'Month should be between 1 and 12';
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
         $validators = [
             'month' => [
                 'digits',
@@ -1061,7 +1045,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $data = ['field1' => ['13abc', '234']];
         $digitsMesg = 'Field1 should consist of digits';
         $betweenMesg = 'Field1 should be between 1 and 12';
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
         $validators = [
             'field1' => [
                 'digits',
@@ -1091,7 +1075,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
     {
         $data = ['month' => '13abc'];
         $betweenMesg = 'Month should be between 1 and 12';
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
         $validators = [
             'month' => [
                 'digits',
@@ -1145,7 +1129,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $data = ['month' => '13abc'];
         $digitsMesg = 'Month should consist of digits';
         $betweenMesg = 'Month should be between 1 and 12';
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
         $validators = [
             'month' => [
                 'digits',
@@ -1176,7 +1160,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $data = ['month' => '13abc'];
         $digitsMesg = 'Month should consist of digits';
         $betweenMesg = 'Month should be between 1 and 12';
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
         $validators = [
             'month' => [
                 'digits',
@@ -1565,7 +1549,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $data = [
             'field1' => '150',
         ];
-        Zend_Loader::loadClass(\Zend_Validate_Between::class);
+        Zend_Loader::loadClass(Zend_Validate_Between::class);
         $btw1 = new Zend_Validate_Between(1, 100);
         $btw2 = new Zend_Validate_Between(1, 125);
         $validators = [
@@ -1928,9 +1912,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3004
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3004')]
     public function testInsertingNullDoesNotGetEscapedWithDefaultEscapeMethod()
     {
         $input = new Zend_Filter_Input(null, null, ['test' => null]);
@@ -1946,9 +1928,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($input->test,                 'magic get of test fails to return null');
     }
 
-    /**
-     * @group ZF-3100
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3100')]
     public function testPluginLoaderInputNamespaceWithSameNameFilterAndValidatorLeadsToException()
     {
         $filters = [
@@ -1976,9 +1956,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3100
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3100')]
     public function testPluginLoaderWithFilterValidateNamespaceWithSameNameFilterAndValidatorWorksPerfectly()
     {
         // Array
@@ -2019,9 +1997,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-7135
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7135')]
     public function testValidatorAllowNull()
     {
         $data = [
@@ -2042,9 +2018,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($input->field1);
     }
 
-    /**
-     * @group ZF-7034
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7034')]
     public function testSettingNotEmptyMessageAndMessagePerKeyAndMessagePerArray()
     {
         require_once 'Zend/Validate/StringLength.php';
@@ -2084,9 +2058,7 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Bitte beschränken Sie sich auf', $message['street']['stringLengthTooLong']);
     }
 
-    /**
-     * @group ZF-7394
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7394')]
     public function testSettingMultipleNotEmptyMessages()
     {
         require_once 'Zend/Validate/StringLength.php';
@@ -2116,9 +2088,8 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
     /**
      * If setAllowEmpty(true) is called, all fields are optional, but fields with
      * a NotEmpty validator attached to them, should contain a non empty value.
-     *
-     * @group ZF-9289
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9289')]
     function testAllowEmptyTrueRespectsNotEmptyValidators()
     {
         $data = [
@@ -2214,9 +2185,8 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
      * This test doesn't include any assertions as it's purpose is to
      * ensure that passing an empty array value into a $validators rule
      * doesn't cause a notice to be emitted.
-     *
-     * @group ZF-11819
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11819')]
     public function testValidatorRuleCanHaveEmptyArrayAsMetacommandValue()
     {
         $validators = [

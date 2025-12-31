@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Config.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Config
  */
 #[AllowDynamicProperties]
-class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Config')]
+class Zend_ConfigTest extends PHPUnit\Framework\TestCase
 {
     protected $_iniFileConfig;
 
@@ -403,9 +403,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('parent', $parent->key->nested, '$parent has been overridden');
     }
 
-    /**
-     * @group ZF-3575
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3575')]
     public function testMergeHonoursAllowModificationsFlagAtAllLevels()
     {
         $config = new Zend_Config(['key' => ['nested' => 'yes'], 'key2' => 'yes'], false);
@@ -428,9 +426,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('no', $config2->key->nested);
     }
 
-    /**
-     * @group ZF-5771a
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5771a')]
     public function testUnsettingFirstElementDuringForeachDoesNotSkipAnElement()
     {
         $config = new Zend_Config([
@@ -452,9 +448,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('third', $keyList[2]);
     }
 
-    /**
-     * @group ZF-5771
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5771')]
     public function testUnsettingAMiddleElementDuringForeachDoesNotSkipAnElement()
     {
         $config = new Zend_Config([
@@ -476,9 +470,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('third', $keyList[2]);
     }
 
-    /**
-     * @group ZF-5771
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5771')]
     public function testUnsettingLastElementDuringForeachDoesNotSkipAnElement()
     {
         $config = new Zend_Config([
@@ -500,9 +492,7 @@ class Zend_ConfigTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('third', $keyList[2]);
     }
 
-    /**
-     * @group ZF-4728
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4728')]
     public function testSetReadOnlyAppliesToChildren()
     {
         $config = new Zend_Config($this->_all, true);

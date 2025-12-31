@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Resource_LocaleTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Resource_LocaleTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -118,6 +118,6 @@ class Zend_Application_Resource_LocaleTest extends \PHPUnit\Framework\TestCase
 
         // This test will fail if your configured locale is kok_IN
         $this->assertEquals('kok_IN', $locale->__toString());
-        $this->assertSame(Zend_Registry::get(\Zend_Locale::class), $locale);
+        $this->assertSame(Zend_Registry::get(Zend_Locale::class), $locale);
     }
 }

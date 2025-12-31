@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -16,26 +17,23 @@
  *
  * @version    $Id $
  */
-
 /**
  * Zend_Locale.
  */
-
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Locale
  */
 #[AllowDynamicProperties]
-class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Locale')]
+class Zend_LocaleTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_LocaleTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_LocaleTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     private $_locale;
@@ -88,9 +86,7 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('zh_Hans_CN', Zend_Locale::getAlias('zh_Hans_CN'));
     }
 
-    /**
-     * @group GH-337
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-337')]
     public function testIsLocaleMethodWithAliases()
     {
         $this->assertEquals(true, Zend_Locale::isLocale('zh_CN'));
@@ -781,7 +777,7 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
             $this->assertStringContainsString('is no known locale', $e->getMessage());
         }
 
-        Zend_Registry::set(\Zend_Locale::class, 'de');
+        Zend_Registry::set(Zend_Locale::class, 'de');
         $this->assertEquals('de', Zend_LocaleTestHelper::findLocale());
     }
 
@@ -862,9 +858,7 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('tr_TR', $value->toString());
     }
 
-    /**
-     * @group ZF-11072
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11072')]
     public function testTranslationReturnsZeroAsNumber()
     {
         $this->assertFalse(Zend_Locale::getTranslation('USD', 'CurrencyFraction'));
@@ -910,7 +904,7 @@ class Zend_LocaleTest extends \PHPUnit\Framework\TestCase
             }
         }
 
-        $class = new ReflectionClass(\Zend_Locale::class);
+        $class = new ReflectionClass(Zend_Locale::class);
         $property = $class->getProperty('_localeData');
         $property->setAccessible(true);
 

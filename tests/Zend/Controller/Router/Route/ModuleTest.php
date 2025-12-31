@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -25,12 +26,11 @@ require_once 'Zend/Controller/Front.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Router
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Router')]
+class Zend_Controller_Router_Route_ModuleTest extends PHPUnit\Framework\TestCase
 {
     protected $_request;
 
@@ -45,8 +45,8 @@ class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCas
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Router_Route_ModuleTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Router_Route_ModuleTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -456,9 +456,7 @@ class Zend_Controller_Router_Route_ModuleTest extends \PHPUnit\Framework\TestCas
         $this->assertSame('index', $values['a'], var_export(array_keys($values), 1));
     }
 
-    /**
-     * @group ZF-8029
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8029')]
     public function testAssembleShouldUrlEncodeAllParameterNames()
     {
         $params = [

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,13 +23,12 @@ require_once 'Zend/Controller/Request/Simple.php';
  * Test class for Zend_Controller_Action_Helper_ActionStack.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_Helper_ActionStackTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Front
@@ -47,8 +47,8 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ActionStackTest');
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ActionStackTest');
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     /**
@@ -74,9 +74,9 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
 
     public function testConstructorInstantiatesPluginIfNotPresent()
     {
-        $this->assertFalse($this->front->hasPlugin(\Zend_Controller_Plugin_ActionStack::class));
+        $this->assertFalse($this->front->hasPlugin(Zend_Controller_Plugin_ActionStack::class));
         $helper = new Zend_Controller_Action_Helper_ActionStack();
-        $this->assertTrue($this->front->hasPlugin(\Zend_Controller_Plugin_ActionStack::class));
+        $this->assertTrue($this->front->hasPlugin(Zend_Controller_Plugin_ActionStack::class));
     }
 
     public function testConstructorUsesExistingPluginWhenPresent()
@@ -84,15 +84,15 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
         $plugin = new Zend_Controller_Plugin_ActionStack();
         $this->front->registerPlugin($plugin);
         $helper = new Zend_Controller_Action_Helper_ActionStack();
-        $this->assertTrue($this->front->hasPlugin(\Zend_Controller_Plugin_ActionStack::class));
-        $registered = $this->front->getPlugin(\Zend_Controller_Plugin_ActionStack::class);
+        $this->assertTrue($this->front->hasPlugin(Zend_Controller_Plugin_ActionStack::class));
+        $registered = $this->front->getPlugin(Zend_Controller_Plugin_ActionStack::class);
         $this->assertSame($plugin, $registered);
     }
 
     public function testPushStackPushesToPluginStack()
     {
         $helper = new Zend_Controller_Action_Helper_ActionStack();
-        $plugin = $this->front->getPlugin(\Zend_Controller_Plugin_ActionStack::class);
+        $plugin = $this->front->getPlugin(Zend_Controller_Plugin_ActionStack::class);
 
         $request = new Zend_Controller_Request_Simple();
         $request->setModuleName('foo')
@@ -112,7 +112,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     public function testActionToStackPushesNewRequestToPluginStack()
     {
         $helper = new Zend_Controller_Action_Helper_ActionStack();
-        $plugin = $this->front->getPlugin(\Zend_Controller_Plugin_ActionStack::class);
+        $plugin = $this->front->getPlugin(Zend_Controller_Plugin_ActionStack::class);
 
         $helper->actionToStack('baz', 'bar', 'foo');
         $next = $plugin->popStack();
@@ -126,7 +126,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     public function testPassingRequestToActionToStackPushesRequestToPluginStack()
     {
         $helper = new Zend_Controller_Action_Helper_ActionStack();
-        $plugin = $this->front->getPlugin(\Zend_Controller_Plugin_ActionStack::class);
+        $plugin = $this->front->getPlugin(Zend_Controller_Plugin_ActionStack::class);
 
         $request = new Zend_Controller_Request_Simple();
         $request->setModuleName('foo')
@@ -164,7 +164,7 @@ class Zend_Controller_Action_Helper_ActionStackTest extends \PHPUnit\Framework\T
     public function testCannotStackActionIfNoRequestAvailable()
     {
         $helper = new Zend_Controller_Action_Helper_ActionStack();
-        $plugin = $this->front->getPlugin(\Zend_Controller_Plugin_ActionStack::class);
+        $plugin = $this->front->getPlugin(Zend_Controller_Plugin_ActionStack::class);
 
         $helper->direct('baz', 'bar', 'foo');
         $next = $plugin->popStack();

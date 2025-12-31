@@ -137,7 +137,7 @@ class Zend_Session extends Zend_Session_Abstract
     /**
      * A reference to the set session save handler.
      */
-    private static ?\Zend_Session_SaveHandler_Interface $_saveHandler = null;
+    private static ?Zend_Session_SaveHandler_Interface $_saveHandler = null;
 
     /**
      * Constructor overriding - make sure that a developer cannot instantiate.
@@ -398,7 +398,7 @@ class Zend_Session extends Zend_Session_Abstract
 
         if (!self::$_unitTestEnabled) {
             if (self::$_throwStartupExceptions) {
-                set_error_handler([\Zend_Session_Exception::class, 'handleSessionStartError'], $errorLevel);
+                set_error_handler([Zend_Session_Exception::class, 'handleSessionStartError'], $errorLevel);
             }
 
             $startedCleanly = session_start();
@@ -409,7 +409,7 @@ class Zend_Session extends Zend_Session_Abstract
 
             if (!$startedCleanly || Zend_Session_Exception::$sessionStartError != null) {
                 if (self::$_throwStartupExceptions) {
-                    set_error_handler([\Zend_Session_Exception::class, 'handleSilentWriteClose'], $errorLevel);
+                    set_error_handler([Zend_Session_Exception::class, 'handleSilentWriteClose'], $errorLevel);
                 }
                 session_write_close();
                 if (self::$_throwStartupExceptions) {

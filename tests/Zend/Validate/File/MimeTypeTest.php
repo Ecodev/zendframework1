@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -26,19 +27,18 @@ require_once 'Zend/Validate/File/MimeType.php';
  * MimeType testbed.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_File_MimeTypeTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_File_MimeTypeTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_File_MimeTypeTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -176,9 +176,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('image/gif,image/jpg', $validator->getMimeType());
     }
 
-    /**
-     * @group ZF-9686
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9686')]
     public function testDualValidation()
     {
         $valuesExpected = [
@@ -217,9 +215,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-11784
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11784')]
     public function testTryCommonMagicFilesFlag()
     {
         $validator = new Zend_Validate_File_MimeType('image/jpeg');
@@ -232,9 +228,7 @@ class Zend_Validate_File_MimeTypeTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->shouldTryCommonMagicFiles());
     }
 
-    /**
-     * @group ZF-11784
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11784')]
     public function testDisablingTryCommonMagicFilesIgnoresCommonLocations()
     {
         if (version_compare(PHP_VERSION, '5.3.0', '<')) {

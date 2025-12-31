@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,20 +23,19 @@ require_once 'Zend/Registry.php';
  * Test class for Zend_View_Helper_FormReset.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_FormResetTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_FormResetTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormResetTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormResetTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -44,9 +44,9 @@ class Zend_View_Helper_FormResetTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp(): void
     {
-        if (Zend_Registry::isRegistered(\Zend_View_Helper_Doctype::class)) {
+        if (Zend_Registry::isRegistered(Zend_View_Helper_Doctype::class)) {
             $registry = Zend_Registry::getInstance();
-            unset($registry[\Zend_View_Helper_Doctype::class]);
+            unset($registry[Zend_View_Helper_Doctype::class]);
         }
         $this->view = new Zend_View();
         $this->helper = new Zend_View_Helper_FormReset();
@@ -71,9 +71,7 @@ class Zend_View_Helper_FormResetTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input[^>]*?(type="reset")/', $html);
     }
 
-    /**
-     * @group ZF-2845
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2845')]
     public function testShouldAllowDisabling()
     {
         $html = $this->helper->formReset([

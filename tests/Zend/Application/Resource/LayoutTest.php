@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Resource_LayoutTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Resource_LayoutTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void

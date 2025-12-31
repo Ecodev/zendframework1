@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Resource_NavigationTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Resource_NavigationTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -128,9 +128,7 @@ class Zend_Application_Resource_NavigationTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals($number,1);
     }
 
-    /**
-     * @group ZF-6747
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6747')]
     public function testViewMethodIsUsedWhenAvailableInsteadOfResourcePlugin()
     {
         require_once '_files/ZfAppBootstrapCustomView.php';
@@ -142,9 +140,7 @@ class Zend_Application_Resource_NavigationTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals($view->setInMethodByTest,true);
     }
 
-    /**
-     * @group ZF-10959
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10959')]
     public function testDefaultPageTypeIsSet()
     {
         $this->bootstrap->registerPluginResource('view');
@@ -168,9 +164,7 @@ class Zend_Application_Resource_NavigationTest extends \PHPUnit\Framework\TestCa
         $this->bootstrap->unregisterPluginResource('view');
     }
 
-    /**
-     * @group ZF-7461
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7461')]
     public function testRegistryIsUsedWhenNumericRegistryValueIsGiven()
     {
         // Register view for cases where registry should/is not (be) used

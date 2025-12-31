@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,11 +21,10 @@ require_once 'Zend/Loader/TestAsset/StandardAutoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Loader
  */
 #[AllowDynamicProperties]
-class Zend_Loader_StandardAutoloaderTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Loader')]
+class Zend_Loader_StandardAutoloaderTest extends PHPUnit\Framework\TestCase
 {
     public function setUp(): void
     {

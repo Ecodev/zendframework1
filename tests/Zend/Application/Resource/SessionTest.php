@@ -20,12 +20,11 @@
 require_once 'Zend/Session/SaveHandler/Interface.php';
 
 /**
- * @group      Zend_Application
- *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
-class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Resource_SessionTest extends PHPUnit\Framework\TestCase
 {
     public $resource;
 
@@ -36,7 +35,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 
     public function testSetSaveHandler()
     {
-        $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
+        $saveHandler = $this->createMock(Zend_Session_SaveHandler_Interface::class);
 
         $this->resource->setSaveHandler($saveHandler);
         $this->assertSame($saveHandler, $this->resource->getSaveHandler());
@@ -44,7 +43,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 
     public function testSetSaveHandlerString()
     {
-        $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
+        $saveHandler = $this->createMock(Zend_Session_SaveHandler_Interface::class);
         $saveHandlerClassName = $saveHandler::class;
 
         $this->resource->setSaveHandler($saveHandlerClassName);
@@ -54,7 +53,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
 
     public function testSetSaveHandlerArray()
     {
-        $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
+        $saveHandler = $this->createMock(Zend_Session_SaveHandler_Interface::class);
         $saveHandlerClassName = $saveHandler::class;
 
         $this->resource->setSaveHandler(['class' => $saveHandlerClassName]);
@@ -62,9 +61,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->resource->getSaveHandler() instanceof $saveHandlerClassName);
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function testSetOptions()
     {
         Zend_Session::setOptions([
@@ -87,7 +84,7 @@ class Zend_Application_Resource_SessionTest extends \PHPUnit\Framework\TestCase
     {
         Zend_Session::$_unitTestEnabled = true;
 
-        $saveHandler = $this->createMock(\Zend_Session_SaveHandler_Interface::class);
+        $saveHandler = $this->createMock(Zend_Session_SaveHandler_Interface::class);
 
         $this->resource->setSaveHandler($saveHandler);
 

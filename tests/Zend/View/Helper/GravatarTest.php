@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -31,12 +32,11 @@ require_once 'Zend/View.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_GravatarTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Gravatar
@@ -53,8 +53,8 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_GravatarTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_GravatarTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -141,7 +141,7 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
     public function testInvalidRatingParametr()
     {
         $ratingsWrong = ['a', 'cs', 456];
-        $this->expectException(\Zend_View_Exception::class);
+        $this->expectException(Zend_View_Exception::class);
         foreach ($ratingsWrong as $value) {
             $this->_object->setRating($value);
         }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -239,7 +240,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
             if (is_array($data)) {
                 $adapter = 'Array';
             } elseif ($data instanceof Iterator) {
-                $adapter = \Iterator::class;
+                $adapter = Iterator::class;
             } elseif (is_integer($data)) {
                 $adapter = 'Null';
             } else {
@@ -937,7 +938,7 @@ class Zend_Paginator implements Countable, IteratorAggregate
             case 'object':
                 if (!$scrollingStyle instanceof Zend_Paginator_ScrollingStyle_Interface) {
                     throw new Zend_View_Exception('Scrolling style must implement '
-                        . \Zend_Paginator_ScrollingStyle_Interface::class);
+                        . Zend_Paginator_ScrollingStyle_Interface::class);
                 }
 
                 return $scrollingStyle;

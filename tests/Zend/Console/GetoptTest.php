@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Console/Getopt.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Console_Getopt
  */
 #[AllowDynamicProperties]
-class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Console_Getopt')]
+class Zend_Console_GetoptTest extends PHPUnit\Framework\TestCase
 {
     public function setUp(): void
     {
@@ -265,9 +265,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(isset($opts->a));
     }
 
-    /**
-     * @group GH-377
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-377')]
     public function testVerifyRequiredArgument()
     {
         $opts = new Zend_Console_Getopt(
@@ -298,9 +296,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         $opts->checkRequiredArguments(); //-> no Exception here
     }
 
-    /**
-     * @group GH-377
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-377')]
     public function testEmptyRequiredOption()
     {
         $opts = new Zend_Console_Getopt(
@@ -332,9 +328,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-5948
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5948')]
     public function testGetoptAddSetNonArrayArguments()
     {
         $opts = new Zend_Console_GetOpt('abp:', ['-foo']);
@@ -561,9 +555,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('string', $opts->k);
     }
 
-    /**
-     * @group ZF-2295
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2295')]
     public function testRegisterArgcArgvOffThrowsException()
     {
         $argv = $_SERVER['argv'];
@@ -581,9 +573,8 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Test to ensure that dashed long names will parse correctly.
-     *
-     * @group ZF-4763
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4763')]
     public function testDashWithinLongOptionGetsParsed()
     {
         $opts = new Zend_Console_Getopt(
@@ -603,9 +594,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('mbp', $opts->getOption('man-bear-pig'));
     }
 
-    /**
-     * @group ZF-2064
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2064')]
     public function testAddRulesDoesNotThrowWarnings()
     {
         // Fails if warning is thrown: Should not happen!
@@ -618,9 +607,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(true);
     }
 
-    /**
-     * @group ZF-5345
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5345')]
     public function testUsingDashWithoutOptionNameAsLastArgumentIsRecognizedAsRemainingArgument()
     {
         $opts = new Zend_Console_Getopt('abp:', ['-']);
@@ -630,9 +617,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(['-'], $opts->getRemainingArgs());
     }
 
-    /**
-     * @group ZF-5345
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5345')]
     public function testUsingDashWithoutOptionNotAsLastArgumentThrowsException()
     {
         $opts = new Zend_Console_Getopt('abp:', ['-', 'file1']);
@@ -645,9 +630,7 @@ class Zend_Console_GetoptTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-5624
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5624')]
     public function testEqualsCharacterInLongOptionsValue()
     {
         $fooValue = 'some text containing an = sign which breaks';

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,13 +25,12 @@ require_once 'Zend/View.php';
  * Test class for Zend_Controller_Action_Helper_AjaxContext.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_Helper_AjaxContextTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -39,8 +39,8 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_AjaxContextTest');
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_AjaxContextTest');
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     /**
@@ -174,9 +174,7 @@ class Zend_Controller_Action_Helper_AjaxContextTest extends \PHPUnit\Framework\T
         $this->assertNull($this->helper->getCurrentContext());
     }
 
-    /**
-     * @group ZF-8444
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8444')]
     public function testAjaxContextIsRequestDependent()
     {
         $request = new ZendTest_Controller_Request_SimpleMock_AjaxTest();

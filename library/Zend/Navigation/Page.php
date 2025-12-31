@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -210,11 +211,11 @@ abstract class Zend_Navigation_Page extends Zend_Navigation_Container
             if (is_string($type) && !empty($type)) {
                 switch (strtolower($type)) {
                     case 'mvc':
-                        $type = \Zend_Navigation_Page_Mvc::class;
+                        $type = Zend_Navigation_Page_Mvc::class;
 
                         break;
                     case 'uri':
-                        $type = \Zend_Navigation_Page_Uri::class;
+                        $type = Zend_Navigation_Page_Uri::class;
 
                         break;
                 }

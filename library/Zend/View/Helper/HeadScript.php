@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -51,7 +52,7 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      *
      * @var string
      */
-    protected $_regKey = \Zend_View_Helper_HeadScript::class;
+    protected $_regKey = Zend_View_Helper_HeadScript::class;
 
     /**
      * Are arbitrary attributes allowed?

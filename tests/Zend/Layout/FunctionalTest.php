@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,10 +23,9 @@ require_once 'Zend/Controller/Plugin/ErrorHandler.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Layout
  */
 #[AllowDynamicProperties]
+#[PHPUnit\Framework\Attributes\Group('Zend_Layout')]
 class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
 {
     /**
@@ -33,8 +33,8 @@ class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void

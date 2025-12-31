@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,11 +23,10 @@ require_once 'Zend/Navigation/Page.php';
  * Tests Zend_Navigation_Page::factory().
  * /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Navigation
  */
 #[AllowDynamicProperties]
-class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Navigation')]
+class Zend_Navigation_PageFactoryTest extends PHPUnit\Framework\TestCase
 {
     protected $_oldIncludePath;
 
@@ -73,7 +73,7 @@ class Zend_Navigation_PageFactoryTest extends \PHPUnit\Framework\TestCase
             ]),
         ];
 
-        $this->assertContainsOnly(\Zend_Navigation_Page_Mvc::class, $pages);
+        $this->assertContainsOnly(Zend_Navigation_Page_Mvc::class, $pages);
     }
 
     public function testDetectUriPage()

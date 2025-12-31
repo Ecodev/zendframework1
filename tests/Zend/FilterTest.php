@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Filter.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Filter
  */
 #[AllowDynamicProperties]
-class Zend_FilterTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
+class Zend_FilterTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Filter object.
@@ -121,23 +121,21 @@ class Zend_FilterTest extends \PHPUnit\Framework\TestCase
      * exist in the namespace, get() throws an exception.
      *
      * Refactored to conform with ZF-2724.
-     *
-     * @group  ZF-2724
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2724')]
     public function testStaticFactoryClassNotFound()
     {
-        $this->expectException(\Zend_Filter_Exception::class);
+        $this->expectException(Zend_Filter_Exception::class);
         Zend_Filter::filterStatic('1234', 'UnknownFilter');
     }
 
     /**
      * Handle file not found errors.
      *
-     * @group  ZF-2724
-     *
      * @param  int $errnum
      * @param  string $errstr
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2724')]
     public function handleNotFoundError($errnum, $errstr)
     {
         if (strstr($errstr, 'No such file')) {

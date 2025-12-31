@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Module_BootstrapTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Module_BootstrapTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -114,9 +114,7 @@ class Zend_Application_Module_BootstrapTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('baz', $bootstrap->foo);
     }
 
-    /**
-     * @group ZF-6545
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6545')]
     public function testFrontControllerPluginResourceShouldBeRegistered()
     {
         require_once __DIR__ . '/../_files/ZfModuleBootstrap.php';
@@ -124,9 +122,7 @@ class Zend_Application_Module_BootstrapTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($bootstrap->hasPluginResource('FrontController'));
     }
 
-    /**
-     * @group ZF-6545
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6545')]
     public function testFrontControllerStateRemainsSameIfNoOptionsPassedToModuleBootstrap()
     {
         require_once __DIR__ . '/../_files/ZfModuleBootstrap.php';
@@ -158,9 +154,7 @@ class Zend_Application_Module_BootstrapTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(__DIR__, $test->getControllerDirectory('default'));
     }
 
-    /**
-     * @group ZF-6545
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6545')]
     public function testModuleBootstrapsShouldNotAcceptModuleResourceInOrderToPreventRecursion()
     {
         require_once __DIR__ . '/../_files/ZfModuleBootstrap.php';
@@ -190,9 +184,7 @@ class Zend_Application_Module_BootstrapTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-6567
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6567')]
     public function testModuleBootstrapShouldInheritApplicationBootstrapPluginPaths()
     {
         require_once __DIR__ . '/../_files/ZfModuleBootstrap.php';

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Resource_ModulesTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Resource_ModulesTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -87,10 +87,8 @@ class Zend_Application_Resource_ModulesTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse(isset($this->bootstrap->bar));
     }
 
-    /**
-     * @group ZF-6803
-     * @group ZF-7158
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6803')]
+    #[PHPUnit\Framework\Attributes\Group('ZF-7158')]
     public function testInitializationTriggersDefaultModuleBootstrapWhenDiffersFromApplicationBootstrap()
     {
         require_once 'Zend/Application/Resource/Modules.php';
@@ -118,10 +116,8 @@ class Zend_Application_Resource_ModulesTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->bootstrap->bar, 'bar failed');
     }
 
-    /**
-     * @group ZF-6803
-     * @group ZF-7158
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6803')]
+    #[PHPUnit\Framework\Attributes\Group('ZF-7158')]
     public function testInitializationShouldSkipModulesWithoutBootstraps()
     {
         require_once 'Zend/Application/Resource/Modules.php';
@@ -140,10 +136,8 @@ class Zend_Application_Resource_ModulesTest extends \PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('default', (array) $bootstraps);
     }
 
-    /**
-     * @group ZF-6803
-     * @group ZF-7158
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6803')]
+    #[PHPUnit\Framework\Attributes\Group('ZF-7158')]
     public function testShouldReturnExecutedBootstrapsWhenComplete()
     {
         require_once 'Zend/Application/Resource/Modules.php';
@@ -174,9 +168,7 @@ class Zend_Application_Resource_ModulesTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(3, count((array) $bootstraps));
     }
 
-    /**
-     * @group ZF-11548
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11548')]
     public function testGetExecutedBootstrapsShouldReturnArrayObject()
     {
         require_once 'Zend/Application/Resource/Modules.php';

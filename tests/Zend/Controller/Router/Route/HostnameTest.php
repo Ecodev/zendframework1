@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -25,12 +26,11 @@ require_once 'Zend/Controller/Request/Http.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Router
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Router')]
+class Zend_Controller_Router_Route_HostnameTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -39,8 +39,8 @@ class Zend_Controller_Router_Route_HostnameTest extends \PHPUnit\Framework\TestC
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Router_Route_HostnameTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Router_Route_HostnameTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testCorrectStaticHostMatch()

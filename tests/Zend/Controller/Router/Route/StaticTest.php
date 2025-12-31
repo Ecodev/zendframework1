@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,12 +23,11 @@ require_once 'Zend/Controller/Router/Route/Static.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Router
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Router_Route_StaticTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Router')]
+class Zend_Controller_Router_Route_StaticTest extends PHPUnit\Framework\TestCase
 {
     public function testStaticMatch()
     {

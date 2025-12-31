@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -21,6 +22,6 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
-class FooBar_Model_ZendLoaderAutoloaderResourceTest
+class FooBar_Form_ZendLoaderAutoloaderResource
 {
 }

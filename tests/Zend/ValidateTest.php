@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -29,11 +30,10 @@ require_once 'Zend/Validate/Abstract.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_ValidateTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Validate object.
@@ -127,12 +127,11 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
      * exist in the namespace, is() throws an exception.
      *
      * Refactored to conform with ZF-2724.
-     *
-     * @group  ZF-2724
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2724')]
     public function testStaticFactoryClassNotFound()
     {
-        $this->expectException(\Zend_Validate_Exception::class);
+        $this->expectException(Zend_Validate_Exception::class);
         Zend_Validate::is('1234', 'UnknownValidator');
     }
 
@@ -186,11 +185,10 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
     /**
      * Handle file not found errors.
      *
-     * @group  ZF-2724
-     *
      * @param  int $errnum
      * @param  string $errstr
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2724')]
     public function handleNotFoundError($errnum, $errstr)
     {
         if (strstr($errstr, 'No such file')) {

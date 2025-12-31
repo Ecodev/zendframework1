@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,12 +25,11 @@ require_once 'Zend/View.php';
  * Tests formRadio helper
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -38,8 +38,8 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormRadioTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormRadioTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -95,9 +95,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3206
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3206')]
     public function testSpecifyingLabelPlacementShouldNotOverwriteValue()
     {
         $options = [
@@ -349,9 +347,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-5681
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5681')]
     public function testRadioLabelDoesNotContainHardCodedStyle()
     {
         $options = [
@@ -367,9 +363,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('style="white-space: nowrap;"', $html);
     }
 
-    /**
-     * @group ZF-8709
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8709')]
     public function testRadioLabelContainsNotForAttributeTag()
     {
         $actual = $this->helper->formRadio(
@@ -389,9 +383,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group ZF-4191
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4191')]
     public function testDashesShouldNotBeFilteredFromId()
     {
         $name = 'Foo';
@@ -413,9 +405,7 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input([^>]*)(id="' . $name . '--1")([^>]*)(checked="checked")/', $html);
     }
 
-    /**
-     * @group ZF-11477
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11477')]
     public function testRendersAsHtmlByDefault()
     {
         $options = [

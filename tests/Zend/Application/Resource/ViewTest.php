@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -26,16 +27,15 @@ require_once 'Zend/Application/Resource/View.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Resource_ViewTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -112,9 +112,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('HTML5', $view->doctype()->getDoctype());
     }
 
-    /**
-     * @group ZF-10343
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10343')]
     public function testContentTypeIsSet()
     {
         $contentType = 'text/html; charset=UTF-8';
@@ -135,12 +133,10 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($contentType, $actual);
 
         Zend_View_Helper_Placeholder_Registry::getRegistry()
-            ->deleteContainer(\Zend_View_Helper_HeadMeta::class);
+            ->deleteContainer(Zend_View_Helper_HeadMeta::class);
     }
 
-    /**
-     * @group ZF-10343
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10343')]
     public function testSetMetaCharsetForHtml5()
     {
         $charset = 'UTF-8';
@@ -166,13 +162,11 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($charset, $actual);
 
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        $registry->deleteContainer(\Zend_View_Helper_HeadMeta::class);
-        $registry->deleteContainer(\Zend_View_Helper_Doctype::class);
+        $registry->deleteContainer(Zend_View_Helper_HeadMeta::class);
+        $registry->deleteContainer(Zend_View_Helper_Doctype::class);
     }
 
-    /**
-     * @group ZF-10042
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10042')]
     public function testAssignmentsAreSet()
     {
         $options = [
@@ -188,9 +182,7 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('barbazoo', $view->bar);
     }
 
-    /**
-     * @group ZF-11579
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11579')]
     public function testViewResourceDoesNotReinjectViewRenderer()
     {
         require_once __DIR__ . '/TestAsset/ViewRenderer.php';

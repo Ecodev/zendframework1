@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -25,21 +26,19 @@ require_once 'Zend/Validate/Identical.php';
 /**
  * Zend_Validate_Identical.
  *
- * @uses       Zend_Validate_Identical
- *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+#[PHPUnit\Framework\Attributes\UsesClass('Zend_Validate_Identical')]
+class Zend_Validate_IdenticalTest extends PHPUnit\Framework\TestCase
 {
-    private \Zend_Validate_Identical $validator;
+    private Zend_Validate_Identical $validator;
 
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_IdenticalTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_IdenticalTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -96,18 +95,14 @@ class Zend_Validate_IdenticalTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->validator->isValid('foo'));
     }
 
-    /**
-     * @group ZF-6953
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6953')]
     public function testValidatingAgainstEmptyToken()
     {
         $this->validator->setToken('');
         $this->assertTrue($this->validator->isValid(''));
     }
 
-    /**
-     * @group ZF-7128
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7128')]
     public function testValidatingAgainstNonStrings()
     {
         $this->validator->setToken(true);

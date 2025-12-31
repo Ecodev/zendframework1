@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/InArray.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_InArrayTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Ensures that the validator follows expected behavior.
@@ -179,9 +179,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->isValid('A'));
     }
 
-    /**
-     * @group GH-365
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-365')]
     public function testMultidimensionalArrayNotFound()
     {
         $input = [
@@ -192,9 +190,7 @@ class Zend_Validate_InArrayTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($validator->isValid($input));
     }
 
-    /**
-     * @group GH-365
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-365')]
     public function testErrorMessageWithArrayValue()
     {
         $input = [

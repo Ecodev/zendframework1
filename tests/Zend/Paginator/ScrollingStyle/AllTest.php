@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -28,18 +29,16 @@ require_once 'Zend/Paginator.php';
 require_once 'Zend/Paginator/ScrollingStyle/All.php';
 
 /**
- * @see \PHPUnit\Framework\TestCase
+ * @see PHPUnit\Framework\TestCase
  */
-
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Paginator
  */
 #[AllowDynamicProperties]
-class Zend_Paginator_ScrollingStyle_AllTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Paginator')]
+class Zend_Paginator_ScrollingStyle_AllTest extends PHPUnit\Framework\TestCase
 {
-    private ?\Zend_Paginator_ScrollingStyle_All $_scrollingStyle = null;
+    private ?Zend_Paginator_ScrollingStyle_All $_scrollingStyle = null;
 
     private $_paginator;
 

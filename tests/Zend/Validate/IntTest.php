@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/Int.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_IntTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Validate_Int object.
@@ -102,7 +102,7 @@ class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
      */
     public function testUsingApplicationLocale()
     {
-        Zend_Registry::set(\Zend_Locale::class, new Zend_Locale('de'));
+        Zend_Registry::set(Zend_Locale::class, new Zend_Locale('de'));
         $valid = new Zend_Validate_Int();
         $this->assertTrue($valid->isValid('10.000'));
     }
@@ -112,7 +112,7 @@ class Zend_Validate_IntTest extends \PHPUnit\Framework\TestCase
      */
     public function testLocaleDetectsNoEnglishLocaleOnOtherSetLocale()
     {
-        Zend_Registry::set(\Zend_Locale::class, new Zend_Locale('de'));
+        Zend_Registry::set(Zend_Locale::class, new Zend_Locale('de'));
         $valid = new Zend_Validate_Int();
         $this->assertTrue($valid->isValid(1200));
         $this->assertFalse($valid->isValid('1,200'));

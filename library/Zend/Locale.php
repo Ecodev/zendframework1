@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -1754,8 +1755,8 @@ class Zend_Locale
     public static function findLocale($locale = null)
     {
         if ($locale === null) {
-            if (Zend_Registry::isRegistered(\Zend_Locale::class)) {
-                $locale = Zend_Registry::get(\Zend_Locale::class);
+            if (Zend_Registry::isRegistered(Zend_Locale::class)) {
+                $locale = Zend_Registry::get(Zend_Locale::class);
             }
         }
 

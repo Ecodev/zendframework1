@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,16 +24,15 @@ require_once 'Zend/View.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_SubFormTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_SubFormTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -48,12 +48,12 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
     public function testSubFormUtilizesDefaultDecorators()
     {
         $decorators = $this->form->getDecorators();
-        $this->assertTrue(array_key_exists(\Zend_Form_Decorator_FormElements::class, $decorators));
-        $this->assertTrue(array_key_exists(\Zend_Form_Decorator_HtmlTag::class, $decorators));
-        $this->assertTrue(array_key_exists(\Zend_Form_Decorator_Fieldset::class, $decorators));
-        $this->assertTrue(array_key_exists(\Zend_Form_Decorator_DtDdWrapper::class, $decorators));
+        $this->assertTrue(array_key_exists(Zend_Form_Decorator_FormElements::class, $decorators));
+        $this->assertTrue(array_key_exists(Zend_Form_Decorator_HtmlTag::class, $decorators));
+        $this->assertTrue(array_key_exists(Zend_Form_Decorator_Fieldset::class, $decorators));
+        $this->assertTrue(array_key_exists(Zend_Form_Decorator_DtDdWrapper::class, $decorators));
 
-        $htmlTag = $decorators[\Zend_Form_Decorator_HtmlTag::class];
+        $htmlTag = $decorators[Zend_Form_Decorator_HtmlTag::class];
         $tag = $htmlTag->getOption('tag');
         $this->assertEquals('dl', $tag);
     }
@@ -80,10 +80,7 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
     }
 
     // Bugfixes
-
-    /**
-     * @group ZF-2883
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2883')]
     public function testDisplayGroupsShouldInheritSubFormNamespace()
     {
         $this->form->addElement('text', 'foo')
@@ -98,9 +95,7 @@ class Zend_Form_SubFormTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('name="attributes[bar]"', $html);
     }
 
-    /**
-     * @group ZF-3272
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3272')]
     public function testRenderedSubFormDtShouldContainNoBreakSpace()
     {
         $subForm = new Zend_Form_SubForm([

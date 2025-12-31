@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/EmailAddress.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_EmailAddressTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Default instance created for all test methods.
@@ -42,8 +42,8 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -370,9 +370,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([], $this->_validator->getMessages());
     }
 
-    /**
-     * @group ZF-4888
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4888')]
     public function testEmailsExceedingLength()
     {
         $emailAddresses = [
@@ -384,17 +382,13 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-4352
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4352')]
     public function testNonStringValidation()
     {
         $this->assertFalse($this->_validator->isValid([1 => 1]));
     }
 
-    /**
-     * @group ZF-7490
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7490')]
     public function testSettingHostnameMessagesThroughEmailValidator()
     {
         $translations = [
@@ -477,9 +471,8 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Testing setMessage for all messages.
-     *
-     * @group ZF-10690
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10690')]
     public function testSetMultipleMessages()
     {
         $messages = $this->_validator->getMessageTemplates();
@@ -534,18 +527,14 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-11239
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11239')]
     public function testNotSetHostnameValidator()
     {
         $hostname = $this->_validator->getHostnameValidator();
         $this->assertTrue($hostname instanceof Zend_Validate_Hostname);
     }
 
-    /**
-     * @group GH-62
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-62')]
     public function testIdnHostnameInEmaillAddress()
     {
         if (version_compare(PHP_VERSION, '5.3.0', '<')) {
@@ -556,9 +545,7 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->isValid('testmail@faß.de'));
     }
 
-    /**
-     * @group GH-517
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-517')]
     public function testNonReservedIp()
     {
         $validator = new Zend_Validate_EmailAddress(Zend_Validate_Hostname::ALLOW_IP);

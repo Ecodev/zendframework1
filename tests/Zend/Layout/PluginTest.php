@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,19 +23,18 @@ require_once 'Zend/Controller/Response/Cli.php';
  * Test class for Zend_Layout_Controller_Plugin_Layout.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Layout
  */
 #[AllowDynamicProperties]
-class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Layout')]
+class Zend_Layout_PluginTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Layout_PluginTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Layout_PluginTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -91,8 +91,8 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
     {
         $layout = Zend_Layout::startMvc();
         $front = Zend_Controller_Front::getInstance();
-        $this->assertTrue($front->hasPlugin(\Zend_Layout_Controller_Plugin_Layout::class));
-        $plugin = $front->getPlugin(\Zend_Layout_Controller_Plugin_Layout::class);
+        $this->assertTrue($front->hasPlugin(Zend_Layout_Controller_Plugin_Layout::class));
+        $plugin = $front->getPlugin(Zend_Layout_Controller_Plugin_Layout::class);
         $this->assertSame($layout, $plugin->getLayout());
     }
 
@@ -113,7 +113,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
             ->disableInflector();
 
         $helper = Zend_Controller_Action_HelperBroker::getStaticHelper('layout');
-        $plugin = $front->getPlugin(\Zend_Layout_Controller_Plugin_Layout::class);
+        $plugin = $front->getPlugin(Zend_Layout_Controller_Plugin_Layout::class);
         $plugin->setResponse($response);
 
         $helper->postDispatch();
@@ -140,7 +140,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
             ->setLayout('plugin.phtml')
             ->disableInflector();
 
-        $plugin = $front->getPlugin(\Zend_Layout_Controller_Plugin_Layout::class);
+        $plugin = $front->getPlugin(Zend_Layout_Controller_Plugin_Layout::class);
         $plugin->setResponse($response);
         $plugin->postDispatch($request);
 
@@ -166,7 +166,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
             ->disableInflector()
             ->disableLayout();
 
-        $plugin = $front->getPlugin(\Zend_Layout_Controller_Plugin_Layout::class);
+        $plugin = $front->getPlugin(Zend_Layout_Controller_Plugin_Layout::class);
         $plugin->setResponse($response);
         $plugin->postDispatch($request);
 
@@ -175,9 +175,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('Site Layout', $body);
     }
 
-    /**
-     * @group ZF-8041
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8041')]
     public function testPostDispatchDoesNotRenderLayoutWhenResponseRedirected()
     {
         $front = Zend_Controller_Front::getInstance();
@@ -196,7 +194,7 @@ class Zend_Layout_PluginTest extends \PHPUnit\Framework\TestCase
             ->setMvcSuccessfulActionOnly(false)
             ->disableInflector();
 
-        $plugin = $front->getPlugin(\Zend_Layout_Controller_Plugin_Layout::class);
+        $plugin = $front->getPlugin(Zend_Layout_Controller_Plugin_Layout::class);
         $plugin->setResponse($response);
         $plugin->postDispatch($request);
 

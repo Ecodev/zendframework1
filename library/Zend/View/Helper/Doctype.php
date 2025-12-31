@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -53,7 +54,7 @@ class Zend_View_Helper_Doctype extends Zend_View_Helper_Abstract
      *
      * @var string
      */
-    protected $_regKey = \Zend_View_Helper_Doctype::class;
+    protected $_regKey = Zend_View_Helper_Doctype::class;
 
     /**
      * Constructor.

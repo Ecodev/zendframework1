@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/CreditCard.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_CreditCardTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Ensures that the validator follows expected behavior.
@@ -220,9 +220,7 @@ class Zend_Validate_CreditCardTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(['Zend_Validate_CreditCardTest', 'staticCallback'], $validator->getService());
     }
 
-    /**
-     * @group ZF-9477
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9477')]
     public function testMultiInstitute()
     {
         $validator = new Zend_Validate_CreditCard(['type' => Zend_Validate_CreditCard::MASTERCARD]);

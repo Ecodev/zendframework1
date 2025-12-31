@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Locale/Format.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Locale
  */
 #[AllowDynamicProperties]
-class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Locale')]
+class Zend_Locale_FormatTest extends PHPUnit\Framework\TestCase
 {
     /**
      * teardown / cleanup.
@@ -110,9 +110,8 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
     /**
      * test isNumber
      * expected boolean.
-     *
-     * @group ZF-5879
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5879')]
     public function testIsNumberENotation()
     {
         $this->assertTrue(Zend_Locale_Format::isNumber('5,0004E+5',  ['locale' => 'de_AT']));
@@ -1038,17 +1037,13 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('0,567', Zend_Locale_Format::toNumber(.567, $options));
     }
 
-    /**
-     * @group ZF-9160
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9160')]
     public function testGetNumberWithZeroPrecision()
     {
         $this->assertEquals(1234, Zend_Locale_Format::getNumber('1234.567', ['locale' => 'en_US', 'precision' => 0]));
     }
 
-    /**
-     * @group ZF-9319
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9319')]
     public function testToNumberWithoutFormatWithPrecision()
     {
         $options = ['locale' => 'de_AT', 'precision' => 2];
@@ -1059,9 +1054,7 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('4,00', Zend_Locale_Format::toNumber(4, $options));
     }
 
-    /**
-     * @group ZF-11837
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11837')]
     public function testCheckDateFormatDoesNotEmitNoticeWhenNoOptionsAreNotProvided()
     {
         try {
@@ -1069,14 +1062,12 @@ class Zend_Locale_FormatTest extends \PHPUnit\Framework\TestCase
             Zend_Locale_Format::setOptions(['date_format' => 'yyyy-MM-dd']);
 
             $this->assertTrue(Zend_Locale_Format::checkDateFormat('2011-10-21', []));
-        } catch (\PHPUnit\Framework\Error_Notice $ex) {
+        } catch (PHPUnit\Framework\Error_Notice $ex) {
             $this->fail('Zend_Locale_Format::checkDateFormat emitted unexpected E_NOTICE');
         }
     }
 
-    /**
-     * @group GH-430
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-430')]
     public function testIsIntegerForLocaleZhHK()
     {
         $this->assertTrue(

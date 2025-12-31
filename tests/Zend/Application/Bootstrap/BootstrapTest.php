@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Bootstrap_BootstrapTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -88,7 +88,7 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
 
     public function testRunShouldRaiseExceptionIfNoControllerDirectoryRegisteredWithFrontController()
     {
-        $this->expectException(\Zend_Application_Bootstrap_Exception::class);
+        $this->expectException(Zend_Application_Bootstrap_Exception::class);
         $this->bootstrap->bootstrap();
         $this->bootstrap->run();
     }
@@ -113,17 +113,13 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
         $this->assertTrue($this->bootstrap->getContainer()->zfappbootstrap);
     }
 
-    /**
-     * @group ZF-8496
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8496')]
     public function testBootstrapModuleAutoloaderShouldNotBeInitializedByDefault()
     {
         $this->assertFalse($this->bootstrap->getResourceLoader() instanceof Zend_Application_Module_Autoloader);
     }
 
-    /**
-     * @group ZF-8496
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8496')]
     public function testBootstrapShouldInitializeModuleAutoloaderWhenNamespaceSpecified()
     {
         $application = new Zend_Application('testing', [
@@ -137,9 +133,7 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals('Application', $al->getNamespace());
     }
 
-    /**
-     * @group ZF-8496
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8496')]
     public function testBootstrapAutoloaderNamespaceShouldBeConfigurable()
     {
         $application = new Zend_Application('testing', [
@@ -152,9 +146,7 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals('Default', $al->getNamespace());
     }
 
-    /**
-     * @group ZF-9435
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9435')]
     public function testBootstrapShouldInitializeModuleAutoloaderWhenNamespaceSpecifiedAsEmpty()
     {
         $application = new Zend_Application(
@@ -175,9 +167,7 @@ class Zend_Application_Bootstrap_BootstrapTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals('', $al->getNamespace());
     }
 
-    /**
-     * @group ZF-7367
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7367')]
     public function testBootstrapRunMethodShouldReturnResponseIfFlagEnabled()
     {
         $this->bootstrap->setOptions([

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -25,19 +26,18 @@ require_once 'Zend/Registry.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_AbstractTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs this test suite.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_AbstractTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_AbstractTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -78,9 +78,7 @@ class Zend_Validate_AbstractTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('******', $message);
     }
 
-    /**
-     * @group ZF-4463
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4463')]
     public function testDoesNotFailOnObjectInput()
     {
         $this->assertFalse($this->validator->isValid(new stdClass()));

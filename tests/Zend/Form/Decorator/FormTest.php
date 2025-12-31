@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,19 +23,18 @@ require_once 'Zend/Form.php';
  * Test class for Zend_Form_Decorator_Form.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Decorator_FormTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Decorator_FormTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Decorator_FormTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Decorator_FormTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -87,9 +87,7 @@ class Zend_Form_Decorator_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($attribs['charset'], $options['charset']);
     }
 
-    /**
-     * @group ZF-3643
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3643')]
     public function testShouldPreferFormIdAttributeOverFormName()
     {
         $form = new Zend_Form();

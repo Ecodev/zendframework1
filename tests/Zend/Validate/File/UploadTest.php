@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,19 +25,18 @@ require_once 'Zend/Validate/File/Upload.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_File_UploadTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_File_UploadTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_File_UploadTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -234,9 +234,7 @@ class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($files, $validator->getFiles());
     }
 
-    /**
-     * @group ZF-10738
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10738')]
     public function testGetFilesReturnsEmptyArrayWhenFilesSuperglobalIsNull()
     {
         $_FILES = null;
@@ -245,9 +243,7 @@ class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([], $validator->getFiles());
     }
 
-    /**
-     * @group ZF-10738
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10738')]
     public function testGetFilesReturnsEmptyArrayAfterSetFilesIsCalledWithNull()
     {
         $validator = new Zend_Validate_File_Upload();
@@ -255,9 +251,7 @@ class Zend_Validate_File_UploadTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([], $validator->getFiles());
     }
 
-    /**
-     * @group ZF-12128
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12128')]
     public function testErrorMessage()
     {
         $_FILES = [

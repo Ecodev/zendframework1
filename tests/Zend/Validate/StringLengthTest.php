@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/StringLength.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_StringLengthTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Default instance created for all test methods.
@@ -158,12 +158,10 @@ class Zend_Validate_StringLengthTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('ISO-8859-1', $validator->getEncoding());
     }
 
-    /**
-     * @group GH-634
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-634')]
     public function testWrongEncoding()
     {
-        $this->expectException(\Zend_Validate_Exception::class);
+        $this->expectException(Zend_Validate_Exception::class);
         $this->_validator->setEncoding('');
     }
 

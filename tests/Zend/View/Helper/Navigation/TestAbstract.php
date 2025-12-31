@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,12 +23,11 @@ require_once 'Zend/Navigation.php';
  * Base class for navigation view helper tests.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-abstract class Zend_View_Helper_Navigation_TestAbstract extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+abstract class Zend_View_Helper_Navigation_TestAbstract extends PHPUnit\Framework\TestCase
 {
     public const REGISTRY_KEY = 'Zend_Navigation';
 

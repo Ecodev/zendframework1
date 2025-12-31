@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,19 +23,18 @@ require_once 'Zend/Form/Element/Hash.php';
  * Test class for Zend_Form_Element_Hash.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_HashTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_HashTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -177,9 +177,7 @@ class Zend_Form_Element_HashTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input[^>]*?type="hidden"/', $html, $html);
     }
 
-    /**
-     * @group ZF-7404
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7404')]
     public function testShouldRenderHashTokenIfRenderedThroughMagicCall()
     {
         $this->element->setView($this->getView());

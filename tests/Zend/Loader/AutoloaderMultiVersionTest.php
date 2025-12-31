@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Loader/Autoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Loader
  */
 #[AllowDynamicProperties]
-class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Loader')]
+class Zend_Loader_AutoloaderMultiVersionTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -88,19 +88,19 @@ class Zend_Loader_AutoloaderMultiVersionTest extends \PHPUnit\Framework\TestCase
 
     public function testSettingZfPathFailsOnInvalidVersionString()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->autoloader->setZfPath($this->path, 'foo.bar.baz.bat');
     }
 
     public function testSettingZfPathFailsWhenBasePathDoesNotExist()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->autoloader->setZfPath('foo.bar.baz.bat', 'latest');
     }
 
     public function testSettingZfVersionFailsWhenNoValidInstallsDiscovered()
     {
-        $this->expectException(\Zend_Loader_Exception::class);
+        $this->expectException(Zend_Loader_Exception::class);
         $this->autoloader->setZfPath(__DIR__, 'latest');
     }
 

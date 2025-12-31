@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -42,8 +43,8 @@ class Zend_View_Helper_Currency extends Zend_View_Helper_Abstract
     public function __construct($currency = null)
     {
         if ($currency === null) {
-            if (Zend_Registry::isRegistered(\Zend_Currency::class)) {
-                $currency = Zend_Registry::get(\Zend_Currency::class);
+            if (Zend_Registry::isRegistered(Zend_Currency::class)) {
+                $currency = Zend_Registry::get(Zend_Currency::class);
             }
         }
 

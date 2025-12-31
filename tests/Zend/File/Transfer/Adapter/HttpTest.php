@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,19 +23,18 @@ require_once 'Zend/Validate/File/Upload.php';
  * Test class for Zend_File_Transfer_Adapter_Http.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_File
  */
 #[AllowDynamicProperties]
-class Zend_File_Transfer_Adapter_HttpTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_File')]
+class Zend_File_Transfer_Adapter_HttpTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_File_Transfer_Adapter_HttpTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_File_Transfer_Adapter_HttpTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -80,13 +80,13 @@ class Zend_File_Transfer_Adapter_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testSendingFiles()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->send();
     }
 
     public function testFileIsSent()
     {
-        $this->expectException(\Zend_File_Transfer_Exception::class);
+        $this->expectException(Zend_File_Transfer_Exception::class);
         $this->adapter->isSent();
     }
 
@@ -121,9 +121,7 @@ class Zend_File_Transfer_Adapter_HttpTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-12451
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12451')]
     public function testReceiveEmptyArray()
     {
         $_SERVER['CONTENT_LENGTH'] = 10;

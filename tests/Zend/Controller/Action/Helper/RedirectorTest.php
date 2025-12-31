@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,13 +23,12 @@ require_once 'Zend/Controller/Response/Http.php';
  * Test class for Zend_Controller_Action_Helper_Redirector.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_Helper_RedirectorTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Action_Helper_Redirector
@@ -55,8 +55,8 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_RedirectorTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_RedirectorTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -463,9 +463,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertEquals('/account/login', $test, $test);
     }
 
-    /**
-     * @group ZF-4318
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4318')]
     public function testServerVariableHttpsToOffDoesNotBuildHttpsUrl()
     {
         // Set Preconditions from Issue:
@@ -484,9 +482,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertEquals('http://localhost/bar/baz', $test);
     }
 
-    /**
-     * @group ZF-9859
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9859')]
     public function testGotoUrlAndSetGotoUrlBehaveTheSame()
     {
         $url = 'http://www.example.com';
@@ -495,9 +491,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertSame($gotoUrl, $setGotoUrl);
     }
 
-    /**
-     * @group ZF-10364
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10364')]
     public function testGotoSimpleDefaultModuleRedirectsToDefaultModule()
     {
         $this->controller->getFrontController()->setDefaultModule('test')
@@ -515,9 +509,7 @@ class Zend_Controller_Action_Helper_RedirectorTest extends \PHPUnit\Framework\Te
         $this->assertEquals($expected, $result);
     }
 
-    /**
-     * @group ZF-6025
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6025')]
     public function testGotoSimpleShouldNotHardcodeControllerActionModuleKeys()
     {
         $this->request->setControllerKey('foo')

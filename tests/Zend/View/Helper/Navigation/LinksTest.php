@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,11 +24,10 @@ require_once 'Zend/View/Helper/Navigation/Links.php';
  * Tests Zend_View_Helper_Navigation_Links.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
 class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_TestAbstract
 {
     /**
@@ -35,7 +35,7 @@ class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_
      *
      * @var string
      */
-    protected $_helperName = \Zend_View_Helper_Navigation_Links::class;
+    protected $_helperName = Zend_View_Helper_Navigation_Links::class;
 
     /**
      * View helper.
@@ -80,7 +80,7 @@ class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_
         $found = $this->_helper->findRelation($active, 'rel', 'example');
 
         $expected = [
-            'type' => \Zend_Navigation_Page_Uri::class,
+            'type' => Zend_Navigation_Page_Uri::class,
             'href' => 'http://www.example.com/',
             'label' => null,
         ];
@@ -104,7 +104,7 @@ class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_
         $found = $this->_helper->findRelExample($active);
 
         $expected = [
-            'type' => \Zend_Navigation_Page_Uri::class,
+            'type' => Zend_Navigation_Page_Uri::class,
             'href' => 'http://www.example.com/',
             'label' => 'An example page',
         ];
@@ -128,7 +128,7 @@ class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_
         $found = $this->_helper->findRelExample($active);
 
         $expected = [
-            'type' => \Zend_Navigation_Page_Uri::class,
+            'type' => Zend_Navigation_Page_Uri::class,
             'href' => 'http://www.example.com/',
             'label' => 'An example page',
         ];
@@ -152,7 +152,7 @@ class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_
         $found = $this->_helper->findRelExample($active);
 
         $expected = [
-            'type' => \Zend_Navigation_Page_Uri::class,
+            'type' => Zend_Navigation_Page_Uri::class,
             'href' => 'http://www.example.com/',
             'label' => 'An example page',
         ];
@@ -695,9 +695,7 @@ class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-8874
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8874')]
     public function testRenderingWithoutWhitespace()
     {
         $active = $this->_helper->findOneByLabel('Page 1.1');

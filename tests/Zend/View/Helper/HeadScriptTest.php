@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -30,12 +31,11 @@ require_once 'Zend/Registry.php';
  * Test class for Zend_View_Helper_HeadScript.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_HeadScriptTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadScript
@@ -52,8 +52,8 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadScriptTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadScriptTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -83,12 +83,12 @@ class Zend_View_Helper_HeadScriptTest extends \PHPUnit\Framework\TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists(\Zend_View_Helper_HeadScript::class)) {
-            $registry->deleteContainer(\Zend_View_Helper_HeadScript::class);
+        if ($registry->containerExists(Zend_View_Helper_HeadScript::class)) {
+            $registry->deleteContainer(Zend_View_Helper_HeadScript::class);
         }
-        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadScript::class));
+        $this->assertFalse($registry->containerExists(Zend_View_Helper_HeadScript::class));
         $helper = new Zend_View_Helper_HeadScript();
-        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadScript::class));
+        $this->assertTrue($registry->containerExists(Zend_View_Helper_HeadScript::class));
     }
 
     public function testHeadScriptReturnsObjectInstance()
@@ -405,10 +405,9 @@ document.write(bar.strlen());');
     }
 
     /**
-     * @group ZF-3928
-     *
      * @see http://framework.zend.com/issues/browse/ZF-3928
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3928')]
     public function testTurnOffAutoEscapeDoesNotEncodeAmpersand()
     {
         $this->helper->setAutoEscape(false)->appendFile('test.js?id=123&foo=bar');
@@ -430,9 +429,7 @@ document.write(bar.strlen());');
         $this->assertStringContainsString('    <!--[if lt IE 7]>', $test);
     }
 
-    /**
-     * @group ZF-5435
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5435')]
     public function testContainerMaintainsCorrectOrderOfItems()
     {
         $this->helper->offsetSetFile(1, 'test1.js');
@@ -450,9 +447,7 @@ document.write(bar.strlen());');
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-12048
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12048')]
     public function testSetFileStillOverwritesExistingFilesWhenItsADuplicate()
     {
         $this->helper->appendFile('foo.js');
@@ -464,9 +459,7 @@ document.write(bar.strlen());');
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-12287
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12287')]
     public function testConditionalWithAllowArbitraryAttributesDoesNotIncludeConditionalScript()
     {
         $this->helper->setAllowArbitraryAttributes(true);
@@ -478,9 +471,7 @@ document.write(bar.strlen());');
         $this->assertStringNotContainsString('conditional', $test);
     }
 
-    /**
-     * @group ZF-12287
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12287')]
     public function testNoEscapeWithAllowArbitraryAttributesDoesNotIncludeNoEscapeScript()
     {
         $this->helper->setAllowArbitraryAttributes(true);
@@ -492,9 +483,7 @@ document.write(bar.strlen());');
         $this->assertStringNotContainsString('noescape', $test);
     }
 
-    /**
-     * @group ZF-12287
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12287')]
     public function testNoEscapeDefaultsToFalse()
     {
         $this->helper->appendScript(
@@ -506,9 +495,7 @@ document.write(bar.strlen());');
         $this->assertStringContainsString('//-->', $test);
     }
 
-    /**
-     * @group ZF-12287
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12287')]
     public function testNoEscapeTrue()
     {
         $this->helper->appendScript(
@@ -520,9 +507,7 @@ document.write(bar.strlen());');
         $this->assertStringNotContainsString('//-->', $test);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-515')]
     public function testConditionalScriptNoIE()
     {
         $this->helper->setAllowArbitraryAttributes(true);

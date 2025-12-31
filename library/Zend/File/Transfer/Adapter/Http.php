@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -128,7 +129,7 @@ class Zend_File_Transfer_Adapter_Http extends Zend_File_Transfer_Adapter_Abstrac
             $temp = [$files => [
                 'name' => $files,
                 'error' => 1, ]];
-            $validator = $this->_validators[\Zend_Validate_File_Upload::class];
+            $validator = $this->_validators[Zend_Validate_File_Upload::class];
             $validator->setFiles($temp)
                 ->isValid($files, null);
             $this->_messages += $validator->getMessages();

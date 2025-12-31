@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,12 +25,11 @@ require_once 'Zend/View/Helper/Placeholder/Container.php';
  * Test class for Zend_View_Helper_Placeholder_Container.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_Placeholder_ContainerTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_Placeholder_Container
@@ -41,8 +41,8 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_Placeholder_ContainerTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_Placeholder_ContainerTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -349,9 +349,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends \PHPUnit\Framework\Test
         $this->assertTrue((strstr($string, "\n    </ul>")) ? true : false);
     }
 
-    /**
-     * @group ZF-12044
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12044')]
     public function testContainerWithoutItemsShouldAlwaysReturnEmptyString()
     {
         $this->assertEquals('', (string) $this->container);

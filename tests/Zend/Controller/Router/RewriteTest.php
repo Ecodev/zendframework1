@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -43,12 +44,11 @@ require_once 'Zend/Uri/Http.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Router
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Router')]
+class Zend_Controller_Router_RewriteTest extends PHPUnit\Framework\TestCase
 {
     protected $_router;
 
@@ -59,8 +59,8 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Router_RewriteTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Router_RewriteTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -683,9 +683,9 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
     public function testChainNameSeparatorisUsedCorrectly()
     {
         $config = new Zend_Config(['chains' => [
-            'type' => \Zend_Controller_Router_Route_Static::class,
+            'type' => Zend_Controller_Router_Route_Static::class,
             'route' => 'foo',
-            'chains' => ['bar' => ['type' => \Zend_Controller_Router_Route_Static::class,
+            'chains' => ['bar' => ['type' => Zend_Controller_Router_Route_Static::class,
                 'route' => 'bar',
                 'defaults' => [
                     'module' => 'module',
@@ -723,11 +723,8 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
      * Test that it is possible to generate a URL with a numerical key.
      *
      * @since  2010-06-11
-     *
-     * @group  ZF-8914
-     *
-     * @covers Zend_Controller_Router_Rewrite::assemble
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8914')]
     public function testCanGenerateNumericKeyUri()
     {
         $this->_router->addRoute(
@@ -751,12 +748,10 @@ class Zend_Controller_Router_RewriteTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-11393
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11393')]
     public function testCallingAssembleWithNullArgumentShouldThrowException()
     {
-        $this->expectException(\Zend_Controller_Router_Exception::class);
+        $this->expectException(Zend_Controller_Router_Exception::class);
         $this->_router->assemble(null);
     }
 }

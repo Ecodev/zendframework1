@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,12 +21,11 @@ require_once 'Zend/View/Helper/HtmlList.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_HtmlListTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HtmlList
@@ -39,8 +39,8 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HtmlListTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_HtmlListTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -172,9 +172,7 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<li>one <b>small</b> test</li>', $list);
     }
 
-    /**
-     * @group ZF-2527
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2527')]
     public function testEscapeFlagHonoredForMultidimensionalLists()
     {
         $items = ['<b>one</b>', ['<b>four</b>', '<b>five</b>', '<b>six</b>'], '<b>two</b>', '<b>three</b>'];
@@ -187,9 +185,10 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-2527
-     * Added the s modifier to match newlines after @see ZF-5018
+     * Added the s modifier to match newlines after @see ZF-5018.
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2527
+Added the s modifier to match newlines after')]
     public function testAttribsPassedIntoMultidimensionalLists()
     {
         $items = ['one', ['four', 'five', 'six'], 'two', 'three'];
@@ -202,37 +201,35 @@ class Zend_View_Helper_HtmlListTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-2870
-     *
      * @param mixed $value
      * @param mixed $key
      * @param mixed $userdata
      */
     /*public function testEscapeFlagShouldBePassedRecursively()
-    {
-        $items = array(
-            '<b>one</b>',
-            array(
-                '<b>four</b>',
-                '<b>five</b>',
-                '<b>six</b>',
+        {
+            $items = array(
+                '<b>one</b>',
                 array(
-                    '<b>two</b>',
-                    '<b>three</b>',
+                    '<b>four</b>',
+                    '<b>five</b>',
+                    '<b>six</b>',
+                    array(
+                        '<b>two</b>',
+                        '<b>three</b>',
+                    ),
                 ),
-            ),
-        );
+            );
 
-        $list = $this->helper->htmlList($items, false, false, false);
+            $list = $this->helper->htmlList($items, false, false, false);
 
-        $this->assertStringContainsString('<ul>', $list);
-        $this->assertStringContainsString('</ul>', $list);
+            $this->assertStringContainsString('<ul>', $list);
+            $this->assertStringContainsString('</ul>', $list);
 
-        $this->markTestSkipped('Wrong array_walk_recursive behavior.');
+            $this->markTestSkipped('Wrong array_walk_recursive behavior.');
 
-        array_walk_recursive($items, array($this, 'validateItems'), $list);
-    }*/
-
+            array_walk_recursive($items, array($this, 'validateItems'), $list);
+        }*/
+    #[PHPUnit\Framework\Attributes\Group('ZF-2870')]
     public function validateItems($value, $key, $userdata)
     {
         $this->assertStringContainsString('<li>' . $value, $userdata);

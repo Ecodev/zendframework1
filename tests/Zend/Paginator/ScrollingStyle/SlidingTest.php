@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,7 +24,7 @@
 require_once 'Zend/Paginator/ScrollingStyle/Sliding.php';
 
 /**
- * @see \PHPUnit\Framework\TestCase
+ * @see PHPUnit\Framework\TestCase
  */
 
 /**
@@ -33,15 +34,14 @@ require_once 'Zend/Paginator.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Paginator
  */
 #[AllowDynamicProperties]
-class Zend_Paginator_ScrollingStyle_SlidingTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Paginator')]
+class Zend_Paginator_ScrollingStyle_SlidingTest extends PHPUnit\Framework\TestCase
 {
-    private ?\Zend_Paginator_ScrollingStyle_Sliding $_scrollingStyle;
+    private ?Zend_Paginator_ScrollingStyle_Sliding $_scrollingStyle;
 
-    private ?\Zend_Paginator $_paginator;
+    private ?Zend_Paginator $_paginator;
 
     /**
      * Prepares the environment before running a test.

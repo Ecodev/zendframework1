@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,12 +21,11 @@ require_once 'Zend/Controller/Response/Cli.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Dispatcher
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Dispatcher')]
+class Zend_Controller_Dispatcher_StandardTest extends PHPUnit\Framework\TestCase
 {
     protected $_dispatcher;
 
@@ -36,8 +36,8 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Dispatcher_StandardTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Dispatcher_StandardTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -60,9 +60,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         unset($this->_dispatcher);
     }
 
-    /**
-     * @group ZF-9800
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9800')]
     public function testFormatModuleName()
     {
         $this->assertEquals('Test', $this->_dispatcher->formatModuleName('test'));
@@ -126,9 +124,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         $this->assertFalse($this->_dispatcher->isDispatchable($request), var_export($this->_dispatcher->getControllerDirectory(), 1));
     }
 
-    /**
-     * @group ZF-8222
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8222')]
     public function testIsDispatchableManuallyIncludedController()
     {
         require_once __DIR__ . '/../_files/ManuallyIncludedControllers.php';
@@ -239,9 +235,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         }
     }
 
-    /**
-     * @group ZF-3465
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3465')]
     public function testUsingDefaultControllerAlwaysShouldRewriteActionNameToDefault()
     {
         $request = new Zend_Controller_Request_Http();
@@ -461,9 +455,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         $this->assertFalse($this->_dispatcher->isValidModule([]));
     }
 
-    /**
-     * @group ZF-3034
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3034')]
     public function testIsValidModuleShouldNormalizeModuleName()
     {
         $this->assertTrue($this->_dispatcher->isValidModule('Admin'));
@@ -527,9 +519,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         $this->assertTrue(class_exists($test));
     }
 
-    /**
-     * @group ZF-9800
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9800')]
     public function testLoadClassLoadsControllerInSpecifiedModuleWithHyphenatedModuleName()
     {
         $front = Zend_Controller_Front::getInstance();
@@ -546,9 +536,7 @@ class Zend_Controller_Dispatcher_StandardTest extends \PHPUnit\Framework\TestCas
         $this->assertTrue(class_exists($test));
     }
 
-    /**
-     * @group ZF-9800
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9800')]
     public function testDispatcherCanDispatchControllersFromModuleWithHyphenatedName()
     {
         $front = Zend_Controller_Front::getInstance();

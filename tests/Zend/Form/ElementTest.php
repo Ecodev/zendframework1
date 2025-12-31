@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,16 +23,15 @@ require_once 'Zend/View.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_ElementTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_ElementTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -136,9 +136,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-2851
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2851')]
     public function testSetNameShouldNotAllowEmptyString()
     {
         foreach (['', ' ', '   '] as $name) {
@@ -266,9 +264,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->zfBreakChainOnFailure);
     }
 
-    /**
-     * @group ZF-2862
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2862')]
     public function testBreakChainOnFailureFlagsForExistingValidatorsRemainSetWhenNotEmptyValidatorAutoInserted()
     {
         $this->_checkZf2794();
@@ -355,7 +351,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
 
     public function testGetTypeReturnsCurrentElementClass()
     {
-        $this->assertEquals(\Zend_Form_Element::class, $this->element->getType());
+        $this->assertEquals(Zend_Form_Element::class, $this->element->getType());
     }
 
     public function testCanUseAccessorsToSetIndidualAttribs()
@@ -418,9 +414,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($attribs, $received);
     }
 
-    /**
-     * @group ZF-6061
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6061')]
     public function testHelperDoesNotShowUpInAttribs()
     {
         $attribs = [
@@ -460,7 +454,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $loader = $this->element->getPluginLoader('validate');
         $this->assertTrue($loader instanceof Zend_Loader_PluginLoader);
-        $paths = $loader->getPaths(\Zend_Validate::class);
+        $paths = $loader->getPaths(Zend_Validate::class);
         $this->assertTrue(is_array($paths), var_export($loader, 1));
         $this->assertTrue(0 < (is_countable($paths) ? count($paths) : 0));
         $this->assertStringContainsString('Validate', $paths[0]);
@@ -470,7 +464,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $loader = $this->element->getPluginLoader('filter');
         $this->assertTrue($loader instanceof Zend_Loader_PluginLoader);
-        $paths = $loader->getPaths(\Zend_Filter::class);
+        $paths = $loader->getPaths(Zend_Filter::class);
         $this->assertTrue(is_array($paths));
         $this->assertTrue(0 < (is_countable($paths) ? count($paths) : 0));
         $this->assertStringContainsString('Filter', $paths[0]);
@@ -545,8 +539,8 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     public function testCanAddValidatorPluginLoaderPrefixPath()
     {
         $loader = $this->element->getPluginLoader('validate');
-        $this->element->addPrefixPath(\Zend_Form::class, 'Zend/Form/', 'validate');
-        $paths = $loader->getPaths(\Zend_Form::class);
+        $this->element->addPrefixPath(Zend_Form::class, 'Zend/Form/', 'validate');
+        $paths = $loader->getPaths(Zend_Form::class);
         $this->assertTrue(is_array($paths));
         $this->assertStringContainsString('Form', $paths[0]);
     }
@@ -556,16 +550,16 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $validateLoader = $this->element->getPluginLoader('validate');
         $filterLoader = $this->element->getPluginLoader('filter');
         $decoratorLoader = $this->element->getPluginLoader('decorator');
-        $this->element->addPrefixPath(\Zend_Form::class, 'Zend/Form/', 'validate');
-        $this->assertFalse($filterLoader->getPaths(\Zend_Form::class));
-        $this->assertFalse($decoratorLoader->getPaths(\Zend_Form::class));
+        $this->element->addPrefixPath(Zend_Form::class, 'Zend/Form/', 'validate');
+        $this->assertFalse($filterLoader->getPaths(Zend_Form::class));
+        $this->assertFalse($decoratorLoader->getPaths(Zend_Form::class));
     }
 
     public function testCanAddFilterPluginLoaderPrefixPath()
     {
         $loader = $this->element->getPluginLoader('validate');
-        $this->element->addPrefixPath(\Zend_Form::class, 'Zend/Form/', 'validate');
-        $paths = $loader->getPaths(\Zend_Form::class);
+        $this->element->addPrefixPath(Zend_Form::class, 'Zend/Form/', 'validate');
+        $paths = $loader->getPaths(Zend_Form::class);
         $this->assertTrue(is_array($paths));
         $this->assertStringContainsString('Form', $paths[0]);
     }
@@ -575,9 +569,9 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $filterLoader = $this->element->getPluginLoader('filter');
         $validateLoader = $this->element->getPluginLoader('validate');
         $decoratorLoader = $this->element->getPluginLoader('decorator');
-        $this->element->addPrefixPath(\Zend_Form::class, 'Zend/Form/', 'filter');
-        $this->assertFalse($validateLoader->getPaths(\Zend_Form::class));
-        $this->assertFalse($decoratorLoader->getPaths(\Zend_Form::class));
+        $this->element->addPrefixPath(Zend_Form::class, 'Zend/Form/', 'filter');
+        $this->assertFalse($validateLoader->getPaths(Zend_Form::class));
+        $this->assertFalse($decoratorLoader->getPaths(Zend_Form::class));
     }
 
     public function testCanAddDecoratorPluginLoaderPrefixPath()
@@ -609,11 +603,11 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             ->setPluginLoader($decoratorLoader, 'decorator')
             ->addPrefixPath('Zend', 'Zend/');
 
-        $paths = $filterLoader->getPaths(\Zend_Filter::class);
+        $paths = $filterLoader->getPaths(Zend_Filter::class);
         $this->assertTrue(is_array($paths));
         $this->assertStringContainsString('Filter', $paths[0]);
 
-        $paths = $validatorLoader->getPaths(\Zend_Validate::class);
+        $paths = $validatorLoader->getPaths(Zend_Validate::class);
         $this->assertTrue(is_array($paths));
         $this->assertStringContainsString('Validate', $paths[0]);
 
@@ -649,16 +643,16 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->getValidator('digits'));
 
         $this->element->addValidator('digits');
-        $this->assertFalse($this->element->getValidator(\Zend_Validate_Digits::class));
+        $this->assertFalse($this->element->getValidator(Zend_Validate_Digits::class));
     }
 
     public function testCanAddSingleValidatorAsValidatorObject()
     {
-        $this->assertFalse($this->element->getValidator(\Zend_Validate_Digits::class));
+        $this->assertFalse($this->element->getValidator(Zend_Validate_Digits::class));
 
         $validator = new Zend_Validate_Digits();
         $this->element->addValidator($validator);
-        $test = $this->element->getValidator(\Zend_Validate_Digits::class);
+        $test = $this->element->getValidator(Zend_Validate_Digits::class);
         $this->assertSame($validator, $test);
         $this->assertFalse($validator->zfBreakChainOnFailure);
     }
@@ -707,15 +701,15 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $order[$name] = $i;
             ++$i;
         }
-        $this->assertEquals(1, $order[\Zend_Validate_Alnum::class], var_export($order, 1));
+        $this->assertEquals(1, $order[Zend_Validate_Alnum::class], var_export($order, 1));
     }
 
     public function testCanAddMultipleValidators()
     {
         $this->_checkZf2794();
 
-        $this->assertFalse($this->element->getValidator(\Zend_Validate_Digits::class));
-        $this->assertFalse($this->element->getValidator(\Zend_Validate_Alnum::class));
+        $this->assertFalse($this->element->getValidator(Zend_Validate_Digits::class));
+        $this->assertFalse($this->element->getValidator(Zend_Validate_Alnum::class));
         $this->element->addValidators(['digits', 'alnum']);
         $digits = $this->element->getValidator('digits');
         $this->assertTrue($digits instanceof Zend_Validate_Digits);
@@ -898,7 +892,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $this->_checkZf2794();
 
-        $this->assertFalse($this->element->getValidator(\Zend_Validate_Digits::class));
+        $this->assertFalse($this->element->getValidator(Zend_Validate_Digits::class));
         $this->element->addValidator('digits');
         $digits = $this->element->getValidator('digits');
         $this->assertTrue($digits instanceof Zend_Validate_Digits);
@@ -1034,16 +1028,16 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->getFilter('digits'));
 
         $this->element->addFilter('digits');
-        $this->assertFalse($this->element->getFilter(\Zend_Filter_Digits::class));
+        $this->assertFalse($this->element->getFilter(Zend_Filter_Digits::class));
     }
 
     public function testCanAddSingleFilterAsFilterObject()
     {
-        $this->assertFalse($this->element->getFilter(\Zend_Filter_Digits::class));
+        $this->assertFalse($this->element->getFilter(Zend_Filter_Digits::class));
 
         $filter = new Zend_Filter_Digits();
         $this->element->addFilter($filter);
-        $test = $this->element->getFilter(\Zend_Filter_Digits::class);
+        $test = $this->element->getFilter(Zend_Filter_Digits::class);
         $this->assertSame($filter, $test);
     }
 
@@ -1075,7 +1069,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $order[$name] = $i;
             ++$i;
         }
-        $this->assertEquals(1, $order[\Zend_Filter_Alnum::class], var_export($order, 1));
+        $this->assertEquals(1, $order[Zend_Filter_Alnum::class], var_export($order, 1));
     }
 
     public function testOptionsAreCastToArrayWhenAddingFilter()
@@ -1105,8 +1099,8 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $this->_checkZf2794();
 
-        $this->assertFalse($this->element->getFilter(\Zend_Filter_Digits::class));
-        $this->assertFalse($this->element->getFilter(\Zend_Filter_Alnum::class));
+        $this->assertFalse($this->element->getFilter(Zend_Filter_Digits::class));
+        $this->assertFalse($this->element->getFilter(Zend_Filter_Alnum::class));
         $this->element->addFilters(['digits', 'alnum']);
         $digits = $this->element->getFilter('digits');
         $this->assertTrue($digits instanceof Zend_Filter_Digits);
@@ -1123,7 +1117,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     {
         $this->_checkZf2794();
 
-        $this->assertFalse($this->element->getFilter(\Zend_Filter_Digits::class));
+        $this->assertFalse($this->element->getFilter(Zend_Filter_Digits::class));
         $this->element->addFilter('digits');
         $digits = $this->element->getFilter('digits');
         $this->assertTrue($digits instanceof Zend_Filter_Digits);
@@ -1177,9 +1171,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($decorator instanceof Zend_Form_Decorator_ViewHelper);
     }
 
-    /**
-     * @group ZF-4822
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4822')]
     public function testErrorsDecoratorRegisteredByDefault()
     {
         $this->_checkZf2794();
@@ -1188,9 +1180,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($decorator instanceof Zend_Form_Decorator_Errors);
     }
 
-    /**
-     * @group ZF-4822
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4822')]
     public function testDescriptionDecoratorRegisteredByDefault()
     {
         $this->_checkZf2794();
@@ -1204,9 +1194,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('description', $options['class']);
     }
 
-    /**
-     * @group ZF-4822
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4822')]
     public function testHtmlTagDecoratorRegisteredByDefault()
     {
         $this->_checkZf2794();
@@ -1215,9 +1203,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($decorator instanceof Zend_Form_Decorator_HtmlTag);
     }
 
-    /**
-     * @group ZF-4822
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4822')]
     public function testLabelDecoratorRegisteredByDefault()
     {
         $this->_checkZf2794();
@@ -1257,7 +1243,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
 
     public function testCanNotRetrieveSingleDecoratorRegisteredAsStringUsingClassName()
     {
-        $this->assertFalse($this->element->getDecorator(\Zend_Form_Decorator_ViewHelper::class));
+        $this->assertFalse($this->element->getDecorator(Zend_Form_Decorator_ViewHelper::class));
     }
 
     public function testCanAddSingleDecoratorAsDecoratorObject()
@@ -1267,13 +1253,11 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
 
         $decorator = new Zend_Form_Decorator_ViewHelper();
         $this->element->addDecorator($decorator);
-        $test = $this->element->getDecorator(\Zend_Form_Decorator_ViewHelper::class);
+        $test = $this->element->getDecorator(Zend_Form_Decorator_ViewHelper::class);
         $this->assertSame($decorator, $test);
     }
 
-    /**
-     * @group ZF-3597
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3597')]
     public function testAddingConcreteDecoratorShouldHonorOrder()
     {
         require_once __DIR__ . '/_files/decorators/TableRow.php';
@@ -1335,9 +1319,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->getDecorator('viewHelper'));
     }
 
-    /**
-     * @group ZF-3069
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3069')]
     public function testRemovingNamedDecoratorsShouldWork()
     {
         $this->_checkZf2794();
@@ -1402,9 +1384,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(2, $order['inner'], var_export($order, 1));
     }
 
-    /**
-     * @group ZF-3376
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3376')]
     public function testSetDecoratorsShouldAcceptReturnOfGetDecorators()
     {
         $this->element->setDecorators([
@@ -1838,9 +1818,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(empty($decorators));
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3217')]
     public function testElementShouldOverloadToRenderDecorators()
     {
         $this->element->setLabel('Foo Label')
@@ -1857,18 +1835,14 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('<input', $html);
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3217')]
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
-        $this->expectException(\Zend_Form_Element_Exception::class);
+        $this->expectException(Zend_Form_Element_Exception::class);
         $html = $this->element->bogusMethodCall();
     }
 
-    /**
-     * @group ZF-5150
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5150')]
     public function testMarkingAsErrorShouldCauseIsErrorToReturnFalse()
     {
         $this->element->setValue('foo');
@@ -1876,18 +1850,14 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid('foo'));
     }
 
-    /**
-     * @group ZF-4915
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4915')]
     public function testElementShouldAllowSettingDefaultErrorMessageSeparator()
     {
         $this->element->setErrorMessageSeparator('|');
         $this->assertEquals('|', $this->element->getErrorMessageSeparator());
     }
 
-    /**
-     * @group ZF-4915
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4915')]
     public function testElementShouldUseSemicolonAndSpaceAsDefaultErrorMessageSeparator()
     {
         $this->assertEquals('; ', $this->element->getErrorMessageSeparator());
@@ -1915,9 +1885,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($this->element, $this->element->loadDefaultDecorators());
     }
 
-    /**
-     * @group ZF-7552
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7552')]
     public function testAddDecoratorsKeepsNonNumericKeyNames()
     {
         $this->element->addDecorators([[['td' => 'HtmlTag'],
@@ -1942,9 +1910,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($form->isValid(['username' => 'abcde']));
     }
 
-    /**
-     * @group ZF-6822
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6822')]
     public function testValidatorByUsingStringNotation()
     {
         $this->_checkZf2794();
@@ -1963,9 +1929,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($validator->zfBreakChainOnFailure);
     }
 
-    /**
-     * @group ZF-12173
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12173')]
     public function testCanAddPluginLoaderPrefixPathsWithBackslashes()
     {
         if (version_compare(PHP_VERSION, '5.3.0', '<')) {
@@ -1994,9 +1958,7 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Decorator', $paths[0]);
     }
 
-    /**
-     * @group ZF-12439
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-12439')]
     public function testSettingAnEmptyArrayValueGeneratesAValidErrorMessage()
     {
         $this->element->setValue([]);

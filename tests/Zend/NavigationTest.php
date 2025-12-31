@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,13 +25,12 @@ require_once 'Zend/Navigation.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Navigation
  */
 #[AllowDynamicProperties]
-class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Navigation')]
+class Zend_NavigationTest extends PHPUnit\Framework\TestCase
 {
-    private ?\Zend_Navigation $_navigation;
+    private ?Zend_Navigation $_navigation;
 
     protected function setUp(): void
     {
@@ -49,16 +49,15 @@ class Zend_NavigationTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_NavigationTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_NavigationTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
      * Testing that navigation order is done correctly.
-     *
-     * @group   ZF-8337
-     * @group   ZF-8313
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8337')]
+    #[PHPUnit\Framework\Attributes\Group('ZF-8313')]
     public function testNavigationArraySortsCorrectly()
     {
         $page1 = new Zend_Navigation_Page_Uri(['uri' => 'page1']);

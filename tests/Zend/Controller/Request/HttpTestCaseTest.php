@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,20 +25,19 @@ require_once 'Zend/Controller/Request/HttpTestCase.php';
  * Test class for Zend_Controller_Request_HttpTestCase.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Request
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Request')]
+class Zend_Controller_Request_HttpTestCaseTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Request_HttpTestCaseTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Request_HttpTestCaseTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -268,9 +268,7 @@ class Zend_Controller_Request_HttpTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertTrue(empty($test));
     }
 
-    /**
-     * @group ZF-6162
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6162')]
     public function testRequestMethodShouldBeGetByDefault()
     {
         $this->assertEquals('GET', $this->request->getMethod());

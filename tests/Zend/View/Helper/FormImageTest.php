@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,12 +23,11 @@ require_once 'Zend/View/Helper/FormImage.php';
  * Test class for Zend_View_Helper_FormImage.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_FormImageTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -36,8 +36,8 @@ class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormImageTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormImageTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -77,9 +77,7 @@ class Zend_View_Helper_FormImageTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input[^>]*?type="image"/', $button);
     }
 
-    /**
-     * @group ZF-11477
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11477')]
     public function testRendersAsHtmlByDefault()
     {
         $test = $this->helper->formImage([

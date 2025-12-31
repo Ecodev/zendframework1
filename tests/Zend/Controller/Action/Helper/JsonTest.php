@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,21 +25,20 @@ require_once 'Zend/Layout.php';
  * Test class for Zend_Controller_Action_Helper_Json.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_Helper_JsonTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_Helper_JsonTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_JsonTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_JsonTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -154,54 +154,42 @@ class Zend_Controller_Action_Helper_JsonTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->viewRenderer->getNoRender());
     }
 
-    /**
-     * @group ZF-10977
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10977')]
     public function testEncodeJsonWillAcceptPreencodedJson()
     {
         $data = $this->helper->encodeJson(Zend_Json::encode(['f']), false, false);
         $this->assertEquals('["f"]', $data);
     }
 
-    /**
-     * @group ZF-10977
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10977')]
     public function testSendJsonWillAcceptPreencodedJson()
     {
         $data = $this->helper->sendJson(Zend_Json::encode(['f']), false, false);
         $this->assertEquals('["f"]', $data);
     }
 
-    /**
-     * @group ZF-10977
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10977')]
     public function testDirectWillAcceptPreencodedJson()
     {
         $data = $this->helper->direct(Zend_Json::encode(['f']), false, false, false);
         $this->assertEquals('["f"]', $data);
     }
 
-    /**
-     * @group ZF-10977
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10977')]
     public function testSendingPreencodedJsonViaDirectWillStillSendHeaders()
     {
         $data = $this->helper->direct(Zend_Json::encode(['f']), false, false, false);
         $this->verifyJsonHeader();
     }
 
-    /**
-     * @group ZF-10977
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10977')]
     public function testSendingPreencodedJsonViaSendJsonWillStillSendHeaders()
     {
         $data = $this->helper->sendJson(Zend_Json::encode(['f']), false, false);
         $this->verifyJsonHeader();
     }
 
-    /**
-     * @group ZF-10977
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10977')]
     public function testSendingPreencodedJsonViaEncodeJsonWillStillSendHeaders()
     {
         $data = $this->helper->encodeJson(Zend_Json::encode(['f']), false, false);

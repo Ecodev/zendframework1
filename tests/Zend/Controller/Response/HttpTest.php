@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -16,17 +17,14 @@
  *
  * @version    $Id$
  */
-
 // Call Zend_Controller_Response_HttpTest::main() if this source file is executed directly.
-
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Response
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Response')]
+class Zend_Controller_Response_HttpTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Response_Http
@@ -40,8 +38,8 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Response_HttpTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Response_HttpTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -105,9 +103,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, count($headers));
     }
 
-    /**
-     * @group ZF-6038
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6038')]
     public function testClearHeader()
     {
         $this->_response->setHeader('Connection', 'keep-alive');
@@ -137,9 +133,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(empty($headers));
     }
 
-    /**
-     * @group ZF-6038
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6038')]
     public function testClearRawHeader()
     {
         $this->_response->setRawHeader('HTTP/1.0 404 Not Found');
@@ -152,9 +146,7 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($originalHeadersRaw == $updatedHeadersRaw);
     }
 
-    /**
-     * @group ZF-6038
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6038')]
     public function testClearRawHeaderThatDoesNotExist()
     {
         $this->_response->setRawHeader('HTTP/1.0 404 Not Found');
@@ -574,9 +566,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testHasExceptionOfType()
     {
-        $this->assertFalse($this->_response->hasExceptionOfType(\Zend_Controller_Response_Exception::class));
+        $this->assertFalse($this->_response->hasExceptionOfType(Zend_Controller_Response_Exception::class));
         $this->_response->setException(new Zend_Controller_Response_Exception());
-        $this->assertTrue($this->_response->hasExceptionOfType(\Zend_Controller_Response_Exception::class));
+        $this->assertTrue($this->_response->hasExceptionOfType(Zend_Controller_Response_Exception::class));
     }
 
     public function testHasExceptionOfMessage()
@@ -595,9 +587,9 @@ class Zend_Controller_Response_HttpTest extends \PHPUnit\Framework\TestCase
 
     public function testGetExceptionByType()
     {
-        $this->assertFalse($this->_response->getExceptionByType(\Zend_Controller_Response_Exception::class));
+        $this->assertFalse($this->_response->getExceptionByType(Zend_Controller_Response_Exception::class));
         $this->_response->setException(new Zend_Controller_Response_Exception());
-        $exceptions = $this->_response->getExceptionByType(\Zend_Controller_Response_Exception::class);
+        $exceptions = $this->_response->getExceptionByType(Zend_Controller_Response_Exception::class);
         $this->assertTrue(0 < (is_countable($exceptions) ? count($exceptions) : 0));
         $this->assertTrue($exceptions[0] instanceof Zend_Controller_Response_Exception);
     }

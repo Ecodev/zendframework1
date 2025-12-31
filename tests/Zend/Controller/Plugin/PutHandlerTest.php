@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,12 +24,11 @@ require_once 'Zend/Controller/Front.php';
  */
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Plugin
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Plugin')]
+class Zend_Controller_Plugin_PutHandlerTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Request object.
@@ -51,8 +51,8 @@ class Zend_Controller_Plugin_PutHandlerTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Plugin_PutHandlerTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Plugin_PutHandlerTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**

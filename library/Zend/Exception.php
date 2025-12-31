@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,7 +24,7 @@
 #[AllowDynamicProperties]
 class Zend_Exception extends Exception
 {
-    private ?\Exception $_previous = null;
+    private ?Exception $_previous = null;
 
     /**
      * Construct the exception.

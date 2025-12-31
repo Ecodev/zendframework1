@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Registry.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Registry
  */
 #[AllowDynamicProperties]
-class Zend_RegistryTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Registry')]
+class Zend_RegistryTest extends PHPUnit\Framework\TestCase
 {
     public function setUp(): void
     {

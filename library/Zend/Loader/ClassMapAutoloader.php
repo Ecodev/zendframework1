@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -215,8 +216,6 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
         $parts = explode('/', str_replace(['/','\\'], '/', substr($path, 8)));
         $parts = array_values(array_filter($parts, [self::class, 'concatPharParts']));
 
-        array_walk($parts, [self::class, 'resolvePharParentPath'], $parts);
-
         if (file_exists($realPath = 'phar:///' . implode('/', $parts))) {
             return $realPath;
         }
@@ -232,21 +231,5 @@ class Zend_Loader_ClassMapAutoloader implements Zend_Loader_SplAutoloader
     public static function concatPharParts($part)
     {
         return $part !== '' && $part !== '.';
-    }
-
-    /**
-     * Helper callback to resolve a parent path in a Phar archive.
-     *
-     * @param  string $value
-     * @param  int $key
-     * @param  array $parts
-     */
-    public static function resolvePharParentPath($value, $key, &$parts)
-    {
-        if ($value !== '...') {
-            return;
-        }
-        unset($parts[$key], $parts[$key - 1]);
-        $parts = array_values($parts);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -33,20 +34,19 @@ require_once 'Zend/Controller/Action.php';
  * Test class for Zend_Test_PHPUnit_ControllerTestCase.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Test
- * @group      Zend_Test_PHPUnit
  */
 #[AllowDynamicProperties]
-class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Test')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Test_PHPUnit')]
+class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Test_PHPUnit_ControllerTestCaseTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Test_PHPUnit_ControllerTestCaseTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -181,7 +181,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertNotSame($router, $test);
         $test = $controller->getDispatcher();
         $this->assertNotSame($dispatcher, $test);
-        $this->assertFalse($controller->getPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
+        $this->assertFalse($controller->getPlugin(Zend_Controller_Plugin_ErrorHandler::class));
         $test = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
         $this->assertNotSame($viewRenderer, $test);
         $this->assertNull($controller->getRequest());
@@ -207,7 +207,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $controller = $this->testCase->getFrontController();
         $this->assertSame(Zend_Registry::get('router'), $controller->getRouter());
         $this->assertSame(Zend_Registry::get('dispatcher'), $controller->getDispatcher());
-        $this->assertSame(Zend_Registry::get('plugin'), $controller->getPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
+        $this->assertSame(Zend_Registry::get('plugin'), $controller->getPlugin(Zend_Controller_Plugin_ErrorHandler::class));
         $this->assertSame(Zend_Registry::get('viewRenderer'), Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer'));
     }
 
@@ -218,7 +218,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $controller = $this->testCase->getFrontController();
         $this->assertSame(Zend_Registry::get('router'), $controller->getRouter());
         $this->assertSame(Zend_Registry::get('dispatcher'), $controller->getDispatcher());
-        $this->assertSame(Zend_Registry::get('plugin'), $controller->getPlugin(\Zend_Controller_Plugin_ErrorHandler::class));
+        $this->assertSame(Zend_Registry::get('plugin'), $controller->getPlugin(Zend_Controller_Plugin_ErrorHandler::class));
         $this->assertSame(Zend_Registry::get('viewRenderer'), Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer'));
     }
 
@@ -264,7 +264,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
         $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
-        $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
+        $this->expectException(PHPUnit\Framework\AssertionFailedError::class);
         $this->testCase->assertModule('zend-test-php-unit-foo');
         $this->testCase->assertNotModule('default');
     }
@@ -282,7 +282,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
         $this->testCase->dispatch('/zend-test-php-unit-foo/baz');
-        $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
+        $this->expectException(PHPUnit\Framework\AssertionFailedError::class);
         $this->testCase->assertController('baz');
         $this->testCase->assertNotController('zend-test-php-unit-foo');
     }
@@ -300,7 +300,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
         $this->testCase->dispatch('/foo/baz');
-        $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
+        $this->expectException(PHPUnit\Framework\AssertionFailedError::class);
         $this->testCase->assertAction('foo');
         $this->testCase->assertNotAction('baz');
     }
@@ -318,7 +318,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
         $this->testCase->dispatch('/foo/baz');
-        $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
+        $this->expectException(PHPUnit\Framework\AssertionFailedError::class);
         $this->testCase->assertRoute('foo');
         $this->testCase->assertNotRoute('default');
     }
@@ -348,9 +348,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertNotSame($response, $test);
     }
 
-    /**
-     * @group ZF-4511
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4511')]
     public function testResetRequestShouldClearRequestObject()
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
@@ -361,9 +359,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertNotSame($request, $test);
     }
 
-    /**
-     * @group ZF-4070
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4070')]
     public function testQueryParametersShouldPersistFollowingDispatch()
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
@@ -380,9 +376,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals('bond', $request->getQuery('james'), '(post) Failed retrieving james parameter: ' . var_export($request->getQuery(), 1));
     }
 
-    /**
-     * @group ZF-4070
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4070')]
     public function testQueryStringShouldNotOverwritePreviouslySetQueryParameters()
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
@@ -400,9 +394,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertEquals('bond', $request->getQuery('james'), '(post) Failed retrieving james parameter: ' . var_export($request->getQuery(), 1));
     }
 
-    /**
-     * @group ZF-3979
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3979')]
     public function testSuperGlobalArraysShouldBeClearedDuringSetUp()
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
@@ -417,9 +409,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertNull($request->getCookie('bar'), 'Retrieved bar cookie parameter: ' . var_export($request->getCookie(), 1));
     }
 
-    /**
-     * @group ZF-4511
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4511')]
     public function testResetRequestShouldClearPostAndQueryParameters()
     {
         $this->testCase->getFrontController()->setControllerDirectory(__DIR__ . '/_files/application/controllers');
@@ -435,9 +425,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         $this->assertTrue(empty($_GET));
     }
 
-    /**
-     * @group ZF-7839
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7839')]
     public function testTestCaseShouldAllowUsingApplicationObjectAsBootstrap()
     {
         $application = new Zend_Application('testing', [
@@ -455,9 +443,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
         );
     }
 
-    /**
-     * @group ZF-8193
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8193')]
     public function testWhenApplicationObjectUsedAsBootstrapTestCaseShouldExecuteBootstrapRunMethod()
     {
         $application = new Zend_Application('testing', [
@@ -511,4 +497,8 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends \PHPUnit\Framework\TestCa
 #[AllowDynamicProperties]
 class Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete extends Zend_Test_PHPUnit_ControllerTestCase
 {
+    public function __construct()
+    {
+        parent::__construct(static::class);
+    }
 }

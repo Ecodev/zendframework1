@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,13 +25,12 @@ require_once 'Zend/View/Interface.php';
  * Test class for Zend_Controller_Action_Helper_ContextSwitch.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_Helper_ContextSwitchTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -39,8 +39,8 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ContextSwitchTest');
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ContextSwitchTest');
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     /**
@@ -272,7 +272,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
     {
         $callbacks = [
             'init' => 'htmlentities',
-            'post' => [\Zend_Loader::class, 'registerAutoload'],
+            'post' => [Zend_Loader::class, 'registerAutoload'],
         ];
         $this->helper->setCallbacks('xml', $callbacks);
         $returned = $this->helper->getCallbacks('xml');
@@ -814,9 +814,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->checkOptionsAreSet();
     }
 
-    /**
-     * @group ZF-3279
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3279')]
     public function testPostJsonContextDoesntThrowExceptionWhenGetVarsMethodsExists()
     {
         try {
@@ -828,9 +826,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         self::assertTrue(true);
     }
 
-    /**
-     * @group ZF-3279
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3279')]
     public function testPostJsonContextThrowsExceptionWhenGetVarsMethodsDoesntExist()
     {
         $view = new Zend_Controller_Action_Helper_ContextSwitchText_CustomView();
@@ -845,9 +841,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         }
     }
 
-    /**
-     * @group ZF-4866
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4866')]
     public function testForwardingShouldNotUseContextSuffixIfNewActionDoesNotDetectValidContext()
     {
         $this->request->setParam('format', 'xml')
@@ -862,9 +856,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->assertStringNotContainsString('xml', $suffix, $suffix);
     }
 
-    /**
-     * @group ZF-4866
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4866')]
     public function testForwardingShouldNotPrependMultipleViewSuffixesForCustomContexts()
     {
         $this->helper->addContext('foo', ['suffix' => 'foo']);
@@ -886,9 +878,7 @@ class Zend_Controller_Action_Helper_ContextSwitchTest extends \PHPUnit\Framework
         $this->assertStringNotContainsString('foo.foo', $suffix, $suffix);
     }
 
-    /**
-     * @group ZF-11793
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11793')]
     public function testGetActionContextsReturnsFullListWhenArgumentIsNull()
     {
         $expected = [
@@ -958,11 +948,11 @@ class Zend_Controller_Action_Helper_ContextSwitchText_CustomView implements Zend
     {
     }
 
-    public function setBasePath($path, $classPrefix = \Zend_View::class)
+    public function setBasePath($path, $classPrefix = Zend_View::class)
     {
     }
 
-    public function addBasePath($path, $classPrefix = \Zend_View::class)
+    public function addBasePath($path, $classPrefix = Zend_View::class)
     {
     }
 

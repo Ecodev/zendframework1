@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -163,7 +164,7 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
             if ($strict) {
                 $e = new Zend_View_Exception(sprintf(
                     'Proxy helper "%s" is not an instance of '
-                    . \Zend_View_Helper_Navigation_Helper::class,
+                    . Zend_View_Helper_Navigation_Helper::class,
                     get_class($helper)));
                 $e->setView($this->view);
 

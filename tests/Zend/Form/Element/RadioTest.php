@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,19 +23,18 @@ require_once 'Zend/Form/Element/Radio.php';
  * Test class for Zend_Form_Element_Radio.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_RadioTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_RadioTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -152,9 +152,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<dt[^>]*>&\#160;</dt>.*?<dd#s', $html, $html);
     }
 
-    /**
-     * @group ZF-9682
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9682')]
     public function testCustomLabelDecorator()
     {
         $form = new Zend_Form();
@@ -169,9 +167,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-6426
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6426')]
     public function testRenderingShouldCreateLabelWithoutForAttribute()
     {
         $this->element->setMultiOptions([
@@ -183,9 +179,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('for="foo"', $html);
     }
 
-    /**
-     * @group ZF-11517
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11517')]
     public function testCreationWithIndividualDecoratorsAsConstructorOptionsWithoutLabel()
     {
         $element = new Zend_Form_Element_Radio([
@@ -202,9 +196,7 @@ class Zend_Form_Element_RadioTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($element->getDecorator('label'));
     }
 
-    /**
-     * @group ZF-11517
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11517')]
     public function testRenderingWithIndividualDecoratorsAsConstructorOptionsWithoutLabel()
     {
         $element = new Zend_Form_Element_Radio([

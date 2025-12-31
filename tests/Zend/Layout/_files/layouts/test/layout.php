@@ -17,6 +17,6 @@ Testing layouts with custom inflection:
  *
  * @version    $Id$
  */
-echo $this->placeholder(\Zend_Layout::class)->message
+echo $this->placeholder(Zend_Layout::class)->message
 ?>
 

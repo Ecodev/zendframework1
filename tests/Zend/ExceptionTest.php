@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -17,12 +18,11 @@
  * @version    $Id$
  */
 /**
- * @group      Zend_Exception
- *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
-class Zend_ExceptionTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Exception')]
+class Zend_ExceptionTest extends PHPUnit\Framework\TestCase
 {
     public function testConstructorDefaults()
     {

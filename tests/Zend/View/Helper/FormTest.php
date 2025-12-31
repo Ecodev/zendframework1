@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,12 +23,11 @@ require_once 'Zend/View/Helper/Form.php';
  * Test class for Zend_View_Helper_Form.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_FormTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -36,8 +36,8 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -73,9 +73,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString($this->view->escape('<&foo'), $form);
     }
 
-    /**
-     * @group ZF-3832
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3832')]
     public function testEmptyIdShouldNotRenderIdAttribute()
     {
         $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get']);
@@ -84,9 +82,7 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertDoesNotMatchRegularExpression('/<form[^>]*(id="")/', $form);
     }
 
-    /**
-     * @group ZF-10791
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10791')]
     public function testPassingNameAsAttributeShouldOverrideFormName()
     {
         $form = $this->helper->form('OrigName', ['action' => '/foo', 'method' => 'get', 'name' => 'SomeNameAttr']);
@@ -94,36 +90,28 @@ class Zend_View_Helper_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<form[^>]*(name="SomeNameAttr")/', $form);
     }
 
-    /**
-     * @group ZF-10791
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10791')]
     public function testNotSpecifyingFormNameShouldNotRenderNameAttrib()
     {
         $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get']);
         $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name=".*")/', $form);
     }
 
-    /**
-     * @group ZF-10791
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10791')]
     public function testSpecifyingFormNameShouldRenderNameAttrib()
     {
         $form = $this->helper->form('FormName', ['action' => '/foo', 'method' => 'get']);
         $this->assertMatchesRegularExpression('/<form[^>]*(name="FormName")/', $form);
     }
 
-    /**
-     * @group ZF-10791
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10791')]
     public function testPassingEmptyNameAttributeToUnnamedFormShouldNotRenderNameAttrib()
     {
         $form = $this->helper->form('', ['action' => '/foo', 'method' => 'get', 'name' => null]);
         $this->assertDoesNotMatchRegularExpression('/<form[^>]*(name=".*")/', $form);
     }
 
-    /**
-     * @group ZF-10791
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10791')]
     public function testPassingEmptyNameAttributeToNamedFormShouldNotOverrideNameAttrib()
     {
         $form = $this->helper->form('RealName', ['action' => '/foo', 'method' => 'get', 'name' => null]);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,12 +23,11 @@ require_once 'Zend/Controller/Request/Simple.php';
  * Test class for Zend_Controller_Request_Simple.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Request
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Request')]
+class Zend_Controller_Request_SimpleTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
@@ -36,8 +36,8 @@ class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Request_SimpleTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Request_SimpleTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testSimpleRequestIsOfAbstractRequestType()
@@ -55,9 +55,7 @@ class Zend_Controller_Request_SimpleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($request->getParam('test4'), 'test5');
     }
 
-    /**
-     * @group ZF-3472
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3472')]
     public function testSettingParamToNullInSetparamsCorrectlyUnsetsValue()
     {
         $request = new Zend_Controller_Request_Simple();

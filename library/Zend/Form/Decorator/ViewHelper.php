@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -43,9 +44,9 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
      * @var array
      */
     protected $_buttonTypes = [
-        \Zend_Form_Element_Button::class,
-        \Zend_Form_Element_Reset::class,
-        \Zend_Form_Element_Submit::class,
+        Zend_Form_Element_Button::class,
+        Zend_Form_Element_Reset::class,
+        Zend_Form_Element_Submit::class,
     ];
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -29,7 +30,7 @@ require_once 'ZendX/JQuery/Form/Element/AutoComplete.php';
 
 require_once 'ZendX/JQuery/Form/Decorator/UiWidgetElement.php';
 
-class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
+class ZendX_JQuery_Form_ElementTest extends PHPUnit\Framework\TestCase
 {
     public function setUp(): void
     {
@@ -84,9 +85,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(false !== $view->getPluginLoader('helper')->getPaths('ZendX_JQuery_View_Helper'));
     }
 
-    /**
-     * @group ZF-4694
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4694')]
     public function testJQueryElementWithOnlyViewHelperIsNotAllowedToDieZf4694()
     {
         $view = new Zend_View();
@@ -106,9 +105,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(true);
     }
 
-    /**
-     * @group ZF-5125
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5125')]
     public function testJQueryElementHasToImplementMarkerInterface()
     {
         $view = new Zend_View();
@@ -135,9 +132,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(true);
     }
 
-    /**
-     * @group ZF-4859
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4859')]
     public function testAutocompleteDoesNotDoubleArrayEncodeDataJsonField()
     {
         $view = new Zend_View();
@@ -165,9 +160,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-5043
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5043')]
     public function testFormWithoutIdButSubformsProducesArrayNotationWhichWontWork()
     {
         $view = new Zend_View();
@@ -187,9 +180,7 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('$("#sf1[dp1]")', $jquery);
     }
 
-    /**
-     * @group ZF-6979
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6979')]
     public function testDatePickerWithDescriptionDecorator()
     {
         $view = new Zend_View();
@@ -213,16 +204,16 @@ class ZendX_JQuery_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $decorators['ZendX_JQuery_Form_Decorator_UiWidgetElement'] instanceof ZendX_JQuery_Form_Decorator_UiWidgetElement
         );
         $this->assertTrue(
-            $decorators[\Zend_Form_Decorator_Errors::class] instanceof Zend_Form_Decorator_Errors
+            $decorators[Zend_Form_Decorator_Errors::class] instanceof Zend_Form_Decorator_Errors
         );
         $this->assertTrue(
-            $decorators[\Zend_Form_Decorator_Description::class] instanceof Zend_Form_Decorator_Description
+            $decorators[Zend_Form_Decorator_Description::class] instanceof Zend_Form_Decorator_Description
         );
         $this->assertTrue(
-            $decorators[\Zend_Form_Decorator_HtmlTag::class] instanceof Zend_Form_Decorator_HtmlTag
+            $decorators[Zend_Form_Decorator_HtmlTag::class] instanceof Zend_Form_Decorator_HtmlTag
         );
         $this->assertTrue(
-            $decorators[\Zend_Form_Decorator_Label::class] instanceof Zend_Form_Decorator_Label
+            $decorators[Zend_Form_Decorator_Label::class] instanceof Zend_Form_Decorator_Label
         );
     }
 }

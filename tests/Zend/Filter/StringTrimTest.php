@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Filter/StringTrim.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Filter
  */
 #[AllowDynamicProperties]
-class Zend_Filter_StringTrimTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
+class Zend_Filter_StringTrimTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Filter_StringTrim object.
@@ -102,9 +102,7 @@ class Zend_Filter_StringTrimTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('/', $this->_filter->filter('/'));
     }
 
-    /**
-     * @group ZF-10691
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10691')]
     public function testSetParamCharListToConstructor()
     {
         $config = new Zend_Config(['charlist' => '&']);

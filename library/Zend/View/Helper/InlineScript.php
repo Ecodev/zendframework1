@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -35,7 +36,7 @@ class Zend_View_Helper_InlineScript extends Zend_View_Helper_HeadScript
      *
      * @var string
      */
-    protected $_regKey = \Zend_View_Helper_InlineScript::class;
+    protected $_regKey = Zend_View_Helper_InlineScript::class;
 
     /**
      * Return InlineScript object.

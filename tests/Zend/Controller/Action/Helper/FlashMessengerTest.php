@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -20,13 +21,12 @@ require_once dirname(__FILE__, 3) . '/_files/HelperFlashMessengerController.php'
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_Helper_FlashMessengerTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Action
@@ -60,12 +60,16 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_FlashMessengerTest');
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_FlashMessengerTest');
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
     {
+        // Reset static things
+        $helper = new FlashMessengerControllerActionHelper();
+        $helper->reset();
+
         $savePath = ini_get('session.save_path');
         if (strpos($savePath, ';')) {
             $savePath = explode(';', (string) $savePath);
@@ -119,18 +123,14 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
         static::assertEquals(1, count($this->helper));
     }
 
-    /**
-     * @group ZF-1705
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-1705')]
     public function testNamespaceChange()
     {
         $this->helper->setNamespace('foobar');
         $this->assertEquals('foobar', $this->helper->getNamespace());
     }
 
-    /**
-     * @group ZF-1705
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-1705')]
     public function testAddMessageToCustomNamespace()
     {
         $this->helper->addMessage('testmessage', 'foobar');
@@ -147,9 +147,7 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
         $this->assertTrue(empty($defaultMessages), 'Default namespace not empty');
     }
 
-    /**
-     * @group ZF-1705
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-1705')]
     public function testRemoveMessageToCustomNamespace()
     {
         // Place a message in foobar and default namespaces
@@ -171,9 +169,7 @@ class Zend_Controller_Action_Helper_FlashMessengerTest extends \PHPUnit\Framewor
         $this->assertEquals('defaultmessage', array_pop($defaultMessages));
     }
 
-    /**
-     * @group ZF-1705
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-1705')]
     public function testSimulateCrossRequestMessagePassing()
     {
         $helper = new FlashMessengerControllerActionHelper();

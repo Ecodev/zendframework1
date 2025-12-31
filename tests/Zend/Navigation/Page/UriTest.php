@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,11 +23,10 @@ require_once 'Zend/Navigation/Page/Uri.php';
  * Tests the class Zend_Navigation_Page_Uri.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Navigation
  */
 #[AllowDynamicProperties]
-class Zend_Navigation_Page_UriTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Navigation')]
+class Zend_Navigation_Page_UriTest extends PHPUnit\Framework\TestCase
 {
     public function testUriOptionAsString()
     {
@@ -95,9 +95,7 @@ class Zend_Navigation_Page_UriTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($uri, $page->getHref());
     }
 
-    /**
-     * @group ZF-8922
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8922')]
     public function testGetHrefWithFragmentIdentifier()
     {
         $uri = 'http://www.example.com/foo.html';

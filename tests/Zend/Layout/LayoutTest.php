@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,19 +24,18 @@ require_once 'Zend/View.php';
  * Test class for Zend_Layout.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Layout
  */
 #[AllowDynamicProperties]
-class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Layout')]
+class Zend_Layout_LayoutTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Layout_LayoutTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Layout_LayoutTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -413,7 +413,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->testGetMvcInstanceReturnsLayoutInstanceWhenStartMvcHasBeenCalled();
         Zend_Layout::resetMvcInstance();
         $front = Zend_Controller_Front::getInstance();
-        $this->assertFalse($front->hasPlugin(\Zend_Layout_Controller_Plugin_Layout::class), 'Plugin not unregistered');
+        $this->assertFalse($front->hasPlugin(Zend_Layout_Controller_Plugin_Layout::class), 'Plugin not unregistered');
         $this->assertFalse(Zend_Controller_Action_HelperBroker::hasHelper('Layout'), 'Helper not unregistered');
     }
 
@@ -435,9 +435,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         self::assertTrue(true);
     }
 
-    /**
-     * @group ZF-5152
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5152')]
     public function testCallingStartMvcTwiceDoesntGenerateAnyUnexpectedBehavior()
     {
         Zend_Layout::startMvc('/some/path');
@@ -447,9 +445,7 @@ class Zend_Layout_LayoutTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(Zend_Layout::getMvcInstance()->isEnabled());
     }
 
-    /**
-     * @group ZF-5891
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5891')]
     public function testSetLayoutWithDisabledFlag()
     {
         $layout = new Zend_Layout();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,20 +23,19 @@ require_once 'Zend/View.php';
  * Test class for Zend_View_Helper_FormErrors.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_FormErrorsTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_FormErrorsTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormErrorsTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -142,10 +142,9 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3477
-     *
      * @see http://framework.zend.com/issues/browse/ZF-3477
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3477')]
     public function testCanSetClassAttribute()
     {
         $options = ['class' => 'custom-class'];
@@ -156,9 +155,7 @@ class Zend_View_Helper_FormErrorsTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-5962
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5962')]
     public function testCanSetElementStringsPerOptions()
     {
         $actual = $this->helper->formErrors(

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -36,20 +37,19 @@ require_once 'Zend/View.php';
  * Test class for Zend_View_Helper_Action.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_ActionTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_ActionTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_ActionTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -229,9 +229,7 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Nested Stuff', $title);
     }
 
-    /**
-     * @group ZF-2716
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2716')]
     public function testActionWithPartialsUseOfViewRendererReturnsToOriginatingViewState()
     {
         $partial = new Zend_View_Helper_Partial();
@@ -247,9 +245,8 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Future ViewRenderer State issues should be included in this test.
-     *
-     * @group ZF-2846
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2846')]
     public function testActionReturnsViewRendererToOriginalState()
     {
         // Setup the VR as if we were inside an action controller
@@ -271,9 +268,8 @@ class Zend_View_Helper_ActionTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Multiple call state issue.
-     *
-     * @group ZF-3456
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3456')]
     public function testActionCalledWithinActionResetsResponseState()
     {
         $value = $this->helper->action('bar-one', 'baz', 'foo');

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,19 +25,18 @@ require_once 'Zend/Validate/NotEmpty.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_NotEmptyTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_NotEmptyTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_NotEmptyTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -59,9 +59,8 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
      *
      * ZF-6708 introduces a change for validating integer 0; it is a valid
      * integer value. '0' is also valid.
-     *
-     * @group ZF-6708
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6708')]
     public function testBasic()
     {
         $valuesExpected = [
@@ -476,9 +475,7 @@ class Zend_Validate_NotEmptyTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(493, $this->_validator->getType());
     }
 
-    /**
-     * @group ZF-3236
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3236')]
     public function testStringWithZeroShouldNotBeTreatedAsEmpty()
     {
         $this->assertTrue($this->_validator->isValid('0'));

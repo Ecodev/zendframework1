@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,16 +24,15 @@ require_once 'Zend/Loader/StandardAutoloader.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Loader
  */
 #[AllowDynamicProperties]
-class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Loader')]
+class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -77,11 +77,11 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
     public function testRegisteringValidMapFilePopulatesAutoloader()
     {
         Zend_Loader_AutoloaderFactory::factory([
-            \Zend_Loader_ClassMapAutoloader::class => [
+            Zend_Loader_ClassMapAutoloader::class => [
                 __DIR__ . '/_files/goodmap.php',
             ],
         ]);
-        $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader(\Zend_Loader_ClassMapAutoloader::class);
+        $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader(Zend_Loader_ClassMapAutoloader::class);
         $map = $loader->getAutoloadMap();
         $this->assertTrue(is_array($map));
         $this->assertEquals(2, is_countable($map) ? count($map) : 0);
@@ -92,7 +92,7 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
      */
     public function testFactoryCatchesInvalidClasses()
     {
-        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(Zend_Loader_Exception_InvalidArgumentException::class);
         if (!version_compare(PHP_VERSION, '5.3.7', '>=')) {
             $this->markTestSkipped('Cannot test invalid interface loader with versions less than 5.3.7');
         }
@@ -105,7 +105,7 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
     public function testFactoryDoesNotRegisterDuplicateAutoloaders()
     {
         Zend_Loader_AutoloaderFactory::factory([
-            \Zend_Loader_StandardAutoloader::class => [
+            Zend_Loader_StandardAutoloader::class => [
                 'prefixes' => [
                     'TestPrefix' => __DIR__ . '/TestAsset/TestPrefix',
                 ],
@@ -113,7 +113,7 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
         ]);
         $this->assertEquals(1, count(Zend_Loader_AutoloaderFactory::getRegisteredAutoloaders()));
         Zend_Loader_AutoloaderFactory::factory([
-            \Zend_Loader_StandardAutoloader::class => [
+            Zend_Loader_StandardAutoloader::class => [
                 'prefixes' => [
                     'ZendTest_Loader_TestAsset_TestPlugins' => __DIR__ . '/TestAsset/TestPlugins',
                 ],
@@ -127,7 +127,7 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
     public function testCanUnregisterAutoloaders()
     {
         Zend_Loader_AutoloaderFactory::factory([
-            \Zend_Loader_StandardAutoloader::class => [
+            Zend_Loader_StandardAutoloader::class => [
                 'prefixes' => [
                     'TestPrefix' => __DIR__ . '/TestAsset/TestPrefix',
                 ],
@@ -140,58 +140,58 @@ class Zend_Loader_AutoloaderFactoryTest extends \PHPUnit\Framework\TestCase
     public function testCanUnregisterAutoloadersByClassName()
     {
         Zend_Loader_AutoloaderFactory::factory([
-            \Zend_Loader_StandardAutoloader::class => [
+            Zend_Loader_StandardAutoloader::class => [
                 'namespaces' => [
                     'TestPrefix' => __DIR__ . '/TestAsset/TestPrefix',
                 ],
             ],
         ]);
-        Zend_Loader_AutoloaderFactory::unregisterAutoloader(\Zend_Loader_StandardAutoloader::class);
+        Zend_Loader_AutoloaderFactory::unregisterAutoloader(Zend_Loader_StandardAutoloader::class);
         $this->assertEquals(0, count(Zend_Loader_AutoloaderFactory::getRegisteredAutoloaders()));
     }
 
     public function testCanGetValidRegisteredAutoloader()
     {
         Zend_Loader_AutoloaderFactory::factory([
-            \Zend_Loader_StandardAutoloader::class => [
+            Zend_Loader_StandardAutoloader::class => [
                 'namespaces' => [
                     'TestPrefix' => __DIR__ . '/TestAsset/TestPrefix',
                 ],
             ],
         ]);
-        $autoloader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader(\Zend_Loader_StandardAutoloader::class);
+        $autoloader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader(Zend_Loader_StandardAutoloader::class);
         $this->assertTrue($autoloader instanceof Zend_Loader_StandardAutoloader);
     }
 
     public function testDefaultAutoloader()
     {
         Zend_Loader_AutoloaderFactory::factory();
-        $autoloader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader(\Zend_Loader_StandardAutoloader::class);
+        $autoloader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader(Zend_Loader_StandardAutoloader::class);
         $this->assertTrue($autoloader instanceof Zend_Loader_StandardAutoloader);
         $this->assertEquals(1, count(Zend_Loader_AutoloaderFactory::getRegisteredAutoloaders()));
     }
 
     public function testGetInvalidAutoloaderThrowsException()
     {
-        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(Zend_Loader_Exception_InvalidArgumentException::class);
         $loader = Zend_Loader_AutoloaderFactory::getRegisteredAutoloader('InvalidAutoloader');
     }
 
     public function testFactoryWithInvalidArgumentThrowsException()
     {
-        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(Zend_Loader_Exception_InvalidArgumentException::class);
         Zend_Loader_AutoloaderFactory::factory('InvalidArgument');
     }
 
     public function testFactoryWithInvalidAutoloaderClassThrowsException()
     {
-        $this->expectException(\Zend_Loader_Exception_InvalidArgumentException::class);
+        $this->expectException(Zend_Loader_Exception_InvalidArgumentException::class);
         Zend_Loader_AutoloaderFactory::factory(['InvalidAutoloader' => []]);
     }
 
     public function testCannotBeInstantiatedViaConstructor()
     {
-        $reflection = new ReflectionClass(\Zend_Loader_AutoloaderFactory::class);
+        $reflection = new ReflectionClass(Zend_Loader_AutoloaderFactory::class);
         $constructor = $reflection->getConstructor();
         $this->assertNull($constructor);
     }

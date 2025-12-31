@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,13 +23,12 @@ require_once 'Zend/Controller/Action/Helper/Redirector.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Controller
- * @group      Zend_Controller_Action
- * @group      Zend_Controller_Action_Helper
  */
 #[AllowDynamicProperties]
-class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
+#[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
+class Zend_Controller_Action_HelperBrokerTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_Controller_Front
@@ -42,8 +42,8 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Controller_Action_HelperBrokerTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_HelperBrokerTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -67,7 +67,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
 
         $this->front->returnResponse(true);
         $response = $this->front->dispatch($request);
-        $this->assertEquals(\Zend_Controller_Action_Helper_Redirector::class, $response->getBody());
+        $this->assertEquals(Zend_Controller_Action_Helper_Redirector::class, $response->getBody());
     }
 
     public function testLoadingAndReturningHelperStatically()
@@ -134,7 +134,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
 
         $this->front->returnResponse(true);
         $response = $this->front->dispatch($request);
-        $this->assertEquals(\Zend_Controller_Action_Helper_Redirector::class, $response->getBody());
+        $this->assertEquals(Zend_Controller_Action_Helper_Redirector::class, $response->getBody());
     }
 
     public function testReturningHelperViaMagicGet()
@@ -145,7 +145,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
 
         $this->front->returnResponse(true);
         $response = $this->front->dispatch($request);
-        $this->assertEquals(\Zend_Controller_Action_Helper_Redirector::class, $response->getBody());
+        $this->assertEquals(Zend_Controller_Action_Helper_Redirector::class, $response->getBody());
     }
 
     public function testReturningHelperViaMagicCall()
@@ -296,9 +296,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
         $this->assertTrue($urlHelper instanceof MyApp_Url);
     }
 
-    /**
-     * @group ZF-4704
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4704')]
     public function testPluginLoaderShouldHaveDefaultPrefixPath()
     {
         $loader = Zend_Controller_Action_HelperBroker::getPluginLoader();
@@ -323,9 +321,7 @@ class Zend_Controller_Action_HelperBrokerTest extends \PHPUnit\Framework\TestCas
         $this->assertEquals('MyApp\Controller\Action\Helper\NamespacedHelper', $response->getBody());
     }
 
-    /**
-     * @group ZF-4704
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-4704')]
     public function testBrokerShouldAcceptCustomPluginLoaderInstance()
     {
         $loader = Zend_Controller_Action_HelperBroker::getPluginLoader();

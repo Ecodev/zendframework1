@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,11 +23,10 @@ require_once 'Zend/Controller/Request/Http.php';
  * Tests the class Zend_Navigation_Container.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Navigation
  */
 #[AllowDynamicProperties]
-class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Navigation')]
+class Zend_Navigation_ContainerTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Prepares the environment before running a test.
@@ -359,9 +359,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
             'Expected 3 pages, found ' . count($nav));
     }
 
-    /**
-     * @group ZF-9815
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9815')]
     public function testAddPagesShouldWorkWithNavigationContainer()
     {
         $nav = new Zend_Navigation();
@@ -468,7 +466,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         ];
 
         $this->assertEquals($expected, $actual);
-        $this->assertContainsOnly(\Zend_Navigation_Page_Uri::class, $pages, false);
+        $this->assertContainsOnly(Zend_Navigation_Page_Uri::class, $pages, false);
     }
 
     public function testGetPagesShouldReturnUnorderedPages()
@@ -780,9 +778,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($found);
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindOneByWithRegex()
     {
         $nav = $this->_getFindByNavigation();
@@ -794,9 +790,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Page 1.3', $found->getLabel());
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindOneWithinArrayProperties()
     {
         $nav = $this->_getFindByNavigation();
@@ -808,9 +802,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Page 1.2', $found->getLabel());
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindOneWithRegexWithinArrayProperties()
     {
         $nav = $this->_getFindByNavigation();
@@ -822,9 +814,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Page 1.2', $found->getLabel());
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindByWithRegex()
     {
         $nav = $this->_getFindByNavigation();
@@ -854,7 +844,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $nav = $this->_getFindByNavigation();
 
         $found = $nav->findAllBy('id', 'page_2_and_3');
-        $this->assertContainsOnly(\Zend_Navigation_Page::class, $found, false);
+        $this->assertContainsOnly(Zend_Navigation_Page::class, $found, false);
 
         $expected = ['Page 2', 'Page 3'];
         $actual = [];
@@ -876,9 +866,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindAllByWithRegex()
     {
         $nav = $this->_getFindByNavigation();
@@ -895,9 +883,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindAllWithinArrayProperties()
     {
         $nav = $this->_getFindByNavigation();
@@ -915,9 +901,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindAllWithRegexWithinArrayProperties()
     {
         $nav = $this->_getFindByNavigation();
@@ -977,7 +961,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $nav = $this->_getFindByNavigation();
 
         $found = $nav->findAllById('page_2_and_3');
-        $this->assertContainsOnly(\Zend_Navigation_Page::class, $found, false);
+        $this->assertContainsOnly(Zend_Navigation_Page::class, $found, false);
 
         $expected = ['Page 2', 'Page 3'];
         $actual = [];
@@ -993,7 +977,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $nav = $this->_getFindByNavigation();
 
         $found = $nav->findAllByAction('about');
-        $this->assertContainsOnly(\Zend_Navigation_Page::class, $found, false);
+        $this->assertContainsOnly(Zend_Navigation_Page::class, $found, false);
 
         $expected = ['Page 3'];
         $actual = [];
@@ -1009,7 +993,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $nav = $this->_getFindByNavigation();
 
         $found = $nav->findAllByaction('about');
-        $this->assertContainsOnly(\Zend_Navigation_Page::class, $found, false);
+        $this->assertContainsOnly(Zend_Navigation_Page::class, $found, false);
 
         $expected = ['Page 1.3', 'Page 3'];
         $actual = [];
@@ -1055,9 +1039,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindByMagicMethodWithRegex()
     {
         $nav = $this->_getFindByNavigation();
@@ -1068,7 +1050,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
 
         // Find all
         $found = $nav->findAllById('/page_2_/', true);
-        $this->assertContainsOnly(\Zend_Navigation_Page::class, $found, false);
+        $this->assertContainsOnly(Zend_Navigation_Page::class, $found, false);
 
         $expected = ['Page 2', 'Page 3'];
         $actual = [];
@@ -1079,9 +1061,7 @@ class Zend_Navigation_ContainerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-9994
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9994')]
     public function testFindByMagicMethodActivateRegex()
     {
         $nav = $this->_getFindByNavigation();

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -151,7 +152,7 @@ abstract class Zend_Navigation_Container implements RecursiveIterator, Countable
             throw new Zend_Navigation_Exception(
                 'Invalid argument: $pages must be an array, an '
                 . 'instance of Zend_Config or an instance of '
-                . \Zend_Navigation_Container::class);
+                . Zend_Navigation_Container::class);
         }
 
         foreach ($pages as $page) {

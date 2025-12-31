@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -16,26 +17,19 @@
  *
  * @version    $Id$
  */
-
 /** @see Zend_Controller_Front */
-
 /** @see Zend_Controller_Action_HelperBroker */
-
 /** @see Zend_Layout */
-
 /** @see Zend_Session */
-
 /** @see Zend_Registry */
-
 /**
  * Functional testing scaffold for MVC applications.
- *
- * @uses       \PHPUnit\Framework\TestCase
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
-abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\UsesClass('\PHPUnit\Framework\TestCase')]
+abstract class Zend_Test_PHPUnit_ControllerTestCase extends PHPUnit\Framework\TestCase
 {
     /**
      * @var mixed Bootstrap file path or callback
@@ -515,7 +509,7 @@ abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\T
         $stack = debug_backtrace();
         foreach ($stack as $step) {
             if (isset($step['object'])
-                && $step['object'] instanceof \PHPUnit\Framework\TestCase
+                && $step['object'] instanceof PHPUnit\Framework\TestCase
             ) {
                 $step['object']->addToAssertionCount(1);
 

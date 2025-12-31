@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -30,12 +31,11 @@ require_once 'Zend/Registry.php';
  * Test class for Zend_View_Helper_HeadStyle.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_HeadStyleTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadStyle
@@ -52,8 +52,8 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadStyleTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadStyleTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -83,12 +83,12 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists(\Zend_View_Helper_HeadStyle::class)) {
-            $registry->deleteContainer(\Zend_View_Helper_HeadStyle::class);
+        if ($registry->containerExists(Zend_View_Helper_HeadStyle::class)) {
+            $registry->deleteContainer(Zend_View_Helper_HeadStyle::class);
         }
-        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadStyle::class));
+        $this->assertFalse($registry->containerExists(Zend_View_Helper_HeadStyle::class));
         $helper = new Zend_View_Helper_HeadStyle();
-        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadStyle::class));
+        $this->assertTrue($registry->containerExists(Zend_View_Helper_HeadStyle::class));
     }
 
     public function testHeadStyleReturnsObjectInstance()
@@ -225,9 +225,7 @@ class Zend_View_Helper_HeadStyleTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<style [^>]*?media="screen"#', $value, $value);
     }
 
-    /**
-     * @group ZF-8056
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8056')]
     public function testMediaAttributeCanHaveSpaceInCommaSeparatedString()
     {
         $this->helper->appendStyle('a { }', ['media' => 'screen, projection']);
@@ -410,9 +408,7 @@ a {
         $this->assertStringContainsString('<!--[if lt IE 7]>', $test);
     }
 
-    /**
-     * @group ZF-5435
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5435')]
     public function testContainerMaintainsCorrectOrderOfItems()
     {
         $style1 = 'a {display: none;}';
@@ -436,9 +432,7 @@ a {
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-9532
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9532')]
     public function testRenderConditionalCommentsShouldNotContainHtmlEscaping()
     {
         $style = 'a{display:none;}';
@@ -451,9 +445,7 @@ a {
         $this->assertStringNotContainsString(PHP_EOL . '-->', $value);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-515')]
     public function testConditionalScriptNoIE()
     {
         $this->helper->appendStyle('
@@ -465,9 +457,7 @@ a {
         $this->assertStringContainsString('<!--<![endif]-->', $test);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-515')]
     public function testConditionalScriptNoIEWidthSpace()
     {
         $this->helper->appendStyle('

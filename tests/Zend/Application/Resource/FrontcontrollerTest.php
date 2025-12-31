@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -29,16 +30,15 @@ require_once 'Zend/Controller/Front.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Application
  */
 #[AllowDynamicProperties]
-class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Application')]
+class Zend_Application_Resource_FrontcontrollerTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = (new \PHPUnit\TextUI\TestRunner())->run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
     }
 
     public function setUp(): void
@@ -117,9 +117,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
         $this->assertEquals(__DIR__, $dir);
     }
 
-    /**
-     * @group ZF-6458
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-6458')]
     public function testAllControllerDirectoriesShouldBeSetWhenArrayPassedToControllerDirectoryOption()
     {
         $resource = new Zend_Application_Resource_Frontcontroller([
@@ -180,9 +178,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
         $this->assertEquals($expected, $dir);
     }
 
-    /**
-     * @group ZF-9258
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9258')]
     public function testShouldSetMultipleModuleDirectorysWhenOptionPresent()
     {
         $resource = new Zend_Application_Resource_Frontcontroller([
@@ -285,7 +281,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
     public function testShouldInstantiateAndRegisterPluginsWhenOptionPassed()
     {
         $plugins = [
-            \Zend_Controller_Plugin_ActionStack::class,
+            Zend_Controller_Plugin_ActionStack::class,
         ];
         $resource = new Zend_Application_Resource_Frontcontroller([
             'plugins' => $plugins,
@@ -316,23 +312,21 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
         $this->assertNull($front->getBaseUrl());
     }
 
-    /**
-     * @group ZF-9044
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9044')]
     public function testSettingOfRegisterPluginIndexActuallyWorks()
     {
         $plugins = [
-            ['class' => \Zend_Controller_Plugin_ErrorHandler::class,
+            ['class' => Zend_Controller_Plugin_ErrorHandler::class,
                 'stackindex' => 10, ],
-            \Zend_Controller_Plugin_ActionStack::class,
-            ['class' => \Zend_Controller_Plugin_PutHandler::class,
+            Zend_Controller_Plugin_ActionStack::class,
+            ['class' => Zend_Controller_Plugin_PutHandler::class,
                 'stackIndex' => 5, ],
         ];
 
         $expected = [
-            1 => \Zend_Controller_Plugin_ActionStack::class,
-            5 => \Zend_Controller_Plugin_PutHandler::class,
-            10 => \Zend_Controller_Plugin_ErrorHandler::class,
+            1 => Zend_Controller_Plugin_ActionStack::class,
+            5 => Zend_Controller_Plugin_PutHandler::class,
+            10 => Zend_Controller_Plugin_ErrorHandler::class,
         ];
 
         $resource = new Zend_Application_Resource_Frontcontroller([
@@ -349,9 +343,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
         }
     }
 
-    /**
-     * @group ZF-7367
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-7367')]
     public function testPassingReturnResponseFlagShouldAlterFrontControllerStatus()
     {
         $resource = new Zend_Application_Resource_Frontcontroller([
@@ -362,9 +354,7 @@ class Zend_Application_Resource_FrontcontrollerTest extends \PHPUnit\Framework\T
         $this->assertTrue($front->returnResponse());
     }
 
-    /**
-     * @group ZF-9724
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9724')]
     public function testShouldSetDispatcherFromConfiguration()
     {
         $resource = new Zend_Application_Resource_Frontcontroller([

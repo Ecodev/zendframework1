@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -16,24 +17,22 @@
  *
  * @version    $Id$
  */
-
 /**
  * Test class for Zend_Form_Element_Multiselect.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Form
  */
 #[AllowDynamicProperties]
-class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Form')]
+class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Runs the test methods of this class.
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Form_Element_MultiselectTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_MultiselectTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -135,9 +134,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(['bar' => 'barvalue', 'baz' => 'bazvalue', 'bat' => 'batvalue', 'foo' => 'foovalue', 'test' => 'testvalue'], $this->element->getMultiOptions());
     }
 
-    /**
-     * @group ZF-2824
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2824')]
     public function testCanSetMultiOptionsUsingAssocArraysWithKeyValueKeys()
     {
         $options = [
@@ -160,9 +157,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($options[2]['value'], $this->element->getMultiOption('ssss'));
     }
 
-    /**
-     * @group ZF-2824
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2824')]
     public function testCanSetMultiOptionsUsingConfigWithKeyValueKeys()
     {
         $config = new Zend_Config_Xml(__DIR__ . '/../_files/config/multiOptions.xml', 'testing');
@@ -217,9 +212,7 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-11667
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11667')]
     public function testSimilarErrorMessagesForMultiElementAreNotDuplicated()
     {
         $this->element->setConcatJustValuesInErrorMessage(true);

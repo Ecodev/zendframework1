@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -188,7 +189,7 @@ class Zend_Validate implements Zend_Validate_Interface
      */
     public static function is($value, $classBaseName, array $args = [], $namespaces = [])
     {
-        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, [\Zend_Validate::class]);
+        $namespaces = array_merge((array) $namespaces, self::$_defaultNamespaces, [Zend_Validate::class]);
         $className = ucfirst($classBaseName);
 
         try {
@@ -206,7 +207,7 @@ class Zend_Validate implements Zend_Validate_Interface
             }
 
             $class = new ReflectionClass($className);
-            if ($class->implementsInterface(\Zend_Validate_Interface::class)) {
+            if ($class->implementsInterface(Zend_Validate_Interface::class)) {
                 if ($class->hasMethod('__construct')) {
                     $keys = array_keys($args);
                     $numeric = false;
@@ -236,7 +237,7 @@ class Zend_Validate implements Zend_Validate_Interface
             // fallthrough and continue for missing validation classes
         }
 
-                throw new Zend_Validate_Exception("Validate class not found from basename '$classBaseName'");
+        throw new Zend_Validate_Exception("Validate class not found from basename '$classBaseName'");
     }
 
     /**

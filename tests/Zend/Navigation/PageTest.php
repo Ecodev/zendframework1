@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -22,11 +23,10 @@ require_once 'Zend/Config.php';
  * Tests the class Zend_Navigation_Page.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Navigation
  */
 #[AllowDynamicProperties]
-class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Navigation')]
+class Zend_Navigation_PageTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Prepares the environment before running a test.
@@ -151,9 +151,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-8922
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-8922')]
     public function testSetAndGetFragmentIdentifier()
     {
         $page = Zend_Navigation_Page::factory([
@@ -284,9 +282,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-9746
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9746')]
     public function testSetAndGetAccesskey()
     {
         $page = Zend_Navigation_Page::factory([
@@ -1144,9 +1140,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $page->getCustomProperties());
     }
 
-    /**
-     * @group ZF-11876
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11876')]
     public function testSetCustomHtmlAttrib()
     {
         $page = Zend_Navigation_Page::factory(
@@ -1160,9 +1154,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('nofollow', $page->getCustomHtmlAttrib('rel'));
     }
 
-    /**
-     * @group ZF-11876
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11876')]
     public function testSetCustomHtmlAttribWithNull()
     {
         $page = Zend_Navigation_Page::factory(
@@ -1177,9 +1169,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         $this->assertNull($page->getCustomHtmlAttrib('rel'));
     }
 
-    /**
-     * @group ZF-11876
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11876')]
     public function testSetCustomHtmlAttribs()
     {
         $page = Zend_Navigation_Page::factory(
@@ -1198,9 +1188,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($attribs, $page->getCustomHtmlAttribs());
     }
 
-    /**
-     * @group ZF-11876
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11876')]
     public function testRemoveCustomHtmlAttrib()
     {
         $page = Zend_Navigation_Page::factory(
@@ -1215,9 +1203,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([], $page->getCustomHtmlAttribs());
     }
 
-    /**
-     * @group ZF-11876
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11876')]
     public function testClearCustomHtmlAttribs()
     {
         $page = Zend_Navigation_Page::factory(
@@ -1279,7 +1265,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
                     'privilege' => null,
                     'active' => false,
                     'visible' => true,
-                    'type' => \Zend_Navigation_Page_Uri::class,
+                    'type' => Zend_Navigation_Page_Uri::class,
                     'pages' => [],
                 ],
                 [
@@ -1299,7 +1285,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
                     'privilege' => null,
                     'active' => false,
                     'visible' => true,
-                    'type' => \Zend_Navigation_Page_Uri::class,
+                    'type' => Zend_Navigation_Page_Uri::class,
                     'pages' => [],
                 ],
             ],
@@ -1314,7 +1300,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         $toArray = $page->toArray();
 
         // tweak options to what we expect toArray() to contain
-        $options['type'] = \Zend_Navigation_Page_Uri::class;
+        $options['type'] = Zend_Navigation_Page_Uri::class;
 
         // should be same
         $this->assertEquals($options, $toArray);
@@ -1348,9 +1334,7 @@ class Zend_Navigation_PageTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($options, $toArray['pages'][1]);
     }
 
-    /**
-     * @group ZF-11805
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11805')]
     public function testFactoryExceptionWhenNoPageTypeDetected()
     {
         // Without label

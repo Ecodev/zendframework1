@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/Ip.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_IpTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_IpTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Validate_Ip object.
@@ -105,10 +105,8 @@ class Zend_Validate_IpTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->_validator->isValid('192.168.0.2 adfs'));
     }
 
-    /**
-     * @group ZF-2694
-     * @group ZF-8253
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-2694')]
+    #[PHPUnit\Framework\Attributes\Group('ZF-8253')]
     public function testIPv6addresses()
     {
         $IPs = [

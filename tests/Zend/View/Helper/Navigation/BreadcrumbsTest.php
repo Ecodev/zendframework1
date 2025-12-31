@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -23,11 +24,10 @@ require_once 'Zend/View/Helper/Navigation/Breadcrumbs.php';
  * Tests Zend_View_Helper_Navigation_Breadcrumbs.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
 class Zend_View_Helper_Navigation_BreadcrumbsTest extends Zend_View_Helper_Navigation_TestAbstract
 {
     /**
@@ -35,7 +35,7 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest extends Zend_View_Helper_Navig
      *
      * @var string
      */
-    protected $_helperName = \Zend_View_Helper_Navigation_Breadcrumbs::class;
+    protected $_helperName = Zend_View_Helper_Navigation_Breadcrumbs::class;
 
     /**
      * View helper.
@@ -203,9 +203,7 @@ class Zend_View_Helper_Navigation_BreadcrumbsTest extends Zend_View_Helper_Navig
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-11876
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11876')]
     public function testRenderingWithCustomHtmlAttribs()
     {
         $container = new Zend_Navigation([

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -33,12 +34,11 @@ require_once 'Zend/View.php';
  * Test class for Zend_View_Helper_HeadLink.
  *
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
 #[AllowDynamicProperties]
-class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_View')]
+#[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
+class Zend_View_Helper_HeadLinkTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Zend_View_Helper_HeadLink
@@ -55,8 +55,8 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadLinkTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_HeadLinkTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -65,7 +65,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp(): void
     {
-        foreach ([Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, \Zend_View_Helper_Doctype::class] as $key) {
+        foreach ([Zend_View_Helper_Placeholder_Registry::REGISTRY_KEY, Zend_View_Helper_Doctype::class] as $key) {
             if (Zend_Registry::isRegistered($key)) {
                 $registry = Zend_Registry::getInstance();
                 unset($registry[$key]);
@@ -89,12 +89,12 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     public function testNamespaceRegisteredInPlaceholderRegistryAfterInstantiation()
     {
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        if ($registry->containerExists(\Zend_View_Helper_HeadLink::class)) {
-            $registry->deleteContainer(\Zend_View_Helper_HeadLink::class);
+        if ($registry->containerExists(Zend_View_Helper_HeadLink::class)) {
+            $registry->deleteContainer(Zend_View_Helper_HeadLink::class);
         }
-        $this->assertFalse($registry->containerExists(\Zend_View_Helper_HeadLink::class));
+        $this->assertFalse($registry->containerExists(Zend_View_Helper_HeadLink::class));
         $helper = new Zend_View_Helper_HeadLink();
-        $this->assertTrue($registry->containerExists(\Zend_View_Helper_HeadLink::class));
+        $this->assertTrue($registry->containerExists(Zend_View_Helper_HeadLink::class));
     }
 
     public function testHeadLinkReturnsObjectInstance()
@@ -404,10 +404,9 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3928
-     *
      * @see http://framework.zend.com/issues/browse/ZF-3928
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-3928')]
     public function testTurnOffAutoEscapeDoesNotEncodeAmpersand()
     {
         $this->helper->setAutoEscape(false)->appendStylesheet('/css/rules.css?id=123&foo=bar');
@@ -435,9 +434,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString(' media="screen,print"', $test);
     }
 
-    /**
-     * @group ZF-5435
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5435')]
     public function testContainerMaintainsCorrectOrderOfItems()
     {
         $this->helper->headLink()->offsetSetStylesheet(1,'/test1.css');
@@ -455,18 +452,14 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-10345
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10345')]
     public function testIdAttributeIsSupported()
     {
         $this->helper->appendStylesheet(['href' => '/bar/baz', 'id' => 'foo']);
         $this->assertStringContainsString('id="foo"', $this->helper->toString());
     }
 
-    /**
-     * @group ZF-11811
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11811')]
     public function testHeadLinkAllowsOverrideOfRelAttribute()
     {
         $this->helper->appendStylesheet('/css/auth.less', 'all', null, ['rel' => 'stylesheet/less']);
@@ -474,9 +467,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('rel="stylesheet/less"', $this->helper->toString());
     }
 
-    /**
-     * @group ZF-11643
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-11643')]
     public function testSizesAttributeIsSupported()
     {
         $this->helper->headLink(
@@ -493,9 +484,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $this->helper->toString());
     }
 
-    /**
-     * @group GH-515
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-515')]
     public function testConditionalStylesheetCreationNoIE()
     {
         $this->helper->setStylesheet('/styles.css', 'screen', '!IE');
@@ -508,9 +497,7 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<!--<![endif]-->', $string);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[PHPUnit\Framework\Attributes\Group('GH-515')]
     public function testConditionalStylesheetCreationNoIEWidthSpaces()
     {
         $this->helper->setStylesheet('/styles.css', 'screen', '! IE');

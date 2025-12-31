@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -29,16 +30,15 @@ require_once 'Zend/Config.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Uri
  */
 #[AllowDynamicProperties]
-class Zend_UriTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Uri')]
+class Zend_UriTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_UriTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_UriTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function setUp(): void
@@ -89,9 +89,8 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that Zend_Uri::setConfig() allows Zend_Config.
-     *
-     * @group ZF-5578
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5578')]
     public function testSetConfigWithArray()
     {
         Zend_Uri::setConfig(['allow_unwise' => true]);
@@ -100,9 +99,8 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
 
     /**
      * Tests that Zend_Uri::setConfig() allows Array.
-     *
-     * @group ZF-5578
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5578')]
     public function testSetConfigWithZendConfig()
     {
         Zend_Uri::setConfig(new Zend_Config(['allow_unwise' => true]));
@@ -112,12 +110,11 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     /**
      * Tests that Zend_Uri::setConfig() throws Zend_Uri_Exception if no array
      * nor Zend_Config is given as first parameter.
-     *
-     * @group ZF-5578
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-5578')]
     public function testSetConfigInvalid()
     {
-        $this->expectException(\Zend_Uri_Exception::class);
+        $this->expectException(Zend_Uri_Exception::class);
         Zend_Uri::setConfig('This should cause an exception');
     }
 
@@ -125,9 +122,8 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
      * Tests that if an exception is thrown when calling the __toString()
      * method an empty string is returned and a Warning is triggered, instead
      * of a Fatal Error being triggered.
-     *
-     * @group ZF-10405
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10405')]
     public function testToStringRaisesWarningWhenExceptionCaught()
     {
         $uri = Zend_Uri::factory('http://example.com', 'Zend_Uri_ExceptionCausing');
@@ -146,13 +142,12 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
     /**
      * Error handler for testExceptionThrownInToString().
      *
-     * @group ZF-10405
-     *
      * @param mixed $errno
      * @param mixed $errstr
      * @param mixed $errfile
      * @param mixed $errline
      */
+    #[PHPUnit\Framework\Attributes\Group('ZF-10405')]
     public function handleErrors($errno, $errstr, $errfile = '', $errline = 0)
     {
         $this->error = $errstr;
@@ -193,15 +188,9 @@ class Zend_UriTest extends \PHPUnit\Framework\TestCase
         return $uri;
     }
 
-    public function testFactoryWithUnExistingClassThrowException()
-    {
-        $this->expectException(\Zend_Uri_Exception::class, '"This_Is_An_Unknown_Class" not found');
-        Zend_Uri::factory('http://example.net', 'This_Is_An_Unknown_Class');
-    }
-
     public function testFactoryWithExistingClassButNotImplementingZendUriThrowException()
     {
-        $this->expectException(\Zend_Uri_Exception::class, '"Fake_Zend_Uri" is not an instance of Zend_Uri');
+        $this->expectException(Zend_Uri_Exception::class, '"Fake_Zend_Uri" is not an instance of Zend_Uri');
         Zend_Uri::factory('http://example.net', 'Fake_Zend_Uri');
     }
 

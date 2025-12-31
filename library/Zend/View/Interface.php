@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -58,7 +59,7 @@ interface Zend_View_Interface
      * @param  string $path
      * @param  string $classPrefix
      */
-    public function setBasePath($path, $classPrefix = \Zend_View::class);
+    public function setBasePath($path, $classPrefix = Zend_View::class);
 
     /**
      * Add an additional path to view resources.
@@ -66,7 +67,7 @@ interface Zend_View_Interface
      * @param  string $path
      * @param  string $classPrefix
      */
-    public function addBasePath($path, $classPrefix = \Zend_View::class);
+    public function addBasePath($path, $classPrefix = Zend_View::class);
 
     /**
      * Assign a variable to the view.

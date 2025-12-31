@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,11 +25,10 @@ require_once 'Zend/Validate/PostCode.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Validate
  */
 #[AllowDynamicProperties]
-class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
+class Zend_Validate_PostCodeTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Zend_Validate_PostCode object.
@@ -42,8 +42,8 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
      */
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite('Zend_Validate_PostCodeTest');
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_PostCodeTest');
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     /**
@@ -153,9 +153,7 @@ class Zend_Validate_PostCodeTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-9212
-     */
+    #[PHPUnit\Framework\Attributes\Group('ZF-9212')]
     public function testErrorMessageText()
     {
         $this->assertFalse($this->_validator->isValid('hello'));

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework.
  *
@@ -24,16 +25,15 @@ require_once 'Zend/Xml/Security.php';
 
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- *
- * @group      Zend_Xml
  */
 #[AllowDynamicProperties]
-class Zend_Xml_SecurityTest extends \PHPUnit\Framework\TestCase
+#[PHPUnit\Framework\Attributes\Group('Zend_Xml')]
+class Zend_Xml_SecurityTest extends PHPUnit\Framework\TestCase
 {
     public static function main()
     {
-        $suite = new \PHPUnit\Framework\TestSuite(self::class);
-        $result = \PHPUnit\TextUI\TestRunner::run($suite);
+        $suite = new PHPUnit\Framework\TestSuite(self::class);
+        $result = PHPUnit\TextUI\TestRunner::run($suite);
     }
 
     public function testScanForXEE()
@@ -46,7 +46,7 @@ class Zend_Xml_SecurityTest extends \PHPUnit\Framework\TestCase
             </results>
             XML;
 
-        $this->expectException(\Zend_Xml_Exception::class);
+        $this->expectException(Zend_Xml_Exception::class);
         $result = Zend_Xml_Security::scan($xml);
     }
 
