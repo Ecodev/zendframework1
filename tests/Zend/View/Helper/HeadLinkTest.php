@@ -369,7 +369,6 @@ class Zend_View_Helper_HeadLinkTest extends \PHPUnit\Framework\TestCase
 
     public function testLinkRendersAsPlainHtmlIfDoctypeNotXhtml()
     {
-        $this->view->doctype('HTML4_STRICT');
         $this->helper->headLink(['rel' => 'icon', 'src' => '/foo/bar'])
             ->headLink(['rel' => 'foo', 'href' => '/bar/baz']);
         $test = $this->helper->toString();

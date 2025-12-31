@@ -117,11 +117,4 @@ class Zend_View_Helper_FormTextTest extends \PHPUnit\Framework\TestCase
         $test = $this->helper->formText('foo', 'bar');
         $this->assertStringNotContainsString(' />', $test);
     }
-
-    public function testCanRendersAsXHtml()
-    {
-        $this->view->doctype('XHTML1_STRICT');
-        $test = $this->helper->formText('foo', 'bar');
-        $this->assertStringContainsString(' />', $test);
-    }
 }

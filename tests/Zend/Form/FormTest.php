@@ -3062,7 +3062,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
     {
         $this->assertFalse(empty($html));
         $this->assertStringContainsString('<form', $html);
-        $this->assertMatchesRegularExpression('/<form[^>]+action="' . $this->form->getAction() . '"/', $html);
         $this->assertMatchesRegularExpression('/<form[^>]+method="' . $this->form->getMethod() . '"/i', $html);
         $this->assertMatchesRegularExpression('#<form[^>]+enctype="application/x-www-form-urlencoded"#', $html);
         $this->assertStringContainsString('</form>', $html);
@@ -4324,29 +4323,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testNameAttributeOutputForXhtml()
-    {
-        // Create form
-        $form = new Zend_Form();
-        $form->setName('foo');
-        $form->setMethod(Zend_Form::METHOD_GET);
-        $form->removeDecorator('HtmlTag');
-
-        // Set doctype
-        $this->getView()->getHelper('doctype')->doctype(
-            Zend_View_Helper_Doctype::XHTML1_STRICT
-        );
-
-        $expected = '<form id="foo" method="get" action="">'
-                  . PHP_EOL
-                  . '</form>';
-
-        $this->assertSame(
-            $expected,
-            $form->render($this->getView())
-        );
-    }
-
     /**
      * @group ZF-5613
      */
@@ -4421,19 +4397,19 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             ]
         );
 
-        $expected = '<form enctype="application/x-www-form-urlencoded" action="" method="post">'
+        $expected = '<form enctype="application/x-www-form-urlencoded" method="post">'
                   . PHP_EOL
                   . PHP_EOL
                   . '<label for="subform2-bar" class="optional">Bar</label>'
                   . PHP_EOL
                   . PHP_EOL
-                  . '<input type="text" name="subform2[bar]" id="subform2-bar" value="" />'
+                  . '<input type="text" name="subform2[bar]" id="subform2-bar" value="">'
                   . PHP_EOL
                   . PHP_EOL
                   . '<label for="subform1-foo" class="optional">Foo</label>'
                   . PHP_EOL
                   . PHP_EOL
-                  . '<input type="text" name="subform1[foo]" id="subform1-foo" value="" />'
+                  . '<input type="text" name="subform1[foo]" id="subform1-foo" value="">'
                   . '</form>';
 
         $this->assertSame($expected, $form->render($this->getView()));

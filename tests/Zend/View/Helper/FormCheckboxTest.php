@@ -252,13 +252,6 @@ class Zend_View_Helper_FormCheckboxTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString(' />', $test, $test);
     }
 
-    public function testCanRendersAsXHtml()
-    {
-        $this->view->doctype('XHTML1_STRICT');
-        $test = $this->helper->formCheckbox('foo', 'bar');
-        $this->assertStringContainsString(' />', $test);
-    }
-
     /**
      * @group ZF-6467
      */

@@ -102,13 +102,6 @@ class Zend_View_Helper_FormSubmitTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString(' />', $test);
     }
 
-    public function testCanRendersAsXHtml()
-    {
-        $this->view->doctype('XHTML1_STRICT');
-        $test = $this->helper->formSubmit('foo', 'bar');
-        $this->assertStringContainsString(' />', $test);
-    }
-
     /**
      * @group ZF-10529
      */

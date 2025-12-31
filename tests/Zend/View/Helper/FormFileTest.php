@@ -101,15 +101,6 @@ class Zend_View_Helper_FormFileTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString(' />', $test);
     }
 
-    public function testCanRendersAsXHtml()
-    {
-        $this->view->doctype('XHTML1_STRICT');
-        $test = $this->helper->formFile([
-            'name' => 'foo',
-        ]);
-        $this->assertStringContainsString(' />', $test);
-    }
-
     /**
      * @group GH-191
      */

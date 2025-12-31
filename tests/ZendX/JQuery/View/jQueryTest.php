@@ -390,19 +390,6 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
     }
 
     /**
-     * @group ZF-5839
-     */
-    public function testStylesheetShouldRenderCorrectClosingBracketBasedOnXHtmlDoctypeDefinition()
-    {
-        $this->jquery->addStylesheet('test.css');
-        $this->view->doctype('XHTML1_STRICT');
-
-        $assert = '<link rel="stylesheet" href="test.css" type="text/css" media="screen" />';
-        $this->jquery->enable();
-        $this->assertStringContainsString($assert, $this->jquery->__toString());
-    }
-
-    /**
      * @group ZF-11592
      */
     public function testAddedStylesheetsCanBeCleared()

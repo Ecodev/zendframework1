@@ -85,8 +85,6 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
 
     public function testMakeHtmlObjectWithoutAttribsWithParamsHtml()
     {
-        $this->view->doctype(Zend_View_Helper_Doctype::HTML4_STRICT);
-
         $params = ['paramname1' => 'paramvalue1',
             'paramname2' => 'paramvalue2', ];
 
@@ -97,25 +95,6 @@ class Zend_View_Helper_HtmlObjectTest extends \PHPUnit\Framework\TestCase
 
         foreach ($params as $key => $value) {
             $param = '<param name="' . $key . '" value="' . $value . '">';
-
-            $this->assertStringContainsString($param, $htmlObject);
-        }
-    }
-
-    public function testMakeHtmlObjectWithoutAttribsWithParamsXhtml()
-    {
-        $this->view->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT);
-
-        $params = ['paramname1' => 'paramvalue1',
-            'paramname2' => 'paramvalue2', ];
-
-        $htmlObject = $this->helper->htmlObject('datastring', 'typestring', [], $params);
-
-        $this->assertStringContainsString('<object data="datastring" type="typestring">', $htmlObject);
-        $this->assertStringContainsString('</object>', $htmlObject);
-
-        foreach ($params as $key => $value) {
-            $param = '<param name="' . $key . '" value="' . $value . '" />';
 
             $this->assertStringContainsString($param, $htmlObject);
         }

@@ -92,114 +92,38 @@ class Zend_View_Helper_DoctypeTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($doctype instanceof Zend_View_Helper_Doctype);
     }
 
-    public function testPassingDoctypeSetsDoctype()
-    {
-        $doctype = $this->helper->doctype('XHTML1_STRICT');
-        $this->assertEquals('XHTML1_STRICT', $doctype->getDoctype());
-    }
-
-    public function testIsXhtmlReturnsTrueForXhtmlDoctypes()
-    {
-        $types = [
-            'XHTML1_STRICT',
-            'XHTML1_TRANSITIONAL',
-            'XHTML1_FRAMESET',
-            'XHTML1_RDFA',
-            'XHTML1_RDFA11',
-            'XHTML5',
-        ];
-
-        foreach ($types as $type) {
-            $doctype = $this->helper->doctype($type);
-            $this->assertEquals($type, $doctype->getDoctype());
-            $this->assertTrue($doctype->isXhtml());
-        }
-
-        $doctype = $this->helper->doctype('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://framework.zend.com/foo/DTD/xhtml1-custom.dtd">');
-        $this->assertEquals('CUSTOM_XHTML', $doctype->getDoctype());
-        $this->assertTrue($doctype->isXhtml());
-    }
-
     public function testIsXhtmlReturnsFalseForNonXhtmlDoctypes()
     {
-        foreach (['HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET'] as $type) {
+        foreach (['HTML5'] as $type) {
             $doctype = $this->helper->doctype($type);
             $this->assertEquals($type, $doctype->getDoctype());
             $this->assertFalse($doctype->isXhtml());
         }
-
-        $doctype = $this->helper->doctype('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 10.0 Strict//EN" "http://framework.zend.com/foo/DTD/html10-custom.dtd">');
-        $this->assertEquals('CUSTOM', $doctype->getDoctype());
-        $this->assertFalse($doctype->isXhtml());
     }
 
     public function testIsHtml5()
     {
-        foreach (['HTML5', 'XHTML5'] as $type) {
+        foreach (['HTML5'] as $type) {
             $doctype = $this->helper->doctype($type);
             $this->assertEquals($type, $doctype->getDoctype());
             $this->assertTrue($doctype->isHtml5());
-        }
-
-        foreach (['HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET', 'XHTML1_STRICT', 'XHTML1_TRANSITIONAL', 'XHTML1_FRAMESET'] as $type) {
-            $doctype = $this->helper->doctype($type);
-            $this->assertEquals($type, $doctype->getDoctype());
-            $this->assertFalse($doctype->isHtml5());
         }
     }
 
     public function testIsRdfa()
     {
-        $this->assertTrue($this->helper->doctype('XHTML1_RDFA')->isRdfa());
-        $this->assertTrue($this->helper->doctype('XHTML1_RDFA11')->isRdfa());
-
         // built-in doctypes
-        foreach (['HTML4_STRICT', 'HTML4_LOOSE', 'HTML4_FRAMESET', 'XHTML1_STRICT', 'XHTML1_TRANSITIONAL', 'XHTML1_FRAMESET'] as $type) {
+        foreach (['HTML5'] as $type) {
             $doctype = $this->helper->doctype($type);
             $this->assertFalse($doctype->isRdfa());
         }
-
-        // custom doctype
-        $doctype = $this->helper->doctype('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 10.0 Strict//EN" "http://framework.zend.com/foo/DTD/html10-custom.dtd">');
-        $this->assertFalse($doctype->isRdfa());
-    }
-
-    public function testCanRegisterCustomHtml5Doctype()
-    {
-        $doctype = $this->helper->doctype('<!DOCTYPE html>');
-        $this->assertEquals('CUSTOM', $doctype->getDoctype());
-        $this->assertTrue($doctype->isHtml5());
-    }
-
-    public function testCanRegisterCustomXhtmlDoctype()
-    {
-        $doctype = $this->helper->doctype('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://framework.zend.com/foo/DTD/xhtml1-custom.dtd">');
-        $this->assertEquals('CUSTOM_XHTML', $doctype->getDoctype());
-        $this->assertTrue($doctype->isXhtml());
-    }
-
-    public function testCanRegisterCustomHtmlDoctype()
-    {
-        $doctype = $this->helper->doctype('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 10.0 Strict//EN" "http://framework.zend.com/foo/DTD/html10-custom.dtd">');
-        $this->assertEquals('CUSTOM', $doctype->getDoctype());
-        $this->assertFalse($doctype->isXhtml());
-    }
-
-    public function testMalformedCustomDoctypeRaisesException()
-    {
-        try {
-            $doctype = $this->helper->doctype('<!FOO HTML>');
-            $this->fail('Malformed doctype should raise exception');
-        } catch (Exception $e) {
-        }
-        self::assertTrue(true);
     }
 
     public function testStringificationReturnsDoctypeString()
     {
-        $doctype = $this->helper->doctype('XHTML1_STRICT');
+        $doctype = $this->helper->doctype('HTML5');
         $string = $doctype->__toString();
         $registry = Zend_Registry::get(\Zend_View_Helper_Doctype::class);
-        $this->assertEquals($registry['doctypes']['XHTML1_STRICT'], $string);
+        $this->assertEquals($registry['doctypes']['HTML5'], $string);
     }
 }

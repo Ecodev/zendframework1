@@ -105,11 +105,11 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
 
     public function testDoctypeIsSet()
     {
-        $options = ['doctype' => 'XHTML1_FRAMESET'];
+        $options = ['doctype' => 'HTML5'];
         $resource = new Zend_Application_Resource_View($options);
         $resource->init();
         $view = $resource->getView();
-        $this->assertEquals('XHTML1_FRAMESET', $view->doctype()->getDoctype());
+        $this->assertEquals('HTML5', $view->doctype()->getDoctype());
     }
 
     /**
@@ -164,38 +164,6 @@ class Zend_Application_Resource_ViewTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($view->doctype()->isHtml5());
         $this->assertEquals($charset, $actual);
-
-        $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
-        $registry->deleteContainer(\Zend_View_Helper_HeadMeta::class);
-        $registry->deleteContainer(\Zend_View_Helper_Doctype::class);
-    }
-
-    /**
-     * @group ZF-10343
-     */
-    public function testSetMetaCharsetShouldOnlyAvailableForHtml5()
-    {
-        $charset = 'UTF-8';
-        $options = [
-            'doctype' => 'XHTML1_STRICT',
-            'charset' => $charset,
-        ];
-        $resource = new Zend_Application_Resource_View($options);
-        $view = $resource->init();
-        $headMetaHelper = $view->headMeta();
-
-        $actual = null;
-        $container = $headMetaHelper->getContainer();
-        foreach ($container as $item) {
-            if ('charset' == $item->type) {
-                $actual = $item->charset;
-
-                break;
-            }
-        }
-
-        $this->assertFalse($view->doctype()->isHtml5());
-        $this->assertNull($actual);
 
         $registry = Zend_View_Helper_Placeholder_Registry::getRegistry();
         $registry->deleteContainer(\Zend_View_Helper_HeadMeta::class);

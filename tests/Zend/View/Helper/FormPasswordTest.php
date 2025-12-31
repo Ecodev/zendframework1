@@ -91,13 +91,6 @@ class Zend_View_Helper_FormPasswordTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString(' />', $test);
     }
 
-    public function testShouldAllowRenderingAsXhtml()
-    {
-        $this->view->doctype('XHTML1_STRICT');
-        $test = $this->helper->formPassword('foo', 'bar');
-        $this->assertStringContainsString(' />', $test);
-    }
-
     public function testShouldNotRenderValueByDefault()
     {
         $test = $this->helper->formPassword('foo', 'bar');

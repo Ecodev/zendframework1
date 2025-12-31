@@ -44,29 +44,14 @@ class Zend_View_Helper_Navigation_LinksTest extends Zend_View_Helper_Navigation_
      */
     protected $_helper;
 
-    private $_doctypeHelper;
-
-    private $_oldDoctype;
-
     public function setUp(): void
     {
         parent::setUp();
-
-        // doctype fix (someone forgot to clean up after their unit tests)
-        $this->_doctypeHelper = $this->_helper->view->doctype();
-        $this->_oldDoctype = $this->_doctypeHelper->getDoctype();
-        $this->_doctypeHelper->setDoctype(
-            Zend_View_Helper_Doctype::HTML4_LOOSE);
 
         // disable all active pages
         foreach ($this->_helper->findAllByActive(true) as $page) {
             $page->active = false;
         }
-    }
-
-    public function tearDown(): void
-    {
-        $this->_doctypeHelper->setDoctype($this->_oldDoctype);
     }
 
     public function testHelperEntryPointWithoutAnyParams()

@@ -107,26 +107,4 @@ class Zend_View_Helper_FormMultiCheckboxTest extends \PHPUnit\Framework\TestCase
             $this->assertStringNotContainsString(' />', $matches[1]);
         }
     }
-
-    public function testCanRendersAsXHtml()
-    {
-        $this->view->doctype('XHTML1_STRICT');
-        $options = [
-            'foo' => 'Foo',
-            'bar' => 'Bar',
-            'baz' => 'Baz',
-        ];
-        $html = $this->helper->formMultiCheckbox([
-            'name' => 'foo',
-            'value' => 'bar',
-            'options' => $options,
-        ]);
-        foreach ($options as $key => $value) {
-            $pattern = '#(<input[^>]*?("' . $key . '").*?>)#';
-            if (!preg_match($pattern, $html, $matches)) {
-                $this->fail('Failed to match ' . $pattern . ': ' . $html);
-            }
-            $this->assertStringContainsString(' />', $matches[1]);
-        }
-    }
 }

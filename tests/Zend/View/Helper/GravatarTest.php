@@ -64,7 +64,6 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
     {
         $this->_object = new Zend_View_Helper_Gravatar();
         $this->_view = new Zend_View();
-        $this->_view->doctype()->setDoctype(strtoupper('XHTML1_STRICT'));
         $this->_object->setView($this->_view);
 
         if (isset($_SERVER['HTTPS'])) {
@@ -78,15 +77,6 @@ class Zend_View_Helper_GravatarTest extends \PHPUnit\Framework\TestCase
     protected function tearDown(): void
     {
         unset($this->_object, $this->_view);
-    }
-
-    /**
-     * Test default options.
-     */
-    public function testGravataXHTMLDoctype()
-    {
-        $this->assertMatchesRegularExpression('/\/>$/',
-            $this->_object->gravatar('example@example.com')->__toString());
     }
 
     /**

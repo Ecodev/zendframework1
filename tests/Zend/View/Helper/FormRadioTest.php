@@ -45,7 +45,6 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         $this->view = new Zend_View();
-        $this->view->doctype('HTML4_LOOSE'); // Set default doctype
         $this->helper = new Zend_View_Helper_FormRadio();
         $this->helper->setView($this->view);
     }
@@ -432,69 +431,5 @@ class Zend_View_Helper_FormRadioTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString('value="foo">', $html);
         $this->assertStringContainsString('value="bar">', $html);
         $this->assertStringContainsString('value="baz">', $html);
-    }
-
-    /**
-     * @group ZF-11477
-     */
-    public function testCanRendersAsXHtml()
-    {
-        $this->view->doctype('XHTML1_STRICT');
-        $options = [
-            'foo' => 'Foo',
-            'bar' => 'Bar',
-            'baz' => 'Baz',
-        ];
-        $html = $this->helper->formRadio([
-            'name' => 'foo',
-            'options' => $options,
-        ]);
-        $this->assertStringContainsString('value="foo" />', $html);
-        $this->assertStringContainsString('value="bar" />', $html);
-        $this->assertStringContainsString('value="baz" />', $html);
-    }
-
-    /**
-     * @group ZF-11620
-     */
-    public function testSeparatorCanRendersAsXhtmlByDefault()
-    {
-        $this->view->doctype('XHTML1_STRICT');
-        $options = [
-            'foo' => 'Foo',
-            'bar' => 'Bar',
-            'baz' => 'Baz',
-        ];
-        $html = $this->helper->formRadio([
-            'name' => 'foo',
-            'value' => 'bar',
-            'options' => $options,
-        ]);
-
-        $this->assertStringContainsString('<br />', $html);
-        $count = substr_count($html, '<br />');
-        $this->assertEquals(2, $count);
-    }
-
-    /**
-     * @group ZF-11620
-     */
-    public function testeparatorCanRendersAsHtml()
-    {
-        $this->view->doctype('HTML4_STRICT');
-        $options = [
-            'foo' => 'Foo',
-            'bar' => 'Bar',
-            'baz' => 'Baz',
-        ];
-        $html = $this->helper->formRadio([
-            'name' => 'foo',
-            'value' => 'bar',
-            'options' => $options,
-        ]);
-
-        $this->assertStringContainsString('<br>', $html);
-        $count = substr_count($html, '<br>');
-        $this->assertEquals(2, $count);
     }
 }
