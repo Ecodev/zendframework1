@@ -212,25 +212,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     protected $_subForms = [];
 
     /**
-     * @var Zend_Translate
-     */
-    protected $_translator;
-
-    /**
-     * Global default translation adapter.
-     *
-     * @var Zend_Translate
-     */
-    protected static $_translatorDefault;
-
-    /**
-     * is the translator disabled?
-     *
-     * @var bool
-     */
-    protected $_translatorDisabled = false;
-
-    /**
      * @var Zend_View_Interface
      */
     protected $_view;
@@ -376,7 +357,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         }
 
         $forbidden = [
-            'Options', 'Config', 'PluginLoader', 'SubForms', 'Translator',
+            'Options', 'Config', 'PluginLoader', 'SubForms',
             'Attrib', 'Default',
         ];
 
@@ -2348,7 +2329,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         if (!is_array($data)) {
             throw new Zend_Form_Exception(__METHOD__ . ' expects an array');
         }
-        $translator = $this->getTranslator();
         $valid = true;
         $eBelongTo = null;
 
@@ -2359,10 +2339,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         $context = $data;
         /** @var Zend_Form_Element $element */
         foreach ($this->getElements() as $key => $element) {
-            if (null !== $translator && $this->hasTranslator()
-                    && !$element->hasTranslator()) {
-                $element->setTranslator($translator);
-            }
             $check = $data;
             if (($belongsTo = $element->getBelongsTo()) !== $eBelongTo) {
                 $check = $this->_dissolveArrayValue($data, $belongsTo);
@@ -2376,10 +2352,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         }
         /** @var Zend_Form_SubForm $form */
         foreach ($this->getSubForms() as $key => $form) {
-            if (null !== $translator && $this->hasTranslator()
-                    && !$form->hasTranslator()) {
-                $form->setTranslator($translator);
-            }
             if (isset($data[$key]) && !$form->isArray()) {
                 $valid = $form->isValid($data[$key]) && $valid;
             } else {
@@ -2413,7 +2385,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
             $data = $this->_dissolveArrayValue($data, $eBelongTo);
         }
 
-        $translator = $this->getTranslator();
         $valid = true;
         $context = $data;
 
@@ -2424,18 +2395,12 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
                 $check = $this->_dissolveArrayValue($data, $belongsTo);
             }
             if (isset($check[$key])) {
-                if (null !== $translator && !$element->hasTranslator()) {
-                    $element->setTranslator($translator);
-                }
                 $valid = $element->isValid($check[$key], $context) && $valid;
                 $data = $this->_dissolveArrayUnsetKey($data, $belongsTo, $key);
             }
         }
         /** @var Zend_Form_SubForm $form */
         foreach ($this->getSubForms() as $key => $form) {
-            if (null !== $translator && !$form->hasTranslator()) {
-                $form->setTranslator($translator);
-            }
             if (isset($data[$key]) && !$form->isArray()) {
                 $valid = $form->isValidPartial($data[$key]) && $valid;
             } else {
@@ -2743,7 +2708,7 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     }
 
     /**
-     * Retrieve translated custom error messages
+     * Retrieve custom error messages
      * Proxies to {@link _getErrorMessages()}.
      *
      * @return array
@@ -3112,132 +3077,6 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
         }
     }
 
-    // Localization:
-
-    /**
-     * Set translator object.
-     *
-     * @param  null|Zend_Translate|Zend_Translate_Adapter $translator
-     *
-     * @return Zend_Form
-     */
-    public function setTranslator($translator = null)
-    {
-        if (null === $translator) {
-            $this->_translator = null;
-        } elseif ($translator instanceof Zend_Translate_Adapter) {
-            $this->_translator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            $this->_translator = $translator->getAdapter();
-        } else {
-            throw new Zend_Form_Exception('Invalid translator specified');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set global default translator object.
-     *
-     * @param  null|Zend_Translate|Zend_Translate_Adapter $translator
-     */
-    public static function setDefaultTranslator($translator = null)
-    {
-        if (null === $translator) {
-            self::$_translatorDefault = null;
-        } elseif ($translator instanceof Zend_Translate_Adapter) {
-            self::$_translatorDefault = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            self::$_translatorDefault = $translator->getAdapter();
-        } else {
-            throw new Zend_Form_Exception('Invalid translator specified');
-        }
-    }
-
-    /**
-     * Retrieve translator object.
-     *
-     * @return null|Zend_Translate
-     */
-    public function getTranslator()
-    {
-        if ($this->translatorIsDisabled()) {
-            return null;
-        }
-
-        if (null === $this->_translator) {
-            return self::getDefaultTranslator();
-        }
-
-        return $this->_translator;
-    }
-
-    /**
-     * Does this form have its own specific translator?
-     *
-     * @return bool
-     */
-    public function hasTranslator()
-    {
-        return (bool) $this->_translator;
-    }
-
-    /**
-     * Get global default translator object.
-     *
-     * @return null|Zend_Translate
-     */
-    public static function getDefaultTranslator()
-    {
-        if (null === self::$_translatorDefault) {
-            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
-                $translator = Zend_Registry::get(\Zend_Translate::class);
-                if ($translator instanceof Zend_Translate_Adapter) {
-                    return $translator;
-                }
-                if ($translator instanceof Zend_Translate) {
-                    return $translator->getAdapter();
-                }
-            }
-        }
-
-        return self::$_translatorDefault;
-    }
-
-    /**
-     * Is there a default translation object set?
-     *
-     * @return bool
-     */
-    public static function hasDefaultTranslator()
-    {
-        return (bool) self::$_translatorDefault;
-    }
-
-    /**
-     * Indicate whether or not translation should be disabled.
-     *
-     * @param  bool $flag
-     *
-     * @return Zend_Form
-     */
-    public function setDisableTranslator($flag)
-    {
-        $this->_translatorDisabled = (bool) $flag;
-
-        return $this;
-    }
-
-    /**
-     * Is translation disabled?
-     *
-     * @return bool
-     */
-    public function translatorIsDisabled()
-    {
-        return $this->_translatorDisabled;
-    }
-
     /**
      * Overloading: access to elements, form groups, and display groups.
      *
@@ -3572,19 +3411,13 @@ class Zend_Form implements Iterator, Countable, Zend_Validate_Interface
     }
 
     /**
-     * Retrieve optionally translated custom error messages.
+     * Retrieve custom error messages.
      *
      * @return array
      */
     protected function _getErrorMessages()
     {
         $messages = $this->getErrorMessages();
-        $translator = $this->getTranslator();
-        if (null !== $translator) {
-            foreach ($messages as $key => $message) {
-                $messages[$key] = $translator->translate($message);
-            }
-        }
 
         return $messages;
     }

@@ -260,37 +260,6 @@ class Zend_Validate_HostnameTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Test changed with ZF-6676, as IP check is only involved when IP patterns match.
-     *
-     * @group ZF-2861
-     * @group ZF-6676
-     */
-    public function testValidatorMessagesShouldBeTranslated()
-    {
-        $code = null;
-        $message = null;
-        $translations = [
-            'hostnameInvalidLocalName' => 'this is the IP error message',
-        ];
-        $translator = new Zend_Translate('array', $translations);
-        $this->_validator->setTranslator($translator);
-
-        $this->_validator->isValid('0.239,512.777');
-        $messages = $this->_validator->getMessages();
-        $found = false;
-        foreach ($messages as $code => $message) {
-            if (array_key_exists($code, $translations)) {
-                $found = true;
-
-                break;
-            }
-        }
-
-        $this->assertTrue($found);
-        $this->assertEquals($translations[$code], $message);
-    }
-
-    /**
      * @group ZF-6033
      */
     public function testNumberNames()

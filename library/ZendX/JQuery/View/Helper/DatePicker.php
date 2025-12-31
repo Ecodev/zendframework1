@@ -47,7 +47,6 @@ class ZendX_JQuery_View_Helper_DatePicker extends ZendX_JQuery_View_Helper_UiWid
             $params['dateFormat'] = self::resolveZendLocaleToDatePickerFormat();
         }
 
-        // TODO: Allow translation of DatePicker Text Values to get this action from client to server
         $params = ZendX_JQuery::encodeJson($params);
 
         $js = sprintf('%s("#%s").datepicker(%s);',

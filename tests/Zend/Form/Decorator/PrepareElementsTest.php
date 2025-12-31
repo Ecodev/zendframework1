@@ -109,21 +109,4 @@ class Zend_Form_Decorator_PrepareElementsTest extends \PHPUnit\Framework\TestCas
             }
         }
     }
-
-    public function testEachElementShouldHaveUpdatedTranslatorProperty()
-    {
-        $this->prepareForm();
-        $translator = new Zend_Translate('array', ['foo' => 'bar'], 'en');
-        $this->form->setTranslator($translator);
-        $this->form->render();
-        $translator = $this->form->getTranslator();
-        foreach ($this->form as $item) {
-            $this->assertSame($translator, $item->getTranslator(), 'Translator not the same: ' . var_export($item->getTranslator(), 1));
-            if ($item instanceof Zend_Form) {
-                foreach ($item->getElements() as $subItem) {
-                    $this->assertSame($translator, $subItem->getTranslator(), var_export($subItem, 1));
-                }
-            }
-        }
-    }
 }

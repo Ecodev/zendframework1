@@ -116,32 +116,6 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * No explicit assertions; just checking for error conditions.
-     *
-     * @group ZF-2847
-     */
-    public function testTranslationShouldNotRaiseWarningsWithNestedGroups()
-    {
-        $translate = new Zend_Translate('array', ['Select Test', 'Select Test Translated'], 'en');
-        $this->element
-            ->setLabel('Select Test')
-            ->setMultiOptions([
-                'Group 1' => [
-                    '1-1' => 'Hi 1-1',
-                    '1-2' => 'Hi 1-2',
-                ],
-                'Group 2' => [
-                    '2-1' => 'Hi 2-1',
-                    '2-2' => 'Hi 2-2',
-                ],
-            ])
-            ->setTranslator($translate)
-            ->setView(new Zend_View());
-        $html = $this->element->render();
-        self::assertTrue(true);
-    }
-
-    /**
      * @group ZF-3953
      */
     public function testUsingZeroAsValueShouldSelectAppropriateOption()
@@ -158,23 +132,6 @@ class Zend_Form_Element_SelectTest extends \PHPUnit\Framework\TestCase
             $this->fail('Could not find option: ' . $html);
         }
         $this->assertStringNotContainsString('selected', $matches[1]);
-    }
-
-    /**
-     * @group ZF-4390
-     */
-    public function testEmptyOptionsShouldNotBeTranslated()
-    {
-        $translate = new Zend_Translate('array', ['unused', 'foo' => 'bar'], 'en');
-        $this->element->setTranslator($translate);
-        $this->element->setMultiOptions([
-            ['key' => '', 'value' => ''],
-            ['key' => 'foo', 'value' => 'foo'],
-        ]);
-        $this->element->setView($this->getView());
-        $html = $this->element->render();
-        $this->assertStringNotContainsString('unused', $html, $html);
-        $this->assertStringContainsString('bar', $html, $html);
     }
 
     /**

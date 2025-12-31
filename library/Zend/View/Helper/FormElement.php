@@ -26,46 +26,6 @@
 abstract class Zend_View_Helper_FormElement extends Zend_View_Helper_HtmlElement
 {
     /**
-     * @var null|Zend_Translate_Adapter
-     */
-    protected $_translator;
-
-    /**
-     * Get translator.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public function getTranslator()
-    {
-        return $this->_translator;
-    }
-
-    /**
-     * Set translator.
-     *
-     * @param  null|Zend_Translate|Zend_Translate_Adapter $translator
-     *
-     * @return Zend_View_Helper_FormElement
-     */
-    public function setTranslator($translator = null)
-    {
-        if (null === $translator) {
-            $this->_translator = null;
-        } elseif ($translator instanceof Zend_Translate_Adapter) {
-            $this->_translator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            $this->_translator = $translator->getAdapter();
-        } else {
-            $e = new Zend_View_Exception('Invalid translator specified');
-            $e->setView($this->view);
-
-            throw $e;
-        }
-
-        return $this;
-    }
-
-    /**
      * Converts parameter arguments to an element info array.
      *
      * E.g, formExample($name, $value, $attribs, $options, $listsep) is

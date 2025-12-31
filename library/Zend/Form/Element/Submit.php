@@ -58,8 +58,6 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
      *
      * If no label is present, returns the currently set name.
      *
-     * If a translator is present, returns the translated label.
-     *
      * @return string
      */
     public function getLabel()
@@ -68,10 +66,6 @@ class Zend_Form_Element_Submit extends Zend_Form_Element_Xhtml
 
         if (null === $value) {
             $value = $this->getName();
-
-            if (null !== ($translator = $this->getTranslator())) {
-                return $translator->translate($value);
-            }
         }
 
         return $value;

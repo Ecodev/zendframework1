@@ -136,32 +136,6 @@ class Zend_Form_Decorator_ViewHelperTest extends \PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<input.*?name="foo"#s', $test);
     }
 
-    public function testMultiOptionsPassedToViewHelperAreTranslated()
-    {
-        $element = new Zend_Form_Element_Select('foo');
-        $options = [
-            'foo' => 'This Foo Will Not Be Displayed',
-            'bar' => 'This Bar Will Not Be Displayed',
-            'baz' => 'This Baz Will Not Be Displayed',
-        ];
-        $element->setMultiOptions($options);
-
-        $translations = [
-            'This Foo Will Not Be Displayed' => 'This is the Foo Value',
-            'This Bar Will Not Be Displayed' => 'This is the Bar Value',
-            'This Baz Will Not Be Displayed' => 'This is the Baz Value',
-        ];
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $translate->setLocale('en');
-
-        $element->setTranslator($translate);
-        $test = $element->render($this->getView());
-        foreach ($options as $key => $value) {
-            $this->assertStringNotContainsString($value, $test);
-            $this->assertStringContainsString($translations[$value], $test);
-        }
-    }
-
     /**
      * @group ZF-9689
      */

@@ -137,10 +137,6 @@ class Zend_Form_Decorator_Fieldset extends Zend_Form_Decorator_Abstract
         }
 
         if (null !== $legend) {
-            if (null !== ($translator = $element->getTranslator())) {
-                $legend = $translator->translate($legend);
-            }
-
             $attribs['legend'] = $legend;
         }
 

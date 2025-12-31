@@ -66,13 +66,6 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
     protected $_injectAcl = true;
 
     /**
-     * Whether translator should be injected when proxying.
-     *
-     * @var bool
-     */
-    protected $_injectTranslator = true;
-
-    /**
      * Helper entry point.
      *
      * @param  Zend_Navigation_Container $container  [optional] container to
@@ -187,7 +180,7 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
     }
 
     /**
-     * Injects container, ACL, and translator to the given $helper if this
+     * Injects container and ACL to the given $helper if this
      * helper is configured to do so.
      *
      * @param  Zend_View_Helper_Navigation_Helper $helper  helper instance
@@ -205,10 +198,6 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
             if (!$helper->hasRole()) {
                 $helper->setRole($this->getRole());
             }
-        }
-
-        if ($this->getInjectTranslator() && !$helper->hasTranslator()) {
-            $helper->setTranslator($this->getTranslator());
         }
     }
 
@@ -288,32 +277,6 @@ class Zend_View_Helper_Navigation extends Zend_View_Helper_Navigation_HelperAbst
     public function getInjectAcl()
     {
         return $this->_injectAcl;
-    }
-
-    /**
-     * Sets whether translator should be injected when proxying.
-     *
-     * @param  bool $injectTranslator       [optional] whether translator should
-     *                                      be injected when proxying. Default
-     *                                      is true.
-     *
-     * @return Zend_View_Helper_Navigation  fluent interface, returns self
-     */
-    public function setInjectTranslator($injectTranslator = true)
-    {
-        $this->_injectTranslator = (bool) $injectTranslator;
-
-        return $this;
-    }
-
-    /**
-     * Returns whether translator should be injected when proxying.
-     *
-     * @return bool  whether translator should be injected when proxying
-     */
-    public function getInjectTranslator()
-    {
-        return $this->_injectTranslator;
     }
 
     // Zend_View_Helper_Navigation_Helper:

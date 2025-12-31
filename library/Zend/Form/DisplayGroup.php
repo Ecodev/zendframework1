@@ -103,18 +103,6 @@ class Zend_Form_DisplayGroup implements Iterator, Countable
     protected $_order;
 
     /**
-     * @var Zend_Translate
-     */
-    protected $_translator;
-
-    /**
-     * Is translation disabled?
-     *
-     * @var bool
-     */
-    protected $_translatorDisabled = false;
-
-    /**
      * @var Zend_View_Interface
      */
     protected $_view;
@@ -159,7 +147,7 @@ class Zend_Form_DisplayGroup implements Iterator, Countable
     {
         $forbidden = [
             'Options', 'Config', 'PluginLoader', 'View',
-            'Translator', 'Attrib',
+            'Attrib',
         ];
         foreach ($options as $key => $value) {
             $normalized = ucfirst($key);
@@ -969,78 +957,6 @@ class Zend_Form_DisplayGroup implements Iterator, Countable
 
             return '';
         }
-    }
-
-    /**
-     * Set translator object.
-     *
-     * @param  null|Zend_Translate|Zend_Translate_Adapter $translator
-     *
-     * @return Zend_Form_DisplayGroup
-     */
-    public function setTranslator($translator = null)
-    {
-        if ((null === $translator) || ($translator instanceof Zend_Translate_Adapter)) {
-            $this->_translator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            $this->_translator = $translator->getAdapter();
-        } else {
-            throw new Zend_Form_Exception('Invalid translator specified');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Retrieve translator object.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public function getTranslator()
-    {
-        if ($this->translatorIsDisabled()) {
-            return null;
-        }
-
-        if (null === $this->_translator) {
-            return Zend_Form::getDefaultTranslator();
-        }
-
-        return $this->_translator;
-    }
-
-    /**
-     * Does this display group have its own specific translator?
-     *
-     * @return bool
-     */
-    public function hasTranslator()
-    {
-        return (bool) $this->getTranslator();
-    }
-
-    /**
-     * Indicate whether or not translation should be disabled.
-     *
-     * @param  bool $flag
-     *
-     * @return Zend_Form_DisplayGroup
-     */
-    public function setDisableTranslator($flag)
-    {
-        $this->_translatorDisabled = (bool) $flag;
-
-        return $this;
-    }
-
-    /**
-     * Is translation disabled?
-     *
-     * @return bool
-     */
-    public function translatorIsDisabled()
-    {
-        return $this->_translatorDisabled;
     }
 
     /**

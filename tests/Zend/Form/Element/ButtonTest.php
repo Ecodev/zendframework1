@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Translate.php';
 
 /**
  * Test class for Zend_Form_Element_Button.
@@ -95,28 +94,6 @@ class Zend_Form_Element_ButtonTest extends \PHPUnit\Framework\TestCase
         $decorator->setElement($this->element);
         $helper = $decorator->getHelper();
         $this->assertEquals('formButton', $helper);
-    }
-
-    public function testGetLabelReturnsTranslatedLabelIfTranslatorIsRegistered()
-    {
-        $translations = include __DIR__ . '/../_files/locale/array.php';
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $this->element->setTranslator($translate)
-            ->setLabel('submit');
-        $test = $this->element->getLabel();
-        $this->assertEquals($translations['submit'], $test);
-    }
-
-    public function testTranslatedLabelIsRendered()
-    {
-        $this->_checkZf2794();
-
-        $this->testGetLabelReturnsTranslatedLabelIfTranslatorIsRegistered();
-        $this->element->setView($this->getView());
-        $decorator = $this->element->getDecorator('ViewHelper');
-        $decorator->setElement($this->element);
-        $html = $decorator->render('');
-        $this->assertMatchesRegularExpression('/<(input|button)[^>]*?>Submit Button/', $html, $html);
     }
 
     /**

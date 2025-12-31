@@ -46,27 +46,6 @@ interface Zend_View_Helper_Navigation_Helper
     public function getContainer();
 
     /**
-     * Sets translator to use in helper.
-     *
-     * @param  mixed $translator                   [optional] translator.
-     *                                             Expects an object of type
-     *                                             {@link Zend_Translate_Adapter}
-     *                                             or {@link Zend_Translate},
-     *                                             or null. Default is null.
-     *
-     * @return Zend_View_Helper_Navigation_Helper  fluent interface, returns
-     *                                             self
-     */
-    public function setTranslator($translator = null);
-
-    /**
-     * Returns translator used in helper.
-     *
-     * @return null|Zend_Translate_Adapter  translator or null
-     */
-    public function getTranslator();
-
-    /**
      * Sets ACL to use when iterating pages.
      *
      * @param  Zend_Acl $acl                       [optional] ACL instance
@@ -142,25 +121,6 @@ interface Zend_View_Helper_Navigation_Helper
     public function setRenderInvisible($renderInvisible = true);
 
     /**
-     * Sets whether translator should be used.
-     *
-     * @param  bool $useTranslator                 [optional] whether
-     *                                             translator should be used.
-     *                                             Default is true.
-     *
-     * @return Zend_View_Helper_Navigation_Helper  fluent interface, returns
-     *                                             self
-     */
-    public function setUseTranslator($useTranslator = true);
-
-    /**
-     * Returns whether translator should be used.
-     *
-     * @return bool  whether translator should be used
-     */
-    public function getUseTranslator();
-
-    /**
      * Checks if the helper has a container.
      *
      * @return bool  whether the helper has a container or not
@@ -180,13 +140,6 @@ interface Zend_View_Helper_Navigation_Helper
      * @return bool  whether the helper has a an ACL role or not
      */
     public function hasRole();
-
-    /**
-     * Checks if the helper has a translator.
-     *
-     * @return bool  whether the helper has a translator or not
-     */
-    public function hasTranslator();
 
     /**
      * Magic overload: Should proxy to {@link render()}.

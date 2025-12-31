@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Translate/Adapter/Array.php';
 
 /**
  * Test class for Zend_Form_Element_Submit.
@@ -44,7 +43,6 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
-        Zend_Form::setDefaultTranslator(null);
         $this->element = new Zend_Form_Element_Submit('foo');
     }
 
@@ -92,28 +90,6 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($this->element->getName(), $this->element->getLabel());
     }
 
-    public function testGetLabelReturnsTranslatedLabelIfTranslatorIsRegistered()
-    {
-        $translations = include __DIR__ . '/../_files/locale/array.php';
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $this->element->setTranslator($translate)
-            ->setLabel('submit');
-        $test = $this->element->getLabel();
-        $this->assertEquals($translations['submit'], $test);
-    }
-
-    public function testTranslatedLabelIsRendered()
-    {
-        $this->_checkZf2794();
-
-        $this->testGetLabelReturnsTranslatedLabelIfTranslatorIsRegistered();
-        $this->element->setView($this->getView());
-        $decorator = $this->element->getDecorator('ViewHelper');
-        $decorator->setElement($this->element);
-        $html = $decorator->render('');
-        $this->assertMatchesRegularExpression('/<(input|button)[^>]*?value="Submit Button"/', $html);
-    }
-
     public function testConstructorSetsLabelToNameIfNoLabelProvided()
     {
         $submit = new Zend_Form_Element_Submit('foo');
@@ -125,37 +101,6 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
     {
         $submit = new Zend_Form_Element_Submit('foo', 'Label');
         $this->assertEquals('Label', $submit->getLabel());
-    }
-
-    public function testLabelIsTranslatedWhenTranslationAvailable()
-    {
-        $translations = ['Label' => 'This is the Submit Label'];
-        $translate = new Zend_Translate('array', $translations);
-        $submit = new Zend_Form_Element_Submit('foo', 'Label');
-        $submit->setTranslator($translate);
-        $this->assertEquals($translations['Label'], $submit->getLabel());
-    }
-
-    public function testLabelWhichIsSetToNameIsTranslatedWhenTranslationAvailable()
-    {
-        $translations = ['foo' => 'This is the Submit Label'];
-        $translate = new Zend_Translate('array', $translations);
-        $submit = new Zend_Form_Element_Submit('foo');
-        $submit->setTranslator($translate);
-        $this->assertEquals($translations['foo'], $submit->getLabel());
-    }
-
-    /**
-     * @group ZF-8764
-     */
-    public function testLabelIsNotTranslatedTwice()
-    {
-        $translations = ['firstLabel' => 'secondLabel',
-            'secondLabel' => 'thirdLabel', ];
-        $translate = new Zend_Translate('array', $translations);
-        $submit = new Zend_Form_Element_Submit('foo', 'firstLabel');
-        $submit->setTranslator($translate);
-        $this->assertEquals($translations['firstLabel'], $submit->getLabel());
     }
 
     public function testIsCheckedReturnsFalseWhenNoValuePresent()
@@ -175,55 +120,6 @@ class Zend_Form_Element_SubmitTest extends \PHPUnit\Framework\TestCase
         $this->testIsCheckedReturnsFalseWhenNoValuePresent();
         $this->element->setValue('foo');
         $this->assertTrue($this->element->isChecked());
-    }
-
-    /**
-     * Tests that the isChecked method works as expected when using a translator.
-     *
-     * @group ZF-4073
-     */
-    public function testIsCheckedReturnsExpectedValueWhenUsingTranslator()
-    {
-        $translations = ['label' => 'translation'];
-        $translate = new Zend_Translate('array', $translations);
-
-        $submit = new Zend_Form_Element_Submit('foo', 'label');
-        $submit->setTranslator($translate);
-        $submit->setValue($translations['label']);
-
-        $this->assertTrue($submit->isChecked());
-
-        $submit->setValue('label');
-        $this->assertFalse($submit->isChecked());
-    }
-
-    /*
-     * Tests if title attribute (tooltip) is translated if the default decorators are loaded.
-     * These decorators should load the Tooltip decorator as the first decorator.
-     * @group ZF-6151
-     */
-    public function testTitleAttributeGetsTranslated()
-    {
-        $this->element->setAttrib('title', 'bar');
-        $translator = new Zend_Translate_Adapter_Array(['bar' => 'baz'], 'de');
-        $this->element->setTranslator($translator);
-        $html = $this->element->render(new Zend_View());
-        $this->assertStringContainsString('title', $html);
-        $this->assertStringContainsString('baz', $html);
-        $this->assertStringNotContainsString('bar', $html);
-    }
-
-    public function testTitleAttributeDoesNotGetTranslatedIfTranslatorIsDisabled()
-    {
-        $this->element->setAttrib('title', 'bar');
-        $translator = new Zend_Translate_Adapter_Array(['bar' => 'baz'], 'de');
-        $this->element->setTranslator($translator);
-        // now disable translator and see if that works
-        $this->element->setDisableTranslator(true);
-        $html = $this->element->render(new Zend_View());
-        $this->assertStringContainsString('title', $html);
-        $this->assertStringContainsString('bar', $html);
-        $this->assertStringNotContainsString('baz', $html);
     }
 
     public function testSetDefaultIgnoredToTrueWhenNotDefined()

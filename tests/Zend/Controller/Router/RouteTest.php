@@ -23,9 +23,6 @@ require_once 'Zend/Controller/Request/Http.php';
 /** @see Zend_Controller_Router_Route */
 require_once 'Zend/Controller/Router/Route.php';
 
-/** @see Zend_Translate */
-require_once 'Zend/Translate.php';
-
 /** @see Zend_Registry */
 require_once 'Zend/Registry.php';
 
@@ -56,13 +53,6 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
         // Clean host env
         unset($_SERVER['HTTP_HOST'],
             $_SERVER['HTTPS'], $_SERVER['SERVER_NAME'], $_SERVER['SERVER_PORT']);
-
-        // Set translator
-        $translator = new Zend_Translate('array', ['foo' => 'en_foo', 'bar' => 'en_bar'], 'en');
-        $translator->addTranslation(['foo' => 'de_foo', 'bar' => 'de_bar'], 'de');
-        $translator->setLocale('en');
-
-        Zend_Registry::set(\Zend_Translate::class, $translator);
     }
 
     /**
@@ -73,10 +63,7 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
         // Restore server array
         $_SERVER = $this->_server;
 
-        // Remove translator and locale
-        Zend_Registry::set(\Zend_Translate::class, null);
         Zend_Registry::set(\Zend_Locale::class, null);
-        Zend_Controller_Router_Route::setDefaultTranslator(null);
         Zend_Controller_Router_Route::setDefaultLocale(null);
     }
 
@@ -634,133 +621,6 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('en/tmp', $route->getMatchedPath());
     }
 
-    /**
-     * Translated behaviour.
-     */
-    public function testStaticTranslationAssemble()
-    {
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url = $route->assemble();
-
-        $this->assertEquals('foo/en_foo', $url);
-    }
-
-    public function testStaticTranslationMatch()
-    {
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-        $values = $route->match('foo/en_foo');
-
-        $this->assertTrue(is_array($values));
-    }
-
-    public function testDynamicTranslationAssemble()
-    {
-        $route = new Zend_Controller_Router_Route('foo/:@myvar');
-        $url = $route->assemble(['myvar' => 'foo']);
-
-        $this->assertEquals('foo/en_foo', $url);
-    }
-
-    public function testDynamicTranslationMatch()
-    {
-        $route = new Zend_Controller_Router_Route('foo/:@myvar');
-        $values = $route->match('foo/en_foo');
-
-        $this->assertEquals($values['myvar'], 'foo');
-    }
-
-    public function testTranslationMatchWrongLanguage()
-    {
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-        $values = $route->match('foo/de_foo');
-
-        $this->assertFalse($values);
-    }
-
-    public function testTranslationAssembleLocaleInstanceOverride()
-    {
-        $route = new Zend_Controller_Router_Route('foo/@foo', null, null, null, 'de');
-        $url = $route->assemble();
-
-        $this->assertEquals('foo/de_foo', $url);
-    }
-
-    public function testTranslationAssembleLocaleParamOverride()
-    {
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url = $route->assemble(['@locale' => 'de']);
-
-        $this->assertEquals('foo/de_foo', $url);
-    }
-
-    public function testTranslationAssembleLocaleStaticOverride()
-    {
-        Zend_Controller_Router_Route::setDefaultLocale('de');
-
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url = $route->assemble();
-
-        $this->assertEquals('foo/de_foo', $url);
-    }
-
-    public function testTranslationAssembleLocaleRegistryOverride()
-    {
-        Zend_Registry::set(\Zend_Locale::class, 'de');
-
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url = $route->assemble();
-
-        $this->assertEquals('foo/de_foo', $url);
-    }
-
-    public function testTranslationAssembleTranslatorInstanceOverride()
-    {
-        $translator = new Zend_Translate('array', ['foo' => 'en_baz'], 'en');
-
-        $route = new Zend_Controller_Router_Route('foo/@foo', null, null, $translator);
-        $url = $route->assemble();
-
-        $this->assertEquals('foo/en_baz', $url);
-    }
-
-    public function testTranslationAssembleTranslatorStaticOverride()
-    {
-        $translator = new Zend_Translate('array', ['foo' => 'en_baz'], 'en');
-
-        Zend_Controller_Router_Route::setDefaultTranslator($translator);
-
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url = $route->assemble();
-
-        $this->assertEquals('foo/en_baz', $url);
-    }
-
-    public function testTranslationAssembleTranslatorRegistryOverride()
-    {
-        $translator = new Zend_Translate('array', ['foo' => 'en_baz'], 'en');
-
-        Zend_Registry::set(\Zend_Translate::class, $translator);
-
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-        $url = $route->assemble();
-
-        $this->assertEquals('foo/en_baz', $url);
-    }
-
-    public function testTranslationAssembleTranslatorNotFound()
-    {
-        Zend_Registry::set(\Zend_Translate::class, null);
-
-        $route = new Zend_Controller_Router_Route('foo/@foo');
-
-        try {
-            $url = $route->assemble();
-            $this->fail('Expected Zend_Controller_Router_Exception was not raised');
-        } catch (Zend_Controller_Router_Exception $e) {
-            $this->assertEquals('Could not find a translator', $e->getMessage());
-        }
-    }
-
     public function testEscapedSpecialCharsWithoutTranslation()
     {
         $route = new Zend_Controller_Router_Route('::foo/@@bar/:foo');
@@ -770,16 +630,5 @@ class Zend_Controller_Router_RouteTest extends \PHPUnit\Framework\TestCase
 
         $values = $route->match(':foo/@bar/bar');
         $this->assertEquals($values['foo'], 'bar');
-    }
-
-    public function testEscapedSpecialCharsWithTranslation()
-    {
-        $route = new Zend_Controller_Router_Route('::foo/@@bar/:@myvar');
-
-        $path = $route->assemble(['myvar' => 'foo']);
-        $this->assertEquals($path, ':foo/@bar/en_foo');
-
-        $values = $route->match(':foo/@bar/en_foo');
-        $this->assertEquals($values['myvar'], 'foo');
     }
 }

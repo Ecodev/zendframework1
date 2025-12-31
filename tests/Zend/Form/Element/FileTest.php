@@ -54,7 +54,6 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
-        Zend_Form::setDefaultTranslator(null);
         $this->element = new Zend_Form_Element_File('foo');
     }
 
@@ -291,23 +290,6 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
         $this->assertNotEquals(-1, $this->element->getMaxFileSize());
     }
 
-    public function testTranslatingValidatorErrors()
-    {
-        $translate = new Zend_Translate('array', ['unused', 'foo' => 'bar'], 'en');
-        $this->element->setTranslator($translate);
-
-        $adapter = $this->element->getTranslator();
-        $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
-
-        $adapter = $this->element->getTransferAdapter();
-        $adapter = $adapter->getTranslator();
-        $this->assertTrue($adapter instanceof Zend_Translate_Adapter_Array);
-
-        $this->assertFalse($this->element->translatorIsDisabled());
-        $this->element->setDisableTranslator($translate);
-        $this->assertTrue($this->element->translatorIsDisabled());
-    }
-
     public function testFileNameWithoutPath()
     {
         $this->element->setTransferAdapter(new Zend_Form_Element_FileTest_MockAdapter());
@@ -396,7 +378,6 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
 
     public function testAddedErrorsAreDisplayed()
     {
-        Zend_Form::setDefaultTranslator(null);
         $element = new Zend_Form_Element_File('baz');
         $element->addError('TestError3');
         $adapter = new Zend_Form_Element_FileTest_MockAdapter();
@@ -405,15 +386,6 @@ class Zend_Form_Element_FileTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($element->hasErrors());
         $messages = $element->getMessages();
         $this->assertContains('TestError3', $messages);
-    }
-
-    public function testGetTranslatorRetrievesGlobalDefaultWhenAvailable()
-    {
-        $this->assertNull($this->element->getTranslator());
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        Zend_Form::setDefaultTranslator($translator);
-        $received = $this->element->getTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
     }
 
     public function testDefaultDecoratorsContainDescription()

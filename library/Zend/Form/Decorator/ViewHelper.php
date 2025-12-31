@@ -238,11 +238,6 @@ class Zend_Form_Decorator_ViewHelper extends Zend_Form_Decorator_Abstract
         $id = $element->getId();
         $attribs['id'] = $id;
 
-        $helperObject = $view->getHelper($helper);
-        if (method_exists($helperObject, 'setTranslator')) {
-            $helperObject->setTranslator($element->getTranslator());
-        }
-
         // Check list separator
         if (isset($attribs['listsep'])
             && in_array($helper, ['formMultiCheckbox', 'formRadio', 'formSelect'])

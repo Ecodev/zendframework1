@@ -1997,7 +1997,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
         $this->_setValue($value);
         // Check input against IP address schema
         if (preg_match('/^[0-9a-f:.]*$/i', $value)
-            && $this->_options['ip']->setTranslator($this->getTranslator())->isValid($value)) {
+            && $this->_options['ip']->isValid($value)) {
             if (!($this->_options['allow'] & self::ALLOW_IP)) {
                 $this->_error(self::IP_ADDRESS_NOT_ALLOWED);
 
@@ -2033,7 +2033,7 @@ class Zend_Validate_Hostname extends Zend_Validate_Abstract
 
         // Prevent partitial IP V4 adresses (ending '.')
         if ((count($domainParts) == 4) && preg_match('/^[0-9.a-e:.]*$/i', $value)
-            && $this->_options['ip']->setTranslator($this->getTranslator())->isValid($value)) {
+            && $this->_options['ip']->isValid($value)) {
             $this->_error(self::INVALID_LOCAL_NAME);
         }
 

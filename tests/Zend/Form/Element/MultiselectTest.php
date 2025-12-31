@@ -16,7 +16,6 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Translate.php';
 
 /**
  * Test class for Zend_Form_Element_Multiselect.
@@ -201,114 +200,9 @@ class Zend_Form_Element_MultiselectTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    public function testTranslatedOptionsAreRenderedInFinalMarkupWhenTranslatorPresent()
-    {
-        $translations = [
-            'ThisShouldNotShow' => 'Foo Value',
-            'ThisShouldNeverShow' => 'Bar Value',
-        ];
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $translate->setLocale('en');
-
-        $options = [
-            'foovalue' => 'ThisShouldNotShow',
-            'barvalue' => 'ThisShouldNeverShow',
-        ];
-
-        $this->element->setTranslator($translate)
-            ->addMultiOptions($options);
-
-        $html = $this->element->render($this->getView());
-        foreach ($options as $value => $label) {
-            $this->assertStringNotContainsString($label, $html, $html);
-            $this->assertMatchesRegularExpression('/<option.*value="' . $value . '"[^>]*>' . $translations[$label] . '/s', $html, $html);
-        }
-    }
-
-    public function testOptionLabelsAreTranslatedWhenTranslateAdapterIsPresent()
-    {
-        $translations = include __DIR__ . '/../_files/locale/array.php';
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $translate->setLocale('en');
-
-        $options = [
-            'foovalue' => 'Foo',
-            'barvalue' => 'Bar',
-        ];
-        $this->element->addMultiOptions($options)
-            ->setTranslator($translate);
-        $test = $this->element->getMultiOption('barvalue');
-        $this->assertEquals($translations[$options['barvalue']], $test);
-
-        $test = $this->element->getMultiOptions();
-        foreach ($test as $key => $value) {
-            $this->assertEquals($translations[$options[$key]], $value);
-        }
-    }
-
-    public function testOptionLabelsAreUntouchedIfTranslatonDoesNotExistInnTranslateAdapter()
-    {
-        $translations = include __DIR__ . '/../_files/locale/array.php';
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $translate->setLocale('en');
-
-        $options = [
-            'foovalue' => 'Foo',
-            'barvalue' => 'Bar',
-            'testing' => 'Test Value',
-        ];
-        $this->element->addMultiOptions($options)
-            ->setTranslator($translate);
-        $test = $this->element->getMultiOption('testing');
-        $this->assertEquals($options['testing'], $test);
-    }
-
     public function testMultiselectIsArrayByDefault()
     {
         $this->assertTrue($this->element->isArray());
-    }
-
-    /**
-     * @group ZF-5568
-     */
-    public function testOptGroupTranslationsShouldWorkAfterPopulatingElement()
-    {
-        $translations = [
-            'ThisIsTheLabel' => 'Optgroup label',
-            'ThisShouldNotShow' => 'Foo Value',
-            'ThisShouldNeverShow' => 'Bar Value',
-        ];
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $translate->setLocale('en');
-
-        $options = [
-            'ThisIsTheLabel' => [
-                'foovalue' => 'ThisShouldNotShow',
-                'barvalue' => 'ThisShouldNeverShow',
-            ],
-        ];
-
-        $this->element->setTranslator($translate)
-            ->addMultiOptions($options);
-
-        $this->element->setValue('barValue');
-
-        $html = $this->element->render($this->getView());
-        $this->assertStringContainsString($translations['ThisIsTheLabel'], $html, $html);
-    }
-
-    /**
-     * @group ZF-5937
-     */
-    public function testAddMultiOptionShouldWorkAfterTranslatorIsDisabled()
-    {
-        $options = [
-            'foovalue' => 'Foo',
-        ];
-        $this->element->setDisableTranslator(true)
-            ->addMultiOptions($options);
-        $test = $this->element->getMultiOption('foovalue');
-        $this->assertEquals($options['foovalue'], $test);
     }
 
     /**

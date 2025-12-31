@@ -37,7 +37,6 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
-        Zend_Form::setDefaultTranslator(null);
 
         if (isset($this->error)) {
             unset($this->error);
@@ -112,35 +111,6 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $this->fail('Zend_Form_Element constructor should accept Zend_Config with name element');
         }
         self::assertTrue(true);
-    }
-
-    public function testNoTranslatorByDefault()
-    {
-        $this->assertNull($this->element->getTranslator());
-    }
-
-    public function testGetTranslatorRetrievesGlobalDefaultWhenAvailable()
-    {
-        $this->testNoTranslatorByDefault();
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        Zend_Form::setDefaultTranslator($translator);
-        $received = $this->element->getTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-    }
-
-    public function testTranslatorAccessorsWork()
-    {
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        $this->element->setTranslator($translator);
-        $received = $this->element->getTranslator($translator);
-        $this->assertSame($translator->getAdapter(), $received);
-    }
-
-    public function testCanDisableTranslation()
-    {
-        $this->testGetTranslatorRetrievesGlobalDefaultWhenAvailable();
-        $this->element->setDisableTranslator(true);
-        $this->assertNull($this->element->getTranslator());
     }
 
     public function testSetNameNormalizesValueToContainOnlyValidVariableCharacters()
@@ -809,45 +779,6 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($message, current($messages));
     }
 
-    public function testMessagesAreTranslatedForCurrentLocale()
-    {
-        $message = null;
-        $localeFile = __DIR__ . '/_files/locale/array.php';
-        $translations = include($localeFile);
-        $translator = new Zend_Translate('array', $translations, 'en');
-        $translator->setLocale('en');
-
-        $this->element->setAllowEmpty(false)
-            ->setTranslator($translator)
-            ->addValidator('digits');
-
-        $this->element->isValid('');
-        $messages = $this->element->getMessages();
-        $found = false;
-        foreach ($messages as $key => $message) {
-            if ($key == 'digitsStringEmpty') {
-                $found = true;
-
-                break;
-            }
-        }
-        $this->assertTrue($found, 'String Empty message not found: ' . var_export($messages, 1));
-        $this->assertEquals($translations['stringEmpty'], $message);
-
-        $this->element->isValid('abc');
-        $messages = $this->element->getMessages();
-        $found = false;
-        foreach ($messages as $key => $message) {
-            if ($key == 'notDigits') {
-                $found = true;
-
-                break;
-            }
-        }
-        $this->assertTrue($found, 'Not Digits message not found');
-        $this->assertEquals($translations['notDigits'], $message);
-    }
-
     /**#@+
      * @group ZF-2988
      */
@@ -899,21 +830,6 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->element->clearErrorMessages();
         $messages = $this->element->getErrorMessages();
         $this->assertTrue(empty($messages));
-    }
-
-    public function testCustomErrorMessagesShouldBeTranslated()
-    {
-        $translations = [
-            'foo' => 'Foo message',
-        ];
-        $translate = new Zend_Translate('array', $translations);
-        $this->element->setTranslator($translate)
-            ->addErrorMessage('foo')
-            ->addValidator('Alpha');
-        $this->assertFalse($this->element->isValid(123));
-        $messages = $this->element->getMessages();
-        $this->assertEquals(1, is_countable($messages) ? count($messages) : 0);
-        $this->assertEquals('Foo message', array_shift($messages));
     }
 
     public function testCustomErrorMessagesShouldAllowValueSubstitution()
@@ -976,37 +892,6 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
             $message = 'error with value ' . $value;
             $this->assertStringContainsString($message, $errors);
         }
-    }
-
-    /**
-     * ZF-2568.
-     */
-    public function testTranslatedMessagesCanContainVariableSubstitution()
-    {
-        $message = null;
-        $localeFile = __DIR__ . '/_files/locale/array.php';
-        $translations = include($localeFile);
-        $translations['notDigits'] .= ' "%value%"';
-        $translator = new Zend_Translate('array', $translations, 'en');
-        $translator->setLocale('en');
-
-        $this->element->setAllowEmpty(false)
-            ->setTranslator($translator)
-            ->addValidator('digits');
-
-        $this->element->isValid('abc');
-        $messages = $this->element->getMessages();
-        $found = false;
-        foreach ($messages as $key => $message) {
-            if ($key == 'notDigits') {
-                $found = true;
-
-                break;
-            }
-        }
-        $this->assertTrue($found, 'String Empty message not found: ' . var_export($messages, 1));
-        $this->assertStringContainsString(' "abc"', $message);
-        $this->assertStringContainsString('Translating the notDigits string', $message);
     }
 
     public function testCanRemoveValidator()
@@ -1668,7 +1553,6 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
     public function testSetOptionsSkipsSettingAccessorsRequiringObjectsWhenNoObjectPresent()
     {
         $options = $this->getOptions();
-        $options['translator'] = true;
         $options['pluginLoader'] = true;
         $options['view'] = true;
         $this->element->setOptions($options);
@@ -1945,14 +1829,6 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid('    '));
     }
 
-    public function testTranslatedLabel()
-    {
-        $this->element->setLabel('FooBar');
-        $translator = new Zend_Translate('array', ['FooBar' => 'BazBar']);
-        $this->element->setTranslator($translator);
-        $this->assertEquals('BazBar', $this->element->getLabel());
-    }
-
     // Extensions
 
     public function testInitCalledBeforeLoadDecorators()
@@ -2027,115 +1903,6 @@ class Zend_Form_ElementTest extends \PHPUnit\Framework\TestCase
         if (strtolower(substr(PHP_OS, 0, 3)) == 'win' && version_compare(PHP_VERSION, '5.1.4', '=')) {
             $this->markTestIncomplete('Error occurs for PHP 5.1.4 on Windows');
         }
-    }
-
-    /**
-     * @ZF-8882
-     */
-    public function testErrorMessagesShouldNotBeTranslatedWhenTranslatorIsDisabled()
-    {
-        $translations = [
-            'foo' => 'Foo message',
-        ];
-        $translate = new Zend_Translate('array', $translations);
-        $this->element->setTranslator($translate)
-            ->addErrorMessage('foo')
-            ->addValidator('Alpha');
-        $this->assertFalse($this->element->isValid(123));
-        $messages = $this->element->getMessages();
-        $this->assertEquals(1, is_countable($messages) ? count($messages) : 0);
-        $this->assertEquals('Foo message', array_shift($messages));
-
-        $this->element->setDisableTranslator(true);
-        $this->assertFalse($this->element->isValid(123));
-        $messages = $this->element->getMessages();
-        $this->assertEquals(1, is_countable($messages) ? count($messages) : 0);
-        $this->assertEquals('foo', array_shift($messages));
-    }
-
-    /**
-     * @group ZF-9275
-     */
-    public function testElementDoesntOverrideDefaultValidatorTranslatorWithDefaultRegistryTranslator()
-    {
-        $registryTranslations = ['alphaInvalid' => 'Registry message'];
-        $registryTranslate = new Zend_Translate('array', $registryTranslations);
-        Zend_Registry::set(\Zend_Translate::class, $registryTranslate);
-
-        $validatorTranslations = ['alphaInvalid' => 'Validator message'];
-        $validatorTranslate = new Zend_Translate('array', $validatorTranslations);
-        Zend_Validate_Abstract::setDefaultTranslator($validatorTranslate);
-
-        $elementTranslations = ['alphaInvalid' => 'Element message'];
-        $elementTranslate = new Zend_Translate('array', $elementTranslations);
-
-        // the default validate translator should beat the registry one
-        $this->element->addValidator('Alpha');
-        $this->assertFalse($this->element->isValid(123));
-        $messages = $this->element->getMessages();
-        $this->assertEquals('Validator message', $messages['alphaInvalid']);
-    }
-
-    /**
-     * @group ZF-9275
-     */
-    public function testDefaultTranslatorDoesntOverrideElementTranslatorOnValdiation()
-    {
-        $registryTranslations = ['alphaInvalid' => 'Registry message'];
-        $registryTranslate = new Zend_Translate('array', $registryTranslations);
-        Zend_Registry::set(\Zend_Translate::class, $registryTranslate);
-
-        $validatorTranslations = ['alphaInvalid' => 'Validator message'];
-        $validatorTranslate = new Zend_Translate('array', $validatorTranslations);
-        Zend_Validate_Abstract::setDefaultTranslator($validatorTranslate);
-
-        $elementTranslations = ['alphaInvalid' => 'Element message'];
-        $elementTranslate = new Zend_Translate('array', $elementTranslations);
-
-        $this->element->addValidator('Alpha');
-        $this->element->setTranslator($elementTranslate);
-        $this->assertFalse($this->element->isValid(123));
-        $messages = $this->element->getMessages();
-        $this->assertEquals('Element message', $messages['alphaInvalid']);
-    }
-
-    /**
-     * @group ZF-9275
-     */
-    public function testValidatorsDefaultTranslatorDoesntOverrideFormsDefaultTranslator()
-    {
-        $formTranslations = ['alphaInvalid' => 'Form message'];
-        $formTranslate = new Zend_Translate('array', $formTranslations);
-        Zend_Form::setDefaultTranslator($formTranslate);
-
-        $validatorTranslations = ['alphaInvalid' => 'Validator message'];
-        $validatorTranslate = new Zend_Translate('array', $validatorTranslations);
-        Zend_Validate_Abstract::setDefaultTranslator($validatorTranslate);
-
-        // the default validate translator should beat the registry one
-        $this->element->addValidator('Alpha');
-        $this->assertFalse($this->element->isValid(123));
-        $messages = $this->element->getMessages();
-        $this->assertEquals('Form message', $messages['alphaInvalid']);
-    }
-
-    /**
-     * @group ZF-9275
-     */
-    public function testElementsTranslatorDoesntOverrideValidatorsDirectlyAttachedTranslator()
-    {
-        $elementTranslations = ['alphaInvalid' => 'Element message'];
-        $elementTranslate = new Zend_Translate('array', $elementTranslations);
-
-        $validatorTranslations = ['alphaInvalid' => 'Direct validator message'];
-        $validatorTranslate = new Zend_Translate('array', $validatorTranslations);
-
-        $validator = new Zend_Validate_Alpha();
-        $validator->setTranslator($validatorTranslate);
-        $this->element->addValidator($validator);
-        $this->assertFalse($this->element->isValid(123));
-        $messages = $this->element->getMessages();
-        $this->assertEquals('Direct validator message', $messages['alphaInvalid']);
     }
 
     /**

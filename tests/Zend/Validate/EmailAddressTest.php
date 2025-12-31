@@ -371,39 +371,6 @@ class Zend_Validate_EmailAddressTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-2861
-     */
-    public function testHostnameValidatorMessagesShouldBeTranslated()
-    {
-        $hostnameValidator = new Zend_Validate_Hostname();
-        $translations = [
-            'hostnameIpAddressNotAllowed' => 'hostnameIpAddressNotAllowed translation',
-            'hostnameUnknownTld' => 'hostnameUnknownTld translation',
-            'hostnameDashCharacter' => 'hostnameDashCharacter translation',
-            'hostnameInvalidHostnameSchema' => 'hostnameInvalidHostnameSchema translation',
-            'hostnameUndecipherableTld' => 'hostnameUndecipherableTld translation',
-            'hostnameInvalidHostname' => 'hostnameInvalidHostname translation',
-            'hostnameInvalidLocalName' => 'hostnameInvalidLocalName translation',
-            'hostnameLocalNameNotAllowed' => 'hostnameLocalNameNotAllowed translation',
-        ];
-        $translator = new Zend_Translate('array', $translations);
-        $this->_validator->setTranslator($translator)->setHostnameValidator($hostnameValidator);
-
-        $this->_validator->isValid('_XX.!!3xx@0.239,512.777');
-        $messages = $hostnameValidator->getMessages();
-        $found = false;
-        foreach ($messages as $code => $message) {
-            if (array_key_exists($code, $translations)) {
-                $this->assertEquals($translations[$code], $message);
-                $found = true;
-
-                break;
-            }
-        }
-        $this->assertTrue($found);
-    }
-
-    /**
      * @group ZF-4888
      */
     public function testEmailsExceedingLength()

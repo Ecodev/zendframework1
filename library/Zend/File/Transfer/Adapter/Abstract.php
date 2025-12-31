@@ -61,18 +61,6 @@ abstract class Zend_File_Transfer_Adapter_Abstract
     protected $_messages = [];
 
     /**
-     * @var Zend_Translate
-     */
-    protected $_translator;
-
-    /**
-     * Is translation disabled?
-     *
-     * @var bool
-     */
-    protected $_translatorDisabled = false;
-
-    /**
      * Internal list of validators.
      *
      * @var array
@@ -642,7 +630,6 @@ abstract class Zend_File_Transfer_Adapter_Abstract
             return false;
         }
 
-        $translator = $this->getTranslator();
         $this->_messages = [];
         $break = false;
         foreach ($check as $key => $content) {
@@ -680,9 +667,6 @@ abstract class Zend_File_Transfer_Adapter_Abstract
             if (array_key_exists('validators', $content)) {
                 foreach ($content['validators'] as $class) {
                     $validator = $this->_validators[$class];
-                    if (method_exists($validator, 'setTranslator')) {
-                        $validator->setTranslator($translator);
-                    }
 
                     if (($class === \Zend_Validate_File_Upload::class) and (empty($content['tmp_name']))) {
                         $tocheck = $key;
@@ -1128,66 +1112,6 @@ abstract class Zend_File_Transfer_Adapter_Abstract
         }
 
         return $destinations;
-    }
-
-    /**
-     * Set translator object for localization.
-     *
-     * @param  null|Zend_Translate $translator
-     *
-     * @return Zend_File_Transfer_Abstract
-     */
-    public function setTranslator($translator = null)
-    {
-        if (null === $translator) {
-            $this->_translator = null;
-        } elseif ($translator instanceof Zend_Translate_Adapter) {
-            $this->_translator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            $this->_translator = $translator->getAdapter();
-        } else {
-            throw new Zend_File_Transfer_Exception('Invalid translator specified');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Retrieve localization translator object.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public function getTranslator()
-    {
-        if ($this->translatorIsDisabled()) {
-            return null;
-        }
-
-        return $this->_translator;
-    }
-
-    /**
-     * Indicate whether or not translation should be disabled.
-     *
-     * @param  bool $flag
-     *
-     * @return Zend_File_Transfer_Abstract
-     */
-    public function setDisableTranslator($flag)
-    {
-        $this->_translatorDisabled = (bool) $flag;
-
-        return $this;
-    }
-
-    /**
-     * Is translation disabled?
-     *
-     * @return bool
-     */
-    public function translatorIsDisabled()
-    {
-        return $this->_translatorDisabled;
     }
 
     /**

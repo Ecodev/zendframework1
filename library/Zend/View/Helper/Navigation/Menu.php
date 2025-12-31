@@ -460,19 +460,9 @@ class Zend_View_Helper_Navigation_Menu extends Zend_View_Helper_Navigation_Helpe
      */
     public function htmlify(Zend_Navigation_Page $page)
     {
-        // get label and title for translating
+        // get label and title
         $label = $page->getLabel();
         $title = $page->getTitle();
-
-        // translate label and title?
-        if ($this->getUseTranslator() && $t = $this->getTranslator()) {
-            if (is_string($label) && !empty($label)) {
-                $label = $t->translate($label);
-            }
-            if (is_string($title) && !empty($title)) {
-                $title = $t->translate($title);
-            }
-        }
 
         // get attribs for element
         $attribs = [

@@ -497,8 +497,7 @@ class Zend_Validate_EmailAddress extends Zend_Validate_Abstract
      */
     private function _validateHostnamePart()
     {
-        $hostname = $this->_options['hostname']->setTranslator($this->getTranslator())
-            ->isValid($this->_hostname);
+        $hostname = $this->_options['hostname']->isValid($this->_hostname);
         if (!$hostname) {
             $this->_error(self::INVALID_HOSTNAME);
 

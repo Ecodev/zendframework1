@@ -71,7 +71,6 @@
  * @method Zend_View_Helper_Placeholder_Container_Abstract placeholder($name)
  * @method void renderToPlaceholder($script, $placeholder)
  * @method string serverUrl($requestUri = null)
- * @method string translate($messageid = null)
  * @method string url(array $urlOptions = [], $name = null, $reset = false, $encode = true)
  */
 #[AllowDynamicProperties]

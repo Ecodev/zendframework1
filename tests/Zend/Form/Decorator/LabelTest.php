@@ -243,30 +243,6 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
         $this->assertStringContainsString($element->getLabel(), $test);
     }
 
-    public function testRetrievingLabelRetrievesLabelWithTranslationAndPrefixAndSuffix()
-    {
-        $translate = new Zend_Translate('array', ['My Label' => 'Translation'], 'en');
-        $translate->setLocale('en');
-
-        $element = new Zend_Form_Element('foo');
-        $element->setView($this->getView())
-            ->setLabel('My Label')
-            ->setTranslator($translate);
-        $this->decorator->setElement($element)
-            ->setOptions([
-                'optionalPrefix' => '> ',
-                'optionalSuffix' => ':',
-                'requiredPrefix' => '! ',
-                'requiredSuffix' => '*:',
-            ]);
-        $label = $this->decorator->getLabel();
-        $this->assertEquals('> Translation:', $label);
-
-        $element->setRequired(true);
-        $label = $this->decorator->getLabel();
-        $this->assertEquals('! Translation*:', $label);
-    }
-
     public function testSettingTagToEmptyValueShouldDisableTag()
     {
         $element = new Zend_Form_Element_Text('foo', ['label' => 'Foo']);
@@ -375,34 +351,5 @@ class Zend_Form_Decorator_LabelTest extends \PHPUnit\Framework\TestCase
         $expected = '<label class="optional">test content My Label</label>';
 
         $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * @group ZF-8694
-     */
-    public function testLabelIsNotTranslatedTwice()
-    {
-        // Init translator
-        $translate = new Zend_Translate(
-            [
-                'adapter' => 'array',
-                'content' => [
-                    'firstLabel' => 'secondLabel',
-                    'secondLabel' => 'thirdLabel',
-                ],
-                'locale' => 'en',
-            ]
-        );
-
-        // Create element
-        $element = new Zend_Form_Element('foo');
-        $element->setView($this->getView())
-            ->setLabel('firstLabel')
-            ->setTranslator($translate);
-
-        $this->decorator->setElement($element);
-
-        // Test
-        $this->assertEquals('secondLabel', $this->decorator->getLabel());
     }
 }

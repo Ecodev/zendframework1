@@ -161,24 +161,4 @@ abstract class Zend_View_Helper_Navigation_TestAbstract extends \PHPUnit\Framewo
 
         return ['acl' => $acl, 'role' => 'special'];
     }
-
-    /**
-     * Returns translator.
-     *
-     * @return Zend_Translate
-     */
-    protected function _getTranslator()
-    {
-        $data = [
-            'Page 1' => 'Side 1',
-            'Page 1.1' => 'Side 1.1',
-            'Page 2' => 'Side 2',
-            'Page 2.3' => 'Side 2.3',
-            'Page 2.3.3.1' => 'Side 2.3.3.1',
-            'Home' => 'Hjem',
-            'Go home' => 'Gå hjem',
-        ];
-
-        return new Zend_Translate('array', $data, 'nb_NO');
-    }
 }

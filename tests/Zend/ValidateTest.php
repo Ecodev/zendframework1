@@ -28,11 +28,6 @@ require_once 'Zend/Validate.php';
 require_once 'Zend/Validate/Abstract.php';
 
 /**
- * @see Zend_Translate
- */
-require_once 'Zend/Translate.php';
-
-/**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  *
  * @group      Zend_Validate
@@ -186,15 +181,6 @@ class Zend_ValidateTest extends \PHPUnit\Framework\TestCase
         $this->assertFalse($valid->isValid(24));
         $message = current($valid->getMessages());
         $this->assertTrue(strlen($message) <= 5);
-    }
-
-    public function testSetGetDefaultTranslator()
-    {
-        set_error_handler([$this, 'errorHandlerIgnore']);
-        $translator = new Zend_Translate('array', [], 'en');
-        restore_error_handler();
-        Zend_Validate_Abstract::setDefaultTranslator($translator);
-        $this->assertSame($translator->getAdapter(), Zend_Validate_Abstract::getDefaultTranslator());
     }
 
     /**

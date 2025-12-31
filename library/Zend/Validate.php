@@ -258,26 +258,4 @@ class Zend_Validate implements Zend_Validate_Interface
     {
         Zend_Validate_Abstract::setMessageLength($length);
     }
-
-    /**
-     * Returns the default translation object.
-     *
-     * @param null|mixed $translator
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public static function getDefaultTranslator($translator = null)
-    {
-        return Zend_Validate_Abstract::getDefaultTranslator();
-    }
-
-    /**
-     * Sets a default translation object for all validation objects.
-     *
-     * @param null|Zend_Translate|Zend_Translate_Adapter $translator
-     */
-    public static function setDefaultTranslator($translator = null)
-    {
-        Zend_Validate_Abstract::setDefaultTranslator($translator);
-    }
 }

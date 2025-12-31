@@ -434,11 +434,6 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
         }
 
         $adapter = $this->getTransferAdapter();
-        $translator = $this->getTranslator();
-        if ($translator !== null) {
-            $adapter->setTranslator($translator);
-        }
-
         if (!$this->isRequired()) {
             $adapter->setOptions(['ignoreNoFile' => true], $this->getName());
         } else {
@@ -752,69 +747,6 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Set translator object for localization.
-     *
-     * @param  null|Zend_Translate $translator
-     *
-     * @return Zend_Form_Element_File
-     */
-    public function setTranslator($translator = null)
-    {
-        $adapter = $this->getTransferAdapter();
-        $adapter->setTranslator($translator);
-        parent::setTranslator($translator);
-
-        return $this;
-    }
-
-    /**
-     * Retrieve localization translator object.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public function getTranslator()
-    {
-        if ($this->translatorIsDisabled()) {
-            return null;
-        }
-
-        $translator = $this->getTransferAdapter()->getTranslator();
-        if (null === $translator) {
-            return Zend_Form::getDefaultTranslator();
-        }
-
-        return $translator;
-    }
-
-    /**
-     * Indicate whether or not translation should be disabled.
-     *
-     * @param  bool $flag
-     *
-     * @return Zend_Form_Element_File
-     */
-    public function setDisableTranslator($flag)
-    {
-        $adapter = $this->getTransferAdapter();
-        $adapter->setDisableTranslator($flag);
-        $this->_translatorDisabled = (bool) $flag;
-
-        return $this;
-    }
-
-    /**
-     * Is translation disabled?
-     *
-     * @return bool
-     */
-    public function translatorIsDisabled()
-    {
-        $adapter = $this->getTransferAdapter();
-
-        return $adapter->translatorIsDisabled();
-    }
-
-    /**
      * Was the file received?
      *
      * @return bool
@@ -911,20 +843,15 @@ class Zend_Form_Element_File extends Zend_Form_Element_Xhtml
     }
 
     /**
-     * Retrieve error messages and perform translation and value substitution.
+     * Retrieve error messages and perform value substitution.
      *
      * @return array
      */
     protected function _getErrorMessages()
     {
-        $translator = $this->getTranslator();
         $messages = $this->getErrorMessages();
         $value = $this->getFileName();
         foreach ($messages as $key => $message) {
-            if (null !== $translator) {
-                $message = $translator->translate($message);
-            }
-
             if ($this->isArray() || is_array($value)) {
                 $aggregateMessages = [];
                 foreach ($value as $val) {

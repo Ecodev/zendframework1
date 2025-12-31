@@ -261,51 +261,6 @@ class Zend_View_Helper_Navigation_MenuTest extends Zend_View_Helper_Navigation_T
         $this->assertEquals($expected, $this->_helper->render($this->_nav3));
     }
 
-    public function testTranslationUsingZendTranslate()
-    {
-        $translator = $this->_getTranslator();
-        $this->_helper->setTranslator($translator);
-
-        $expected = $this->_getExpected('menu/translated.html');
-        $this->assertEquals($expected, $this->_helper->render());
-    }
-
-    public function testTranslationUsingZendTranslateAdapter()
-    {
-        $translator = $this->_getTranslator();
-        $this->_helper->setTranslator($translator->getAdapter());
-
-        $expected = $this->_getExpected('menu/translated.html');
-        $this->assertEquals($expected, $this->_helper->render());
-    }
-
-    public function testTranslationUsingTranslatorFromRegistry()
-    {
-        $oldReg = Zend_Registry::isRegistered(\Zend_Translate::class)
-                ? Zend_Registry::get(\Zend_Translate::class)
-                : null;
-
-        $translator = $this->_getTranslator();
-        Zend_Registry::set(\Zend_Translate::class, $translator);
-
-        $expected = $this->_getExpected('menu/translated.html');
-        $actual = $this->_helper->render();
-
-        Zend_Registry::set(\Zend_Translate::class, $oldReg);
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    public function testDisablingTranslation()
-    {
-        $translator = $this->_getTranslator();
-        $this->_helper->setTranslator($translator);
-        $this->_helper->setUseTranslator(false);
-
-        $expected = $this->_getExpected('menu/default1.html');
-        $this->assertEquals($expected, $this->_helper->render());
-    }
-
     public function testRenderingPartial()
     {
         $this->_helper->setPartial('menu.phtml');

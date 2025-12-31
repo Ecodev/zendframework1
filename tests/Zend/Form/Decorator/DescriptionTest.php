@@ -152,46 +152,4 @@ class Zend_Form_Decorator_DescriptionTest extends \PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('&lt;', $html);
         $this->assertStringNotContainsString('&gt;', $html);
     }
-
-    public function testDescriptionIsTranslatedWhenTranslationAvailable()
-    {
-        $translations = ['description' => 'This is the description'];
-        $translate = new Zend_Translate('array', $translations);
-        $this->element->setDescription('description')
-            ->setTranslator($translate);
-        $html = $this->decorator->render('');
-        $this->assertStringContainsString($translations['description'], $html);
-    }
-
-    /**
-     * @group ZF-8694
-     */
-    public function testDescriptionIsNotTranslatedTwice()
-    {
-        // Init translator
-        $translate = new Zend_Translate(
-            [
-                'adapter' => 'array',
-                'content' => [
-                    'firstDescription' => 'secondDescription',
-                    'secondDescription' => 'thirdDescription',
-                ],
-                'locale' => 'en',
-            ]
-        );
-
-        // Create element
-        $element = new Zend_Form_Element('foo');
-        $element->setView($this->getView())
-            ->setDescription('firstDescription')
-            ->setTranslator($translate);
-
-        $this->decorator->setElement($element);
-
-        // Test
-        $this->assertEquals(
-            '<p class="hint">secondDescription</p>',
-            trim($this->decorator->render(''))
-        );
-    }
 }

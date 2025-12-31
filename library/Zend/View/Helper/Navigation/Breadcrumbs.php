@@ -192,9 +192,6 @@ class Zend_View_Helper_Navigation_Breadcrumbs extends Zend_View_Helper_Navigatio
             $html = $this->htmlify($active);
         } else {
             $html = $active->getLabel();
-            if ($this->getUseTranslator() && $t = $this->getTranslator()) {
-                $html = $t->translate($html);
-            }
             $html = $this->view->escape($html);
         }
 

@@ -69,27 +69,6 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
     protected $_errors = [];
 
     /**
-     * Translation object.
-     *
-     * @var Zend_Translate
-     */
-    protected $_translator;
-
-    /**
-     * Default translation object for all validate objects.
-     *
-     * @var Zend_Translate
-     */
-    protected static $_defaultTranslator;
-
-    /**
-     * Is translation disabled?
-     *
-     * @var bool
-     */
-    protected $_translatorDisabled = false;
-
-    /**
      * Limits the maximum returned length of a error message.
      *
      * @var int
@@ -194,9 +173,6 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
      *
      * Returns null if and only if $messageKey does not correspond to an existing template.
      *
-     * If a translator is available and a translation exists for $messageKey,
-     * the translation will be used.
-     *
      * @param  string $messageKey
      * @param  string $value
      *
@@ -209,14 +185,6 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
         }
 
         $message = $this->_messageTemplates[$messageKey];
-
-        if (null !== ($translator = $this->getTranslator())) {
-            if ($translator->isTranslated($messageKey)) {
-                $message = $translator->translate($messageKey);
-            } else {
-                $message = $translator->translate($message);
-            }
-        }
 
         if (is_object($value)) {
             if (!in_array('__toString', get_class_methods($value))) {
@@ -334,126 +302,6 @@ abstract class Zend_Validate_Abstract implements Zend_Validate_Interface
     public function getObscureValue()
     {
         return $this->_obscureValue;
-    }
-
-    /**
-     * Set translation object.
-     *
-     * @param  null|Zend_Translate|Zend_Translate_Adapter $translator
-     *
-     * @return Zend_Validate_Abstract
-     */
-    public function setTranslator($translator = null)
-    {
-        if ((null === $translator) || ($translator instanceof Zend_Translate_Adapter)) {
-            $this->_translator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            $this->_translator = $translator->getAdapter();
-        } else {
-            throw new Zend_Validate_Exception('Invalid translator specified');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Return translation object.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public function getTranslator()
-    {
-        if ($this->translatorIsDisabled()) {
-            return null;
-        }
-
-        if (null === $this->_translator) {
-            return self::getDefaultTranslator();
-        }
-
-        return $this->_translator;
-    }
-
-    /**
-     * Does this validator have its own specific translator?
-     *
-     * @return bool
-     */
-    public function hasTranslator()
-    {
-        return (bool) $this->_translator;
-    }
-
-    /**
-     * Set default translation object for all validate objects.
-     *
-     * @param  null|Zend_Translate|Zend_Translate_Adapter $translator
-     */
-    public static function setDefaultTranslator($translator = null)
-    {
-        if ((null === $translator) || ($translator instanceof Zend_Translate_Adapter)) {
-            self::$_defaultTranslator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            self::$_defaultTranslator = $translator->getAdapter();
-        } else {
-            throw new Zend_Validate_Exception('Invalid translator specified');
-        }
-    }
-
-    /**
-     * Get default translation object for all validate objects.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public static function getDefaultTranslator()
-    {
-        if (null === self::$_defaultTranslator) {
-            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
-                $translator = Zend_Registry::get(\Zend_Translate::class);
-                if ($translator instanceof Zend_Translate_Adapter) {
-                    return $translator;
-                }
-                if ($translator instanceof Zend_Translate) {
-                    return $translator->getAdapter();
-                }
-            }
-        }
-
-        return self::$_defaultTranslator;
-    }
-
-    /**
-     * Is there a default translation object set?
-     *
-     * @return bool
-     */
-    public static function hasDefaultTranslator()
-    {
-        return (bool) self::$_defaultTranslator;
-    }
-
-    /**
-     * Indicate whether or not translation should be disabled.
-     *
-     * @param  bool $flag
-     *
-     * @return Zend_Validate_Abstract
-     */
-    public function setDisableTranslator($flag)
-    {
-        $this->_translatorDisabled = (bool) $flag;
-
-        return $this;
-    }
-
-    /**
-     * Is translation disabled?
-     *
-     * @return bool
-     */
-    public function translatorIsDisabled()
-    {
-        return $this->_translatorDisabled;
     }
 
     /**

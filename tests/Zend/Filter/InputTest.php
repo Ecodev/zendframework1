@@ -2114,57 +2114,6 @@ class Zend_Filter_InputTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3736
-     */
-    public function testTranslateNotEmptyMessages()
-    {
-        $translator = new Zend_Translate_Adapter_Array(['missingMessage' => 'Still missing'], 'en');
-
-        $validators = [
-            'rule1' => ['presence' => 'required',
-                'fields' => ['field1', 'field2'],
-                'default' => ['field1default'], ],
-        ];
-        $data = [];
-        $input = new Zend_Filter_Input(null, $validators, $data);
-        $input->setTranslator($translator);
-
-        $this->assertTrue($input->hasMissing(), 'Expected hasMissing() to return true');
-
-        $missing = $input->getMissing();
-        $this->assertTrue(is_array($missing));
-        $this->assertEquals(['rule1'], array_keys($missing));
-        $this->assertEquals(['Still missing'], $missing['rule1']);
-    }
-
-    /**
-     * @group ZF-3736
-     */
-    public function testTranslateNotEmptyMessagesByUsingRegistry()
-    {
-        $translator = new Zend_Translate_Adapter_Array(['missingMessage' => 'Still missing'], 'en');
-        Zend_Registry::set(\Zend_Translate::class, $translator);
-
-        $validators = [
-            'rule1' => ['presence' => 'required',
-                'fields' => ['field1', 'field2'],
-                'default' => ['field1default'], ],
-        ];
-        $data = [];
-        $input = new Zend_Filter_Input(null, $validators, $data);
-
-        $this->assertTrue($input->hasMissing(), 'Expected hasMissing() to return true');
-        $this->assertFalse($input->hasInvalid(), 'Expected hasInvalid() to return false');
-        $this->assertFalse($input->hasUnknown(), 'Expected hasUnknown() to return false');
-        $this->assertFalse($input->hasValid(), 'Expected hasValid() to return false');
-
-        $missing = $input->getMissing();
-        $this->assertTrue(is_array($missing));
-        $this->assertEquals(['rule1'], array_keys($missing));
-        $this->assertEquals(['Still missing'], $missing['rule1']);
-    }
-
-    /**
      * If setAllowEmpty(true) is called, all fields are optional, but fields with
      * a NotEmpty validator attached to them, should contain a non empty value.
      *

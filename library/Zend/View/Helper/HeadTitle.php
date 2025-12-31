@@ -37,20 +37,6 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
     protected $_regKey = \Zend_View_Helper_HeadTitle::class;
 
     /**
-     * Whether or not auto-translation is enabled.
-     *
-     * @var bool
-     */
-    protected $_translate = false;
-
-    /**
-     * Translation object.
-     *
-     * @var Zend_Translate_Adapter
-     */
-    protected $_translator;
-
-    /**
      * Default title rendering order (i.e. order in which each title attached).
      *
      * @var string
@@ -115,72 +101,6 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
     }
 
     /**
-     * Sets a translation Adapter for translation.
-     *
-     * @param  Zend_Translate|Zend_Translate_Adapter $translate
-     *
-     * @return Zend_View_Helper_HeadTitle
-     */
-    public function setTranslator($translate)
-    {
-        if ($translate instanceof Zend_Translate_Adapter) {
-            $this->_translator = $translate;
-        } elseif ($translate instanceof Zend_Translate) {
-            $this->_translator = $translate->getAdapter();
-        } else {
-            $e = new Zend_View_Exception('You must set an instance of Zend_Translate or Zend_Translate_Adapter');
-            $e->setView($this->view);
-
-            throw $e;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Retrieve translation object.
-     *
-     * If none is currently registered, attempts to pull it from the registry
-     * using the key 'Zend_Translate'.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public function getTranslator()
-    {
-        if (null === $this->_translator) {
-            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
-                $this->setTranslator(Zend_Registry::get(\Zend_Translate::class));
-            }
-        }
-
-        return $this->_translator;
-    }
-
-    /**
-     * Enables translation.
-     *
-     * @return Zend_View_Helper_HeadTitle
-     */
-    public function enableTranslation()
-    {
-        $this->_translate = true;
-
-        return $this;
-    }
-
-    /**
-     * Disables translation.
-     *
-     * @return Zend_View_Helper_HeadTitle
-     */
-    public function disableTranslation()
-    {
-        $this->_translate = false;
-
-        return $this;
-    }
-
-    /**
      * Turn helper into string.
      *
      * @param  null|string $indent
@@ -196,14 +116,8 @@ class Zend_View_Helper_HeadTitle extends Zend_View_Helper_Placeholder_Container_
 
         $items = [];
 
-        if ($this->_translate && $translator = $this->getTranslator()) {
-            foreach ($this as $item) {
-                $items[] = $translator->translate($item, $locale);
-            }
-        } else {
-            foreach ($this as $item) {
-                $items[] = $item;
-            }
+        foreach ($this as $item) {
+            $items[] = $item;
         }
 
         $separator = $this->getSeparator();

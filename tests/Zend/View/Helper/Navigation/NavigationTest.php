@@ -152,27 +152,6 @@ class Zend_View_Helper_Navigation_NavigationTest extends Zend_View_Helper_Naviga
         $this->assertEquals($expected, $actual);
     }
 
-    public function testInjectingTranslator()
-    {
-        $this->_helper->setTranslator($this->_getTranslator());
-
-        $expected = $this->_getExpected('menu/translated.html');
-        $actual = $this->_helper->render();
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    public function testDisablingTranslatorInjection()
-    {
-        $this->_helper->setTranslator($this->_getTranslator());
-        $this->_helper->setInjectTranslator(false);
-
-        $expected = $this->_getExpected('menu/default1.html');
-        $actual = $this->_helper->render();
-
-        $this->assertEquals($expected, $actual);
-    }
-
     public function testSpecifyingDefaultProxy()
     {
         $expected = [

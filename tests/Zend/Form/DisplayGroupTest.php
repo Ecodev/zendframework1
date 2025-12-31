@@ -37,7 +37,6 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         Zend_Registry::_unsetInstance();
-        Zend_Form::setDefaultTranslator(null);
 
         if (isset($this->error)) {
             unset($this->error);
@@ -428,35 +427,6 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Raising exception in decorator callback', $this->error);
     }
 
-    public function testNoTranslatorByDefault()
-    {
-        $this->assertNull($this->group->getTranslator());
-    }
-
-    public function testGetTranslatorRetrievesGlobalDefaultWhenAvailable()
-    {
-        $this->testNoTranslatorByDefault();
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        Zend_Form::setDefaultTranslator($translator);
-        $received = $this->group->getTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-    }
-
-    public function testTranslatorAccessorsWorks()
-    {
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        $this->group->setTranslator($translator);
-        $received = $this->group->getTranslator($translator);
-        $this->assertSame($translator->getAdapter(), $received);
-    }
-
-    public function testCanDisableTranslation()
-    {
-        $this->testGetTranslatorRetrievesGlobalDefaultWhenAvailable();
-        $this->group->setDisableTranslator(true);
-        $this->assertNull($this->group->getTranslator());
-    }
-
     // Iteration
 
     public function setupIteratorElements()
@@ -568,7 +538,6 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $options['options'] = $config->toArray();
         $options['pluginLoader'] = true;
         $options['view'] = true;
-        $options['translator'] = true;
         $options['attrib'] = true;
         $this->group->setOptions($options);
         self::assertTrue(true);
@@ -782,32 +751,6 @@ class Zend_Form_DisplayGroupTest extends \PHPUnit\Framework\TestCase
         $this->group->setDecorators($t1);
         $t2 = $this->group->getDecorators();
         $this->assertEquals($t1, $t2);
-    }
-
-    /**
-     * @group ZF-12375
-     */
-    public function testHasTranslatorWithDefaultValue()
-    {
-        $this->assertFalse($this->group->hasTranslator());
-    }
-
-    /**
-     * @group ZF-12375
-     */
-    public function testHasTranslatorWithTranslateObject()
-    {
-        $this->group->setTranslator(
-            new Zend_Translate(
-                [
-                    'adapter' => 'array',
-                    'content' => [
-                        'foo' => 'Foo',
-                    ],
-                ]
-            )
-        );
-        $this->assertTrue($this->group->hasTranslator());
     }
 }
 

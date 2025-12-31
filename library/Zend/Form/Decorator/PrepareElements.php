@@ -56,14 +56,11 @@ class Zend_Form_Decorator_PrepareElements extends Zend_Form_Decorator_FormElemen
     protected function _recursivelyPrepareForm(Zend_Form $form)
     {
         $belongsTo = ($form instanceof Zend_Form) ? $form->getElementsBelongTo() : null;
-        $elementContent = '';
         $separator = $this->getSeparator();
-        $translator = $form->getTranslator();
         $view = $form->getView();
 
         foreach ($form as $item) {
-            $item->setView($view)
-                ->setTranslator($translator);
+            $item->setView($view);
             if ($item instanceof Zend_Form_Element) {
                 $item->setBelongsTo($belongsTo);
             } elseif (!empty($belongsTo) && ($item instanceof Zend_Form)) {

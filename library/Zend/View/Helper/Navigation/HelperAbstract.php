@@ -75,13 +75,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
     protected $_skipPrefixForId = false;
 
     /**
-     * Translator.
-     *
-     * @var Zend_Translate_Adapter
-     */
-    protected $_translator;
-
-    /**
      * ACL to use when iterating pages.
      *
      * @var Zend_Acl
@@ -101,13 +94,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
      * @var string|Zend_Acl_Role_Interface
      */
     protected $_role;
-
-    /**
-     * Whether translator should be used for page labels and titles.
-     *
-     * @var bool
-     */
-    protected $_useTranslator = true;
 
     /**
      * Whether ACL should be used for filtering out pages.
@@ -379,53 +365,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
     }
 
     /**
-     * Sets translator to use in helper.
-     *
-     * Implements {@link Zend_View_Helper_Navigation_Helper::setTranslator()}.
-     *
-     * @param  mixed $translator                           [optional] translator.
-     *                                                     Expects an object of
-     *                                                     type
-     *                                                     {@link Zend_Translate_Adapter}
-     *                                                     or {@link Zend_Translate},
-     *                                                     or null. Default is
-     *                                                     null, which sets no
-     *                                                     translator.
-     *
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
-     *                                                     returns self
-     */
-    public function setTranslator($translator = null)
-    {
-        if (null == $translator
-            || $translator instanceof Zend_Translate_Adapter) {
-            $this->_translator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            $this->_translator = $translator->getAdapter();
-        }
-
-        return $this;
-    }
-
-    /**
-     * Returns translator used in helper.
-     *
-     * Implements {@link Zend_View_Helper_Navigation_Helper::getTranslator()}.
-     *
-     * @return null|Zend_Translate_Adapter  translator or null
-     */
-    public function getTranslator()
-    {
-        if (null === $this->_translator) {
-            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
-                $this->setTranslator(Zend_Registry::get(\Zend_Translate::class));
-            }
-        }
-
-        return $this->_translator;
-    }
-
-    /**
      * Sets ACL to use when iterating pages.
      *
      * Implements {@link Zend_View_Helper_Navigation_Helper::setAcl()}.
@@ -566,37 +505,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
         $this->_renderInvisible = (bool) $renderInvisible;
 
         return $this;
-    }
-
-    /**
-     * Sets whether translator should be used.
-     *
-     * Implements {@link Zend_View_Helper_Navigation_Helper::setUseTranslator()}.
-     *
-     * @param  bool $useTranslator                         [optional] whether
-     *                                                     translator should be
-     *                                                     used. Default is true.
-     *
-     * @return Zend_View_Helper_Navigation_HelperAbstract  fluent interface,
-     *                                                     returns self
-     */
-    public function setUseTranslator($useTranslator = true)
-    {
-        $this->_useTranslator = (bool) $useTranslator;
-
-        return $this;
-    }
-
-    /**
-     * Returns whether translator should be used.
-     *
-     * Implements {@link Zend_View_Helper_Navigation_Helper::getUseTranslator()}.
-     *
-     * @return bool  whether translator should be used
-     */
-    public function getUseTranslator()
-    {
-        return $this->_useTranslator;
     }
 
     // Magic overloads:
@@ -754,18 +662,6 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
     }
 
     /**
-     * Checks if the helper has a translator.
-     *
-     * Implements {@link Zend_View_Helper_Navigation_Helper::hasTranslator()}.
-     *
-     * @return bool  whether the helper has a translator or not
-     */
-    public function hasTranslator()
-    {
-        return null !== $this->_translator;
-    }
-
-    /**
      * Returns an HTML string containing an 'a' element for the given page.
      *
      * @param  Zend_Navigation_Page $page  page to generate HTML for
@@ -774,18 +670,9 @@ abstract class Zend_View_Helper_Navigation_HelperAbstract extends Zend_View_Help
      */
     public function htmlify(Zend_Navigation_Page $page)
     {
-        // get label and title for translating
+        // get label and title
         $label = $page->getLabel();
         $title = $page->getTitle();
-
-        if ($this->getUseTranslator() && $t = $this->getTranslator()) {
-            if (is_string($label) && !empty($label)) {
-                $label = $t->translate($label);
-            }
-            if (is_string($title) && !empty($title)) {
-                $title = $t->translate($title);
-            }
-        }
 
         // get attribs for anchor element
         $attribs = array_merge(

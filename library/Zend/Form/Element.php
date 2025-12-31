@@ -189,18 +189,6 @@ class Zend_Form_Element implements Zend_Validate_Interface
     protected $_required = false;
 
     /**
-     * @var Zend_Translate
-     */
-    protected $_translator;
-
-    /**
-     * Is translation disabled?
-     *
-     * @var bool
-     */
-    protected $_translatorDisabled = false;
-
-    /**
      * Element type.
      *
      * @var string
@@ -369,17 +357,12 @@ class Zend_Form_Element implements Zend_Validate_Interface
             unset($options['prefixPath']);
         }
 
-        if (isset($options['disableTranslator'])) {
-            $this->setDisableTranslator($options['disableTranslator']);
-            unset($options['disableTranslator']);
-        }
-
         unset($options['options'], $options['config']);
 
         foreach ($options as $key => $value) {
             $method = 'set' . ucfirst($key);
 
-            if (in_array($method, ['setTranslator', 'setPluginLoader', 'setView'])) {
+            if (in_array($method, ['setPluginLoader', 'setView'])) {
                 if (!is_object($value)) {
                     continue;
                 }
@@ -405,82 +388,6 @@ class Zend_Form_Element implements Zend_Validate_Interface
     public function setConfig(Zend_Config $config)
     {
         return $this->setOptions($config->toArray());
-    }
-
-    // Localization:
-
-    /**
-     * Set translator object for localization.
-     *
-     * @param  null|Zend_Translate $translator
-     *
-     * @return Zend_Form_Element
-     */
-    public function setTranslator($translator = null)
-    {
-        if (null === $translator) {
-            $this->_translator = null;
-        } elseif ($translator instanceof Zend_Translate_Adapter) {
-            $this->_translator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            $this->_translator = $translator->getAdapter();
-        } else {
-            throw new Zend_Form_Exception('Invalid translator specified');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Retrieve localization translator object.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public function getTranslator()
-    {
-        if ($this->translatorIsDisabled()) {
-            return null;
-        }
-
-        if (null === $this->_translator) {
-            return Zend_Form::getDefaultTranslator();
-        }
-
-        return $this->_translator;
-    }
-
-    /**
-     * Does this element have its own specific translator?
-     *
-     * @return bool
-     */
-    public function hasTranslator()
-    {
-        return (bool) $this->_translator;
-    }
-
-    /**
-     * Indicate whether or not translation should be disabled.
-     *
-     * @param  bool $flag
-     *
-     * @return Zend_Form_Element
-     */
-    public function setDisableTranslator($flag)
-    {
-        $this->_translatorDisabled = (bool) $flag;
-
-        return $this;
-    }
-
-    /**
-     * Is translation disabled?
-     *
-     * @return bool
-     */
-    public function translatorIsDisabled()
-    {
-        return $this->_translatorDisabled;
     }
 
     // Metadata
@@ -659,11 +566,6 @@ class Zend_Form_Element implements Zend_Validate_Interface
      */
     public function getLabel()
     {
-        $translator = $this->getTranslator();
-        if (null !== $translator) {
-            return $translator->translate($this->_label);
-        }
-
         return $this->_label;
     }
 
@@ -1391,11 +1293,6 @@ class Zend_Form_Element implements Zend_Validate_Interface
     /**
      * Validate element value.
      *
-     * If a translation adapter is registered, any error messages will be
-     * translated according to the current locale, using the given error code;
-     * if no matching translation is found, the original message will be
-     * utilized.
-     *
      * Note: The *filtered* value is validated.
      *
      * @param  mixed $value
@@ -1424,39 +1321,11 @@ class Zend_Form_Element implements Zend_Validate_Interface
             $this->setValidators($validators);
         }
 
-        // Find the correct translator. Zend_Validate_Abstract::getDefaultTranslator()
-        // will get either the static translator attached to Zend_Validate_Abstract
-        // or the 'Zend_Translate' from Zend_Registry.
-        if (Zend_Validate_Abstract::hasDefaultTranslator()
-            && !Zend_Form::hasDefaultTranslator()) {
-            $translator = Zend_Validate_Abstract::getDefaultTranslator();
-            if ($this->hasTranslator()) {
-                // only pick up this element's translator if it was attached directly.
-                $translator = $this->getTranslator();
-            }
-        } else {
-            $translator = $this->getTranslator();
-        }
-
         $this->_messages = [];
         $this->_errors = [];
         $result = true;
         $isArray = $this->isArray();
         foreach ($this->getValidators() as $key => $validator) {
-            if (method_exists($validator, 'setTranslator')) {
-                if (method_exists($validator, 'hasTranslator')) {
-                    if (!$validator->hasTranslator()) {
-                        $validator->setTranslator($translator);
-                    }
-                } else {
-                    $validator->setTranslator($translator);
-                }
-            }
-
-            if (method_exists($validator, 'setDisableTranslator')) {
-                $validator->setDisableTranslator($this->translatorIsDisabled());
-            }
-
             if ($isArray && is_array($value)) {
                 $messages = [];
                 $errors = [];
@@ -2332,19 +2201,15 @@ class Zend_Form_Element implements Zend_Validate_Interface
     }
 
     /**
-     * Retrieve error messages and perform translation and value substitution.
+     * Retrieve error messages and perform value substitution.
      *
      * @return array
      */
     protected function _getErrorMessages()
     {
-        $translator = $this->getTranslator();
         $messages = $this->getErrorMessages();
         $value = $this->getValue();
         foreach ($messages as $key => $message) {
-            if (null !== $translator) {
-                $message = $translator->translate($message);
-            }
             if ($this->isArray() || is_array($value)) {
                 $aggregateMessages = [];
                 foreach ($value as $val) {

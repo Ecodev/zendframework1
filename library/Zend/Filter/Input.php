@@ -126,20 +126,6 @@ class Zend_Filter_Input
     protected $_processed = false;
 
     /**
-     * Translation object.
-     *
-     * @var Zend_Translate
-     */
-    protected $_translator;
-
-    /**
-     * Is translation disabled?
-     *
-     * @var bool
-     */
-    protected $_translatorDisabled = false;
-
-    /**
      * @param array $filterRules
      * @param array $validatorRules
      * @param array $data       OPTIONAL
@@ -574,76 +560,6 @@ class Zend_Filter_Input
         return $this;
     }
 
-    /**
-     * Set translation object.
-     *
-     * @param  null|Zend_Translate|Zend_Translate_Adapter $translator
-     *
-     * @return Zend_Filter_Input
-     */
-    public function setTranslator($translator = null)
-    {
-        if ((null === $translator) || ($translator instanceof Zend_Translate_Adapter)) {
-            $this->_translator = $translator;
-        } elseif ($translator instanceof Zend_Translate) {
-            $this->_translator = $translator->getAdapter();
-        } else {
-            throw new Zend_Validate_Exception('Invalid translator specified');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Return translation object.
-     *
-     * @return null|Zend_Translate_Adapter
-     */
-    public function getTranslator()
-    {
-        if ($this->translatorIsDisabled()) {
-            return null;
-        }
-
-        if ($this->_translator === null) {
-            if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
-                $translator = Zend_Registry::get(\Zend_Translate::class);
-                if ($translator instanceof Zend_Translate_Adapter) {
-                    return $translator;
-                }
-                if ($translator instanceof Zend_Translate) {
-                    return $translator->getAdapter();
-                }
-            }
-        }
-
-        return $this->_translator;
-    }
-
-    /**
-     * Indicate whether or not translation should be disabled.
-     *
-     * @param  bool $flag
-     *
-     * @return Zend_Filter_Input
-     */
-    public function setDisableTranslator($flag)
-    {
-        $this->_translatorDisabled = (bool) $flag;
-
-        return $this;
-    }
-
-    /**
-     * Is translation disabled?
-     *
-     * @return bool
-     */
-    public function translatorIsDisabled()
-    {
-        return $this->_translatorDisabled;
-    }
-
     // Protected methods
 
     protected function _filter()
@@ -738,14 +654,6 @@ class Zend_Filter_Input
     {
         $message = $this->_defaults[self::MISSING_MESSAGE];
 
-        if (null !== ($translator = $this->getTranslator())) {
-            if ($translator->isTranslated(self::MISSING_MESSAGE)) {
-                $message = $translator->translate(self::MISSING_MESSAGE);
-            } else {
-                $message = $translator->translate($message);
-            }
-        }
-
         $message = str_replace('%rule%', $rule, $message);
         $message = str_replace('%field%', $field, $message);
 
@@ -761,14 +669,6 @@ class Zend_Filter_Input
     protected function _getNotEmptyMessage($rule, $field)
     {
         $message = $this->_defaults[self::NOT_EMPTY_MESSAGE];
-
-        if (null !== ($translator = $this->getTranslator())) {
-            if ($translator->isTranslated(self::NOT_EMPTY_MESSAGE)) {
-                $message = $translator->translate(self::NOT_EMPTY_MESSAGE);
-            } else {
-                $message = $translator->translate($message);
-            }
-        }
 
         $message = str_replace('%rule%', $rule, $message);
         $message = str_replace('%field%', $field, $message);

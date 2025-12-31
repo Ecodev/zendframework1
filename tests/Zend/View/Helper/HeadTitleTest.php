@@ -194,15 +194,6 @@ class Zend_View_Helper_HeadTitleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('<title>Prefix &amp; Some Title &amp; Postfix</title>', $this->helper->toString());
     }
 
-    public function testCanTranslateTitle()
-    {
-        $adapter = new Zend_Translate_Adapter_Array(['Message_1' => 'Message 1 (en)'], 'en');
-        Zend_Registry::set(\Zend_Translate::class, $adapter);
-        $this->helper->enableTranslation();
-        $this->helper->headTitle('Message_1');
-        $this->assertEquals('<title>Message 1 (en)</title>', $this->helper->toString());
-    }
-
     /**
      * @group ZF-8036
      */

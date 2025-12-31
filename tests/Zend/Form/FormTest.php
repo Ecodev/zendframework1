@@ -39,19 +39,8 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $result = \PHPUnit\TextUI\TestRunner::run($suite);
     }
 
-    public function clearRegistry()
-    {
-        if (Zend_Registry::isRegistered(\Zend_Translate::class)) {
-            $registry = Zend_Registry::getInstance();
-            unset($registry[\Zend_Translate::class]);
-        }
-    }
-
     public function setUp(): void
     {
-        $this->clearRegistry();
-        Zend_Form::setDefaultTranslator(null);
-
         if (isset($this->error)) {
             unset($this->error);
         }
@@ -62,7 +51,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
 
     public function tearDown(): void
     {
-        $this->clearRegistry();
     }
 
     public function testZendFormImplementsZendValidateInterface()
@@ -119,7 +107,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $options = $this->getOptions();
         $options['pluginLoader'] = true;
         $options['view'] = true;
-        $options['translator'] = true;
         $options['default'] = true;
         $options['attrib'] = true;
         $this->form->setOptions($options);
@@ -2584,151 +2571,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($keys, array_keys($codes), var_export($codes, 1));
     }
 
-    public function testErrorMessagesAreLocalizedWhenTranslateAdapterPresent()
-    {
-        $this->_checkZf2794();
-
-        $translations = include __DIR__ . '/_files/locale/array.php';
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $translate->setLocale('en');
-
-        $this->form->addElements([
-            'foo' => [
-                'type' => 'text',
-                'options' => [
-                    'required' => true,
-                    'validators' => ['NotEmpty'],
-                ],
-            ],
-            'bar' => [
-                'type' => 'text',
-                'options' => [
-                    'required' => true,
-                    'validators' => ['Digits'],
-                ],
-            ],
-        ])
-            ->setTranslator($translate);
-
-        $data = [
-            'foo' => '',
-            'bar' => 'abc',
-        ];
-        if ($this->form->isValid($data)) {
-            $this->fail('Form should not validate');
-        }
-
-        $messages = $this->form->getMessages();
-        $this->assertTrue(isset($messages['foo']));
-        $this->assertTrue(isset($messages['bar']));
-
-        foreach ($messages['foo'] as $key => $message) {
-            if (array_key_exists($key, $translations)) {
-                $this->assertEquals($translations[$key], $message);
-            } else {
-                $this->fail('Translation for ' . $key . ' does not exist?');
-            }
-        }
-        foreach ($messages['bar'] as $key => $message) {
-            if (array_key_exists($key, $translations)) {
-                $this->assertEquals($translations[$key], $message);
-            } else {
-                $this->fail('Translation for ' . $key . ' does not exist?');
-            }
-        }
-    }
-
-    public function testErrorMessagesFromPartialValidationAreLocalizedWhenTranslateAdapterPresent()
-    {
-        $this->_checkZf2794();
-
-        $translations = include __DIR__ . '/_files/locale/array.php';
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $translate->setLocale('en');
-
-        $this->form->addElements([
-            'foo' => [
-                'type' => 'text',
-                'options' => [
-                    'required' => true,
-                    'validators' => ['NotEmpty'],
-                ],
-            ],
-            'bar' => [
-                'type' => 'text',
-                'options' => [
-                    'required' => true,
-                    'validators' => ['Digits'],
-                ],
-            ],
-        ])
-            ->setTranslator($translate);
-
-        $data = [
-            'foo' => '',
-        ];
-        if ($this->form->isValidPartial($data)) {
-            $this->fail('Form should not validate');
-        }
-
-        $messages = $this->form->getMessages();
-        $this->assertTrue(isset($messages['foo']));
-        $this->assertFalse(isset($messages['bar']));
-
-        foreach ($messages['foo'] as $key => $message) {
-            if (array_key_exists($key, $translations)) {
-                $this->assertEquals($translations[$key], $message);
-            } else {
-                $this->fail('Translation for ' . $key . ' does not exist?');
-            }
-        }
-    }
-
-    public function testErrorMessagesFromProcessAjaxAreLocalizedWhenTranslateAdapterPresent()
-    {
-        $this->_checkZf2794();
-
-        $translations = include __DIR__ . '/_files/locale/array.php';
-        $translate = new Zend_Translate('array', $translations, 'en');
-        $translate->setLocale('en');
-
-        $this->form->addElements([
-            'foo' => [
-                'type' => 'text',
-                'options' => [
-                    'required' => true,
-                    'validators' => ['NotEmpty'],
-                ],
-            ],
-            'bar' => [
-                'type' => 'text',
-                'options' => [
-                    'required' => true,
-                    'validators' => ['Digits'],
-                ],
-            ],
-        ])
-            ->setTranslator($translate);
-
-        $data = [
-            'foo' => '',
-        ];
-        $return = $this->form->processAjax($data);
-        $messages = Zend_Json::decode($return);
-        $this->assertTrue(is_array($messages));
-
-        $this->assertTrue(isset($messages['foo']));
-        $this->assertFalse(isset($messages['bar']));
-
-        foreach ($messages['foo'] as $key => $message) {
-            if (array_key_exists($key, $translations)) {
-                $this->assertEquals($translations[$key], $message);
-            } else {
-                $this->fail('Translation for ' . $key . ' does not exist?');
-            }
-        }
-    }
-
     /**
      * @Group ZF-9697
      */
@@ -2818,21 +2660,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $this->form->clearErrorMessages();
         $messages = $this->form->getErrorMessages();
         $this->assertTrue(empty($messages));
-    }
-
-    public function testCustomErrorMessagesShouldBeTranslated()
-    {
-        $translations = [
-            'foo' => 'Foo message',
-        ];
-        $translate = new Zend_Translate('array', $translations);
-        $this->form->addElement('text', 'foo', ['validators' => ['Alpha']]);
-        $this->form->setTranslator($translate)
-            ->addErrorMessage('foo');
-        $this->assertFalse($this->form->isValid(['foo' => 123]));
-        $messages = $this->form->getMessages();
-        $this->assertEquals(1, count($messages));
-        $this->assertEquals('Foo message', array_shift($messages));
     }
 
     public function testShouldAllowMarkingFormAsInvalid()
@@ -3267,78 +3094,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
             $this->assertRegexp('#<input[^]*name="' . $which . '"#', $matches[0]);
             $this->assertRegexp('#<input[^]*value="' . $which . ' value"#', $matches[0]);
         }
-    }
-
-    // Localization
-
-    public function testTranslatorIsNullByDefault()
-    {
-        $this->assertNull($this->form->getTranslator());
-    }
-
-    public function testCanSetTranslator()
-    {
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        $this->form->setTranslator($translator);
-        $received = $this->form->getTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-    }
-
-    public function testCanSetDefaultGlobalTranslator()
-    {
-        $this->assertNull($this->form->getTranslator());
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        Zend_Form::setDefaultTranslator($translator);
-
-        $received = Zend_Form::getDefaultTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-
-        $received = $this->form->getTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-
-        $form = new Zend_Form();
-        $received = $form->getTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-    }
-
-    public function testLocalTranslatorPreferredOverDefaultGlobalTranslator()
-    {
-        $this->assertNull($this->form->getTranslator());
-        $translatorDefault = new Zend_Translate('array', ['foo' => 'bar']);
-        Zend_Form::setDefaultTranslator($translatorDefault);
-
-        $received = $this->form->getTranslator();
-        $this->assertSame($translatorDefault->getAdapter(), $received);
-
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        $this->form->setTranslator($translator);
-        $received = $this->form->getTranslator();
-        $this->assertNotSame($translatorDefault->getAdapter(), $received);
-        $this->assertSame($translator->getAdapter(), $received);
-    }
-
-    public function testTranslatorFromRegistryUsedWhenNoneRegistered()
-    {
-        $this->assertNull($this->form->getTranslator());
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        Zend_Registry::set(\Zend_Translate::class, $translator);
-
-        $received = Zend_Form::getDefaultTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-
-        $received = $this->form->getTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-
-        $form = new Zend_Form();
-        $received = $form->getTranslator();
-        $this->assertSame($translator->getAdapter(), $received);
-    }
-
-    public function testCanDisableTranslation()
-    {
-        $this->testCanSetDefaultGlobalTranslator();
-        $this->form->setDisableTranslator(true);
-        $this->assertNull($this->form->getTranslator());
     }
 
     // Iteration
@@ -4138,192 +3893,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-9275
-     */
-    public function testElementTranslatorNotOverriddenbyGlobalTranslatorDuringValidation()
-    {
-        $translator = new Zend_Translate('array', ['foo' => 'bar']);
-        Zend_Registry::set(\Zend_Translate::class, $translator);
-
-        $this->form->addElement('text', 'foo');
-        $this->form->isValid([]);
-
-        $received = $this->form->foo->hasTranslator();
-        $this->assertSame(false, $received);
-    }
-
-    /**
-     * @group ZF-9275
-     */
-    public function testZendValidateDefaultTranslatorOverridesZendTranslateDefaultTranslator()
-    {
-        $translate = new Zend_Translate('array', ['isEmpty' => 'translate']);
-        Zend_Registry::set(\Zend_Translate::class, $translate);
-
-        $translateValidate = new Zend_Translate('array', ['isEmpty' => 'validate']);
-        Zend_Validate_Abstract::setDefaultTranslator($translateValidate);
-
-        $this->form->addElement('text', 'foo', ['required' => 1]);
-        $this->form->isValid([]);
-
-        $this->assertSame(['isEmpty' => 'validate'], $this->form->foo->getMessages());
-    }
-
-    /**
-     * @group ZF-9494
-     */
-    public function testElementTranslatorNotOveriddenbyFormTranslator()
-    {
-        $translations = [
-            'isEmpty' => 'Element message',
-        ];
-        $translate = new Zend_Translate('array', $translations);
-        $this->form->addElement('text', 'foo', ['required' => true, 'translator' => $translate]);
-        $this->assertFalse($this->form->isValid(['foo' => '']));
-        $messages = $this->form->getMessages();
-        $this->assertEquals(1, count($messages));
-        $this->assertEquals('Element message', $messages['foo']['isEmpty']);
-
-        $this->assertFalse($this->form->isValidPartial(['foo' => '']));
-        $messages = $this->form->getMessages();
-        $this->assertEquals(1, count($messages));
-        $this->assertEquals('Element message', $messages['foo']['isEmpty']);
-    }
-
-    /**
-     * @group ZF-9364
-     */
-    public function testElementTranslatorPreferredOverFormTranslator()
-    {
-        $formTanslations = [
-            'isEmpty' => 'Form message',
-        ];
-        $elementTanslations = [
-            'isEmpty' => 'Element message',
-        ];
-        $formTranslate = new Zend_Translate('array', $formTanslations);
-        $elementTranslate = new Zend_Translate('array', $elementTanslations);
-        $this->form->setTranslator($formTranslate);
-        $this->form->addElement('text', 'foo', ['required' => true, 'translator' => $elementTranslate]);
-        $this->form->addElement('text', 'bar', ['required' => true]);
-
-        $this->assertFalse($this->form->isValid(['foo' => '', 'bar' => '']));
-        $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
-        $this->assertEquals('Element message', $messages['foo']['isEmpty']);
-        $this->assertEquals('Form message', $messages['bar']['isEmpty']);
-
-        $this->assertFalse($this->form->isValidPartial(['foo' => '', 'bar' => '']));
-        $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
-        $this->assertEquals('Element message', $messages['foo']['isEmpty']);
-        $this->assertEquals('Form message', $messages['bar']['isEmpty']);
-    }
-
-    /**
-     * @group ZF-9364
-     */
-    public function testElementTranslatorPreferredOverDefaultTranslator()
-    {
-        $defaultTranslations = [
-            'isEmpty' => 'Default message',
-        ];
-        $formTranslations = [
-            'isEmpty' => 'Form message',
-        ];
-        $elementTranslations = [
-            'isEmpty' => 'Element message',
-        ];
-        $defaultTranslate = new Zend_Translate('array', $defaultTranslations);
-        $formTranslate = new Zend_Translate('array', $formTranslations);
-        $elementTranslate = new Zend_Translate('array', $elementTranslations);
-
-        Zend_Registry::set(\Zend_Translate::class, $defaultTranslate);
-        $this->form->setTranslator($formTranslate);
-        $this->form->addElement('text', 'foo', ['required' => true, 'translator' => $elementTranslate]);
-        $this->form->addElement('text', 'bar', ['required' => true]);
-
-        $this->assertFalse($this->form->isValid(['foo' => '', 'bar' => '']));
-        $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
-        $this->assertEquals('Element message', $messages['foo']['isEmpty']);
-        $this->assertEquals('Form message', $messages['bar']['isEmpty']);
-
-        $this->assertFalse($this->form->isValidPartial(['foo' => '', 'bar' => '']));
-        $messages = $this->form->getMessages();
-        $this->assertEquals(2, count($messages));
-        $this->assertEquals('Element message', $messages['foo']['isEmpty']);
-        $this->assertEquals('Form message', $messages['bar']['isEmpty']);
-    }
-
-    /**
-     * @group ZF-9540
-     */
-    public function testSubFormTranslatorPreferredOverDefaultTranslator()
-    {
-        $defaultTranslations = ['isEmpty' => 'Default message'];
-        $subformTranslations = ['isEmpty' => 'SubForm message'];
-
-        $defaultTranslate = new Zend_Translate('array', $defaultTranslations);
-        $subformTranslate = new Zend_Translate('array', $subformTranslations);
-
-        Zend_Registry::set(\Zend_Translate::class, $defaultTranslate);
-        $this->form->addSubForm(new Zend_Form_SubForm(), 'subform');
-        $this->form->subform->setTranslator($subformTranslate);
-        $this->form->subform->addElement('text', 'foo', ['required' => true]);
-
-        $this->assertFalse($this->form->isValid(['subform' => ['foo' => '']]));
-        $messages = $this->form->getMessages();
-        $this->assertEquals('SubForm message', $messages['subform']['foo']['isEmpty']);
-
-        $this->assertFalse($this->form->isValidPartial(['subform' => ['foo' => '']]));
-        $messages = $this->form->getMessages();
-        $this->assertEquals('SubForm message', $messages['subform']['foo']['isEmpty']);
-    }
-
-    /**
-     * @group ZF-12375
-     */
-    public function testElementTranslatorNotOveriddenbyFormTranslatorDuringRendering()
-    {
-        // Set translator for form
-        $this->form->setTranslator(
-            new Zend_Translate(
-                'array',
-                [
-                    'labelText' => 'Foo',
-                ]
-            )
-        );
-
-        // Add element with his own translator
-        $this->form->addElement(
-            'text',
-            'foo',
-            [
-                'label' => 'labelText',
-                'translator' => new Zend_Translate(
-                    'array',
-                    [
-                        'labelText' => 'Bar',
-                    ]
-                ),
-                'decorators' => [
-                    'Label',
-                ],
-            ]
-        );
-
-        $this->form->setDecorators(['FormElements']);
-
-        // Test
-        $this->assertSame(
-            PHP_EOL . '<label for="foo" class="optional">Bar</label>' . PHP_EOL,
-            $this->form->render(new Zend_View())
-        );
-    }
-
-    /**
      * @group ZF-5613
      */
     public function testAddSubFormsPerConfig()
@@ -4557,61 +4126,6 @@ class Zend_Form_FormTest extends \PHPUnit\Framework\TestCase
         $html = $form->render($this->getView());
         $count = substr_count($html, 'randomelementname-element');
         $this->assertEquals(1, $count, $html);
-    }
-
-    /**
-     * @group ZF-11831
-     */
-    public function testElementsOfSubFormReceiveCorrectDefaultTranslator()
-    {
-        // Global default translator
-        $trDefault = new Zend_Translate([
-            'adapter' => 'array',
-            'content' => [
-                Zend_Validate_NotEmpty::IS_EMPTY => 'Default',
-            ],
-            'locale' => 'en',
-        ]);
-        Zend_Registry::set(\Zend_Translate::class, $trDefault);
-
-        // Translator to use for elements
-        $trElement = new Zend_Translate([
-            'adapter' => 'array',
-            'content' => [
-                Zend_Validate_NotEmpty::IS_EMPTY => 'Element',
-            ],
-            'locale' => 'en',
-        ]);
-        Zend_Validate_Abstract::setDefaultTranslator($trElement);
-
-        // Change the form's translator
-        $form = new Zend_Form();
-        $form->addElement(new Zend_Form_Element_Text('foo', [
-            'required' => true,
-            'validators' => ['NotEmpty'],
-        ]));
-
-        // Create a subform with it's own validator
-        $sf1 = new Zend_Form_SubForm();
-        $sf1->addElement(new Zend_Form_Element_Text('foosub', [
-            'required' => true,
-            'validators' => ['NotEmpty'],
-        ]));
-        $form->addSubForm($sf1, 'Test1');
-
-        $form->isValid([]);
-
-        $messages = $form->getMessages();
-        $this->assertEquals(
-            'Element',
-            @$messages['foo'][Zend_Validate_NotEmpty::IS_EMPTY],
-            'Form element received wrong validator'
-        );
-        $this->assertEquals(
-            'Element',
-            @$messages['Test1']['foosub'][Zend_Validate_NotEmpty::IS_EMPTY],
-            'SubForm element received wrong validator'
-        );
     }
 
     /**
