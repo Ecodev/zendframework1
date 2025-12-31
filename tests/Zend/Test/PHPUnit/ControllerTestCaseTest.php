@@ -47,7 +47,7 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit\Framework\TestCas
     public function setUp(): void
     {
         $_SESSION = [];
-        $this->testCase = new Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete();
+        $this->testCase = new Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete('my test case');
         $this->testCase->reset();
         $this->testCase->bootstrap = [$this, 'bootstrap'];
     }
@@ -488,8 +488,4 @@ class Zend_Test_PHPUnit_ControllerTestCaseTest extends PHPUnit\Framework\TestCas
 #[AllowDynamicProperties]
 class Zend_Test_PHPUnit_ControllerTestCaseTest_Concrete extends Zend_Test_PHPUnit_ControllerTestCase
 {
-    public function __construct()
-    {
-        parent::__construct(static::class);
-    }
 }

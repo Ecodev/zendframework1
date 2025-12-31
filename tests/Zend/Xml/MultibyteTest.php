@@ -88,7 +88,7 @@ class Zend_Xml_MultibyteTest extends PHPUnit\Framework\TestCase
      * @param mixed $encoding
      * @param mixed $bom
      */
-    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings')]
+    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings', false)]
     public function testDetectsMultibyteXXEVectorsUnderFPMWithEncodedStringUsingBOM($encoding, $bom)
     {
         $xml = $this->getXmlWithXXE();
@@ -112,7 +112,7 @@ class Zend_Xml_MultibyteTest extends PHPUnit\Framework\TestCase
     /**
      * @param mixed $encoding
      */
-    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings')]
+    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings', false)]
     public function testDoesNotFlagValidMultibyteXmlAsInvalidUnderFPM($encoding)
     {
         $xml = $this->getXmlWithoutXXE();
@@ -132,7 +132,7 @@ class Zend_Xml_MultibyteTest extends PHPUnit\Framework\TestCase
      * @param mixed $bom
      */
     #[PHPUnit\Framework\Attributes\Group('mixedEncoding')]
-    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings')]
+    #[PHPUnit\Framework\Attributes\DataProvider('multibyteEncodings', false)]
     public function testDetectsXXEWhenXMLDocumentEncodingDiffersFromFileEncoding($encoding, $bom)
     {
         $xml = $this->getXmlWithXXE();
