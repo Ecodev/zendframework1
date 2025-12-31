@@ -35,40 +35,40 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 #[AllowDynamicProperties]
-abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Framework\TestCase
+abstract class Zend_Test_PHPUnit_ControllerTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var mixed Bootstrap file path or callback
      */
-    private $bootstrap;
+    public $bootstrap;
 
     /**
      * @var Zend_Controller_Front
      */
-    private $_frontController;
+    protected $_frontController;
 
     /**
      * @var Zend_Controller_Request_Abstract
      */
-    private $_request;
+    protected $_request;
 
     /**
      * @var Zend_Controller_Response_Abstract
      */
-    private $_response;
+    protected $_response;
 
     /**
      * XPath namespaces.
      *
      * @var array
      */
-    private $_xpathNamespaces = [];
+    protected $_xpathNamespaces = [];
 
     /**
      * Overloading: prevent overloading to special properties.
      *
-     * @param string $name
-     * @param mixed $value
+     * @param  string $name
+     * @param  mixed  $value
      */
     public function __set($name, $value)
     {
@@ -83,7 +83,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * Provides overloading for request, response, and frontController objects.
      *
-     * @param mixed $name
+     * @param  mixed $name
      *
      * @return null|Zend_Controller_Front|Zend_Controller_Request_HttpTestCase|Zend_Controller_Response_HttpTestCase
      */
@@ -120,7 +120,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      * it. When done, sets the test case request and response objects into the
      * front controller.
      */
-    private function bootstrap()
+    final public function bootstrap()
     {
         $this->reset();
         if (null !== $this->bootstrap) {
@@ -150,7 +150,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * @param null|string $url
      */
-    protected function dispatch($url = null)
+    public function dispatch($url = null)
     {
         // redirector should not exit
         $redirector = Zend_Controller_Action_HelperBroker::getStaticHelper('redirector');
@@ -188,7 +188,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * @todo   Need to update Zend_Layout to add a resetInstance() method
      */
-    private function reset()
+    public function reset()
     {
         $_SESSION = [];
         $_GET = [];
@@ -205,7 +205,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
     /**
      * Rest all view placeholders.
      */
-    private function _resetPlaceholders()
+    protected function _resetPlaceholders()
     {
         $registry = Zend_Registry::getInstance();
         $remove = [];
@@ -227,7 +227,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * @return Zend_Test_PHPUnit_ControllerTestCase
      */
-    private function resetRequest()
+    public function resetRequest()
     {
         if ($this->_request instanceof Zend_Controller_Request_HttpTestCase) {
             $this->_request->clearQuery()
@@ -245,7 +245,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * @return Zend_Test_PHPUnit_ControllerTestCase
      */
-    private function resetResponse()
+    public function resetResponse()
     {
         $this->_response = null;
         $this->_resetPlaceholders();
@@ -258,7 +258,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * @param array $xpathNamespaces
      */
-    private function registerXpathNamespaces($xpathNamespaces)
+    public function registerXpathNamespaces($xpathNamespaces)
     {
         $this->_xpathNamespaces = $xpathNamespaces;
     }
@@ -269,7 +269,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      * @param string $module
      * @param string $message
      */
-    private function assertModule($module, $message = '')
+    public function assertModule($module, $message = '')
     {
         $this->_incrementAssertionCount();
         if ($module != $this->request->getModuleName()) {
@@ -290,7 +290,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      * @param string $module
      * @param string $message
      */
-    private function assertNotModule($module, $message = '')
+    public function assertNotModule($module, $message = '')
     {
         $this->_incrementAssertionCount();
         if ($module == $this->request->getModuleName()) {
@@ -308,7 +308,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      * @param string $controller
      * @param string $message
      */
-    private function assertController($controller, $message = '')
+    public function assertController($controller, $message = '')
     {
         $this->_incrementAssertionCount();
         if ($controller != $this->request->getControllerName()) {
@@ -326,10 +326,10 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
     /**
      * Assert that the last handled request did NOT use the given controller.
      *
-     * @param string $controller
-     * @param string $message
+     * @param  string $controller
+     * @param  string $message
      */
-    private function assertNotController($controller, $message = '')
+    public function assertNotController($controller, $message = '')
     {
         $this->_incrementAssertionCount();
         if ($controller == $this->request->getControllerName()) {
@@ -350,7 +350,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      * @param string $action
      * @param string $message
      */
-    private function assertAction($action, $message = '')
+    public function assertAction($action, $message = '')
     {
         $this->_incrementAssertionCount();
         if ($action != $this->request->getActionName()) {
@@ -368,7 +368,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      * @param string $action
      * @param string $message
      */
-    private function assertNotAction($action, $message = '')
+    public function assertNotAction($action, $message = '')
     {
         $this->_incrementAssertionCount();
         if ($action == $this->request->getActionName()) {
@@ -386,7 +386,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      * @param string $route
      * @param string $message
      */
-    private function assertRoute($route, $message = '')
+    public function assertRoute($route, $message = '')
     {
         $this->_incrementAssertionCount();
         $router = $this->frontController->getRouter();
@@ -408,7 +408,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      * @param string $route
      * @param string $message
      */
-    private function assertNotRoute($route, $message = '')
+    public function assertNotRoute($route, $message = '')
     {
         $this->_incrementAssertionCount();
         $router = $this->frontController->getRouter();
@@ -426,7 +426,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * @return Zend_Controller_Front
      */
-    private function getFrontController()
+    public function getFrontController()
     {
         if (null === $this->_frontController) {
             $this->_frontController = Zend_Controller_Front::getInstance();
@@ -440,7 +440,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * @return Zend_Controller_Request_HttpTestCase
      */
-    private function getRequest()
+    public function getRequest()
     {
         if (null === $this->_request) {
             $this->_request = new Zend_Controller_Request_HttpTestCase();
@@ -454,7 +454,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
      *
      * @return Zend_Controller_Response_HttpTestCase
      */
-    private function getResponse()
+    public function getResponse()
     {
         if (null === $this->_response) {
             $this->_response = new Zend_Controller_Response_HttpTestCase();
@@ -466,14 +466,14 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
     /**
      * URL Helper.
      *
-     * @param array $urlOptions
-     * @param string $name
-     * @param bool $reset
-     * @param bool $encode
+     * @param  array  $urlOptions
+     * @param  string $name
+     * @param  bool   $reset
+     * @param  bool   $encode
      *
      * @return string
      */
-    private function url($urlOptions = [], $name = null, $reset = false, $encode = true)
+    public function url($urlOptions = [], $name = null, $reset = false, $encode = true)
     {
         $frontController = $this->getFrontController();
         $router = $frontController->getRouter();
@@ -490,12 +490,12 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
     /**
      * Urlize options.
      *
-     * @param array $urlOptions
-     * @param bool $actionControllerModuleOnly
+     * @param  array $urlOptions
+     * @param  bool  $actionControllerModuleOnly
      *
      * @return mixed
      */
-    private function urlizeOptions($urlOptions, $actionControllerModuleOnly = true)
+    public function urlizeOptions($urlOptions, $actionControllerModuleOnly = true)
     {
         $ccToDash = new Zend_Filter_Word_CamelCaseToDash();
         foreach ($urlOptions as $n => $v) {
@@ -510,7 +510,7 @@ abstract class Zend_Layout_FunctionalTest_ControllerTestCase extends \PHPUnit\Fr
     /**
      * Increment assertion count.
      */
-    private function _incrementAssertionCount()
+    protected function _incrementAssertionCount()
     {
         $stack = debug_backtrace();
         foreach ($stack as $step) {

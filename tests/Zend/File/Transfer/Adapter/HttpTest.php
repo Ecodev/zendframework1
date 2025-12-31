@@ -248,6 +248,7 @@ class Zend_File_Transfer_Adapter_HttpTest extends \PHPUnit\Framework\TestCase
             'id' => 'mykey',], $status);
     }
 
+
     public function testValidationOfPhpExtendsFormError()
     {
         $_SERVER['CONTENT_LENGTH'] = 10;

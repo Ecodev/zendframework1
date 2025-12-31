@@ -195,7 +195,6 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
     {
         $this->jquery->javascriptCaptureStart();
         $this->expectException(\Zend_Exception::class);
-
         try {
             $this->jquery->javascriptCaptureStart();
         } finally {
@@ -207,7 +206,6 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
     {
         $this->expectException(\Zend_Exception::class);
         $this->jquery->onLoadCaptureStart();
-
         try {
             $this->jquery->onLoadCaptureStart();
         } finally {
