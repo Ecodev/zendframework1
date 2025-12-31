@@ -1525,18 +1525,18 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                 ['iek Value']);
 
         $data = ['valid' => ['foo' => ['foo' => ['foo' => ['foo' => 'foo Value',
-            'quo' => 'quo Value', ],
-            'baz' => ['baz' => ['baz' => ['baz' => 'baz Value']]], ],
+            'quo' => 'quo Value',],
+            'baz' => ['baz' => ['baz' => ['baz' => 'baz Value']]],],
             'zoo' => ['zoo' => 'zoo Value',
-                'iek' => 'iek Value', ], ]],
+                'iek' => 'iek Value',],]],
             'invalid' => ['foo' => ['foo' => ['foo' => ['foo' => 'foo Invalid',
-                'quo' => 'quo Value', ],
-                'baz' => ['baz' => ['baz' => ['baz' => 'baz Value']]], ],
+                'quo' => 'quo Value',],
+                'baz' => ['baz' => ['baz' => ['baz' => 'baz Value']]],],
                 'zoo' => ['zoo' => 'zoo Value',
-                    'iek' => 'iek Invalid', ], ]],
+                    'iek' => 'iek Invalid',],]],
             'partial' => ['foo' => ['foo' => ['baz' => ['baz' => ['baz' => ['baz' => 'baz Value']]],
-                'foo' => ['quo' => 'quo Value'], ],
-                'zoo' => ['zoo' => 'zoo Value'], ]], ];
+                'foo' => ['quo' => 'quo Value'],],
+                'zoo' => ['zoo' => 'zoo Value'],]],];
 
         return $data;
     }
@@ -1616,10 +1616,10 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                 ['quo Value']);
 
         $data = ['valid' => ['f' => [2 => ['foo' => 'foo Value',
-            0 => ['quo' => 'quo Value'], ]]],
+            0 => ['quo' => 'quo Value'],]]],
             'invalid' => ['f' => [2 => ['foo' => 'foo Invalid',
-                0 => ['quo' => 'quo Value'], ]]],
-            'partial' => ['f' => [2 => [0 => ['quo' => 'quo Value']]]], ];
+                0 => ['quo' => 'quo Value'],]]],
+            'partial' => ['f' => [2 => [0 => ['quo' => 'quo Value']]]],];
 
         return $data;
     }
@@ -1669,10 +1669,10 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                 'quo Value');
 
         $data = ['valid' => ['bar' => ['quo' => ['foo' => 'foo Value',
-            'quo' => 'quo Value', ]]],
+            'quo' => 'quo Value',]]],
             'invalid' => ['bar' => ['quo' => ['foo' => 'foo Invalid',
-                'quo' => 'quo Value', ]]],
-            'partial' => ['bar' => ['quo' => ['quo' => 'quo Value']]], ];
+                'quo' => 'quo Value',]]],
+            'partial' => ['bar' => ['quo' => ['quo' => 'quo Value']]],];
 
         return $data;
     }
@@ -1723,14 +1723,14 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             ->$e->setRequired(true);
 
         $valid = ['f' => [$e => 1,
-            $s => [$e => 1], ]];
+            $s => [$e => 1],]];
 
         $this->form->populate($valid);
 
         $this->assertEquals($valid, $this->form->getValues());
 
         $vv = $this->form->getValidValues(['f' => [$e => 1,
-            $s => [$e => 1], ]]);
+            $s => [$e => 1],]]);
         $this->assertEquals($valid, $vv);
 
         $this->form->isValid([]);
@@ -2562,7 +2562,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
                 $callback);
 
         return ['bar' => ['quo' => ['foo' => 'foo Value',
-            'quo' => 'quo Value', ]]];
+            'quo' => 'quo Value',]]];
     }
 
     public function testIsValidKeepsContext()
@@ -3109,9 +3109,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     public function testFormObjectIteratesElementsInExpectedOrderWhenFirstElementHasNoOrderSpecified()
     {
-        $this->form->addElement(new Zend_Form_Element('a',['label' => 'a']))
-            ->addElement(new Zend_Form_Element('b',['label' => 'b', 'order' => 0]))
-            ->addElement(new Zend_Form_Element('c',['label' => 'c', 'order' => 1]))
+        $this->form->addElement(new Zend_Form_Element('a', ['label' => 'a']))
+            ->addElement(new Zend_Form_Element('b', ['label' => 'b', 'order' => 0]))
+            ->addElement(new Zend_Form_Element('c', ['label' => 'c', 'order' => 1]))
             ->setView($this->getView());
         $test = $this->form->render();
         $this->assertStringContainsString('name="a"', $test);
@@ -3136,7 +3136,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         foreach ($this->form as $key => $value) {
             $received[] = $key;
             $this->assertTrue(($value instanceof Zend_Form_Element)
-                              or ($value instanceof Zend_Form_SubForm));
+                or ($value instanceof Zend_Form_SubForm));
         }
         $this->assertSame($expected, $received);
     }
@@ -3150,7 +3150,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         foreach ($this->form as $key => $value) {
             $received[] = $key;
             $this->assertTrue(($value instanceof Zend_Form_Element)
-                              or ($value instanceof Zend_Form_DisplayGroup));
+                or ($value instanceof Zend_Form_DisplayGroup));
         }
         $this->assertSame($expected, $received);
     }
@@ -3203,7 +3203,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             foreach ($form as $item);
         } catch (Zend_Form_Exception $e) {
             $message = "Clearing elements prior to iteration should not cause iteration to fail;\n"
-                     . $e->getMessage();
+                . $e->getMessage();
             static::fail($message);
         }
 
@@ -3218,7 +3218,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             foreach ($form as $item);
         } catch (Zend_Form_Exception $e) {
             $message = "Clearing display groups prior to iteration should not cause iteration to fail;\n"
-                     . $e->getMessage();
+                . $e->getMessage();
             static::fail($message);
         }
 
@@ -3230,7 +3230,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             foreach ($form as $item);
         } catch (Zend_Form_Exception $e) {
             $message = "Clearing sub forms prior to iteration should not cause iteration to fail;\n"
-                     . $e->getMessage();
+                . $e->getMessage();
             static::fail($message);
         }
         self::assertTrue(true);
@@ -3378,6 +3378,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
             $this->assertFalse($element->getDecorator('Fieldset'));
         }
     }
+
     // #@-
 
     public function testCanSetAllElementFiltersAtOnce()
@@ -3639,7 +3640,18 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $form->reset();
         $test = $form->getValues();
         $this->assertNotEquals($values, $test);
-        $this->assertEquals(0, array_sum($test));
+        $this->assertSame(
+            [
+                'bar' => null,
+                'baz' => null,
+                'bat' => null,
+                'foo' => [
+                    'one' => null,
+                    'two' => null,
+                ],
+            ],
+            $test
+        );
     }
 
     #[PHPUnit\Framework\Attributes\Group('ZF-3217')]
@@ -3897,19 +3909,19 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         );
 
         $expected = '<form enctype="application/x-www-form-urlencoded" method="post">'
-                  . PHP_EOL
-                  . PHP_EOL
-                  . '<label for="subform2-bar" class="optional">Bar</label>'
-                  . PHP_EOL
-                  . PHP_EOL
-                  . '<input type="text" name="subform2[bar]" id="subform2-bar" value="">'
-                  . PHP_EOL
-                  . PHP_EOL
-                  . '<label for="subform1-foo" class="optional">Foo</label>'
-                  . PHP_EOL
-                  . PHP_EOL
-                  . '<input type="text" name="subform1[foo]" id="subform1-foo" value="">'
-                  . '</form>';
+            . PHP_EOL
+            . PHP_EOL
+            . '<label for="subform2-bar" class="optional">Bar</label>'
+            . PHP_EOL
+            . PHP_EOL
+            . '<input type="text" name="subform2[bar]" id="subform2-bar" value="">'
+            . PHP_EOL
+            . PHP_EOL
+            . '<label for="subform1-foo" class="optional">Foo</label>'
+            . PHP_EOL
+            . PHP_EOL
+            . '<input type="text" name="subform1[foo]" id="subform1-foo" value="">'
+            . '</form>';
 
         $this->assertSame($expected, $form->render($this->getView()));
     }
@@ -3940,10 +3952,10 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
     public function testAddDecoratorsKeepsNonNumericKeyNames()
     {
         $this->form->addDecorators([[['td' => 'HtmlTag'],
-            ['tag' => 'td'], ],
+            ['tag' => 'td'],],
             [['tr' => 'HtmlTag'],
-                ['tag' => 'tr'], ],
-            ['HtmlTag', ['tag' => 'baz']], ]);
+                ['tag' => 'tr'],],
+            ['HtmlTag', ['tag' => 'baz']],]);
         $t1 = $this->form->getDecorators();
         $this->form->setDecorators($t1);
         $t2 = $this->form->getDecorators();
@@ -3999,7 +4011,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         } catch (Zend_Form_Exception $e) {
             $this->fail('Setting a view object using the options array should not throw an exception');
         }
-        $this->assertNotEquals($result,'');
+        $this->assertNotEquals($result, '');
     }
 
     #[PHPUnit\Framework\Attributes\Group('ZF-11088')]
