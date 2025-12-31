@@ -110,7 +110,10 @@ class ZendX_JQuery_View_TabContainerTest extends ZendX_JQuery_View_jQueryTestCas
             $this->view->tabPane()->captureStart('pane1', 'Label1');
             $this->fail();
         } catch (ZendX_JQuery_View_Exception $e) {
+        } finally {
+            $this->view->tabPane()->captureEnd('pane1');
         }
+        self::assertTrue(true);
     }
 
     public function testPaneCaptureLockExceptionNoEndWithoutStartPossible()

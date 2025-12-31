@@ -193,18 +193,24 @@ class ZendX_JQuery_View_jQueryTest extends ZendX_JQuery_View_jQueryTestCase
 
     public function testShouldDisallowNestingCapturesWithException()
     {
+        $this->jquery->javascriptCaptureStart();
         $this->expectException(\Zend_Exception::class);
-        $this->jquery->javascriptCaptureStart();
-        $this->jquery->javascriptCaptureStart();
+        try {
+            $this->jquery->javascriptCaptureStart();
+        } finally {
+            $this->jquery->javascriptCaptureEnd();
+        }
     }
 
     public function testShouldDisallowNestingCapturesWithException2()
     {
         $this->expectException(\Zend_Exception::class);
         $this->jquery->onLoadCaptureStart();
-        $this->jquery->onLoadCaptureStart();
-
-        $this->expectException(\Zend_Exception::class);
+        try {
+            $this->jquery->onLoadCaptureStart();
+        } finally {
+            $this->jquery->onLoadCaptureEnd();
+        }
     }
 
     public function testAddJavascriptFiles()
