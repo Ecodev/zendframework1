@@ -29,15 +29,6 @@ require_once 'Zend/Controller/Response/Cli.php';
 class Zend_Layout_PluginTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Layout_PluginTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

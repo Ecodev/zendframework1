@@ -18,8 +18,6 @@
  * @version    $Id$
  */
 
-// Call Zend_Validate_IdenticalTest::main() if this source file is executed directly.
-
 /** Zend_Validate_Identical */
 require_once 'Zend/Validate/Identical.php';
 
@@ -34,12 +32,6 @@ require_once 'Zend/Validate/Identical.php';
 class Zend_Validate_IdenticalTest extends PHPUnit\Framework\TestCase
 {
     private Zend_Validate_Identical $validator;
-
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_IdenticalTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     public function setUp(): void
     {
@@ -130,5 +122,3 @@ class Zend_Validate_IdenticalTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($validator->isValid(['token' => '123']));
     }
 }
-
-// Call Zend_Validate_IdenticalTest::main() if this source file is executed directly.

@@ -35,12 +35,6 @@ require_once 'Zend/Config.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Uri')]
 class Zend_UriTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_UriTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->notices = [];

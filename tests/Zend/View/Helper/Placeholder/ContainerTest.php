@@ -37,15 +37,6 @@ class Zend_View_Helper_Placeholder_ContainerTest extends PHPUnit\Framework\TestC
     public $container;
 
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_Placeholder_ContainerTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

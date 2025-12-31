@@ -34,11 +34,6 @@ class Zend_Validate_AbstractTest extends PHPUnit\Framework\TestCase
     /**
      * Runs this test suite.
      */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_AbstractTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     /**
      * Creates a new validation object for each test method.

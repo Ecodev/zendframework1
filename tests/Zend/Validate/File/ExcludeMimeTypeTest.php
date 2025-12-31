@@ -33,15 +33,6 @@ require_once 'Zend/Validate/File/ExcludeMimeType.php';
 class Zend_Validate_File_ExcludeMimeTypeTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_File_ExcludeMimeTypeTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Ensures that the validator follows expected behavior.
      */
     public function testBasic()

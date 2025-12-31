@@ -29,12 +29,6 @@ require_once 'Zend/View.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Form')]
 class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_SubFormTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->form = new Zend_Form_SubForm();

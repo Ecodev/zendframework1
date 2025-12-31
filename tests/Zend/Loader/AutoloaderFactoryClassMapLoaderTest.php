@@ -34,12 +34,6 @@ class Zend_Loader_AutoloaderFactoryClassMapLoaderTest extends PHPUnit\Framework\
      */
     protected $_includePath;
 
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         // Store original autoloaders

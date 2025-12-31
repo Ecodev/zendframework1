@@ -18,8 +18,6 @@
  * @version    $Id$
  */
 
-// Call Zend_LoaderTest::main() if this source file is executed directly.
-
 /**
  * Zend_Loader.
  */
@@ -37,15 +35,6 @@ require_once 'Zend/Loader/Autoloader.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Loader')]
 class Zend_LoaderTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_LoaderTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         // Store original autoloaders

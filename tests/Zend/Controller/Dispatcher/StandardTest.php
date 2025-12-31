@@ -29,17 +29,6 @@ class Zend_Controller_Dispatcher_StandardTest extends PHPUnit\Framework\TestCase
 {
     protected $_dispatcher;
 
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Dispatcher_StandardTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         if (isset($this->error)) {

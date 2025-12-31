@@ -39,17 +39,6 @@ class Zend_Controller_Request_HttpTest extends PHPUnit\Framework\TestCase
      */
     protected $_origServer;
 
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Request_HttpTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->_origServer = $_SERVER;

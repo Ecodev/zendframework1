@@ -73,15 +73,6 @@ class Zend_Filter_File_RenameTest extends PHPUnit\Framework\TestCase
     protected $_newDirFile;
 
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Filter_File_RenameTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets the path to test files.
      */
     public function setUp(): void

@@ -29,15 +29,6 @@ require_once 'Zend/Validate/File/Upload.php';
 class Zend_File_Transfer_Adapter_HttpTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_File_Transfer_Adapter_HttpTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

@@ -18,8 +18,6 @@
  * @version    $Id$
  */
 
-// Call Zend_Filter_StripTagsTest::main() if this source file is executed directly.
-
 /**
  * @see Zend_Filter_StripTags
  */
@@ -38,15 +36,6 @@ class Zend_Filter_StripTagsTest extends PHPUnit\Framework\TestCase
      * @var Zend_Filter_StripTags
      */
     protected $_filter;
-
-    /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     /**
      * Creates a new Zend_Filter_StripTags object for each test method.

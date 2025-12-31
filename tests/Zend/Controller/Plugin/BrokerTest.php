@@ -29,17 +29,6 @@ class Zend_Controller_Plugin_BrokerTest extends PHPUnit\Framework\TestCase
 {
     public $controller;
 
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Plugin_BrokerTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->controller = Zend_Controller_Front::getInstance();

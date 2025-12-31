@@ -31,15 +31,6 @@ require_once 'Zend/Form/Element/Note.php';
 class Zend_Form_Element_NoteTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_NoteTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

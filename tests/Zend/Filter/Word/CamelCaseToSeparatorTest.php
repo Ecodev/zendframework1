@@ -28,17 +28,6 @@ require_once 'Zend/Filter/Word/CamelCaseToSeparator.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
 class Zend_Filter_Word_CamelCaseToSeparatorTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Filter_Word_CamelCaseToSeparatorTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function testFilterSeparatesCamelCasedWordsWithSpacesByDefault()
     {
         $string = 'CamelCasedWords';

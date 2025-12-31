@@ -17,7 +17,6 @@
  *
  * @version    $Id$
  */
-// Call Zend_Controller_Response_HttpTest::main() if this source file is executed directly.
 /**
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
@@ -30,17 +29,6 @@ class Zend_Controller_Response_HttpTest extends PHPUnit\Framework\TestCase
      * @var Zend_Controller_Response_Http
      */
     protected $_response;
-
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Response_HttpTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     public function setUp(): void
     {

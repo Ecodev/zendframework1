@@ -27,15 +27,6 @@
 #[PHPUnit\Framework\Attributes\Group('Zend_Locale')]
 class Zend_LocaleTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_LocaleTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     private $_locale;
 
     public function setUp(): void

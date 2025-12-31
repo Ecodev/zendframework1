@@ -18,8 +18,6 @@
  * @version    $Id$
  */
 
-// Call Zend_Loader_PluginLoaderTest::main() if this source file is executed directly.
-
 require_once 'Zend/Loader/PluginLoader.php';
 
 /**
@@ -32,15 +30,6 @@ require_once 'Zend/Loader/PluginLoader.php';
 class Zend_Loader_PluginLoaderTest extends PHPUnit\Framework\TestCase
 {
     protected $_includeCache;
-
-    /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Loader_PluginLoaderTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     /**
      * Sets up the fixture, for example, open a network connection.

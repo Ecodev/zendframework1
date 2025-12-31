@@ -31,15 +31,6 @@ require_once 'Zend/Validate/File/Upload.php';
 class Zend_Validate_File_UploadTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_File_UploadTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Ensures that the validator follows expected behavior.
      */
     public function testBasic()

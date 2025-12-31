@@ -18,8 +18,6 @@
  * @version    $Id$
  */
 
-// Call Zend_Filter_PregReplaceTest::main() if this source file is executed directly.
-
 /**
  * @see Zend_Filter_PregReplace
  */
@@ -34,15 +32,6 @@ require_once 'Zend/Filter/PregReplace.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
 class Zend_Filter_PregReplaceTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Filter_PregReplaceTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->filter = new Zend_Filter_PregReplace();
@@ -133,5 +122,3 @@ class XPregReplace extends Zend_Filter_PregReplace
 {
     protected $_matchPattern = '~(&gt;){3,}~i';
 }
-
-// Call Zend_Filter_PregReplaceTest::main() if this source file is executed directly.

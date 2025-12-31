@@ -33,12 +33,6 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
      */
     public $form;
 
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_FormTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         if (isset($this->error)) {

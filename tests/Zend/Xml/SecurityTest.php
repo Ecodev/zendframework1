@@ -30,12 +30,6 @@ require_once 'Zend/Xml/Security.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Xml')]
 class Zend_Xml_SecurityTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function testScanForXEE()
     {
         $xml = <<<XML

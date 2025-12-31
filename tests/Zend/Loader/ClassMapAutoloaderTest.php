@@ -26,12 +26,6 @@ require_once 'Zend/Loader/ClassMapAutoloader.php';
 #[PHPUnit\Framework\Attributes\Group('Loader')]
 class Zend_Loader_ClassMapAutoloaderTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         // Store original autoloaders

@@ -27,17 +27,6 @@ require_once 'Zend/Controller/Response/Cli.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action')]
 class Zend_Controller_ActionTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_ActionTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         Zend_Controller_Action_HelperBroker::setPluginLoader(null);

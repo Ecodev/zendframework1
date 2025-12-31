@@ -38,17 +38,6 @@ class Zend_Controller_Router_Route_ModuleTest extends PHPUnit\Framework\TestCase
 
     protected $route;
 
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Router_Route_ModuleTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $front = Zend_Controller_Front::getInstance();

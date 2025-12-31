@@ -45,15 +45,6 @@ class Zend_NavigationTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_NavigationTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Testing that navigation order is done correctly.
      */
     #[PHPUnit\Framework\Attributes\Group('ZF-8337')]

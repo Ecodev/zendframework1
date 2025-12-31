@@ -35,12 +35,6 @@ require_once 'Zend/Controller/Front.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Application')]
 class Zend_Application_Resource_FrontcontrollerTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
-    }
-
     public function setUp(): void
     {
         // Store original autoloaders

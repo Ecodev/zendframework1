@@ -29,17 +29,6 @@ class Zend_Controller_FrontTest extends PHPUnit\Framework\TestCase
 {
     protected $_controller;
 
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_FrontTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->_controller = Zend_Controller_Front::getInstance();

@@ -40,12 +40,6 @@ require_once 'Zend/Loader.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_View')]
 class Zend_ViewTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_ViewTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->notices = [];

@@ -27,17 +27,6 @@ require_once 'Zend/View/Helper/DeclareVars.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_View_Helper')]
 class Zend_View_Helper_DeclareVarsTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_DeclareVarsTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $view = new Zend_View();

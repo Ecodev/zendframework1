@@ -48,15 +48,6 @@ class Zend_View_Helper_InlineScriptTest extends PHPUnit\Framework\TestCase
     public $basePath;
 
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_InlineScriptTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

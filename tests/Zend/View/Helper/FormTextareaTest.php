@@ -33,17 +33,6 @@ require_once 'Zend/View/Helper/FormTextarea.php';
 class Zend_View_Helper_FormTextareaTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_FormTextareaTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

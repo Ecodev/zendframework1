@@ -32,15 +32,6 @@ require_once 'Zend/Controller/Response/HttpTestCase.php';
 class Zend_Controller_Response_HttpTestCaseTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Response_HttpTestCaseTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

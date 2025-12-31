@@ -39,15 +39,6 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
     protected $_errorOccurred = false;
 
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_FileTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

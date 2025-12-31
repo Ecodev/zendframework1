@@ -28,17 +28,6 @@ require_once 'Zend/Filter/Word/DashToUnderscore.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
 class Zend_Filter_Word_DashToUnderscoreTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Filter_Word_DashToUnderscoreTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function testFilterSeparatesCamelCasedWordsWithDashes()
     {
         $string = 'dash-separated-words';

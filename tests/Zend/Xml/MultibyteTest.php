@@ -34,12 +34,6 @@ require_once 'Zend/Xml/TestAsset/Security.php';
 #[PHPUnit\Framework\Attributes\Group('ZF2015-06')]
 class Zend_Xml_MultibyteTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public static function multibyteEncodings()
     {
         return [

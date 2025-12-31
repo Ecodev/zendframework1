@@ -51,15 +51,6 @@ class Zend_Controller_Action_Helper_RedirectorTest extends PHPUnit\Framework\Tes
     public $controller;
 
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_RedirectorTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Set up redirector.
      *
      * Creates request, response, and action controller objects; sets action

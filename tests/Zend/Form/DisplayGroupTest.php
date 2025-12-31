@@ -28,12 +28,6 @@ require_once 'Zend/View.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Form')]
 class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_DisplayGroupTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         Zend_Registry::_unsetInstance();

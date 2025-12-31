@@ -18,8 +18,6 @@
  * @version    $Id: BaseUrlTest.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
 
-// Call Zend_View_Helper_BaseUrlTest::main() if this source file is executed directly.
-
 /**
  * @see Zend_View_Helper_Gravatar
  */
@@ -51,11 +49,6 @@ class Zend_View_Helper_GravatarTest extends PHPUnit\Framework\TestCase
     /**
      * Main.
      */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_GravatarTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     /**
      * Prepares the environment before running a test.

@@ -33,11 +33,6 @@ class Zend_Validate_CallbackTest extends PHPUnit\Framework\TestCase
     /**
      * Runs this test suite.
      */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_CallbackTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     /**
      * Ensures that the validator follows expected behavior.

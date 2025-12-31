@@ -37,17 +37,6 @@ class Zend_Controller_Request_Apache404Test extends PHPUnit\Framework\TestCase
      */
     protected $_server;
 
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Request_Apache404Test');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->_server = $_SERVER;

@@ -29,12 +29,6 @@ require_once 'Zend/Loader/StandardAutoloader.php';
 #[PHPUnit\Framework\Attributes\Group('Loader')]
 class Zend_Loader_AutoloaderFactoryTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         // Store original autoloaders

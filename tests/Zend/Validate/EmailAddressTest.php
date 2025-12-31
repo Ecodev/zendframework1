@@ -40,11 +40,6 @@ class Zend_Validate_EmailAddressTest extends PHPUnit\Framework\TestCase
     /**
      * Runs this test suite.
      */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     /**
      * Creates a new Zend_Validate_EmailAddress object for each test method.

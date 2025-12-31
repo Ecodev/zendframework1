@@ -32,12 +32,6 @@ require_once 'Zend/Application/Resource/View.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Application')]
 class Zend_Application_Resource_ViewTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
-    }
-
     public function setUp(): void
     {
         // Store original autoloaders

@@ -55,12 +55,6 @@ require_once 'Zend/Application/Bootstrap/Bootstrap.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Application')]
 class Zend_Application_Bootstrap_BootstrapAbstractTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = (new PHPUnit\TextUI\TestRunner())->run($suite);
-    }
-
     public function setUp(): void
     {
         // Store original autoloaders

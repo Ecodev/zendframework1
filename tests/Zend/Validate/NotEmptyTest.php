@@ -31,15 +31,6 @@ require_once 'Zend/Validate/NotEmpty.php';
 class Zend_Validate_NotEmptyTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_NotEmptyTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Zend_Validate_NotEmpty object.
      *
      * @var Zend_Validate_NotEmpty

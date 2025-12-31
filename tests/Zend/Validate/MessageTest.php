@@ -18,8 +18,6 @@
  * @version    $Id$
  */
 
-// Call Zend_Validate_MessageTest::main() if this source file is executed directly.
-
 /**
  * @see Zend_Validate_StringLength
  */
@@ -38,12 +36,6 @@ class Zend_Validate_MessageTest extends PHPUnit\Framework\TestCase
      * @var Zend_Validate_StringLength
      */
     protected $_validator;
-
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     /**
      * Creates a new Zend_Validate_StringLength object for each test method.
@@ -277,5 +269,3 @@ class Zend_Validate_MessageTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('variables: %notvar% 4 8 ', current($messages));
     }
 }
-
-// Call Zend_Validate_MessageTest::main() if this source file is executed directly.

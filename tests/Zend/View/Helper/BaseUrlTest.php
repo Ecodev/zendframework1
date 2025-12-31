@@ -18,8 +18,6 @@
  * @version    $Id$
  */
 
-// Call Zend_View_Helper_BaseUrlTest::main() if this source file is executed directly.
-
 /**
  * @see Zend_View_Helper_BaseUrl
  */
@@ -55,11 +53,6 @@ class Zend_View_Helper_BaseUrlTest extends PHPUnit\Framework\TestCase
     /**
      * Main.
      */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_View_Helper_BaseUrlTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
 
     /**
      * Prepares the environment before running a test.
@@ -192,5 +185,3 @@ class Zend_View_Helper_BaseUrlTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('/mybar', $helper->getBaseUrl());
     }
 }
-
-// Call Zend_View_Helper_BaseUrlTest::main() if this source file is executed directly.

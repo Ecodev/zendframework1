@@ -28,17 +28,6 @@ require_once 'Zend/Filter/Word/DashToSeparator.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
 class Zend_Filter_Word_DashToSeparatorTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Filter_Word_DashToSeparatorTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function testFilterSeparatesDashedWordsWithDefaultSpaces()
     {
         $string = 'dash-separated-words';

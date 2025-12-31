@@ -52,17 +52,6 @@ class Zend_Controller_Router_RewriteTest extends PHPUnit\Framework\TestCase
 {
     protected $_router;
 
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Router_RewriteTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->_router = new Zend_Controller_Router_Rewrite();

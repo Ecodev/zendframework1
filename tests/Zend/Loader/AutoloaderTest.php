@@ -35,12 +35,6 @@ require_once 'Zend/Loader/Autoloader/Interface.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Loader')]
 class Zend_Loader_AutoloaderTest extends PHPUnit\Framework\TestCase
 {
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         // Store original autoloaders

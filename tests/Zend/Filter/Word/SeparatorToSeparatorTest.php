@@ -28,17 +28,6 @@ require_once 'Zend/Filter/Word/SeparatorToSeparator.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Filter')]
 class Zend_Filter_Word_SeparatorToSeparatorTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Filter_Word_SeparatorToSeparatorTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function testFilterSeparatesWordsByDefault()
     {
         $string = 'dash separated words';

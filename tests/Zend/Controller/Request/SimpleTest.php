@@ -29,17 +29,6 @@ require_once 'Zend/Controller/Request/Simple.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Controller_Request')]
 class Zend_Controller_Request_SimpleTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Request_SimpleTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function testSimpleRequestIsOfAbstractRequestType()
     {
         $request = new Zend_Controller_Request_Simple();

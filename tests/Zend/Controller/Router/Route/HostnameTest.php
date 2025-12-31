@@ -32,17 +32,6 @@ require_once 'Zend/Controller/Request/Http.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Controller_Router')]
 class Zend_Controller_Router_Route_HostnameTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Router_Route_HostnameTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function testCorrectStaticHostMatch()
     {
         $route = $this->_getStaticHostRoute();

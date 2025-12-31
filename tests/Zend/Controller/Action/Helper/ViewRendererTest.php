@@ -69,17 +69,6 @@ class Zend_Controller_Action_Helper_ViewRendererTest extends PHPUnit\Framework\T
     public $response;
 
     /**
-     * Runs the test methods of this class.
-     *
-     * @static
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_ViewRendererTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * Sets up the fixture, for example, open a network connection.
      * This method is called before a test is executed.
      */

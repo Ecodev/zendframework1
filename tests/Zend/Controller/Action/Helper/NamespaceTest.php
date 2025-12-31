@@ -28,15 +28,6 @@
 #[PHPUnit\Framework\Attributes\Group('Zend_Controller_Action_Helper')]
 class Zend_Controller_Action_Helper_NamespaceTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Controller_Action_Helper_NamespaceTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     #[PHPUnit\Framework\Attributes\Group('ZF-10158')]
     public function testGetNameWithNamespace()
     {
@@ -51,5 +42,3 @@ class Zend_Controller_Action_Helper_NamespaceTest extends PHPUnit\Framework\Test
         $this->assertEquals('NamespacedHelper', $helper->getName());
     }
 }
-
-// Call Zend_Controller_Action_Helper_NamespaceTest::main() if this source file is executed directly.

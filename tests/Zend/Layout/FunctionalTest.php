@@ -28,15 +28,6 @@ require_once 'Zend/Controller/Plugin/ErrorHandler.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Layout')]
 class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
 {
-    /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite(self::class);
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->bootstrap = [$this, 'appBootstrap'];

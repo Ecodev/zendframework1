@@ -30,15 +30,6 @@ require_once 'Zend/Validate/File/FilesSize.php';
 #[PHPUnit\Framework\Attributes\Group('Zend_Validate')]
 class Zend_Validate_File_FilesSizeTest extends PHPUnit\Framework\TestCase
 {
-    /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Validate_File_FilesSizeTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
     public function setUp(): void
     {
         $this->multipleOptionsDetected = false;

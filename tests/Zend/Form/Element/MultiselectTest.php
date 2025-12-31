@@ -27,15 +27,6 @@
 class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Runs the test methods of this class.
-     */
-    public static function main()
-    {
-        $suite = new PHPUnit\Framework\TestSuite('Zend_Form_Element_MultiselectTest');
-        $result = PHPUnit\TextUI\TestRunner::run($suite);
-    }
-
-    /**
      * @var Zend_Form_Element_Multiselect
      */
     public $element;
