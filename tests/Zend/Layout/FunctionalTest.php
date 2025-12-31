@@ -16,7 +16,7 @@
  *
  * @version    $Id$
  */
-require_once 'Zend/Test/PHPUnit/ControllerTestCase.php';
+require_once 'tests/Zend/Layout/ControllerTestCase.php';
 
 require_once 'Zend/Controller/Plugin/ErrorHandler.php';
 
@@ -26,7 +26,7 @@ require_once 'Zend/Controller/Plugin/ErrorHandler.php';
  * @group      Zend_Layout
  */
 #[AllowDynamicProperties]
-class Zend_Layout_FunctionalTest extends Zend_Test_PHPUnit_ControllerTestCase
+class Zend_Layout_FunctionalTest extends Zend_Layout_FunctionalTest_ControllerTestCase
 {
     /**
      * Runs the test methods of this class.
